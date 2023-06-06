@@ -1,0 +1,55 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 8%;
+  padding: 20px;
+}
+
+.footer .column1 {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.footer .column1 #logotitle {
+  margin: auto;
+}
+.footer .column1 span {
+  color: #124CC5;
+  font-size: 1rem;
+}
+.footer .column1 #email {
+  font-size: 1.2rem;
+}
+.footer .column1 #copyright {
+  color: #605F5F;
+}
+
+.footer .column2 {
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+}
+.footer .title {
+  color: #124CC5;
+  font-size: 1.1rem;
+}
+.footer .column2 a {
+  text-decoration: none;
+  color: black;
+}
+.footer .column2 a:hover {
+  color: #124CC5;
+}
+
+.footer .column3 {
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+}
+.footer .column3 #iconDiv {
+  display: flex;
+  flex-direction: row;
+  column-gap: 8px;
+}

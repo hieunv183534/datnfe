@@ -1,0 +1,36 @@
+<div [ngClass]="{'header': true, 'scrolled': isScrolled}" >
+  <div class="logoDiv">
+    <a to="/" class="logoDiv">
+      <img
+        src="../../../../assets/img/logo.png"
+        alt="main logo"
+        width="53.43px"
+        height="59px"
+      />
+      <img
+        src="../../../../assets/img/title.png"
+        alt="title"
+        width="265.57px"
+        height="31px"
+      />
+    </a>
+  </div>
+  <div class="navigationDiv">
+    <a to="#">
+      <div class="navLink underline1" id="connect">KẾT NỐI</div>
+    </a>
+    <a to="#">
+      <div class="navLink underline1">CỘNG ĐỒNG</div>
+    </a>
+    <a to="#">
+      <div class="navLink underline1">ĐÀO TẠO</div>
+    </a>
+    <a to="#">
+      <div class="navLink underline1">HỖ TRỢ</div>
+    </a>
+  </div>
+  <div class="loginDiv">
+    <button id="login" type="button" (click)="showLogin()"> ĐĂNG NHẬP </button>
+    <button id="register" type="button" (click)="showRegister()"> ĐĂNG KÝ </button>
+  </div>
+</div>

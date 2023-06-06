@@ -1,0 +1,8 @@
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 8%;
+  height: 7rem;
+  padding-left: 10%;
+}

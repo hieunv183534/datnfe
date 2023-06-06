@@ -1,0 +1,19 @@
+<div [ngClass]="{'headerLogin': true, 'scrolled': isScrolled }">
+  <div class="leftDiv">
+    <img src="../../../../assets/img/logotitle.png" (click)="toHome()" id="logo" />
+    <ng-container *ngFor="let menu of menuData">
+      <a [routerLink]="menu.href" [ngClass]="{'active-menu': thisRouteUrl == menu.href}">{{menu.title}}</a>
+    </ng-container>
+  </div>
+  <div class="rightDiv">
+    <a class="notification" routerLink="#">
+      <i class="pi pi-comments" pBadge value="2"></i>
+    </a>
+    <a class="notification" routerLink="#">
+      <i class="pi pi-bell" pBadge value="2"></i>
+    </a>
+    <a routerLink="#">
+      <img src="../../../../assets/img/profileIcon.png" alt="" id="profileIcon" />
+    </a>
+  </div>
+</div>

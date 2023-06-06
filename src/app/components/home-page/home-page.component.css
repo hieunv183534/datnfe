@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.homepage {
+    overflow-x: hidden;
+}
+
+.homepage .slideDiv {
+    white-space: nowrap;
+    transition: ease-in-out 1s;
+}
+.homepage .slideDiv .slide {
+    width: 100%;
+    height: 660px;
+    display: inline-block;
+}
+.homepage .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.homepage .container-dots {
+    position: absolute;
+    bottom: 10px;
+    top: 600px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    z-index: 1;
+}
+.homepage .dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid #f1f1f1;
+    margin: 0 5px;
+    background: #f1f1f1;
+}
+.homepage .active {
+    background: rgb(32, 32, 32);
+}
+
+.homepage .infoPanel {
+    position: relative;
+}
+
+.homepage .infoPanel #essay1 {
+    width: 40%;
+    padding: 30px 5% 20px 8%;
+}
+
+.homepage .infoPanel h1 {
+    color: #0086FF;
+    font-family: 'Roboto', sans-serif;
+}
+
+.homepage .infoPanel button {
+    color: white;
+    border: none;
+    background-color: #FAA00F;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.homepage .infoPanel #essay1 .grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 50px;
+}
+
+.homepage .infoPanel #working1 {
+    position: absolute;
+    right: 200px;
+    top: 125px;
+}
+.homepage .infoPanel #blueBackground {
+    position: absolute;
+    right: 150px;
+    top: 75px;
+    z-index: -1;
+}
+
+.homepage #infoPanel2 {
+    background-color: #F3F4F6;
+    overflow: hidden;
+}
+
+.homepage .infoPanel #essay2 {
+    width: 40%;
+    padding: 30px 8% 30px 5%;
+    float: right;
+}
+
+.homepage #infoPanel2 #working2 {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    z-index: 1;
+}
+
+.homepage #infoPanel2 #blueBackground2 {
+    position: absolute;
+    top: 50px;
+    left: 250px;
+    z-index: 0;
+}
+
+.homepage #infoPanel3 {
+    display: flex;
+    flex-direction: row;
+}
+
+.homepage #infoPanel3 .left {
+    width: 55%;
+    padding: 40px 10% 30px 10%;
+}
+
+.homepage #infoPanel3 .right {
+    width: 45%;
+    padding: 60px 10% 30px 0;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 5%;
+}
+
+.homepage #infoPanel3 .right .gridTitle {
+    font-weight: bold;
+}
+
+.homepage #infoPanel4 {
+    background-color: #F3F4F6;
+    overflow: hidden;
+    padding: 30px 8% 100px 5%;
+}
+
+.homepage #infoPanel4 .right {
+    width: 40%;
+    float: right;
+}
+
+.homepage #infoPanel4 #working4 {
+    position: absolute;
+    top: 100px;
+    left: 200px;
+    z-index: 1;
+}
+.homepage #infoPanel4 #blueBackground4 {
+    position: absolute;
+    top: 50px;
+    left: 150px;
+    z-index: 0;
+}
+
+.homepage #infoPanel4 .right #row4 {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5%;
+}
+
+.homepage #infoPanel5 {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0 ,0.8)), url(../../../assets/img/blackBackground.png);
+    background-size: cover;
+}
+
+.homepage #infoPanel5 #title5 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 40px;
+    padding-top: 50px;
+}
+
+.homepage #infoPanel5 .grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-items: center;
+    align-items: center;
+    row-gap: 40px;
+    padding-bottom: 40px;
+}
+
+.homepage #infoPanel6 {
+    margin-bottom: 50px;
+}
+.homepage #infoPanel6 .text {
+    text-align: center;
+    padding: 50px 30% 30px 30%;
+}
+.homepage #infoPanel6 .text h2 {
+    font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
+}
+.homepage #infoPanel6 .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 1%;
+    margin-bottom: 20px;
+}
+
+.homepage #infoPanel7 {
+    background: linear-gradient(rgba(0, 9, 24, 0.85), rgba(0, 9, 24, 0.85)), url(../../../assets/img/helpBackground.png);
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 50px 0 50px 0;
+}
+.homepage #infoPanel7 h3 {
+    font-weight: 400;
+}
+.homepage #infoPanel7 h2 {
+    color: black;
+    font-weight: 400;
+}
+.homepage #infoPanel7 h1 {
+    color: white;
+}
+.homepage #infoPanel7 .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 3%;
+}
+.homepage #infoPanel7 .row .help {
+    background-color: white;
+    border-radius: 10px;
+    width: 25%;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.homepage #infoPanel7 .row .help .upperDiv {
+    display: flex;
+    flex-direction: row;
+    column-gap: 7%;
+    margin-bottom: 10px;
+    height: 6rem;
+}
+.homepage #infoPanel7 .row .help .upperDiv img {
+    width: 70px;
+    height: 70px;
+}
+.homepage #infoPanel7 .row .help button {
+    width: 100%;
+    height: 3rem;
+}
+.homepage #infoPanel7 .row .help #btnHotline {
+    background: url('../../../assets/img/hotline.png') no-repeat;
+    background-size: contain;
+}
+.homepage #infoPanel7 .row .help #btnMail{
+    background: url('../../../assets/img/chatngaynao.png') no-repeat;
+    background-size: contain;
+}
+.homepage #infoPanel7 .row .help #btnInfo {
+    background: url('../../../assets/img/guiyeucaulienhe.png') no-repeat;
+    background-size: contain;
+}
+
+@media screen and (max-width: 1000px) {
+    #working1, #blueBackground, #working2, #blueBackground2, #working4, #blueBackground4 {
+        width: 0;
+    }
+
+}

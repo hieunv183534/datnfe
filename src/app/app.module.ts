@@ -1,0 +1,139 @@
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
+import { InputTextModule } from 'primeng/inputtext';
+import { DividerModule } from 'primeng/divider';
+import { TagModule } from 'primeng/tag';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { MenubarModule } from 'primeng/menubar';
+import { SpeedDialModule } from 'primeng/speeddial';
+import { TreeTableModule } from 'primeng/treetable';
+import { DialogModule } from 'primeng/dialog';
+import { ChipsModule } from 'primeng/chips';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { PaginatorModule } from 'primeng/paginator';
+import { FieldsetModule } from 'primeng/fieldset';
+import { ToolbarModule } from 'primeng/toolbar';
+import { TableModule } from 'primeng/table';
+import { SliderModule } from 'primeng/slider';
+import { TreeSelectModule } from 'primeng/treeselect';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { AccordionModule } from 'primeng/accordion';
+import { TabViewModule } from 'primeng/tabview';
+import { CheckboxModule } from 'primeng/checkbox';
+import { PanelModule } from 'primeng/panel';
+import {BadgeModule} from 'primeng/badge';
+import { ChartModule } from 'primeng/chart';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import {CalendarModule} from 'primeng/calendar';
+import { FileUploadModule } from 'primeng/fileupload';
+import { HttpClientModule } from '@angular/common/http';
+import { GalleriaModule } from 'primeng/galleria';
+import {ScrollTopModule} from 'primeng/scrolltop';
+import { CommonModule } from '@angular/common';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { ReasonComponent } from './components/common/reason/reason.component';
+import { SponsorComponent } from './components/common/sponsor/sponsor.component';
+import { FooterComponent } from './components/common/footer/footer.component';
+import { HeaderComponent } from './components/common/header/header.component';
+import { HomeHeaderComponent } from './components/common/home-header/home-header.component';
+import { StartuperSpaceComponent } from './components/startuper/startuper-space.component';
+import { InvestorSpaceComponent } from './components/investor/investor-space.component';
+import { ProjectForInvestorComponent } from './components/investor/project-for-investor/project-for-investor.component';
+import { ProjectForStartuperComponent } from './components/startuper/project-for-startuper/project-for-startuper.component';
+import { StartuperForStartuperComponent } from './components/startuper/startuper-for-startuper/startuper-for-startuper.component';
+import { InvestorForStartuperComponent } from './components/startuper/investor-for-startuper/investor-for-startuper.component';
+import { StartuperForInvestorComponent } from './components/investor/startuper-for-investor/startuper-for-investor.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { NotificationComponent } from './components/notification/notification.component';
+import { BaseService } from './services/base.service';
+import { AuthService } from './services/auth.service';
+import { ChatService } from './services/chat.service';
+import { InvestorService } from './services/investor.service';
+import { ProjectService } from './services/project.service';
+import { StartuperService } from './services/startuper.service';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HomePageComponent,
+    ReasonComponent,
+    SponsorComponent,
+    FooterComponent,
+    HeaderComponent,
+    HomeHeaderComponent,
+    StartuperSpaceComponent,
+    InvestorSpaceComponent,
+    ProjectForInvestorComponent,
+    ProjectForStartuperComponent,
+    StartuperForStartuperComponent,
+    InvestorForStartuperComponent,
+    StartuperForInvestorComponent,
+    LoginComponent,
+    RegisterComponent,
+    NotificationComponent
+  ],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ButtonModule,
+    RippleModule,
+    InputTextModule,
+    DividerModule,
+    TagModule,
+    ToastModule,
+    MenubarModule,
+    SpeedDialModule,
+    TreeTableModule,
+    DialogModule,
+    ChipsModule,
+    ConfirmDialogModule,
+    PaginatorModule,
+    FieldsetModule,
+    ToolbarModule,
+    TableModule,
+    SliderModule,
+    TreeSelectModule,
+    SelectButtonModule,
+    AccordionModule,
+    TabViewModule,
+    CheckboxModule,
+    PanelModule,
+    ChartModule,
+    OverlayPanelModule,
+    DropdownModule,
+    InputTextareaModule,
+    FileUploadModule,
+    HttpClientModule,
+    GalleriaModule,
+    BadgeModule,
+    ScrollTopModule,
+    CalendarModule
+  ],
+  providers: [
+    MessageService,
+    ConfirmationService,
+    BaseService,
+    AuthService,
+    ChatService,
+    InvestorService,
+    ProjectService,
+    StartuperService
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

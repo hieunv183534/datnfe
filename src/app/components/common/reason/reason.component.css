@@ -1,0 +1,18 @@
+.reason {
+  color: white;
+  width: 60%;
+  padding-left: 30px;
+}
+
+.reason .upper {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5%;
+  font-weight: 600;
+  align-items: center;
+}
+
+.reason .upper img {
+  width: 88px;
+  height: 94px;
+}
