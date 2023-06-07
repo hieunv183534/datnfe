@@ -1,0 +1,122 @@
+.founderItem {
+  position: relative;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 18rem;
+  width: 91%;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 0 3% 0 3%;
+  overflow-y: auto;
+}
+
+.founderItem #avatar {
+  height: 85%;
+  width: 39%;
+  object-fit: contain;
+  border-right: 2px solid rgb(223, 223, 223);
+  padding-right: 3%;
+}
+
+.founderItem .info {
+  height: 85%;
+  margin-left: 3%;
+}
+
+.founderItem .info ul {
+  padding-left: 7%;
+}
+
+.founderItem .info .name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.founderItem .info .introduce {
+  font-weight: 300;
+}
+
+.founderItem #goldOutline {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+#medal{
+  position: absolute;
+  z-index: 1;
+  margin-top: 60px;
+}
+
+.likes__wrapper{
+  display:flex;
+  align-content:center;
+  justify-content:center;
+
+}
+.likes__relavance{
+  position:relative;
+  padding:0 80px;
+}
+.likes__list{
+  position:absolute;
+  box-sizing: border-box;
+  overflow-y:scroll;
+  max-height:150px;
+  left:0%;
+  z-index:999;
+  background:white;
+  padding:10px;
+  border:1px solid grey;
+  box-shadow: 0 0 2px 2px grey;
+}
+
+.founderItem .hoverDiv {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-radius: 17px;
+  width: 100%;
+  height: 100%;
+  background-color: #000000a4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 1.5rem;
+}
+.founderItem .hoverDiv button {
+  cursor: pointer;
+  width: 40%;
+  height: 3rem;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 30px;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5%;
+  color: white;
+}
+.founderItem .hoverDiv button:hover {
+  filter: brightness(0.9);
+}
+.founderItem .hoverDiv button:active {
+  filter: brightness(0.8);
+}
+.founderItem .hoverDiv #xemthem{
+  border-style: solid;
+  border-width: 1px;
+}
+.founderItem .hoverDiv #ketnoi {
+  background: linear-gradient(90deg, #0386FF 0%, #01AAFF 100%, #01AAFF 100%);
+}
+

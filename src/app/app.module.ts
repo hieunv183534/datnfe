@@ -62,6 +62,8 @@ import { ChatService } from './services/chat.service';
 import { InvestorService } from './services/investor.service';
 import { ProjectService } from './services/project.service';
 import { StartuperService } from './services/startuper.service';
+import { StartuperItemComponent } from './components/common/startuper-item/startuper-item.component';
+import { PopupConnectComponent } from './components/common/popup-connect/popup-connect.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,9 @@ import { StartuperService } from './services/startuper.service';
     StartuperForInvestorComponent,
     LoginComponent,
     RegisterComponent,
-    NotificationComponent
+    NotificationComponent,
+    StartuperItemComponent,
+    PopupConnectComponent
   ],
   imports: [
     CommonModule,

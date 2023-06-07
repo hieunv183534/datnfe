@@ -1,0 +1,25 @@
+<div class='founderItem' (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
+  <img src="../../../../assets/img/nmh.png" alt='' id='avatar' />
+  <div class='info'>
+    <div class='name'>{{name}}</div>
+    <div class='introduce'>{{introduce}}</div>
+    <ul>
+      <li>Độ tuổi: {{age}}</li>
+      <li>Khu vực: {{location}}</li>
+      <li>Kỹ năng: {{skill}}</li>
+      <li>Chuyên môn: {{expertise}}</li>
+      <li>Tính cách: {{personality}}</li>
+      <li>Thành tựu: {{achievement}}</li>
+    </ul>
+  </div>
+
+  <div *ngIf="isHovered" class='hoverDiv'>
+    <button type='button' id='xemthem'>
+      <i class="pi pi-eye"></i> Xem thêm
+    </button>
+    <button type='button' id='ketnoi'>
+      <i class="pi pi-share-alt"></i> Kết nối
+    </button>
+  </div>
+
+</div>
