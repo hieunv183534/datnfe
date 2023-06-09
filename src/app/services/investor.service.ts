@@ -20,4 +20,8 @@ export class InvestorService extends BaseService {
     return this.BaseAPIConfig.post(`${this.apiController}/investor`, { investorName, minInvestValue, maxInvestValue, basicDescription, investFields, company, position });
   }
 
+  getCheckIsNewProfile(){
+    return this.BaseAPIConfig.get(`${this.apiController}/check-is-new-profile`);
+  }
+
 }

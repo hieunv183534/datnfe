@@ -3,3 +3,7 @@
 <img src="../../../assets/img/lienhequangcao.png" width="100%">
 
 <router-outlet></router-outlet>
+
+<ng-container *ngIf="isVisibleRegisterInfo">
+  <app-register-startuper-info [display]="isVisibleRegisterInfo" (close)="isVisibleRegisterInfo = false"></app-register-startuper-info>
+</ng-container>

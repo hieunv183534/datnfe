@@ -36,8 +36,11 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import {CalendarModule} from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
+import {AvatarModule} from 'primeng/avatar';
+import { CardModule } from "primeng/card";
 import { HttpClientModule } from '@angular/common/http';
 import { GalleriaModule } from 'primeng/galleria';
+import {StepsModule} from 'primeng/steps';
 import {ScrollTopModule} from 'primeng/scrolltop';
 import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './components/home-page/home-page.component';
@@ -64,6 +67,8 @@ import { ProjectService } from './services/project.service';
 import { StartuperService } from './services/startuper.service';
 import { StartuperItemComponent } from './components/common/startuper-item/startuper-item.component';
 import { PopupConnectComponent } from './components/common/popup-connect/popup-connect.component';
+import { RegisterStartuperInfoComponent } from './components/startuper/register-startuper-info/register-startuper-info.component';
+import { AddNewProjectComponent } from './components/startuper/add-new-project/add-new-project.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +90,9 @@ import { PopupConnectComponent } from './components/common/popup-connect/popup-c
     RegisterComponent,
     NotificationComponent,
     StartuperItemComponent,
-    PopupConnectComponent
+    PopupConnectComponent,
+    RegisterStartuperInfoComponent,
+    AddNewProjectComponent
   ],
   imports: [
     CommonModule,
@@ -126,7 +133,10 @@ import { PopupConnectComponent } from './components/common/popup-connect/popup-c
     GalleriaModule,
     BadgeModule,
     ScrollTopModule,
-    CalendarModule
+    CalendarModule,
+    StepsModule,
+    CardModule,
+    AvatarModule
   ],
   providers: [
     MessageService,

@@ -11,6 +11,8 @@ export class StartuperSpaceComponent implements OnInit {
   menus = [{ href: "/startuper/project", title: "Dự án / Ý tưởng" }, { href: "/startuper/startuper", title: "Nhà khởi nghiệp" },
   { href: "/startuper/investor", title: "Nhà đầu tư" }]
 
+  isVisibleRegisterInfo: boolean = false;
+
   constructor(
     private startuperService: StartuperService
   ) { }
@@ -19,6 +21,7 @@ export class StartuperSpaceComponent implements OnInit {
     debugger
     this.startuperService.getCheckIsNewProfile().then((res: any) => {
       console.log(res);
+      this.isVisibleRegisterInfo = true;
     }).catch((err: any) => {
 
     });
