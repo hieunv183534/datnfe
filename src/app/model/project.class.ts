@@ -1,5 +1,22 @@
-import { PagedAndSortedResultRequestDto } from "./base.class";
+import { FullAuditedEntityDto, PagedAndSortedResultRequestDto } from "./base.class";
 import { ProjectEventType, ProjectStage } from "./enum";
+import { UserDto } from "./user.class";
+
+export class ProjectDto extends FullAuditedEntityDto<string>{
+  projectName?: string;
+  description?: string;
+  fields?: string[];
+  stage?: ProjectStage;
+  foundedTime?: Date;
+  area?: string;
+  website?: string;
+  fb?: string;
+  compliment?: string;
+  history?: ProjectHistoryEventDto[];
+  avatarUrl?: string;
+  founderId?: string;
+  founder?: UserDto;
+}
 
 export class CreateUpdateProjectDto {
   projectId?: string;
@@ -23,14 +40,14 @@ export class ProjectHistoryEventDto {
   detail?: string;
 }
 
-export class GetListProjectForStartuperDto extends PagedAndSortedResultRequestDto{
+export class GetListProjectForStartuperDto extends PagedAndSortedResultRequestDto {
   filter?: string;
   stage?: ProjectStage;
   field?: string;
   area?: string;
 }
 
-export class GetListProjectForInvestorDto extends PagedAndSortedResultRequestDto{
+export class GetListProjectForInvestorDto extends PagedAndSortedResultRequestDto {
   filter?: string;
   stage?: ProjectStage;
   field?: string;

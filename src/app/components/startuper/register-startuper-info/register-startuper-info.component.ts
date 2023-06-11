@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { StartuperService } from 'src/app/services/startuper.service';
 
 @Component({
   selector: 'app-register-startuper-info',
@@ -13,7 +14,7 @@ export class RegisterStartuperInfoComponent implements OnInit {
 
   activeIndex: number = 0;
 
-  constructor() { }
+  constructor(private startuperService : StartuperService) { }
 
   ngOnInit() {
   }
@@ -35,6 +36,15 @@ export class RegisterStartuperInfoComponent implements OnInit {
   next() {
     if (this.activeIndex < 3)
       this.activeIndex++;
+  }
+
+  onFileSelected(e: any){
+    console.log(e.target.files[0]);
+    this.startuperService.uploadAvatar(e.target.files[0]).then((res: any) => {
+      alert(111);
+    }).catch((err: any) => {
+      alert(222);
+    });
   }
 
 }

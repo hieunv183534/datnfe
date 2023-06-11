@@ -5,7 +5,7 @@
       <ng-template pTemplate="content">
         <ng-container [ngSwitch]="activeIndex">
           <ng-container *ngSwitchCase="0">
-            <p-avatar image="../../../../assets/img/nmh.png" style="width: 200px;"></p-avatar>
+            <input type="file" multipl="fase" (change)="onFileSelected($event)">
           </ng-container>
           <ng-container *ngSwitchCase="1">
             1111111111111111111111111111111111111111111111111111111

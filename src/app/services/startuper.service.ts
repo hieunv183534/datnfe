@@ -18,7 +18,13 @@ export class StartuperService extends BaseService {
     return this.BaseAPIConfig.post(`${this.apiController}/startuper`, input);
   }
 
-  getCheckIsNewProfile(){
+  getCheckIsNewProfile() {
     return this.BaseAPIConfig.get(`${this.apiController}/check-is-new-profile`);
+  }
+
+  uploadAvatar(file: any) {
+    let formData = new FormData();
+    formData.append("file", file);
+    return this.BaseAPIConfig.post(`${this.apiController}/upload-avatar`, formData);
   }
 }
