@@ -39,6 +39,7 @@ export class ProjectHistoryEventDto {
   stage?: ProjectStage;
   type?: ProjectEventType;
   detail?: string;
+  eventTime?: Date;
 }
 
 export class GetListProjectForStartuperDto extends PagedAndSortedResultRequestDto {

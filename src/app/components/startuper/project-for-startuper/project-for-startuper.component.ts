@@ -40,7 +40,7 @@ export class ProjectForStartuperComponent implements OnInit {
   listProject: ProjectDto[] = []
   isMyProject: boolean = false;
 
-  isVisibleAddProject: boolean = true;
+  isVisibleAddProject: boolean = false;
   constructor(
     private messageService: MessageService,
     private fb: FormBuilder,

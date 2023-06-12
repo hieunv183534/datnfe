@@ -11,7 +11,7 @@
         <label class="mr-2">Dự án của tôi</label>
         <p-inputSwitch [(ngModel)]="isMyProject"></p-inputSwitch>
       </span>
-      <button pButton type="button" label="Thêm mới dự án"></button>
+      <button pButton type="button" label="Thêm mới dự án" (click)="isVisibleAddProject = true"></button>
     </div>
     <div class="grid">
       <div class="filter-box col-2 grid fluid">

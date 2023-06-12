@@ -3,7 +3,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageCropperComponent, ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { MessageService } from 'primeng/api';
-import { ProjectStage } from 'src/app/model/enum';
+import { ProjectEventType, ProjectStage } from 'src/app/model/enum';
+import { CreateUpdateProjectDto, ProjectHistoryEventDto } from 'src/app/model/project.class';
 import { ProjectService } from 'src/app/services/project.service';
 import { StartuperService } from 'src/app/services/startuper.service';
 import { FsiValues } from 'src/app/shared/util/util';
@@ -19,13 +20,14 @@ export class AddNewProjectComponent implements OnInit {
   @Output() close: EventEmitter<any> = new EventEmitter();
   @Output() submit: EventEmitter<any> = new EventEmitter();
 
-  activeIndex: number = 0;
+  activeIndex: number = 2;
   formProject: FormGroup = this.fb.group({});
-
+  formEvent: FormGroup = this.fb.group({});
+  project: any = "";
   fields: any = FsiValues.fields;
   areas: any = FsiValues.areas;
   availableTimes: any = FsiValues.availableTimes;
-  projectStages: any = [
+  projectStages: any[] = [
     { name: "Xác lập", value: ProjectStage.XacLap },
     { name: "Nghiên cứu", value: ProjectStage.NghienCuu },
     { name: "MVP", value: ProjectStage.MVP },
@@ -34,13 +36,36 @@ export class AddNewProjectComponent implements OnInit {
     { name: "Tăng trưởng 2", value: ProjectStage.TangTruong2 },
     { name: "Tăng trưởng 3", value: ProjectStage.TangTruong3 },
     { name: "Tăng trưởng 4", value: ProjectStage.TangTruong4 }
+  ];
+
+  projectEventTypes: any[] = [
+    { name: "Khởi tạo", value: ProjectEventType.Init },
+    { name: "Thay đổi nhân sự", value: ProjectEventType.PersonalChange },
+    { name: "Chuyển giai đoạn", value: ProjectEventType.PhaseSwich },
+    { name: "Nhận đầu tư", value: ProjectEventType.GetInvesment },
   ]
+
+  listEvent: ProjectHistoryEventDto[] = [];
+  displayAddEvent: boolean = false;
+
   constructor(
     private projectService: ProjectService,
     private sanitizer: DomSanitizer,
     private messageService: MessageService,
     private fb: FormBuilder
   ) { }
+
+  getStage(stage: any) {
+    return this.projectStages.find((x: any) => {
+      x.value == stage;
+    }).name;
+  }
+
+  getType(type: any) {
+    return this.projectEventTypes.find((x: any) => {
+      x.value == type;
+    }).name;
+  }
 
   ngOnInit() {
     this.formProject = this.fb.group({
@@ -52,14 +77,65 @@ export class AddNewProjectComponent implements OnInit {
       area: [null, []],
       website: [null, []],
       fb: [null, []]
-    })
+    });
+
+    this.formEvent = this.fb.group({
+      stage: [null, []],
+      type: [null, []],
+      eventTime: [null, []],
+      detail: [null, []]
+    });
   }
 
   next() {
     if (this.activeIndex == 0) {
-      this.activeIndex++;
+      if (this.formProject.valid) {
+        let input = new CreateUpdateProjectDto();
+        input.area = this.formProject.value.area;
+        input.description = this.formProject.value.description;
+        input.fb = this.formProject.value.fb;
+        input.fields = this.formProject.value.fields;
+        input.foundedTime = this.formProject.value.foundedTime;
+        input.projectName = this.formProject.value.projectName;
+        input.stage = this.formProject.value.stage;
+        input.website = this.formProject.value.website;
+        this.projectService.insertProjectAsync(input).then((res: any) => {
+          this.project = res.data;
+          this.messageService.add({
+            key: "toast",
+            severity: "success",
+            summary: "Thành công",
+            detail: "Thêm thông tin thành công!",
+          });
+          this.activeIndex++;
+        }).catch((err: any) => {
+          this.messageService.add({
+            key: "toast",
+            severity: "error",
+            summary: "Lỗi",
+            detail: "Thêm thông tin thất bại!",
+          });
+        });
+      } else {
+        this.messageService.add({
+          key: "toast",
+          severity: "error",
+          summary: "Cảnh báo",
+          detail: "Vui lòng hoàn thành form trước khi qua bước tiếp theo!",
+        });
+      }
     } else if (this.activeIndex == 1) {
-
+      if (this.blob) {
+        this.uploadImage();
+        this.activeIndex++;
+      } else {
+        this.messageService.add({
+          key: "toast",
+          severity: "error",
+          summary: "Cảnh báo",
+          detail: "Bạn chưa hoàn thành cập nhật ảnh đại diện dự án!",
+        });
+      }
     } else if (this.activeIndex == 2) {
 
     } else {
@@ -68,11 +144,17 @@ export class AddNewProjectComponent implements OnInit {
   }
 
   back() {
-
+    this.activeIndex--;
   }
 
   hide() {
     this.close.emit();
+  }
+
+  addEvent() {
+    this.listEvent.push(this.formEvent.value);
+    this.displayAddEvent = false;
+    this.formEvent.reset();
   }
 
   @ViewChild(ImageCropperComponent) imageCropper?: ImageCropperComponent;
@@ -101,19 +183,19 @@ export class AddNewProjectComponent implements OnInit {
 
   uploadImage() {
     let file = new File([this.blob], '1.png');
-    this.projectService.uploadAvatar(file, "").then((res: any) => {
+    this.projectService.uploadAvatar(file, this.project.id).then((res: any) => {
       this.messageService.add({
         key: "toast",
         severity: "success",
         summary: "Thành công",
-        detail: "Tải lên ảnh đại diện cá nhân thành công!",
+        detail: "Tải lên ảnh đại diện dự án thành công!",
       });
     }).catch((err: any) => {
       this.messageService.add({
         key: "toast",
         severity: "error",
         summary: "Lỗi",
-        detail: "Tải lên ảnh đại diện cá nhân thất bại!",
+        detail: "Tải lên ảnh đại diện dự án thất bại!",
       });
     });
   }
