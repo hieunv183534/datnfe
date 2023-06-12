@@ -19,7 +19,6 @@ export class BaseService {
     });
 
     this.BaseAPIConfig.interceptors.request.use((config: any) => {
-      debugger
       config.headers = {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("TOKEN"),

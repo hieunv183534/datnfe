@@ -1,52 +1,66 @@
-<div class="body-content">
-  <div class="search">
-    <h1>Tìm kiếm</h1>
-    <span class="p-input-icon-left">
-      <i class="pi pi-search"></i>
-      <input type="text" pInputText placeholder="Tìm kiếm theo từ khóa" />
-    </span>
-  </div>
-  <div class="grid">
-    <div class="filter-box col-2 grid fluid">
-      <div class="p-field col-12 md-12">
-        <span class="p-float-label">
-          <input type="text" pInputText autofocus formControlName="username" />
-          <label>Username</label>
-        </span>
+<form [formGroup]="formSearch">
+  <div class="body-content">
+    <div class="search">
+      <h1>Tìm kiếm</h1>
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText placeholder="Tìm kiếm theo từ khóa" formControlName="filter"
+          (keyup.enter)="submitSearch()" />
+      </span>
+      <span class="flex align-items-center justify-content-center">
+        <label class="mr-2">Dự án của tôi</label>
+        <p-inputSwitch [(ngModel)]="isMyProject"></p-inputSwitch>
+      </span>
+      <button pButton type="button" label="Thêm mới dự án"></button>
+    </div>
+    <div class="grid">
+      <div class="filter-box col-2 grid fluid">
+        <div class="p-field col-12 md-12 mt-4">
+          <span class="p-float-label">
+            <p-dropdown style="width: 100%;" [options]="areas" [autoDisplayFirst]="false" optionValue="value"
+              optionLabel="name" emptyMessage="Chọn 1" formControlName="area"></p-dropdown>
+            <label>Khu vực</label>
+          </span>
+        </div>
+        <div class="p-field col-12 md-12 mt-4">
+          <span class="p-float-label">
+            <p-dropdown [options]="fields" [autoDisplayFirst]="false" optionValue="value" optionLabel="name"
+              emptyMessage="Chọn 1" formControlName="field"></p-dropdown>
+            <label>Lĩnh vực của dự án</label>
+          </span>
+        </div>
+        <div class="p-field col-12 md-12 mt-4">
+          <span class="p-float-label">
+            <p-dropdown [options]="projectStages" [autoDisplayFirst]="false" optionValue="value" optionLabel="name"
+              emptyMessage="Chọn 1" formControlName="stage"></p-dropdown>
+            <label>Giai đoạn của dự án</label>
+          </span>
+        </div>
+        <div class="p-field col-12 md-12 mt-4">
+          <span class="p-float-label">
+            <p-dropdown [options]="availableTimes" [autoDisplayFirst]="false" optionValue="value" optionLabel="name"
+              emptyMessage="Chọn 1" formControlName="availableTime"></p-dropdown>
+            <label>Thời gian yêu cầu</label>
+          </span>
+        </div>
+        <div class="col-12 flex justify-content-center">
+          <p-button icon="pi pi-search" (onClick)="submitSearch()"></p-button>
+          <p-button class="ml-4" icon="pi pi-times" (onClick)="clearSearch()"></p-button>
+        </div>
       </div>
-      <div class="p-field col-12 md-12">
-        <span class="p-float-label">
-          <input type="text" pInputText autofocus formControlName="username" />
-          <label>Username</label>
-        </span>
-      </div>
-      <div class="p-field col-12 md-12">
-        <span class="p-float-label">
-          <input type="text" pInputText autofocus formControlName="username" />
-          <label>Username</label>
-        </span>
-      </div>
-      <div class="p-field col-12 md-12">
-        <span class="p-float-label">
-          <input type="text" pInputText autofocus formControlName="username" />
-          <label>Username</label>
-        </span>
-      </div>
-      <div class="p-field col-12 md-12">
-        <span class="p-float-label">
-          <input type="text" pInputText autofocus formControlName="username" />
-          <label>Username</label>
-        </span>
+      <div class="list-data col-10">
+
       </div>
       <div class="col-12 flex justify-content-center">
-        <p-button icon="pi pi-search"></p-button>
+        <p-paginator [pageLinkSize]="pageSize" [rows]="pageSize" [totalRecords]="totalRecords"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} project" [showCurrentPageReport]="true"
+          [rowsPerPageOptions]="pageSizeOptions" (onPageChange)="onPageChange($event)"></p-paginator>
       </div>
     </div>
-    <div class="list-data col-10">
-
-    </div>
-    <div class="col-12 flex justify-content-center">
-      <p-paginator [rows]="30"></p-paginator>
-    </div>
   </div>
-</div>
+</form>
+
+
+<ng-container *ngIf="isVisibleAddProject">
+  <app-add-new-project [display]="isVisibleAddProject" (close)="isVisibleAddProject = false"></app-add-new-project>
+</ng-container>

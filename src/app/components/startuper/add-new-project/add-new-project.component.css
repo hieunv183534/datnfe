@@ -1,0 +1,10 @@
+.image-cropper-wrapper{
+  border: 2px solid rgb(70, 126, 209);
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.preview-image{
+  margin-top: 15px;
+  border: 2px solid rgb(28, 247, 28);
+}

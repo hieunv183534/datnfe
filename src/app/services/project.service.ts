@@ -40,7 +40,8 @@ export class ProjectService extends BaseService {
     let _stage = input.stage ? `&stage=${input.stage}` : "";
     let _field = input.field ? `&field=${input.field}` : "";
     let _area = input.area ? `&area=${input.area}` : "";
-    return this.BaseAPIConfig.get(`${this.apiController}/project-for-startuper?skipCount=${input.skipCount}&maxResultCount=${input.maxResultCount}${_filter}${_stage}${_field}${_area}`);
+    let _availableTime = input.availableTime? `&area=${input.availableTime}` : "";
+    return this.BaseAPIConfig.get(`${this.apiController}/project-for-startuper?skipCount=${input.skipCount}&maxResultCount=${input.maxResultCount}${_filter}${_stage}${_field}${_area}${_availableTime}`);
   }
 
   getListProjectForInvestor(input: GetListProjectForInvestorDto) {
@@ -53,5 +54,11 @@ export class ProjectService extends BaseService {
 
   getProjectByUser(userId: string) {
     return this.BaseAPIConfig.get(`${this.apiController}/project-by-user/${userId}`);
+  }
+
+  uploadAvatar(file: any, projectId: string) {
+    let formData = new FormData();
+    formData.append("file", file);
+    return this.BaseAPIConfig.post(`${this.apiController}/upload-avatar/${projectId}`, formData);
   }
 }

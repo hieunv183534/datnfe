@@ -26,7 +26,7 @@ export class DataPointDto {
 }
 
 export class FsiValues {
-  static areas : DataPointDto[] = [
+  static areas: DataPointDto[] = [
     new DataPointDto("Bắc Giang", 1),
     new DataPointDto("Bắc Kạn", 2),
     new DataPointDto("Cao Bằng", 3),
@@ -214,5 +214,16 @@ export class FsiValues {
     new DataPointDto("20-30 tiếng/tuần", 3),
     new DataPointDto("30+ tiếng/tuần", 4),
     new DataPointDto("Toàn thời gian", 5)
+  ]
+
+  static projectStages: DataPointDto[] = [
+    new DataPointDto("Xác lập", 1),
+    new DataPointDto("Nghiên cứu", 2),
+    new DataPointDto("MVP", 3),
+    new DataPointDto("Kiểm thử", 4),
+    new DataPointDto("Tăng trưởng 1", 5),
+    new DataPointDto("Tăng trưởng 2", 6),
+    new DataPointDto("Tăng trưởng 3", 7),
+    new DataPointDto("Tăng trưởng 4", 8)
   ]
 }

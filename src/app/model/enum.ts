@@ -8,12 +8,14 @@ export enum FsiRole {
 }
 
 export enum ProjectStage {
-  PreSeed,
-  Seed,
-  Early,
-  Grow,
-  Expansion,
-  Exit
+  XacLap,
+  NghienCuu,
+  MVP,
+  KiemThu,
+  TangTruong1,
+  TangTruong2,
+  TangTruong3,
+  TangTruong4
 }
 
 export enum ProjectEventType {

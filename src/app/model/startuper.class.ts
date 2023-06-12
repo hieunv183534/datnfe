@@ -1,27 +1,29 @@
 import { UserDto } from "./user.class";
 
 export class CreateStartuperDto {
+  field?: number;
   speciality?: string;
-  personality?: string;
-  skill?: string;
+  personality?: number[];
+  skill?: number[];
   workingExperience?: string;
   activity?: string;
-  certificate?: string;
-  award?: string;
-  favoriteField?: string;
+  certificateAndAward?: string;
+  hasProject?: boolean;
+  describe?: string;
+  yearOfExp?: number;
+  availableTime?: number;
 }
 
 export class StartuperDto extends UserDto {
-  speciality?: string; // dropdown
-  personality?: string; // multiSelect
-  skill?: string; // autoComplete
-  workingExperience?: string; //nhập array {company,position,time}
-  activity?: string; // textArea
-  certificate?: string; // textArea
-  award?: string; //textArea
-  favoriteField?: string; // inputText
+  field?: number;
+  speciality?: string;
+  personality?: number[];
+  skill?: number[];
+  workingExperience?: string;
+  activity?: string;
+  certificateAndAward?: string;
   hasProject?: boolean;
-  describe?: string; // textArea
-  yearOfExp?: number; // combobox
-  availableTime?: number; // combobox
+  describe?: string;
+  yearOfExp?: number;
+  availableTime?: number;
 }

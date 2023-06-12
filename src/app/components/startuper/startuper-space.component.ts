@@ -20,8 +20,7 @@ export class StartuperSpaceComponent implements OnInit {
   ngOnInit() {
     debugger
     this.startuperService.getCheckIsNewProfile().then((res: any) => {
-      console.log(res);
-      this.isVisibleRegisterInfo = true;
+      // this.isVisibleRegisterInfo = true;
     }).catch((err: any) => {
 
     });

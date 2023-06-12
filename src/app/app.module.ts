@@ -25,23 +25,25 @@ import { TableModule } from 'primeng/table';
 import { SliderModule } from 'primeng/slider';
 import { TreeSelectModule } from 'primeng/treeselect';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { InputSwitchModule } from 'primeng/inputswitch';
 import { AccordionModule } from 'primeng/accordion';
 import { TabViewModule } from 'primeng/tabview';
 import { CheckboxModule } from 'primeng/checkbox';
 import { PanelModule } from 'primeng/panel';
-import {BadgeModule} from 'primeng/badge';
+import { BadgeModule } from 'primeng/badge';
 import { ChartModule } from 'primeng/chart';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import {CalendarModule} from 'primeng/calendar';
+import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
-import {AvatarModule} from 'primeng/avatar';
+import { AvatarModule } from 'primeng/avatar';
 import { CardModule } from "primeng/card";
 import { HttpClientModule } from '@angular/common/http';
 import { GalleriaModule } from 'primeng/galleria';
-import {StepsModule} from 'primeng/steps';
-import {ScrollTopModule} from 'primeng/scrolltop';
+import { StepsModule } from 'primeng/steps';
+import { ScrollTopModule } from 'primeng/scrolltop';
 import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { ReasonComponent } from './components/common/reason/reason.component';
@@ -69,6 +71,7 @@ import { StartuperItemComponent } from './components/common/startuper-item/start
 import { PopupConnectComponent } from './components/common/popup-connect/popup-connect.component';
 import { RegisterStartuperInfoComponent } from './components/startuper/register-startuper-info/register-startuper-info.component';
 import { AddNewProjectComponent } from './components/startuper/add-new-project/add-new-project.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -136,7 +139,10 @@ import { AddNewProjectComponent } from './components/startuper/add-new-project/a
     CalendarModule,
     StepsModule,
     CardModule,
-    AvatarModule
+    AvatarModule,
+    ImageCropperModule,
+    MultiSelectModule,
+    InputSwitchModule
   ],
   providers: [
     MessageService,

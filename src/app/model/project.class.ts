@@ -5,10 +5,10 @@ import { UserDto } from "./user.class";
 export class ProjectDto extends FullAuditedEntityDto<string>{
   projectName?: string;
   description?: string;
-  fields?: string[];
+  fields?: number[];
   stage?: ProjectStage;
   foundedTime?: Date;
-  area?: string;
+  area?: number;
   website?: string;
   fb?: string;
   compliment?: string;
@@ -19,18 +19,19 @@ export class ProjectDto extends FullAuditedEntityDto<string>{
 }
 
 export class CreateUpdateProjectDto {
-  projectId?: string;
   projectName?: string;
   description?: string;
-  fields?: string[];
+  fields?: number[];
   stage?: ProjectStage;
   foundedTime?: Date;
-  area?: string;
+  area?: number;
   website?: string;
   fb?: string;
   compliment?: string;
   history?: ProjectHistoryEventDto[];
   avatarUrl?: string;
+  founderId?: string;
+  founder?: UserDto;
 }
 
 export class ProjectHistoryEventDto {
@@ -43,8 +44,9 @@ export class ProjectHistoryEventDto {
 export class GetListProjectForStartuperDto extends PagedAndSortedResultRequestDto {
   filter?: string;
   stage?: ProjectStage;
-  field?: string;
-  area?: string;
+  field?: number;
+  area?: number;
+  availableTime?: number;
 }
 
 export class GetListProjectForInvestorDto extends PagedAndSortedResultRequestDto {

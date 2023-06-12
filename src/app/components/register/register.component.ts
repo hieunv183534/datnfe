@@ -11,7 +11,7 @@ import { FsiValues } from 'src/app/shared/util/util';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  provinces: string[] = FsiValues.areas;
+  provinces: any[] = FsiValues.areas;
   @Output() close: EventEmitter<any> = new EventEmitter();
   formRegister: FormGroup = this.fb.group({});
   roles: any[] = [{ name: "Nhà khởi nghiệp/ Founder/ Co-founder", value: FsiRole.Startuper }, { name: "Nhà đầu tư", value: FsiRole.Investor }];
