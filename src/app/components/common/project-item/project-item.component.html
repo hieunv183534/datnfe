@@ -1,0 +1,23 @@
+<div class='startupItem' (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
+  <img src="../../../../assets/img/fsiLogo.png" alt='' id='logo' />
+  <div class='content'>
+    <div class='subtitle'>{{project.subtile}}</div>
+    <div class='name'>{{project.name}}</div>
+    <div class='description'>{{project.description}}</div>
+    <div class='fund'>
+      <i class="pi pi-key"></i>
+      Growth: {{project.fund}} vnd
+    </div>
+  </div>
+  <ng-container *ngIf="isHovered">
+    <div class='hoverDiv'>
+      <button type='button' id='xemthem'>
+        <i class="pi pi-eye"></i> Xem thêm
+      </button>
+      <button type='button' id='ketnoi'>
+        <i class="pi pi-share-alt"></i> Kết nối
+      </button>
+    </div>
+  </ng-container>
+
+</div>

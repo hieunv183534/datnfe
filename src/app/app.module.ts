@@ -72,6 +72,7 @@ import { PopupConnectComponent } from './components/common/popup-connect/popup-c
 import { RegisterStartuperInfoComponent } from './components/startuper/register-startuper-info/register-startuper-info.component';
 import { AddNewProjectComponent } from './components/startuper/add-new-project/add-new-project.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { ProjectItemComponent } from './components/common/project-item/project-item.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     StartuperItemComponent,
     PopupConnectComponent,
     RegisterStartuperInfoComponent,
-    AddNewProjectComponent
+    AddNewProjectComponent,
+    ProjectItemComponent
   ],
   imports: [
     CommonModule,

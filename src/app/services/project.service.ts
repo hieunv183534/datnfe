@@ -31,8 +31,8 @@ export class ProjectService extends BaseService {
     return this.BaseAPIConfig.get(`${this.apiController}/project-by-id/${projectId}`);
   }
 
-  addProjectHistoryEvent(input: ProjectHistoryEventDto) {
-    return this.BaseAPIConfig.post(`${this.apiController}/project-history-event`, input);
+  updateProjectHistory(projectId: string, input: ProjectHistoryEventDto[]) {
+    return this.BaseAPIConfig.post(`${this.apiController}/project-history/${projectId}`, input);
   }
 
   getListProjectForStartuper(input: GetListProjectForStartuperDto) {
@@ -40,7 +40,7 @@ export class ProjectService extends BaseService {
     let _stage = input.stage ? `&stage=${input.stage}` : "";
     let _field = input.field ? `&field=${input.field}` : "";
     let _area = input.area ? `&area=${input.area}` : "";
-    let _availableTime = input.availableTime? `&area=${input.availableTime}` : "";
+    let _availableTime = input.availableTime ? `&area=${input.availableTime}` : "";
     return this.BaseAPIConfig.get(`${this.apiController}/project-for-startuper?skipCount=${input.skipCount}&maxResultCount=${input.maxResultCount}${_filter}${_stage}${_field}${_area}${_availableTime}`);
   }
 

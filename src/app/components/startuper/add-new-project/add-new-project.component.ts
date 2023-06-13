@@ -57,13 +57,13 @@ export class AddNewProjectComponent implements OnInit {
 
   getStage(stage: any) {
     return this.projectStages.find((x: any) => {
-      x.value == stage;
+      return x.value == stage;
     }).name;
   }
 
   getType(type: any) {
     return this.projectEventTypes.find((x: any) => {
-      x.value == type;
+      return x.value == type;
     }).name;
   }
 
@@ -137,7 +137,22 @@ export class AddNewProjectComponent implements OnInit {
         });
       }
     } else if (this.activeIndex == 2) {
-
+      this.projectService.updateProjectHistory(this.project.id, this.listEvent).then((res: any) => {
+        this.messageService.add({
+          key: "toast",
+          severity: "success",
+          summary: "Thành công",
+          detail: "Cập nhật history thành công!",
+        });
+        this.activeIndex++;
+      }).catch((err: any) => {
+        this.messageService.add({
+          key: "toast",
+          severity: "error",
+          summary: "Lỗi",
+          detail: "Cập nhật history thất bại!",
+        });
+      });
     } else {
 
     }

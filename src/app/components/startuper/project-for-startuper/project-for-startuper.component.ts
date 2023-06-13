@@ -38,7 +38,6 @@ export class ProjectForStartuperComponent implements OnInit {
   endItem = 0;
 
   listProject: ProjectDto[] = []
-  isMyProject: boolean = false;
 
   isVisibleAddProject: boolean = false;
   constructor(
@@ -54,6 +53,7 @@ export class ProjectForStartuperComponent implements OnInit {
       area: [null, []],
       stage: [null, []],
       availableTime: [null, []],
+      isMyProject: [null, []]
     })
   }
 
@@ -65,6 +65,7 @@ export class ProjectForStartuperComponent implements OnInit {
     input.filter = this.formSearch.value.filter;
     input.stage = this.formSearch.value.stage;
     input.availableTime = this.formSearch.value.availableTime;
+    input.isMyProject = this.formSearch.value.isMyProject;
     input.skipCount = (this.page - 1) * this.pageSize;
     input.maxResultCount = this.pageSize;
     this.projectService.getListProjectForStartuper(input).then((res: any) => {
@@ -85,7 +86,11 @@ export class ProjectForStartuperComponent implements OnInit {
   }
 
   clearSearch() {
-    this.formSearch.reset();
+    this.formSearch.controls["filter"].patchValue(null);
+    this.formSearch.controls["field"].patchValue(null);
+    this.formSearch.controls["area"].patchValue(null);
+    this.formSearch.controls["stage"].patchValue(null);
+    this.formSearch.controls["availableTime"].patchValue(null);
     this.page = 1;
     this.pageSize = 10;
     this.getListProject(true);

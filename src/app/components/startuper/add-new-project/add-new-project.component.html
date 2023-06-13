@@ -127,9 +127,9 @@
               </ng-template>
               <ng-template pTemplate="body" let-event>
                 <tr>
-                  <td>{{event.stage}}</td>
-                  <td>{{getStage(event.type)}}</td>
-                  <td>{{getType(event.detail)}}</td>
+                  <td>{{getStage(event.stage)}}</td>
+                  <td>{{getType(event.type)}}</td>
+                  <td>{{event.detail}}</td>
                   <td>{{event.eventTime | date : 'shortDate'}}</td>
                   <td>
                     <button pButton pRipple icon="pi pi-star" pTooltip="Chọn đối tượng này" tooltipPosition="top"

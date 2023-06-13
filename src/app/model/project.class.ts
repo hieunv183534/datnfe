@@ -35,7 +35,6 @@ export class CreateUpdateProjectDto {
 }
 
 export class ProjectHistoryEventDto {
-  projectId?: string;
   stage?: ProjectStage;
   type?: ProjectEventType;
   detail?: string;
@@ -48,6 +47,7 @@ export class GetListProjectForStartuperDto extends PagedAndSortedResultRequestDt
   field?: number;
   area?: number;
   availableTime?: number;
+  isMyProject?: boolean;
 }
 
 export class GetListProjectForInvestorDto extends PagedAndSortedResultRequestDto {
