@@ -20,7 +20,7 @@ export class AddNewProjectComponent implements OnInit {
   @Output() close: EventEmitter<any> = new EventEmitter();
   @Output() submit: EventEmitter<any> = new EventEmitter();
 
-  activeIndex: number = 2;
+  activeIndex: number = 3;
   formProject: FormGroup = this.fb.group({});
   formEvent: FormGroup = this.fb.group({});
   project: any = "";
@@ -47,6 +47,17 @@ export class AddNewProjectComponent implements OnInit {
 
   listEvent: ProjectHistoryEventDto[] = [];
   displayAddEvent: boolean = false;
+
+  keySearchUser: string = "";
+
+  inviteUsers: any[] = [
+    {
+      avatarUrl: "http://localhost:7777/images/525a6015-6ee2-4d33-a924-e586ec53c308.png",
+      name: "Nguyễn Văn Hiếu",
+      key: "0971883025",
+      status: false
+    }
+  ]
 
   constructor(
     private projectService: ProjectService,
@@ -153,9 +164,7 @@ export class AddNewProjectComponent implements OnInit {
           detail: "Cập nhật history thất bại!",
         });
       });
-    } else {
-
-    }
+    } else this.close.emit();
   }
 
   back() {
@@ -170,6 +179,25 @@ export class AddNewProjectComponent implements OnInit {
     this.listEvent.push(this.formEvent.value);
     this.displayAddEvent = false;
     this.formEvent.reset();
+  }
+
+  submitSearchUser() {
+    this.projectService.getUserByUserNameForInviteToProject(this.keySearchUser, this.project.id).then((res: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "success",
+        summary: "Thành công",
+        detail: "Tìm thấy user, hãy gửi yêu cầu đến họ nào!",
+      });
+      this.inviteUsers.unshift(res.data);
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "User không tồn tại hoặc đã có sẵn trong dự án!",
+      });
+    });
   }
 
   @ViewChild(ImageCropperComponent) imageCropper?: ImageCropperComponent;

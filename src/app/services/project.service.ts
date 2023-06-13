@@ -61,4 +61,8 @@ export class ProjectService extends BaseService {
     formData.append("file", file);
     return this.BaseAPIConfig.post(`${this.apiController}/upload-avatar/${projectId}`, formData);
   }
+
+  getUserByUserNameForInviteToProject(filter: string, projectId: string) {
+    return this.BaseAPIConfig.get(`${this.apiController}/user-by-user-name-for-invite-to-project/${projectId}?userName=${filter}`);
+  }
 }
