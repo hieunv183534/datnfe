@@ -1,0 +1,15 @@
+<div class="grid flex">
+  <span class="flex align-items-center ml-6">
+    <i class="pi pi-users mr-2" style="font-size: 27px;"></i>
+    <h3 style="margin: 2px;" class="flex align-items-center">Thành viên <h4>(8)</h4></h3>
+  </span>
+  <div class="col-12 list-member .grid">
+    <ng-container *ngFor="let user of members">
+      <span class="user-item flex align-items-center">
+        <p-avatar shape="circle" [image]="user.avatarUrl"></p-avatar>
+        <p class="ml-2">{{user.name}}</p>
+      </span>
+    </ng-container>
+  </div>
+  <p-selectButton [options]="inviteModes"  optionLabel="name"></p-selectButton>
+</div>

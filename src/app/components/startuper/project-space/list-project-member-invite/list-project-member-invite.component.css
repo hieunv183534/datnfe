@@ -1,0 +1,15 @@
+.user-item{
+  margin-top: 7px;
+  padding: 0px 15px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.user-item:hover{
+  background-color: #ddd;
+}
+
+.list-member{
+  border-bottom: 1px solid #c9c9c9;
+  border-top: 1px solid #c9c9c9;
+}

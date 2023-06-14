@@ -74,6 +74,8 @@ import { AddNewProjectComponent } from './components/startuper/add-new-project/a
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ProjectItemComponent } from './components/common/project-item/project-item.component';
 import { ProjectSpaceComponent } from './components/startuper/project-space/project-space.component';
+import { ListProjectMemberComponent } from './components/startuper/project-space/list-project-member/list-project-member.component';
+import { ListProjectMemberInviteComponent } from './components/startuper/project-space/list-project-member-invite/list-project-member-invite.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +101,9 @@ import { ProjectSpaceComponent } from './components/startuper/project-space/proj
     RegisterStartuperInfoComponent,
     AddNewProjectComponent,
     ProjectItemComponent,
-    ProjectSpaceComponent
+    ProjectSpaceComponent,
+    ListProjectMemberComponent,
+    ListProjectMemberInviteComponent
   ],
   imports: [
     CommonModule,

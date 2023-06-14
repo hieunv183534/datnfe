@@ -1,0 +1,14 @@
+.project-info p {
+  margin: 0.5rem !important;
+}
+
+.project-info {
+  border-bottom: 1px solid #c9c9c9;
+  padding-bottom: 1rem;
+}
+
+
+.center-col {
+  border-left: 1px solid #c9c9c9;
+  border-right: 1px solid #c9c9c9;
+}
