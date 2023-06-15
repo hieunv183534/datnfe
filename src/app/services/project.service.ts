@@ -65,4 +65,20 @@ export class ProjectService extends BaseService {
   getUserByUserNameForInviteToProject(filter: string, projectId: string) {
     return this.BaseAPIConfig.get(`${this.apiController}/user-by-user-name-for-invite-to-project/${projectId}?userName=${filter}`);
   }
+
+  getUsersRequestToProject(projectId: string) {
+    return this.BaseAPIConfig.get(`${this.apiController}/users-request-to-project/${projectId}`);
+  }
+
+  getUsersProjectRequestTo(projectId: string) {
+    return this.BaseAPIConfig.get(`${this.apiController}/users-project-request-to/${projectId}`);
+  }
+
+  requestToUserFromProject(projectId: string, userId: string) {
+    return this.BaseAPIConfig.post(`${this.apiController}/request-to-user-from-project?userId=${userId}&projectId=${projectId}`,{});
+  }
+
+  requestToProject(projectId: string) {
+    return this.BaseAPIConfig.post(`${this.apiController}/request-to-project/${projectId}`,{});
+  }
 }
