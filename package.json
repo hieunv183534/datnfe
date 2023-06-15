@@ -18,6 +18,7 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "@ngstack/code-editor": "^4.0.0",
     "axios": "^0.27.2",
     "chart.js": "^3.9.1",
     "ngx-image-cropper": "^7.0.0",

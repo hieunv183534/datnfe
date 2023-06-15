@@ -10,6 +10,7 @@ export class InvestorForStartuperComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(12333333333333);
   }
 
 }

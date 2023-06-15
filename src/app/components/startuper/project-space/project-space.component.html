@@ -1,6 +1,6 @@
-<div class="grid px-3 mt-1">
+<div class="grid px-3 mt-1 mb-5" style="border-bottom: 1px solid #ccc;">
   <div class="col-2 pr-3">
-    <app-list-project-member></app-list-project-member>
+    <app-list-project-member (addNewMember)="isShowAddMember = true"></app-list-project-member>
     <app-list-project-member-invite></app-list-project-member-invite>
   </div>
   <div class="col-8 center-col">
@@ -52,3 +52,7 @@
 
   </div>
 </div>
+
+<ng-container *ngIf="isShowAddMember">
+  <app-list-project-invite-member [display]="isShowAddMember" (close)="isShowAddMember = false"></app-list-project-invite-member>
+</ng-container>

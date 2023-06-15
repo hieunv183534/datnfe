@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-list-project-member',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-project-member.component.css']
 })
 export class ListProjectMemberComponent implements OnInit {
-
+  @Output() addNewMember: EventEmitter<any> = new EventEmitter();
   members: any[] = [
     {
       avatarUrl: "http://localhost:7777/images/525a6015-6ee2-4d33-a924-e586ec53c308.png",

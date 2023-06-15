@@ -76,6 +76,7 @@ import { ProjectItemComponent } from './components/common/project-item/project-i
 import { ProjectSpaceComponent } from './components/startuper/project-space/project-space.component';
 import { ListProjectMemberComponent } from './components/startuper/project-space/list-project-member/list-project-member.component';
 import { ListProjectMemberInviteComponent } from './components/startuper/project-space/list-project-member-invite/list-project-member-invite.component';
+import { ListProjectInviteMemberComponent } from './components/startuper/project-space/list-project-invite-member/list-project-invite-member.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { ListProjectMemberInviteComponent } from './components/startuper/project
     ProjectItemComponent,
     ProjectSpaceComponent,
     ListProjectMemberComponent,
-    ListProjectMemberInviteComponent
+    ListProjectMemberInviteComponent,
+    ListProjectInviteMemberComponent
   ],
   imports: [
     CommonModule,

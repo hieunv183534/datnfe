@@ -9,6 +9,9 @@ import { FsiValues } from 'src/app/shared/util/util';
 export class ProjectSpaceComponent implements OnInit {
   fields: any = FsiValues.fields;
   areas: any = FsiValues.areas;
+
+  isShowAddMember: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
