@@ -1,0 +1,51 @@
+<div class="grid flex">
+  <span class="flex align-items-center justify-content-center ml-3">
+    <i class="pi pi-file-o mr-2" style="font-size: 27px;"></i>
+    <h3 style="margin: 2px;" class="flex align-items-center">Tài liệu <h4>(8)</h4>
+    </h3>
+  </span>
+  <div class="col-12 list-member .grid">
+    <ng-container *ngFor="let file of files">
+      <span class="file-item flex flex-column relative"
+        [pTooltip]="'File:'+ file.file.url + '\n'+
+                    'Kiểu: '+  file.file.contentType+ '\n'+
+                    'Size: '+  file.file.size+ '\n'+
+                    'Tiêu đề:' + file.title + '\n' +
+                    'Ghi chú:' + file.note">
+        <h4 class="text-overflow-ellipsis">{{file.title}}</h4>
+        <p class="text-overflow-ellipsis">{{file.file.url}}</p>
+        <button pButton pRipple type="button" icon="pi pi-download"
+          class="p-button-rounded p-button-text absolute right-0" (click)="downloadFile(file)"></button>
+      </span>
+    </ng-container>
+    <button pButton pRipple type="button" label="Tải lên tài liệu" class="p-button-outlined mt-3 col-12"
+      (click)="isShowUpload = true"></button>
+  </div>
+</div>
+
+<p-dialog [resizable]="true" header="Tải lên tài liệu mới" [(visible)]="isShowUpload" [modal]="true"
+  [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false">
+  <div class="grid p-fluid">
+    <div class="col-12">
+      <input (change)="onFileChange($event)" type="file" id="fileUpload">
+    </div>
+    <div class="p-field col-12 md-12">
+      <span class="p-float-label">
+        <input type="text" pInputText [(ngModel)]="title" />
+        <label>Tiêu đề: <span style="color: red;">*</span>
+        </label>
+      </span>
+    </div>
+    <div class="p-field col-12 md-12">
+      <span class="p-float-label">
+        <textarea pInputTextarea [(ngModel)]="note"></textarea>
+        <label>Ghi chú/ mô tả:
+        </label>
+      </span>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button label="Upload" styleClass="p-button-success" (onClick)="upload()">
+    </p-button>
+  </ng-template>
+</p-dialog>

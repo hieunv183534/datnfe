@@ -39,24 +39,24 @@ export class BaseService {
     })
   }
 
-  add(body: any): any {
-    return this.BaseAPIConfig.post(`${this.apiController}`, body);
-  }
+  // add(body: any): any {
+  //   return this.BaseAPIConfig.post(`${this.apiController}`, body);
+  // }
 
-  update(body: any) {
-    return this.BaseAPIConfig.put(`${this.apiController}`, body);
-  }
+  // update(body: any) {
+  //   return this.BaseAPIConfig.put(`${this.apiController}`, body);
+  // }
 
-  delete(id: string) {
-    return this.BaseAPIConfig.delete(`${this.apiController}/${id}`);
-  }
+  // delete(id: string) {
+  //   return this.BaseAPIConfig.delete(`${this.apiController}/${id}`);
+  // }
 
-  getById(id: string) {
-    return this.BaseAPIConfig.get(`${this.apiController}/${id}`);
-  }
+  // getById(id: string) {
+  //   return this.BaseAPIConfig.get(`${this.apiController}/${id}`);
+  // }
 
-  getList() {
-    return this.BaseAPIConfig.get(`${this.apiController}`);
-  }
+  // getList() {
+  //   return this.BaseAPIConfig.get(`${this.apiController}`);
+  // }
 
 }

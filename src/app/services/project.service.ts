@@ -62,6 +62,20 @@ export class ProjectService extends BaseService {
     return this.BaseAPIConfig.post(`${this.apiController}/upload-avatar/${projectId}`, formData);
   }
 
+  uploadFile(file: any, projectId: string, title: string, note: string) {
+    let formData = new FormData();
+    formData.append("file", file);
+    return this.BaseAPIConfig.post(`${this.apiController}/upload-file/${projectId}?fileTitle=${title}&note=${note}`, formData);
+  }
+
+  getProjectFiles(projectId: string){
+    return this.BaseAPIConfig.get(`${this.apiController}/project-files/${projectId}`);
+  }
+
+  getFileBlob(projectFileId: string){
+    return this.BaseAPIConfig.get(`${this.apiController}/get-file/${projectFileId}`, { responseType: "blob" });
+  }
+
   getUserByUserNameForInviteToProject(filter: string, projectId: string) {
     return this.BaseAPIConfig.get(`${this.apiController}/user-by-user-name-for-invite-to-project/${projectId}?userName=${filter}`);
   }
@@ -80,5 +94,9 @@ export class ProjectService extends BaseService {
 
   requestToProject(projectId: string) {
     return this.BaseAPIConfig.post(`${this.apiController}/request-to-project/${projectId}`,{});
+  }
+
+  getMembersOfProject(projectId: string){
+    return this.BaseAPIConfig.get(`${this.apiController}/users-of-project/${projectId}`);
   }
 }

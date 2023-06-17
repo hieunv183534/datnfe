@@ -21,6 +21,7 @@
     "@ngstack/code-editor": "^4.0.0",
     "axios": "^0.27.2",
     "chart.js": "^3.9.1",
+    "jwt-decode": "^3.1.2",
     "ngx-image-cropper": "^7.0.0",
     "primeflex": "^3.2.1",
     "primeicons": "^5.0.0",

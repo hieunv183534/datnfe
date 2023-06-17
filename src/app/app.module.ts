@@ -43,6 +43,7 @@ import { CardModule } from "primeng/card";
 import { HttpClientModule } from '@angular/common/http';
 import { GalleriaModule } from 'primeng/galleria';
 import { StepsModule } from 'primeng/steps';
+import { MenuModule } from 'primeng/menu';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './components/home-page/home-page.component';
@@ -77,6 +78,9 @@ import { ProjectSpaceComponent } from './components/startuper/project-space/proj
 import { ListProjectMemberComponent } from './components/startuper/project-space/list-project-member/list-project-member.component';
 import { ListProjectMemberInviteComponent } from './components/startuper/project-space/list-project-member-invite/list-project-member-invite.component';
 import { ListProjectInviteMemberComponent } from './components/startuper/project-space/list-project-invite-member/list-project-invite-member.component';
+import { ListProjectFileComponent } from './components/startuper/project-space/list-project-file/list-project-file.component';
+import { TooltipModule } from 'primeng/tooltip';
+import { UpdateUserInfoComponent } from './components/common/header/update-user-info/update-user-info.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +109,9 @@ import { ListProjectInviteMemberComponent } from './components/startuper/project
     ProjectSpaceComponent,
     ListProjectMemberComponent,
     ListProjectMemberInviteComponent,
-    ListProjectInviteMemberComponent
+    ListProjectInviteMemberComponent,
+    ListProjectFileComponent,
+    UpdateUserInfoComponent
   ],
   imports: [
     CommonModule,
@@ -152,7 +158,9 @@ import { ListProjectInviteMemberComponent } from './components/startuper/project
     AvatarModule,
     ImageCropperModule,
     MultiSelectModule,
-    InputSwitchModule
+    InputSwitchModule,
+    TooltipModule,
+    MenuModule
   ],
   providers: [
     MessageService,

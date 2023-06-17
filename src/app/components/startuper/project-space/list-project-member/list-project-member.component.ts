@@ -1,52 +1,40 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-list-project-member',
   templateUrl: './list-project-member.component.html',
   styleUrls: ['./list-project-member.component.css']
 })
-export class ListProjectMemberComponent implements OnInit {
+export class ListProjectMemberComponent implements OnInit, OnChanges {
+  @Input() projectId: string = "";
   @Output() addNewMember: EventEmitter<any> = new EventEmitter();
-  members: any[] = [
-    {
-      avatarUrl: "http://localhost:7777/images/525a6015-6ee2-4d33-a924-e586ec53c308.png",
-      name: "Nguyễn Văn Hiếu",
-      key: "0971883025"
-    },
-    {
-      avatarUrl: "http://localhost:7777/images/525a6015-6ee2-4d33-a924-e586ec53c308.png",
-      name: "Nguyễn Văn Hiếu",
-      key: "0971883025"
-    },
-    {
-      avatarUrl: "http://localhost:7777/images/525a6015-6ee2-4d33-a924-e586ec53c308.png",
-      name: "Nguyễn Văn Hiếu",
-      key: "0971883025"
-    },
-    {
-      avatarUrl: "http://localhost:7777/images/525a6015-6ee2-4d33-a924-e586ec53c308.png",
-      name: "Nguyễn Văn Hiếu",
-      key: "0971883025"
-    },
-    {
-      avatarUrl: "http://localhost:7777/images/525a6015-6ee2-4d33-a924-e586ec53c308.png",
-      name: "Nguyễn Văn Hiếu",
-      key: "0971883025"
-    },
-  ]
+  members: any[] = []
 
-  inviteModes: any[] =[
-    {
-      name: "Đã yêu cầu"
-    },
-    {
-      name: "Được yêu cầu"
-    }
-  ]
-
-  constructor() { }
+  constructor(
+    private projectService: ProjectService,
+    private messageService: MessageService
+  ) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.getListMembers();
+  }
 
   ngOnInit() {
+  }
+
+  getListMembers() {
+    this.projectService.getMembersOfProject(this.projectId).then((res: any) => {
+      console.log(res.data);
+      this.members = res.data;
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Lấy danh sách thành viên thất bại!",
+      });
+    });
   }
 
 }

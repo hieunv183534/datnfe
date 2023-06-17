@@ -24,7 +24,7 @@ export class RegisterStartuperInfoComponent implements OnInit {
   @Output() close: EventEmitter<any> = new EventEmitter();
   @Output() submit: EventEmitter<any> = new EventEmitter();
 
-  activeIndex: number = 2;
+  activeIndex: number = 0;
   formStartuper: FormGroup = this.fb.group({});
 
   constructor(

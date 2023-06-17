@@ -13,7 +13,13 @@
       <i class="pi pi-bell" pBadge value="2"></i>
     </a>
     <a routerLink="#">
-      <img src="../../../../assets/img/profileIcon.png" alt="" id="profileIcon" />
+      <p-avatar shape="circle" [image]="userInfo.avatarUrl" (click)="menu.toggle($event)" []></p-avatar>
     </a>
   </div>
 </div>
+
+<p-menu #menu [popup]="true" [model]="items"></p-menu>
+
+<ng-container *ngIf="isShowUpdateInfo">
+  <app-update-user-info [display]="isShowUpdateInfo" (close)="isShowUpdateInfo= false"></app-update-user-info>
+</ng-container>

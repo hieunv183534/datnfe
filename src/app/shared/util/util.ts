@@ -25,7 +25,18 @@ export class DataPointDto {
   value?: number;
 }
 
+
+
 export class FsiValues {
+
+  static getName(value: number, arr: DataPointDto[]){
+    return arr.find(x=> x.value == value)?.name;
+  }
+
+  static getMultiName(values: number[], arr: DataPointDto[]){
+    return arr.filter(x=> values.includes(x.value?? 0)).map(x=> x.name).join(',');
+  }
+
   static areas: DataPointDto[] = [
     new DataPointDto("Bắc Giang", 1),
     new DataPointDto("Bắc Kạn", 2),

@@ -1,0 +1,64 @@
+<p-dialog [resizable]="true" header="Cập nhật thông tin cá nhân" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}"
+  [baseZIndex]="10000" [draggable]="false" (onHide)="close.emit()">
+  <div class="p-fluid grid">
+    <p-card class="col-12 w-full">
+      <ng-template pTemplate="content">
+        <ng-container [ngSwitch]="activeIndex">
+          <ng-container *ngSwitchCase="0">
+            <form [formGroup]="formBaseInfo">
+              <div class="p-fluid grid">
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <input type="text" pInputText formControlName="projectName" />
+                    <label>Tên dự án: <span style="color: red;">*</span>
+                    </label>
+                  </span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <p-calendar appendTo="body" formControlName="foundedTime"></p-calendar>
+                    <label>Thời gian thành lập: <span style="color: red;">*</span>
+                    </label>
+                  </span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <p-dropdown [autoDisplayFirst]="false" [options]="areas" optionValue="value" optionLabel="name"
+                      formControlName="area"></p-dropdown>
+                    <label>Khu vực: <span style="color: red;">*</span>
+                    </label>
+                  </span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <input type="text" pInputText formControlName="website" />
+                    <label>Website:
+                    </label>
+                  </span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <input type="text" pInputText formControlName="fb" />
+                    <label>Facebook:
+                    </label>
+                  </span>
+                </div>
+              </div>
+            </form>
+
+          </ng-container>
+        </ng-container>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <div class="flex justify-content-between">
+          <span *ngIf="activeIndex == 0" style="visibility: hidden;"></span>
+          <p-button *ngIf="activeIndex > 0" label="Trước" (onClick)="back()" icon="pi pi-angle-left">
+          </p-button>
+          <p-button [label]="activeIndex == 3 ? 'Hoàn thành' : 'Tiếp'" (onClick)="next()" icon="pi pi-angle-right"
+            iconPos="right">
+          </p-button>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</p-dialog>

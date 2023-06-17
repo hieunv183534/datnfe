@@ -6,8 +6,8 @@
   <div class="col-12 list-member .grid">
     <ng-container *ngFor="let user of members">
       <span class="user-item flex align-items-center justify-content-center">
-        <p-avatar shape="circle" [image]="user.avatarUrl"></p-avatar>
-        <p class="ml-3">{{user.name}}</p>
+        <p-avatar shape="circle" [image]="user.user.avatarUrl"></p-avatar>
+        <p class="ml-3">{{user.user.name}}</p>
       </span>
     </ng-container>
     <button pButton pRipple type="button" label="Thêm thành viên" class="p-button-outlined mt-3 col-12" (click)="addNewMember.emit()"></button>

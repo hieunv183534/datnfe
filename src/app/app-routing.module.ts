@@ -42,7 +42,7 @@ const routes: Routes = [
         path: 'startuper', component: StartuperForStartuperComponent
       },
       {
-        path: 'project-space', component: ProjectSpaceComponent
+        path: 'project-space/:projectId', component: ProjectSpaceComponent
       }
     ]
   }
