@@ -122,7 +122,6 @@ a {
 }
 
 .list-data{
-  background-color: blueviolet;
   width: calc(100% - 285px) !important;
   padding: 15px !important;
 }
@@ -135,6 +134,9 @@ app-project-for-startuper p-dropdown .p-dropdown.p-component {
   width: 100% !important;
 }
 
+app-project-for-startuper .p-multiselect.p-component {
+  width: 100% !important;
+}
 
 .p-fluid.grid .p-field{
   margin-top: 15px !important;

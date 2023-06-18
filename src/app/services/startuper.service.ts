@@ -3,6 +3,7 @@ import { BaseService } from './base.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { CreateStartuperDto } from '../model/startuper.class';
+import { UpdateBaseInfoDto } from '../model/user.class';
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +23,17 @@ export class StartuperService extends BaseService {
     return this.BaseAPIConfig.get(`${this.apiController}/check-is-new-profile`);
   }
 
+  getMyInfo() {
+    return this.BaseAPIConfig.get(`${this.apiController}/my-info`);
+  }
+
   uploadAvatar(file: any) {
     let formData = new FormData();
     formData.append("file", file);
     return this.BaseAPIConfig.post(`${this.apiController}/upload-avatar`, formData);
+  }
+
+  updateBaseInfo(input: UpdateBaseInfoDto) {
+    return this.BaseAPIConfig.put(`${this.apiController}/base-info`, input) ;
   }
 }

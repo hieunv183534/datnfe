@@ -16,9 +16,12 @@ export class ProjectDto extends FullAuditedEntityDto<string>{
   avatarUrl?: string;
   founderId?: string;
   founder?: UserDto;
+  isHireNewMember?: boolean;
+  availableTimeRequire?: number[];
 }
 
 export class CreateUpdateProjectDto {
+  id?: string;
   projectName?: string;
   description?: string;
   fields?: number[];
@@ -32,6 +35,8 @@ export class CreateUpdateProjectDto {
   avatarUrl?: string;
   founderId?: string;
   founder?: UserDto;
+  isHireNewMember?: boolean;
+  availableTimeRequire?: number[];
 }
 
 export class ProjectHistoryEventDto {
@@ -43,10 +48,10 @@ export class ProjectHistoryEventDto {
 
 export class GetListProjectForStartuperDto extends PagedAndSortedResultRequestDto {
   filter?: string;
-  stage?: ProjectStage;
-  field?: number;
-  area?: number;
-  availableTime?: number;
+  stages?: ProjectStage[];
+  fields?: number[];
+  areas?: number[];
+  availableTimes?: number[];
   isMyProject?: boolean;
 }
 

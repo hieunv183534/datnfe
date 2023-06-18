@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import jwt_decode from 'jwt-decode';
+import { StartuperService } from 'src/app/services/startuper.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isShowUpdateInfo: boolean = false;
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) {
     let obs = this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
@@ -51,12 +52,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
             label: 'Thông tin cá nhân',
             icon: 'pi pi-cog',
             command: ()=>{
-              // this.isShowUpdateInfo = true;
+              this.isShowUpdateInfo = true;
             }
           },
           {
             label: 'Đăng xuất',
-            icon: 'pi pi-sign-out'
+            icon: 'pi pi-sign-out',
+            command: ()=>{
+              this.router.navigate(['./']);
+              localStorage.clear();
+            }
           }
         ]
       }

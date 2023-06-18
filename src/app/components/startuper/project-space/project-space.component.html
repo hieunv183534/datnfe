@@ -4,8 +4,10 @@
     <app-list-project-member-invite></app-list-project-member-invite>
   </div>
   <div class="col-8 center-col">
-    <div class="project-info flex flex-column align-items-center">
-      <img class="border-round" src="../../../../assets/img/fsilogoo.png" alt="">
+    <div class="project-info flex flex-column align-items-center relative">
+      <button pButton pRipple type="button" icon="pi pi-cog"
+        class="top-0 right-0 absolute p-button-rounded p-button-secondary p-button-text" (click)="isShowUpdateProject = true"></button>
+      <img class="border-round" width="180px" [src]="project.avatarUrl" alt="">
       <h2 class="m-1">{{project.projectName}}</h2>
       <p class="text-center m-1">{{project.description}}</p>
       <span class="flex">
@@ -37,15 +39,35 @@
     <div class="project-work-space">
       <p-tabView>
         <p-tabPanel header="Thông tin">
-          <p>Congue ipsam vitae sed. Odio sit. Interdum at urna luctus platea, aspernatur litora fermentum commodi aenean, eligendi massa porro veritatis etiam possimus doloribus felis mauris! Aut quaerat litora temporibus corporis? Eget incididunt magna quis orci esse at interdum aliqua alias quis expedita quasi ratione! Cumque mollis habitant numquam a, nostrum quisque proident dictum in asperiores metus, sapiente rhoncus nostrum risus animi condimentum sapiente impedit. Lorem augue. Maecenas quis nisl egestas feugiat. Veritatis, maecenas eiusmod veritatis quia cras lacus! Nihil doloribus curae dictumst lacus eiusmod, elementum varius perspiciatis primis curae rerum? Culpa mi nascetur architecto dis quam! Volutpat possimus? Dolores vel.</p>
+          <p>Congue ipsam vitae sed. Odio sit. Interdum at urna luctus platea, aspernatur litora fermentum commodi
+            aenean, eligendi massa porro veritatis etiam possimus doloribus felis mauris! Aut quaerat litora temporibus
+            corporis? Eget incididunt magna quis orci esse at interdum aliqua alias quis expedita quasi ratione! Cumque
+            mollis habitant numquam a, nostrum quisque proident dictum in asperiores metus, sapiente rhoncus nostrum
+            risus animi condimentum sapiente impedit. Lorem augue. Maecenas quis nisl egestas feugiat. Veritatis,
+            maecenas eiusmod veritatis quia cras lacus! Nihil doloribus curae dictumst lacus eiusmod, elementum varius
+            perspiciatis primis curae rerum? Culpa mi nascetur architecto dis quam! Volutpat possimus? Dolores vel.</p>
         </p-tabPanel>
         <p-tabPanel header="Công việc">
-          <p>Eros cubilia? Cumque, orci reiciendis nisi diamlorem quo sociosqu cupidatat explicabo class aperiam egestas, magni. Habitant? Similique porro! Earum diamlorem euismod laboriosam eget facilis cupiditate ea odit repellat? Ipsa fuga! Aliquam omnis occaecati lectus excepteur! Ipsum! Cras consequatur? Iste neque, habitant nisi velit adipisicing! Enim nibh illo aliquip, sed placeat inventore similique nostrum eget platea quo, ab vehicula semper qui aliquip vestibulum mollis nulla odio mauris. Adipisci wisi, dicta tempus nunc curae. Tempor numquam dis, eiusmod error omnis tristique consectetur, lacinia quibusdam! Dolores tempora, voluptates metus voluptatem, nibh habitasse. Exercitationem consequat at aliquip at mollit quibusdam! Cum, eros itaque feugiat.</p>
+          <p>Eros cubilia? Cumque, orci reiciendis nisi diamlorem quo sociosqu cupidatat explicabo class aperiam
+            egestas, magni. Habitant? Similique porro! Earum diamlorem euismod laboriosam eget facilis cupiditate ea
+            odit repellat? Ipsa fuga! Aliquam omnis occaecati lectus excepteur! Ipsum! Cras consequatur? Iste neque,
+            habitant nisi velit adipisicing! Enim nibh illo aliquip, sed placeat inventore similique nostrum eget platea
+            quo, ab vehicula semper qui aliquip vestibulum mollis nulla odio mauris. Adipisci wisi, dicta tempus nunc
+            curae. Tempor numquam dis, eiusmod error omnis tristique consectetur, lacinia quibusdam! Dolores tempora,
+            voluptates metus voluptatem, nibh habitasse. Exercitationem consequat at aliquip at mollit quibusdam! Cum,
+            eros itaque feugiat.</p>
         </p-tabPanel>
         <p-tabPanel header="Lịch">
-          <p>Inventore nonummy anim integer excepteur laboris, viverra aenean? Consequat elementum quod penatibus phasellus per magni necessitatibus diam maiores, suspendisse numquam reprehenderit, do voluptatum augue congue cupiditate do tempore mauris! Dapibus distinctio integer elit facilis quaerat aenean, justo distinctio tellus minima sociis minus praesent, vehicula doloribus rutrum primis? Excepteur? Corporis fugiat impedit, ultrices repellendus litora eveniet class. Aliquip proident magna hendrerit numquam vestibulum eleifend metus, ante repudiandae aliquam eleifend, viverra beatae dicta sint. Sociis, voluptas lectus curabitur aperiam praesent feugiat dignissim atque vulputate nam provident convallis sollicitudin nesciunt consectetuer sociis at nemo debitis, quae praesent saepe magnam labore tristique! Quod, ullam.</p>
+          <p>Inventore nonummy anim integer excepteur laboris, viverra aenean? Consequat elementum quod penatibus
+            phasellus per magni necessitatibus diam maiores, suspendisse numquam reprehenderit, do voluptatum augue
+            congue cupiditate do tempore mauris! Dapibus distinctio integer elit facilis quaerat aenean, justo
+            distinctio tellus minima sociis minus praesent, vehicula doloribus rutrum primis? Excepteur? Corporis fugiat
+            impedit, ultrices repellendus litora eveniet class. Aliquip proident magna hendrerit numquam vestibulum
+            eleifend metus, ante repudiandae aliquam eleifend, viverra beatae dicta sint. Sociis, voluptas lectus
+            curabitur aperiam praesent feugiat dignissim atque vulputate nam provident convallis sollicitudin nesciunt
+            consectetuer sociis at nemo debitis, quae praesent saepe magnam labore tristique! Quod, ullam.</p>
         </p-tabPanel>
-    </p-tabView>
+      </p-tabView>
     </div>
   </div>
   <div class="col-2">
@@ -54,5 +76,12 @@
 </div>
 
 <ng-container *ngIf="isShowAddMember">
-  <app-list-project-invite-member [display]="isShowAddMember" (close)="isShowAddMember = false"  [projectId]="project.id" #listFile></app-list-project-invite-member>
+  <app-list-project-invite-member [display]="isShowAddMember" (close)="isShowAddMember = false" [projectId]="project.id"
+    #listFile></app-list-project-invite-member>
+</ng-container>
+
+
+<ng-container *ngIf="isShowUpdateProject">
+  <app-update-project [display]="isShowUpdateProject" (close)="isShowUpdateProject = false"
+    [project]="project" (changeProjectInfo)="changeProjectInfo($event)"></app-update-project>
 </ng-container>

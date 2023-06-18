@@ -1,0 +1,97 @@
+<p-dialog [resizable]="true" header="Cập nhật thông tin dự án" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}"
+  [baseZIndex]="10000" [draggable]="false" (onHide)="close.emit()">
+  <div class="p-fluid grid">
+    <p-card class="col-12 w-full">
+      <ng-template pTemplate="content">
+        <p-steps [model]="steps" [readonly]="false" [(activeIndex)]="activeIndex"></p-steps>
+        <br>
+        <ng-container [ngSwitch]="activeIndex">
+          <ng-container *ngSwitchCase="0">
+            <input type="file" (change)="fileChangeEvent($event)" />
+
+            <div class="image-cropper-wrapper">
+              <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1"
+                format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)"
+                (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+            </div>
+
+            <img class="preview-image" [src]="croppedImage" />
+          </ng-container>
+          <ng-container *ngSwitchCase="1">
+            <form [formGroup]="formProject">
+              <div class="p-fluid grid">
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <input type="text" pInputText formControlName="projectName" />
+                    <label>Tên dự án: <span style="color: red;">*</span>
+                    </label>
+                  </span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <textarea [rows]="5" pInputTextarea formControlName="description"></textarea>
+                    <label>Mô tả chi tiết về dự án: <span style="color: red;">*</span>
+                    </label>
+                  </span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="fields"
+                      optionLabel="name" formControlName="fields">
+                    </p-multiSelect>
+                    <label>Lĩnh vực của dự án: <span style="color: red;">*</span>
+                    </label>
+                  </span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <p-dropdown [autoDisplayFirst]="false" [options]="projectStages" optionValue="value"
+                      optionLabel="name" formControlName="stage"></p-dropdown>
+                    <label>Giai đoạn hiện tại của dự án: <span style="color: red;">*</span>
+                    </label>
+                  </span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <p-calendar appendTo="body" formControlName="foundedTime"></p-calendar>
+                    <label>Thời gian thành lập: <span style="color: red;">*</span>
+                    </label>
+                  </span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <p-dropdown [autoDisplayFirst]="false" [options]="areas" optionValue="value" optionLabel="name"
+                      formControlName="area"></p-dropdown>
+                    <label>Khu vực: <span style="color: red;">*</span>
+                    </label>
+                  </span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <input type="text" pInputText formControlName="website" />
+                    <label>Website:
+                    </label>
+                  </span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <input type="text" pInputText formControlName="fb" />
+                    <label>Facebook:
+                    </label>
+                  </span>
+                </div>
+              </div>
+            </form>
+
+          </ng-container>
+        </ng-container>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <div class="flex justify-content-end">
+          <p-button label="Cập nhật" styleClass="p-button-success" (onClick)="save()">
+          </p-button>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</p-dialog>

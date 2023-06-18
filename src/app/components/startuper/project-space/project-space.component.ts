@@ -16,8 +16,9 @@ export class ProjectSpaceComponent implements OnInit {
   areas: any = FsiValues.areas;
 
   isShowAddMember: boolean = false;
+  isShowUpdateProject: boolean = false;
 
-  project: any = {extraProperties:{}};
+  project: any = { extraProperties: {} };
 
   @ViewChild("listFile") listFile?: ListProjectFileComponent;
 
@@ -37,15 +38,15 @@ export class ProjectSpaceComponent implements OnInit {
     private messageService: MessageService
   ) { }
 
-  getArea(val: number){
+  getArea(val: number) {
     return FsiValues.getName(val, FsiValues.areas);
   }
 
-  getProject(val: ProjectStage){
-    return this.projectStages.find(x=> x.value == val).name;
+  getProject(val: ProjectStage) {
+    return this.projectStages.find(x => x.value == val).name;
   }
 
-  getFields(val: number[]){
+  getFields(val: number[]) {
     return FsiValues.getMultiName(val, FsiValues.fields);
   }
 
@@ -68,4 +69,9 @@ export class ProjectSpaceComponent implements OnInit {
     });
   }
 
+
+  changeProjectInfo(newProjectInfo: any) {
+    this.project = newProjectInfo;
+    this.isShowUpdateProject = false;
+  }
 }

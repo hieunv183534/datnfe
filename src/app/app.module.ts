@@ -81,6 +81,7 @@ import { ListProjectInviteMemberComponent } from './components/startuper/project
 import { ListProjectFileComponent } from './components/startuper/project-space/list-project-file/list-project-file.component';
 import { TooltipModule } from 'primeng/tooltip';
 import { UpdateUserInfoComponent } from './components/common/header/update-user-info/update-user-info.component';
+import { UpdateProjectComponent } from './components/startuper/project-space/update-project/update-project.component';
 
 @NgModule({
   declarations: [
@@ -111,7 +112,8 @@ import { UpdateUserInfoComponent } from './components/common/header/update-user-
     ListProjectMemberInviteComponent,
     ListProjectInviteMemberComponent,
     ListProjectFileComponent,
-    UpdateUserInfoComponent
+    UpdateUserInfoComponent,
+    UpdateProjectComponent
   ],
   imports: [
     CommonModule,

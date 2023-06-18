@@ -9,7 +9,7 @@
       </span>
       <span class="flex align-items-center justify-content-center">
         <label class="mr-2">Dự án của tôi</label>
-        <p-inputSwitch formControlName="isMyProject"></p-inputSwitch>
+        <p-inputSwitch formControlName="isMyProject" formControlName="isMyProject"></p-inputSwitch>
       </span>
       <button pButton type="button" label="Thêm mới dự án" (click)="isVisibleAddProject = true"></button>
     </div>
@@ -17,29 +17,33 @@
       <div class="filter-box col-2 grid fluid">
         <div class="p-field col-12 md-12 mt-4">
           <span class="p-float-label">
-            <p-dropdown style="width: 100%;" [options]="areas" [autoDisplayFirst]="false" optionValue="value"
-              optionLabel="name" emptyMessage="Chọn 1" formControlName="area"></p-dropdown>
+            <p-multiSelect style="width: 100%;" optionLabel="name" optionValue="value" appendTo="body" [options]="areas"
+              optionLabel="name" formControlName="areas">
+            </p-multiSelect>
             <label>Khu vực</label>
           </span>
         </div>
         <div class="p-field col-12 md-12 mt-4">
           <span class="p-float-label">
-            <p-dropdown [options]="fields" [autoDisplayFirst]="false" optionValue="value" optionLabel="name"
-              emptyMessage="Chọn 1" formControlName="field"></p-dropdown>
+            <p-multiSelect style="width: 100%;" optionLabel="name" optionValue="value" appendTo="body"
+              [options]="fields" optionLabel="name" formControlName="fields">
+            </p-multiSelect>
             <label>Lĩnh vực của dự án</label>
           </span>
         </div>
         <div class="p-field col-12 md-12 mt-4">
           <span class="p-float-label">
-            <p-dropdown [options]="projectStages" [autoDisplayFirst]="false" optionValue="value" optionLabel="name"
-              emptyMessage="Chọn 1" formControlName="stage"></p-dropdown>
+            <p-multiSelect style="width: 100%;" optionLabel="name" optionValue="value" appendTo="body"
+              [options]="projectStages" optionLabel="name" formControlName="stages">
+            </p-multiSelect>
             <label>Giai đoạn của dự án</label>
           </span>
         </div>
         <div class="p-field col-12 md-12 mt-4">
           <span class="p-float-label">
-            <p-dropdown [options]="availableTimes" [autoDisplayFirst]="false" optionValue="value" optionLabel="name"
-              emptyMessage="Chọn 1" formControlName="availableTime"></p-dropdown>
+            <p-multiSelect style="width: 100%;" optionLabel="name" optionValue="value" appendTo="body"
+              [options]="availableTimes" optionLabel="name" formControlName="availableTimes">
+            </p-multiSelect>
             <label>Thời gian yêu cầu</label>
           </span>
         </div>
@@ -48,8 +52,10 @@
           <p-button class="ml-4" icon="pi pi-times" (onClick)="clearSearch()"></p-button>
         </div>
       </div>
-      <div class="list-data col-10">
-
+      <div class="list-data col-10 grid flex align-items-center justify-content-center ">
+        <!-- <ng-container *ngIf="listProject.length == 0">
+          <img width="300px" src="../../../../assets/img/nodata.jpg" alt="" style="margin: auto;">
+        </ng-container> -->
       </div>
       <div class="col-12 flex justify-content-center">
         <p-paginator [pageLinkSize]="pageSize" [rows]="pageSize" [totalRecords]="totalRecords"

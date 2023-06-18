@@ -36,20 +36,11 @@ export class ProjectService extends BaseService {
   }
 
   getListProjectForStartuper(input: GetListProjectForStartuperDto) {
-    let _filter = input.filter ? `&filter=${input.filter}` : "";
-    let _stage = input.stage ? `&stage=${input.stage}` : "";
-    let _field = input.field ? `&field=${input.field}` : "";
-    let _area = input.area ? `&area=${input.area}` : "";
-    let _availableTime = input.availableTime ? `&area=${input.availableTime}` : "";
-    return this.BaseAPIConfig.get(`${this.apiController}/project-for-startuper?skipCount=${input.skipCount}&maxResultCount=${input.maxResultCount}${_filter}${_stage}${_field}${_area}${_availableTime}`);
+    return this.BaseAPIConfig.post(`${this.apiController}/to-get-list-project-for-startuper`,input);
   }
 
   getListProjectForInvestor(input: GetListProjectForInvestorDto) {
-    let _filter = input.filter ? `&filter=${input.filter}` : "";
-    let _stage = input.stage ? `&stage=${input.stage}` : "";
-    let _field = input.field ? `&field=${input.field}` : "";
-    let _area = input.area ? `&area=${input.area}` : "";
-    return this.BaseAPIConfig.get(`${this.apiController}/project-for-investor?skipCount=${input.skipCount}&maxResultCount=${input.maxResultCount}${_filter}${_stage}${_field}${_area}`);
+    return this.BaseAPIConfig.post(`${this.apiController}/to-get-list-project-for-investor`,input);
   }
 
   getProjectByUser(userId: string) {

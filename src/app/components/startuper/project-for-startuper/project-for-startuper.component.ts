@@ -49,22 +49,22 @@ export class ProjectForStartuperComponent implements OnInit {
   ngOnInit() {
     this.formSearch = this.fb.group({
       filter: [null, []],
-      field: [null, []],
-      area: [null, []],
-      stage: [null, []],
-      availableTime: [null, []],
-      isMyProject: [null, []]
+      fields: [[], []],
+      areas: [[], []],
+      stages: [[], []],
+      availableTimes: [[], []],
+      isMyProject: [false, []]
     })
   }
 
   getListProject(reset: boolean = false) {
     if (reset) { this.page = 1; }
     let input = new GetListProjectForStartuperDto();
-    input.area = this.formSearch.value.area;
-    input.field = this.formSearch.value.field;
+    input.areas = this.formSearch.value.areas ??[];
+    input.fields = this.formSearch.value.fields??[];
     input.filter = this.formSearch.value.filter;
-    input.stage = this.formSearch.value.stage;
-    input.availableTime = this.formSearch.value.availableTime;
+    input.stages = this.formSearch.value.stages??[];
+    input.availableTimes = this.formSearch.value.availableTimes??[];
     input.isMyProject = this.formSearch.value.isMyProject;
     input.skipCount = (this.page - 1) * this.pageSize;
     input.maxResultCount = this.pageSize;
@@ -87,10 +87,10 @@ export class ProjectForStartuperComponent implements OnInit {
 
   clearSearch() {
     this.formSearch.controls["filter"].patchValue(null);
-    this.formSearch.controls["field"].patchValue(null);
-    this.formSearch.controls["area"].patchValue(null);
-    this.formSearch.controls["stage"].patchValue(null);
-    this.formSearch.controls["availableTime"].patchValue(null);
+    this.formSearch.controls["fields"].patchValue([]);
+    this.formSearch.controls["areas"].patchValue([]);
+    this.formSearch.controls["stages"].patchValue([]);
+    this.formSearch.controls["availableTimes"].patchValue([]);
     this.page = 1;
     this.pageSize = 10;
     this.getListProject(true);
