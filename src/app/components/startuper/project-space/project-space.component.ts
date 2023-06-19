@@ -42,7 +42,7 @@ export class ProjectSpaceComponent implements OnInit {
     return FsiValues.getName(val, FsiValues.areas);
   }
 
-  getProject(val: ProjectStage) {
+  getStage(val: ProjectStage) {
     return this.projectStages.find(x => x.value == val).name;
   }
 

@@ -20,7 +20,7 @@ export class AddNewProjectComponent implements OnInit {
   @Output() close: EventEmitter<any> = new EventEmitter();
   @Output() submit: EventEmitter<any> = new EventEmitter();
 
-  activeIndex: number = 3;
+  activeIndex: number = 0;
   formProject: FormGroup = this.fb.group({});
   formEvent: FormGroup = this.fb.group({});
   project: any = "";
@@ -50,14 +50,7 @@ export class AddNewProjectComponent implements OnInit {
 
   keySearchUser: string = "";
 
-  inviteUsers: any[] = [
-    {
-      avatarUrl: "http://localhost:7777/images/525a6015-6ee2-4d33-a924-e586ec53c308.png",
-      name: "Nguyễn Văn Hiếu",
-      key: "0971883025",
-      status: false
-    }
-  ]
+  inviteUsers: any[] = []
 
   constructor(
     private projectService: ProjectService,

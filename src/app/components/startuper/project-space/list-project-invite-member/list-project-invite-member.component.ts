@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ProjectService } from 'src/app/services/project.service';
 
@@ -20,6 +21,8 @@ export class ListProjectInviteMemberComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     private messageService: MessageService,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -93,6 +96,10 @@ export class ListProjectInviteMemberComponent implements OnInit {
         detail: "User không tồn tại hoặc đã có sẵn trong dự án!",
       });
     });
+  }
+
+  goToStartuper(){
+    this.router.navigate(['./startuper/startuper']);
   }
 
 }

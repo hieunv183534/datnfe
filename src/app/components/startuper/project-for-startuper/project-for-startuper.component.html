@@ -9,13 +9,13 @@
       </span>
       <span class="flex align-items-center justify-content-center">
         <label class="mr-2">Dự án của tôi</label>
-        <p-inputSwitch formControlName="isMyProject" formControlName="isMyProject"></p-inputSwitch>
+        <p-inputSwitch formControlName="isMyProject" formControlName="isMyProject" (onChange)="getListProject()"></p-inputSwitch>
       </span>
       <button pButton type="button" label="Thêm mới dự án" (click)="isVisibleAddProject = true"></button>
     </div>
     <div class="grid">
       <div class="filter-box col-2 grid fluid">
-        <div class="p-field col-12 md-12 mt-4">
+        <div class="p-field col-12 md-12">
           <span class="p-float-label">
             <p-multiSelect style="width: 100%;" optionLabel="name" optionValue="value" appendTo="body" [options]="areas"
               optionLabel="name" formControlName="areas">
@@ -23,7 +23,7 @@
             <label>Khu vực</label>
           </span>
         </div>
-        <div class="p-field col-12 md-12 mt-4">
+        <div class="p-field col-12 md-12">
           <span class="p-float-label">
             <p-multiSelect style="width: 100%;" optionLabel="name" optionValue="value" appendTo="body"
               [options]="fields" optionLabel="name" formControlName="fields">
@@ -31,7 +31,7 @@
             <label>Lĩnh vực của dự án</label>
           </span>
         </div>
-        <div class="p-field col-12 md-12 mt-4">
+        <div class="p-field col-12 md-12">
           <span class="p-float-label">
             <p-multiSelect style="width: 100%;" optionLabel="name" optionValue="value" appendTo="body"
               [options]="projectStages" optionLabel="name" formControlName="stages">
@@ -39,7 +39,7 @@
             <label>Giai đoạn của dự án</label>
           </span>
         </div>
-        <div class="p-field col-12 md-12 mt-4">
+        <div class="p-field col-12 md-12">
           <span class="p-float-label">
             <p-multiSelect style="width: 100%;" optionLabel="name" optionValue="value" appendTo="body"
               [options]="availableTimes" optionLabel="name" formControlName="availableTimes">
@@ -53,9 +53,15 @@
         </div>
       </div>
       <div class="list-data col-10 grid flex align-items-center justify-content-center ">
-        <!-- <ng-container *ngIf="listProject.length == 0">
+        <ng-container *ngIf="listProject.length == 0">
           <img width="300px" src="../../../../assets/img/nodata.jpg" alt="" style="margin: auto;">
-        </ng-container> -->
+        </ng-container>
+
+        <ng-container *ngFor=" let project of listProject">
+          <div class="lg:col-3 md:col-4 sm:col-12">
+            <app-project-item [project]="project"></app-project-item>
+          </div>
+        </ng-container>
       </div>
       <div class="col-12 flex justify-content-center">
         <p-paginator [pageLinkSize]="pageSize" [rows]="pageSize" [totalRecords]="totalRecords"

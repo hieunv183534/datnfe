@@ -53,8 +53,9 @@ export class ProjectForStartuperComponent implements OnInit {
       areas: [[], []],
       stages: [[], []],
       availableTimes: [[], []],
-      isMyProject: [false, []]
-    })
+      isMyProject: [true, []]
+    });
+    this.getListProject();
   }
 
   getListProject(reset: boolean = false) {
@@ -69,8 +70,9 @@ export class ProjectForStartuperComponent implements OnInit {
     input.skipCount = (this.page - 1) * this.pageSize;
     input.maxResultCount = this.pageSize;
     this.projectService.getListProjectForStartuper(input).then((res: any) => {
-      this.totalRecords = res.totalCount;
-      this.listProject = res.items;
+      debugger
+      this.totalRecords = res.data.totalCount;
+      this.listProject = res.data.items;
     }).catch((err: any) => {
       this.messageService.add({
         key: "toast",

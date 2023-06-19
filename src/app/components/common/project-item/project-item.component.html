@@ -1,23 +1,43 @@
-<div class='startupItem' (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
-  <img src="../../../../assets/img/fsiLogo.png" alt='' id='logo' />
-  <div class='content'>
-    <div class='subtitle'>{{project.subtile}}</div>
-    <div class='name'>{{project.name}}</div>
-    <div class='description'>{{project.description}}</div>
-    <div class='fund'>
-      <i class="pi pi-key"></i>
-      Growth: {{project.fund}} vnd
-    </div>
+<div class='startupItem flex flex-column' (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
+  <div class="avatar-project w-full h-auto relative">
+    <img [src]="project.avatarUrl" alt='' id='logo' />
+    <ng-container *ngIf="isHovered">
+      <div class='hoverDiv'>
+        <button type='button' id='xemthem' (click)="showDetailProject()">
+          <i class="pi pi-eye"></i> Xem thêm
+        </button>
+        <button type='button' id='ketnoi'>
+          <i class="pi pi-share-alt"></i> Kết nối
+        </button>
+      </div>
+    </ng-container>
   </div>
-  <ng-container *ngIf="isHovered">
-    <div class='hoverDiv'>
-      <button type='button' id='xemthem'>
-        <i class="pi pi-eye"></i> Xem thêm
-      </button>
-      <button type='button' id='ketnoi'>
-        <i class="pi pi-share-alt"></i> Kết nối
-      </button>
-    </div>
-  </ng-container>
-
+  <div class='content'>
+    <div class='name'>{{project.projectName}}</div>
+    <div class='description'>{{project.description}}</div>
+    <span class="flex justify-content-between ">
+      <span class="flex align-items-center mr-6">
+        <i class="pi pi-building"></i>
+        <p>{{getArea(project.area)}}</p>
+      </span>
+      <span class="flex align-items-center">
+        <i class="pi pi-chart-line"></i>
+        <p>{{getStage(project.stage)}}</p>
+      </span>
+    </span>
+    <span class="flex align-items-center">
+      <i class="pi pi-book"></i>
+      <p>{{getFields(project.fields)}}</p>
+    </span>
+    <span class="flex justify-content-between">
+      <span class="flex align-items-center mr-6">
+        <i class="pi pi-users"></i>
+        <p>{{project.extraProperties.memberCount}}</p>
+      </span>
+      <span class="flex align-items-center">
+        <i class="pi pi-money-bill"></i>
+        <p>{{project.extraProperties.totalInvesment}}$</p>
+      </span>
+    </span>
+  </div>
 </div>
