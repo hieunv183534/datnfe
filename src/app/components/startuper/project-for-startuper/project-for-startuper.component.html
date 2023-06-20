@@ -14,40 +14,40 @@
       <button pButton type="button" label="Thêm mới dự án" (click)="isVisibleAddProject = true"></button>
     </div>
     <div class="grid">
-      <div class="filter-box col-2 grid fluid">
-        <div class="p-field col-12 md-12">
+      <div class="filter-box col-2 grid fluid flex flex-column justify-content-start ">
+        <div class="p-field col-12 md-12 mt-3">
           <span class="p-float-label">
-            <p-multiSelect style="width: 100%;" optionLabel="name" optionValue="value" appendTo="body" [options]="areas"
+            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="areas"
               optionLabel="name" formControlName="areas">
             </p-multiSelect>
             <label>Khu vực</label>
           </span>
         </div>
-        <div class="p-field col-12 md-12">
+        <div class="p-field col-12 md-12 mt-3">
           <span class="p-float-label">
-            <p-multiSelect style="width: 100%;" optionLabel="name" optionValue="value" appendTo="body"
+            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body"
               [options]="fields" optionLabel="name" formControlName="fields">
             </p-multiSelect>
             <label>Lĩnh vực của dự án</label>
           </span>
         </div>
-        <div class="p-field col-12 md-12">
+        <div class="p-field col-12 md-12 mt-3">
           <span class="p-float-label">
-            <p-multiSelect style="width: 100%;" optionLabel="name" optionValue="value" appendTo="body"
+            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body"
               [options]="projectStages" optionLabel="name" formControlName="stages">
             </p-multiSelect>
             <label>Giai đoạn của dự án</label>
           </span>
         </div>
-        <div class="p-field col-12 md-12">
+        <div class="p-field col-12 md-12 mt-3">
           <span class="p-float-label">
-            <p-multiSelect style="width: 100%;" optionLabel="name" optionValue="value" appendTo="body"
+            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body"
               [options]="availableTimes" optionLabel="name" formControlName="availableTimes">
             </p-multiSelect>
             <label>Thời gian yêu cầu</label>
           </span>
         </div>
-        <div class="col-12 flex justify-content-center">
+        <div class="col-12 flex justify-content-center mt-2">
           <p-button icon="pi pi-search" (onClick)="submitSearch()"></p-button>
           <p-button class="ml-4" icon="pi pi-times" (onClick)="clearSearch()"></p-button>
         </div>

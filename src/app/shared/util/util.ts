@@ -30,11 +30,11 @@ export class DataPointDto {
 export class FsiValues {
 
   static getName(value: number, arr: DataPointDto[]){
-    return arr.find(x=> x.value == value)?.name;
+    return arr.find(x=> x?.value == value)?.name;
   }
 
   static getMultiName(values: number[], arr: DataPointDto[]){
-    return arr.filter(x=> values.includes(x.value?? 0)).map(x=> x.name).join(',');
+    return arr.filter(x=> values?.includes(x.value?? 0)).map(x=> x.name).join(',');
   }
 
   static areas: DataPointDto[] = [

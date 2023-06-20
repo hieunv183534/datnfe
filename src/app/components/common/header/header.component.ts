@@ -24,18 +24,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    let obs = this.router.events.subscribe(val => {
-      if (val instanceof NavigationEnd) {
-        this.thisRouteUrl = this.router.url;
-      }
-    });
-    this.sub.add(obs);
+
   }
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 
   ngOnInit() {
+    this.router.events.subscribe(val => {
+      if (val instanceof NavigationEnd) {
+        this.thisRouteUrl = this.router.url;
+      }
+    });
+
     window.onscroll = () => {
       this.isScrolled = window.pageYOffset <= 0 ? false : true;
       return () => (window.onscroll = null);
@@ -51,14 +52,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
           {
             label: 'Thông tin cá nhân',
             icon: 'pi pi-cog',
-            command: ()=>{
+            command: () => {
               this.isShowUpdateInfo = true;
             }
           },
           {
             label: 'Đăng xuất',
             icon: 'pi pi-sign-out',
-            command: ()=>{
+            command: () => {
               this.router.navigate(['./']);
               localStorage.clear();
             }

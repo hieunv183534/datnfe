@@ -43,7 +43,7 @@ export class ProjectSpaceComponent implements OnInit {
   }
 
   getStage(val: ProjectStage) {
-    return this.projectStages.find(x => x.value == val).name;
+    return this.projectStages.find(x => x.value == val)?.name;
   }
 
   getFields(val: number[]) {

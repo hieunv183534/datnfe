@@ -161,6 +161,34 @@
               </div>
             </form>
           </ng-container>
+
+          <ng-container *ngSwitchCase="3">
+            <form [formGroup]="formChangePassword">
+              <div class="p-fluid grid">
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <input type="password" pInputText formControlName="oldPassword" />
+                    <label>Nhập mật khẩu:
+                    </label>
+                  </span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <input type="password" pInputText formControlName="newPassword" />
+                    <label>Nhập mật khẩu mới:
+                    </label>
+                  </span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <input type="password" pInputText formControlName="reNewPassword" />
+                    <label>Nhập lại mật khẩu mới:
+                    </label>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </ng-container>
         </ng-container>
       </ng-template>
       <ng-template pTemplate="footer">

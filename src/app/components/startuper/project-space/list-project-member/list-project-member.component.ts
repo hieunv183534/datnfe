@@ -10,6 +10,7 @@ import { ProjectService } from 'src/app/services/project.service';
 export class ListProjectMemberComponent implements OnInit, OnChanges {
   @Input() projectId: string = "";
   @Output() addNewMember: EventEmitter<any> = new EventEmitter();
+  @Input() isMyProject: boolean = false;
   members: any[] = []
 
   constructor(

@@ -17,8 +17,12 @@ export class AuthService extends BaseService {
     return this.BaseAPIConfig.post(`${this.apiController}/login`, { username, password, role });
   }
 
-  register(body: any){
+  register(body: any) {
     return this.BaseAPIConfig.post(`${this.apiController}/register`, body);
+  }
+
+  changePassword(oldPassword: string, newPassword: string) {
+    return this.BaseAPIConfig.post(`${this.apiController}/change-password`, { oldPassword, newPassword });
   }
 
 }

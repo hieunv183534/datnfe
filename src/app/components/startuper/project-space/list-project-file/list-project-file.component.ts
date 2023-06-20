@@ -19,6 +19,10 @@ export class ListProjectFileComponent implements OnInit, OnChanges {
   uploadFiles: any[] = [];
   title: string = "";
   note: string = "";
+  visibleForInvestor: boolean = false;
+  visibleForAll: boolean = false;
+
+  @Input() isMyProject: boolean = false;
 
   constructor(
     private projectService: ProjectService,
@@ -60,7 +64,7 @@ export class ListProjectFileComponent implements OnInit, OnChanges {
         detail: "Chưa đầy đủ dữ liểu để upload!",
       });
     } else {
-      this.projectService.uploadFile(this.uploadFiles[0], this.projectId, this.title, this.note).then((res: any) => {
+      this.projectService.uploadFile(this.uploadFiles[0], this.projectId, this.title, this.note, false, false).then((res: any) => {
         this.messageService.add({
           key: "toast",
           severity: "success",

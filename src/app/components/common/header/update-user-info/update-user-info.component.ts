@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ImageCropperComponent, ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { MenuItem, MessageService } from 'primeng/api';
+import { AuthService } from 'src/app/services/auth.service';
 import { StartuperService } from 'src/app/services/startuper.service';
 import { FsiValues } from 'src/app/shared/util/util';
 
@@ -26,14 +28,17 @@ export class UpdateUserInfoComponent implements OnInit {
 
   formBaseInfo: FormGroup = this.fb.group({});
   formStartuperInfo: FormGroup = this.fb.group({});
-
+  formChangePassword: FormGroup = this.fb.group({});
   activeIndex: number = 0;
   steps: MenuItem[] = [];
   constructor(
     private messageService: MessageService,
     private fb: FormBuilder,
     private startuperService: StartuperService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -67,6 +72,12 @@ export class UpdateUserInfoComponent implements OnInit {
       hasProject: [null, []],
       yearOfExp: [null, []],
       availableTime: [null, []]
+    });
+
+    this.formChangePassword = this.fb.group({
+      oldPassword: [null, [Validators.required]],
+      newPassword: [null, [Validators.required]],
+      reNewPassword: [null, [Validators.required]],
     });
 
     this.getUserInfo();
@@ -147,6 +158,52 @@ export class UpdateUserInfoComponent implements OnInit {
           detail: "Cập nhật thất bại!",
         });
       });
+    } else if (this.activeIndex == 3) {
+      if (this.formChangePassword.valid) {
+        if (this.formChangePassword.value.newPassword == this.formChangePassword.value.reNewPassword) {
+          this.authService.changePassword(this.formChangePassword.value.oldPassword, this.formChangePassword.value.newPassword).then((res: any) => {
+            if(res.data){
+              this.messageService.add({
+                key: "toast",
+                severity: "success",
+                summary: "Thành công",
+                detail: "Thay đổi mật khẩu thành công, vui lòng đăng nhập lại!",
+              });
+              localStorage.clear();
+              this.router.navigate(['./']);
+
+            }else{
+              this.messageService.add({
+                key: "toast",
+                severity: "error",
+                summary: "Lỗi",
+                detail: "Mật khẩu hiện tại bạn nhập không đúng!",
+              });
+            }
+          }).catch((err: any) => {
+            this.messageService.add({
+              key: "toast",
+              severity: "error",
+              summary: "Lỗi",
+              detail: "Thay đổi mật khẩu thất bại, vui lòng thử lại sau!",
+            });
+          });
+        } else {
+          this.messageService.add({
+            key: "toast",
+            severity: "error",
+            summary: "Lỗi",
+            detail: "Mật khẩu nhập lại chưa trùng khớp!",
+          });
+        }
+      } else {
+        this.messageService.add({
+          key: "toast",
+          severity: "error",
+          summary: "Lỗi",
+          detail: "Vui lòng nhập đủ thông tin!",
+        });
+      }
     }
   }
 

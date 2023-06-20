@@ -10,6 +10,6 @@
         <p class="ml-3">{{user.user.name}}</p>
       </span>
     </ng-container>
-    <button pButton pRipple type="button" label="Thêm thành viên" class="p-button-outlined mt-3 col-12" (click)="addNewMember.emit()"></button>
+    <button *ngIf="isMyProject" pButton pRipple type="button" label="Thêm thành viên" class="p-button-outlined mt-3 col-12" (click)="addNewMember.emit()"></button>
   </div>
 </div>

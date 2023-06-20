@@ -53,10 +53,10 @@ export class ProjectService extends BaseService {
     return this.BaseAPIConfig.post(`${this.apiController}/upload-avatar/${projectId}`, formData);
   }
 
-  uploadFile(file: any, projectId: string, title: string, note: string) {
+  uploadFile(file: any, projectId: string, title: string, note: string, visibleForInvestor: boolean, visibleForAll: boolean) {
     let formData = new FormData();
     formData.append("file", file);
-    return this.BaseAPIConfig.post(`${this.apiController}/upload-file/${projectId}?fileTitle=${title}&note=${note}`, formData);
+    return this.BaseAPIConfig.post(`${this.apiController}/upload-file/${projectId}?fileTitle=${title}&visibleForInvestor=${visibleForInvestor}&visibleForAll=${visibleForAll}&note=${note}`, formData);
   }
 
   getProjectFiles(projectId: string){
