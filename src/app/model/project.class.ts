@@ -1,5 +1,5 @@
 import { FullAuditedEntityDto, PagedAndSortedResultRequestDto } from "./base.class";
-import { ProjectEventType, ProjectStage } from "./enum";
+import { ProjectEventType, ProjectStage, RelationWithProject } from "./enum";
 import { UserDto } from "./user.class";
 
 export class ProjectDto extends FullAuditedEntityDto<string>{
@@ -52,7 +52,7 @@ export class GetListProjectForStartuperDto extends PagedAndSortedResultRequestDt
   fields?: number[];
   areas?: number[];
   availableTimes?: number[];
-  isMyProject?: boolean;
+  relationWithProject?: RelationWithProject;
 }
 
 export class GetListProjectForInvestorDto extends PagedAndSortedResultRequestDto {

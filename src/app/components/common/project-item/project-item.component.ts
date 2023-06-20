@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProjectStage } from 'src/app/model/enum';
+import { ProjectStage, RelationWithProject } from 'src/app/model/enum';
 import { FsiValues } from 'src/app/shared/util/util';
 
 @Component({
@@ -9,7 +9,13 @@ import { FsiValues } from 'src/app/shared/util/util';
   styleUrls: ['./project-item.component.css']
 })
 export class ProjectItemComponent implements OnInit {
-  @Input()project?: any;
+  @Input() project?: any;
+  @Input() relationWithProject?: RelationWithProject;
+
+  @Output() request: EventEmitter<any> = new EventEmitter();
+  @Output() accept: EventEmitter<any> = new EventEmitter();
+  @Output() cancel: EventEmitter<any> = new EventEmitter();
+
   isHovered: boolean = false;
 
   fields: any = FsiValues.fields;
@@ -45,8 +51,19 @@ export class ProjectItemComponent implements OnInit {
     return FsiValues.getMultiName(val, FsiValues.fields);
   }
 
-  showDetailProject(){
+  showDetailProject() {
     this.router.navigate(['./startuper/project-space/' + this.project.id]);
   }
 
+  requestToProject() {
+    this.request.emit(this.project.id);
+  }
+
+  acceptRequest() {
+    this.accept.emit(this.project.id);
+  }
+
+  cancelRequest() {
+    this.cancel.emit(this.project.id);
+  }
 }

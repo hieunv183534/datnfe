@@ -1,12 +1,15 @@
 <div class="grid px-3 mt-1 mb-5" style="border-bottom: 1px solid #ccc;">
   <div class="col-2 pr-3">
-    <app-list-project-member (addNewMember)="isShowAddMember = true" [projectId]="project.id"  [isMyProject]="project.extraProperties.isMyProject"></app-list-project-member>
-    <app-list-project-member-invite *ngIf="project.extraProperties.isMyProject"></app-list-project-member-invite>
+    <app-list-project-member (addNewMember)="isShowAddMember = true" [projectId]="project.id"
+      [isMyProject]="project.extraProperties.relationWithProject == 0"></app-list-project-member>
+    <app-list-project-member-invite
+      *ngIf="project.extraProperties.relationWithProject == 0"></app-list-project-member-invite>
   </div>
   <div class="col-8 center-col">
     <div class="project-info flex flex-column align-items-center relative">
-      <button pButton pRipple type="button" icon="pi pi-cog"
-        class="top-0 right-0 absolute p-button-rounded p-button-secondary p-button-text" (click)="isShowUpdateProject = true"></button>
+      <button *ngIf="project.extraProperties.relationWithProject == 0" pButton pRipple type="button" icon="pi pi-cog"
+        class="top-0 right-0 absolute p-button-rounded p-button-secondary p-button-text"
+        (click)="isShowUpdateProject = true"></button>
       <img class="border-round" width="180px" [src]="project.avatarUrl" alt="">
       <h2 class="m-1">{{project.projectName}}</h2>
       <p class="text-center m-1">{{project.description}}</p>
@@ -71,7 +74,8 @@
     </div>
   </div>
   <div class="col-2">
-    <app-list-project-file [projectId]="project.id" [isMyProject]="project.extraProperties.isMyProject"></app-list-project-file>
+    <app-list-project-file [projectId]="project.id"
+      [isMyProject]="project.extraProperties.relationWithProject == 0"></app-list-project-file>
   </div>
 </div>
 
@@ -82,6 +86,6 @@
 
 
 <ng-container *ngIf="isShowUpdateProject">
-  <app-update-project [display]="isShowUpdateProject" (close)="isShowUpdateProject = false"
-    [project]="project" (changeProjectInfo)="changeProjectInfo($event)"></app-update-project>
+  <app-update-project [display]="isShowUpdateProject" (close)="isShowUpdateProject = false" [project]="project"
+    (changeProjectInfo)="changeProjectInfo($event)"></app-update-project>
 </ng-container>

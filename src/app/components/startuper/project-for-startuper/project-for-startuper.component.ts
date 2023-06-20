@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { ProjectStage } from 'src/app/model/enum';
+import { ProjectStage, RelationWithProject } from 'src/app/model/enum';
 import { GetListProjectForStartuperDto, ProjectDto } from 'src/app/model/project.class';
 import { ProjectService } from 'src/app/services/project.service';
 import { FsiValues } from 'src/app/shared/util/util';
@@ -28,6 +28,13 @@ export class ProjectForStartuperComponent implements OnInit {
     { name: "Tăng trưởng 2", value: ProjectStage.TangTruong2 },
     { name: "Tăng trưởng 3", value: ProjectStage.TangTruong3 },
     { name: "Tăng trưởng 4", value: ProjectStage.TangTruong4 }
+  ];
+
+  relationWithProjects: any = [
+    { name: "Dự án đã tham gia", value: RelationWithProject.IsMemberOfProject },
+    { name: "Dự án mới", value: RelationWithProject.NotMemberOfProject },
+    { name: "Dự án mời kết nối tới bạn", value: RelationWithProject.ProjectRequestTo },
+    { name: "Dự án bạn đã yêu cầu kết nối", value: RelationWithProject.RequestToProject },
   ]
 
   page: number = 1;
@@ -53,7 +60,7 @@ export class ProjectForStartuperComponent implements OnInit {
       areas: [[], []],
       stages: [[], []],
       availableTimes: [[], []],
-      isMyProject: [true, []]
+      relationWithProject: [RelationWithProject.IsMemberOfProject, []]
     });
     this.getListProject();
   }
@@ -61,12 +68,12 @@ export class ProjectForStartuperComponent implements OnInit {
   getListProject(reset: boolean = false) {
     if (reset) { this.page = 1; }
     let input = new GetListProjectForStartuperDto();
-    input.areas = this.formSearch.value.areas ??[];
-    input.fields = this.formSearch.value.fields??[];
+    input.areas = this.formSearch.value.areas ?? [];
+    input.fields = this.formSearch.value.fields ?? [];
     input.filter = this.formSearch.value.filter;
-    input.stages = this.formSearch.value.stages??[];
-    input.availableTimes = this.formSearch.value.availableTimes??[];
-    input.isMyProject = this.formSearch.value.isMyProject;
+    input.stages = this.formSearch.value.stages ?? [];
+    input.availableTimes = this.formSearch.value.availableTimes ?? [];
+    input.relationWithProject = this.formSearch.value.relationWithProject;
     input.skipCount = (this.page - 1) * this.pageSize;
     input.maxResultCount = this.pageSize;
     this.projectService.getListProjectForStartuper(input).then((res: any) => {
@@ -103,4 +110,61 @@ export class ProjectForStartuperComponent implements OnInit {
     this.pageSize = value.rows;
   }
 
+
+  requestToProject(projectId: string) {
+    this.projectService.requestToProject(projectId).then((res: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "success",
+        summary: "Thành công",
+        detail: "Gửi yêu cầu kết nối thành công!",
+      });
+      this.getListProject();
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Thất bại, vui lòng thử lại sau!",
+      });
+    });
+  }
+
+  acceptRequestFromProject(projectId: string) {
+    this.projectService.acceptRequestFromAProject(projectId).then((res: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "success",
+        summary: "Thành công",
+        detail: "Chấp nhận kết nối thành công!",
+      });
+      this.getListProject();
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Thất bại, vui lòng thử lại sau!",
+      });
+    });
+  }
+
+  cancelRequestToProject(projectId: string) {
+    this.projectService.cancelRequestToAProject(projectId).then((res: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "success",
+        summary: "Thành công",
+        detail: "Hủy yêu cầu kết nối thành công!",
+      });
+      this.getListProject();
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Thất bại, vui lòng thử lại sau!",
+      });
+    });
+  }
 }

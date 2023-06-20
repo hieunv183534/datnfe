@@ -7,42 +7,46 @@
         <input type="text" pInputText placeholder="Tìm kiếm theo từ khóa" formControlName="filter"
           (keyup.enter)="submitSearch()" />
       </span>
-      <span class="flex align-items-center justify-content-center">
-        <label class="mr-2">Dự án của tôi</label>
-        <p-inputSwitch formControlName="isMyProject" formControlName="isMyProject" (onChange)="getListProject()"></p-inputSwitch>
-      </span>
       <button pButton type="button" label="Thêm mới dự án" (click)="isVisibleAddProject = true"></button>
     </div>
     <div class="grid">
       <div class="filter-box col-2 grid fluid flex flex-column justify-content-start ">
         <div class="p-field col-12 md-12 mt-3">
           <span class="p-float-label">
-            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="areas"
-              optionLabel="name" formControlName="areas">
+            <p-dropdown [options]="relationWithProjects" optionValue="value" optionLabel="name"
+              [style]="{'width': '100%'}" formControlName="relationWithProject"
+              (onChange)="submitSearch()"></p-dropdown>
+            <label>Loại dự án</label>
+          </span>
+        </div>
+        <div class="p-field col-12 md-12 mt-3">
+          <span class="p-float-label">
+            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="areas" optionLabel="name"
+              formControlName="areas">
             </p-multiSelect>
             <label>Khu vực</label>
           </span>
         </div>
         <div class="p-field col-12 md-12 mt-3">
           <span class="p-float-label">
-            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body"
-              [options]="fields" optionLabel="name" formControlName="fields">
+            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="fields" optionLabel="name"
+              formControlName="fields">
             </p-multiSelect>
             <label>Lĩnh vực của dự án</label>
           </span>
         </div>
         <div class="p-field col-12 md-12 mt-3">
           <span class="p-float-label">
-            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body"
-              [options]="projectStages" optionLabel="name" formControlName="stages">
+            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="projectStages"
+              optionLabel="name" formControlName="stages">
             </p-multiSelect>
             <label>Giai đoạn của dự án</label>
           </span>
         </div>
         <div class="p-field col-12 md-12 mt-3">
           <span class="p-float-label">
-            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body"
-              [options]="availableTimes" optionLabel="name" formControlName="availableTimes">
+            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="availableTimes"
+              optionLabel="name" formControlName="availableTimes">
             </p-multiSelect>
             <label>Thời gian yêu cầu</label>
           </span>
@@ -59,7 +63,8 @@
 
         <ng-container *ngFor=" let project of listProject">
           <div class="lg:col-3 md:col-4 sm:col-12">
-            <app-project-item [project]="project"></app-project-item>
+            <app-project-item [project]="project" [relationWithProject]="formSearch.value.relationWithProject"
+              (request)="requestToProject($event)"  (accept)="acceptRequestFromProject($event)"   (accept)="cancelRequestToProject($event)"></app-project-item>
           </div>
         </ng-container>
       </div>

@@ -6,8 +6,14 @@
         <button type='button' id='xemthem' (click)="showDetailProject()">
           <i class="pi pi-eye"></i> Xem thêm
         </button>
-        <button type='button' id='ketnoi'>
+        <button *ngIf="relationWithProject == 1" type='button' id='ketnoi' (click)="requestToProject()">
           <i class="pi pi-share-alt"></i> Kết nối
+        </button>
+        <button *ngIf="relationWithProject == 2" type='button' id='ketnoi' (click)="acceptRequest()">
+          <i class="pi pi-check"></i> Chấp nhận
+        </button>
+        <button *ngIf="relationWithProject == 3" type='button' id='ketnoi' (click)="cancelRequest()">
+          <i class="pi pi-times"></i> Hủy kết nối
         </button>
       </div>
     </ng-container>

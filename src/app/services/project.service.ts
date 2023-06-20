@@ -87,6 +87,14 @@ export class ProjectService extends BaseService {
     return this.BaseAPIConfig.post(`${this.apiController}/request-to-project/${projectId}`,{});
   }
 
+  acceptRequestFromAProject(projectId: string) {
+    return this.BaseAPIConfig.post(`${this.apiController}/accept-request-from-aProject/${projectId}`,{});
+  }
+
+  cancelRequestToAProject(projectId: string) {
+    return this.BaseAPIConfig.post(`${this.apiController}/cancel-request-to-aProject/${projectId}`,{});
+  }
+
   getMembersOfProject(projectId: string){
     return this.BaseAPIConfig.get(`${this.apiController}/users-of-project/${projectId}`);
   }

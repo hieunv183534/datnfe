@@ -37,6 +37,11 @@ export class ListProjectFileComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
+  clickVisibleForAll() {
+    if (this.visibleForAll)
+      this.visibleForInvestor = true;
+  }
+
   getListFile() {
     this.projectService.getProjectFiles(this.projectId).then((res: any) => {
       console.log(res.data);
@@ -64,7 +69,7 @@ export class ListProjectFileComponent implements OnInit, OnChanges {
         detail: "Chưa đầy đủ dữ liểu để upload!",
       });
     } else {
-      this.projectService.uploadFile(this.uploadFiles[0], this.projectId, this.title, this.note, false, false).then((res: any) => {
+      this.projectService.uploadFile(this.uploadFiles[0], this.projectId, this.title, this.note, this.visibleForInvestor, this.visibleForAll).then((res: any) => {
         this.messageService.add({
           key: "toast",
           severity: "success",

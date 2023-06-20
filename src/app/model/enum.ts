@@ -37,3 +37,10 @@ export enum UserConversationRole {
   Admin,
   Member
 }
+
+export enum RelationWithProject {
+  IsMemberOfProject,
+  NotMemberOfProject,
+  ProjectRequestTo,
+  RequestToProject
+}
