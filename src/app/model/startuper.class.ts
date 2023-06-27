@@ -1,3 +1,4 @@
+import { PagedAndSortedResultRequestDto } from "./base.class";
 import { UserDto } from "./user.class";
 
 export class CreateStartuperDto {
@@ -26,4 +27,15 @@ export class StartuperDto extends UserDto {
   describe?: string;
   yearOfExp?: number;
   availableTime?: number;
+}
+
+export class GetListStartuperForProjectDto extends PagedAndSortedResultRequestDto {
+  filter?: string;
+  fields?: number[];
+  areas?: number[];
+  availableTimes?: number[];
+  skills?: number[];
+  personalities?: number[];
+  yearOfExps?: number[];
+  mode?: string;
 }

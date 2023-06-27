@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { CreateStartuperDto } from '../model/startuper.class';
+import { CreateStartuperDto, GetListStartuperForProjectDto } from '../model/startuper.class';
 import { UpdateBaseInfoDto } from '../model/user.class';
 
 @Injectable({
@@ -35,5 +35,9 @@ export class StartuperService extends BaseService {
 
   updateBaseInfo(input: UpdateBaseInfoDto) {
     return this.BaseAPIConfig.put(`${this.apiController}/base-info`, input) ;
+  }
+
+  getListStartuper(input: GetListStartuperForProjectDto){
+    return this.BaseAPIConfig.post(`${this.apiController}/to-get-list-startuper`,input);
   }
 }

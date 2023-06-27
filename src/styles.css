@@ -65,7 +65,7 @@ body {
   right: 6px !important;
 }
 
-button.p-element.p-ripple.p-speeddial-button.p-button-rounded.p-speeddial-rotate.p-button.p-component.p-button-icon-only{
+button.p-element.p-ripple.p-speeddial-button.p-button-rounded.p-speeddial-rotate.p-button.p-component.p-button-icon-only {
   width: 44px !important;
   height: 44px !important;
 }
@@ -75,7 +75,7 @@ button.p-element.p-ripple.p-speeddial-button.p-button-rounded.p-speeddial-rotate
 } */
 
 
-.hieunv-item-detail p,h4{
+.hieunv-item-detail p, h4 {
   margin: 2px !important;
 }
 
@@ -105,28 +105,28 @@ a {
 }
 
 
-.search .p-inputtext{
+.search .p-inputtext {
   width: 600px !important;
 }
 
-.filter-box{
+.filter-box {
   padding: 20px;
   margin-left: 20px;
   width: 285px !important;
 }
 
 
-.body-content{
+.body-content {
   /* background-color: #F3F4F6; */
   padding: 20px;
 }
 
-.list-data{
+.list-data {
   width: calc(100% - 285px) !important;
   padding: 15px !important;
 }
 
-label.title{
+label.title {
   display: flex !important;
 }
 
@@ -138,6 +138,20 @@ app-project-for-startuper .p-multiselect.p-component {
   width: 100% !important;
 }
 
-.p-fluid.grid .p-field{
+app-startuper-for-startuper p-dropdown .p-dropdown.p-component {
+  width: 100% !important;
+}
+
+app-startuper-for-startuper .p-multiselect.p-component {
+  width: 100% !important;
+}
+
+
+
+app-startuper-for-startuper .p-cascadeselect.p-component {
+  width: 100% !important;
+}
+
+.p-fluid.grid .p-field {
   margin-top: 15px !important;
 }

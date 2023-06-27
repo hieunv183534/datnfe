@@ -29,6 +29,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { AccordionModule } from 'primeng/accordion';
 import { TabViewModule } from 'primeng/tabview';
+import {CascadeSelectModule} from 'primeng/cascadeselect';
 import { CheckboxModule } from 'primeng/checkbox';
 import { PanelModule } from 'primeng/panel';
 import { BadgeModule } from 'primeng/badge';
@@ -162,7 +163,8 @@ import { UpdateProjectComponent } from './components/startuper/project-space/upd
     MultiSelectModule,
     InputSwitchModule,
     TooltipModule,
-    MenuModule
+    MenuModule,
+    CascadeSelectModule
   ],
   providers: [
     MessageService,
