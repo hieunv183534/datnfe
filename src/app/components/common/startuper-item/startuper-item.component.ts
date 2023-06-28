@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { StartuperDto } from 'src/app/model/startuper.class';
 
 @Component({
   selector: 'app-startuper-item',
@@ -7,14 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class StartuperItemComponent implements OnInit {
 
-  @Input() name: string = "";
-  @Input() introduce: string = "";
-  @Input() age: string = "";
-  @Input() location: string = "";
-  @Input() skill: string = "";
-  @Input() expertise: string = "";
-  @Input() personality: string = "";
-  @Input() achievement: string = "";
+  @Input() startuper: StartuperDto = {}
 
   isHovered: boolean = false;
 

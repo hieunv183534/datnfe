@@ -99,7 +99,7 @@ export class ListProjectInviteMemberComponent implements OnInit {
   }
 
   goToStartuper(){
-    this.router.navigate(['./startuper/startuper']);
+    this.router.navigate(['./startuper/startuper/'+ this.projectId]);
   }
 
 }

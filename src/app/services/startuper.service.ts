@@ -40,4 +40,8 @@ export class StartuperService extends BaseService {
   getListStartuper(input: GetListStartuperForProjectDto){
     return this.BaseAPIConfig.post(`${this.apiController}/to-get-list-startuper`,input);
   }
+
+  getMyProjects(){
+    return this.BaseAPIConfig.get(`${this.apiController}/my-projects`);
+  }
 }

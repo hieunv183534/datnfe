@@ -39,7 +39,7 @@ const routes: Routes = [
         path: 'investor', component: InvestorForStartuperComponent
       },
       {
-        path: 'startuper', component: StartuperForStartuperComponent
+        path: 'startuper/:mode', component: StartuperForStartuperComponent
       },
       {
         path: 'project-space/:projectId', component: ProjectSpaceComponent

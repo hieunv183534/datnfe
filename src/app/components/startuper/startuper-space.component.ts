@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { StartuperService } from 'src/app/services/startuper.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { StartuperService } from 'src/app/services/startuper.service';
 })
 export class StartuperSpaceComponent implements OnInit {
 
-  menus = [{ href: "/startuper/project", title: "Dự án / Ý tưởng" }, { href: "/startuper/startuper", title: "Nhà khởi nghiệp" },
+  menus = [{ href: "/startuper/project", title: "Dự án / Ý tưởng" }, { href: "/startuper/startuper/f6b77754-97c0-405f-86a5-f3f4959e2f3a", title: "Nhà khởi nghiệp" },
   { href: "/startuper/investor", title: "Nhà đầu tư" }]
 
   isVisibleRegisterInfo: boolean = false;
