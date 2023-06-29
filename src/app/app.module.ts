@@ -83,6 +83,7 @@ import { ListProjectFileComponent } from './components/startuper/project-space/l
 import { TooltipModule } from 'primeng/tooltip';
 import { UpdateUserInfoComponent } from './components/common/header/update-user-info/update-user-info.component';
 import { UpdateProjectComponent } from './components/startuper/project-space/update-project/update-project.component';
+import { EventService } from './services/event.service';
 
 @NgModule({
   declarations: [
@@ -174,7 +175,8 @@ import { UpdateProjectComponent } from './components/startuper/project-space/upd
     ChatService,
     InvestorService,
     ProjectService,
-    StartuperService
+    StartuperService,
+    EventService
   ],
   bootstrap: [AppComponent]
 })

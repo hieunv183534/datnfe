@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
+import { EventService } from 'src/app/services/event.service';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
@@ -11,17 +12,33 @@ export class ListProjectMemberComponent implements OnInit, OnChanges {
   @Input() projectId: string = "";
   @Output() addNewMember: EventEmitter<any> = new EventEmitter();
   @Input() isMyProject: boolean = false;
-  members: any[] = []
+  members: any[] = [];
+
+  items: MenuItem[] = [
+    {
+      label: "Xem chi tiết",
+      icon: "pi pi-id-card"
+    },
+    {
+      label: "Trò chuyện",
+      icon: "pi pi-comments"
+    }
+  ];
 
   constructor(
     private projectService: ProjectService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private eventService: EventService
   ) { }
+
   ngOnChanges(changes: SimpleChanges): void {
     this.getListMembers();
   }
 
   ngOnInit() {
+    this.eventService.currentEvent.subscribe(e=>{
+      this.getListMembers();
+    });
   }
 
   getListMembers() {

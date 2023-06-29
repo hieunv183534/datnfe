@@ -22,17 +22,17 @@
     </button>
     <button
       *ngIf="mode != UuidStartuperModeNew && mode != UuidStartuperModeOFMe &&mode != UuidStartuperModeFromMe &&mode != UuidStartuperModeToMe"
-      type='button' id='ketnoi'  (click)="requestFromProjectOnClick()">
+      type='button' id='ketnoi' (click)="requestFromProjectOnClick()">
       <i class="pi pi-send"></i> Mời tham gia
     </button>
-    <button *ngIf="mode == UuidStartuperModeOFMe" type='button' id='ketnoi'>
-      <i class="pi pi-comments"  (click)="openChatOnClick()"></i> Trò chuyện
+    <button *ngIf="mode == UuidStartuperModeOFMe" type='button' id='ketnoi' (click)="openChatOnClick()">
+      <i class="pi pi-comments"></i> Trò chuyện
     </button>
-    <button *ngIf="mode == UuidStartuperModeFromMe" type='button' id='ketnoi'>
-      <i class="pi pi-times"  (click)="cancelRequestOnClick()"></i> Hủy kết nối
+    <button *ngIf="mode == UuidStartuperModeFromMe" type='button' id='ketnoi' (click)="cancelRequestOnClick()">
+      <i class="pi pi-times"></i> Hủy kết nối
     </button>
-    <button *ngIf="mode == UuidStartuperModeToMe" type='button' id='ketnoi'>
-      <i class="pi pi-check"  (click)="acceptRequestOnClick()"></i> Chấp nhận
+    <button *ngIf="mode == UuidStartuperModeToMe" type='button' id='ketnoi' (click)="acceptRequestOnClick()">
+      <i class="pi pi-check"></i> Chấp nhận
     </button>
   </div>
 

@@ -1,14 +1,18 @@
 <div class="grid flex mt-2">
   <span class="flex align-items-center justify-content-center ml-3">
     <i class="pi pi-user-plus mr-2" style="font-size: 27px;"></i>
-    <h3 style="margin: 2px;" class="flex align-items-center">Yêu cầu<h4>(8)</h4></h3>
+    <h3 style="margin: 2px;" class="flex align-items-center">Yêu cầu<h4>({{members.length}})</h4></h3>
   </span>
   <div class="col-12 list-member .grid">
     <ng-container *ngFor="let user of members">
-      <span class="user-item flex align-items-center justify-content-center">
-        <p-avatar shape="circle" [image]="user.avatarUrl"></p-avatar>
-        <p class="ml-3">{{user.name}}</p>
+      <span class="user-item flex align-items-center justify-content-center relative">
+        <p-avatar shape="circle" [image]="user.user.avatarUrl"></p-avatar>
+        <p class="ml-3">{{user.user.name}}</p>
+        <button pButton pRipple type="button" icon="pi pi-caret-down"
+          class="p-button-rounded p-button-secondary p-button-text absolute right-0 top-0" (click)="menu.toggle($event); userId= user.user.id"></button>
       </span>
     </ng-container>
   </div>
 </div>
+
+<p-menu #menu [popup]="true" [model]="items"></p-menu>

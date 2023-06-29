@@ -79,7 +79,7 @@ export class ProjectService extends BaseService {
     return this.BaseAPIConfig.get(`${this.apiController}/users-project-request-to/${projectId}`);
   }
 
-  requestToUserFromProject(projectId: string, userId: string) {
+  requestToUserFromProject(projectId?: string, userId?: string) {
     return this.BaseAPIConfig.post(`${this.apiController}/request-to-user-from-project?userId=${userId}&projectId=${projectId}`,{});
   }
 
@@ -97,5 +97,13 @@ export class ProjectService extends BaseService {
 
   getMembersOfProject(projectId: string){
     return this.BaseAPIConfig.get(`${this.apiController}/users-of-project/${projectId}`);
+  }
+
+  acceptMemberToProject(projectId: string, userId: string){
+    return this.BaseAPIConfig.post(`${this.apiController}/accept-member-to-project?projectId=${projectId}&userId=${userId}`,{});
+  }
+
+  refuseMemberToProject(projectId: string, userId: string){
+    return this.BaseAPIConfig.post(`${this.apiController}/refuse-member-to-project?projectId=${projectId}&userId=${userId}`,{});
   }
 }

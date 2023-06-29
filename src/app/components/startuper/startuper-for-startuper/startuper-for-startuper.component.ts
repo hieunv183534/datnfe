@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { UuidStartuperModeFromMe, UuidStartuperModeNew, UuidStartuperModeOFMe, UuidStartuperModeToMe } from 'src/app/model/enum';
 import { GetListStartuperForProjectDto, StartuperDto } from 'src/app/model/startuper.class';
+import { ProjectService } from 'src/app/services/project.service';
 import { StartuperService } from 'src/app/services/startuper.service';
 import { FsiValues } from 'src/app/shared/util/util';
 
@@ -37,7 +38,8 @@ export class StartuperForStartuperComponent implements OnInit {
     private route: ActivatedRoute,
     private messageService: MessageService,
     private fb: FormBuilder,
-    private startuperService: StartuperService
+    private startuperService: StartuperService,
+    private projectService: ProjectService
   ) { }
 
   ngOnInit() {
@@ -151,5 +153,81 @@ export class StartuperForStartuperComponent implements OnInit {
     this.page = 1;
     this.pageSize = 10;
     this.getListStartuper(true);
+  }
+
+  acceptFriend(startuper: StartuperDto) {
+    this.startuperService.acceptRequestFriendFromOrtherStartuper(startuper.id).then((res: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "success",
+        summary: "Thành công",
+        detail: "Chấp nhận yêu cầu kết nối thành công!",
+      });
+      this.getListStartuper();
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Thất bại, vui lòng thử lại sau!",
+      });
+    });
+  }
+
+  requestFriend(startuper: StartuperDto) {
+    this.startuperService.requestFriendToOrtherStartuper(startuper.id).then((res: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "success",
+        summary: "Thành công",
+        detail: "Yêu cầu kết nối thành công!",
+      });
+      this.getListStartuper();
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Thất bại, vui lòng thử lại sau!",
+      });
+    });
+  }
+
+  requestFromProject(startuper: StartuperDto) {
+    this.projectService.requestToUserFromProject(this.formSearch.value.mode, startuper.id).then((res: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "success",
+        summary: "Thành công",
+        detail: "Invite thành công!",
+      });
+      this.getListStartuper();
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Invite thất bại!",
+      });
+    });
+  }
+
+  cancelRequestFriend(startuper: StartuperDto) {
+    this.startuperService.cancelRequestToOrtherStartuper(startuper.id).then((res: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "success",
+        summary: "Thành công",
+        detail: "Hủy yêu cầu kết nối thành công!",
+      });
+      this.getListStartuper();
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Thất bại, vui lòng thử lại sau!",
+      });
+    });
   }
 }

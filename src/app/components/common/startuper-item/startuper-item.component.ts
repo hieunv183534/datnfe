@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UuidStartuperModeFromMe, UuidStartuperModeNew, UuidStartuperModeOFMe, UuidStartuperModeToMe } from 'src/app/model/enum';
 import { StartuperDto } from 'src/app/model/startuper.class';
 import { FsiValues, Util } from 'src/app/shared/util/util';
@@ -21,6 +21,10 @@ export class StartuperItemComponent implements OnInit {
   UuidStartuperModeFromMe = UuidStartuperModeFromMe;
   UuidStartuperModeToMe = UuidStartuperModeToMe;
 
+  @Output() requestFriend: EventEmitter<any> = new EventEmitter();
+  @Output() acceptFriend: EventEmitter<any> = new EventEmitter();
+  @Output() cancelRequestFriend: EventEmitter<any> = new EventEmitter();
+  @Output() requestFromProject: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -61,23 +65,23 @@ export class StartuperItemComponent implements OnInit {
   }
 
   requestFriendOnClick(){
-
+    this.requestFriend.emit(this.startuper);
   }
 
   requestFromProjectOnClick(){
-
+    this.requestFromProject.emit(this.startuper);
   }
 
   openChatOnClick(){
-
+    alert("open chat");
   }
 
   cancelRequestOnClick(){
-
+    this.cancelRequestFriend.emit(this.startuper);
   }
 
   acceptRequestOnClick(){
-
+    this.acceptFriend.emit(this.startuper);
   }
 
 }

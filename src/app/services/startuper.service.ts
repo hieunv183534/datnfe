@@ -45,15 +45,15 @@ export class StartuperService extends BaseService {
     return this.BaseAPIConfig.get(`${this.apiController}/my-projects`);
   }
 
-  requestFriendToOrtherStartuper(targetId: string){
+  requestFriendToOrtherStartuper(targetId?: string){
     return this.BaseAPIConfig.post(`${this.apiController}/request-friend-to-orther-startuper/${targetId}`,{});
   }
 
-  acceptRequestFriendFromOrtherStartuper(targetId: string){
+  acceptRequestFriendFromOrtherStartuper(targetId?: string){
     return this.BaseAPIConfig.post(`${this.apiController}/accept-request-friend-from-orther-startuper/${targetId}`,{});
   }
 
-  cancelRequestToOrtherStartuper(targetId: string){
+  cancelRequestToOrtherStartuper(targetId?: string){
     return this.BaseAPIConfig.post(`${this.apiController}/cancel-request-to-orther-startuper/${targetId}`,{});
   }
 

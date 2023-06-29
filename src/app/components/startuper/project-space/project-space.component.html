@@ -3,7 +3,7 @@
     <app-list-project-member (addNewMember)="isShowAddMember = true" [projectId]="project.id"
       [isMyProject]="project.extraProperties.relationWithProject == 0"></app-list-project-member>
     <app-list-project-member-invite
-      *ngIf="project.extraProperties.relationWithProject == 0"></app-list-project-member-invite>
+      *ngIf="project.extraProperties.relationWithProject == 0" [projectId]="project.id"></app-list-project-member-invite>
   </div>
   <div class="col-8 center-col">
     <div class="project-info flex flex-column align-items-center relative">
