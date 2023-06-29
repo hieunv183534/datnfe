@@ -1,6 +1,13 @@
-export const Util: any = {
-  getDateTime: (d: Date) => {
+export class Util {
+  static getDateTime(d: Date) {
     return `${formatNumber(d.getDate())}/${formatNumber(d.getMonth() + 1)}/${formatNumber(d.getFullYear())} ${formatNumber(d.getHours())}:${formatNumber(d.getMinutes())}`;
+  }
+
+  static getAge(birthday: any) {
+    birthday = new Date(birthday);
+    var ageDifMs = Date.now() - birthday.getTime();
+    var ageDate = new Date(ageDifMs); // miliseconds from epoch
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 }
 
@@ -29,12 +36,12 @@ export class DataPointDto {
 
 export class FsiValues {
 
-  static getName(value: number, arr: DataPointDto[]){
-    return arr.find(x=> x?.value == value)?.name;
+  static getName(value: number, arr: DataPointDto[]) {
+    return arr.find(x => x?.value == value)?.name;
   }
 
-  static getMultiName(values: number[], arr: DataPointDto[]){
-    return arr.filter(x=> values?.includes(x.value?? 0)).map(x=> x.name).join(',');
+  static getMultiName(values: number[], arr: DataPointDto[]) {
+    return arr.filter(x => values?.includes(x.value ?? 0)).map(x => x.name).join(', ');
   }
 
   static areas: DataPointDto[] = [

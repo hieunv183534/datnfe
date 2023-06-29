@@ -5,7 +5,7 @@ export class UserDto extends FullAuditedEntityDto<string>{
   phone?: string;
   dateOfBirth?: string;
   identityCard?: string;
-  location?: string;
+  location?: number;
   workingPlace?: string;
   avatarUrl?: string;
 }

@@ -2,14 +2,37 @@
   <img [src]="startuper.avatarUrl" alt='' id='avatar' />
   <div class='info'>
     <div class='name'>{{startuper.name}}</div>
+    <ul>
+      <li>Độ tuổi: {{getAge(startuper.dateOfBirth)}}</li>
+      <li>Khu vực: {{getArea(startuper.location)}}</li>
+      <li>Lĩnh vực: {{getField(startuper.field)}}</li>
+      <li>Kinh nghiệm: {{getYOE(startuper.yearOfExp)}}</li>
+      <li>Tính cách: {{getPersonalities(startuper.personality??[])}}</li>
+      <li>Kỹ năng mềm: {{getSkills(startuper.skill??[])}}</li>
+      <li>Thời gian khả dụng: {{getAvailableTime(startuper.availableTime)}}</li>
+    </ul>
   </div>
 
   <div *ngIf="isHovered" class='hoverDiv'>
     <button type='button' id='xemthem'>
       <i class="pi pi-eye"></i> Xem thêm
     </button>
-    <button type='button' id='ketnoi'>
+    <button *ngIf="mode == UuidStartuperModeNew" type='button' id='ketnoi' (click)="requestFriendOnClick()">
       <i class="pi pi-share-alt"></i> Kết nối
+    </button>
+    <button
+      *ngIf="mode != UuidStartuperModeNew && mode != UuidStartuperModeOFMe &&mode != UuidStartuperModeFromMe &&mode != UuidStartuperModeToMe"
+      type='button' id='ketnoi'  (click)="requestFromProjectOnClick()">
+      <i class="pi pi-send"></i> Mời tham gia
+    </button>
+    <button *ngIf="mode == UuidStartuperModeOFMe" type='button' id='ketnoi'>
+      <i class="pi pi-comments"  (click)="openChatOnClick()"></i> Trò chuyện
+    </button>
+    <button *ngIf="mode == UuidStartuperModeFromMe" type='button' id='ketnoi'>
+      <i class="pi pi-times"  (click)="cancelRequestOnClick()"></i> Hủy kết nối
+    </button>
+    <button *ngIf="mode == UuidStartuperModeToMe" type='button' id='ketnoi'>
+      <i class="pi pi-check"  (click)="acceptRequestOnClick()"></i> Chấp nhận
     </button>
   </div>
 
