@@ -8,6 +8,14 @@ export class UserDto extends FullAuditedEntityDto<string>{
   location?: number;
   workingPlace?: string;
   avatarUrl?: string;
+
+  /**
+   *
+   */
+  constructor(id: string) {
+    super();
+    this.id = id;
+  }
 }
 
 

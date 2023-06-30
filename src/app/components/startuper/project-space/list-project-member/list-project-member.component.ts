@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
+import { UserDto } from 'src/app/model/user.class';
 import { EventService } from 'src/app/services/event.service';
 import { ProjectService } from 'src/app/services/project.service';
 
@@ -14,10 +15,15 @@ export class ListProjectMemberComponent implements OnInit, OnChanges {
   @Input() isMyProject: boolean = false;
   members: any[] = [];
 
+  userSelectId: string = "";
+
   items: MenuItem[] = [
     {
       label: "Xem chi tiết",
-      icon: "pi pi-id-card"
+      icon: "pi pi-id-card",
+      command:()=>{
+        this.eventService.showUserDetail(this.userSelectId)
+      }
     },
     {
       label: "Trò chuyện",
@@ -43,7 +49,6 @@ export class ListProjectMemberComponent implements OnInit, OnChanges {
 
   getListMembers() {
     this.projectService.getMembersOfProject(this.projectId).then((res: any) => {
-      console.log(res.data);
       this.members = res.data;
     }).catch((err: any) => {
       this.messageService.add({

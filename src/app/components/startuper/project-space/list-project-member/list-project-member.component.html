@@ -1,7 +1,8 @@
 <div class="grid flex">
   <span class="flex align-items-center justify-content-center ml-3">
     <i class="pi pi-users mr-2" style="font-size: 27px;"></i>
-    <h3 style="margin: 2px;" class="flex align-items-center">Thành viên <h4>({{members.length}})</h4></h3>
+    <h3 style="margin: 2px;" class="flex align-items-center">Thành viên <h4>({{members.length}})</h4>
+    </h3>
   </span>
   <div class="col-12 list-member .grid">
     <ng-container *ngFor="let user of members">
@@ -9,10 +10,12 @@
         <p-avatar shape="circle" [image]="user.user.avatarUrl"></p-avatar>
         <p class="ml-3">{{user.user.name}}</p>
         <button pButton pRipple type="button" icon="pi pi-caret-down"
-          class="p-button-rounded p-button-secondary p-button-text absolute right-0 top-0" (click)="menu.toggle($event)"></button>
+          class="p-button-rounded p-button-secondary p-button-text absolute right-0 top-0"
+          (click)="menu.toggle($event); userSelectId=user.user.id"></button>
       </span>
     </ng-container>
-    <button *ngIf="isMyProject" pButton pRipple type="button" label="Thêm thành viên" class="p-button-outlined mt-3 col-12" (click)="addNewMember.emit()"></button>
+    <button *ngIf="isMyProject" pButton pRipple type="button" label="Thêm thành viên"
+      class="p-button-outlined mt-3 col-12" (click)="addNewMember.emit()"></button>
   </div>
 </div>
 

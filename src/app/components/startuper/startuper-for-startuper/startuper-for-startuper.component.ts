@@ -1,9 +1,11 @@
+import { EventService } from 'src/app/services/event.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { UuidStartuperModeFromMe, UuidStartuperModeNew, UuidStartuperModeOFMe, UuidStartuperModeToMe } from 'src/app/model/enum';
 import { GetListStartuperForProjectDto, StartuperDto } from 'src/app/model/startuper.class';
+import { UserDto } from 'src/app/model/user.class';
 import { ProjectService } from 'src/app/services/project.service';
 import { StartuperService } from 'src/app/services/startuper.service';
 import { FsiValues } from 'src/app/shared/util/util';
@@ -33,13 +35,15 @@ export class StartuperForStartuperComponent implements OnInit {
   endItem = 0;
 
   mySelects: any[] = [];
+  userSelect: UserDto = {};
 
   constructor(
     private route: ActivatedRoute,
     private messageService: MessageService,
     private fb: FormBuilder,
     private startuperService: StartuperService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private eventService: EventService
   ) { }
 
   ngOnInit() {

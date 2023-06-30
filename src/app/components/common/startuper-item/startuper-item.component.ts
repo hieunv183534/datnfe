@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UuidStartuperModeFromMe, UuidStartuperModeNew, UuidStartuperModeOFMe, UuidStartuperModeToMe } from 'src/app/model/enum';
 import { StartuperDto } from 'src/app/model/startuper.class';
+import { EventService } from 'src/app/services/event.service';
 import { FsiValues, Util } from 'src/app/shared/util/util';
 
 @Component({
@@ -26,10 +27,13 @@ export class StartuperItemComponent implements OnInit {
   @Output() cancelRequestFriend: EventEmitter<any> = new EventEmitter();
   @Output() requestFromProject: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+
+
+  constructor(
+    private eventService: EventService
+  ) { }
 
   ngOnInit() {
-    console.log(this.startuper);
   }
 
   getAge(dob: any) {
@@ -64,24 +68,28 @@ export class StartuperItemComponent implements OnInit {
     return FsiValues.getName(val ?? 0, FsiValues.yearOfExps);
   }
 
-  requestFriendOnClick(){
+  requestFriendOnClick() {
     this.requestFriend.emit(this.startuper);
   }
 
-  requestFromProjectOnClick(){
+  requestFromProjectOnClick() {
     this.requestFromProject.emit(this.startuper);
   }
 
-  openChatOnClick(){
+  openChatOnClick() {
     alert("open chat");
   }
 
-  cancelRequestOnClick(){
+  cancelRequestOnClick() {
     this.cancelRequestFriend.emit(this.startuper);
   }
 
-  acceptRequestOnClick(){
+  acceptRequestOnClick() {
     this.acceptFriend.emit(this.startuper);
+  }
+
+  showUserDetail() {
+    this.eventService.showUserDetail(this.startuper.id ?? "FSI");
   }
 
 }

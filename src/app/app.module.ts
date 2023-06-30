@@ -84,6 +84,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { UpdateUserInfoComponent } from './components/common/header/update-user-info/update-user-info.component';
 import { UpdateProjectComponent } from './components/startuper/project-space/update-project/update-project.component';
 import { EventService } from './services/event.service';
+import { UserDetailComponent } from './components/common/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +116,8 @@ import { EventService } from './services/event.service';
     ListProjectInviteMemberComponent,
     ListProjectFileComponent,
     UpdateUserInfoComponent,
-    UpdateProjectComponent
+    UpdateProjectComponent,
+    UserDetailComponent
   ],
   imports: [
     CommonModule,

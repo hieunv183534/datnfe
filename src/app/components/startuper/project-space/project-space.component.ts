@@ -57,7 +57,6 @@ export class ProjectSpaceComponent implements OnInit {
       this.listFile?.getListFile();
       this.projectService.getProjectById(projectId).then((res: any) => {
         this.project = res.data;
-        console.log(res.data);
       }).catch((err: any) => {
         this.messageService.add({
           key: "toast",

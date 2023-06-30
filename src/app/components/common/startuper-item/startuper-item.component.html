@@ -14,7 +14,7 @@
   </div>
 
   <div *ngIf="isHovered" class='hoverDiv'>
-    <button type='button' id='xemthem'>
+    <button type='button' id='xemthem' (click)="showUserDetail()">
       <i class="pi pi-eye"></i> Xem thêm
     </button>
     <button *ngIf="mode == UuidStartuperModeNew" type='button' id='ketnoi' (click)="requestFriendOnClick()">

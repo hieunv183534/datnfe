@@ -5,3 +5,7 @@
 
 <p-confirmDialog key="dialogConfirm" icon="pi pi-exclamation-triangle" [style]="{width: '30vw'}"></p-confirmDialog>
 <p-scrollTop [threshold]="200"></p-scrollTop>
+
+<ng-container *ngIf="isVisibleUserDetail">
+  <app-user-detail [userId]="userId" [visible]="isVisibleUserDetail" (close)="isVisibleUserDetail = false"></app-user-detail>
+</ng-container>

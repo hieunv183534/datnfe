@@ -44,7 +44,6 @@ export class ListProjectFileComponent implements OnInit, OnChanges {
 
   getListFile() {
     this.projectService.getProjectFiles(this.projectId).then((res: any) => {
-      console.log(res.data);
       this.files = res.data;
     }).catch((err: any) => {
       this.messageService.add({

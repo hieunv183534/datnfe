@@ -57,7 +57,6 @@ export class ListProjectMemberInviteComponent implements OnInit, OnChanges {
         label: "Từ chối",
         icon: "pi pi-times",
         command: () => {
-          debugger
           this.projectService.refuseMemberToProject(this.projectId, this.userId).then((res: any) => {
             this.messageService.add({
               key: "toast",
@@ -81,7 +80,6 @@ export class ListProjectMemberInviteComponent implements OnInit, OnChanges {
 
   getListUserRequestToProject() {
     this.projectService.getUsersRequestToProject(this.projectId).then((res: any) => {
-      debugger
       this.members = res.data;
     }).catch((err: any) => {
       this.messageService.add({

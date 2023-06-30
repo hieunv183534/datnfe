@@ -1,0 +1,8 @@
+<p-dialog [resizable]="true" header="Thông tin người dùng" [(visible)]="visible" [modal]="true" [style]="{width: '700px'}"
+  [baseZIndex]="10000" [draggable]="false" (onHide)="hide()">
+  <div class="flex w-full flex-column align-items-center">
+    <img [src]="startuperInfo.avatarUrl" alt="" class="w-5">
+    <h2>{{startuperInfo.name}}</h2>
+    <p>{{startuperInfo.describe}}</p>
+  </div>
+</p-dialog>

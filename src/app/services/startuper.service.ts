@@ -34,28 +34,30 @@ export class StartuperService extends BaseService {
   }
 
   updateBaseInfo(input: UpdateBaseInfoDto) {
-    return this.BaseAPIConfig.put(`${this.apiController}/base-info`, input) ;
+    return this.BaseAPIConfig.put(`${this.apiController}/base-info`, input);
   }
 
-  getListStartuper(input: GetListStartuperForProjectDto){
-    return this.BaseAPIConfig.post(`${this.apiController}/to-get-list-startuper`,input);
+  getListStartuper(input: GetListStartuperForProjectDto) {
+    return this.BaseAPIConfig.post(`${this.apiController}/to-get-list-startuper`, input);
   }
 
-  getMyProjects(){
+  getMyProjects() {
     return this.BaseAPIConfig.get(`${this.apiController}/my-projects`);
   }
 
-  requestFriendToOrtherStartuper(targetId?: string){
-    return this.BaseAPIConfig.post(`${this.apiController}/request-friend-to-orther-startuper/${targetId}`,{});
+  requestFriendToOrtherStartuper(targetId?: string) {
+    return this.BaseAPIConfig.post(`${this.apiController}/request-friend-to-orther-startuper/${targetId}`, {});
   }
 
-  acceptRequestFriendFromOrtherStartuper(targetId?: string){
-    return this.BaseAPIConfig.post(`${this.apiController}/accept-request-friend-from-orther-startuper/${targetId}`,{});
+  acceptRequestFriendFromOrtherStartuper(targetId?: string) {
+    return this.BaseAPIConfig.post(`${this.apiController}/accept-request-friend-from-orther-startuper/${targetId}`, {});
   }
 
-  cancelRequestToOrtherStartuper(targetId?: string){
-    return this.BaseAPIConfig.post(`${this.apiController}/cancel-request-to-orther-startuper/${targetId}`,{});
+  cancelRequestToOrtherStartuper(targetId?: string) {
+    return this.BaseAPIConfig.post(`${this.apiController}/cancel-request-to-orther-startuper/${targetId}`, {});
   }
 
-
+  getUserDetail(userId: string) {
+    return this.BaseAPIConfig.get(`${this.apiController}/user-detail/${userId}`);
+  }
 }
