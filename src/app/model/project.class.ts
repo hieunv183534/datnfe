@@ -12,7 +12,6 @@ export class ProjectDto extends FullAuditedEntityDto<string>{
   website?: string;
   fb?: string;
   compliment?: string;
-  history?: ProjectHistoryEventDto[];
   avatarUrl?: string;
   founderId?: string;
   founder?: UserDto;
@@ -31,7 +30,6 @@ export class CreateUpdateProjectDto {
   website?: string;
   fb?: string;
   compliment?: string;
-  history?: ProjectHistoryEventDto[];
   avatarUrl?: string;
   founderId?: string;
   founder?: UserDto;
@@ -39,12 +37,29 @@ export class CreateUpdateProjectDto {
   availableTimeRequire?: number[];
 }
 
-export class ProjectHistoryEventDto {
-  stage?: ProjectStage;
+export class ProjectEventDto extends FullAuditedEntityDto<string> {
+  projectId?: string;
+  posterId?: string;
+  poster?: UserDto
   type?: ProjectEventType;
-  detail?: string;
+  fileIds?: string[];
+  content?: string;
+  imageIds?: string[];
+  location?: string;
+  userId?: string;
+  user?: UserDto;
+  invesment?: number;
   eventTime?: Date;
 }
+
+
+export class PostToProjectDto {
+  projectId?: string;
+  content?: string;
+  location?: string;
+  fileIds?: string[];
+}
+
 
 export class GetListProjectForStartuperDto extends PagedAndSortedResultRequestDto {
   filter?: string;

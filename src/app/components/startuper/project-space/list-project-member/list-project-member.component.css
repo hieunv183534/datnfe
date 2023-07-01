@@ -7,6 +7,10 @@
   cursor: pointer;
 }
 
+.user-item:first-child{
+  border-color: #3B82F6;
+}
+
 .user-item:hover{
   background-color: #ddd;
 }

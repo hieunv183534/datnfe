@@ -3,6 +3,7 @@ import { MenuItem, MessageService } from 'primeng/api';
 import { UserDto } from 'src/app/model/user.class';
 import { EventService } from 'src/app/services/event.service';
 import { ProjectService } from 'src/app/services/project.service';
+import { Util } from 'src/app/shared/util/util';
 
 @Component({
   selector: 'app-list-project-member',
@@ -58,6 +59,10 @@ export class ListProjectMemberComponent implements OnInit, OnChanges {
         detail: "Lấy danh sách thành viên thất bại!",
       });
     });
+  }
+
+  getDate(d: any){
+    return Util.getDate(new Date(d));
   }
 
 }

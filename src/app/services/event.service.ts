@@ -13,6 +13,10 @@ export class EventService {
   private userDetailIdSource = new BehaviorSubject("FSI");
   currentUserDetailId = this.userDetailIdSource.asObservable();
 
+
+  private reloadStartuperSource = new BehaviorSubject('');
+  currentReloadStartuper = this.reloadStartuperSource.asObservable();
+
   constructor() { }
 
   changeEvent(event: string) {
@@ -21,6 +25,10 @@ export class EventService {
 
   showUserDetail(userId: string){
     this.userDetailIdSource.next(userId);
+  }
+
+  reloadStartuper(reloadStartuper: string){
+    this.reloadStartuperSource.next(reloadStartuper);
   }
 
 }

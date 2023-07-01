@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { CreateUpdateProjectDto, GetListProjectForInvestorDto, GetListProjectForStartuperDto, ProjectHistoryEventDto } from '../model/project.class';
+import { CreateUpdateProjectDto, GetListProjectForInvestorDto, GetListProjectForStartuperDto, PostToProjectDto } from '../model/project.class';
 import { RoleInProject } from '../model/enum';
 
 @Injectable({
@@ -31,16 +31,13 @@ export class ProjectService extends BaseService {
     return this.BaseAPIConfig.get(`${this.apiController}/project-by-id/${projectId}`);
   }
 
-  updateProjectHistory(projectId: string, input: ProjectHistoryEventDto[]) {
-    return this.BaseAPIConfig.post(`${this.apiController}/project-history/${projectId}`, input);
-  }
 
   getListProjectForStartuper(input: GetListProjectForStartuperDto) {
-    return this.BaseAPIConfig.post(`${this.apiController}/to-get-list-project-for-startuper`,input);
+    return this.BaseAPIConfig.post(`${this.apiController}/to-get-list-project-for-startuper`, input);
   }
 
   getListProjectForInvestor(input: GetListProjectForInvestorDto) {
-    return this.BaseAPIConfig.post(`${this.apiController}/to-get-list-project-for-investor`,input);
+    return this.BaseAPIConfig.post(`${this.apiController}/to-get-list-project-for-investor`, input);
   }
 
   getProjectByUser(userId: string) {
@@ -59,11 +56,11 @@ export class ProjectService extends BaseService {
     return this.BaseAPIConfig.post(`${this.apiController}/upload-file/${projectId}?fileTitle=${title}&visibleForInvestor=${visibleForInvestor}&visibleForAll=${visibleForAll}&note=${note}`, formData);
   }
 
-  getProjectFiles(projectId: string){
+  getProjectFiles(projectId: string) {
     return this.BaseAPIConfig.get(`${this.apiController}/project-files/${projectId}`);
   }
 
-  getFileBlob(projectFileId: string){
+  getFileBlob(projectFileId: string) {
     return this.BaseAPIConfig.get(`${this.apiController}/get-file/${projectFileId}`, { responseType: "blob" });
   }
 
@@ -80,30 +77,42 @@ export class ProjectService extends BaseService {
   }
 
   requestToUserFromProject(projectId?: string, userId?: string) {
-    return this.BaseAPIConfig.post(`${this.apiController}/request-to-user-from-project?userId=${userId}&projectId=${projectId}`,{});
+    return this.BaseAPIConfig.post(`${this.apiController}/request-to-user-from-project?userId=${userId}&projectId=${projectId}`, {});
   }
 
   requestToProject(projectId: string) {
-    return this.BaseAPIConfig.post(`${this.apiController}/request-to-project/${projectId}`,{});
+    return this.BaseAPIConfig.post(`${this.apiController}/request-to-project/${projectId}`, {});
   }
 
   acceptRequestFromAProject(projectId: string) {
-    return this.BaseAPIConfig.post(`${this.apiController}/accept-request-from-aProject/${projectId}`,{});
+    return this.BaseAPIConfig.post(`${this.apiController}/accept-request-from-aProject/${projectId}`, {});
   }
 
   cancelRequestToAProject(projectId: string) {
-    return this.BaseAPIConfig.post(`${this.apiController}/cancel-request-to-aProject/${projectId}`,{});
+    return this.BaseAPIConfig.post(`${this.apiController}/cancel-request-to-aProject/${projectId}`, {});
   }
 
-  getMembersOfProject(projectId: string){
+  getMembersOfProject(projectId: string) {
     return this.BaseAPIConfig.get(`${this.apiController}/users-of-project/${projectId}`);
   }
 
-  acceptMemberToProject(projectId: string, userId: string){
-    return this.BaseAPIConfig.post(`${this.apiController}/accept-member-to-project?projectId=${projectId}&userId=${userId}`,{});
+  acceptMemberToProject(projectId: string, userId: string) {
+    return this.BaseAPIConfig.post(`${this.apiController}/accept-member-to-project?projectId=${projectId}&userId=${userId}`, {});
   }
 
-  refuseMemberToProject(projectId: string, userId: string){
-    return this.BaseAPIConfig.post(`${this.apiController}/refuse-member-to-project?projectId=${projectId}&userId=${userId}`,{});
+  refuseMemberToProject(projectId: string, userId: string) {
+    return this.BaseAPIConfig.post(`${this.apiController}/refuse-member-to-project?projectId=${projectId}&userId=${userId}`, {});
+  }
+
+  postToProject(input: PostToProjectDto, imageFiles: any[]) {
+    let formData = new FormData();
+    imageFiles.forEach((f, i) => {
+      formData.append("file" + i, f);
+    });
+    formData.append("Content", input.content?? "");
+    formData.append("Location", input.location?? "");
+    formData.append("ProjectId", input.projectId?? "");
+    formData.append("FileIds", JSON.stringify(input.fileIds)  ?? "[]");
+    return this.BaseAPIConfig.post(`${this.apiController}/post-to-project`,formData);
   }
 }

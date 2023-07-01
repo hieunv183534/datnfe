@@ -38,12 +38,7 @@ export class UpdateProjectComponent implements OnInit {
     { name: "Tăng trưởng 4", value: ProjectStage.TangTruong4 }
   ];
 
-  projectEventTypes: any[] = [
-    { name: "Khởi tạo", value: ProjectEventType.Init },
-    { name: "Thay đổi nhân sự", value: ProjectEventType.PersonalChange },
-    { name: "Chuyển giai đoạn", value: ProjectEventType.PhaseSwich },
-    { name: "Nhận đầu tư", value: ProjectEventType.GetInvesment },
-  ]
+
   constructor(
     private messageService: MessageService,
     private fb: FormBuilder,

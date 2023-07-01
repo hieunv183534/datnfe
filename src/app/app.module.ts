@@ -85,6 +85,10 @@ import { UpdateUserInfoComponent } from './components/common/header/update-user-
 import { UpdateProjectComponent } from './components/startuper/project-space/update-project/update-project.component';
 import { EventService } from './services/event.service';
 import { UserDetailComponent } from './components/common/user-detail/user-detail.component';
+import { AddPostComponent } from './components/startuper/project-space/project-event/add-post/add-post.component';
+import { ProjectEventComponent } from './components/startuper/project-space/project-event/project-event.component';
+import { ProjectWorkComponent } from './components/startuper/project-space/project-work/project-work.component';
+import { PostComponent } from './components/startuper/project-space/project-event/post/post.component';
 
 @NgModule({
   declarations: [
@@ -117,7 +121,11 @@ import { UserDetailComponent } from './components/common/user-detail/user-detail
     ListProjectFileComponent,
     UpdateUserInfoComponent,
     UpdateProjectComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    AddPostComponent,
+    ProjectEventComponent,
+    ProjectWorkComponent,
+    PostComponent
   ],
   imports: [
     CommonModule,

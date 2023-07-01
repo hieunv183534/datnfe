@@ -20,9 +20,13 @@ export enum ProjectStage {
 
 export enum ProjectEventType {
   Init,
-  PersonalChange,
+  NewMember,
+  OutMember,
+  NewInvestor,
+  OutInvestor,
   PhaseSwich,
-  GetInvesment
+  GetInvesment,
+  PostNotification
 }
 
 export enum RoleInProject {

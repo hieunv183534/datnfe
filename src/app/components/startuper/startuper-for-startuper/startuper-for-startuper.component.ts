@@ -47,6 +47,10 @@ export class StartuperForStartuperComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.eventService.currentReloadStartuper.subscribe(reload => {
+      this.getListStartuper();
+    });
+
     this.formSearch = this.fb.group({
       filter: [null, []],
       fields: [[], []],

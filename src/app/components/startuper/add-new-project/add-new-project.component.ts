@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ImageCropperComponent, ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { MessageService } from 'primeng/api';
 import { ProjectEventType, ProjectStage } from 'src/app/model/enum';
-import { CreateUpdateProjectDto, ProjectHistoryEventDto } from 'src/app/model/project.class';
+import { CreateUpdateProjectDto } from 'src/app/model/project.class';
 import { ProjectService } from 'src/app/services/project.service';
 import { StartuperService } from 'src/app/services/startuper.service';
 import { FsiValues } from 'src/app/shared/util/util';
@@ -38,14 +38,7 @@ export class AddNewProjectComponent implements OnInit {
     { name: "Tăng trưởng 4", value: ProjectStage.TangTruong4 }
   ];
 
-  projectEventTypes: any[] = [
-    { name: "Khởi tạo", value: ProjectEventType.Init },
-    { name: "Thay đổi nhân sự", value: ProjectEventType.PersonalChange },
-    { name: "Chuyển giai đoạn", value: ProjectEventType.PhaseSwich },
-    { name: "Nhận đầu tư", value: ProjectEventType.GetInvesment },
-  ]
 
-  listEvent: ProjectHistoryEventDto[] = [];
   displayAddEvent: boolean = false;
 
   keySearchUser: string = "";
@@ -65,11 +58,6 @@ export class AddNewProjectComponent implements OnInit {
     }).name;
   }
 
-  getType(type: any) {
-    return this.projectEventTypes.find((x: any) => {
-      return x.value == type;
-    }).name;
-  }
 
   ngOnInit() {
     this.formProject = this.fb.group({
@@ -131,7 +119,7 @@ export class AddNewProjectComponent implements OnInit {
     } else if (this.activeIndex == 1) {
       if (this.blob) {
         this.uploadImage();
-        this.activeIndex++;
+        this.close.emit();
       } else {
         this.messageService.add({
           key: "toast",
@@ -140,24 +128,7 @@ export class AddNewProjectComponent implements OnInit {
           detail: "Bạn chưa hoàn thành cập nhật ảnh đại diện dự án!",
         });
       }
-    } else if (this.activeIndex == 2) {
-      this.projectService.updateProjectHistory(this.project.id, this.listEvent).then((res: any) => {
-        this.messageService.add({
-          key: "toast",
-          severity: "success",
-          summary: "Thành công",
-          detail: "Cập nhật history thành công!",
-        });
-        this.activeIndex++;
-      }).catch((err: any) => {
-        this.messageService.add({
-          key: "toast",
-          severity: "error",
-          summary: "Lỗi",
-          detail: "Cập nhật history thất bại!",
-        });
-      });
-    } else this.close.emit();
+    }
   }
 
   back() {
@@ -168,11 +139,6 @@ export class AddNewProjectComponent implements OnInit {
     this.close.emit();
   }
 
-  addEvent() {
-    this.listEvent.push(this.formEvent.value);
-    this.displayAddEvent = false;
-    this.formEvent.reset();
-  }
 
   submitSearchUser() {
     this.projectService.getUserByUserNameForInviteToProject(this.keySearchUser, this.project.id).then((res: any) => {

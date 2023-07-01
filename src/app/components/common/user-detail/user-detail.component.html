@@ -1,71 +1,110 @@
 <p-dialog [resizable]="true" header="Thông tin người dùng" [(visible)]="visible" [modal]="true"
   [style]="{width: '800px'}" [baseZIndex]="10000" [draggable]="false" (onHide)="hide()">
-  <div class="flex w-full flex-column align-items-center">
-    <img [src]="startuperInfo.avatarUrl" alt="" class="w-5">
-    <h2>{{startuperInfo.name}}</h2>
-    <p>{{startuperInfo.describe}}</p>
+  <p-tabView>
+    <p-tabPanel header="Cá nhân">
+      <div class="flex w-full flex-column align-items-center">
+        <img [src]="startuperInfo.avatarUrl" alt="" class="w-5">
+        <h2>{{startuperInfo.name}}</h2>
+        <p>{{startuperInfo.describe}}</p>
 
-    <span class="flex">
-      <span class="flex align-items-center mr-6">
-        <i class="pi pi-sort-numeric-up-alt"></i>
-        <p><b>Tuổi:</b> {{getAge(startuperInfo.dateOfBirth)}}</p>
-      </span>
-      <span class="flex align-items-center mr-6">
-        <i class="pi pi-building"></i>
-        <p><b>Khu vực:</b> {{getArea(startuperInfo.location)}}</p>
-      </span>
-      <span class="flex align-items-center">
-        <i class="pi pi-building"></i>
-        <p><b>Thời gian khả dụng:</b> {{getAvailableTime(startuperInfo.availableTime)}}</p>
-      </span>
-    </span>
-    <span class="flex">
-      <span class="flex align-items-center mr-6">
-        <i class="pi pi-book"></i>
-        <p><b>Lĩnh vực:</b> {{getField(startuperInfo.field)}}</p>
-      </span>
-      <span class="flex align-items-center">
-        <i class="pi pi-briefcase"></i>
-        <p><b>Kinh nghiệm:</b> {{getYOE(startuperInfo.yearOfExp)}}</p>
-      </span>
-    </span>
-    <span class="flex flex-column">
-      <p><i class="pi pi-heart"></i>&nbsp;<b>Tính cách nổi bật:</b></p>
-      <span>
-        <ng-container *ngFor="let personality of getPersonalities(startuperInfo.personality??[])">
-          <p-tag [value]="personality" class="ml-1"></p-tag>
-        </ng-container>
-      </span>
-    </span>
-    <span class="flex flex-column">
-      <p><i class="pi pi-thumbs-up"></i>&nbsp;<b>Kỹ năng mềm nổi bật:</b></p>
-      <span>
-        <ng-container *ngFor="let personality of getSkills(startuperInfo.skill??[])">
-          <p-tag [value]="personality" class="ml-1"></p-tag>
-        </ng-container>
-      </span>
-    </span>
+        <span class="flex">
+          <span class="flex align-items-center mr-6">
+            <i class="pi pi-sort-numeric-up-alt"></i>
+            <p><b>Tuổi:</b> {{getAge(startuperInfo.dateOfBirth)}}</p>
+          </span>
+          <span class="flex align-items-center mr-6">
+            <i class="pi pi-building"></i>
+            <p><b>Khu vực:</b> {{getArea(startuperInfo.location)}}</p>
+          </span>
+          <span class="flex align-items-center">
+            <i class="pi pi-building"></i>
+            <p><b>Thời gian khả dụng:</b> {{getAvailableTime(startuperInfo.availableTime)}}</p>
+          </span>
+        </span>
+        <span class="flex">
+          <span class="flex align-items-center mr-6">
+            <i class="pi pi-book"></i>
+            <p><b>Lĩnh vực:</b> {{getField(startuperInfo.field)}}</p>
+          </span>
+          <span class="flex align-items-center">
+            <i class="pi pi-briefcase"></i>
+            <p><b>Kinh nghiệm:</b> {{getYOE(startuperInfo.yearOfExp)}}</p>
+          </span>
+        </span>
+        <span class="flex flex-column">
+          <p><i class="pi pi-heart"></i>&nbsp;<b>Tính cách nổi bật:</b></p>
+          <span>
+            <ng-container *ngFor="let personality of getPersonalities(startuperInfo.personality??[])">
+              <p-tag [value]="personality" class="ml-1"></p-tag>
+            </ng-container>
+          </span>
+        </span>
+        <span class="flex flex-column">
+          <p><i class="pi pi-thumbs-up"></i>&nbsp;<b>Kỹ năng mềm nổi bật:</b></p>
+          <span>
+            <ng-container *ngFor="let personality of getSkills(startuperInfo.skill??[])">
+              <p-tag [value]="personality" class="ml-1"></p-tag>
+            </ng-container>
+          </span>
+        </span>
 
-    <p-accordion class="w-full mt-2" style="transform: scale(0.85);"  [multiple]="true">
-      <p-accordionTab header="Kỹ năng chuyên môn">
-        {{startuperInfo.speciality}}
-      </p-accordionTab>
-      <p-accordionTab header="Kinh nghiệm làm việc">
-        {{startuperInfo.workingExperience}}
-      </p-accordionTab>
-      <p-accordionTab header="Hoạt động khác">
-        {{startuperInfo.activity}}
-      </p-accordionTab>
-      <p-accordionTab header="Thành tích, chứng chỉ">
-        {{startuperInfo.certificateAndAward}}
-      </p-accordionTab>
-  </p-accordion>
-  </div>
+        <p-accordion class="w-full mt-2" style="transform: scale(0.85);" [multiple]="true">
+          <p-accordionTab header="Kỹ năng chuyên môn">
+            <textarea [rows]="5" [cols]="30" pInputTextarea [autoResize]="true" [(ngModel)]="startuperInfo.speciality"
+              class="w-full opacity-100" [disabled]="true"></textarea>
+          </p-accordionTab>
+          <p-accordionTab header="Kinh nghiệm làm việc">
+            <textarea [rows]="5" [cols]="30" pInputTextarea [autoResize]="true"
+              [(ngModel)]="startuperInfo.workingExperience" class="w-full opacity-100" [disabled]="true"></textarea>
+          </p-accordionTab>
+          <p-accordionTab header="Hoạt động khác">
+            <textarea [rows]="5" [cols]="30" pInputTextarea [autoResize]="true" [(ngModel)]="startuperInfo.activity"
+              class="w-full opacity-100" [disabled]="true"></textarea>
+          </p-accordionTab>
+          <p-accordionTab header="Thành tích, chứng chỉ">
+            <textarea [rows]="5" [cols]="30" pInputTextarea [autoResize]="true"
+              [(ngModel)]="startuperInfo.certificateAndAward" class="w-full opacity-100" [disabled]="true"></textarea>
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Dự án">
+      <p-table [value]="listProject">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Dự án</th>
+            <th>Vai trò</th>
+            <th>Ngày tham gia</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-project>
+          <tr>
+            <td>
+              <span class="flex align-items-center">
+                <p-avatar shape="square" [image]="project.project.avatarUrl"></p-avatar>
+                <p class="ml-4">{{project.project.projectName}}</p>
+              </span>
+            </td>
+
+            <td>{{projectRoles[project.role]}}</td>
+            <td>{{getDate(project.joinTime)}}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="8">Không tồn tại dữ liệu.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-tabPanel>
+  </p-tabView>
+
 
   <ng-template pTemplate="footer">
-    <p-button *ngIf="friendStatus == 0" label="Kết nối" icon="pi pi-share-alt"></p-button>
-    <p-button *ngIf="friendStatus == 2" label="Hủy kết nối" icon="pi pi-times"></p-button>
-    <p-button *ngIf="friendStatus == 3" label="Chấp nhận" icon="pi pi-check"></p-button>
-    <p-button *ngIf="friendStatus == 1" label="Trò chuyện" icon="pi pi-comments" class="p-button-success"></p-button>
+    <p-button *ngIf="friendStatus == 0" label="Kết nối" icon="pi pi-share-alt" (onClick)="connectOnClick()"></p-button>
+    <p-button *ngIf="friendStatus == 2" label="Hủy kết nối" icon="pi pi-times" (onClick)="cancelOnClick()"></p-button>
+    <p-button *ngIf="friendStatus == 3" label="Chấp nhận" icon="pi pi-check" (onClick)="acceptOnClick()"></p-button>
+    <p-button *ngIf="friendStatus == 1" label="Trò chuyện" icon="pi pi-comments" class="p-button-success"
+      (onClick)="chatOnClick()"></p-button>
   </ng-template>
 </p-dialog>

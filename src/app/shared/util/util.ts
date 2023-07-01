@@ -3,6 +3,10 @@ export class Util {
     return `${formatNumber(d.getDate())}/${formatNumber(d.getMonth() + 1)}/${formatNumber(d.getFullYear())} ${formatNumber(d.getHours())}:${formatNumber(d.getMinutes())}`;
   }
 
+  static getDate(d: Date) {
+    return `${formatNumber(d.getDate())}/${formatNumber(d.getMonth() + 1)}/${formatNumber(d.getFullYear())}`;
+  }
+
   static getAge(birthday: any) {
     birthday = new Date(birthday);
     var ageDifMs = Date.now() - birthday.getTime();

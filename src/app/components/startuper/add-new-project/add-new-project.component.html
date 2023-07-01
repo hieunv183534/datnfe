@@ -83,126 +83,6 @@
 
             <img class="preview-image" [src]="croppedImage" />
           </ng-container>
-          <ng-container *ngSwitchCase="2">
-            <p-divider align="left"> <b>Lịch sử hoạt động của dự án</b> </p-divider>
-            <p-table #dt [value]="listEvent" [rowHover]="true" dataKey="id"
-              styleClass="p-datatable-customers p-datatable-gridlines p-datatable-striped p-datatable-sm"
-              [globalFilterFields]="['code','name']">
-              <ng-template pTemplate="caption">
-                <div class="flex flex-column md:flex-row md:justify-content-between table-header">
-                  <span class="flex">
-                    <button pButton label="Thêm mới" icon="pi pi-plus" class="p-button p-button-success mr-2 p-mr-2"
-                      (click)="displayAddEvent = true"></button>
-                  </span>
-                </div>
-              </ng-template>
-              <ng-template pTemplate="header">
-                <tr class="ng-star-inserted">
-                  <th>
-                    <div class="flex justify-content-between align-items-center">
-                      Giai đoạn
-                    </div>
-                  </th>
-                  <th>
-                    <div class="flex justify-content-between align-items-center">
-                      Loại sự kiện
-                    </div>
-                  </th>
-                  <th>
-                    <div class="flex justify-content-between align-items-center">
-                      Chi tiết
-                    </div>
-                  </th>
-                  <th>
-                    <div class="flex justify-content-between align-items-center">
-                      Thời gian
-                    </div>
-                  </th>
-                  <th>
-                    <div class="flex justify-content-between align-items-center">
-                      Thao tác
-                    </div>
-                  </th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-event>
-                <tr>
-                  <td>{{getStage(event.stage)}}</td>
-                  <td>{{getType(event.type)}}</td>
-                  <td>{{event.detail}}</td>
-                  <td>{{event.eventTime | date : 'shortDate'}}</td>
-                  <td>
-                    <button pButton pRipple icon="pi pi-star" pTooltip="Chọn đối tượng này" tooltipPosition="top"
-                      class="p-button-rounded p-button-help mr-2 p-button-sm"></button>
-                  </td>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="emptymessage">
-                <tr>
-                  <td colspan="8">Không tồn tại dữ liệu.</td>
-                </tr>
-              </ng-template>
-            </p-table>
-          </ng-container>
-          <ng-container *ngSwitchCase="3">
-            <p-divider align="left"> <b>Thêm thành viên vào dự án</b> </p-divider>
-            <p-table #dt [value]="inviteUsers" [rowHover]="true" dataKey="id"
-              styleClass="p-datatable-customers p-datatable-gridlines p-datatable-striped p-datatable-sm"
-              [globalFilterFields]="['code','name']">
-              <ng-template pTemplate="caption">
-                <div class="flex flex-column md:flex-row md:justify-content-between table-header">
-                  <span class="flex justify-content-between w-full">
-                    <input type="text" pInputText placeholder="Tìm theo sdt/ email" class="mr-10" style="width: 90%;" [(ngModel)]="keySearchUser" />
-                    <p-button icon="pi pi-search" (onClick)="submitSearchUser()"></p-button>
-                  </span>
-                </div>
-              </ng-template>
-              <ng-template pTemplate="header">
-                <tr class="ng-star-inserted">
-                  <th>
-                    <div class="flex justify-content-between align-items-center">
-                      Tài khoản
-                    </div>
-                  </th>
-                  <th>
-                    <div class="flex justify-content-between align-items-center">
-                      Sdt/Email
-                    </div>
-                  </th>
-                  <th>
-                    <div class="flex justify-content-between align-items-center">
-                      Thao tác
-                    </div>
-                  </th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-user>
-                <tr>
-                  <td>
-                    <span class="flex align-items-center">
-                      <p-avatar shape="circle" [image]="user.avatarUrl"></p-avatar>
-                      <p class="ml-4">{{user.name}}</p>
-                    </span>
-                  </td>
-                  <td>
-                    {{user.key}}
-                  </td>
-                  <td>
-                    <button *ngIf="!user.status" pButton pRipple icon="pi pi-telegram" pTooltip="Mời vào dự án"
-                      tooltipPosition="top" class="p-button-rounded mr-2 p-button-sm"
-                      (click)="user.status = true"></button>
-
-                    <p *ngIf="user.status">Đã gửi yêu cầu</p>
-                  </td>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="emptymessage">
-                <tr>
-                  <td colspan="8">Không tồn tại dữ liệu.</td>
-                </tr>
-              </ng-template>
-            </p-table>
-          </ng-container>
         </ng-container>
       </ng-template>
       <ng-template pTemplate="footer">
@@ -210,7 +90,7 @@
           <span *ngIf="activeIndex == 0" style="visibility: hidden;"></span>
           <p-button *ngIf="activeIndex > 0" label="Trước" (onClick)="back()" icon="pi pi-angle-left">
           </p-button>
-          <p-button [label]="activeIndex == 3 ? 'Hoàn thành' : 'Tiếp'" (onClick)="next()" icon="pi pi-angle-right"
+          <p-button [label]="activeIndex == 1 ? 'Hoàn thành' : 'Tiếp'" (onClick)="next()" icon="pi pi-angle-right"
             iconPos="right">
           </p-button>
         </div>
@@ -218,46 +98,3 @@
     </p-card>
   </div>
 </p-dialog>
-
-<form [formGroup]="formEvent">
-  <p-dialog [resizable]="false" header="Thêm mới sự kiện" [(visible)]="displayAddEvent" [modal]="true"
-    [style]="{width: '40vw'}" [baseZIndex]="10001" [draggable]="false">
-    <div class="p-fluid grid pt-4">
-      <div class="p-field col-4 md-12">
-        <span class="p-float-label">
-          <p-dropdown [autoDisplayFirst]="false" [options]="projectStages" optionValue="value" optionLabel="name"
-            formControlName="stage"></p-dropdown>
-          <label>Giai đoạn: <span style="color: red;">*</span>
-          </label>
-        </span>
-      </div>
-      <div class="p-field col-4 md-12">
-        <span class="p-float-label">
-          <p-dropdown [autoDisplayFirst]="false" [options]="projectEventTypes" optionValue="value" optionLabel="name"
-            formControlName="type"></p-dropdown>
-          <label>Loại sự kiện: <span style="color: red;">*</span>
-          </label>
-        </span>
-      </div>
-      <div class="p-field col-4 md-12">
-        <span class="p-float-label">
-          <p-calendar appendTo="body" formControlName="eventTime"></p-calendar>
-          <label>Thời gian: <span style="color: red;">*</span>
-          </label>
-        </span>
-      </div>
-      <div class="p-field col-12 md-12">
-        <span class="p-float-label">
-          <textarea [rows]="3" pInputTextarea formControlName="detail"></textarea>
-          <label>Chi tiết: <span style="color: red;">*</span>
-          </label>
-        </span>
-      </div>
-    </div>
-
-    <ng-template pTemplate="footer">
-      <p-button label="Thêm" styleClass="p-button-success" (onClick)="addEvent()">
-      </p-button>
-    </ng-template>
-  </p-dialog>
-</form>
