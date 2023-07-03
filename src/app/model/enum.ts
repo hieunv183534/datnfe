@@ -29,6 +29,11 @@ export enum ProjectEventType {
   PostNotification
 }
 
+export enum CalendarEventType {
+  TimePeriod,
+  Timeline
+}
+
 export enum RoleInProject {
   Investor,
   Member,

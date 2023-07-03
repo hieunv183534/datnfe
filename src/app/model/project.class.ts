@@ -1,5 +1,5 @@
 import { FullAuditedEntityDto, PagedAndSortedResultRequestDto } from "./base.class";
-import { ProjectEventType, ProjectStage, RelationWithProject } from "./enum";
+import { CalendarEventType, ProjectEventType, ProjectStage, RelationWithProject } from "./enum";
 import { UserDto } from "./user.class";
 
 export class ProjectDto extends FullAuditedEntityDto<string>{
@@ -87,20 +87,22 @@ export class GetListProjectForInvestorDto extends PagedAndSortedResultRequestDto
 
 export class AddProjectCalendarEventDto{
   projectId?: string;
-  createdById?: string;
-  createdBy?: UserDto;
-  type?: number
+  type?: CalendarEventType;
   start?: Date;
   end?: Date;
   allDay?: boolean;
+  autoDeleteWhenEnd?: boolean;
+  title?: string;
 }
 
 export class ProjectCalendarEventDto{
   projectId?: string;
   createdById?: string;
   createdBy?: UserDto;
-  type?: number
+  type?: CalendarEventType;
   start?: Date;
   end?: Date;
   allDay?: boolean;
+  autoDeleteWhenEnd?: boolean;
+  title?: string;
 }

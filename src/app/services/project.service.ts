@@ -129,4 +129,8 @@ export class ProjectService extends BaseService {
   addCalendarEvent(input: AddProjectCalendarEventDto){
     return this.BaseAPIConfig.post(`${this.apiController}/calendar-event`, input);
   }
+
+  deleteCalendarEvent(eventId: string){
+    return this.BaseAPIConfig.delete(`${this.apiController}/calendar-event/${eventId}`);
+  }
 }

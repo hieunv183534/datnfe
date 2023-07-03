@@ -29,7 +29,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { AccordionModule } from 'primeng/accordion';
 import { TabViewModule } from 'primeng/tabview';
-import {CascadeSelectModule} from 'primeng/cascadeselect';
+import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { CheckboxModule } from 'primeng/checkbox';
 import { PanelModule } from 'primeng/panel';
 import { BadgeModule } from 'primeng/badge';
@@ -37,7 +37,8 @@ import { ChartModule } from 'primeng/chart';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import {EditorModule} from 'primeng/editor';
+import { EditorModule } from 'primeng/editor';
+import { RadioButtonModule } from 'primeng/radiobutton';
 import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { AvatarModule } from 'primeng/avatar';
@@ -183,7 +184,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     MenuModule,
     CascadeSelectModule,
     EditorModule,
-    FullCalendarModule
+    FullCalendarModule,
+    RadioButtonModule
   ],
   providers: [
     MessageService,

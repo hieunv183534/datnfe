@@ -164,3 +164,8 @@ app-startuper-for-startuper .p-cascadeselect.p-component {
 .p-fluid.grid .p-field {
   margin-top: 15px !important;
 }
+
+
+.p-disabled, .p-component:disabled{
+  opacity: 1 !important;
+}
