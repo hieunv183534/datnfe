@@ -5,22 +5,22 @@
     <span class="flex align-items-center justify-content-end">
       <span class="p-input-icon-left mr-2">
         <i class="pi pi-search"></i>
-        <input type="text" pInputText placeholder="Search">
+        <input type="text" pInputText placeholder="Search" [(ngModel)]="filter">
       </span>
       <p-dropdown [options]="eventTypes" optionValue="value" optionLabel="name" [style]="{'width': '220px'}"
-        formControlName="relationWithProject"></p-dropdown>
+        [(ngModel)]="type" (ngModelChange)="submitSearch()"></p-dropdown>
     </span>
   </div>
   <p-divider align="left"></p-divider>
 
-  <div class="list-data col-12 grid flex align-items-center justify-content-center w-full">
+  <div class="list-data col-12 grid flex align-items-center justify-content-center w-full" style="transform: translateX(20px);">
     <ng-container *ngIf="listEvent.length == 0">
       <img width="300px" src="../../../../../assets/img/nodata.jpg" alt="" style="margin: auto;">
     </ng-container>
 
     <ng-container *ngFor=" let event of listEvent">
       <div class="col-12">
-        post
+        <app-post [project]="project" [event]="event"></app-post>
       </div>
     </ng-container>
   </div>
@@ -36,5 +36,6 @@
 
 
 <ng-container *ngIf="isVisibleAddPost">
-  <app-add-post [visible]="isVisibleAddPost" (close)="isVisibleAddPost = false"></app-add-post>
+  <app-add-post [visible]="isVisibleAddPost" (close)="isVisibleAddPost = false" [projectId]="project.id"
+  (addSuccess)="isVisibleAddPost = false; getListEvent()"></app-add-post>
 </ng-container>

@@ -48,7 +48,9 @@ export class StartuperForStartuperComponent implements OnInit {
 
   ngOnInit() {
     this.eventService.currentReloadStartuper.subscribe(reload => {
-      this.getListStartuper();
+      if (reload != "FSI") {
+        this.getListStartuper();
+      }
     });
 
     this.formSearch = this.fb.group({

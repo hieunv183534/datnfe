@@ -1,5 +1,102 @@
 <p-dialog [resizable]="true" header="Đăng bài" [(visible)]="visible" [modal]="true" [style]="{width: '50vw'}"
   [baseZIndex]="10000" [draggable]="false" (onHide)="close.emit()">
-  <input type="file" (change)="onFileChange($event)" multiple>
-  <button (click)="submit()">submit</button>
+  <div class="grid p-fluid">
+    <p-divider align="left" class="col-12"> <b>Content</b> </p-divider>
+    <div class="p-field col-12 md-12">
+      <span class="p-input-icon-right">
+        <i class="fa-solid fa-location-dot"></i>
+        <input type="text" pInputText placeholder="Vị trí" [(ngModel)]="location">
+      </span>
+    </div>
+    <div class="p-field col-12 md-12">
+      <span class="p-float-label">
+        <textarea [rows]="5" pInputTextarea [autoResize]="true" class="w-full"  [(ngModel)]="content"></textarea>
+        <label>Nội dung: <span style="color: red;">*</span>
+        </label>
+      </span>
+    </div>
+    <p-divider align="left" class="col-12"> <b>Medias</b> </p-divider>
+    <ng-container *ngIf="isShowGalleria">
+      <p-galleria [value]="images" class="w-full">
+        <ng-template pTemplate="item" let-item>
+          <div class="relative w-full h-auto flex justify-content-center">
+            <img [src]="item.previewImageSrc" style="max-width: 100%; max-height: 500px;" />
+            <button pButton pRipple type="button" icon="pi pi-trash" style="top: 10px; right: 10px;"
+              class="p-button-rounded p-button-danger absolute" (click)="deleteImage(item.id)"></button>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="thumbnail" let-item>
+          <div class="grid grid-nogutter justify-content-center">
+            <img [src]="item.thumbnailImageSrc" width="100px" />
+          </div>
+        </ng-template>
+      </p-galleria>
+    </ng-container>
+    <div class="col-12 flex justify-content-center">
+      <input type="file" id="inputFile" (change)="onFileChange($event)" accept="image/*" multiple>
+    </div>
+    <p-divider align="left" class="col-12"> <b>Links</b> </p-divider>
+    <p-chips class="col-12" [(ngModel)]="links"></p-chips>
+    <p-divider align="left" class="col-12"> <b>Documents</b> </p-divider>
+    <div class="col-12 flex justify-content-center">
+      <p-button icon="pi pi-plus" (onClick)="isShowUpload = true"></p-button>
+    </div>
+    <div class="col-12 list-member .grid">
+      <ng-container *ngFor="let file of documents">
+        <span class="file-item flex flex-column relative col-8 col-offset-2">
+          <h4 class="text-overflow-ellipsis">{{file.title}}</h4>
+          <p class="text-overflow-ellipsis">{{file.name}}</p>
+          <button pButton pRipple type="button" icon="pi pi-times"
+            class="p-button-rounded p-button-danger p-button-outlined absolute" (click)="deleteDocument(file.id)"></button>
+        </span>
+      </ng-container>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <p-button label="Đăng" (onClick)="addPostOnClick()">
+    </p-button>
+  </ng-template>
+</p-dialog>
+
+
+<p-dialog [resizable]="true" header="Tải lên tài liệu mới" [(visible)]="isShowUpload" [modal]="true"
+  [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false">
+  <div class="grid p-fluid">
+    <div class="col-12">
+      <input (change)="onFileChange1($event)" type="file" id="fileUpload">
+    </div>
+    <div class="p-field col-12 md-12">
+      <span class="p-float-label">
+        <input type="text" pInputText [(ngModel)]="title" />
+        <label>Tiêu đề: <span style="color: red;">*</span>
+        </label>
+      </span>
+    </div>
+    <div class="p-field col-12 md-12">
+      <span class="p-float-label">
+        <textarea pInputTextarea [(ngModel)]="note"></textarea>
+        <label>Ghi chú/ mô tả:
+        </label>
+      </span>
+    </div>
+    <div class="p-field col-6 md-12">
+      <div class="p-field-checkbox" style="height: 34px; display: flex; align-items: center">
+        <p-checkbox [(ngModel)]="visibleForInvestor" [binary]="true">
+        </p-checkbox>
+        <label style="margin-left: 4px; margin-top: 1px">Hiển thị cho nhà đầu tư</label>
+      </div>
+    </div>
+    <div class="p-field col-6 md-12">
+      <div class="p-field-checkbox" style="height: 34px; display: flex; align-items: center">
+        <p-checkbox [(ngModel)]="visibleForAll" [binary]="true" (onChange)="clickVisibleForAll()">
+        </p-checkbox>
+        <label style="margin-left: 4px; margin-top: 1px">Hiển thị cho tất cả</label>
+      </div>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button label="Upload" styleClass="p-button-success" (onClick)="upload()">
+    </p-button>
+  </ng-template>
 </p-dialog>

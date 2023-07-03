@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { CreateUpdateProjectDto, GetListProjectForInvestorDto, GetListProjectForStartuperDto, PostToProjectDto } from '../model/project.class';
+import { AddProjectCalendarEventDto, CreateUpdateProjectDto, GetListProjectForInvestorDto, GetListProjectForStartuperDto, GetProjectEventsDto, PostToProjectDto } from '../model/project.class';
 import { RoleInProject } from '../model/enum';
 
 @Injectable({
@@ -105,6 +105,7 @@ export class ProjectService extends BaseService {
   }
 
   postToProject(input: PostToProjectDto, imageFiles: any[]) {
+    debugger
     let formData = new FormData();
     imageFiles.forEach((f, i) => {
       formData.append("file" + i, f);
@@ -113,6 +114,19 @@ export class ProjectService extends BaseService {
     formData.append("Location", input.location?? "");
     formData.append("ProjectId", input.projectId?? "");
     formData.append("FileIds", JSON.stringify(input.fileIds)  ?? "[]");
+    formData.append("Links", JSON.stringify(input.links)  ?? "[]");
     return this.BaseAPIConfig.post(`${this.apiController}/post-to-project`,formData);
+  }
+
+  getEventsOfProject(input: GetProjectEventsDto){
+    return this.BaseAPIConfig.post(`${this.apiController}/to-get-events-of-project`, input);
+  }
+
+  getProjectCalendarEvents(projectId: string){
+    return this.BaseAPIConfig.get(`${this.apiController}/project-calendar-events/${projectId}`);
+  }
+
+  addCalendarEvent(input: AddProjectCalendarEventDto){
+    return this.BaseAPIConfig.post(`${this.apiController}/calendar-event`, input);
   }
 }

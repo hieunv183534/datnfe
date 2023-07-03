@@ -41,13 +41,14 @@
 
     <div class="project-work-space">
       <p-tabView>
+        <p-tabPanel header="Lịch">
+          <app-project-calendar [projectId]="project.id"></app-project-calendar>
+        </p-tabPanel>
         <p-tabPanel header="Thông tin">
-          <app-project-event [projectId]="project.id"></app-project-event>
+          <app-project-event [project]="project"></app-project-event>
         </p-tabPanel>
         <p-tabPanel header="Công việc">
           <app-project-work></app-project-work>
-        </p-tabPanel>
-        <p-tabPanel header="Lịch">
         </p-tabPanel>
       </p-tabView>
     </div>

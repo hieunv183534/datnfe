@@ -8,7 +8,8 @@
 
 .file-item button{
   top: 3px;
-  right: 3px;
+  display: none;
+  cursor: pointer;
 }
 
 .file-item p,h1,h2,h3,h4,h5,h6{
@@ -16,4 +17,17 @@
   width: 95%;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.file-item:hover{
+  background-color: #ddd;
+}
+
+.file-item:hover button {
+  display: block;
+}
+
+.list-member{
+  border-bottom: 1px solid #c9c9c9;
+  border-top: 1px solid #c9c9c9;
 }

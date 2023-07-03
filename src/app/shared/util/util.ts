@@ -13,6 +13,7 @@ export class Util {
     var ageDate = new Date(ageDifMs); // miliseconds from epoch
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
+
 }
 
 function formatNumber(n: any) {

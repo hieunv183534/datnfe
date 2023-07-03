@@ -14,8 +14,14 @@ export class EventService {
   currentUserDetailId = this.userDetailIdSource.asObservable();
 
 
-  private reloadStartuperSource = new BehaviorSubject('');
+  private reloadStartuperSource = new BehaviorSubject('FSI');
   currentReloadStartuper = this.reloadStartuperSource.asObservable();
+
+  private reloadFilesSource = new BehaviorSubject('FSI');
+  currentReloadFiles = this.reloadFilesSource.asObservable();
+
+  private projectFilesSource = new BehaviorSubject<any[]>([]);
+  currentProjectFiles = this.projectFilesSource.asObservable();
 
   constructor() { }
 
@@ -29,6 +35,14 @@ export class EventService {
 
   reloadStartuper(reloadStartuper: string){
     this.reloadStartuperSource.next(reloadStartuper);
+  }
+
+  reloadFiles(reloadFiles: string){
+    this.reloadFilesSource.next(reloadFiles);
+  }
+
+  changeProjectFiles(pjFiles: any[]){
+    this.projectFilesSource.next(pjFiles);
   }
 
 }

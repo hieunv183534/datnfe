@@ -1,0 +1,10 @@
+<span class="file-item flex flex-column relative w-full" [pTooltip]="'File:'+ file?.file?.url + '\n'+
+                    'Kiểu: '+  file?.file?.contentType+ '\n'+
+                    'Size: '+  file?.file?.size+ '\n'+
+                    'Tiêu đề:' + file?.title + '\n' +
+                    'Ghi chú:' + file?.note">
+  <h4 class="text-overflow-ellipsis">{{file?.title}}</h4>
+  <p class="text-overflow-ellipsis">{{file?.file?.url}}</p>
+  <button pButton pRipple type="button" icon="pi pi-download" class="p-button-rounded p-button-text absolute right-0"
+    (click)="downloadFile()"></button>
+</span>

@@ -37,6 +37,7 @@ import { ChartModule } from 'primeng/chart';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import {EditorModule} from 'primeng/editor';
 import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { AvatarModule } from 'primeng/avatar';
@@ -89,6 +90,9 @@ import { AddPostComponent } from './components/startuper/project-space/project-e
 import { ProjectEventComponent } from './components/startuper/project-space/project-event/project-event.component';
 import { ProjectWorkComponent } from './components/startuper/project-space/project-work/project-work.component';
 import { PostComponent } from './components/startuper/project-space/project-event/post/post.component';
+import { FileItemComponent } from './components/common/file-item/file-item.component';
+import { ProjectCalendarComponent } from './components/startuper/project-space/project-calendar/project-calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -125,7 +129,9 @@ import { PostComponent } from './components/startuper/project-space/project-even
     AddPostComponent,
     ProjectEventComponent,
     ProjectWorkComponent,
-    PostComponent
+    PostComponent,
+    FileItemComponent,
+    ProjectCalendarComponent
   ],
   imports: [
     CommonModule,
@@ -175,7 +181,9 @@ import { PostComponent } from './components/startuper/project-space/project-even
     InputSwitchModule,
     TooltipModule,
     MenuModule,
-    CascadeSelectModule
+    CascadeSelectModule,
+    EditorModule,
+    FullCalendarModule
   ],
   providers: [
     MessageService,

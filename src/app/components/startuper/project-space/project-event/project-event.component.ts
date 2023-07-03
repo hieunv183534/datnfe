@@ -1,15 +1,21 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { ProjectEventType } from 'src/app/model/enum';
+import { GetProjectEventsDto, PostToProjectDto } from 'src/app/model/project.class';
+import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-project-event',
   templateUrl: './project-event.component.html',
   styleUrls: ['./project-event.component.css']
 })
-export class ProjectEventComponent implements OnInit {
+export class ProjectEventComponent implements OnInit, OnChanges {
 
-  @Input() projectId: string = "";
+  @Input() project: any = {};
   isVisibleAddPost: boolean = false;
+
+  filter?: string = "";
+  type?: number = -1;
 
 
   eventTypes: any[] = [
@@ -18,28 +24,28 @@ export class ProjectEventComponent implements OnInit {
       value: -1
     },
     {
-      name: "Khởi tạo",
-      value: ProjectEventType.Init
+      name: "Vòng đời dự án",
+      value: 0
     },
+    // {
+    //   name: "Chuyển giai đoạn",
+    //   value: 5
+    // },
     {
       name: "Thay đổi thành viên",
-      value: ProjectEventType.NewMember
+      value: 1
     },
     {
       name: "Thay đổi nhà đầu tư",
-      value: ProjectEventType.NewInvestor
+      value: 3
     },
     {
       name: "Nhận tiền đầu tư",
-      value: ProjectEventType.GetInvesment
-    },
-    {
-      name: "Chuyển giai đoạn",
-      value: ProjectEventType.PhaseSwich
+      value: 6
     },
     {
       name: "Bài đăng",
-      value: ProjectEventType.PostNotification
+      value: 7
     }
   ]
 
@@ -52,9 +58,40 @@ export class ProjectEventComponent implements OnInit {
   startItem = 0;
   endItem = 0;
 
-  constructor() { }
+  constructor(
+    private messageService: MessageService,
+    private projectService: ProjectService
+  ) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.getListEvent();
+  }
 
   ngOnInit() {
+  }
+
+  getListEvent(reset: boolean = false) {
+    if (reset) { this.page = 1; }
+    let input = new GetProjectEventsDto();
+    input.projectId = this.project.id;
+    input.filter = this.filter;
+    input.type = this.type;
+    input.skipCount = (this.page - 1) * this.pageSize;
+    input.maxResultCount = this.pageSize;
+    this.projectService.getEventsOfProject(input).then((res: any) => {
+      this.totalRecords = res.data.totalCount;
+      this.listEvent = res.data.items;
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Lấy danh sách event thất bại, vui lòng thử lại!",
+      });
+    });
+  }
+
+  submitSearch() {
+    this.getListEvent(true);
   }
 
   onPageChange(value: any) {

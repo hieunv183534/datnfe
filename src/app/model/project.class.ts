@@ -44,12 +44,13 @@ export class ProjectEventDto extends FullAuditedEntityDto<string> {
   type?: ProjectEventType;
   fileIds?: string[];
   content?: string;
-  imageIds?: string[];
+  images?: string[];
   location?: string;
   userId?: string;
   user?: UserDto;
   invesment?: number;
   eventTime?: Date;
+  links?: string[];
 }
 
 
@@ -58,6 +59,13 @@ export class PostToProjectDto {
   content?: string;
   location?: string;
   fileIds?: string[];
+  links?: string[];
+}
+
+export class GetProjectEventsDto extends PagedAndSortedResultRequestDto{
+  projectId?: string;
+  filter?: string;
+  type?: number;
 }
 
 
@@ -75,4 +83,24 @@ export class GetListProjectForInvestorDto extends PagedAndSortedResultRequestDto
   stage?: ProjectStage;
   field?: string;
   area?: string;
+}
+
+export class AddProjectCalendarEventDto{
+  projectId?: string;
+  createdById?: string;
+  createdBy?: UserDto;
+  type?: number
+  start?: Date;
+  end?: Date;
+  allDay?: boolean;
+}
+
+export class ProjectCalendarEventDto{
+  projectId?: string;
+  createdById?: string;
+  createdBy?: UserDto;
+  type?: number
+  start?: Date;
+  end?: Date;
+  allDay?: boolean;
 }

@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { EventService } from 'src/app/services/event.service';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
@@ -27,6 +28,7 @@ export class ListProjectFileComponent implements OnInit, OnChanges {
   constructor(
     private projectService: ProjectService,
     private messageService: MessageService,
+    private eventService: EventService,
     @Inject(DOCUMENT) document: Document
   ) { }
 
@@ -35,6 +37,11 @@ export class ListProjectFileComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.eventService.currentReloadFiles.subscribe(reload => {
+      if (reload != "FSI") {
+        this.getListFile();
+      }
+    });
   }
 
   clickVisibleForAll() {
@@ -45,6 +52,7 @@ export class ListProjectFileComponent implements OnInit, OnChanges {
   getListFile() {
     this.projectService.getProjectFiles(this.projectId).then((res: any) => {
       this.files = res.data;
+      this.eventService.changeProjectFiles(res.data);
     }).catch((err: any) => {
       this.messageService.add({
         key: "toast",
