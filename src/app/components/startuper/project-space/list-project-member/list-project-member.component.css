@@ -8,7 +8,8 @@
 }
 
 .user-item:first-child{
-  border-color: #3B82F6;
+  border-color: #ffe602;
+  border-width: 2px;
 }
 
 .user-item:hover{
