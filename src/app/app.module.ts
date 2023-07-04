@@ -94,6 +94,7 @@ import { PostComponent } from './components/startuper/project-space/project-even
 import { FileItemComponent } from './components/common/file-item/file-item.component';
 import { ProjectCalendarComponent } from './components/startuper/project-space/project-calendar/project-calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -132,7 +133,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     ProjectWorkComponent,
     PostComponent,
     FileItemComponent,
-    ProjectCalendarComponent
+    ProjectCalendarComponent,
+    ChatComponent
   ],
   imports: [
     CommonModule,

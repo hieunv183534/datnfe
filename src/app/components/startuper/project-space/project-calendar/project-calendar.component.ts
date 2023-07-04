@@ -99,6 +99,7 @@ export class ProjectCalendarComponent implements OnInit {
   }
 
   getListEvent() {
+    debugger
     this.projectService.getProjectCalendarEvents(this.projectId).then((res: any) => {
       this.myEvents = res.data;
       this.events = res.data.map((e: any) => {

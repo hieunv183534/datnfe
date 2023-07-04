@@ -10,6 +10,7 @@ import { StartuperForInvestorComponent } from './components/investor/startuper-f
 import { InvestorForStartuperComponent } from './components/startuper/investor-for-startuper/investor-for-startuper.component';
 import { StartuperForStartuperComponent } from './components/startuper/startuper-for-startuper/startuper-for-startuper.component';
 import { ProjectSpaceComponent } from './components/startuper/project-space/project-space.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'homepage', pathMatch: 'full' },
@@ -26,6 +27,9 @@ const routes: Routes = [
       {
         path: 'startuper', component: StartuperForInvestorComponent
       },
+      {
+        path: 'chat/:conversationId', component: ChatComponent
+      }
     ]
   },
   {
@@ -43,6 +47,9 @@ const routes: Routes = [
       },
       {
         path: 'project-space/:projectId', component: ProjectSpaceComponent
+      },
+      {
+        path: 'chat/:conversationId', component: ChatComponent
       }
     ]
   }

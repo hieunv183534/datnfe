@@ -5,6 +5,9 @@ import { ProjectService } from 'src/app/services/project.service';
 import { FsiValues } from 'src/app/shared/util/util';
 import { ListProjectFileComponent } from './list-project-file/list-project-file.component';
 import { ProjectStage } from 'src/app/model/enum';
+import { ProjectCalendarComponent } from './project-calendar/project-calendar.component';
+import { ProjectWorkComponent } from './project-work/project-work.component';
+import { ProjectEventComponent } from './project-event/project-event.component';
 
 @Component({
   selector: 'app-project-space',
@@ -21,6 +24,9 @@ export class ProjectSpaceComponent implements OnInit {
   project: any = { extraProperties: {} };
 
   @ViewChild("listFile") listFile?: ListProjectFileComponent;
+  @ViewChild("appCalendar") appCalendar?: ProjectCalendarComponent;
+  @ViewChild("appFeed") appFeed?: ProjectEventComponent;
+  @ViewChild("appWork") appWork?: ProjectWorkComponent;
 
   projectStages: any[] = [
     { name: "Xác lập", value: ProjectStage.XacLap },
@@ -72,5 +78,15 @@ export class ProjectSpaceComponent implements OnInit {
   changeProjectInfo(newProjectInfo: any) {
     this.project = newProjectInfo;
     this.isShowUpdateProject = false;
+  }
+
+  tabChange(event: any) {
+    if (event.index == 0) {
+      this.appCalendar?.getListEvent();
+    }else if(event.index == 1){
+      this.appFeed?.getListEvent();
+    }else if(event.index == 2){
+
+    }
   }
 }

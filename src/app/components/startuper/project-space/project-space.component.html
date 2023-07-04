@@ -40,14 +40,14 @@
     </div>
 
     <div class="project-work-space">
-      <p-tabView>
+      <p-tabView (onChange)="tabChange($event)">
         <p-tabPanel header="Lịch">
-          <app-project-calendar [projectId]="project.id"></app-project-calendar>
+          <app-project-calendar [projectId]="project.id" #appCalendar></app-project-calendar>
         </p-tabPanel>
         <p-tabPanel header="Thông tin">
-          <app-project-event [project]="project"></app-project-event>
+          <app-project-event [project]="project" #appFeed></app-project-event>
         </p-tabPanel>
-        <p-tabPanel header="Công việc">
+        <p-tabPanel header="Công việc" #appWork>
           <app-project-work></app-project-work>
         </p-tabPanel>
       </p-tabView>
