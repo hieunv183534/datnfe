@@ -3,6 +3,7 @@ import { BaseService } from './base.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { MessageType } from '../model/enum';
+import { AddConversationDto, GetListConversationDto, GetListMessageDto, MessageSendToConversationDto, MessageSendToUserDto } from '../model/chat.class';
 
 @Injectable({
   providedIn: 'root'
@@ -14,29 +15,36 @@ export class ChatService extends BaseService {
     this.apiController = 'fsi/chat';
   }
 
-  addConversation(body: any) {
-    return this.BaseAPIConfig.post(`${this.apiController}/conversation`, body);
-  }
-
-  addUserToConversation(userId: string, conversationId: string) {
+  addUserToConversation(userId: string, conversationId: string){
     return this.BaseAPIConfig.post(`${this.apiController}/user-to-conversation?userId=${userId}&conversationId=${conversationId}`, {});
   }
 
-  getListConversation(filter: string, skipCount: number, maxResultCount: number) {
-    let _filter = filter ? `&filter=${filter}` : "";
-    return this.BaseAPIConfig.get(`${this.apiController}/conversation?skipCount=${skipCount}&maxResultCount=${maxResultCount}${_filter}`, {});
+  addConversation(input: AddConversationDto){
+    return this.BaseAPIConfig.post(`${this.apiController}/conversation`, input);
   }
 
-  sendMessageToUser(type: MessageType, content: string, targetId: string) {
-    return this.BaseAPIConfig.post(`${this.apiController}/send-message-to-user`, { type, content, targetId });
+  getListConversation(input: GetListConversationDto){
+    return this.BaseAPIConfig.post(`${this.apiController}/to-get-list-conversation`, input);
   }
 
-  sendMessageToConversation(type: MessageType, content: string, conversationId: string) {
-    return this.BaseAPIConfig.post(`${this.apiController}/send-message-to-conversation`, { type, content, conversationId });
+  getListMessageByConversation(input: GetListMessageDto){
+    return this.BaseAPIConfig.post(`${this.apiController}/to-get-list-message-by-conversation`, input);
   }
 
-  setNickName(conversationId: string, userId: string, nickName: string) {
-    return this.BaseAPIConfig.post(`${this.apiController}/set-nick-name`, { conversationId, userId, nickName });
+  sendMessageToNewOther(input: MessageSendToUserDto){
+    return this.BaseAPIConfig.post(`${this.apiController}/send-message-to-new-other`, input);
+  }
+
+  sendMessageToConversation(input: MessageSendToConversationDto){
+    return this.BaseAPIConfig.post(`${this.apiController}/send-message-to-conversation`, input);
+  }
+
+  acceptPendingConversation(conversationId: string){
+    return this.BaseAPIConfig.post(`${this.apiController}/accept-pending-conversation/${conversationId}`, {});
+  }
+
+  seenConversation(conversationId: string){
+    return this.BaseAPIConfig.post(`${this.apiController}/seen-conversation/${conversationId}`, {});
   }
 
 }

@@ -95,6 +95,7 @@ import { FileItemComponent } from './components/common/file-item/file-item.compo
 import { ProjectCalendarComponent } from './components/startuper/project-space/project-calendar/project-calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ChatComponent } from './components/chat/chat.component';
+import { MessageComponent } from './components/chat/message/message.component';
 
 @NgModule({
   declarations: [
@@ -134,7 +135,8 @@ import { ChatComponent } from './components/chat/chat.component';
     PostComponent,
     FileItemComponent,
     ProjectCalendarComponent,
-    ChatComponent
+    ChatComponent,
+    MessageComponent
   ],
   imports: [
     CommonModule,

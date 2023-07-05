@@ -1,5 +1,11 @@
 export enum MessageType {
-
+  Text,
+  Media,
+  FileDocument,
+  Sticker,
+  AddMember,
+  OutMember,
+  ChangeConversationName
 }
 
 export enum FsiRole {

@@ -1,6 +1,6 @@
-<div class="chat-container px-3 mt-3 mb-5" style="border-bottom: 1px solid #ccc; height: calc(100vh - 107px);">
+<div class="chat-container px-3 mb-5" style="border-bottom: 1px solid #ccc; height: calc(100vh - 90px);">
   <div class="conversation-box">
-    <div class="conversation-header" style="height: 150px; width: calc(100% - 15px);">
+    <div class="conversation-header">
       <div class="flex w-full justify-content-between align-items-center ">
         <span class="p-input-icon-left mr-2">
           <i class="pi pi-search" style="top: 22px;"></i>
@@ -22,262 +22,62 @@
       </div>
 
     </div>
-    <div class="conversation-list w-full" style=" overflow-y: auto;">
-      <p>Impedit commodo officiis excepturi hendrerit, provident? Vivamus, laborum egestas quo orci varius recusandae
-        dolorum, eleifend, arcu, eveniet porta, torquent? Nisl ac, porro, fermentum lorem? Quisquam sunt taciti irure
-        dui
-        rhoncus posuere! Nam, congue harum tenetur, ipsam tempor metus rhoncus placeat, dicta gravida semper distinctio
-        consectetuer, convallis, expedita occaecat aliquet wisi tenetur et. Minima mi porttitor sapiente mollis aliquip
-        dolor est tincidunt consequat arcu potenti dignissim penatibus nec rem? Laboris! Labore, malesuada convallis
-        voluptate eget adipisicing error cursus, magnis, maxime massa, arcu. Wisi proin congue molestiae doloremque
-        magna
-        quia. Turpis sunt ratione. Fermentum, provident molestie provident temporibus, ridiculus lectus vestibulum
-        pretium.
-      </p>
-
-      <p>Quod unde aliquet diamlorem occaecati! Officia habitasse dignissimos occaecati perferendis ullamco auctor,
-        nascetur
-        euismod! Vitae maiores, excepteur occaecat eum necessitatibus? Tempora vehicula debitis. Quisquam maecenas
-        integer?
-        Lacus. Lacinia hac proin lectus aptent cursus elementum class do. Reiciendis facilis, vitae interdum, curabitur
-        metus voluptatem malesuada. Anim minim, consectetur eleifend magnam taciti gravida dui, dictum doloribus unde
-        voluptates, tortor! Wisi minim pulvinar, repudiandae, ipsum? Cillum! Pharetra, wisi? Donec? Elementum ad labore
-        sed
-        voluptate nobis eos ultrices voluptate velit interdum parturient cubilia proin, fermentum itaque quibusdam cras
-        cupidatat justo nullam? Beatae nonummy dolor eius ut, harum earum quidem commodi penatibus ullamcorper, sint
-        quidem.
-      </p>
-
-      <p>Vehicula aliqua cursus saepe hic delectus optio, aliquam odit condimentum, natus amet, fusce fusce, in
-        architecto.
-        Ex, laborum varius beatae, ut magni! Modi inventore cum curae ullamco urna, ullamcorper varius felis, magnam
-        eiusmod
-        leo volutpat, laborum, dolore praesent ut consequuntur, autem deserunt sunt nisl facilisi! Lorem nulla
-        adipisicing
-        rutrum voluptas quia faucibus animi mattis quas? Ridiculus. Corporis accusamus sunt consectetur repudiandae
-        occaecat
-        eros, assumenda urna! Diamlorem error anim vehicula nunc repudiandae totam, tristique animi incidunt natoque
-        volutpat? Torquent dignissimos senectus cupiditate excepturi, platea sequi, facere deserunt, cillum tenetur.
-        Vitae
-        tempora, senectus interdum autem omnis eius, dolor, venenatis commodi aperiam exercitation.</p>
+    <div class="conversation-list">
+      <div class="list-wrapper w-full h-auto  flex flex-column align-items-start justify-content-start">
+        <ng-container *ngFor="let conversation of conversations">
+          <div class="conversation-item flex align-items-center p-2">
+            <p-avatar shape="circle" [image]="conversation.conversationAvatar??''" size="large"></p-avatar>
+            <div class="conversation-preview-info">
+              <h4>{{conversation.conversationName}}</h4>
+              <p>{{conversation.lastMessage?.content}}</p>
+            </div>
+            <p style="font-size: 12px; text-align: center;">{{getTimeAgo(conversation.lastMessage?.creationTime)}}</p>
+          </div>
+        </ng-container>
+      </div>
     </div>
   </div>
   <div class="message-box">
-    <div class="message-header"></div>
-    <div class="message-content pl-5 flex flex-column ">
-      <div class="message align-self-end" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
+    <div class="message-header px-3">
+      <div class="conversation-info flex align-items-center justify-content-center">
+        <p-avatar shape="circle" image="http://localhost:7777/images/c7401c6d-2592-4fcf-a417-42c9a03e5bac.png" size="large"></p-avatar>
+        <h3 class="ml-2">Nguyễn Văn Hiếu</h3>
       </div>
-      <div class="message align-self-end" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
+      <div class="flex .align-items-center justify-content-end" style="gap: 10px;">
+        <div class="other-message-type-item" pTooltip="Call âm thanh" tooltipPosition="top">
+          <i class="fa-solid fa-phone"></i>
+        </div>
+        <div class="other-message-type-item" pTooltip="Call video" tooltipPosition="top">
+          <i class="fa-solid fa-video"></i>
+        </div>
       </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-      <div class="message" style="width: 500px;">
-        <p>Dui numquam pulvinar eos, porro sociis occaecati, atque ut eligendi voluptates fugiat, senectus lacus class
-          distinctio. Fuga facilis error doloremque voluptatibus aliquid beatae occaecati accusantium senectus assumenda
-          commodi, laoreet, voluptatem integer natoque, luctus corporis! Facere cupiditate omnis eius! Repellat
-          provident, rerum lectus rutrum habitant quis animi, volutpat minus molestiae mus. Neque integer fermentum ut.
-          Pede sociis, do minima accusantium illo, maiores eu blanditiis fugit magni conubia illum do tempor
-          exercitation eros quo, iure proident nunc sed! Nostrud occaecati, proin vivamus? Laoreet similique mauris.
-          Cupidatat temporibus habitant accusantium nam? Minus tempora! Aliquam. Dapibus eos repellendus primis dicta,
-          bibendum officia cras inventore.</p>
-      </div>
-
     </div>
-    <div class="message-footer"></div>
+    <div class="message-content pl-5 flex flex-column">
+    </div>
+    <div class="message-footer">
+      <div class="other-message-type">
+        <div class="other-message-type-item" pTooltip="Nhãn dán" tooltipPosition="top">
+          <i class="fa-regular fa-face-smile"></i>
+        </div>
+        <div class="other-message-type-item" pTooltip="Hình ảnh" tooltipPosition="top">
+          <i class="fa-regular fa-images"></i>
+        </div>
+        <div class="other-message-type-item" pTooltip="Tài liệu" tooltipPosition="top">
+          <i class="fa-solid fa-paperclip"></i>
+        </div>
+      </div>
+      <div class="text-type">
+        <input type="text" style="flex-grow: 1;" [(ngModel)]="contentText" placeholder="Nhập tin nhắn ...">
+        <div *ngIf="!contentText" class="other-message-type-item" pTooltip="Gửi lượt thích" tooltipPosition="top"
+          style="width: 48px; height: 48px; font-size: 27px; color: #3B82F6;">
+          <i class="fa-solid fa-thumbs-up"></i>
+        </div>
+        <div *ngIf="contentText" class="other-message-type-item" pTooltip="Enter để gửi" tooltipPosition="top"
+          style="width: 48px; height: 48px; font-size: 27px;color: #3B82F6;">
+          <i class="fa-solid fa-paper-plane"></i>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="infomation-box"></div>
 </div>

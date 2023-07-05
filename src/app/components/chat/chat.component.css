@@ -1,8 +1,4 @@
-.conversation-header{
-  display: flex;
-  flex-direction: column;
-  border-bottom: 1px solid #c9c9c9;
-}
+
 
 .chat-container{
   display: flex;
@@ -14,6 +10,60 @@
   display: flex;
   flex-direction: column;
   border-right: 1px solid #c9c9c9;
+  position: relative;
+}
+
+.conversation-header{
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #c9c9c9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 110px;
+  width: 100%;
+}
+
+.conversation-list{
+  position: absolute;
+  top: 110px;
+  left: 0;
+  height: calc(100% - 110px);
+  width: 100%;
+  overflow-y: auto;
+}
+
+.list-wrapper{
+  padding-top: 5px;
+}
+
+.conversation-item{
+  height: 75px;
+  width: calc(100% - 10px);
+  cursor: pointer;
+}
+
+.conversation-item:hover{
+  background-color: #F3F5F6;
+  border-radius: 8px;
+}
+
+.conversation-preview-info{
+  height: 100%;
+  width: 225px;
+  margin-left: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.conversation-preview-info p{
+  margin: 2px;
+  display: block;
+  width: 220px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .message-box{
@@ -33,17 +83,25 @@
 .message-header{
   border-bottom: 1px solid #c9c9c9;
   width: 100%;
-  height: 100px;
+  height: 68px;
   position: absolute;
   top: 0;
   left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
+.conversation-info{
+  cursor: pointer;
+}
+
 .message-content{
   width: 100%;
-  height: calc(100% - 200px);
+  height: calc(100% - 168px);
   overflow-y: auto;
   position: absolute;
-  top: 100px;
+  top: 68px;
 }
 
 .message-footer{
@@ -53,6 +111,55 @@
   position: absolute;
   bottom: 0;
   left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.other-message-type{
+  width: 100%;
+  height: 45px;
+  border-bottom: 1px solid #c9c9c9;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 10px;
+  gap: 4px;
+}
+
+.other-message-type-item{
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #081C36;
+  cursor: pointer;
+}
+
+.other-message-type-item:hover{
+  background-color: #DFE2E7;
+}
+
+.text-type{
+  width: 100%;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px;
+  gap: 10px;
+}
+
+.text-type input{
+  border: 1px solid #c9c9c9;
+  height: 43px;
+  border-radius: 23px;
+  padding: 20px;
+}
+
+.text-type input:focus{
+  outline: none;
 }
 
 ::-webkit-scrollbar {
