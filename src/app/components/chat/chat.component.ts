@@ -113,6 +113,8 @@ export class ChatComponent implements OnInit, OnDestroy {
         input.userId = this.userId;
         this.chatService.sendMessageToNewOther(input).then((res: any) => {
           this.thisConversation = res.data.newConversation;
+          this.getListConversation();
+          this.contentText = "";
         }).catch((err: any) => {
           this.messageService.add({
             key: "toast",
@@ -127,9 +129,15 @@ export class ChatComponent implements OnInit, OnDestroy {
         input.type = MessageType.Text;
         input.conversationId = this.thisConversation?.id;
         this.chatService.sendMessageToConversation(input).then((res: any) => {
-          alert(111111111);
+          this.getListConversation();
+          this.contentText = "";
         }).catch((err: any) => {
-
+          this.messageService.add({
+            key: "toast",
+            severity: "error",
+            summary: "Lỗi",
+            detail: "Gửi tin nhắn đến đoạn chat thất bại!",
+          });
         });
       }
     } else {
