@@ -32,6 +32,7 @@ export class MessageDto extends FullAuditedEntityDto<string>{
   type?: MessageType;
   content?: string;
   focusToMessageId?: string;
+  isMine?: boolean;
 }
 
 export class UserConversation extends FullAuditedEntityDto<string>{

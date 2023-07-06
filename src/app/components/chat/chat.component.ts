@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ConversationDto, GetListConversationDto, MessageDto, MessageSendToConversationDto, MessageSendToUserDto } from 'src/app/model/chat.class';
+import { ConversationDto, GetListConversationDto, GetListMessageDto, MessageDto, MessageSendToConversationDto, MessageSendToUserDto } from 'src/app/model/chat.class';
 import { MessageType } from 'src/app/model/enum';
 import * as signalR from '@microsoft/signalr';
 
@@ -65,6 +65,20 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
   }
 
+  getListMessage(){
+    let input = new GetListMessageDto();
+    input.conversationId = this.thisConversation?.id;
+    input.skipCount = 0;
+    input.maxResultCount = 1000;
+    this.chatService.getListMessageByConversation(input).then((res: any) => {
+      this.messages = res.data.items.reverse();
+      console.log(this.messages);
+
+    }).catch((err: any) => {
+
+    });
+  }
+
   initConversation() {
     this.route.params.subscribe(params => {
       let mode = params["mode"];
@@ -114,6 +128,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.chatService.sendMessageToNewOther(input).then((res: any) => {
           this.thisConversation = res.data.newConversation;
           this.getListConversation();
+          this.getListMessage();
           this.contentText = "";
         }).catch((err: any) => {
           this.messageService.add({
@@ -130,6 +145,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         input.conversationId = this.thisConversation?.id;
         this.chatService.sendMessageToConversation(input).then((res: any) => {
           this.getListConversation();
+          this.getListMessage();
           this.contentText = "";
         }).catch((err: any) => {
           this.messageService.add({
@@ -150,8 +166,18 @@ export class ChatComponent implements OnInit, OnDestroy {
     }
   }
 
+  seenConversation(conversationId: string){
+    this.chatService.seenConversation(conversationId).then((res: any) => {
+      this.getListConversation();
+    }).catch((err: any) => {
+
+    });
+  }
+
   selectConversation(conversation: any){
     this.thisConversation = conversation;
+    this.getListMessage();
+    this.seenConversation(conversation.id);
   }
 
 }

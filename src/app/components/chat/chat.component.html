@@ -26,7 +26,10 @@
     <div class="conversation-list">
       <div class="list-wrapper w-full h-auto  flex flex-column align-items-start justify-content-start">
         <ng-container *ngFor="let conversation of conversations">
-          <div [ngClass]="{'conversation-item flex align-items-center p-2': true, 'active-conversation': conversation.id == thisConversation?.id}" (click)="selectConversation(conversation)">
+          <div [ngClass]="{'conversation-item flex align-items-center p-2': true,
+                        'active-conversation': conversation.id == thisConversation?.id,
+                        'unread': !conversation.isSeen}" (click)="selectConversation(conversation)">
+            <div class="unread-point"></div>
             <p-avatar shape="circle" [image]="conversation.conversationAvatar??''" size="large"></p-avatar>
             <div class="conversation-preview-info">
               <h4>{{conversation.conversationName}}</h4>
@@ -53,7 +56,12 @@
         </div>
       </div>
     </div>
-    <div class="message-content pl-5 flex flex-column">
+    <div class="message-content pl-5 flex flex-column justify-content-end">
+      <ng-container *ngFor="let message of messages">
+        <div app-message [message]="message"
+          [ngClass]="{'col-12 message-item flex': true, 'justify-content-start' : !message.isMine, 'justify-content-end': message.isMine}">
+        </div>
+      </ng-container>
     </div>
     <div class="message-footer">
       <div class="other-message-type">
@@ -68,7 +76,8 @@
         </div>
       </div>
       <div class="text-type">
-        <input type="text" style="flex-grow: 1;" [(ngModel)]="contentText" placeholder="Nhập tin nhắn ...">
+        <input type="text" style="flex-grow: 1;" [(ngModel)]="contentText" placeholder="Nhập tin nhắn ..."
+          (keyup.enter)="send()">
         <div *ngIf="!contentText" class="other-message-type-item" pTooltip="Gửi lượt thích" tooltipPosition="top"
           style="width: 48px; height: 48px; font-size: 27px; color: #3B82F6;">
           <i class="fa-solid fa-thumbs-up"></i>
