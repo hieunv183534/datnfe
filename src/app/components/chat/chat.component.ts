@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { ConversationDto, MessageDto } from 'src/app/model/chat.class';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ConversationDto, GetListConversationDto, MessageDto, MessageSendToConversationDto, MessageSendToUserDto } from 'src/app/model/chat.class';
 import { MessageType } from 'src/app/model/enum';
+import * as signalR from '@microsoft/signalr';
 
 import TimeAgo from 'javascript-time-ago'
 import vi from 'javascript-time-ago/locale/vi'
+import { ChatService } from 'src/app/services/chat.service';
+import { ActivatedRoute } from '@angular/router';
+import { MessageService } from 'primeng/api';
 TimeAgo.addDefaultLocale(vi)
 
 @Component({
@@ -11,70 +15,135 @@ TimeAgo.addDefaultLocale(vi)
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
 
-  conversationType: number = 1;
-
+  conversationType: number = 0;
+  conversationFilter?: string = "";
   conversations?: ConversationDto[] = [];
-
   messages?: MessageDto[] = [];
-
   timeAgo = new TimeAgo('vi-VI');
-
   contentText: string = "";
+  connection?: signalR.HubConnection;
 
-  constructor() { }
+  emptyId: string = '00000000-0000-0000-0000-000000000000';
+
+  userId: string = '';
+
+  thisConversation?: ConversationDto = {};
+
+  constructor(
+    private messageService: MessageService,
+    private route: ActivatedRoute,
+    private chatService: ChatService
+  ) { }
 
   getTimeAgo(d: any) {
     let time = new Date(d);
-    return this.timeAgo.format(Date.now() - 60 * 1000)
+    return this.timeAgo.format(time)
   }
 
   ngOnInit() {
-    this.conversations = [
-      {
-        conversationName: "FSI Connected",
-        conversationAvatar: "http://localhost:7777/images/c7401c6d-2592-4fcf-a417-42c9a03e5bac.png",
-        justTwoPeople: false,
-        lastMessage: {
-          content: "Vãi lồng đèn thiệt chứ :))",
-          type: MessageType.Text,
-          creationTime: new Date(),
-          sender: {
-            name: "Nguyễn Văn Hiếu",
-            avatarUrl: "http://localhost:7777/images/c7401c6d-2592-4fcf-a417-42c9a03e5bac.png",
-          }
-        }
-      },
-      {
-        conversationName: "FSI Connected",
-        conversationAvatar: "http://localhost:7777/images/c7401c6d-2592-4fcf-a417-42c9a03e5bac.png",
-        justTwoPeople: false,
-        lastMessage: {
-          content: "Vãi lồng đèn thiệt chứ :))",
-          type: MessageType.Text,
-          creationTime: new Date(),
-          sender: {
-            name: "Nguyễn Văn Hiếu",
-            avatarUrl: "http://localhost:7777/images/c7401c6d-2592-4fcf-a417-42c9a03e5bac.png",
-          }
-        }
-      },
-      {
-        conversationName: "FSI Connected",
-        conversationAvatar: "http://localhost:7777/images/c7401c6d-2592-4fcf-a417-42c9a03e5bac.png",
-        justTwoPeople: false,
-        lastMessage: {
-          content: "Vãi lồng đèn thiệt chứ :))",
-          type: MessageType.Text,
-          creationTime: new Date(),
-          sender: {
-            name: "Nguyễn Văn Hiếu",
-            avatarUrl: "http://localhost:7777/images/c7401c6d-2592-4fcf-a417-42c9a03e5bac.png",
-          }
-        }
+    this.getListConversation();
+    this.initConversation();
+    this.initSignal();
+  }
+
+  ngOnDestroy(): void {
+    this.connection?.stop();
+  }
+
+  getListConversation() {
+    let input = new GetListConversationDto();
+    input.filter = this.conversationFilter;
+    input.type = this.conversationType;
+    input.skipCount = 0;
+    input.maxResultCount = 1000;
+    this.chatService.getListConversation(input).then((res: any) => {
+      this.conversations = res.data.items;
+    }).catch((err: any) => {
+
+    });
+  }
+
+  initConversation() {
+    this.route.params.subscribe(params => {
+      let mode = params["mode"];
+      let id = params["id"];
+      if (mode == 0) { // id conversation
+
+      } else { // id user
+        this.userId = id;
+        this.chatService.getConversationByUserId(id).then((res: any) => {
+          this.thisConversation = res.data;
+        }).catch((err: any) => {
+
+        });
       }
-    ]
+    });
+  }
+
+  initSignal() {
+    let token = localStorage.getItem("TOKEN") ?? "";
+    this.connection = new signalR.HubConnectionBuilder()
+      .withUrl("http://localhost:7777/chat", {
+        accessTokenFactory: () => token,
+        skipNegotiation: true,
+        transport: signalR.HttpTransportType.WebSockets
+      })
+      .configureLogging(signalR.LogLevel.Information)
+      .build();
+
+    this.connection.start().then(function () {
+      console.log('SignalR Connected!');
+    }).catch(function (err: any) {
+      return console.error(err.toString());
+    });
+
+    this.connection.on("OnTestHehe", () => {
+      alert("vãi lồng")
+    });
+  }
+
+  send() {
+    if (this.contentText) {
+      if (this.thisConversation?.id == this.emptyId) {
+        let input = new MessageSendToUserDto();
+        input.type = MessageType.Text;
+        input.content = this.contentText;
+        input.userId = this.userId;
+        this.chatService.sendMessageToNewOther(input).then((res: any) => {
+          this.thisConversation = res.data.newConversation;
+        }).catch((err: any) => {
+          this.messageService.add({
+            key: "toast",
+            severity: "error",
+            summary: "Lỗi",
+            detail: "Gửi tin nhắn đến người lạ thất bại!",
+          });
+        });
+      } else {
+        let input = new MessageSendToConversationDto();
+        input.content = this.contentText;
+        input.type = MessageType.Text;
+        input.conversationId = this.thisConversation?.id;
+        this.chatService.sendMessageToConversation(input).then((res: any) => {
+          alert(111111111);
+        }).catch((err: any) => {
+
+        });
+      }
+    } else {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Cảnh báo",
+        detail: "Bạn chưa nhập nội dung!",
+      });
+    }
+  }
+
+  selectConversation(conversation: any){
+    this.thisConversation = conversation;
   }
 
 }

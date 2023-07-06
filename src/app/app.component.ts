@@ -3,6 +3,7 @@ import { PrimeNGConfig } from 'primeng/api';
 import { UserDto } from './model/user.class';
 import { EventService } from './services/event.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { SignalService } from './services/signal.service';
 
 @Component({
   selector: 'app-root',
@@ -19,16 +20,17 @@ export class AppComponent {
   constructor(
     private router: Router,
     private primengConfig: PrimeNGConfig,
-    private eventService: EventService
+    private eventService: EventService,
+    private signalService: SignalService
   ) { }
 
   ngOnInit() {
     this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
         this.thisRouteUrl = this.router.url;
-        if (this.thisRouteUrl.includes("chat/")){
+        if (this.thisRouteUrl.includes("chat/")) {
           this.isShowFooter = false;
-        }else{
+        } else {
           this.isShowFooter = true;
         }
       }

@@ -49,7 +49,7 @@ const routes: Routes = [
         path: 'project-space/:projectId', component: ProjectSpaceComponent
       },
       {
-        path: 'chat/:conversationId', component: ChatComponent
+        path: 'chat/:mode/:id', component: ChatComponent
       }
     ]
   }

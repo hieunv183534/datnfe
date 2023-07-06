@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { UserDto } from 'src/app/model/user.class';
 import { EventService } from 'src/app/services/event.service';
@@ -28,14 +29,18 @@ export class ListProjectMemberComponent implements OnInit, OnChanges {
     },
     {
       label: "Trò chuyện",
-      icon: "pi pi-comments"
+      icon: "pi pi-comments",
+      command:()=>{
+        this.router.navigate(['./startuper/chat/1/' + this.userSelectId]);
+      }
     }
   ];
 
   constructor(
     private projectService: ProjectService,
     private messageService: MessageService,
-    private eventService: EventService
+    private eventService: EventService,
+    private router: Router
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {

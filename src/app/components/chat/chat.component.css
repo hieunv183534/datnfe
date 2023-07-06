@@ -48,6 +48,11 @@
   border-radius: 8px;
 }
 
+.active-conversation{
+  background-color: #5dbceb44 !important;
+  border-radius: 8px;
+}
+
 .conversation-preview-info{
   height: 100%;
   width: 225px;

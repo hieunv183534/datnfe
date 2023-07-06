@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { RoleInProject } from 'src/app/model/enum';
 import { StartuperDto } from 'src/app/model/startuper.class';
@@ -26,12 +27,12 @@ export class UserDetailComponent implements OnInit {
   constructor(
     private startuperService: StartuperService,
     private messageService: MessageService,
-    private eventService: EventService
+    private eventService: EventService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.startuperService.getUserDetail(this.userId).then((res: any) => {
-      debugger
       this.startuperInfo = res.data.startuperInfo;
       this.friendStatus = res.data.friendStatus;
       this.listProject = res.data.projectAsStartuper;
@@ -145,7 +146,8 @@ export class UserDetailComponent implements OnInit {
   }
 
   chatOnClick(){
-    alert("open chat")
+    this.router.navigate(['./startuper/chat/1/' + this.userId]);
+    this.close.emit();
   }
 
 }

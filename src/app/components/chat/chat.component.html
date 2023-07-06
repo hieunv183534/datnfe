@@ -4,28 +4,29 @@
       <div class="flex w-full justify-content-between align-items-center ">
         <span class="p-input-icon-left mr-2">
           <i class="pi pi-search" style="top: 22px;"></i>
-          <input type="text" pInputText class="p-inputtext-sm" placeholder="Tìm kiếm" style="width: 270px;">
+          <input type="text" pInputText class="p-inputtext-sm" placeholder="Tìm kiếm" style="width: 270px;"
+            [(ngModel)]="conversationFilter" (keyup.enter)="getListConversation()">
         </span>
         <button pButton pRipple type="button" icon="fa fa-pen-to-square"
           class="p-button-rounded p-button-secondary p-button-text"></button>
       </div>
       <div class="w-full flex mt-2">
         <button pButton pRipple type="button" label="Tất cả"
-          [ngClass]="{'p-button-outlined p-button-sm mr-3': true,'p-button-secondary': conversationType!= 1}"
-          (click)="conversationType=1"></button>
+          [ngClass]="{'p-button-outlined p-button-sm mr-3': true,'p-button-secondary': conversationType!= 0}"
+          (click)="conversationType=0;getListConversation()"></button>
         <button pButton pRipple type="button" label="Lưu trữ"
-          [ngClass]="{'p-button-outlined p-button-sm mr-3': true,'p-button-secondary': conversationType!= 2}"
-          (click)="conversationType=2"></button>
+          [ngClass]="{'p-button-outlined p-button-sm mr-3': true,'p-button-secondary': conversationType!= 1}"
+          (click)="conversationType=1;getListConversation()"></button>
         <button pButton pRipple type="button" label="Đang chờ"
-          [ngClass]="{'p-button-outlined p-button-sm': true,'p-button-secondary': conversationType!= 3}"
-          (click)="conversationType=3"></button>
+          [ngClass]="{'p-button-outlined p-button-sm': true,'p-button-secondary': conversationType!= 2}"
+          (click)="conversationType=2;getListConversation()"></button>
       </div>
 
     </div>
     <div class="conversation-list">
       <div class="list-wrapper w-full h-auto  flex flex-column align-items-start justify-content-start">
         <ng-container *ngFor="let conversation of conversations">
-          <div class="conversation-item flex align-items-center p-2">
+          <div [ngClass]="{'conversation-item flex align-items-center p-2': true, 'active-conversation': conversation.id == thisConversation?.id}" (click)="selectConversation(conversation)">
             <p-avatar shape="circle" [image]="conversation.conversationAvatar??''" size="large"></p-avatar>
             <div class="conversation-preview-info">
               <h4>{{conversation.conversationName}}</h4>
@@ -40,8 +41,8 @@
   <div class="message-box">
     <div class="message-header px-3">
       <div class="conversation-info flex align-items-center justify-content-center">
-        <p-avatar shape="circle" image="http://localhost:7777/images/c7401c6d-2592-4fcf-a417-42c9a03e5bac.png" size="large"></p-avatar>
-        <h3 class="ml-2">Nguyễn Văn Hiếu</h3>
+        <p-avatar shape="circle" [image]="thisConversation?.conversationAvatar??''" size="large"></p-avatar>
+        <h3 class="ml-2">{{thisConversation?.conversationName}}</h3>
       </div>
       <div class="flex .align-items-center justify-content-end" style="gap: 10px;">
         <div class="other-message-type-item" pTooltip="Call âm thanh" tooltipPosition="top">
@@ -73,7 +74,7 @@
           <i class="fa-solid fa-thumbs-up"></i>
         </div>
         <div *ngIf="contentText" class="other-message-type-item" pTooltip="Enter để gửi" tooltipPosition="top"
-          style="width: 48px; height: 48px; font-size: 27px;color: #3B82F6;">
+          style="width: 48px; height: 48px; font-size: 27px;color: #3B82F6;" (click)="send()">
           <i class="fa-solid fa-paper-plane"></i>
         </div>
       </div>

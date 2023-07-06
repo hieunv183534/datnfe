@@ -47,4 +47,12 @@ export class ChatService extends BaseService {
     return this.BaseAPIConfig.post(`${this.apiController}/seen-conversation/${conversationId}`, {});
   }
 
+  getConversationByUserId(userId: string){
+    return this.BaseAPIConfig.get(`${this.apiController}/conversation-by-user-id/${userId}`);
+  }
+
+
+  test(){
+    return this.BaseAPIConfig.post(`${this.apiController}/test-signal-r`, {});
+  }
 }
