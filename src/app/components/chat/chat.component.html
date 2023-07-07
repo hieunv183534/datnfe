@@ -56,12 +56,14 @@
         </div>
       </div>
     </div>
-    <div class="message-content pl-5 flex flex-column justify-content-end">
-      <ng-container *ngFor="let message of messages">
-        <div app-message [message]="message"
-          [ngClass]="{'col-12 message-item flex': true, 'justify-content-start' : !message.isMine, 'justify-content-end': message.isMine}">
-        </div>
-      </ng-container>
+    <div class="message-content pl-5">
+      <div class="message-wrapper">
+        <ng-container *ngFor="let message of messages">
+          <div app-message [message]="message"
+            [ngClass]="{'w-full message-item flex': true, 'justify-content-start' : !message.isMine, 'justify-content-end': message.isMine}">
+          </div>
+        </ng-container>
+      </div>
     </div>
     <div class="message-footer">
       <div class="other-message-type">

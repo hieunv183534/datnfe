@@ -1,3 +1,9 @@
-<p>
-  {{message?.content}}
-</p>
+<div [ngClass]="{'message': true, 'justify-content-start' : !message.isMine , 'justify-content-end': message.isMine}">
+  <p-avatar *ngIf="!message.isMine" shape="circle" [image]="message.sender.avatarUrl" class="absolute"></p-avatar>
+
+  <ng-container *ngIf="message.type == MessageType.Text">
+    <p [tooltipPosition]="message.isMine ? 'left' :'right'" [pTooltip]="getDateTime(message.creationTime)">
+      {{message?.content}}
+    </p>
+  </ng-container>
+</div>

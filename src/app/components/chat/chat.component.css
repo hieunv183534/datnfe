@@ -103,6 +103,12 @@
   flex-direction: column;
 }
 
+@media screen and (max-width:1112px) {
+  .infomation-box {
+    width: 0px;
+  }
+}
+
 .message-header {
   border-bottom: 1px solid #c9c9c9;
   width: 100%;
@@ -129,8 +135,16 @@
   padding: 10px 32px;
 }
 
+.message-wrapper{
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
 .message-item{
-  background-color: aqua;
   margin-bottom: 3px;
 }
 

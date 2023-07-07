@@ -16,7 +16,6 @@ TimeAgo.addDefaultLocale(vi)
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit, OnDestroy {
-
   conversationType: number = 0;
   conversationFilter?: string = "";
   conversations?: ConversationDto[] = [];
@@ -65,7 +64,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
   }
 
-  getListMessage(){
+  getListMessage() {
     let input = new GetListMessageDto();
     input.conversationId = this.thisConversation?.id;
     input.skipCount = 0;
@@ -115,6 +114,21 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.connection.on("OnTestHehe", () => {
       alert("vãi lồng")
+    });
+
+    this.connection.on("OnMessage", (newMessage: any) => {
+      this.getListConversation();
+      if (newMessage.conversationId == this.thisConversation?.id) {
+        this.getListMessage();
+        this.seenConversation(this.thisConversation?.id ?? "");
+      } else {
+        alert("Tin nhắn mới hahaa");
+      }
+    });
+
+    this.connection.on("OnNewRequestMessage", (newMessage: any) => {
+      alert(2222222222222222222222222222222222222222222)
+      debugger
     });
   }
 
@@ -166,7 +180,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     }
   }
 
-  seenConversation(conversationId: string){
+  seenConversation(conversationId: string) {
     this.chatService.seenConversation(conversationId).then((res: any) => {
       this.getListConversation();
     }).catch((err: any) => {
@@ -174,7 +188,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
   }
 
-  selectConversation(conversation: any){
+  selectConversation(conversation: any) {
     this.thisConversation = conversation;
     this.getListMessage();
     this.seenConversation(conversation.id);
