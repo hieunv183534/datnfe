@@ -60,4 +60,8 @@ export class StartuperService extends BaseService {
   getUserDetail(userId: string) {
     return this.BaseAPIConfig.get(`${this.apiController}/user-detail/${userId}`);
   }
+
+  getUserByUsername(username: string){
+    return this.BaseAPIConfig.get(`${this.apiController}/user-by-username?username=${username}`);
+  }
 }

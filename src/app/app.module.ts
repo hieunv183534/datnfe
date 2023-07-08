@@ -96,6 +96,8 @@ import { ProjectCalendarComponent } from './components/startuper/project-space/p
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ChatComponent } from './components/chat/chat.component';
 import { MessageComponent } from './components/chat/message/message.component';
+import { AddConversationComponent } from './components/chat/add-conversation/add-conversation.component';
+import { UpdateConversationComponent } from './components/chat/update-conversation/update-conversation.component';
 
 @NgModule({
   declarations: [
@@ -136,7 +138,9 @@ import { MessageComponent } from './components/chat/message/message.component';
     FileItemComponent,
     ProjectCalendarComponent,
     ChatComponent,
-    MessageComponent
+    MessageComponent,
+    AddConversationComponent,
+    UpdateConversationComponent
   ],
   imports: [
     CommonModule,

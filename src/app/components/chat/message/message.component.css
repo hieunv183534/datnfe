@@ -1,30 +1,36 @@
-.message{
+.message {
   width: 500px;
   display: flex;
   margin-left: 36px;
   position: relative;
 }
 
-.message.justify-content-end p{
+.message.justify-content-end p {
   display: inline-block;
   width: auto;
   max-width: 100%;
-  white-space:normal;
+  white-space: normal;
   background-color: #E5EFFF;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
-  margin: 3px 0;
+  margin: 1px 0;
 }
 
-.message.justify-content-start p{
+.message.justify-content-start p {
   display: inline-block;
   width: auto;
   max-width: 100%;
-  white-space:normal;
+  white-space: normal;
   background-color: #FFFFFF;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
-  margin: 3px 0;
+  margin: 1px 0;
+}
+
+.message-avatar {
+  position: absolute;
+  top: 4px;
+  left: -38px;
 }

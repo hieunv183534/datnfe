@@ -17,7 +17,6 @@ export class MessageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    debugger
   }
 
   getDateTime(d: any){

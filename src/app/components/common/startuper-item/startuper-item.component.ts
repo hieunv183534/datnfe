@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { UuidStartuperModeFromMe, UuidStartuperModeNew, UuidStartuperModeOFMe, UuidStartuperModeToMe } from 'src/app/model/enum';
 import { StartuperDto } from 'src/app/model/startuper.class';
 import { EventService } from 'src/app/services/event.service';
@@ -30,7 +31,8 @@ export class StartuperItemComponent implements OnInit {
 
 
   constructor(
-    private eventService: EventService
+    private eventService: EventService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -77,7 +79,7 @@ export class StartuperItemComponent implements OnInit {
   }
 
   openChatOnClick() {
-    alert("open chat");
+    this.router.navigate(['./startuper/chat/1/' + this.startuper.id]);
   }
 
   cancelRequestOnClick() {

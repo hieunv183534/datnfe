@@ -12,7 +12,7 @@ export class ConversationDto extends FullAuditedEntityDto<string>{
   lastIndexSeenB?: number;
   userAId?: string;
   userA?: UserDto;
-  userBId?: boolean;
+  userBId?: string;
   userB?: UserDto;
   conversationName?: string;
   conversationAvatar?: string;
@@ -33,6 +33,8 @@ export class MessageDto extends FullAuditedEntityDto<string>{
   content?: string;
   focusToMessageId?: string;
   isMine?: boolean;
+
+  showA?: boolean;
 }
 
 export class UserConversation extends FullAuditedEntityDto<string>{

@@ -15,44 +15,67 @@ export class ChatService extends BaseService {
     this.apiController = 'fsi/chat';
   }
 
-  addUserToConversation(userId: string, conversationId: string){
+  addUserToConversation(userId: string, conversationId: string) {
     return this.BaseAPIConfig.post(`${this.apiController}/user-to-conversation?userId=${userId}&conversationId=${conversationId}`, {});
   }
 
-  addConversation(input: AddConversationDto){
-    return this.BaseAPIConfig.post(`${this.apiController}/conversation`, input);
+  removeUserFromConversation(userId: string, conversationId: string) {
+    return this.BaseAPIConfig.delete(`${this.apiController}/user-from-conversation?userId=${userId}&conversationId=${conversationId}`);
   }
 
-  getListConversation(input: GetListConversationDto){
+  addConversation(conversationName: string, memberIds: string[], avatarUrl?: string, avatarFile?: any) {
+    let formData = new FormData();
+    formData.append("file", avatarFile);
+    formData.append("ConversationName", conversationName ?? "");
+    formData.append("AvatarUrl", avatarUrl ?? "");
+    formData.append("MemberIds", JSON.stringify(memberIds) ?? "[]");
+    return this.BaseAPIConfig.post(`${this.apiController}/conversation`, formData);
+  }
+
+  updateConversation(conversationId: string, conversationName: string, avatarUrl?: string, avatarFile?: any) {
+    let formData = new FormData();
+    if (avatarFile) {
+      formData.append("file", avatarFile);
+    }
+    formData.append("ConversationName", conversationName ?? "");
+    formData.append("AvatarUrl", avatarUrl ?? "");
+    formData.append("ConversationId", conversationId ?? "");
+    return this.BaseAPIConfig.put(`${this.apiController}/conversation`, formData);
+  }
+
+  getListConversation(input: GetListConversationDto) {
     return this.BaseAPIConfig.post(`${this.apiController}/to-get-list-conversation`, input);
   }
 
-  getListMessageByConversation(input: GetListMessageDto){
+  getListMessageByConversation(input: GetListMessageDto) {
     return this.BaseAPIConfig.post(`${this.apiController}/to-get-list-message-by-conversation`, input);
   }
 
-  sendMessageToNewOther(input: MessageSendToUserDto){
+  sendMessageToNewOther(input: MessageSendToUserDto) {
     return this.BaseAPIConfig.post(`${this.apiController}/send-message-to-new-other`, input);
   }
 
-  sendMessageToConversation(input: MessageSendToConversationDto){
+  sendMessageToConversation(input: MessageSendToConversationDto) {
     return this.BaseAPIConfig.post(`${this.apiController}/send-message-to-conversation`, input);
   }
 
-  acceptPendingConversation(conversationId: string){
+  acceptPendingConversation(conversationId: string) {
     return this.BaseAPIConfig.post(`${this.apiController}/accept-pending-conversation/${conversationId}`, {});
   }
 
-  seenConversation(conversationId: string){
+  seenConversation(conversationId: string) {
     return this.BaseAPIConfig.post(`${this.apiController}/seen-conversation/${conversationId}`, {});
   }
 
-  getConversationByUserId(userId: string){
+  getConversationByUserId(userId: string) {
     return this.BaseAPIConfig.get(`${this.apiController}/conversation-by-user-id/${userId}`);
   }
 
+  getUsersByConversation(conversationId: string) {
+    return this.BaseAPIConfig.get(`${this.apiController}/users-by-conversation/${conversationId}`);
+  }
 
-  test(){
+  test() {
     return this.BaseAPIConfig.post(`${this.apiController}/test-signal-r`, {});
   }
 }

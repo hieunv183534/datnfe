@@ -1,0 +1,82 @@
+<p-dialog [resizable]="true" header="Cập nhật thông tin" [(visible)]="visible" [modal]="true" [style]="{width: '800px'}"
+  [baseZIndex]="10000" [draggable]="false" (onHide)="close.emit()">
+  <p-tabView (onChange)="tabChange($event)">
+    <p-tabPanel header="Thông tin chung">
+      <p-divider align="left"> <b>Tên nhóm</b> </p-divider>
+      <input type="text" pInputText class="w-full" [(ngModel)]="conversationName"/>
+      <p-divider align="left"> <b>Tải lên ảnh đại diện</b> </p-divider>
+      <input type="file" (change)="fileChangeEvent($event)" />
+
+      <div class="image-cropper-wrapper">
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1"
+          format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)"
+          (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+      </div>
+
+      <img class="preview-image" [src]="croppedImage" />
+    </p-tabPanel>
+    <p-tabPanel header="Thành viên">
+      <p-table #dt [value]="inviteUsers" [rowHover]="true" dataKey="id" class="w-full mt-3"
+        styleClass="p-datatable-customers p-datatable-gridlines p-datatable-striped p-datatable-sm"
+        [globalFilterFields]="['code','name']">
+        <ng-template pTemplate="caption">
+          <div class="flex flex-column md:flex-row md:justify-content-between table-header">
+            <span class="flex justify-content-between w-full">
+              <input type="text" pInputText placeholder="Tìm theo sdt/ email" class="mr-10" style="width: 90%;"
+                [(ngModel)]="keySearchUser" />
+              <p-button icon="pi pi-search" (onClick)="submitSearchUser()"></p-button>
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr class="ng-star-inserted">
+            <th>
+              <div class="flex justify-content-between align-items-center">
+                Tài khoản
+              </div>
+            </th>
+            <th>
+              <div class="flex justify-content-between align-items-center">
+                Sdt/Email
+              </div>
+            </th>
+            <th>
+              <div class="flex justify-content-between align-items-center">
+                Thao tác
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+          <tr>
+            <td>
+              <span class="flex align-items-center">
+                <p-avatar shape="circle" [image]="user.avatarUrl"></p-avatar>
+                <p class="ml-4">{{user.name}}</p>
+              </span>
+            </td>
+            <td>
+              {{user.key}}
+            </td>
+            <td>
+              <button *ngIf="user.status == 0" pButton pRipple icon="pi pi-plus" pTooltip="Mời vào dự án"
+                tooltipPosition="top" class="p-button-rounded mr-2 p-button-sm" (click)="addUser(user)"></button>
+              <button *ngIf="user.status != 1" pButton pRipple icon="pi pi-trash" pTooltip="Xóa khỏi dự án"
+                tooltipPosition="top" class="p-button-rounded mr-2 p-button-sm" (click)="removeUser(user)"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="8">Không tồn tại dữ liệu.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-tabPanel>
+  </p-tabView>
+
+
+  <ng-template pTemplate="footer">
+    <p-button *ngIf="tabIndex == 0" label="Cập nhật" class="p-button-success" (onClick)="save()"></p-button>
+  </ng-template>
+</p-dialog>

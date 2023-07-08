@@ -97,7 +97,7 @@
 
 .infomation-box {
   height: 100%;
-  width: 350px;
+  width: 0px;
   border-left: 1px solid #c9c9c9;
   display: flex;
   flex-direction: column;

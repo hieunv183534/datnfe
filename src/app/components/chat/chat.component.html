@@ -8,7 +8,7 @@
             [(ngModel)]="conversationFilter" (keyup.enter)="getListConversation()">
         </span>
         <button pButton pRipple type="button" icon="fa fa-pen-to-square"
-          class="p-button-rounded p-button-secondary p-button-text"></button>
+          class="p-button-rounded p-button-secondary p-button-text" (click)="isVisibleAddConversation = true"></button>
       </div>
       <div class="w-full flex mt-2">
         <button pButton pRipple type="button" label="Tất cả"
@@ -43,7 +43,7 @@
   </div>
   <div class="message-box">
     <div class="message-header px-3">
-      <div class="conversation-info flex align-items-center justify-content-center">
+      <div class="conversation-info flex align-items-center justify-content-center" (click)="infoConversation()">
         <p-avatar shape="circle" [image]="thisConversation?.conversationAvatar??''" size="large"></p-avatar>
         <h3 class="ml-2">{{thisConversation?.conversationName}}</h3>
       </div>
@@ -56,21 +56,22 @@
         </div>
       </div>
     </div>
-    <div class="message-content pl-5">
+    <div class="message-content pl-5" #scrollMe [scrollTop]="scrollMe.scrollHeight">
       <div class="message-wrapper">
         <ng-container *ngFor="let message of messages">
           <div app-message [message]="message"
-            [ngClass]="{'w-full message-item flex': true, 'justify-content-start' : !message.isMine, 'justify-content-end': message.isMine}">
+            [ngClass]="{'w-full message-item flex': true, 'justify-content-start' : !message.isMine, 'justify-content-end': message.isMine ,'mt-3':message.showA }">
           </div>
         </ng-container>
       </div>
     </div>
     <div class="message-footer">
       <div class="other-message-type">
+        <input style="display: none;" type="file" name="" id="" #inputFile>
         <div class="other-message-type-item" pTooltip="Nhãn dán" tooltipPosition="top">
           <i class="fa-regular fa-face-smile"></i>
         </div>
-        <div class="other-message-type-item" pTooltip="Hình ảnh" tooltipPosition="top">
+        <div class="other-message-type-item" pTooltip="Hình ảnh" tooltipPosition="top" (click)="inputFile.click()">
           <i class="fa-regular fa-images"></i>
         </div>
         <div class="other-message-type-item" pTooltip="Tài liệu" tooltipPosition="top">
@@ -93,3 +94,18 @@
   </div>
   <div class="infomation-box"></div>
 </div>
+
+
+<p-toast position="top-left" key="newMessage"></p-toast>
+
+
+<ng-container *ngIf="isVisibleAddConversation">
+  <app-add-conversation [visible]="isVisibleAddConversation" (close)="isVisibleAddConversation = false"
+    (addSuccess)="addConversationSuccess($event)"></app-add-conversation>
+</ng-container>
+
+<ng-container *ngIf="isVisibleUpdateConversation">
+  <app-update-conversation [visible]="isVisibleUpdateConversation" [conversation]="thisConversation"
+    (close)="isVisibleUpdateConversation = false"
+    (updateSuccess)="updateConversationSuccess($event)"></app-update-conversation>
+</ng-container>

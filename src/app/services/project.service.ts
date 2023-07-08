@@ -105,7 +105,6 @@ export class ProjectService extends BaseService {
   }
 
   postToProject(input: PostToProjectDto, imageFiles: any[]) {
-    debugger
     let formData = new FormData();
     imageFiles.forEach((f, i) => {
       formData.append("file" + i, f);

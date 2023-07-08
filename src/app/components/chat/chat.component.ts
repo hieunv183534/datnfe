@@ -2,12 +2,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ConversationDto, GetListConversationDto, GetListMessageDto, MessageDto, MessageSendToConversationDto, MessageSendToUserDto } from 'src/app/model/chat.class';
 import { MessageType } from 'src/app/model/enum';
 import * as signalR from '@microsoft/signalr';
-
 import TimeAgo from 'javascript-time-ago'
 import vi from 'javascript-time-ago/locale/vi'
 import { ChatService } from 'src/app/services/chat.service';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { Util } from 'src/app/shared/util/util';
+import { EventService } from 'src/app/services/event.service';
+import jwt_decode from 'jwt-decode';
 TimeAgo.addDefaultLocale(vi)
 
 @Component({
@@ -19,7 +21,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   conversationType: number = 0;
   conversationFilter?: string = "";
   conversations?: ConversationDto[] = [];
-  messages?: MessageDto[] = [];
+  messages: MessageDto[] = [];
   timeAgo = new TimeAgo('vi-VI');
   contentText: string = "";
   connection?: signalR.HubConnection;
@@ -29,16 +31,22 @@ export class ChatComponent implements OnInit, OnDestroy {
   userId: string = '';
 
   thisConversation?: ConversationDto = {};
-
+  isVisibleAddConversation: boolean = false;
+  isVisibleUpdateConversation: boolean = false;
   constructor(
     private messageService: MessageService,
     private route: ActivatedRoute,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private eventService: EventService
   ) { }
 
   getTimeAgo(d: any) {
     let time = new Date(d);
     return this.timeAgo.format(time)
+  }
+
+  getDateTime(d: any) {
+    return Util.getDateTime(new Date(d));
   }
 
   ngOnInit() {
@@ -71,8 +79,23 @@ export class ChatComponent implements OnInit, OnDestroy {
     input.maxResultCount = 1000;
     this.chatService.getListMessageByConversation(input).then((res: any) => {
       this.messages = res.data.items.reverse();
-      console.log(this.messages);
-
+      this.messages?.forEach((m: MessageDto, i: number) => {
+        if (i == 0) {
+          m.showA = true;
+        } else {
+          let _m = this.messages[i - 1];
+          if (m.sender?.id == _m.sender?.id) {
+            let diff = Number(new Date(m.creationTime ?? "")) - Number(new Date(_m.creationTime ?? ""));
+            if (diff > 240000) {
+              m.showA = true;
+            } else {
+              m.showA = false;
+            }
+          } else {
+            m.showA = true;
+          }
+        }
+      });
     }).catch((err: any) => {
 
     });
@@ -122,7 +145,12 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.getListMessage();
         this.seenConversation(this.thisConversation?.id ?? "");
       } else {
-        alert("Tin nhắn mới hahaa");
+        this.messageService.add({
+          key: "newMessage",
+          severity: "info",
+          summary: "Tin nhắn mới",
+          detail: "Tin nhắn mới",
+        });
       }
     });
 
@@ -192,6 +220,38 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.thisConversation = conversation;
     this.getListMessage();
     this.seenConversation(conversation.id);
+  }
+
+  addConversationSuccess(newConversation: any) {
+    this.getListConversation();
+    this.thisConversation = newConversation;
+    this.getListMessage();
+    this.isVisibleAddConversation = false;
+  }
+
+  updateConversationSuccess(conversation: any){
+    this.getListConversation();
+    this.thisConversation = conversation;
+    this.getListMessage();
+    this.isVisibleUpdateConversation = false;
+  }
+
+  infoConversation() {
+    if (this.thisConversation?.justTwoPeople) {
+      let currentUserId = this.getDecodedAccessToken().nameid;
+      let userId = currentUserId == this.thisConversation.userAId ? this.thisConversation.userBId : this.thisConversation.userAId;
+      this.eventService.showUserDetail(userId ?? "");
+    } else {
+      this.isVisibleUpdateConversation = true;
+    }
+  }
+
+  getDecodedAccessToken(): any {
+    try {
+      return jwt_decode(localStorage.getItem("TOKEN") ?? "");
+    } catch (Error) {
+      return null;
+    }
   }
 
 }
