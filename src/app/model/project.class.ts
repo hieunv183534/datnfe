@@ -1,5 +1,5 @@
 import { FullAuditedEntityDto, PagedAndSortedResultRequestDto } from "./base.class";
-import { CalendarEventType, ProjectEventType, ProjectStage, RelationWithProject } from "./enum";
+import { CalendarEventType, ProjectEventType, ProjectStage, RelationWithProject, WorkStatus } from "./enum";
 import { UserDto } from "./user.class";
 
 export class ProjectDto extends FullAuditedEntityDto<string>{
@@ -62,7 +62,7 @@ export class PostToProjectDto {
   links?: string[];
 }
 
-export class GetProjectEventsDto extends PagedAndSortedResultRequestDto{
+export class GetProjectEventsDto extends PagedAndSortedResultRequestDto {
   projectId?: string;
   filter?: string;
   type?: number;
@@ -85,7 +85,7 @@ export class GetListProjectForInvestorDto extends PagedAndSortedResultRequestDto
   area?: string;
 }
 
-export class AddProjectCalendarEventDto{
+export class AddProjectCalendarEventDto {
   projectId?: string;
   type?: CalendarEventType;
   start?: Date;
@@ -95,7 +95,7 @@ export class AddProjectCalendarEventDto{
   title?: string;
 }
 
-export class ProjectCalendarEventDto{
+export class ProjectCalendarEventDto {
   projectId?: string;
   createdById?: string;
   createdBy?: UserDto;
@@ -105,4 +105,27 @@ export class ProjectCalendarEventDto{
   allDay?: boolean;
   autoDeleteWhenEnd?: boolean;
   title?: string;
+}
+
+export class ProjectWorkDto extends FullAuditedEntityDto<string>{
+  projectId?: string;
+  status?: WorkStatus;
+  title?: string;
+  description?: string;
+  assignorId?: string;
+  assignor?: UserDto;
+  assigneeId?: string;
+  assignee?: UserDto;
+  deadline?: Date;
+  fileIds?: string[];
+}
+
+
+export class AddProjectWorkDto{
+  projectId?: string;
+  title?: string;
+  description?: string;
+  assigneeId?: string;
+  deadline?: Date;
+  fileIds?: string[];
 }

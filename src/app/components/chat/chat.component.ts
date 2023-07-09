@@ -121,7 +121,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   initSignal() {
     let token = localStorage.getItem("TOKEN") ?? "";
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl("http://localhost:7777/chat", {
+      .withUrl("https://fsiconnected.tech/chat", {
         accessTokenFactory: () => token,
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets

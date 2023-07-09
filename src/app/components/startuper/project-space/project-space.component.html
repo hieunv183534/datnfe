@@ -2,8 +2,8 @@
   <div class="col-2 pr-3">
     <app-list-project-member (addNewMember)="isShowAddMember = true" [projectId]="project.id"
       [isMyProject]="project.extraProperties.relationWithProject == 0"></app-list-project-member>
-    <app-list-project-member-invite
-      *ngIf="project.extraProperties.relationWithProject == 0" [projectId]="project.id"></app-list-project-member-invite>
+    <app-list-project-member-invite *ngIf="project.extraProperties.relationWithProject == 0"
+      [projectId]="project.id"></app-list-project-member-invite>
   </div>
   <div class="col-8 center-col">
     <div class="project-info flex flex-column align-items-center relative">
@@ -41,14 +41,14 @@
 
     <div class="project-work-space">
       <p-tabView (onChange)="tabChange($event)">
+        <p-tabPanel header="Công việc" #appWork>
+          <app-project-work [projectId]="project.id"></app-project-work>
+        </p-tabPanel>
         <p-tabPanel header="Lịch">
           <app-project-calendar [projectId]="project.id" #appCalendar></app-project-calendar>
         </p-tabPanel>
         <p-tabPanel header="Thông tin">
           <app-project-event [project]="project" #appFeed></app-project-event>
-        </p-tabPanel>
-        <p-tabPanel header="Công việc" #appWork>
-          <app-project-work></app-project-work>
         </p-tabPanel>
       </p-tabView>
     </div>

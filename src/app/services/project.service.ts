@@ -1,8 +1,9 @@
+import { WorkStatus } from './../model/enum';
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { AddProjectCalendarEventDto, CreateUpdateProjectDto, GetListProjectForInvestorDto, GetListProjectForStartuperDto, GetProjectEventsDto, PostToProjectDto } from '../model/project.class';
+import { AddProjectCalendarEventDto, AddProjectWorkDto, CreateUpdateProjectDto, GetListProjectForInvestorDto, GetListProjectForStartuperDto, GetProjectEventsDto, PostToProjectDto } from '../model/project.class';
 import { RoleInProject } from '../model/enum';
 
 @Injectable({
@@ -131,5 +132,17 @@ export class ProjectService extends BaseService {
 
   deleteCalendarEvent(eventId: string){
     return this.BaseAPIConfig.delete(`${this.apiController}/calendar-event/${eventId}`);
+  }
+
+  addWork(input: AddProjectWorkDto){
+    return this.BaseAPIConfig.post(`${this.apiController}/work`, input);
+  }
+
+  changeWorkStatus(workId: string, newStatus:  WorkStatus){
+    return this.BaseAPIConfig.post(`${this.apiController}/change-work-status/${workId}?newStatus=${newStatus}`, {});
+  }
+
+  getProjectWorks(projectId: string){
+    return this.BaseAPIConfig.get(`${this.apiController}/project-works/${projectId}`);
   }
 }
