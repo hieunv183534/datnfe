@@ -17,6 +17,7 @@ export class ProjectDto extends FullAuditedEntityDto<string>{
   founder?: UserDto;
   isHireNewMember?: boolean;
   availableTimeRequire?: number[];
+  isActive?: boolean;
 }
 
 export class CreateUpdateProjectDto {

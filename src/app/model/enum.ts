@@ -57,7 +57,8 @@ export enum RelationWithProject {
   IsMemberOfProject,
   NotMemberOfProject,
   ProjectRequestTo,
-  RequestToProject
+  RequestToProject,
+  Admin
 }
 
 export enum WorkStatus {

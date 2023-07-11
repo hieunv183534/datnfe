@@ -54,7 +54,7 @@
 
         <ng-container *ngFor=" let project of listProject">
           <div class="lg:col-3 md:col-4 sm:col-12">
-            <app-project-item [project]="project" [relationWithProject]="formSearch.value.relationWithProject"></app-project-item>
+            <app-project-item [project]="project" [relationWithProject]="RelationWithProject.Admin" (adminAccept)="acceptProject($event)" (adminDelete)="deleteProject($event)"></app-project-item>
           </div>
         </ng-container>
       </div>

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { GetListProjectForAdminDto } from 'src/app/model/admin.class';
 import { ProjectStage, RelationWithProject } from 'src/app/model/enum';
 import { ProjectDto, GetListProjectForStartuperDto } from 'src/app/model/project.class';
+import { AdminService } from 'src/app/services/admin.service';
 import { ProjectService } from 'src/app/services/project.service';
 import { FsiValues } from 'src/app/shared/util/util';
 
@@ -32,7 +34,9 @@ export class ListProjectComponent implements OnInit {
   isActiveSelects: any[] = [
     { name: "Mới", value: false },
     { name: "Đã duyệt", value: true }
-  ]
+  ];
+
+  RelationWithProject = RelationWithProject;
 
 
   page: number = 1;
@@ -48,7 +52,8 @@ export class ListProjectComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private fb: FormBuilder,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private adminService: AdminService
   ) { }
 
   ngOnInit() {
@@ -64,7 +69,25 @@ export class ListProjectComponent implements OnInit {
 
   getListProject(reset: boolean = false) {
     if (reset) { this.page = 1; }
-
+    let input = new GetListProjectForAdminDto();
+    input.areas = this.formSearch.value.areas ?? [];
+    input.fields = this.formSearch.value.fields ?? [];
+    input.filter = this.formSearch.value.filter;
+    input.stages = this.formSearch.value.stages ?? [];
+    input.isActive = this.formSearch.value.isActive;
+    input.skipCount = (this.page - 1) * this.pageSize;
+    input.maxResultCount = this.pageSize;
+    this.adminService.getListProjectForAdmin(input).then((res: any) => {
+      this.totalRecords = res.data.totalCount;
+      this.listProject = res.data.items;
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Lấy danh sách dự án thất bại, vui lòng thử lại!",
+      });
+    });
   }
 
   submitSearch() {
@@ -86,4 +109,42 @@ export class ListProjectComponent implements OnInit {
     this.pageSize = value.rows;
   }
 
+
+  acceptProject(projectId: string) {
+    this.adminService.acceptProject(projectId).then((res: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "success",
+        summary: "Thành công",
+        detail: "Duyệt dự án/ý tưởng thành công!",
+      });
+      this.getListProject();
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Thất bại, vui lòng thử lại sau!",
+      });
+    });
+  }
+
+  deleteProject(projectId: string) {
+    this.adminService.deleteProject(projectId).then((res: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "success",
+        summary: "Thành công",
+        detail: "Xóa dự án/ý tưởng thành công!",
+      });
+      this.getListProject();
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Thất bại, vui lòng thử lại sau!",
+      });
+    });
+  }
 }

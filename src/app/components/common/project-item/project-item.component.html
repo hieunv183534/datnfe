@@ -15,6 +15,15 @@
         <button *ngIf="relationWithProject == 3" type='button' id='ketnoi' (click)="cancelRequest()">
           <i class="pi pi-times"></i> Hủy kết nối
         </button>
+
+        <ng-container *ngIf="relationWithProject == 4">
+          <button *ngIf="!project.isActive" type='button' id='ketnoi' (click)="adminAccept1()">
+            <i class="pi pi-check"></i> Duyệt
+          </button>
+          <button type='button' id='ketnoi' (click)="adminDelete1()">
+            <i class="pi pi-times"></i> Xóa
+          </button>
+        </ng-container>
       </div>
     </ng-container>
   </div>

@@ -15,6 +15,8 @@ export class ProjectItemComponent implements OnInit {
   @Output() request: EventEmitter<any> = new EventEmitter();
   @Output() accept: EventEmitter<any> = new EventEmitter();
   @Output() cancel: EventEmitter<any> = new EventEmitter();
+  @Output() adminAccept: EventEmitter<any> = new EventEmitter();
+  @Output() adminDelete: EventEmitter<any> = new EventEmitter();
 
   isHovered: boolean = false;
 
@@ -37,6 +39,8 @@ export class ProjectItemComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.project);
+
   }
 
   getArea(val: number) {
@@ -52,7 +56,11 @@ export class ProjectItemComponent implements OnInit {
   }
 
   showDetailProject() {
-    this.router.navigate(['./startuper/project-space/' + this.project.id]);
+    if (this.relationWithProject == RelationWithProject.Admin) {
+      alert(1111111111111111);
+    } else {
+      this.router.navigate(['./startuper/project-space/' + this.project.id]);
+    }
   }
 
   requestToProject() {
@@ -65,5 +73,13 @@ export class ProjectItemComponent implements OnInit {
 
   cancelRequest() {
     this.cancel.emit(this.project.id);
+  }
+
+  adminAccept1(){
+    this.adminAccept.emit(this.project.id);
+  }
+
+  adminDelete1(){
+    this.adminDelete.emit(this.project.id);
   }
 }
