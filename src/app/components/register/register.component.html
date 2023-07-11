@@ -33,7 +33,7 @@
           <label class="title">Vai trò</label>
           <p-selectButton [options]="roles" optionLabel="name" formControlName="roleRegister" optionValue="value"></p-selectButton>
         </div>
-        <p-fieldset legend="Thông tin cơ bản" [toggleable]="true" [collapsed]="true" formGroupName="baseInfomation">
+        <p-fieldset legend="Thông tin cơ bản" [toggleable]="true" [collapsed]="false" formGroupName="baseInfomation">
           <div class="p-field">
             <label class="title">Họ và tên<span style="color: red;">*</span></label>
             <input type="text" class="p-inputtext" pInputText formControlName="name"/>

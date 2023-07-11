@@ -28,7 +28,7 @@ export class AppComponent {
     this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
         this.thisRouteUrl = this.router.url;
-        if (this.thisRouteUrl.includes("chat/")) {
+        if (this.thisRouteUrl.includes("chat/") || this.thisRouteUrl.includes("admin")) {
           this.isShowFooter = false;
         } else {
           this.isShowFooter = true;

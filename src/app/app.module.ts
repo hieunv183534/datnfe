@@ -41,6 +41,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { EditorModule } from 'primeng/editor';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { CalendarModule } from 'primeng/calendar';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 import { FileUploadModule } from 'primeng/fileupload';
 import { AvatarModule } from 'primeng/avatar';
 import { CardModule } from "primeng/card";
@@ -99,6 +100,14 @@ import { ChatComponent } from './components/chat/chat.component';
 import { MessageComponent } from './components/chat/message/message.component';
 import { AddConversationComponent } from './components/chat/add-conversation/add-conversation.component';
 import { UpdateConversationComponent } from './components/chat/update-conversation/update-conversation.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AdminLoginComponent } from './components/admin/admin-login/admin-login.component';
+import { AdminRegisterComponent } from './components/admin/admin-register/admin-register.component';
+import { AdminHomeComponent } from './components/admin/admin-home/admin-home.component';
+import { ListAdminComponent } from './components/admin/admin-home/list-admin/list-admin.component';
+import { ListProjectComponent } from './components/admin/admin-home/list-project/list-project.component';
+import { ListStartuperComponent } from './components/admin/admin-home/list-startuper/list-startuper.component';
+
 
 @NgModule({
   declarations: [
@@ -141,7 +150,14 @@ import { UpdateConversationComponent } from './components/chat/update-conversati
     ChatComponent,
     MessageComponent,
     AddConversationComponent,
-    UpdateConversationComponent
+    UpdateConversationComponent,
+    AdminComponent,
+    AdminLoginComponent,
+    AdminRegisterComponent,
+    AdminHomeComponent,
+    ListStartuperComponent,
+    ListProjectComponent,
+    ListAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -195,7 +211,8 @@ import { UpdateConversationComponent } from './components/chat/update-conversati
     EditorModule,
     FullCalendarModule,
     RadioButtonModule,
-    DragDropModule
+    DragDropModule,
+    ToggleButtonModule
   ],
   providers: [
     MessageService,

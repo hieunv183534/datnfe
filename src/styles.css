@@ -150,6 +150,15 @@ app-startuper-for-startuper .p-multiselect.p-component {
   width: 100% !important;
 }
 
+app-admin p-dropdown .p-dropdown.p-component {
+  width: 100% !important;
+}
+
+app-admin .p-multiselect.p-component {
+  width: 100% !important;
+}
+
+
 .p-galleria .p-galleria-thumbnail-container {
   background-color: #3B82F6 !important;
   padding: 4px !important;

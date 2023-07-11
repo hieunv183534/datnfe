@@ -1,0 +1,89 @@
+<div class="card">
+  <p-fieldset legend="Tìm kiếm" [toggleable]="true" [collapsed]="false">
+    <form [formGroup]="formSearch" (ngSubmit)="onSearchSubmit()">
+      <div class="p-fluid grid">
+        <div class="p-field col-1">
+          <div class="p-field-checkbox" style="height: 34px; display: flex; align-items: center">
+            <p-checkbox formControlName="isActive" [binary]="true" (onChange)="onSearchSubmit()">
+            </p-checkbox>
+            <label style="margin-left: 4px; margin-top: 1px">Active</label>
+          </div>
+        </div>
+        <div class="p-field col-11">
+          <span class="p-float-label">
+            <input type="text" id="filter" pInputText formControlName="filter" (keyup.enter)="onSearchSubmit()" />
+            <label for="filter">Key Search</label>
+          </span>
+        </div>
+      </div>
+    </form>
+  </p-fieldset>
+  <br>
+
+  <p-table #dt [value]="admins" [rowHover]="true" dataKey="id"
+    styleClass="p-datatable-customers p-datatable-gridlines p-datatable-striped p-datatable-sm">
+    <ng-template pTemplate="header">
+      <tr class="ng-star-inserted">
+        <th pSortableColumn="name">
+          <div class="flex justify-content-between align-items-center ml-auto">
+            Tên
+            <p-sortIcon field="name"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="phone">
+          <div class="flex justify-content-between align-items-center ml-auto">
+            Số điện thoại
+            <p-sortIcon field="phone"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="email">
+          <div class="flex justify-content-between align-items-center ml-auto">
+            Email
+            <p-sortIcon field="email"></p-sortIcon>
+          </div>
+        </th>
+        <th pSortableColumn="status">
+          <div class="flex justify-content-between align-items-center ml-auto">
+            Trạng thái
+            <p-sortIcon field="status"></p-sortIcon>
+          </div>
+        </th>
+        <th>
+          <div class="flex justify-content-between align-items-center">
+            Thao tác
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-admin>
+      <tr>
+        <td>{{admin.name}}</td>
+        <td>{{admin.phone}}</td>
+        <td>{{admin.email}}</td>
+        <td> <p-tag styleClass="mr-2" [severity]="admin.isActive ? 'success' : 'danger'"
+            [value]="admin.isActive ? 'Active' : 'Not Active'" [rounded]="true"></p-tag></td>
+        <td>
+          <button *ngIf="!formSearch.value.isActive" pButton pRipple icon="pi pi-check" pTooltip="Duyệt tk" tooltipPosition="top"
+            class="p-button-rounded p-button-info mr-2 p-button-sm" (click)="acceptAdmin(admin)"></button>
+          <button *ngIf="!formSearch.value.isActive" pButton pRipple icon="pi pi-times" pTooltip="Xóa tk" tooltipPosition="top"
+            class="p-button-rounded p-button-info mr-2 p-button-sm" (click)="deleteAdmin(admin)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8">Không tồn tại dữ liệu.</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <p-paginator [pageLinkSize]="pageSize" [rows]="pageSize" [totalRecords]="totalRecords"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} record" [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="pageSizeOptions" (onPageChange)="onPageChange($event)">
+      </p-paginator>
+      <div class="flex align-items-center justify-content-center">
+        In total there are {{ totalRecords }} dataObjects.
+      </div>
+    </ng-template>
+  </p-table>
+  <p-toast [style]="{marginTop: '80px'}"></p-toast>
+</div>
