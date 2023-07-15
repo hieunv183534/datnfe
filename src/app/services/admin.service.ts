@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { AdminDto, GetListProjectForAdminDto, RegisterAdminDto } from '../model/admin.class';
+import { AdminDto, GetListProjectForAdminDto, GetListStartuperForAdminDto, RegisterAdminDto } from '../model/admin.class';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +44,15 @@ export class AdminService extends BaseService {
 
   deleteProject(projectId: string){
     return this.BaseAPIConfig.delete(`${this.apiController}/project/${projectId}`);
+  }
+
+  getListStartuperForAdmin(input: GetListStartuperForAdminDto){
+    return this.BaseAPIConfig.post(`${this.apiController}/to-get-list-startuper-for-admin`, input);
+  }
+
+
+  deleteStartuper(startuperId: string){
+    return this.BaseAPIConfig.delete(`${this.apiController}/startuper/${startuperId}`);
   }
 
 }

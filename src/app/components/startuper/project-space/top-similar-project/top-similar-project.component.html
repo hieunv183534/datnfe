@@ -1,0 +1,8 @@
+<div class="grid flex align-items-center justify-content-start p-3">
+  <ng-container *ngFor=" let project of projects">
+    <div class="lg:col-3 md:col-4 sm:col-12">
+      <app-project-item [project]="project" [relationWithProject]="1"
+        (request)="requestToProject($event)"></app-project-item>
+    </div>
+  </ng-container>
+</div>

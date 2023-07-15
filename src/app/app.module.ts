@@ -107,6 +107,7 @@ import { AdminHomeComponent } from './components/admin/admin-home/admin-home.com
 import { ListAdminComponent } from './components/admin/admin-home/list-admin/list-admin.component';
 import { ListProjectComponent } from './components/admin/admin-home/list-project/list-project.component';
 import { ListStartuperComponent } from './components/admin/admin-home/list-startuper/list-startuper.component';
+import { TopSimilarProjectComponent } from './components/startuper/project-space/top-similar-project/top-similar-project.component';
 
 
 @NgModule({
@@ -158,6 +159,7 @@ import { ListStartuperComponent } from './components/admin/admin-home/list-start
     ListStartuperComponent,
     ListProjectComponent,
     ListAdminComponent,
+    TopSimilarProjectComponent
   ],
   imports: [
     CommonModule,

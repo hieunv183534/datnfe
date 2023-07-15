@@ -35,6 +35,10 @@
                     </label>
                   </span>
                 </div>
+                <div class="p-field col-3 md-3">
+                  <label class="title">Giới tính</label>
+                  <p-selectButton [options]="genders" optionLabel="name" formControlName="gender" optionValue="value"></p-selectButton>
+                </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
                     <input type="text" pInputText formControlName="email" />
@@ -63,6 +67,10 @@
                     <label>Khu vực:
                     </label>
                   </span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <label class="title">Chức danh nghề nghiệp<span style="color: red;">*</span></label>
+                  <p-dropdown [options]="jobs" optionValue="value" optionLabel="name" [style]="{'width': '100%'}" [autoDisplayFirst]="false" formControlName="job"></p-dropdown>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">

@@ -2,13 +2,6 @@
   <div class="body-content">
     <div class="search">
       <h1>Tìm kiếm</h1>
-      <div class="flex">
-        <p>Loại tìm kiếm:</p> &nbsp;&nbsp;
-        <p-cascadeSelect [options]="mySelects" optionLabel="cname" optionGroupLabel="name" optionValue="code"
-          [optionGroupChildren]="['selects']" appendTo="body" formControlName="mode"
-          (ngModelChange)="submitSearch()"></p-cascadeSelect>
-      </div>
-
       <span class="p-input-icon-left">
         <i class="pi pi-search"></i>
         <input type="text" pInputText placeholder="Tìm kiếm theo từ khóa" formControlName="filter"
@@ -17,7 +10,15 @@
     </div>
     <div class="grid">
       <div class="filter-box col-2 grid fluid flex flex-column justify-content-start ">
-        <div class="p-field col-12 md-12 mt-3">
+        <div class="p-field col-12 md-12 mt-1">
+          <span class="p-float-label">
+            <p-cascadeSelect [options]="mySelects" optionLabel="cname" optionGroupLabel="name" optionValue="code"
+              [optionGroupChildren]="['selects']" appendTo="body" formControlName="mode"
+              (ngModelChange)="submitSearch()"></p-cascadeSelect>
+            <label></label>
+          </span>
+        </div>
+        <div class="p-field col-12 md-12 mt-1">
           <span class="p-float-label">
             <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="areas" optionLabel="name"
               formControlName="areas">
@@ -25,15 +26,15 @@
             <label>Khu vực</label>
           </span>
         </div>
-        <div class="p-field col-12 md-12 mt-3">
+        <div class="p-field col-12 md-12 mt-1">
           <span class="p-float-label">
             <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="fields" optionLabel="name"
               formControlName="fields">
             </p-multiSelect>
-            <label>Lĩnh vực của dự án</label>
+            <label>Lĩnh vực</label>
           </span>
         </div>
-        <div class="p-field col-12 md-12 mt-3">
+        <div class="p-field col-12 md-12 mt-1">
           <span class="p-float-label">
             <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="availableTimes"
               optionLabel="name" formControlName="availableTimes">
@@ -41,7 +42,7 @@
             <label>Thời gian khả dụng</label>
           </span>
         </div>
-        <div class="p-field col-12 md-12 mt-3">
+        <div class="p-field col-12 md-12 mt-1">
           <span class="p-float-label">
             <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="skills" optionLabel="name"
               formControlName="skills">
@@ -49,7 +50,7 @@
             <label>Kỹ năng mềm</label>
           </span>
         </div>
-        <div class="p-field col-12 md-12 mt-3">
+        <div class="p-field col-12 md-12 mt-1">
           <span class="p-float-label">
             <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="personalities"
               optionLabel="name" formControlName="personalities">
@@ -57,7 +58,7 @@
             <label>Tính cách, phong cách</label>
           </span>
         </div>
-        <div class="p-field col-12 md-12 mt-3">
+        <div class="p-field col-12 md-12 mt-1">
           <span class="p-float-label">
             <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="yearOfExps"
               optionLabel="name" formControlName="yearOfExps">

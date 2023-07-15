@@ -32,6 +32,10 @@ export class ProjectService extends BaseService {
     return this.BaseAPIConfig.get(`${this.apiController}/project-by-id/${projectId}`);
   }
 
+  getTopSimilarProject(projectId: string){
+    return this.BaseAPIConfig.get(`${this.apiController}/top-project-similar-by-project-id/${projectId}`);
+  }
+
 
   getListProjectForStartuper(input: GetListProjectForStartuperDto) {
     return this.BaseAPIConfig.post(`${this.apiController}/to-get-list-project-for-startuper`, input);

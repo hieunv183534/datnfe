@@ -21,10 +21,12 @@ export class UpdateUserInfoComponent implements OnInit {
   @Output() close: EventEmitter<any> = new EventEmitter();
   areas: any[] = FsiValues.areas;
   fields: any = FsiValues.fields;
+  jobs: any = FsiValues.jobs;
   personalities: any = FsiValues.personalities;
   skills: any = FsiValues.skills;
   yearOfExps: any = FsiValues.yearOfExps;
   availableTimes: any = FsiValues.availableTimes;
+  genders: any[] = [{ name: "Nam", value: true }, { name: "Nữ", value: false }];
 
   formBaseInfo: FormGroup = this.fb.group({});
   formStartuperInfo: FormGroup = this.fb.group({});
@@ -58,6 +60,8 @@ export class UpdateUserInfoComponent implements OnInit {
       identityCard: [null, []],
       location: [null, []],
       workingPlace: [null, []],
+      gender: [null, []],
+      job: [null, []]
     });
 
     this.formStartuperInfo = this.fb.group({
@@ -94,7 +98,9 @@ export class UpdateUserInfoComponent implements OnInit {
         dateOfBirth: new Date(res.data.dateOfBirth),
         identityCard: res.data.identityCard,
         location: res.data.location,
-        workingPlace: res.data.workingPlace
+        workingPlace: res.data.workingPlace,
+        gender: res.data.gender,
+        job: res.data.job
       });
 
       this.formStartuperInfo.patchValue({

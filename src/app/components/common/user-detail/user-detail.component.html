@@ -104,6 +104,7 @@
     <p-button *ngIf="friendStatus == 0" label="Kết nối" icon="pi pi-share-alt" (onClick)="connectOnClick()"></p-button>
     <p-button *ngIf="friendStatus == 2" label="Hủy kết nối" icon="pi pi-times" (onClick)="cancelOnClick()"></p-button>
     <p-button *ngIf="friendStatus == 3" label="Chấp nhận" icon="pi pi-check" (onClick)="acceptOnClick()"></p-button>
-    <p-button label="Trò chuyện" icon="pi pi-comments" class="p-button-success" (onClick)="chatOnClick()"></p-button>
+    <p-button *ngIf="friendStatus != -1"  label="Trò chuyện" icon="pi pi-comments" class="p-button-success" (onClick)="chatOnClick()"></p-button>
+    <p-button *ngIf="friendStatus == -1" label="Xóa tài khoản" icon="pi pi-times" (onClick)="deleteOnClick()"></p-button>
   </ng-template>
 </p-dialog>

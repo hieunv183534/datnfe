@@ -111,6 +111,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.userId = id;
         this.chatService.getConversationByUserId(id).then((res: any) => {
           this.thisConversation = res.data;
+          this.getListMessage();
         }).catch((err: any) => {
 
         });

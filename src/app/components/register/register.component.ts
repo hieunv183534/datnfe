@@ -12,9 +12,11 @@ import { FsiValues } from 'src/app/shared/util/util';
 })
 export class RegisterComponent implements OnInit {
   provinces: any[] = FsiValues.areas;
+  jobs: any[] = FsiValues.jobs;
   @Output() close: EventEmitter<any> = new EventEmitter();
   formRegister: FormGroup = this.fb.group({});
   roles: any[] = [{ name: "Nhà khởi nghiệp/ Founder/ Co-founder", value: FsiRole.Startuper }, { name: "Nhà đầu tư", value: FsiRole.Investor }];
+  genders: any[] = [{ name: "Nam", value: true }, { name: "Nữ", value: false }];
 
   constructor(
     private fb: FormBuilder,
@@ -27,13 +29,15 @@ export class RegisterComponent implements OnInit {
       phoneNumber: [null, [Validators.required]],
       password: [null, [Validators.required]],
       rePassword: [null, [Validators.required]],
-      roleRegister: [null, [Validators.required]],
+      roleRegister: [FsiRole.Startuper, [Validators.required]],
       baseInfomation: this.fb.group({
         name: [null, [Validators.required]],
         dateOfBirth: [null, [Validators.required]],
         identityCard: [null, []],
         location: [null, [Validators.required]],
         workingPlace: [null, []],
+        gender: [true, []],
+        job: [null,[Validators.required]]
       })
     })
   }

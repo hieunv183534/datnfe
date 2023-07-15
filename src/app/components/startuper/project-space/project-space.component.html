@@ -41,14 +41,14 @@
 
     <div class="project-work-space">
       <p-tabView (onChange)="tabChange($event)">
-        <p-tabPanel header="Công việc" #appWork>
-          <app-project-work [projectId]="project.id"></app-project-work>
-        </p-tabPanel>
         <p-tabPanel header="Lịch">
           <app-project-calendar [projectId]="project.id" #appCalendar></app-project-calendar>
         </p-tabPanel>
         <p-tabPanel header="Thông tin">
           <app-project-event [project]="project" #appFeed></app-project-event>
+        </p-tabPanel>
+        <p-tabPanel header="Công việc" #appWork>
+          <app-project-work [projectId]="project.id"></app-project-work>
         </p-tabPanel>
       </p-tabView>
     </div>
@@ -56,6 +56,11 @@
   <div class="col-2">
     <app-list-project-file [projectId]="project.id"
       [isMyProject]="project.extraProperties.relationWithProject == 0"></app-list-project-file>
+  </div>
+
+  <div class="col-12 top-similar-project flex flex-column">
+    <h2>DỰ ÁN GỢI Ý</h2>
+    <app-top-similar-project [projectId]="project.id"></app-top-similar-project>
   </div>
 </div>
 

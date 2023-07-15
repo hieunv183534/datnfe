@@ -8,6 +8,8 @@ export class UserDto extends FullAuditedEntityDto<string>{
   location?: number;
   workingPlace?: string;
   avatarUrl?: string;
+  gender?: boolean;
+  job?: number;
 
   /**
    *
@@ -27,4 +29,6 @@ export class UpdateBaseInfoDto {
   identityCard?: string;
   location?: number;
   workingPlace?: string;
+  gender?: boolean;
+  job?: number;
 }

@@ -1,3 +1,53 @@
-<p>
-  list-startuper works!
-</p>
+<form [formGroup]="formSearch">
+  <div class="body-content">
+    <div class="search">
+      <h1>Tìm kiếm</h1>
+
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText placeholder="Tìm kiếm theo từ khóa" formControlName="filter"
+          (keyup.enter)="submitSearch()" />
+      </span>
+    </div>
+    <div class="grid">
+      <div class="filter-box col-2 grid fluid flex flex-column justify-content-start ">
+        <div class="p-field col-12 md-12 mt-1">
+          <span class="p-float-label">
+            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="areas" optionLabel="name"
+              formControlName="areas">
+            </p-multiSelect>
+            <label>Khu vực</label>
+          </span>
+        </div>
+        <div class="p-field col-12 md-12 mt-1">
+          <span class="p-float-label">
+            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="fields" optionLabel="name"
+              formControlName="fields">
+            </p-multiSelect>
+            <label>Lĩnh vực</label>
+          </span>
+        </div>
+        <div class="col-12 flex justify-content-center mt-2">
+          <p-button icon="pi pi-search" (onClick)="submitSearch()"></p-button>
+          <p-button class="ml-4" icon="pi pi-times" (onClick)="clearSearch()"></p-button>
+        </div>
+      </div>
+      <div class="list-data col-10 grid flex align-items-center justify-content-center ">
+        <ng-container *ngIf="listStartuper.length == 0">
+          <img width="300px" src="../../../../assets/img/nodata.jpg" alt="" style="margin: auto;">
+        </ng-container>
+
+        <ng-container *ngFor=" let startuper of listStartuper">
+          <div class="lg:col-6 md:col-6 sm:col-12">
+            <app-startuper-item [startuper]="startuper" [mode]="UuidStartuperModeAdmin"></app-startuper-item>
+          </div>
+        </ng-container>
+      </div>
+      <div class="col-12 flex justify-content-center">
+        <p-paginator [pageLinkSize]="pageSize" [rows]="pageSize" [totalRecords]="totalRecords"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} nkn" [showCurrentPageReport]="true"
+          [rowsPerPageOptions]="pageSizeOptions" (onPageChange)="onPageChange($event)"></p-paginator>
+      </div>
+    </div>
+  </div>
+</form>

@@ -43,12 +43,20 @@
             <p-calendar [style]="{'width': '100%'}" formControlName="dateOfBirth"></p-calendar>
           </div>
           <div class="p-field">
+            <label class="title">Giới tính</label>
+            <p-selectButton [options]="genders" optionLabel="name" formControlName="gender" optionValue="value"></p-selectButton>
+          </div>
+          <div class="p-field">
             <label class="title">CCCD</label>
             <input type="text" class="p-inputtext" pInputText formControlName="identityCard"/>
           </div>
           <div class="p-field">
             <label class="title">Khu vực<span style="color: red;">*</span></label>
-            <p-dropdown [options]="provinces" optionValue="value" optionLabel="name" [style]="{'width': '100%'}" formControlName="location"></p-dropdown>
+            <p-dropdown [options]="provinces" optionValue="value" optionLabel="name" [style]="{'width': '100%'}" [autoDisplayFirst]="false" formControlName="location"></p-dropdown>
+          </div>
+          <div class="p-field">
+            <label class="title">Chức danh nghề nghiệp<span style="color: red;">*</span></label>
+            <p-dropdown [options]="jobs" optionValue="value" optionLabel="name" [style]="{'width': '100%'}" [autoDisplayFirst]="false" formControlName="job"></p-dropdown>
           </div>
           <div class="p-field">
             <label class="title">Nơi làm việc</label>

@@ -24,3 +24,9 @@ export class GetListProjectForAdminDto extends PagedAndSortedResultRequestDto {
   areas?: number[];
   isActive?: boolean;
 }
+
+export class GetListStartuperForAdminDto extends PagedAndSortedResultRequestDto {
+  filter?: string;
+  fields?: number[];
+  areas?: number[];
+}

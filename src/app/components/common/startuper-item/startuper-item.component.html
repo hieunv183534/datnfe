@@ -21,7 +21,7 @@
       <i class="pi pi-share-alt"></i> Kết nối
     </button>
     <button
-      *ngIf="mode != UuidStartuperModeNew && mode != UuidStartuperModeOFMe &&mode != UuidStartuperModeFromMe &&mode != UuidStartuperModeToMe"
+      *ngIf="mode != UuidStartuperModeNew && mode != UuidStartuperModeOFMe &&mode != UuidStartuperModeFromMe &&mode != UuidStartuperModeToMe &&mode != UuidStartuperModeAdmin"
       type='button' id='ketnoi' (click)="requestFromProjectOnClick()">
       <i class="pi pi-send"></i> Mời tham gia
     </button>
@@ -33,6 +33,10 @@
     </button>
     <button *ngIf="mode == UuidStartuperModeToMe" type='button' id='ketnoi' (click)="acceptRequestOnClick()">
       <i class="pi pi-check"></i> Chấp nhận
+    </button>
+
+    <button *ngIf="mode == UuidStartuperModeAdmin" type='button' id='ketnoi' (click)="deleteOnClick()">
+      <i class="pi pi-times"></i> Xóa tài khoản
     </button>
   </div>
 
