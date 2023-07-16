@@ -27,6 +27,7 @@ export class TopSimilarProjectComponent implements OnInit, OnChanges {
   }
 
   getTopSimilarProject() {
+    debugger
     this.projectService.getTopSimilarProject(this.projectId).then((res: any) => {
       debugger
       this.projects = res.data;
