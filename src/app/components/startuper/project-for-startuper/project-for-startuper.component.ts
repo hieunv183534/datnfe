@@ -60,7 +60,7 @@ export class ProjectForStartuperComponent implements OnInit {
       areas: [[], []],
       stages: [[], []],
       availableTimes: [[], []],
-      relationWithProject: [RelationWithProject.IsMemberOfProject, []]
+      relationWithProject: [RelationWithProject.NotMemberOfProject, []]
     });
     this.getListProject();
   }

@@ -18,6 +18,8 @@ export class ListProjectInviteMemberComponent implements OnInit {
 
   inviteUsers: any[] = [];
 
+  isShowRequestInfo: boolean = false;
+
   constructor(
     private projectService: ProjectService,
     private messageService: MessageService,

@@ -1,5 +1,5 @@
 import { EventService } from 'src/app/services/event.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -9,13 +9,14 @@ import { UserDto } from 'src/app/model/user.class';
 import { ProjectService } from 'src/app/services/project.service';
 import { StartuperService } from 'src/app/services/startuper.service';
 import { FsiValues } from 'src/app/shared/util/util';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-startuper-for-startuper',
   templateUrl: './startuper-for-startuper.component.html',
   styleUrls: ['./startuper-for-startuper.component.css']
 })
-export class StartuperForStartuperComponent implements OnInit {
+export class StartuperForStartuperComponent implements OnInit, OnDestroy {
   fields: any = FsiValues.fields;
   areas: any = FsiValues.areas;
   availableTimes: any = FsiValues.availableTimes;
@@ -37,6 +38,8 @@ export class StartuperForStartuperComponent implements OnInit {
   mySelects: any[] = [];
   userSelect: UserDto = {};
 
+  private subscription = new Subscription();
+
   constructor(
     private route: ActivatedRoute,
     private messageService: MessageService,
@@ -45,6 +48,9 @@ export class StartuperForStartuperComponent implements OnInit {
     private projectService: ProjectService,
     private eventService: EventService
   ) { }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   ngOnInit() {
     this.eventService.currentReloadStartuper.subscribe(reload => {
@@ -101,11 +107,14 @@ export class StartuperForStartuperComponent implements OnInit {
           cname: "Dành cho dự án " + x.project.projectName
         };
       });
-      this.route.params.subscribe(params => {
+      var obs = this.route.params.subscribe(params => {
         let mode = params["mode"];
         this.formSearch.controls["mode"].patchValue(mode);
+        setTimeout(() => {
+          this.getListStartuper(true);
+        }, 1000);
       });
-      this.getListStartuper(true);
+      this.subscription.add(obs);
     }).catch((err: any) => {
       this.messageService.add({
         key: "toast",
@@ -131,7 +140,6 @@ export class StartuperForStartuperComponent implements OnInit {
     input.skipCount = (this.page - 1) * this.pageSize;
     input.maxResultCount = this.pageSize;
     this.startuperService.getListStartuper(input).then((res: any) => {
-      debugger
       this.totalRecords = res.data.totalCount;
       this.listStartuper = res.data.items;
     }).catch((err: any) => {

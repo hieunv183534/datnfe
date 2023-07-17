@@ -122,11 +122,29 @@ export class ProjectWorkDto extends FullAuditedEntityDto<string>{
 }
 
 
-export class AddProjectWorkDto{
+export class AddProjectWorkDto {
   projectId?: string;
   title?: string;
   description?: string;
   assigneeId?: string;
   deadline?: Date;
   fileIds?: string[];
+}
+
+
+export class ProjectRequestStartuperInfoDto {
+  locations?: number[];
+  jobs?: number[];
+  workingPlace?: string;
+  describe?: string;
+  fields?: number[];
+  speciality?: string;
+  personalities?: number[];
+  skills?: number[];
+  workingExperience?: string;
+  activity?: string;
+  certificateAndAward?: string;
+  yearOfExps?: number[];
+  availableTimes?: number[];
+  projectId?: string;
 }

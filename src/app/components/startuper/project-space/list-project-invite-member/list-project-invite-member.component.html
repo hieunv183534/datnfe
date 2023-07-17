@@ -59,5 +59,11 @@
     </p-table>
 
     <button pButton pRipple type="button" label="Tìm kiếm thành viên mới từ trang nhà khởi ngiệp" class="p-button-outlined mt-3 col-12" (click)="goToStartuper()"></button>
+    <p class="col-11">Để việc tìm kiếm thành viên từ trang nhà khởi nghiệp mang hiệu quả cao nhất, hãy mô tả về yêu cầu của bạn ở đây</p>
+    <p-button class="col-1 p-button-secondary" icon="pi pi-id-card" (onClick)="isShowRequestInfo = true"></p-button>
   </div>
 </p-dialog>
+
+<ng-container *ngIf="isShowRequestInfo">
+  <app-request-info [display]="isShowRequestInfo" (close)="isShowRequestInfo = false" [projectId]="projectId" ></app-request-info>
+</ng-container>

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { AddProjectCalendarEventDto, AddProjectWorkDto, CreateUpdateProjectDto, GetListProjectForInvestorDto, GetListProjectForStartuperDto, GetProjectEventsDto, PostToProjectDto } from '../model/project.class';
+import { AddProjectCalendarEventDto, AddProjectWorkDto, CreateUpdateProjectDto, GetListProjectForInvestorDto, GetListProjectForStartuperDto, GetProjectEventsDto, PostToProjectDto, ProjectRequestStartuperInfoDto } from '../model/project.class';
 import { RoleInProject } from '../model/enum';
 
 @Injectable({
@@ -32,7 +32,7 @@ export class ProjectService extends BaseService {
     return this.BaseAPIConfig.get(`${this.apiController}/project-by-id/${projectId}`);
   }
 
-  getTopSimilarProject(projectId: string){
+  getTopSimilarProject(projectId: string) {
     return this.BaseAPIConfig.get(`${this.apiController}/top-project-similar-by-project-id/${projectId}`);
   }
 
@@ -114,39 +114,47 @@ export class ProjectService extends BaseService {
     imageFiles.forEach((f, i) => {
       formData.append("file" + i, f);
     });
-    formData.append("Content", input.content?? "");
-    formData.append("Location", input.location?? "");
-    formData.append("ProjectId", input.projectId?? "");
-    formData.append("FileIds", JSON.stringify(input.fileIds)  ?? "[]");
-    formData.append("Links", JSON.stringify(input.links)  ?? "[]");
-    return this.BaseAPIConfig.post(`${this.apiController}/post-to-project`,formData);
+    formData.append("Content", input.content ?? "");
+    formData.append("Location", input.location ?? "");
+    formData.append("ProjectId", input.projectId ?? "");
+    formData.append("FileIds", JSON.stringify(input.fileIds) ?? "[]");
+    formData.append("Links", JSON.stringify(input.links) ?? "[]");
+    return this.BaseAPIConfig.post(`${this.apiController}/post-to-project`, formData);
   }
 
-  getEventsOfProject(input: GetProjectEventsDto){
+  getEventsOfProject(input: GetProjectEventsDto) {
     return this.BaseAPIConfig.post(`${this.apiController}/to-get-events-of-project`, input);
   }
 
-  getProjectCalendarEvents(projectId: string){
+  getProjectCalendarEvents(projectId: string) {
     return this.BaseAPIConfig.get(`${this.apiController}/project-calendar-events/${projectId}`);
   }
 
-  addCalendarEvent(input: AddProjectCalendarEventDto){
+  addCalendarEvent(input: AddProjectCalendarEventDto) {
     return this.BaseAPIConfig.post(`${this.apiController}/calendar-event`, input);
   }
 
-  deleteCalendarEvent(eventId: string){
+  deleteCalendarEvent(eventId: string) {
     return this.BaseAPIConfig.delete(`${this.apiController}/calendar-event/${eventId}`);
   }
 
-  addWork(input: AddProjectWorkDto){
+  addWork(input: AddProjectWorkDto) {
     return this.BaseAPIConfig.post(`${this.apiController}/work`, input);
   }
 
-  changeWorkStatus(workId: string, newStatus:  WorkStatus){
+  changeWorkStatus(workId: string, newStatus: WorkStatus) {
     return this.BaseAPIConfig.post(`${this.apiController}/change-work-status/${workId}?newStatus=${newStatus}`, {});
   }
 
-  getProjectWorks(projectId: string){
+  getProjectWorks(projectId: string) {
     return this.BaseAPIConfig.get(`${this.apiController}/project-works/${projectId}`);
+  }
+
+  updateProjectRequestStartuperInfo(input: ProjectRequestStartuperInfoDto) {
+    return this.BaseAPIConfig.put(`${this.apiController}/project-request-startuper-info`, input);
+  }
+
+  getProjectRequestStartuperInfo(projectId: string) {
+    return this.BaseAPIConfig.get(`${this.apiController}/project-request-startuper-info/${projectId}`);
   }
 }

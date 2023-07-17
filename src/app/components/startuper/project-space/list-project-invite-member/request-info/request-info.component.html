@@ -1,0 +1,108 @@
+<p-dialog [resizable]="true" header="Mô tả yêu cầu thành viên" [(visible)]="display" [modal]="true"
+  [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" (onHide)="close.emit()">
+  <form [formGroup]="formRequestInfo">
+    <div class="p-fluid grid">
+      <div class="p-field col-12 md-12">
+        <span class="p-float-label mt-3">
+          <textarea [rows]="5" pInputTextarea formControlName="describe"></textarea>
+          <label>Mô tả cơ bản:
+          </label>
+        </span>
+      </div>
+      <div class="p-field col-12 md-12">
+        <span class="p-float-label">
+          <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="areas" optionLabel="name"
+            formControlName="locations">
+          </p-multiSelect>
+          <label>Khu vực</label>
+        </span>
+      </div>
+      <div class="p-field col-12 md-12">
+        <span class="p-float-label">
+          <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="jobs" optionLabel="name"
+            formControlName="jobs">
+          </p-multiSelect>
+          <label>Chức danh nghề nghiệp</label>
+        </span>
+      </div>
+      <div class="p-field col-12 md-12">
+        <span class="p-float-label">
+          <input type="text" class="p-inputtext" pInputText formControlName="workingPlace" />
+          <label>Nơi làm việc</label>
+        </span>
+      </div>
+      <div class="p-field col-12 md-12">
+        <span class="p-float-label">
+          <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="fields" optionLabel="name"
+            formControlName="fields">
+          </p-multiSelect>
+          <label>Lĩnh vực</label>
+        </span>
+      </div>
+      <div class="p-field col-12 md-12">
+        <span class="p-float-label">
+          <textarea [rows]="5" pInputTextarea formControlName="speciality"></textarea>
+          <label>Chuyên môn, kỹ năng:
+          </label>
+        </span>
+      </div>
+      <div class="p-field col-12 md-12">
+        <span class="p-float-label">
+          <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="yearOfExps"
+            optionLabel="name" formControlName="yearOfExps">
+          </p-multiSelect>
+          <label>Năm kinh nghiệm</label>
+        </span>
+      </div>
+      <div class="p-field col-12 md-12">
+        <span class="p-float-label">
+          <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="availableTimes"
+            optionLabel="name" formControlName="availableTimes">
+          </p-multiSelect>
+          <label>Thời gian khả dụng</label>
+        </span>
+      </div>
+      <div class="p-field col-12 md-12">
+        <span class="p-float-label">
+          <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="skills" optionLabel="name"
+            formControlName="skills">
+          </p-multiSelect>
+          <label>Kỹ năng mềm</label>
+        </span>
+      </div>
+      <div class="p-field col-12 md-12">
+        <span class="p-float-label">
+          <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="personalities"
+            optionLabel="name" formControlName="personalities">
+          </p-multiSelect>
+          <label>Tính cách, phong cách</label>
+        </span>
+      </div>
+      <div class="p-field col-12 md-12">
+        <span class="p-float-label">
+          <textarea [rows]="5" pInputTextarea formControlName="workingExperience"></textarea>
+          <label>Kinh nghiệm làm việc:
+          </label>
+        </span>
+      </div>
+      <div class="p-field col-12 md-12">
+        <span class="p-float-label">
+          <textarea [rows]="5" pInputTextarea formControlName="activity"></textarea>
+          <label>Các hoạt động khác:
+          </label>
+        </span>
+      </div>
+      <div class="p-field col-12 md-12">
+        <span class="p-float-label">
+          <textarea [rows]="5" pInputTextarea formControlName="certificateAndAward"></textarea>
+          <label>Chứng chỉ, thành tích:
+          </label>
+        </span>
+      </div>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button label="Lưu" styleClass="p-button-success" (onClick)="save()">
+    </p-button>
+  </ng-template>
+</p-dialog>

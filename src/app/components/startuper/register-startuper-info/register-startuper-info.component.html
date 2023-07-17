@@ -59,7 +59,7 @@
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-multiSelect optionLabel="name" optionValue="value" [maxSelectedLabels]="5" appendTo="body"
+                    <p-multiSelect optionLabel="name" optionValue="value"  [selectionLimit]="5" appendTo="body"
                       [options]="personalities" defaultLabel="Chọn tối đa 5 tính cách" optionLabel="name"
                       formControlName="personality">
                     </p-multiSelect>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-multiSelect optionLabel="name" optionValue="value" [maxSelectedLabels]="3" appendTo="body"
+                    <p-multiSelect optionLabel="name" optionValue="value"  [selectionLimit]="3" appendTo="body"
                       [options]="skills" defaultLabel="Chọn tối đa 5 tính cách" optionLabel="name"
                       formControlName="skill">
                     </p-multiSelect>
