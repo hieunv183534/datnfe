@@ -33,12 +33,19 @@ export class ChatComponent implements OnInit, OnDestroy {
   thisConversation?: ConversationDto = {};
   isVisibleAddConversation: boolean = false;
   isVisibleUpdateConversation: boolean = false;
+
+  isShowEmoji: boolean = true;
   constructor(
     private messageService: MessageService,
     private route: ActivatedRoute,
     private chatService: ChatService,
     private eventService: EventService
   ) { }
+
+  addEmoji(data: any){
+    console.log(data);
+    this.contentText = this.contentText + " " + data.emoji.native;
+  }
 
   getTimeAgo(d: any) {
     let time = new Date(d);

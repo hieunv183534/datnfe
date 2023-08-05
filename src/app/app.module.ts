@@ -109,6 +109,7 @@ import { ListProjectComponent } from './components/admin/admin-home/list-project
 import { ListStartuperComponent } from './components/admin/admin-home/list-startuper/list-startuper.component';
 import { TopSimilarProjectComponent } from './components/startuper/project-space/top-similar-project/top-similar-project.component';
 import { RequestInfoComponent } from './components/startuper/project-space/list-project-invite-member/request-info/request-info.component';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 
 @NgModule({
@@ -216,7 +217,8 @@ import { RequestInfoComponent } from './components/startuper/project-space/list-
     FullCalendarModule,
     RadioButtonModule,
     DragDropModule,
-    ToggleButtonModule
+    ToggleButtonModule,
+    PickerModule
   ],
   providers: [
     MessageService,

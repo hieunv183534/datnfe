@@ -68,9 +68,12 @@
     <div class="message-footer">
       <div class="other-message-type">
         <input style="display: none;" type="file" name="" id="" #inputFile>
-        <div class="other-message-type-item" pTooltip="Nhãn dán" tooltipPosition="top">
+        <button class="emoji-button other-message-type-item relative" pTooltip="Emoji" tooltipPosition="top">
           <i class="fa-regular fa-face-smile"></i>
-        </div>
+          <div class="emoji-wrapper absolute" *ngIf="isShowEmoji">
+            <emoji-mart (emojiClick)="addEmoji($event)"></emoji-mart>
+          </div>
+        </button>
         <div class="other-message-type-item" pTooltip="Hình ảnh" tooltipPosition="top" (click)="inputFile.click()">
           <i class="fa-regular fa-images"></i>
         </div>

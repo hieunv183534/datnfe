@@ -178,3 +178,8 @@ app-startuper-for-startuper .p-cascadeselect.p-component {
 .p-disabled, .p-component:disabled{
   opacity: 1 !important;
 }
+
+
+.emoji-mart-anchors{
+  display: none !important;
+}
