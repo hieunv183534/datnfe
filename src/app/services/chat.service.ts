@@ -40,7 +40,7 @@ export class ChatService extends BaseService {
     formData.append("ConversationName", conversationName ?? "");
     formData.append("AvatarUrl", avatarUrl ?? "");
     formData.append("ConversationId", conversationId ?? "");
-    return this.BaseAPIConfig.put(`${this.apiController}/conversation`, formData);
+    return this.BaseAPIConfig.post(`${this.apiController}/update-conversation`, formData);
   }
 
   getListConversation(input: GetListConversationDto) {

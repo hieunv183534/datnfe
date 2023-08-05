@@ -21,7 +21,7 @@ export class ProjectService extends BaseService {
   }
 
   updateProjectAsync(input: CreateUpdateProjectDto) {
-    return this.BaseAPIConfig.put(`${this.apiController}/project`, input);
+    return this.BaseAPIConfig.post(`${this.apiController}/update-project`, input);
   }
 
   addUserToProject(projectId: string, userId: string, role: RoleInProject) {
@@ -151,7 +151,7 @@ export class ProjectService extends BaseService {
   }
 
   updateProjectRequestStartuperInfo(input: ProjectRequestStartuperInfoDto) {
-    return this.BaseAPIConfig.put(`${this.apiController}/project-request-startuper-info`, input);
+    return this.BaseAPIConfig.post(`${this.apiController}/update-project-request-startuper-info`, input);
   }
 
   getProjectRequestStartuperInfo(projectId: string) {

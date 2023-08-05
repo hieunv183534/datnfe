@@ -34,7 +34,7 @@ export class StartuperService extends BaseService {
   }
 
   updateBaseInfo(input: UpdateBaseInfoDto) {
-    return this.BaseAPIConfig.put(`${this.apiController}/base-info`, input);
+    return this.BaseAPIConfig.post(`${this.apiController}/update-base-info`, input);
   }
 
   getListStartuper(input: GetListStartuperForProjectDto) {
