@@ -14,12 +14,13 @@
   [style]="{width: '560px'}" [baseZIndex]="10000" [draggable]="false">
   <div class="grid p-fluid">
     <div class="p-field col-12 md-12 flex flex-column justify-content-center align-items-center">
-      <p-selectButton style="transform: scale(0.9); width: 400px;" [options]="eventTypes" optionLabel="name" optionValue="code" [(ngModel)]="type"></p-selectButton>
+      <p-selectButton style="transform: scale(0.9); width: 400px;" [options]="eventTypes" optionLabel="name"
+        optionValue="code" [(ngModel)]="type"></p-selectButton>
       <p style="margin: 0 0 16px 0;"> (Mốc thời gian sẽ lấy điểm bắt đầu đã chọn)</p>
     </div>
     <div class="p-field col-12 md-12">
       <span class="p-float-label">
-        <input type="text" pInputText [(ngModel)]="title"/>
+        <input type="text" pInputText [(ngModel)]="title" />
         <label>Tiêu đề: <span style="color: red;">*</span>
         </label>
       </span>
@@ -33,28 +34,35 @@
     </div>
     <div *ngIf="type == 0" class="p-field col-12 md-12">
       <span class="p-float-label">
-        <p-calendar appendTo="body" [(ngModel)]="start" [disabled]="true" [showTime]="true" [showTime]="!allDay"></p-calendar>
+        <p-calendar appendTo="body" [(ngModel)]="start" [disabled]="true" [showTime]="true"
+          [showTime]="!allDay"></p-calendar>
         <label>Thời gian bắt đầu: <span style="color: red;">*</span>
         </label>
       </span>
     </div>
     <div *ngIf="type == 0" class="p-field col-12 md-12">
       <span class="p-float-label">
-        <p-calendar appendTo="body" [(ngModel)]="end" [disabled]="true" [showTime]="true" [showTime]="!allDay"></p-calendar>
+        <p-calendar appendTo="body" [(ngModel)]="end" [disabled]="true" [showTime]="true"
+          [showTime]="!allDay"></p-calendar>
         <label>Thời gian kết thúc: <span style="color: red;">*</span>
         </label>
       </span>
     </div>
-    <div class="p-field-checkbox col-6 mt-2" style="height: 34px; display: flex; align-items: center">
-        <p-checkbox  [(ngModel)]="allDay" [binary]="true" [disabled]="true">
-        </p-checkbox>
-        <label style="margin-left: 4px; margin-top: 1px">AllDay</label>
+    <div class="p-field-checkbox col-4 mt-2" style="height: 34px; display: flex; align-items: center">
+      <p-checkbox [(ngModel)]="allDay" [binary]="true" [disabled]="true">
+      </p-checkbox>
+      <label style="margin-left: 4px; margin-top: 1px">AllDay</label>
     </div>
-    <div class="p-field-checkbox col-6 mt-2" style="height: 34px; display: flex; align-items: center">
-      <p-checkbox  [(ngModel)]="autoDeleteWhenEnd" [binary]="true">
+    <div class="p-field-checkbox col-4 mt-2" style="height: 34px; display: flex; align-items: center">
+      <p-checkbox [(ngModel)]="autoDeleteWhenEnd" [binary]="true">
       </p-checkbox>
       <label style="margin-left: 4px; margin-top: 1px">Tự động xóa</label>
-  </div>
+    </div>
+    <div class="p-field-checkbox col-4 mt-2" style="height: 34px; display: flex; align-items: center">
+      <p-checkbox [(ngModel)]="isPublic" [binary]="true">
+      </p-checkbox>
+      <label style="margin-left: 4px; margin-top: 1px">Public</label>
+    </div>
   </div>
   <ng-template pTemplate="footer">
     <p-button label="Lưu" styleClass="p-button-success" (onClick)="addEvent()">
@@ -67,46 +75,53 @@
   <div class="grid p-fluid pt-3">
     <div class="p-field col-12 md-12">
       <span class="p-float-label">
-        <input type="text" pInputText [(ngModel)]="selectEvent.title" [disabled]="true"/>
+        <input type="text" pInputText [(ngModel)]="selectEvent.title" [disabled]="true" />
         <label>Tiêu đề: <span style="color: red;">*</span>
         </label>
       </span>
     </div>
     <div *ngIf="selectEvent.type == 1" class="p-field col-12 md-12">
       <span class="p-float-label">
-        <p-calendar appendTo="body" [(ngModel)]="selectEvent.start" [disabled]="true" [showTime]="!selectEvent.allDay"></p-calendar>
+        <p-calendar appendTo="body" [(ngModel)]="selectEvent.start" [disabled]="true"
+          [showTime]="!selectEvent.allDay"></p-calendar>
         <label>Thời gian: <span style="color: red;">*</span>
         </label>
       </span>
     </div>
     <div *ngIf="selectEvent.type == 0" class="p-field col-12 md-12">
       <span class="p-float-label">
-        <p-calendar appendTo="body" [(ngModel)]="selectEvent.start" [disabled]="true" [showTime]="true" [showTime]="!selectEvent.allDay"></p-calendar>
+        <p-calendar appendTo="body" [(ngModel)]="selectEvent.start" [disabled]="true" [showTime]="true"
+          [showTime]="!selectEvent.allDay"></p-calendar>
         <label>Thời gian bắt đầu: <span style="color: red;">*</span>
         </label>
       </span>
     </div>
     <div *ngIf="selectEvent.type == 0" class="p-field col-12 md-12">
       <span class="p-float-label">
-        <p-calendar appendTo="body" [(ngModel)]="selectEvent.end" [disabled]="true" [showTime]="true" [showTime]="!selectEvent.allDay"></p-calendar>
+        <p-calendar appendTo="body" [(ngModel)]="selectEvent.end" [disabled]="true" [showTime]="true"
+          [showTime]="!selectEvent.allDay"></p-calendar>
         <label>Thời gian kết thúc: <span style="color: red;">*</span>
         </label>
       </span>
     </div>
-    <div class="p-field-checkbox col-6 mt-2" style="height: 34px; display: flex; align-items: center">
-        <p-checkbox  [(ngModel)]="selectEvent.allDay" [binary]="true" [disabled]="true">
-        </p-checkbox>
-        <label style="margin-left: 4px; margin-top: 1px">AllDay</label>
+    <div class="p-field-checkbox col-4 mt-2" style="height: 34px; display: flex; align-items: center">
+      <p-checkbox [(ngModel)]="selectEvent.allDay" [binary]="true" [disabled]="true">
+      </p-checkbox>
+      <label style="margin-left: 4px; margin-top: 1px">AllDay</label>
     </div>
-    <div class="p-field-checkbox col-6 mt-2" style="height: 34px; display: flex; align-items: center">
-      <p-checkbox  [(ngModel)]="selectEvent.autoDeleteWhenEnd" [binary]="true" [disabled]="true">
+    <div *ngIf="mode < 1" class="p-field-checkbox col-4 mt-2" style="height: 34px; display: flex; align-items: center">
+      <p-checkbox [(ngModel)]="selectEvent.autoDeleteWhenEnd" [binary]="true" [disabled]="true">
       </p-checkbox>
       <label style="margin-left: 4px; margin-top: 1px">Tự động xóa</label>
-  </div>
+    </div>
+    <div *ngIf="mode < 1" class="p-field-checkbox col-4 mt-2" style="height: 34px; display: flex; align-items: center">
+      <p-checkbox [(ngModel)]="selectEvent.isPublic" [binary]="true">
+      </p-checkbox>
+      <label style="margin-left: 4px; margin-top: 1px">Public</label>
+    </div>
   </div>
   <ng-template pTemplate="footer">
-    <p-button label="Xóa" styleClass="p-button-danger" (onClick)="deleteEvent()">
+    <p-button *ngIf="mode < 1" label="Xóa" styleClass="p-button-danger" (onClick)="deleteEvent()">
     </p-button>
   </ng-template>
 </p-dialog>
-

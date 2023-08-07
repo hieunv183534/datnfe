@@ -17,6 +17,7 @@ export class ProjectItemComponent implements OnInit {
   @Output() cancel: EventEmitter<any> = new EventEmitter();
   @Output() adminAccept: EventEmitter<any> = new EventEmitter();
   @Output() adminDelete: EventEmitter<any> = new EventEmitter();
+  @Output() adminViewDetail: EventEmitter<any> = new EventEmitter();
 
   isHovered: boolean = false;
 
@@ -57,7 +58,7 @@ export class ProjectItemComponent implements OnInit {
 
   showDetailProject() {
     if (this.relationWithProject == RelationWithProject.Admin) {
-      alert(1111111111111111);
+      this.adminViewDetail.emit(this.project.id);
     } else {
       this.router.navigate(['./startuper/project-space/' + this.project.id]);
     }

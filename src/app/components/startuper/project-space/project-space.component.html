@@ -7,7 +7,7 @@
   </div>
   <div class="col-8 center-col">
     <div class="project-info flex flex-column align-items-center relative">
-      <button *ngIf="project.extraProperties.relationWithProject == 0" pButton pRipple type="button" icon="pi pi-cog"
+      <button *ngIf="isFounder" pButton pRipple type="button" icon="pi pi-cog"
         class="top-0 right-0 absolute p-button-rounded p-button-secondary p-button-text"
         (click)="isShowUpdateProject = true"></button>
       <img class="border-round" width="180px" [src]="project.avatarUrl" alt="">
@@ -42,14 +42,16 @@
     <div class="project-work-space">
       <p-tabView (onChange)="tabChange($event)">
         <p-tabPanel header="Lịch">
-          <app-project-calendar [projectId]="project.id" #appCalendar></app-project-calendar>
+          <app-project-calendar [projectId]="project.id" [mode]="project.extraProperties.relationWithProject" #appCalendar></app-project-calendar>
         </p-tabPanel>
         <p-tabPanel header="Thông tin">
           <app-project-event [project]="project" #appFeed></app-project-event>
         </p-tabPanel>
-        <p-tabPanel header="Công việc" #appWork>
-          <app-project-work [projectId]="project.id"></app-project-work>
-        </p-tabPanel>
+        <ng-container *ngIf="project.extraProperties.relationWithProject == 0">
+          <p-tabPanel header="Công việc" #appWork>
+            <app-project-work [projectId]="project.id"></app-project-work>
+          </p-tabPanel>
+        </ng-container>
       </p-tabView>
     </div>
   </div>
@@ -58,7 +60,7 @@
       [isMyProject]="project.extraProperties.relationWithProject == 0"></app-list-project-file>
   </div>
 
-  <div class="col-12 top-similar-project flex flex-column">
+  <div *ngIf="!popupAdmin" class="col-12 top-similar-project flex flex-column">
     <h2>DỰ ÁN GỢI Ý</h2>
     <app-top-similar-project [projectId]="project.id"></app-top-similar-project>
   </div>

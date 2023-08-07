@@ -30,7 +30,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   userId: string = '';
 
-  thisConversation?: ConversationDto = {};
+  thisConversation?: ConversationDto = undefined;
   isVisibleAddConversation: boolean = false;
   isVisibleUpdateConversation: boolean = false;
 

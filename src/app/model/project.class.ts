@@ -52,6 +52,7 @@ export class ProjectEventDto extends FullAuditedEntityDto<string> {
   invesment?: number;
   eventTime?: Date;
   links?: string[];
+  isPublic?: boolean;
 }
 
 
@@ -61,6 +62,7 @@ export class PostToProjectDto {
   location?: string;
   fileIds?: string[];
   links?: string[];
+  isPublic?: boolean;
 }
 
 export class GetProjectEventsDto extends PagedAndSortedResultRequestDto {
@@ -94,6 +96,7 @@ export class AddProjectCalendarEventDto {
   allDay?: boolean;
   autoDeleteWhenEnd?: boolean;
   title?: string;
+  isPublic?: boolean;
 }
 
 export class ProjectCalendarEventDto {
@@ -106,6 +109,7 @@ export class ProjectCalendarEventDto {
   allDay?: boolean;
   autoDeleteWhenEnd?: boolean;
   title?: string;
+  isPublic?: boolean;
 }
 
 export class ProjectWorkDto extends FullAuditedEntityDto<string>{

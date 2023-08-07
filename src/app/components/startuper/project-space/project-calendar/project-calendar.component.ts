@@ -19,6 +19,7 @@ import jwt_decode from 'jwt-decode';
 export class ProjectCalendarComponent implements OnInit {
 
   @Input() projectId: string = "";
+  @Input() mode: number = 0;
   currentUserId: string = "";
 
   eventTypes: any[] = [
@@ -41,6 +42,7 @@ export class ProjectCalendarComponent implements OnInit {
   end?: Date;
   allDay: boolean = false;
   autoDeleteWhenEnd?: boolean = false;
+  isPublic: boolean = false;
 
   selectEvent: any = {
     type: CalendarEventType.TimePeriod,
@@ -122,15 +124,18 @@ export class ProjectCalendarComponent implements OnInit {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
-    const calendarApi = selectInfo.view.calendar;
-    calendarApi.unselect();
-    this.start = selectInfo.start;
-    this.end = selectInfo.end;
-    this.allDay = selectInfo.allDay;
-    this.title = "";
-    this.autoDeleteWhenEnd = false;
-    this.type = CalendarEventType.TimePeriod;
-    this.isShowAddEvent = true;
+    if(this.mode < 1){
+      const calendarApi = selectInfo.view.calendar;
+      calendarApi.unselect();
+      this.start = selectInfo.start;
+      this.end = selectInfo.end;
+      this.allDay = selectInfo.allDay;
+      this.title = "";
+      this.autoDeleteWhenEnd = false;
+      this.isPublic = false;
+      this.type = CalendarEventType.TimePeriod;
+      this.isShowAddEvent = true;
+    }
   }
 
   handleEventClick(clickInfo: EventClickArg) {
@@ -163,6 +168,7 @@ export class ProjectCalendarComponent implements OnInit {
       input.end = this.end;
       input.type = this.type;
       input.title = this.title;
+      input.isPublic = this.isPublic;
       this.projectService.addCalendarEvent(input).then((res: any) => {
         this.getListEvent();
         this.messageService.add({

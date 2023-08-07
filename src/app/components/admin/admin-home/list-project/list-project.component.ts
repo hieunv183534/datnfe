@@ -49,6 +49,10 @@ export class ListProjectComponent implements OnInit {
   listProject: ProjectDto[] = []
 
   isVisibleAddProject: boolean = false;
+
+  displayProjectDetail: boolean = false;
+
+  projectId: string = "";
   constructor(
     private messageService: MessageService,
     private fb: FormBuilder,
@@ -94,6 +98,15 @@ export class ListProjectComponent implements OnInit {
     this.getListProject(true);
   }
 
+  viewProject(projectId: string){
+    this.projectId = projectId;
+    this.displayProjectDetail = true;
+  }
+
+  approveProject(){
+
+  }
+
   clearSearch() {
     this.formSearch.controls["filter"].patchValue(null);
     this.formSearch.controls["fields"].patchValue([]);
@@ -118,6 +131,7 @@ export class ListProjectComponent implements OnInit {
         summary: "Thành công",
         detail: "Duyệt dự án/ý tưởng thành công!",
       });
+      this.displayProjectDetail = false;
       this.getListProject();
     }).catch((err: any) => {
       this.messageService.add({
@@ -137,6 +151,7 @@ export class ListProjectComponent implements OnInit {
         summary: "Thành công",
         detail: "Xóa dự án/ý tưởng thành công!",
       });
+      this.displayProjectDetail = false;
       this.getListProject();
     }).catch((err: any) => {
       this.messageService.add({

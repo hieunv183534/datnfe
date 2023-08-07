@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ProjectService } from 'src/app/services/project.service';
@@ -8,6 +8,7 @@ import { ProjectStage } from 'src/app/model/enum';
 import { ProjectCalendarComponent } from './project-calendar/project-calendar.component';
 import { ProjectWorkComponent } from './project-work/project-work.component';
 import { ProjectEventComponent } from './project-event/project-event.component';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-project-space',
@@ -22,6 +23,10 @@ export class ProjectSpaceComponent implements OnInit {
   isShowUpdateProject: boolean = false;
 
   project: any = { extraProperties: {} };
+
+  @Input() popupAdmin: boolean = false;
+  @Input() projectId: string = "";
+
 
   @ViewChild("listFile") listFile?: ListProjectFileComponent;
   @ViewChild("appCalendar") appCalendar?: ProjectCalendarComponent;
@@ -38,6 +43,9 @@ export class ProjectSpaceComponent implements OnInit {
     { name: "Tăng trưởng 3", value: ProjectStage.TangTruong3 },
     { name: "Tăng trưởng 4", value: ProjectStage.TangTruong4 }
   ];
+
+  isFounder: boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
@@ -57,12 +65,12 @@ export class ProjectSpaceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      let projectId = params["projectId"];
-      this.project.id = projectId;
+    if (this.popupAdmin) {
+      this.project.id = this.projectId;
       this.listFile?.getListFile();
-      this.projectService.getProjectById(projectId).then((res: any) => {
+      this.projectService.getProjectById(this.projectId).then((res: any) => {
         this.project = res.data;
+        this.setIsFounder();
       }).catch((err: any) => {
         this.messageService.add({
           key: "toast",
@@ -71,7 +79,37 @@ export class ProjectSpaceComponent implements OnInit {
           detail: "Lấy thông tin dự án thất bại!",
         });
       });
-    });
+    } else {
+      this.route.params.subscribe(params => {
+        let projectId = params["projectId"];
+        this.project.id = projectId;
+        this.listFile?.getListFile();
+        this.projectService.getProjectById(projectId).then((res: any) => {
+          this.project = res.data;
+          this.setIsFounder();
+        }).catch((err: any) => {
+          this.messageService.add({
+            key: "toast",
+            severity: "error",
+            summary: "Lỗi",
+            detail: "Lấy thông tin dự án thất bại!",
+          });
+        });
+      });
+    }
+  }
+
+  setIsFounder(){
+    let myInfo = this.getDecodedAccessToken();
+    this.isFounder = myInfo.nameid == this.project.founder.id;
+  }
+
+  getDecodedAccessToken(): any {
+    try {
+      return jwt_decode(localStorage.getItem("TOKEN") ?? "");
+    } catch (Error) {
+      return null;
+    }
   }
 
 
@@ -83,9 +121,9 @@ export class ProjectSpaceComponent implements OnInit {
   tabChange(event: any) {
     if (event.index == 0) {
       this.appCalendar?.getListEvent();
-    }else if(event.index == 1){
+    } else if (event.index == 1) {
       this.appFeed?.getListEvent();
-    }else if(event.index == 2){
+    } else if (event.index == 2) {
 
     }
   }

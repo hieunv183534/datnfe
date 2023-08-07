@@ -42,58 +42,63 @@
     </div>
   </div>
   <div class="message-box">
-    <div class="message-header px-3">
-      <div class="conversation-info flex align-items-center justify-content-center" (click)="infoConversation()">
-        <p-avatar shape="circle" [image]="thisConversation?.conversationAvatar??''" size="large"></p-avatar>
-        <h3 class="ml-2">{{thisConversation?.conversationName}}</h3>
-      </div>
-      <div class="flex .align-items-center justify-content-end" style="gap: 10px;">
-        <div class="other-message-type-item" pTooltip="Call âm thanh" tooltipPosition="top">
-          <i class="fa-solid fa-phone"></i>
+    <ng-container *ngIf="thisConversation != undefined" >
+      <div class="message-header px-3">
+        <div class="conversation-info flex align-items-center justify-content-center" (click)="infoConversation()">
+          <p-avatar shape="circle" [image]="thisConversation?.conversationAvatar??''" size="large"></p-avatar>
+          <h3 class="ml-2">{{thisConversation?.conversationName}}</h3>
         </div>
-        <div class="other-message-type-item" pTooltip="Call video" tooltipPosition="top">
-          <i class="fa-solid fa-video"></i>
-        </div>
-      </div>
-    </div>
-    <div class="message-content pl-5" #scrollMe [scrollTop]="scrollMe.scrollHeight">
-      <div class="message-wrapper">
-        <ng-container *ngFor="let message of messages">
-          <div app-message [message]="message"
-            [ngClass]="{'w-full message-item flex': true, 'justify-content-start' : !message.isMine, 'justify-content-end': message.isMine ,'mt-3':message.showA }">
+        <div class="flex .align-items-center justify-content-end" style="gap: 10px;">
+          <div class="other-message-type-item" pTooltip="Call âm thanh" tooltipPosition="top">
+            <i class="fa-solid fa-phone"></i>
           </div>
-        </ng-container>
-      </div>
-    </div>
-    <div class="message-footer">
-      <div class="other-message-type">
-        <input style="display: none;" type="file" name="" id="" #inputFile>
-        <button class="emoji-button other-message-type-item relative" pTooltip="Emoji" tooltipPosition="top">
-          <i class="fa-regular fa-face-smile"></i>
-          <div class="emoji-wrapper absolute" *ngIf="isShowEmoji">
-            <emoji-mart (emojiClick)="addEmoji($event)"></emoji-mart>
+          <div class="other-message-type-item" pTooltip="Call video" tooltipPosition="top">
+            <i class="fa-solid fa-video"></i>
           </div>
-        </button>
-        <div class="other-message-type-item" pTooltip="Hình ảnh" tooltipPosition="top" (click)="inputFile.click()">
-          <i class="fa-regular fa-images"></i>
-        </div>
-        <div class="other-message-type-item" pTooltip="Tài liệu" tooltipPosition="top">
-          <i class="fa-solid fa-paperclip"></i>
         </div>
       </div>
-      <div class="text-type">
-        <input type="text" style="flex-grow: 1;" [(ngModel)]="contentText" placeholder="Nhập tin nhắn ..."
-          (keyup.enter)="send()">
-        <div *ngIf="!contentText" class="other-message-type-item" pTooltip="Gửi lượt thích" tooltipPosition="top"
-          style="width: 48px; height: 48px; font-size: 27px; color: #3B82F6;">
-          <i class="fa-solid fa-thumbs-up"></i>
-        </div>
-        <div *ngIf="contentText" class="other-message-type-item" pTooltip="Enter để gửi" tooltipPosition="top"
-          style="width: 48px; height: 48px; font-size: 27px;color: #3B82F6;" (click)="send()">
-          <i class="fa-solid fa-paper-plane"></i>
+      <div class="message-content pl-5" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+        <div class="message-wrapper">
+          <ng-container *ngFor="let message of messages">
+            <div app-message [message]="message"
+              [ngClass]="{'w-full message-item flex': true, 'justify-content-start' : !message.isMine, 'justify-content-end': message.isMine ,'mt-3':message.showA }">
+            </div>
+          </ng-container>
         </div>
       </div>
-    </div>
+      <div class="message-footer">
+        <div class="other-message-type">
+          <input style="display: none;" type="file" name="" id="" #inputFile>
+          <button class="emoji-button other-message-type-item relative" pTooltip="Emoji" tooltipPosition="top">
+            <i class="fa-regular fa-face-smile"></i>
+            <div class="emoji-wrapper absolute" *ngIf="isShowEmoji">
+              <emoji-mart (emojiClick)="addEmoji($event)"></emoji-mart>
+            </div>
+          </button>
+          <div class="other-message-type-item" pTooltip="Hình ảnh" tooltipPosition="top" (click)="inputFile.click()">
+            <i class="fa-regular fa-images"></i>
+          </div>
+          <div class="other-message-type-item" pTooltip="Tài liệu" tooltipPosition="top">
+            <i class="fa-solid fa-paperclip"></i>
+          </div>
+        </div>
+        <div class="text-type">
+          <input type="text" style="flex-grow: 1;" [(ngModel)]="contentText" placeholder="Nhập tin nhắn ..."
+            (keyup.enter)="send()">
+          <div *ngIf="!contentText" class="other-message-type-item" pTooltip="Gửi lượt thích" tooltipPosition="top"
+            style="width: 48px; height: 48px; font-size: 27px; color: #3B82F6;">
+            <i class="fa-solid fa-thumbs-up"></i>
+          </div>
+          <div *ngIf="contentText" class="other-message-type-item" pTooltip="Enter để gửi" tooltipPosition="top"
+            style="width: 48px; height: 48px; font-size: 27px;color: #3B82F6;" (click)="send()">
+            <i class="fa-solid fa-paper-plane"></i>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="thisConversation == undefined">
+      <h2 style="margin-left: 50%; margin-top: 27%; transform: translate( -38% , 0 );">Hãy chọn một đoạn chat hoặc bắt đầu cuộc trò chuyện mới</h2>
+    </ng-container>
   </div>
   <div class="infomation-box"></div>
 </div>

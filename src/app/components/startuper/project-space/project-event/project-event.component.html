@@ -1,7 +1,7 @@
 <div class="grid flex flex-column justify-content-start w-full">
 
   <div class="flex w-full justify-content-between">
-    <p-button label="Đăng bài mới" icon="pi pi-plus" (onClick)="isVisibleAddPost = true"></p-button>
+    <p-button *ngIf="project.extraProperties.relationWithProject < 1" label="Đăng bài mới" icon="pi pi-plus" (onClick)="isVisibleAddPost = true"></p-button>
     <span class="flex align-items-center justify-content-end">
       <span class="p-input-icon-left mr-2">
         <i class="pi pi-search"></i>

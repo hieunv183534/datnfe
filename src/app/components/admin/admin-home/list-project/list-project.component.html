@@ -12,9 +12,8 @@
       <div class="filter-box col-2 grid fluid flex flex-column justify-content-start ">
         <div class="p-field col-12 md-12 mt-1">
           <span class="p-float-label">
-            <p-dropdown [options]="isActiveSelects" optionValue="value" optionLabel="name"
-              [style]="{'width': '100%'}" formControlName="isActive"
-              (onChange)="submitSearch()"></p-dropdown>
+            <p-dropdown [options]="isActiveSelects" optionValue="value" optionLabel="name" [style]="{'width': '100%'}"
+              formControlName="isActive" (onChange)="submitSearch()"></p-dropdown>
             <label>Loại dự án</label>
           </span>
         </div>
@@ -54,7 +53,9 @@
 
         <ng-container *ngFor=" let project of listProject">
           <div class="lg:col-3 md:col-4 sm:col-12">
-            <app-project-item [project]="project" [relationWithProject]="RelationWithProject.Admin" (adminAccept)="acceptProject($event)" (adminDelete)="deleteProject($event)"></app-project-item>
+            <app-project-item [project]="project" [relationWithProject]="RelationWithProject.Admin"
+              (adminAccept)="acceptProject($event)" (adminDelete)="deleteProject($event)"
+              (adminViewDetail)="viewProject($event)"></app-project-item>
           </div>
         </ng-container>
       </div>
@@ -66,3 +67,18 @@
     </div>
   </div>
 </form>
+
+
+<ng-container *ngIf="displayProjectDetail">
+  <p-dialog [resizable]="true" header="Thông tin dự án" [(visible)]="displayProjectDetail" [modal]="true"
+    [style]="{width: '95vw'}" [baseZIndex]="10000" [draggable]="false">
+    <app-project-space [projectId]="projectId" [popupAdmin]="true"></app-project-space>
+
+    <ng-template pTemplate="footer">
+      <p-button label="Duyệt" styleClass="p-button-success" (onClick)="acceptProject(projectId)">
+      </p-button>
+      <p-button label="Xóa" styleClass="p-button-danger" (onClick)="deleteProject(projectId)">
+      </p-button>
+    </ng-template>
+  </p-dialog>
+</ng-container>
