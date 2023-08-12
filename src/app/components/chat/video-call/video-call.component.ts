@@ -18,9 +18,9 @@ export class VideoCallComponent implements OnInit, AfterViewInit, OnChanges {
 
   options: any = {
     appId: '48f5a9f8d4e644a6a1ca96376fdcf441',
-    channel: 'string',
-    token: '00648f5a9f8d4e644a6a1ca96376fdcf441IADQXos5oYdXR0IlFZ8ibKuezAzhbWdLsokqhmOsnQ36A6myvp6TOkrwEADBz/d8Q7XYZAEAAQBEtdhk ',
-    uid: "3a0ca927-1857-2c69-801f-67ae7a8c8d79",
+    channel: '',
+    token: '',
+    uid: "",
   };
 
   channelParameters: any = {
@@ -81,6 +81,8 @@ export class VideoCallComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   async join() {
+    console.log(this.options);
+
     await this.agoraEngine.join(this.options.appId, this.options.channel, this.options.token, this.options.uid);
     this.channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
     this.channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack();
