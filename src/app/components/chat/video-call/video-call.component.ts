@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, EventEmitter, Inject, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { AgoraService } from 'src/app/services/agora.service';
 import jwt_decode from 'jwt-decode';
 import AgoraRTC from "agora-rtc-sdk-ng";
@@ -9,10 +9,12 @@ import AgoraRTC from "agora-rtc-sdk-ng";
   templateUrl: './video-call.component.html',
   styleUrls: ['./video-call.component.css']
 })
-export class VideoCallComponent implements OnInit, AfterViewInit {
+export class VideoCallComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Input() visible: boolean = false;
   @Output() close: EventEmitter<any> = new EventEmitter();
+
+  @Input() conversationId?: string;
 
   options: any = {
     appId: '48f5a9f8d4e644a6a1ca96376fdcf441',
@@ -38,16 +40,22 @@ export class VideoCallComponent implements OnInit, AfterViewInit {
     private agoraService: AgoraService,
     @Inject(DOCUMENT) document: Document
   ) {
-    this.agoraService.getRtcToken("string").then((res: any) => {
-      this.options.token = res.data;
-      let myInfo = this.getDecodedAccessToken();
-      this.options.uid = myInfo.nameid;
-    });
+
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("conversationId: " + this.conversationId);
+    if (this.conversationId) {
+      this.options.channel = this.conversationId;
+      this.agoraService.getRtcToken(this.options.channel).then((res: any) => {
+        this.options.token = res.data;
+        let myInfo = this.getDecodedAccessToken();
+        this.options.uid = myInfo.nameid;
+      });
+    }
   }
 
   ngAfterViewInit(): void {
-    debugger
-    console.log(this.remotePlayerContainer);
   }
 
   ngOnInit() {
@@ -56,24 +64,17 @@ export class VideoCallComponent implements OnInit, AfterViewInit {
       await this.agoraEngine.subscribe(user, mediaType);
       console.log("subscribe success");
       if (mediaType == "video") {
-        // Retrieve the remote video track.
         this.channelParameters.remoteVideoTrack = user.videoTrack;
-        // Retrieve the remote audio track.
         this.channelParameters.remoteAudioTrack = user.audioTrack;
-        // Save the remote user id for reuse.
         this.channelParameters.remoteUid = user.uid.toString();
-        // Specify the ID of the DIV container. You can use the uid of the remote user.
         this.remotePlayerContainer.nativeElement.id = user.uid.toString();
         this.channelParameters.remoteUid = user.uid.toString();
-        this.remotePlayerContainer.nativeElement.textContent = "Remote user " + user.uid.toString();
+        // this.remotePlayerContainer.nativeElement.textContent = "Remote user " + user.uid.toString();
 
         this.channelParameters.remoteVideoTrack.play(this.remotePlayerContainer.nativeElement);
       }
-      // Subscribe and play the remote audio track If the remote user publishes the audio track only.
       if (mediaType == "audio") {
-        // Get the RemoteAudioTrack object in the AgoraRTCRemoteUser object.
         this.channelParameters.remoteAudioTrack = user.audioTrack;
-        // Play the remote audio track. No need to pass any DOM element.
         this.channelParameters.remoteAudioTrack.play();
       }
     });
@@ -82,7 +83,6 @@ export class VideoCallComponent implements OnInit, AfterViewInit {
   async join() {
     await this.agoraEngine.join(this.options.appId, this.options.channel, this.options.token, this.options.uid);
     this.channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
-    // Create a local video track from the video captured by a camera.
     this.channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack();
     await this.agoraEngine.publish([this.channelParameters.localAudioTrack, this.channelParameters.localVideoTrack]);
     this.channelParameters.localVideoTrack.play(this.localPlayerContainer.nativeElement);

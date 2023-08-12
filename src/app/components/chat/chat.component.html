@@ -95,7 +95,7 @@
           </div>
         </div>
       </div>
-      <app-video-call [visible]="isVisibleCall" (close)="isVisibleCall = false"></app-video-call>
+      <app-video-call [visible]="isVisibleCall" (close)="isVisibleCall = false" [conversationId]="thisConversation.id"></app-video-call>
     </ng-container>
     <ng-container *ngIf="thisConversation == undefined">
       <h2 style="margin-left: 50%; margin-top: 27%; transform: translate( -38% , 0 );">Hãy chọn một đoạn chat hoặc bắt đầu cuộc trò chuyện mới</h2>
