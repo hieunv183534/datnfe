@@ -52,7 +52,7 @@
           <div class="other-message-type-item" pTooltip="Call âm thanh" tooltipPosition="top">
             <i class="fa-solid fa-phone"></i>
           </div>
-          <div class="other-message-type-item" pTooltip="Call video" tooltipPosition="top">
+          <div class="other-message-type-item" pTooltip="Call video" tooltipPosition="top" (click)="isVisibleCall = true">
             <i class="fa-solid fa-video"></i>
           </div>
         </div>
@@ -95,6 +95,7 @@
           </div>
         </div>
       </div>
+      <app-video-call [visible]="isVisibleCall" (close)="isVisibleCall = false"></app-video-call>
     </ng-container>
     <ng-container *ngIf="thisConversation == undefined">
       <h2 style="margin-left: 50%; margin-top: 27%; transform: translate( -38% , 0 );">Hãy chọn một đoạn chat hoặc bắt đầu cuộc trò chuyện mới</h2>

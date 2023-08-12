@@ -110,6 +110,7 @@ import { ListStartuperComponent } from './components/admin/admin-home/list-start
 import { TopSimilarProjectComponent } from './components/startuper/project-space/top-similar-project/top-similar-project.component';
 import { RequestInfoComponent } from './components/startuper/project-space/list-project-invite-member/request-info/request-info.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { VideoCallComponent } from './components/chat/video-call/video-call.component';
 
 
 @NgModule({
@@ -162,7 +163,8 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
     ListProjectComponent,
     ListAdminComponent,
     TopSimilarProjectComponent,
-    RequestInfoComponent
+    RequestInfoComponent,
+    VideoCallComponent
   ],
   imports: [
     CommonModule,

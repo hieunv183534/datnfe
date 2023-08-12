@@ -35,6 +35,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   isVisibleUpdateConversation: boolean = false;
 
   isShowEmoji: boolean = true;
+  isVisibleCall: boolean = false;
   constructor(
     private messageService: MessageService,
     private route: ActivatedRoute,
