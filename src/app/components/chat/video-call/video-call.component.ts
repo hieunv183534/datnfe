@@ -15,6 +15,9 @@ export class VideoCallComponent implements OnInit, AfterViewInit, OnChanges {
   @Output() close: EventEmitter<any> = new EventEmitter();
 
   @Input() conversationId?: string;
+  @Input() remoteUser?: string = "";
+
+  isShowRemote: boolean = false;
 
   options: any = {
     appId: '48f5a9f8d4e644a6a1ca96376fdcf441',
@@ -44,7 +47,6 @@ export class VideoCallComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("conversationId: " + this.conversationId);
     if (this.conversationId) {
       this.options.channel = this.conversationId;
       this.agoraService.getRtcToken(this.options.channel).then((res: any) => {
@@ -70,6 +72,7 @@ export class VideoCallComponent implements OnInit, AfterViewInit, OnChanges {
         this.remotePlayerContainer.nativeElement.id = user.uid.toString();
         this.channelParameters.remoteUid = user.uid.toString();
         // this.remotePlayerContainer.nativeElement.textContent = "Remote user " + user.uid.toString();
+        this.isShowRemote = true;
 
         this.channelParameters.remoteVideoTrack.play(this.remotePlayerContainer.nativeElement);
       }
