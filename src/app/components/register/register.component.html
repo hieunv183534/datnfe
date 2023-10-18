@@ -52,7 +52,7 @@
           </div> -->
           <div class="p-field">
             <label class="title">Khu vực<span style="color: red;">*</span></label>
-            <p-dropdown [options]="provinces" optionValue="value" optionLabel="name" [style]="{'width': '100%'}" [autoDisplayFirst]="false" formControlName="location"></p-dropdown>
+            <p-dropdown [filter]="true" [options]="provinces" optionValue="value" optionLabel="name" [style]="{'width': '100%'}" [autoDisplayFirst]="false" formControlName="location"></p-dropdown>
           </div>
           <div class="p-field">
             <label class="title">Chức danh nghề nghiệp<span style="color: red;">*</span></label>
