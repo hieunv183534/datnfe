@@ -28,6 +28,15 @@ export class UpdateUserInfoComponent implements OnInit {
   availableTimes: any = FsiValues.availableTimes;
   genders: any[] = [{ name: "Nam", value: true }, { name: "Nữ", value: false }];
 
+  universities: any[] = FsiValues.universities.map(x => {
+    return {
+      value: x.universityName,
+      name: x.universityName
+    }
+  });
+
+  universitySpecializeds?: any[] = [];
+
   formBaseInfo: FormGroup = this.fb.group({});
   formStartuperInfo: FormGroup = this.fb.group({});
   formChangePassword: FormGroup = this.fb.group({});
@@ -61,7 +70,10 @@ export class UpdateUserInfoComponent implements OnInit {
       location: [null, []],
       workingPlace: [null, []],
       gender: [null, []],
-      job: [null, []]
+      job: [null, []],
+      university: [FsiValues.universities[0].universityName, []],
+      universitySpecialized: [null, []],
+      studentId: [null, []]
     });
 
     this.formStartuperInfo = this.fb.group({
@@ -87,6 +99,10 @@ export class UpdateUserInfoComponent implements OnInit {
     this.getUserInfo();
   }
 
+  get jobValue() {
+    return this.formBaseInfo.value["job"];
+  }
+
   getUserInfo() {
     this.startuperService.getMyInfo().then((res: any) => {
       console.log(res.data);
@@ -100,8 +116,20 @@ export class UpdateUserInfoComponent implements OnInit {
         location: res.data.location,
         workingPlace: res.data.workingPlace,
         gender: res.data.gender,
-        job: res.data.job
+        job: res.data.job,
+        university: res.data.university,
+        universitySpecialized: res.data.universitySpecialized,
+        studentId: res.data.studentId
       });
+
+      if (res.data.university) {
+        this.universitySpecializeds = FsiValues.universities.find(x => x.universityName == res.data.university)?.specializeds?.map(x => {
+          return {
+            value: x,
+            name: x
+          }
+        })
+      }
 
       this.formStartuperInfo.patchValue({
         describe: res.data.describe,
@@ -125,6 +153,16 @@ export class UpdateUserInfoComponent implements OnInit {
       });
     });
   }
+
+  changeUniversity(e: any) {
+    this.universitySpecializeds = FsiValues.universities.find(x => x.universityName == e.value)?.specializeds?.map(x => {
+      return {
+        value: x,
+        name: x
+      }
+    });
+  }
+
 
   save() {
     if (this.activeIndex == 0) {
@@ -168,7 +206,7 @@ export class UpdateUserInfoComponent implements OnInit {
       if (this.formChangePassword.valid) {
         if (this.formChangePassword.value.newPassword == this.formChangePassword.value.reNewPassword) {
           this.authService.changePassword(this.formChangePassword.value.oldPassword, this.formChangePassword.value.newPassword).then((res: any) => {
-            if(res.data){
+            if (res.data) {
               this.messageService.add({
                 key: "toast",
                 severity: "success",
@@ -178,7 +216,7 @@ export class UpdateUserInfoComponent implements OnInit {
               localStorage.clear();
               this.router.navigate(['./']);
 
-            }else{
+            } else {
               this.messageService.add({
                 key: "toast",
                 severity: "error",

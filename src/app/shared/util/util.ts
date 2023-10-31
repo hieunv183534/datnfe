@@ -39,6 +39,20 @@ export class DataPointDto {
   enName?: string;
 }
 
+export class UniversitySpecialized {
+
+  /**
+   *
+   */
+  constructor(_universityName?: string, _specializeds?: string[]) {
+    this.universityName = _universityName;
+    this.specializeds = _specializeds;
+  }
+
+  universityName?: string;
+  specializeds?: string[];
+}
+
 
 
 export class FsiValues {
@@ -259,5 +273,36 @@ export class FsiValues {
     new DataPointDto("Tăng trưởng 2", 6),
     new DataPointDto("Tăng trưởng 3", 7),
     new DataPointDto("Tăng trưởng 4", 8)
+  ]
+
+  static universities: UniversitySpecialized[] = [
+    new UniversitySpecialized("Trường Đại học Kinh tế - Kỹ thuật Công nghiệp UNETI",
+      [
+        "Ngôn ngữ Anh",
+        "Quản trị kinh doanh",
+        "Marketing",
+        "Kinh doanh thương mại",
+        "Tài chính - Ngân hàng",
+        "Bảo hiểm",
+        "Kế toán",
+        "Kiểm toán",
+        "Khoa học dữ liệu",
+        "Mạng máy tính và truyền thông dữ liệu",
+        "Công nghệ kỹ thuật máy tính",
+        "Công nghệ thông tin",
+        "Công nghệ kỹ thuật cơ khí",
+        "Công nghệ kỹ thuật cơ điện tử",
+        "Công nghệ kỹ thuật Ô tô",
+        "Công nghệ kỹ thuật điện, điện tử",
+        "Công nghệ kỹ thuật điện tử - viễn thông",
+        "CNKT điều khiển và tự động hoá",
+        "Logistics và Quản lý chuỗi cung ứng",
+        "Công nghệ dệt, may",
+        "Công nghệ sợi, dệt",
+        "Công nghệ thực phẩm",
+        "Quản trị dịch vụ du lịch và lữ hành",
+        "Quản trị khách sạn"
+      ]),
+      new UniversitySpecialized("HUST", ["IT1","IT2"])
   ]
 }

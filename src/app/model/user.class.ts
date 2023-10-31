@@ -10,6 +10,9 @@ export class UserDto extends FullAuditedEntityDto<string>{
   avatarUrl?: string;
   gender?: boolean;
   job?: number;
+  university?: string;
+  universitySpecialized?: string;
+  studentId?: string;
 
   /**
    *
@@ -31,4 +34,7 @@ export class UpdateBaseInfoDto {
   workingPlace?: string;
   gender?: boolean;
   job?: number;
+  university?: string;
+  universitySpecialized?: string;
+  studentId?: string;
 }

@@ -1,89 +1,239 @@
 <form [formGroup]="formRegister">
-  <div class='register'>
-    <div class='background' (click)="closeRegister()"></div>
-    <div class='content'>
-      <div class='scroll'>
+  <div class="register">
+    <div class="background" (click)="closeRegister()"></div>
+    <div class="content">
+      <div class="scroll">
         <div [style]="{ textAlign: 'center' }">
           <a to="/">
-            <img [style]="{ marginRight: '20px' }" src="../../../assets/img/logo.png" alt="main logo" width="30px"
-              height="30px" />
-            <img src="../../../assets/img/title.png" alt="title" width="150px" height="30px" />
+            <img
+              [style]="{ marginRight: '20px' }"
+              src="../../../assets/img/logo.png"
+              alt="main logo"
+              width="30px"
+              height="30px"
+            />
+            <img
+              src="../../../assets/img/title.png"
+              alt="title"
+              width="150px"
+              height="30px"
+            />
           </a>
         </div>
-        <h3>
-          <i class="pi pi-user-plus"></i> Đăng ký tài khoản mới
-        </h3>
+        <h3><i class="pi pi-user-plus"></i> Đăng ký tài khoản mới</h3>
         <div class="p-field">
-          <label class="title">Email<span style="color: red;">*</span></label>
-          <input type="text" class="p-inputtext" pInputText formControlName="email"/>
+          <label class="title">Email<span style="color: red">*</span></label>
+          <input
+            type="text"
+            class="p-inputtext"
+            pInputText
+            formControlName="email"
+          />
         </div>
         <div class="p-field">
-          <label class="title">Số điện thoại<span style="color: red;">*</span></label>
-          <input type="text" class="p-inputtext" pInputText formControlName="phoneNumber"/>
+          <label class="title"
+            >Số điện thoại<span style="color: red">*</span></label
+          >
+          <input
+            type="text"
+            class="p-inputtext"
+            pInputText
+            formControlName="phoneNumber"
+          />
         </div>
         <div class="p-field">
-          <label class="title">Mật khẩu<span style="color: red;">*</span></label>
-          <input type="password" class="p-inputtext" pInputText formControlName="password"/>
+          <label class="title">Mật khẩu<span style="color: red">*</span></label>
+          <input
+            type="password"
+            class="p-inputtext"
+            pInputText
+            formControlName="password"
+          />
         </div>
         <div class="p-field">
-          <label class="title">Nhập lại mật khẩu<span style="color: red;">*</span></label>
-          <input type="password" class="p-inputtext" pInputText formControlName="rePassword"/>
+          <label class="title"
+            >Nhập lại mật khẩu<span style="color: red">*</span></label
+          >
+          <input
+            type="password"
+            class="p-inputtext"
+            pInputText
+            formControlName="rePassword"
+          />
         </div>
         <!-- <div class="p-field">
           <label class="title">Vai trò</label>
           <p-selectButton [options]="roles" optionLabel="name" formControlName="roleRegister" optionValue="value"></p-selectButton>
         </div> -->
-        <p-fieldset legend="Thông tin cơ bản" [toggleable]="true" [collapsed]="false" formGroupName="baseInfomation">
+        <p-fieldset
+          legend="Thông tin cơ bản"
+          [toggleable]="true"
+          [collapsed]="false"
+          formGroupName="baseInfomation"
+        >
           <div class="p-field">
-            <label class="title">Họ và tên<span style="color: red;">*</span></label>
-            <input type="text" class="p-inputtext" pInputText formControlName="name"/>
+            <label class="title"
+              >Họ và tên<span style="color: red">*</span></label
+            >
+            <input
+              type="text"
+              class="p-inputtext"
+              pInputText
+              formControlName="name"
+            />
           </div>
           <div class="p-field">
-            <label class="title">Ngày sinh<span style="color: red;">*</span></label>
-            <p-calendar [style]="{'width': '100%'}" formControlName="dateOfBirth"></p-calendar>
+            <label class="title"
+              >Ngày sinh<span style="color: red">*</span></label
+            >
+            <p-calendar
+              [style]="{ width: '100%' }"
+              formControlName="dateOfBirth"
+            ></p-calendar>
           </div>
           <div class="p-field">
             <label class="title">Giới tính</label>
-            <p-selectButton [options]="genders" optionLabel="name" formControlName="gender" optionValue="value"></p-selectButton>
+            <p-selectButton
+              [options]="genders"
+              optionLabel="name"
+              formControlName="gender"
+              optionValue="value"
+            ></p-selectButton>
           </div>
           <!-- <div class="p-field">
             <label class="title">CCCD</label>
             <input type="text" class="p-inputtext" pInputText formControlName="identityCard"/>
           </div> -->
           <div class="p-field">
-            <label class="title">Khu vực<span style="color: red;">*</span></label>
-            <p-dropdown [filter]="true" [options]="provinces" optionValue="value" optionLabel="name" [style]="{'width': '100%'}" [autoDisplayFirst]="false" formControlName="location"></p-dropdown>
+            <label class="title"
+              >Khu vực<span style="color: red">*</span></label
+            >
+            <p-dropdown
+              [filter]="true"
+              [options]="provinces"
+              optionValue="value"
+              optionLabel="name"
+              [style]="{ width: '100%' }"
+              [autoDisplayFirst]="false"
+              formControlName="location"
+            ></p-dropdown>
           </div>
           <div class="p-field">
-            <label class="title">Chức danh nghề nghiệp<span style="color: red;">*</span></label>
-            <p-dropdown [options]="jobs" optionValue="value" optionLabel="name" [style]="{'width': '100%'}" [autoDisplayFirst]="false" formControlName="job"></p-dropdown>
+            <label class="title"
+              >Chức danh nghề nghiệp<span style="color: red">*</span></label
+            >
+            <p-dropdown
+              [options]="jobs"
+              optionValue="value"
+              optionLabel="name"
+              [style]="{ width: '100%' }"
+              [autoDisplayFirst]="false"
+              formControlName="job"
+            ></p-dropdown>
           </div>
-          <div class="p-field">
+          <ng-container *ngIf="jobValue == 1">
+            <div class="p-field">
+              <label class="title"
+                >Trường<span style="color: red">*</span></label
+              >
+              <p-dropdown
+                [filter]="true"
+                [options]="universities"
+                [style]="{ width: '100%' }"
+                [autoDisplayFirst]="false"
+                formControlName="university"
+                (onChange)="changeUniversity($event)"
+                optionLabel="name"
+                optionValue="value"
+              ></p-dropdown>
+            </div>
+            <div class="p-field">
+              <label class="title">Khoa<span style="color: red">*</span></label>
+              <p-dropdown
+                [filter]="true"
+                [options]="universitySpecializeds ?? []"
+                [style]="{ width: '100%' }"
+                [autoDisplayFirst]="false"
+                formControlName="universitySpecialized"
+                optionLabel="name"
+                optionValue="value"
+              ></p-dropdown>
+            </div>
+            <div class="p-field">
+              <label class="title"
+                >Mã số SV<span style="color: red">*</span></label
+              >
+              <input
+                type="text"
+                class="p-inputtext"
+                pInputText
+                formControlName="studentId"
+              />
+            </div>
+          </ng-container>
+          <div class="p-field" *ngIf="jobValue != 1">
             <label class="title">Nơi làm việc</label>
-            <input type="text" class="p-inputtext" pInputText formControlName="workingPlace"/>
+            <input
+              type="text"
+              class="p-inputtext"
+              pInputText
+              formControlName="workingPlace"
+            />
           </div>
         </p-fieldset>
-        <div class='buttonDiv'>
-          <p [style]="{ fontSize: '1rem' }">Bằng cách tiếp tục , bạn đồng ý với <span [style]="{ color: '#0386FF' ,
-                fontSize: '1rem' }">Điều khoản & Điều kiện</span> của chúng tôi . Để tìm hiểu về dữ liệu cá nhân được
-            chúng tôi thu thập và cách chúng tôi sử dụng dữ liệu đó , vui lòng truy cập <span [style]="{
-                color: '#0386FF' , fontSize: '1rem' }">Chính sách quyền riêng tư</span> của chúng tôi .</p>
-          <button class='send' (click)="submit()" pRipple>Đồng ý và tiếp tục</button>
+        <div class="buttonDiv">
+          <p [style]="{ fontSize: '1rem' }">
+            Bằng cách tiếp tục , bạn đồng ý với
+            <span [style]="{ color: '#0386FF', fontSize: '1rem' }"
+              >Điều khoản & Điều kiện</span
+            >
+            của chúng tôi . Để tìm hiểu về dữ liệu cá nhân được chúng tôi thu
+            thập và cách chúng tôi sử dụng dữ liệu đó , vui lòng truy cập
+            <span
+              [style]="{
+                color: '#0386FF',
+                fontSize: '1rem'
+              }"
+              >Chính sách quyền riêng tư</span
+            >
+            của chúng tôi .
+          </p>
+          <button class="send" (click)="submit()" pRipple>
+            Đồng ý và tiếp tục
+          </button>
         </div>
-        <p [style]="{ color: 'green' , fontSize: '1rem' }">Hoặc tiếp tục đăng ký với</p>
-        <div id='iconDiv'>
-          <a to='/'><img src="../../../assets/img/facebook.png" alt='' /></a>
-          <a to='/'><img src="../../../assets/img/tik-tok.png" alt='' /></a>
-          <a to='/'><img src="../../../assets/img/youtube.png" alt='' /></a>
-          <a to='/'><img src="../../../assets/img/twitter.png" alt='' /></a>
-          <a to='/'><img src="../../../assets/img/linkedin.png" alt='' /></a>
+        <p [style]="{ color: 'green', fontSize: '1rem' }">
+          Hoặc tiếp tục đăng ký với
+        </p>
+        <div id="iconDiv">
+          <a to="/"><img src="../../../assets/img/facebook.png" alt="" /></a>
+          <a to="/"><img src="../../../assets/img/tik-tok.png" alt="" /></a>
+          <a to="/"><img src="../../../assets/img/youtube.png" alt="" /></a>
+          <a to="/"><img src="../../../assets/img/twitter.png" alt="" /></a>
+          <a to="/"><img src="../../../assets/img/linkedin.png" alt="" /></a>
         </div>
-        <p [style]="{ fontSize: '1rem' , marginBottom: '2rem' }">Bạn đã có tài khoản? <a href='#'
-            [style]="{ color: '#0386FF' , fontSize: '1rem' , textDecoration: 'none' }">Đăng nhập ngay</a></p>
+        <p [style]="{ fontSize: '1rem', marginBottom: '2rem' }">
+          Bạn đã có tài khoản?
+          <a
+            href="#"
+            [style]="{
+              color: '#0386FF',
+              fontSize: '1rem',
+              textDecoration: 'none'
+            }"
+            >Đăng nhập ngay</a
+          >
+        </p>
         <div>
-          <p [style]="{ fontSize: '1rem' }">Trang này được Google reCAPTCHA bảo vệ để đảm bảo bạn</p>
-          <p [style]="{ fontSize: '1rem' }">không phải là robot. <span [style]="{ color: '#0386FF' , fontSize: '1rem'
-                }">Tìm hiểu thêm.</span></p>
+          <p [style]="{ fontSize: '1rem' }">
+            Trang này được Google reCAPTCHA bảo vệ để đảm bảo bạn
+          </p>
+          <p [style]="{ fontSize: '1rem' }">
+            không phải là robot.
+            <span [style]="{ color: '#0386FF', fontSize: '1rem' }"
+              >Tìm hiểu thêm.</span
+            >
+          </p>
         </div>
       </div>
     </div>

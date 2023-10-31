@@ -13,6 +13,21 @@ import { FsiValues } from 'src/app/shared/util/util';
 export class RegisterComponent implements OnInit {
   provinces: any[] = FsiValues.areas;
   jobs: any[] = FsiValues.jobs;
+  universities: any[] = FsiValues.universities.map(x => {
+    return {
+      value: x.universityName,
+      name: x.universityName
+    }
+  });
+
+  universitySpecializeds?: any[] = FsiValues.universities[0].specializeds?.map(x => {
+    return {
+      value: x,
+      name: x
+    }
+  });
+
+
   @Output() close: EventEmitter<any> = new EventEmitter();
   formRegister: FormGroup = this.fb.group({});
   roles: any[] = [{ name: "Nhà khởi nghiệp/ Founder/ Co-founder", value: FsiRole.Startuper }, { name: "Nhà đầu tư", value: FsiRole.Investor }];
@@ -37,13 +52,32 @@ export class RegisterComponent implements OnInit {
         location: [null, [Validators.required]],
         workingPlace: [null, []],
         gender: [true, []],
-        job: [null,[Validators.required]]
+        job: [1, [Validators.required]],
+        university: [FsiValues.universities[0].universityName, []],
+        universitySpecialized: [null, []],
+        studentId: [null, []]
       })
     })
+    debugger
+  }
+
+  get f() { return this.formRegister.controls; }
+
+  get jobValue() {
+    return this.formRegister.value["job"];
   }
 
   closeRegister() {
     this.close.emit();
+  }
+
+  changeUniversity(e: any) {
+    this.universitySpecializeds = FsiValues.universities.find(x => x.universityName == e.value)?.specializeds?.map(x => {
+      return {
+        value: x,
+        name: x
+      }
+    });
   }
 
   submit() {

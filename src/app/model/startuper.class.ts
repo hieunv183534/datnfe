@@ -38,4 +38,8 @@ export class GetListStartuperForProjectDto extends PagedAndSortedResultRequestDt
   personalities?: number[];
   yearOfExps?: number[];
   mode?: string;
+  isStudent?: boolean;
+  university?: string;
+  universitySpecialized?: string;
+  studentId?: string;
 }

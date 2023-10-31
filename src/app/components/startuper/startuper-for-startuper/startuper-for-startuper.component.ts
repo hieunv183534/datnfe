@@ -24,6 +24,20 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
   skills: any = FsiValues.skills;
   yearOfExps: any = FsiValues.yearOfExps;
 
+  universities: any[] = FsiValues.universities.map(x => {
+    return {
+      value: x.universityName,
+      name: x.universityName
+    }
+  });
+
+  universitySpecializeds?: any[] = FsiValues.universities[0].specializeds?.map(x => {
+    return {
+      value: x,
+      name: x
+    }
+  });
+
   listStartuper: StartuperDto[] = [];
 
   formSearch: FormGroup = this.fb.group({});
@@ -52,6 +66,8 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  get f() { return this.formSearch.controls; }
+
   ngOnInit() {
     this.eventService.currentReloadStartuper.subscribe(reload => {
       if (reload != "FSI") {
@@ -67,7 +83,11 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
       skills: [null, []],
       personalities: [[], []],
       yearOfExps: [[], []],
-      mode: [UuidStartuperModeNew, []]
+      mode: [UuidStartuperModeNew, []],
+      isStudent: [false, []],
+      university: [null, []],
+      universitySpecialized: [null, []],
+      studentId: [null, []]
     });
 
     this.mySelects = [
@@ -138,6 +158,10 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
     input.skills = this.formSearch.value.skills ?? [];
     input.yearOfExps = this.formSearch.value.yearOfExps ?? [];
     input.mode = this.formSearch.value.mode;
+    input.isStudent = this.formSearch.value.isStudent;
+    input.university = this.formSearch.value.university;
+    input.universitySpecialized = this.formSearch.value.universitySpecialized;
+    input.studentId = this.formSearch.value.studentId;
     input.skipCount = (this.page - 1) * this.pageSize;
     input.maxResultCount = this.pageSize;
     this.startuperService.getListStartuper(input).then((res: any) => {
@@ -150,6 +174,15 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
         summary: "Lỗi",
         detail: "Lấy danh sách nkn thất bại, vui lòng thử lại!",
       });
+    });
+  }
+
+  changeUniversity(e: any) {
+    this.universitySpecializeds = FsiValues.universities.find(x => x.universityName == e.value)?.specializeds?.map(x => {
+      return {
+        value: x,
+        name: x
+      }
     });
   }
 
