@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
   get f() { return this.formRegister.controls; }
 
   get jobValue() {
-    return this.formRegister.value["job"];
+    return this.formRegister.value["baseInfomation"]["job"];
   }
 
   closeRegister() {
