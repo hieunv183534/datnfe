@@ -124,7 +124,7 @@
         </div>
         <ng-container *ngIf="f['isStudent'].value">
           <div class="p-field col-12 md-12">
-            <label class="title">Trường</label>
+            <label class="title">Trường học</label>
             <p-dropdown
               [filter]="true"
               [options]="universities"
@@ -137,7 +137,7 @@
             ></p-dropdown>
           </div>
           <div class="p-field col-12 md-12">
-            <label class="title">Khoa</label>
+            <label class="title">Ngành học</label>
             <p-dropdown
               [filter]="true"
               [options]="universitySpecializeds ?? []"
@@ -147,15 +147,6 @@
               optionLabel="name"
               optionValue="value"
             ></p-dropdown>
-          </div>
-          <div class="p-field col-12 md-12">
-            <label class="title">Mã số SV</label>
-            <input
-              type="text"
-              class="p-inputtext w-full"
-              pInputText
-              formControlName="studentId"
-            />
           </div>
         </ng-container>
         <div class="col-12 flex justify-content-center mt-2">
