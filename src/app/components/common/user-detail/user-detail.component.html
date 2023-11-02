@@ -7,6 +7,22 @@
         <h2>{{startuperInfo.name}}</h2>
         <p>{{startuperInfo.describe}}</p>
 
+        <span *ngIf="startuperInfo.job == 1" class="flex">
+          <span class="flex align-items-center">
+            <i class="pi pi-building"></i>
+            <p><b>Trường học:</b>{{startuperInfo.university}}</p>
+          </span>
+        </span>
+        <span *ngIf="startuperInfo.job == 1" class="flex">
+          <span class="flex align-items-center mr-6">
+            <i class="pi pi-briefcase"></i>
+            <p><b>Ngành học:</b>{{startuperInfo.universitySpecialized}}</p>
+          </span>
+          <span class="flex align-items-center">
+            <i class="pi pi-id-card"></i>
+            <p><b>MSSV:</b>{{startuperInfo.studentId}}</p>
+          </span>
+        </span>
         <span class="flex">
           <span class="flex align-items-center mr-6">
             <i class="pi pi-sort-numeric-up-alt"></i>
@@ -17,7 +33,7 @@
             <p><b>Khu vực:</b> {{getArea(startuperInfo.location)}}</p>
           </span>
           <span class="flex align-items-center">
-            <i class="pi pi-building"></i>
+            <i class="pi pi-clock"></i>
             <p><b>Thời gian khả dụng:</b> {{getAvailableTime(startuperInfo.availableTime)}}</p>
           </span>
         </span>
