@@ -30,7 +30,9 @@
                         'active-conversation': conversation.id == thisConversation?.id,
                         'unread': !conversation.isSeen}" (click)="selectConversation(conversation)">
             <div class="unread-point"></div>
-            <p-avatar shape="circle" [image]="conversation.conversationAvatar??''" size="large"></p-avatar>
+            <p-avatar shape="circle"
+              [image]="conversation.conversationAvatar??'https://fsiconnected.cloud/images/default-avatar.jpg'"
+              size="large"></p-avatar>
             <div class="conversation-preview-info">
               <h4>{{conversation.conversationName}}</h4>
               <p>{{conversation.lastMessage?.content}}</p>
@@ -42,17 +44,18 @@
     </div>
   </div>
   <div class="message-box">
-    <ng-container *ngIf="thisConversation != undefined" >
+    <ng-container *ngIf="thisConversation != undefined">
       <div class="message-header px-3">
         <div class="conversation-info flex align-items-center justify-content-center" (click)="infoConversation()">
-          <p-avatar shape="circle" [image]="thisConversation?.conversationAvatar??''" size="large"></p-avatar>
+          <p-avatar shape="circle" [image]="thisConversation?.conversationAvatar??'https://fsiconnected.cloud/images/default-avatar.jpg'" size="large"></p-avatar>
           <h3 class="ml-2">{{thisConversation?.conversationName}}</h3>
         </div>
         <div class="flex .align-items-center justify-content-end" style="gap: 10px;">
           <div class="other-message-type-item" pTooltip="Call âm thanh" tooltipPosition="top">
             <i class="fa-solid fa-phone"></i>
           </div>
-          <div class="other-message-type-item" pTooltip="Call video" tooltipPosition="top" (click)="isVisibleCall = true">
+          <div class="other-message-type-item" pTooltip="Call video" tooltipPosition="top"
+            (click)="isVisibleCall = true">
             <i class="fa-solid fa-video"></i>
           </div>
         </div>
@@ -95,10 +98,12 @@
           </div>
         </div>
       </div>
-      <app-video-call [visible]="isVisibleCall" (close)="isVisibleCall = false" [conversationId]="thisConversation.id" [remoteUser]="thisConversation?.conversationName"></app-video-call>
+      <app-video-call [visible]="isVisibleCall" (close)="isVisibleCall = false" [conversationId]="thisConversation.id"
+        [remoteUser]="thisConversation?.conversationName"></app-video-call>
     </ng-container>
     <ng-container *ngIf="thisConversation == undefined">
-      <h2 style="margin-left: 50%; margin-top: 27%; transform: translate( -38% , 0 );">Hãy chọn một đoạn chat hoặc bắt đầu cuộc trò chuyện mới</h2>
+      <h2 style="margin-left: 50%; margin-top: 27%; transform: translate( -38% , 0 );">Hãy chọn một đoạn chat hoặc bắt
+        đầu cuộc trò chuyện mới</h2>
     </ng-container>
   </div>
   <div class="infomation-box"></div>
