@@ -68,7 +68,7 @@ export class UpdateProjectComponent implements OnInit {
 
   save() {
     if (this.activeIndex == 0) {
-      if(this.blob){
+      if (this.blob) {
         this.uploadImage();
       }
     } else if (this.activeIndex == 1) {
@@ -128,7 +128,7 @@ export class UpdateProjectComponent implements OnInit {
         summary: "Thành công",
         detail: "Tải lên ảnh đại diện dự án thành công!",
       });
-      this.changeProjectInfo.emit({...this.project, avatarUrl: res.data});
+      this.changeProjectInfo.emit({ ...this.project, avatarUrl: res.data });
     }).catch((err: any) => {
       this.messageService.add({
         key: "toast",

@@ -1,5 +1,5 @@
-<p-dialog [resizable]="true" header="Cập nhật thông tin dự án" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}"
-  [baseZIndex]="10000" [draggable]="false" (onHide)="close.emit()">
+<p-dialog [resizable]="true" header="Cập nhật thông tin dự án" [(visible)]="display" [modal]="true"
+  [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" (onHide)="close.emit()">
   <div class="p-fluid grid">
     <p-card class="col-12 w-full">
       <ng-template pTemplate="content">
@@ -51,6 +51,17 @@
                     </label>
                   </span>
                 </div>
+                <p-panel class="col-12 md-12" header="Chi tiết các giai đoạn">
+                  <b>Xác lập</b> - Ý tưởng mới được hình thành <br>
+                  <b>Nghiên cứu</b> - Đang xác định mô hình kinh doanh, lập kế hoạch, viết hồ sơ <br>
+                  <b>MVP</b> - Đang nghiên cứu, xây dựng mô hình dịch vụ/sản phẩm mẫu <br>
+                  <b>Kiểm thử</b> - Đã có mô hình dịch vụ/sản phẩm mẫu <br>
+                  <b>Tăng trưởng 1</b> - Mô hình dịch vụ/sản phẩm mẫu đã vận hành ổn định, tuy nhiên chưa có nhiều khách
+                  hàng/người dùng <br>
+                  <b>Tăng trưởng 2</b> - Bắt đầu tiếp cận được một nhóm khách hàng/người dùng nhất định <br>
+                  <b>Tăng trưởng 3</b> - Đã định vị được thương hiệu và có tệp khách hàng/người dùng ổn định <br>
+                  <b>Tăng trưởng 4</b> - Đạt điểm hòa vốn <br>
+                </p-panel>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
                     <p-calendar appendTo="body" formControlName="foundedTime"></p-calendar>
@@ -61,7 +72,7 @@
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
                     <p-dropdown [autoDisplayFirst]="false" [options]="areas" optionValue="value" optionLabel="name"
-                      formControlName="area"></p-dropdown>
+                      formControlName="area" [filter]="true"></p-dropdown>
                     <label>Khu vực: <span style="color: red;">*</span>
                     </label>
                   </span>

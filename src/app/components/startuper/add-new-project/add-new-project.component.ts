@@ -119,7 +119,6 @@ export class AddNewProjectComponent implements OnInit {
     } else if (this.activeIndex == 1) {
       if (this.blob) {
         this.uploadImage();
-        this.close.emit();
       } else {
         this.messageService.add({
           key: "toast",
@@ -128,6 +127,8 @@ export class AddNewProjectComponent implements OnInit {
           detail: "Bạn chưa hoàn thành cập nhật ảnh đại diện dự án!",
         });
       }
+    }else if(this.activeIndex == 2){
+      this.close.emit();
     }
   }
 
@@ -192,6 +193,7 @@ export class AddNewProjectComponent implements OnInit {
         summary: "Thành công",
         detail: "Tải lên ảnh đại diện dự án thành công!",
       });
+      this.activeIndex++;
     }).catch((err: any) => {
       this.messageService.add({
         key: "toast",
