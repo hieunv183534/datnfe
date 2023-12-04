@@ -1,5 +1,5 @@
 <div [ngClass]="{'message': true, 'justify-content-start' : !message.isMine , 'justify-content-end': message.isMine}">
-  <p-avatar *ngIf="!message.isMine && message.showA" shape="circle" [image]="message.sender.avatarUrl" class="message-avatar"></p-avatar>
+  <p-avatar *ngIf="!message.isMine && message.showA" shape="circle" [image]="message.sender.avatarUrl ??'https://fsiconnected.cloud/images/default-avatar.jpg'" class="message-avatar"></p-avatar>
 
   <ng-container *ngIf="message.type == MessageType.Text">
     <p [tooltipPosition]="message.isMine ? 'left' :'right'" [pTooltip]="getDateTime(message.creationTime)">

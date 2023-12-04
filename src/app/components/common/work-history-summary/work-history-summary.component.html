@@ -1,0 +1,42 @@
+<div class="work-history">
+  <h4>Kinh nghiệm làm việc</h4>
+  <p-button *ngIf="!disabled" label="Thêm nơi làm việc" icon="pi pi-plus" class="mb-2 mt-2" (onClick)="addItem()"></p-button>
+  <p-card style="width: 100%;" *ngFor="let item of value; let i = index" class="mt-2">
+    <div class="work-history-item p-fluid grid">
+      <div class="p-field col-12 md-12">
+        <span class="p-float-label">
+          <input type="text" pInputText [(ngModel)]="value[i].name" (input)="changeFn()" [disabled]="disabled"/>
+          <label>Công ty: </label>
+        </span>
+      </div>
+      <div class="p-field col-6 md-12">
+        <span class="p-float-label">
+          <p-calendar appendTo="body" [(ngModel)]="value[i].start" (onInput)="changeFn()" [disabled]="disabled"></p-calendar>
+          <label>Từ: </label>
+        </span>
+      </div>
+      <div class="p-field col-6 md-12">
+        <span class="p-float-label">
+          <p-calendar appendTo="body" [(ngModel)]="value[i].end" (onInput)="changeFn()" [disabled]="disabled"></p-calendar>
+          <label>Đến: </label>
+        </span>
+      </div>
+      <div class="p-field col-12 md-12">
+        <span class="p-float-label">
+          <input type="text" pInputText [(ngModel)]="value[i].position" (input)="changeFn()" [disabled]="disabled"/>
+          <label>Chức vụ: </label>
+        </span>
+      </div>
+      <div class="p-field col-12 md-12">
+        <span class="p-float-label">
+          <textarea [rows]="5" pInputTextarea [(ngModel)]="value[i].description" (input)="changeFn()" [disabled]="disabled"></textarea>
+          <label>Mô tả chi tiết:</label>
+        </span>
+      </div>
+      <div *ngIf="!disabled" class="col-12 flex justify-content-center">
+        <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger"
+          (click)="deleteItem(i)"></button>
+      </div>
+    </div>
+  </p-card>
+</div>

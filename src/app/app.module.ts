@@ -111,6 +111,7 @@ import { TopSimilarProjectComponent } from './components/startuper/project-space
 import { RequestInfoComponent } from './components/startuper/project-space/list-project-invite-member/request-info/request-info.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { VideoCallComponent } from './components/chat/video-call/video-call.component';
+import { WorkHistorySummaryComponent } from './components/common/work-history-summary/work-history-summary.component';
 
 
 @NgModule({
@@ -164,7 +165,8 @@ import { VideoCallComponent } from './components/chat/video-call/video-call.comp
     ListAdminComponent,
     TopSimilarProjectComponent,
     RequestInfoComponent,
-    VideoCallComponent
+    VideoCallComponent,
+    WorkHistorySummaryComponent
   ],
   imports: [
     CommonModule,

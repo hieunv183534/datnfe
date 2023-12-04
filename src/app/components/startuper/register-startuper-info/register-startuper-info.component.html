@@ -53,13 +53,14 @@
                   <span class="p-float-label">
                     <p-dropdown [options]="availableTimes" [autoDisplayFirst]="false" optionValue="value"
                       optionLabel="name" formControlName="availableTime" emptyMessage="Chọn 1"></p-dropdown>
-                    <label>Bạn có thể dành tối thiểu bao nhiêu thời gian để làm việc trong một dự án?: <span style="color: red;">*</span>
+                    <label>Bạn có thể dành tối thiểu bao nhiêu thời gian để làm việc trong một dự án?: <span
+                        style="color: red;">*</span>
                     </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-multiSelect optionLabel="name" optionValue="value"  [selectionLimit]="3" appendTo="body"
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
                       [options]="personalities" defaultLabel="Chọn tối đa 3 tính cách" optionLabel="name"
                       formControlName="personality">
                     </p-multiSelect>
@@ -69,25 +70,23 @@
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-multiSelect optionLabel="name" optionValue="value"  [selectionLimit]="3" appendTo="body"
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
                       [options]="skills" defaultLabel="Chọn tối đa 3 kỹ năng" optionLabel="name"
                       formControlName="skill">
                     </p-multiSelect>
-                    <label>Hãy lựa chọn 3 kỹ năng mềm của bản thân mà bạn tâm đắc nhất: <span style="color: red;">*</span>
+                    <label>Hãy lựa chọn 3 kỹ năng mềm của bản thân mà bạn tâm đắc nhất: <span
+                        style="color: red;">*</span>
                     </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
-                  <span class="p-float-label">
-                    <textarea [rows]="5" pInputTextarea formControlName="workingExperience"></textarea>
-                    <label>Kinh nghiệm làm việc(bao gồm: tổ chức, vị trí, khoảng thời gian): <span style="color: red;">*</span>
-                    </label>
-                  </span>
+                  <app-work-history-summary formControlName="workingExperience"></app-work-history-summary>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
                     <textarea [rows]="5" pInputTextarea formControlName="activity"></textarea>
-                    <label> Các hoạt động xã hội, từ thiện, tình nguyện khác... (bao gồm: Tổ chức, vị trí, khoảng thời gian): <span style="color: red;">*</span>
+                    <label> Các hoạt động xã hội, từ thiện, tình nguyện khác... (bao gồm: Tổ chức, vị trí, khoảng thời
+                      gian): <span style="color: red;">*</span>
                     </label>
                   </span>
                 </div>

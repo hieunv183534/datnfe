@@ -48,12 +48,12 @@
   <h4>{{work.title}}</h4>
   <span class="flex align-items-center">
     <i class="pi pi-window-maximize mr-3"></i>
-    <p-avatar shape="circle" [image]="work.assignor.avatarUrl"></p-avatar>
+    <p-avatar shape="circle" [image]="work.assignor.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
     <p class="ml-3">{{work.assignor.name}}</p>
   </span>
   <span class="flex align-items-center">
     <i class="pi pi-window-minimize mr-3"></i>
-    <p-avatar shape="circle" [image]="work.assignee.avatarUrl"></p-avatar>
+    <p-avatar shape="circle" [image]="work.assignee.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
     <p class="ml-3">{{work.assignee.name}}</p>
   </span>
   <span class="flex align-items-center">
@@ -80,14 +80,14 @@
           <ng-template pTemplate="selectedItem">
             <div class="country-item country-item-value" *ngIf="selectAssignee">
               <span class="flex align-items-center">
-                <p-avatar shape="circle" [image]="selectAssignee.avatarUrl"></p-avatar>
+                <p-avatar shape="circle" [image]="selectAssignee.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
                 <p class="ml-3">{{selectAssignee.name}}</p>
               </span>
             </div>
           </ng-template>
           <ng-template let-user pTemplate="item">
             <span class="flex align-items-center">
-              <p-avatar shape="circle" [image]="user.avatarUrl"></p-avatar>
+              <p-avatar shape="circle" [image]="user.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
               <p class="ml-3">{{user.name}}</p>
             </span>
           </ng-template>

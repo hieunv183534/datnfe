@@ -1,6 +1,6 @@
 <div class='startupItem flex flex-column' (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
   <div class="avatar-project w-full h-auto relative">
-    <img [src]="project.avatarUrl" alt='' id='logo' />
+    <img [src]="project.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt='' id='logo' />
     <ng-container *ngIf="isHovered">
       <div class='hoverDiv'>
         <button type='button' id='xemthem' (click)="showDetailProject()">

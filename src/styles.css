@@ -183,3 +183,18 @@ app-startuper-for-startuper .p-cascadeselect.p-component {
 .emoji-mart-anchors{
   display: none !important;
 }
+
+
+app-work-history-summary .p-card{
+  width: 100% !important;
+}
+
+app-work-history-summary .p-card-body{
+  padding: 7px !important;
+  border: 1px solid #ced4dd !important;
+  border-radius: 4px !important;
+}
+
+app-work-history-summary .p-card-content{
+  padding: 0px !important;
+}

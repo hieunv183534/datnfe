@@ -3,7 +3,7 @@
   <p-tabView>
     <p-tabPanel header="Cá nhân">
       <div class="flex w-full flex-column align-items-center">
-        <img [src]="startuperInfo.avatarUrl" alt="" class="w-5">
+        <img [src]="startuperInfo.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt="" class="w-5">
         <h2>{{startuperInfo.name}}</h2>
         <p>{{startuperInfo.describe}}</p>
 
@@ -66,8 +66,7 @@
               class="w-full opacity-100" [disabled]="true"></textarea>
           </p-accordionTab>
           <p-accordionTab header="Kinh nghiệm làm việc">
-            <textarea [rows]="5" [cols]="30" pInputTextarea [autoResize]="true"
-              [(ngModel)]="startuperInfo.workingExperience" class="w-full opacity-100" [disabled]="true"></textarea>
+            <app-work-history-summary [(ngModel)]="startuperInfo.workingExperience" [disabled]="true"></app-work-history-summary>
           </p-accordionTab>
           <p-accordionTab header="Hoạt động khác">
             <textarea [rows]="5" [cols]="30" pInputTextarea [autoResize]="true" [(ngModel)]="startuperInfo.activity"
@@ -93,7 +92,7 @@
           <tr>
             <td>
               <span class="flex align-items-center">
-                <p-avatar shape="square" [image]="project.project.avatarUrl"></p-avatar>
+                <p-avatar shape="square" [image]="project.project.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
                 <p class="ml-4">{{project.project.projectName}}</p>
               </span>
             </td>
@@ -116,7 +115,9 @@
     <p-button *ngIf="friendStatus == 0" label="Kết nối" icon="pi pi-share-alt" (onClick)="connectOnClick()"></p-button>
     <p-button *ngIf="friendStatus == 2" label="Hủy kết nối" icon="pi pi-times" (onClick)="cancelOnClick()"></p-button>
     <p-button *ngIf="friendStatus == 3" label="Chấp nhận" icon="pi pi-check" (onClick)="acceptOnClick()"></p-button>
-    <p-button *ngIf="friendStatus != -1"  label="Trò chuyện" icon="pi pi-comments" class="p-button-success" (onClick)="chatOnClick()"></p-button>
-    <p-button *ngIf="friendStatus == -1" label="Xóa tài khoản" icon="pi pi-times" (onClick)="deleteOnClick()"></p-button>
+    <p-button *ngIf="friendStatus != -1" label="Trò chuyện" icon="pi pi-comments" class="p-button-success"
+      (onClick)="chatOnClick()"></p-button>
+    <p-button *ngIf="friendStatus == -1" label="Xóa tài khoản" icon="pi pi-times"
+      (onClick)="deleteOnClick()"></p-button>
   </ng-template>
 </p-dialog>

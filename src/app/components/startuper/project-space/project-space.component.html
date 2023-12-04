@@ -10,7 +10,7 @@
       <button *ngIf="isFounder" pButton pRipple type="button" icon="pi pi-cog"
         class="top-0 right-0 absolute p-button-rounded p-button-secondary p-button-text"
         (click)="isShowUpdateProject = true"></button>
-      <img class="border-round" width="180px" [src]="project.avatarUrl" alt="">
+      <img class="border-round" width="180px" [src]="project.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt="">
       <h2 class="m-1">{{project.projectName}}</h2>
       <p class="text-center m-1">{{project.description}}</p>
       <span class="flex">

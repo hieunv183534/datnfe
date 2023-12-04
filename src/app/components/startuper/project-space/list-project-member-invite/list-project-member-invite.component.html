@@ -6,7 +6,7 @@
   <div class="col-12 list-member .grid">
     <ng-container *ngFor="let user of members">
       <span class="user-item flex align-items-center justify-content-start relative pl-5 relative">
-        <p-avatar shape="circle" [image]="user.user.avatarUrl"></p-avatar>
+        <p-avatar shape="circle" [image]="user.user.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
         <p class="ml-3">{{user.user.name}}</p>
         <button pButton pRipple type="button" icon="pi pi-caret-down"
           class="p-button-rounded p-button-secondary p-button-text absolute right-0 top-0" (click)="menu.toggle($event); userId= user.user.id"></button>
