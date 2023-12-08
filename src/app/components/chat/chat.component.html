@@ -89,7 +89,7 @@
           <input type="text" style="flex-grow: 1;" [(ngModel)]="contentText" placeholder="Nhập tin nhắn ..."
             (keyup.enter)="send()">
           <div *ngIf="!contentText" class="other-message-type-item" pTooltip="Gửi lượt thích" tooltipPosition="top"
-            style="width: 48px; height: 48px; font-size: 27px; color: #3B82F6;">
+            style="width: 48px; height: 48px; font-size: 27px; color: #3B82F6;" (click)="sendLike()">
             <i class="fa-solid fa-thumbs-up"></i>
           </div>
           <div *ngIf="contentText" class="other-message-type-item" pTooltip="Enter để gửi" tooltipPosition="top"

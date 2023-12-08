@@ -6,4 +6,9 @@
       {{message?.content}}
     </p>
   </ng-container>
+  <ng-container *ngIf="message.type == MessageType.Sticker">
+    <p [tooltipPosition]="message.isMine ? 'left' :'right'" [pTooltip]="getDateTime(message.creationTime)">
+      <i class="fa-solid fa-thumbs-up" style="font-size: 30px;color: #3B82F6;"></i>
+    </p>
+  </ng-container>
 </div>

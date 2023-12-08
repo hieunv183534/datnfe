@@ -43,7 +43,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     private eventService: EventService
   ) { }
 
-  addEmoji(data: any){
+  addEmoji(data: any) {
     console.log(data);
     this.contentText = this.contentText + " " + data.emoji.native;
   }
@@ -217,6 +217,45 @@ export class ChatComponent implements OnInit, OnDestroy {
     }
   }
 
+  sendLike() {
+    if (this.thisConversation?.id == this.emptyId) {
+      let input = new MessageSendToUserDto();
+      input.type = MessageType.Sticker;
+      input.content = "(like)";
+      input.userId = this.userId;
+      this.chatService.sendMessageToNewOther(input).then((res: any) => {
+        this.thisConversation = res.data.newConversation;
+        this.getListConversation();
+        this.getListMessage();
+        this.contentText = "";
+      }).catch((err: any) => {
+        this.messageService.add({
+          key: "toast",
+          severity: "error",
+          summary: "Lỗi",
+          detail: "Gửi like đến người lạ thất bại!",
+        });
+      });
+    } else {
+      let input = new MessageSendToConversationDto();
+      input.content = "(like)";
+      input.type = MessageType.Sticker;
+      input.conversationId = this.thisConversation?.id;
+      this.chatService.sendMessageToConversation(input).then((res: any) => {
+        this.getListConversation();
+        this.getListMessage();
+        this.contentText = "";
+      }).catch((err: any) => {
+        this.messageService.add({
+          key: "toast",
+          severity: "error",
+          summary: "Lỗi",
+          detail: "Gửi like đến đoạn chat thất bại!",
+        });
+      });
+    }
+  }
+
   seenConversation(conversationId: string) {
     this.chatService.seenConversation(conversationId).then((res: any) => {
       this.getListConversation();
@@ -238,7 +277,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.isVisibleAddConversation = false;
   }
 
-  updateConversationSuccess(conversation: any){
+  updateConversationSuccess(conversation: any) {
     this.getListConversation();
     this.thisConversation = conversation;
     this.getListMessage();
