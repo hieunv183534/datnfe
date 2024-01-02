@@ -77,7 +77,6 @@ export class ProjectForStartuperComponent implements OnInit {
     input.skipCount = (this.page - 1) * this.pageSize;
     input.maxResultCount = this.pageSize;
     this.projectService.getListProjectForStartuper(input).then((res: any) => {
-      debugger
       this.totalRecords = res.data.totalCount;
       this.listProject = res.data.items;
     }).catch((err: any) => {

@@ -9,11 +9,12 @@
     <a class="notification" routerLink="./chat/0/0">
       <i class="pi pi-comments"></i>
     </a>
-    <a class="notification" routerLink="#">
-      <i class="pi pi-bell"></i>
+    <a class="notification">
+      <i class="pi pi-bell" (click)="onBellClick($event)"></i>
     </a>
     <a routerLink="#">
-      <p-avatar shape="circle" [image]="userInfo?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" (click)="menu.toggle($event)"></p-avatar>
+      <p-avatar shape="circle" [image]="userInfo?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"
+        (click)="menu.toggle($event)"></p-avatar>
     </a>
   </div>
 </div>
@@ -21,5 +22,8 @@
 <p-menu #menu [popup]="true" [model]="items"></p-menu>
 
 <ng-container *ngIf="isShowUpdateInfo">
-  <app-update-user-info [display]="isShowUpdateInfo" (close)="isShowUpdateInfo= false" [userInfo]="userInfo"></app-update-user-info>
+  <app-update-user-info [display]="isShowUpdateInfo" (close)="isShowUpdateInfo= false"
+    [userInfo]="userInfo"></app-update-user-info>
 </ng-container>
+
+<app-notification></app-notification>

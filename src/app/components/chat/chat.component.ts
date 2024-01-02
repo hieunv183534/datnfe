@@ -165,7 +165,6 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.connection.on("OnNewRequestMessage", (newMessage: any) => {
       alert(2222222222222222222222222222222222222222222)
-      debugger
     });
   }
 

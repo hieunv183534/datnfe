@@ -121,7 +121,6 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
     ];
 
     this.startuperService.getMyProjects().then((res: any) => {
-      debugger;
       this.mySelects[1].selects = res.data.map((x: any) => {
         return {
           code: x.project.id,

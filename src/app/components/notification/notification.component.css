@@ -1,0 +1,18 @@
+.container-notification:hover{
+    background-color: #F5F5F5;
+}
+
+.icon-absolute{
+    transform: translateY(-50%);
+    /* display: none !important; */
+}
+.icon-unread-absolute{
+    transform: translateY(-50%);
+
+}
+.container-notification:hover + .icon-absolute {
+    display: inline-block !important;
+  }
+  .p-overlaypanel .p-overlaypanel-content {
+    padding: 0.25rem !important;
+}

@@ -58,7 +58,6 @@ export class RegisterComponent implements OnInit {
         studentId: [null, []]
       })
     })
-    debugger
   }
 
   get f() { return this.formRegister.controls; }
