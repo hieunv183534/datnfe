@@ -1,5 +1,5 @@
 <div class="chat-container px-3 mb-5" style="border-bottom: 1px solid #ccc; height: calc(100vh - 90px);">
-  <div class="conversation-box">
+  <div class="conversation-box w-3">
     <div class="conversation-header">
       <div class="flex w-full justify-content-between align-items-center ">
         <span class="p-input-icon-left mr-2">
@@ -43,11 +43,13 @@
       </div>
     </div>
   </div>
-  <div class="message-box">
+  <div class="message-box w-6">
     <ng-container *ngIf="thisConversation != undefined">
       <div class="message-header px-3">
         <div class="conversation-info flex align-items-center justify-content-center" (click)="infoConversation()">
-          <p-avatar shape="circle" [image]="thisConversation?.conversationAvatar??'https://fsiconnected.cloud/images/default-avatar.jpg'" size="large"></p-avatar>
+          <p-avatar shape="circle"
+            [image]="thisConversation?.conversationAvatar??'https://fsiconnected.cloud/images/default-avatar.jpg'"
+            size="large"></p-avatar>
           <h3 class="ml-2">{{thisConversation?.conversationName}}</h3>
         </div>
         <div class="flex .align-items-center justify-content-end" style="gap: 10px;">
@@ -106,7 +108,9 @@
         đầu cuộc trò chuyện mới</h2>
     </ng-container>
   </div>
-  <div class="infomation-box"></div>
+  <div class="infomation-box w-3">
+    <app-information-box></app-information-box>
+  </div>
 </div>
 
 

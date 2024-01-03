@@ -1,38 +1,50 @@
 <p-overlayPanel [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'200ms'" #op [dismissable]="true"
   [showCloseIcon]="false">
-  <div class="flex w-22rem flex-column p-0">
-    <h3 class="mb-2">Thông báo</h3>
-    <ng-container *ngFor="let item of items">
-      <div
-        class="container-notification relative flex align-items-center justify-content-start cursor-pointer h-auto text-sm border-round p-2">
-        <div
-          class="absolute icon-absolute flex align-items-center justify-content-center cursor-pointer border-circle w-2rem h-2rem shadow-5 bg-white top-50 right-0 mr-4">
-          <i (click)="op1.toggle($event)" class="pi pi-ellipsis-h"></i>
-        </div>
-        <div class="absolute icon-unread-absolute flex align-items-center top-50 right-0 mr-2">
-          <i class="   pi pi-circle-fill text-blue-500 text-xs"></i>
-        </div>
+  <div class="flex w-22rem overflow-y-scroll h-40rem flex-column pl-2">
+    <h3 class="my-0 p-2">Thông báo</h3>
+    <p-tabView>
+      <p-tabPanel header="Tất cả">
+        <ng-container *ngFor="let item of items">
+          <div
+            class="container-notification relative flex align-items-center justify-content-start cursor-pointer h-auto text-sm border-round p-2">
+            <div class="container-function">
+              <div
+                class="absolute icon-absolute flex align-items-center justify-content-center cursor-pointer border-circle w-2rem h-2rem shadow-5 bg-white top-50 right-0 mr-4">
+                <i (click)="op1.toggle($event)" class="pi pi-ellipsis-h"></i>
+              </div>
+            </div>
+            <div *ngIf="item.unRead" class="absolute icon-unread-absolute flex align-items-center top-50 right-0 mr-2">
+              <i class="pi pi-circle-fill text-blue-500 text-xs"></i>
+            </div>
 
-        <p-avatar size="large" shape="circle" [image]="item.avatar" class="mr-3"></p-avatar>
-        <div class="flex flex-column">
-          <span>
-            {{item.label}}
-          </span>
-          <span class="text-blue-500 font-semibold">
-            {{item.time}}
-          </span>
-        </div>
-      </div>
-    </ng-container>
+            <p-avatar size="large" shape="circle" [image]="item.avatar" class="mr-3"></p-avatar>
+            <div class="flex flex-column">
+              <span>
+                {{item.label}}
+              </span>
+              <span [ngClass]="{'text-blue-500 font-semibold': item.unRead}" class="font-normal">
+                {{item.time}}
+              </span>
+            </div>
+          </div>
+        </ng-container>
+      </p-tabPanel>
+      <p-tabPanel header="Chưa đọc">
+        Content 2
+      </p-tabPanel>
+    </p-tabView>
+
   </div>
   <p-overlayPanel [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'200ms'" #op1 [dismissable]="true">
     <ng-template pTemplate>
-      <div class="flex flex-column">
-        <div class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round p-2 mb-2">
+      <div class="flex flex-column p-2">
+        <div
+          class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round p-2 mb-2">
           <i class="pi pi-check mr-2"></i>
           <p>Đánh dấu đã đọc</p>
         </div>
-        <div class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round p-2 mb-2">
+        <div
+          class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round p-2">
           <i class="pi pi-times mr-2"></i>
           <p>Gỡ thông báo này</p>
         </div>

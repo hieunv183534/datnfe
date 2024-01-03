@@ -1,16 +1,15 @@
-import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { OverlayPanel } from 'primeng/overlaypanel';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+
 @Component({
-  selector: 'app-notification',
-  templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.css'],
+  selector: 'app-information-box',
+  templateUrl: './information-box.component.html',
+  styleUrls: ['./information-box.component.css'],
   encapsulation: ViewEncapsulation.None
+
 })
-export class NotificationComponent implements OnInit {
+export class InformationBoxComponent implements OnInit {
   items: any[] = [];
-  @Input() display: boolean = false;
-  @ViewChild('op') op!: OverlayPanel;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -170,9 +169,6 @@ export class NotificationComponent implements OnInit {
       },
     ];
 
-  }
-  toggle(event: any) {
-    this.op.toggle(event);
   }
 
 }

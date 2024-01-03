@@ -42,6 +42,7 @@ import { EditorModule } from 'primeng/editor';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { CalendarModule } from 'primeng/calendar';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+import {ImageModule} from 'primeng/image';
 import { FileUploadModule } from 'primeng/fileupload';
 import { AvatarModule } from 'primeng/avatar';
 import { CardModule } from "primeng/card";
@@ -112,10 +113,12 @@ import { RequestInfoComponent } from './components/startuper/project-space/list-
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { VideoCallComponent } from './components/chat/video-call/video-call.component';
 import { WorkHistorySummaryComponent } from './components/common/work-history-summary/work-history-summary.component';
+import { InformationBoxComponent } from './components/chat/information-box/information-box.component';
 
 
 @NgModule({
   declarations: [
+    InformationBoxComponent,
     AppComponent,
     HomePageComponent,
     ReasonComponent,
@@ -176,6 +179,7 @@ import { WorkHistorySummaryComponent } from './components/common/work-history-su
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ButtonModule,
+    ImageModule,
     RippleModule,
     InputTextModule,
     DividerModule,
