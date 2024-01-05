@@ -64,7 +64,7 @@ export class StartuperItemComponent implements OnInit {
   }
 
   getSkills(val: number[]) {
-    return FsiValues.getMultiName(val, FsiValues.skills);
+    return FsiValues.getMultiName(val, FsiValues.skills).split(", ");
   }
 
   getField(val?: number) {

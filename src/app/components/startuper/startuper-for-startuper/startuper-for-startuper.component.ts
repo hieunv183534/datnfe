@@ -1,7 +1,7 @@
 import { EventService } from 'src/app/services/event.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { UuidStartuperModeFromMe, UuidStartuperModeNew, UuidStartuperModeOFMe, UuidStartuperModeToMe } from 'src/app/model/enum';
 import { GetListStartuperForProjectDto, StartuperDto } from 'src/app/model/startuper.class';
@@ -60,7 +60,8 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private startuperService: StartuperService,
     private projectService: ProjectService,
-    private eventService: EventService
+    private eventService: EventService,
+    private router: Router
   ) { }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -145,6 +146,10 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
       });
     });
 
+  }
+
+  routeToHistorySearch(){
+    this.router.navigate(['/startuper/history-search']);
   }
 
   getListStartuper(reset: boolean = false) {

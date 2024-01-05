@@ -63,6 +63,7 @@ import { ProjectForInvestorComponent } from './components/investor/project-for-i
 import { ProjectForStartuperComponent } from './components/startuper/project-for-startuper/project-for-startuper.component';
 import { StartuperForStartuperComponent } from './components/startuper/startuper-for-startuper/startuper-for-startuper.component';
 import { InvestorForStartuperComponent } from './components/startuper/investor-for-startuper/investor-for-startuper.component';
+import { HistorySearchComponent } from './components/startuper/history-search/history-search.component';
 import { StartuperForInvestorComponent } from './components/investor/startuper-for-investor/startuper-for-investor.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -74,6 +75,7 @@ import { InvestorService } from './services/investor.service';
 import { ProjectService } from './services/project.service';
 import { StartuperService } from './services/startuper.service';
 import { StartuperItemComponent } from './components/common/startuper-item/startuper-item.component';
+import { HistorySearchItemComponent } from './components/common/history-search-item/history-search-item.component';
 import { PopupConnectComponent } from './components/common/popup-connect/popup-connect.component';
 import { RegisterStartuperInfoComponent } from './components/startuper/register-startuper-info/register-startuper-info.component';
 import { AddNewProjectComponent } from './components/startuper/add-new-project/add-new-project.component';
@@ -129,6 +131,7 @@ import { WorkHistorySummaryComponent } from './components/common/work-history-su
     ProjectForStartuperComponent,
     StartuperForStartuperComponent,
     InvestorForStartuperComponent,
+    HistorySearchComponent,
     StartuperForInvestorComponent,
     LoginComponent,
     RegisterComponent,
@@ -166,7 +169,8 @@ import { WorkHistorySummaryComponent } from './components/common/work-history-su
     TopSimilarProjectComponent,
     RequestInfoComponent,
     VideoCallComponent,
-    WorkHistorySummaryComponent
+    WorkHistorySummaryComponent,
+    HistorySearchItemComponent
   ],
   imports: [
     CommonModule,

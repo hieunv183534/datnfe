@@ -11,22 +11,18 @@
 }
 
 .founderItem #avatar {
-  height: auto;
-  width: 45%;
+  height: 100%;
+  width: 35%;
   object-fit: contain;
-  padding-right: 4px;
   border-radius: 18px;
   align-self: center;
 }
 
 .founderItem .info {
   height: 100%;
-  width: 54%;
-  margin-left: 4px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 5px;
 }
 
 .founderItem .info ul {
@@ -34,6 +30,7 @@
   display: flex;
   flex-direction: column;
   gap: 7px;
+  list-style: none;
 }
 
 .founderItem .info .name {

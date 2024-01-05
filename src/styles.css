@@ -93,6 +93,23 @@ a {
   text-decoration: none !important;
 }
 
+.search_table {
+  width: 90%;
+  padding: 15px;
+  margin: 0 auto 20px auto;
+  background: #FFFFFF;
+  border: 1px solid #e3e2ea;
+  border-radius: 10px;
+}
+.search_table .form-group,
+.search_table .btn-group {
+  margin-bottom: 0;
+}
+.search_table .form-control {
+  min-height: 36px;
+  padding: 3px 0.75rem;
+}
+
 .search {
   display: flex;
   flex-direction: row;
@@ -121,7 +138,7 @@ a {
 
 
 .body-content {
-  /* background-color: #F3F4F6; */
+  background-color: #F3F4F6;
   padding: 20px;
 }
 
@@ -139,6 +156,14 @@ app-project-for-startuper p-dropdown .p-dropdown.p-component {
 }
 
 app-project-for-startuper .p-multiselect.p-component {
+  width: 100% !important;
+}
+
+app-history-search p-dropdown .p-dropdown.p-component {
+  width: 100% !important;
+}
+
+app-history-search .p-multiselect.p-component {
   width: 100% !important;
 }
 
