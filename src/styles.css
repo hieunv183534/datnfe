@@ -209,6 +209,11 @@ app-startuper-for-startuper .p-cascadeselect.p-component {
   display: none !important;
 }
 
+.text-error{
+  font-size: 13px;
+  color: red;
+}
+
 
 app-work-history-summary .p-card{
   width: 100% !important;

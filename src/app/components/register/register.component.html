@@ -5,96 +5,357 @@
       <div class="scroll">
         <div [style]="{ textAlign: 'center' }">
           <a to="/">
-            <img [style]="{ marginRight: '20px' }" src="../../../assets/img/logo.png" alt="main logo" width="30px"
-              height="30px" />
-            <img src="../../../assets/img/title.png" alt="title" width="150px" height="30px" />
+            <img
+              [style]="{ marginRight: '20px' }"
+              src="../../../assets/img/logo.png"
+              alt="main logo"
+              width="30px"
+              height="30px"
+            />
+            <img
+              src="../../../assets/img/title.png"
+              alt="title"
+              width="150px"
+              height="30px"
+            />
           </a>
         </div>
         <h3><i class="pi pi-user-plus"></i> Đăng ký tài khoản mới</h3>
-        <div class="p-field">
+        <div class="p-field register-form">
           <label class="title">Email<span style="color: red">*</span></label>
-          <input type="text" class="p-inputtext" pInputText formControlName="email" />
+          <input
+            required
+            type="text"
+            class="p-inputtext"
+            pInputText
+            formControlName="email"
+          />
+          <span
+            class="text-error"
+            *ngIf="
+              !formRegister.value.email &&
+              !this.formRegister.valid &&
+              handleSubmit
+            "
+            >Email không được để trống</span
+          >
         </div>
-        <div class="p-field">
-          <label class="title">Số điện thoại<span style="color: red">*</span></label>
-          <input type="text" class="p-inputtext" pInputText formControlName="phoneNumber" />
+        <div class="p-field register-form">
+          <label class="title"
+            >Số điện thoại<span style="color: red">*</span></label
+          >
+          <input
+            type="text"
+            class="p-inputtext"
+            pInputText
+            formControlName="phoneNumber"
+          />
+          <span
+            class="text-error"
+            *ngIf="
+              !formRegister.value.phoneNumber &&
+              !this.formRegister.valid &&
+              handleSubmit
+            "
+            >Số điện thoại không được để trống</span
+          >
         </div>
-        <div class="p-field">
+        <div class="grid register-form col-12">
           <label class="title">Mật khẩu<span style="color: red">*</span></label>
-          <input type="password" class="p-inputtext" pInputText formControlName="password" />
+          <div class="p-inputgroup">
+            <input
+              *ngIf="!isShowPassword"
+              type="password"
+              pInputText
+              formControlName="password"
+            />
+            <input
+              *ngIf="isShowPassword"
+              type="text"
+              pInputText
+              formControlName="password"
+            />
+            <span
+              *ngIf="isShowPassword"
+              (click)="showPassword()"
+              class="p-inputgroup-addon"
+              ><i class="pi pi-eye"></i
+            ></span>
+            <span
+              *ngIf="!isShowPassword"
+              (click)="showPassword()"
+              class="p-inputgroup-addon"
+              ><i class="pi pi-eye-slash"></i
+            ></span>
+          </div>
+          <span
+            class="text-error"
+            *ngIf="
+              !formRegister.value.password &&
+              !this.formRegister.valid &&
+              handleSubmit
+            "
+            >Mật khẩu không được để trống</span
+          >
         </div>
-        <div class="p-field">
-          <label class="title">Nhập lại mật khẩu<span style="color: red">*</span></label>
-          <input type="password" class="p-inputtext" pInputText formControlName="rePassword" />
+        <div class="grid col-12 register-form">
+          <label class="title"
+            >Nhập lại mật khẩu<span style="color: red">*</span></label
+          >
+          <div class="p-inputgroup">
+            <input
+              *ngIf="!isShowRePassword"
+              type="password"
+              pInputText
+              formControlName="rePassword"
+            />
+            <input
+              *ngIf="isShowRePassword"
+              type="text"
+              pInputText
+              formControlName="rePassword"
+            />
+            <span
+              *ngIf="isShowRePassword"
+              (click)="showRePassword()"
+              class="p-inputgroup-addon"
+              ><i class="pi pi-eye"></i
+            ></span>
+            <span
+              *ngIf="!isShowRePassword"
+              (click)="showRePassword()"
+              class="p-inputgroup-addon"
+              ><i class="pi pi-eye-slash"></i
+            ></span>
+          </div>
+          <span
+            class="text-error"
+            *ngIf="
+              !formRegister.value.rePassword &&
+              !this.formRegister.valid &&
+              handleSubmit
+            "
+            >Nhập lại mật khẩu không được để trống</span
+          >
         </div>
         <!-- <div class="p-field">
           <label class="title">Vai trò</label>
           <p-selectButton [options]="roles" optionLabel="name" formControlName="roleRegister" optionValue="value"></p-selectButton>
         </div> -->
-        <p-fieldset legend="Thông tin cơ bản" [toggleable]="true" [collapsed]="false" formGroupName="baseInfomation">
-          <div class="p-field">
-            <label class="title">Họ và tên<span style="color: red">*</span></label>
-            <input type="text" class="p-inputtext" pInputText formControlName="name" />
+        <p-fieldset
+          legend="Thông tin cơ bản"
+          [toggleable]="true"
+          [collapsed]="false"
+          formGroupName="baseInfomation"
+        >
+          <div class="p-field register-form">
+            <label class="title">Họ<span style="color: red">*</span></label>
+            <input
+              type="text"
+              class="p-inputtext"
+              pInputText
+              formControlName="surname"
+            />
+            <span
+              class="text-error"
+              *ngIf="
+                !formRegister.value.baseInfomation.surname &&
+                !this.formRegister.valid &&
+                handleSubmit
+              "
+              >Họ không được để trống</span
+            >
           </div>
-          <div class="p-field">
-            <label class="title">Ngày sinh<span style="color: red">*</span></label>
-            <p-calendar [style]="{ width: '100%' }" formControlName="dateOfBirth"></p-calendar>
+          <div class="p-field register-form">
+            <label class="title">Tên<span style="color: red">*</span></label>
+            <input
+              type="text"
+              class="p-inputtext"
+              pInputText
+              formControlName="name"
+            />
+            <span
+              class="text-error"
+              *ngIf="
+                !formRegister.value.baseInfomation.name &&
+                !this.formRegister.valid &&
+                handleSubmit
+              "
+              >Tên không được để trống</span
+            >
           </div>
-          <div class="p-field">
+          <div class="p-field register-form">
+            <label class="title"
+              >Ngày sinh<span style="color: red">*</span></label
+            >
+            <p-calendar
+              [style]="{ width: '100%' }"
+              formControlName="dateOfBirth"
+            ></p-calendar>
+            <span
+              class="text-error"
+              *ngIf="
+                !formRegister.value.baseInfomation.dateOfBirth &&
+                !this.formRegister.valid &&
+                handleSubmit
+              "
+              >Ngày sinh không được để trống</span
+            >
+          </div>
+          <div class="p-field register-form">
             <label class="title">Giới tính</label>
-            <p-selectButton [options]="genders" optionLabel="name" formControlName="gender"
-              optionValue="value"></p-selectButton>
+            <p-selectButton
+              [options]="genders"
+              optionLabel="name"
+              formControlName="gender"
+              optionValue="value"
+            ></p-selectButton>
           </div>
           <!-- <div class="p-field">
             <label class="title">CCCD</label>
             <input type="text" class="p-inputtext" pInputText formControlName="identityCard"/>
           </div> -->
-          <div class="p-field">
-            <label class="title">Khu vực<span style="color: red">*</span></label>
-            <p-dropdown [filter]="true" [options]="provinces" optionValue="value" optionLabel="name"
-              [style]="{ width: '100%' }" [autoDisplayFirst]="false" formControlName="location"></p-dropdown>
+          <div class="p-field register-form">
+            <label class="title"
+              >Khu vực<span style="color: red">*</span></label
+            >
+            <p-dropdown
+              [filter]="true"
+              [options]="provinces"
+              optionValue="value"
+              optionLabel="name"
+              [style]="{ width: '100%' }"
+              [autoDisplayFirst]="false"
+              formControlName="location"
+            ></p-dropdown>
+            <span
+              class="text-error"
+              *ngIf="
+                !formRegister.value.baseInfomation.location &&
+                !this.formRegister.valid &&
+                handleSubmit
+              "
+              >Khu vực không được để trống</span
+            >
           </div>
-          <div class="p-field">
-            <label class="title">Chức danh nghề nghiệp<span style="color: red">*</span></label>
-            <p-dropdown [options]="jobs" optionValue="value" optionLabel="name" [style]="{ width: '100%' }"
-              [autoDisplayFirst]="false" formControlName="job"></p-dropdown>
+          <div class="p-field register-form">
+            <label class="title"
+              >Chức danh nghề nghiệp<span style="color: red">*</span></label
+            >
+            <p-dropdown
+              [options]="jobs"
+              optionValue="value"
+              optionLabel="name"
+              [style]="{ width: '100%' }"
+              [autoDisplayFirst]="false"
+              formControlName="job"
+            ></p-dropdown>
+            <span
+              class="text-error"
+              *ngIf="
+                !formRegister.value.baseInfomation.job &&
+                !this.formRegister.valid &&
+                handleSubmit
+              "
+              >Chức danh không được để trống</span
+            >
           </div>
           <ng-container *ngIf="jobValue == 1">
-            <div class="p-field">
-              <label class="title">Trường<span style="color: red">*</span></label>
-              <p-dropdown [filter]="true" [options]="universities" [style]="{ width: '100%' }"
-                [autoDisplayFirst]="false" formControlName="university" (onChange)="changeUniversity($event)"
-                optionLabel="name" optionValue="value"></p-dropdown>
+            <div class="p-field register-form">
+              <label class="title"
+                >Trường<span style="color: red">*</span></label
+              >
+              <p-dropdown
+                [filter]="true"
+                [options]="universities"
+                [style]="{ width: '100%' }"
+                [autoDisplayFirst]="false"
+                formControlName="university"
+                (onChange)="changeUniversity($event)"
+                optionLabel="name"
+                optionValue="value"
+              ></p-dropdown>
+              <span
+                class="text-error"
+                *ngIf="
+                  !formRegister.value.baseInfomation.university &&
+                  !this.formRegister.valid &&
+                  handleSubmit
+                "
+                >Trường không được để trống</span
+              >
             </div>
-            <div class="p-field">
-              <label class="title">Khoa<span style="color: red">*</span></label>
-              <p-dropdown [filter]="true" [options]="universitySpecializeds ?? []" [style]="{ width: '100%' }"
-                [autoDisplayFirst]="false" formControlName="universitySpecialized" optionLabel="name"
-                optionValue="value"></p-dropdown>
+            <div class="p-field register-form">
+              <label class="title"
+                >Ngành học<span style="color: red">*</span></label
+              >
+              <p-dropdown
+                [filter]="true"
+                [options]="universitySpecializeds ?? []"
+                [style]="{ width: '100%' }"
+                [autoDisplayFirst]="false"
+                formControlName="universitySpecialized"
+                optionLabel="name"
+                optionValue="value"
+              ></p-dropdown>
+              <span
+                class="text-error"
+                *ngIf="
+                  !formRegister.value.baseInfomation.universitySpecialized &&
+                  !this.formRegister.valid &&
+                  handleSubmit
+                "
+                >Ngành học không được để trống</span
+              >
             </div>
-            <div class="p-field">
-              <label class="title">Mã số SV<span style="color: red">*</span></label>
-              <input type="text" class="p-inputtext" pInputText formControlName="studentId" />
+            <div class="p-field register-form">
+              <label class="title"
+                >Mã số sinh viên<span style="color: red">*</span></label
+              >
+              <input
+                type="text"
+                class="p-inputtext"
+                pInputText
+                formControlName="studentId"
+              />
+              <span
+                class="text-error"
+                *ngIf="
+                  !formRegister.value.baseInfomation.studentId &&
+                  !this.formRegister.valid &&
+                  handleSubmit
+                "
+                >Mã số sinh viên không được để trống</span
+              >
             </div>
           </ng-container>
-          <div class="p-field" *ngIf="jobValue != 1">
+          <div class="p-field register-form" *ngIf="jobValue != 1">
             <label class="title">Nơi làm việc</label>
-            <input type="text" class="p-inputtext" pInputText formControlName="workingPlace" />
+            <input
+              type="text"
+              class="p-inputtext"
+              pInputText
+              formControlName="workingPlace"
+            />
           </div>
         </p-fieldset>
         <div class="buttonDiv">
-          <p [style]="{ fontSize: '1rem' }">
-            Bằng cách tiếp tục , bạn đồng ý với
-            <span [style]="{ color: '#0386FF', fontSize: '1rem' }">Điều khoản & Điều kiện</span>
-            của chúng tôi . Để tìm hiểu về dữ liệu cá nhân được chúng tôi thu
-            thập và cách chúng tôi sử dụng dữ liệu đó , vui lòng truy cập
-            <span [style]="{
-                color: '#0386FF',
-                fontSize: '1rem'
-              }">Chính sách quyền riêng tư</span>
-            của chúng tôi .
-          </p>
-          <button class="send" (click)="submit()" pRipple>
+          <div class="p-inputgroup">
+            <p-checkbox (click)="accept()" name="acceptDieuKhoan" value="acceptDieuKhoan"></p-checkbox>
+            <span
+              ><p [style]="{ fontSize: '1rem' }">
+                Tôi đã đọc và đồng ý với
+                <span [style]="{ color: '#0386FF', fontSize: '1rem' }"
+                  >Điều khoản dịch vụ và Chính sách bảo mật</span
+                >
+                của FSI Connected.
+              </p></span
+            >
+          </div>
+          <button *ngIf="!acceptDieuKhoan" disabled class="send" pRipple>
+            Đồng ý và tiếp tục
+          </button>
+          <button *ngIf="acceptDieuKhoan" class="send" (click)="submit()" pRipple>
             Đồng ý và tiếp tục
           </button>
         </div>
@@ -110,11 +371,16 @@
         </div>
         <p [style]="{ fontSize: '1rem', marginBottom: '2rem' }">
           Bạn đã có tài khoản?
-          <a href="#" [style]="{
+          <a
+            href="#"
+            [style]="{
               color: '#0386FF',
               fontSize: '1rem',
               textDecoration: 'none'
-            }">Đăng nhập ngay</a>
+            }"
+            (click)="showLogin()"
+            >Đăng nhập ngay</a
+          >
         </p>
         <div>
           <p [style]="{ fontSize: '1rem' }">
@@ -122,7 +388,9 @@
           </p>
           <p [style]="{ fontSize: '1rem' }">
             không phải là robot.
-            <span [style]="{ color: '#0386FF', fontSize: '1rem' }">Tìm hiểu thêm.</span>
+            <span [style]="{ color: '#0386FF', fontSize: '1rem' }"
+              >Tìm hiểu thêm.</span
+            >
           </p>
         </div>
       </div>
