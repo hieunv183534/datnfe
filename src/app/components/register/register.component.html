@@ -341,7 +341,11 @@
         </p-fieldset>
         <div class="buttonDiv">
           <div class="p-inputgroup">
-            <p-checkbox (click)="accept()" name="acceptDieuKhoan" value="acceptDieuKhoan"></p-checkbox>
+            <p-checkbox
+              (click)="accept()"
+              name="acceptDieuKhoan"
+              value="acceptDieuKhoan"
+            ></p-checkbox>
             <span
               ><p [style]="{ fontSize: '1rem' }">
                 Tôi đã đọc và đồng ý với
@@ -355,7 +359,12 @@
           <button *ngIf="!acceptDieuKhoan" disabled class="send" pRipple>
             Đồng ý và tiếp tục
           </button>
-          <button *ngIf="acceptDieuKhoan" class="send" (click)="submit()" pRipple>
+          <button
+            *ngIf="acceptDieuKhoan"
+            class="send"
+            (click)="submit()"
+            pRipple
+          >
             Đồng ý và tiếp tục
           </button>
         </div>

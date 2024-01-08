@@ -130,7 +130,7 @@ export class RegisterComponent implements OnInit {
   }
 
   showLogin() {
-    this.close.emit();
+    // this.close.emit();
     this.login.emit();
   }
 

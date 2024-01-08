@@ -194,6 +194,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
   onPageChange(value: any) {
     this.page = value.page + 1;
     this.pageSize = value.rows;
+    this.getListStartuper(false);
   }
 
   submitSearch() {
