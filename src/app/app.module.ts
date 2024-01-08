@@ -49,6 +49,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { GalleriaModule } from 'primeng/galleria';
 import { StepsModule } from 'primeng/steps';
 import { MenuModule } from 'primeng/menu';
+import { DataViewModule } from 'primeng/dataview';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './components/home-page/home-page.component';
@@ -220,6 +221,7 @@ import { WorkHistorySummaryComponent } from './components/common/work-history-su
     InputSwitchModule,
     TooltipModule,
     MenuModule,
+    DataViewModule,
     CascadeSelectModule,
     EditorModule,
     FullCalendarModule,

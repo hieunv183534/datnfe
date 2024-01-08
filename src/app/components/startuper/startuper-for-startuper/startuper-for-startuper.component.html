@@ -97,9 +97,24 @@
         </div>
       </div>
     </div>
-    <div class="flex mt-2"  style="padding-left: 10%; padding-right: 10%; justify-content: flex-end;">
+    <div class="flex mt-2" style="padding: 10px; justify-content: flex-end">
       <p-button (onClick)="routeToHistorySearch()">Lịch sử tìm kiếm</p-button>
     </div>
+    
+    <p-dataView [value]="listStartuper" *ngIf="listStartuper.length > 0">
+      <ng-template let-startuper pTemplate="listItem">
+        <div class="col-12 md:col-4" style="padding: 30px">
+          <app-startuper-item
+            [startuper]="startuper"
+            [mode]="formSearch.value.mode"
+            (acceptFriend)="acceptFriend($event)"
+            (requestFriend)="requestFriend($event)"
+            (requestFromProject)="requestFromProject($event)"
+            (cancelRequestFriend)="cancelRequestFriend($event)"
+          ></app-startuper-item>
+        </div>
+      </ng-template>
+    </p-dataView>
     <div class="grid mt-4">
       <div
         class="grid flex justify-content-center"
@@ -112,19 +127,6 @@
             src="../../../../assets/img/nodata.jpg"
             alt=""
           />
-        </ng-container>
-
-        <ng-container *ngFor="let startuper of listStartuper">
-          <div class="lg:col-6 md:col-6 sm:col-12">
-            <app-startuper-item
-              [startuper]="startuper"
-              [mode]="formSearch.value.mode"
-              (acceptFriend)="acceptFriend($event)"
-              (requestFriend)="requestFriend($event)"
-              (requestFromProject)="requestFromProject($event)"
-              (cancelRequestFriend)="cancelRequestFriend($event)"
-            ></app-startuper-item>
-          </div>
         </ng-container>
       </div>
       <div class="col-12 flex justify-content-center">
