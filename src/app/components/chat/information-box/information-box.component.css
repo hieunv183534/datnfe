@@ -21,4 +21,17 @@
 .h-full-without-header {
     height: calc(100vh - 90px);
   }
-  
+.back-icon{
+    top: 4px;
+    cursor: pointer;
+    left: 0;
+}
+.back-icon:hover{
+    color: #3B82F6;
+}
+.last-title {
+    width:100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

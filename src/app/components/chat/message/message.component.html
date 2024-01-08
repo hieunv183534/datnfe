@@ -2,13 +2,40 @@
   <p-avatar *ngIf="!message.isMine && message.showA" shape="circle" [image]="message.sender.avatarUrl ??'https://fsiconnected.cloud/images/default-avatar.jpg'" class="message-avatar"></p-avatar>
 
   <ng-container *ngIf="message.type == MessageType.Text">
-    <p [tooltipPosition]="message.isMine ? 'left' :'right'" [pTooltip]="getDateTime(message.creationTime)">
-      {{message?.content}}
-    </p>
+    <div class="flex flex-column align-items-end relative">
+      <p [tooltipPosition]="message.isMine ? 'left' :'right'" [pTooltip]="getDateTime(message.creationTime)">
+        {{message?.content}}
+      </p>
+      <div class="container-action">
+        <div (click)="op1.toggle($event)" [ngClass]="message.isMine ? 'icon-action-right' :'icon-action-left'"
+         class="absolute icon-action top-50 -translateY-50 flex align-items-center justify-content-center cursor-pointer border-circle hover:shadow-5 hover:bg-white ">
+          <i class="pi pi-ellipsis-v text-gray-500 hover:text-gray-700"></i>
+        </div>
+      </div>
+      <span class="w-1rem h-1rem" *ngIf="message.index == message.conversation.lastIndexSeenA"   [tooltipPosition]="'top'" [pTooltip]="getDateTimeSeen(message.creationTime)">
+        <img [src]="message.conversation.conversationAvatar ??'https://fsiconnected.cloud/images/default-avatar.jpg'" class="avatar-custom mt-1" >
+      </span>
+    </div>
   </ng-container>
   <ng-container *ngIf="message.type == MessageType.Sticker">
     <p [tooltipPosition]="message.isMine ? 'left' :'right'" [pTooltip]="getDateTime(message.creationTime)">
       <i class="fa-solid fa-thumbs-up" style="font-size: 30px;color: #3B82F6;"></i>
     </p>
   </ng-container>
+  <p-overlayPanel [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'200ms'" #op1 [dismissable]="true">
+    <ng-template pTemplate>
+      <div class="flex flex-column p-2">
+        <div
+          class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1">
+          <i class="pi pi-paperclip mr-2 text-xs"></i>
+          <p class="text-xs my-0">Ghim tin nhắn</p>
+        </div>
+        <div
+          class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1">
+          <i class="pi pi-trash mr-2 text-xs"></i>
+          <p class="text-xs my-0 text-red-600">Xóa</p>
+        </div>
+      </div>
+    </ng-template>
+  </p-overlayPanel>
 </div>

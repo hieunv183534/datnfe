@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ConversationDto } from 'src/app/model/chat.class';
 
 @Component({
   selector: 'app-information-box',
@@ -9,6 +10,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class InformationBoxComponent implements OnInit {
   items: any[] = [];
+  files: any[] = []
+  links: any[] = []
+  @Input() conversation?: ConversationDto
+  @Input() isMobile?: boolean
+  @Output() close: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -168,7 +174,69 @@ export class InformationBoxComponent implements OnInit {
         },
       },
     ];
-
+    this.files = [
+      {
+        title: 'thoikhos.doc',
+        size: "166kb",
+        command: () => {
+          // do something
+        },
+      },
+      {
+        title: 'doantotnghie.xlxsdoantotnghie.xlxsdoantotnghie.xlxs',
+        size: "166kb",
+        command: () => {
+          // do something
+        },
+      },
+      {
+        title: 'fsiconncect.pdf',
+        size: "166kb",
+        command: () => {
+          // do something
+        },
+      },
+      {
+        title: 'thoikhos.doc',
+        size: "166kb",
+        command: () => {
+          // do something
+        },
+      },
+    ]
+    this.links = [
+      {
+        title: 'http://localhost:4200/#/startuper/chat/0/0',
+        url: 'https://primeflex.org/textcolor',
+        command: () => {
+          // do something
+        },
+      },
+      {
+        title: 'doantotnghie.xlxsdoantotnghie.xlxsdoantotnghie.xlxs',
+        size: "166kb",
+        url: 'https://chat.openai.com/c/cfa96398-4b37-428d-bcf1-769ce074a3fa',
+        command: () => {
+          // do something
+        },
+      },
+      {
+        title: 'fsiconncect.pdf',
+        size: "166kb",
+        url: 'https://docs.google.com/spreadsheets/d/14toh0f2KmpwowmYSeJLODs5Rol3lFUkgqn8QgW6Yu3M/edit#gid=312801768',
+        command: () => {
+          // do something
+        },
+      },
+      {
+        title: 'thoikhos.doc',
+        size: "166kb",
+        url: 'https://primeflex.org/textcolor',
+        command: () => {
+          // do something
+        },
+      },
+    ]
   }
 
 }

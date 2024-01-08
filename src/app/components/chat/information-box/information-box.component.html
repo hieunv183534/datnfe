@@ -1,10 +1,10 @@
-<div class="container-information flex flex-column overflow-y-scroll h-full-without-header">
-  <div class="container-info-chat flex flex-column">
-    <div class="w-full flex flex-column align-items-center justify-content-center mt-3">
+<div class="container-information flex flex-column overflow-y-scroll h-full-without-header w-full">
+  <div class="container-info-chat flex flex-column ">
+    <div class="w-full flex flex-column align-items-center justify-content-center relative mt-3">
+      <i *ngIf="isMobile" (click)="close.emit()" class="fa-solid fa-chevron-left pl-2 mr-2 back-icon absolute"></i>
       <p-avatar size="xlarge" shape="circle"
-        [image]="'https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-1/356431598_1719331301848920_5923863853146486687_n.jpg?stp=c0.7.100.100a_dst-jpg_p100x100&_nc_cat=106&ccb=1-7&_nc_sid=5740b7&_nc_ohc=mbiY9ziDdY0AX-i7xyJ&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.fhan2-3.fna&oh=00_AfAqgmtJNCuH0-776Tmmv-V4ATIx1jERW1Q3Wr5xksSnng&oe=659A5602'"
-        class="mr-3"></p-avatar>
-      <span class="text-base font-semibold mt-1">Văn hiếu nguyễn</span>
+        [image]="conversation?.conversationAvatar??'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
+      <span class="text-base font-semibold mt-1">{{conversation?.conversationName}}</span>
       <span class="text-xs text-gray-600">Hoạt động 7 phút trước</span>
     </div>
   </div>
@@ -37,15 +37,32 @@
       </p-accordionTab>
       <p-accordionTab header="File">
         <div class="grid m-0">
-          <ng-container *ngFor="let item of items">
-            <div class="col-3 p-1">
-              <p-image [src]="item.avatar" alt="Image" width="100%" height="100%"></p-image>
+          <ng-container *ngFor="let file of files">
+            <div
+              class="col-12 p-1 px-2 flex flex-row align-items-center hover:bg-gray-200 border-round-md cursor-pointer">
+              <i class="pi pi-file-pdf text-3xl mr-2"></i>
+              <div class="flex flex-column w-9">
+                <span class="text-base font-semibold last-title">{{file.title}}</span>
+                <span class="text-xs text-gray-600">{{file.size}}</span>
+              </div>
             </div>
           </ng-container>
         </div>
       </p-accordionTab>
       <p-accordionTab header="Liên kết">
-
+        <div class="grid m-0">
+          <ng-container *ngFor="let link of links">
+            <a [href]="link.url" target="_blank" class="col-12 p-1 px-2 flex flex-row align-items-center hover:bg-gray-200  text-black-alpha-70 text-base font-semibold border-round-md cursor-pointer">
+              <div class="flex align-items-center justify-content-center border-round-md bg-gray-300 w-2rem h-2rem mr-2">
+                <i class="pi pi-link"></i>
+              </div>
+              <div class="flex flex-column w-9">
+                <span class="text-base font-semibold last-title">{{link.title}}</span>
+                <span class="text-xs text-primary last-title">{{link.url}}</span>
+              </div>
+            </a>
+          </ng-container>
+        </div>
       </p-accordionTab>
     </p-accordion>
   </div>

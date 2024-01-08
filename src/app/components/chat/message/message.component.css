@@ -1,9 +1,10 @@
 .message {
-  width: 500px;
+  width: 60%;
   display: flex;
   margin-left: 36px;
   position: relative;
 }
+
 
 .message.justify-content-end p {
   display: inline-block;
@@ -11,12 +12,17 @@
   max-width: 100%;
   white-space: normal;
   background-color: #E5EFFF;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  border-radius: 12px;
+  /* box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.1);
   margin: 1px 0;
 }
-
+@media (max-width: 576px) {
+  .message.justify-content-end p {
+    padding: 6px 8px;
+  }
+} 
 .message.justify-content-start p {
   display: inline-block;
   width: auto;
@@ -25,7 +31,8 @@
   background-color: #FFFFFF;
   padding: 10px;
   border-radius: 10px;
-  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.1);
   margin: 1px 0;
 }
 
@@ -33,4 +40,29 @@
   position: absolute;
   top: 4px;
   left: -38px;
+}
+.read-point{
+  bottom: -28px;
+  right: 0;
+}
+.avatar-custom{
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+}
+.-translateY-50{
+  transform: translateY(-50%);
+}
+.container-action{
+  display: none;
+}
+.icon-action{
+  height: 1.5rem;
+  width: 1.5rem;
+}
+.icon-action-left{
+  right: -30px;
+}
+.icon-action-right{
+  left: -30px;
 }

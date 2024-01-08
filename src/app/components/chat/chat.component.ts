@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, ViewEncapsulation, ElementRef } from '@angular/core';
 import { ConversationDto, GetListConversationDto, GetListMessageDto, MessageDto, MessageSendToConversationDto, MessageSendToUserDto } from 'src/app/model/chat.class';
 import { MessageType } from 'src/app/model/enum';
 import * as signalR from '@microsoft/signalr';
@@ -15,7 +15,9 @@ TimeAgo.addDefaultLocale(vi)
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class ChatComponent implements OnInit, OnDestroy {
   conversationType: number = 0;
@@ -25,26 +27,33 @@ export class ChatComponent implements OnInit, OnDestroy {
   timeAgo = new TimeAgo('vi-VI');
   contentText: string = "";
   connection?: signalR.HubConnection;
-
+  screenWidth: number = window.innerWidth;
   emptyId: string = '00000000-0000-0000-0000-000000000000';
-
   userId: string = '';
-
   thisConversation?: ConversationDto = undefined;
   isVisibleAddConversation: boolean = false;
   isVisibleUpdateConversation: boolean = false;
-
+  isShowInfoBox: boolean = false;
   isShowEmoji: boolean = true;
   isVisibleCall: boolean = false;
+  isMobile: boolean = false;
+  isAllPinned: boolean = false;
+  listPinned: any[] = [];
+
   constructor(
     private messageService: MessageService,
     private route: ActivatedRoute,
     private chatService: ChatService,
-    private eventService: EventService
+    private eventService: EventService,
+    private eRef: ElementRef
   ) { }
-
+  @HostListener('document:click', ['$event'])
+  clickOutside(event:any) {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      this.isAllPinned = false;
+    }
+  }
   addEmoji(data: any) {
-    console.log(data);
     this.contentText = this.contentText + " " + data.emoji.native;
   }
 
@@ -61,8 +70,54 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.getListConversation();
     this.initConversation();
     this.initSignal();
+    this.screenWidth = window.innerWidth;
+    this.checkScreenSize();
+    this.listPinned=[
+      {
+        title:"tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyện, rip, ghim tin trong chat",
+        sender:"văn hiếu"
+      },
+      {
+        title:"lưu  trữ trò chuyện, ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyện, rip, ghim tin trong chat",
+        sender:"văn hiếu"
+
+      },
+      {
+        title:" ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyn",
+        sender:"văn hiếu"
+
+      },
+      {
+        title:"listPinned listPinnedlistPinned listPinned listPinned",
+        sender:"văn hiếu"
+      },
+      {
+        title:"l ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyn",
+        sender:"văn hiếu"
+      },
+    ]
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.screenWidth = window.innerWidth;
+    this.checkScreenSize();
   }
 
+  checkScreenSize() {
+    // Set the width for 'sm' as per your requirement
+    const sm = 576;
+    if (this.screenWidth <= sm) {
+      this.isShowInfoBox = false;
+    }
+    if (this.screenWidth <= sm) {
+      this.isMobile = true;
+      let avatar = document.querySelector('p-avatar');
+      avatar?.setAttribute('size', "sm");
+    }
+    else {
+      this.isMobile = false;
+    }
+  }
   ngOnDestroy(): void {
     this.connection?.stop();
   }
@@ -108,7 +163,9 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     });
   }
-
+  unmountCoversation() {
+    this.thisConversation = undefined
+  }
   initConversation() {
     this.route.params.subscribe(params => {
       let mode = params["mode"];
@@ -177,6 +234,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         input.userId = this.userId;
         this.chatService.sendMessageToNewOther(input).then((res: any) => {
           this.thisConversation = res.data.newConversation;
+
           this.getListConversation();
           this.getListMessage();
           this.contentText = "";
@@ -300,5 +358,6 @@ export class ChatComponent implements OnInit, OnDestroy {
       return null;
     }
   }
+
 
 }

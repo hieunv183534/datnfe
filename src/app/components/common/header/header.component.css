@@ -21,7 +21,11 @@
 .headerLogin #logo {
   width: 5.5rem;
 }
-
+@media (max-width: 620px) {
+  .headerLogin #logo {
+    width: 4rem;
+  }
+} 
 .headerLogin a {
   color: white;
   text-decoration: none;

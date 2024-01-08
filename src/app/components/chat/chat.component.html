@@ -1,58 +1,77 @@
-<div class="chat-container px-3 mb-5" style="border-bottom: 1px solid #ccc; height: calc(100vh - 90px);">
-  <div class="conversation-box w-3">
-    <div class="conversation-header">
-      <div class="flex w-full justify-content-between align-items-center ">
-        <span class="p-input-icon-left mr-2">
-          <i class="pi pi-search" style="top: 22px;"></i>
-          <input type="text" pInputText class="p-inputtext-sm" placeholder="Tìm kiếm" style="width: 270px;"
-            [(ngModel)]="conversationFilter" (keyup.enter)="getListConversation()">
-        </span>
+<div class="chat-container px-0 mb-5" style="border-bottom: 1px solid #ccc; height: calc(100vh - 90px);">
+  <div class="conversation-box pl-2 sm:min-w-min sm:w-3 lg:max-w-23rem"
+    [ngClass]="(thisConversation && isMobile) ? 'hidden hide-conversation-box' : 'flex  show-conversation-box'">
+    <div class="conversation-header grid pl-1">
+      <div class="col-12 flex justify-content-between align-items-center">
+        <span class="text-xl font-semibold p-2">Đoạn chat</span>
         <button pButton pRipple type="button" icon="fa fa-pen-to-square"
           class="p-button-rounded p-button-secondary p-button-text" (click)="isVisibleAddConversation = true"></button>
       </div>
-      <div class="w-full flex mt-2">
+      <div class="col-12 flex justify-content-between align-items-center px-2 py-0">
+        <span class="p-input-icon-left col-12 pr-0 pt-0">
+          <i class="pi pi-search pl-2 pb-3"></i>
+          <input type="text" pInputText class="p-inputtext-sm w-full custom-input" placeholder="Tìm kiếm"
+            [(ngModel)]="conversationFilter" (keyup.enter)="getListConversation()">
+        </span>
+
+      </div>
+      <div class="col-12 pl-3 flex">
         <button pButton pRipple type="button" label="Tất cả"
-          [ngClass]="{'p-button-outlined p-button-sm mr-3': true,'p-button-secondary': conversationType!= 0}"
+          [ngClass]="{'p-button-outlined p-button-sm m-1 btn-new-padding w-5rem text-xs': true,'p-button-secondary': conversationType!= 0}"
           (click)="conversationType=0;getListConversation()"></button>
         <button pButton pRipple type="button" label="Lưu trữ"
-          [ngClass]="{'p-button-outlined p-button-sm mr-3': true,'p-button-secondary': conversationType!= 1}"
+          [ngClass]="{'p-button-outlined p-button-sm m-1 btn-new-padding w-5rem text-xs': true,'p-button-secondary': conversationType!= 1}"
           (click)="conversationType=1;getListConversation()"></button>
         <button pButton pRipple type="button" label="Đang chờ"
-          [ngClass]="{'p-button-outlined p-button-sm': true,'p-button-secondary': conversationType!= 2}"
+          [ngClass]="{'p-button-outlined p-button-sm m-1 btn-new-padding w-5rem text-xs' : true,'p-button-secondary': conversationType!= 2}"
           (click)="conversationType=2;getListConversation()"></button>
       </div>
 
     </div>
-    <div class="conversation-list">
-      <div class="list-wrapper w-full h-auto  flex flex-column align-items-start justify-content-start">
-        <ng-container *ngFor="let conversation of conversations">
-          <div [ngClass]="{'conversation-item flex align-items-center p-2': true,
+    <div class="conversation-list grid">
+      <div class="list-wrapper col-12 px-0 h-auto align-items-start justify-content-start">
+        <ng-container *ngIf="conversations && conversations.length !== 0">
+          <ng-container *ngFor="let conversation of conversations">
+            <div class="" [ngClass]="{'conversation-item flex align-items-center p-2 pl-0': true,
                         'active-conversation': conversation.id == thisConversation?.id,
                         'unread': !conversation.isSeen}" (click)="selectConversation(conversation)">
-            <div class="unread-point"></div>
-            <p-avatar shape="circle"
-              [image]="conversation.conversationAvatar??'https://fsiconnected.cloud/images/default-avatar.jpg'"
-              size="large"></p-avatar>
-            <div class="conversation-preview-info">
-              <h4>{{conversation.conversationName}}</h4>
-              <p>{{conversation.lastMessage?.content}}</p>
+              <div class="unread-point"></div>
+              <p-avatar shape="circle" class="ml-avatar"
+                [image]="conversation.conversationAvatar??'https://fsiconnected.cloud/images/default-avatar.jpg'"
+                size="large"></p-avatar>
+              <div class="flex flex-wrap align-items-center justify-content-between w-full ml-3">
+                <div>
+                  <h4 class="m-0 mb-1 line-height-1">{{conversation.conversationName}}</h4>
+                  <p class="m-0 text-xs conversation-last-message">{{conversation.lastMessage?.content}}</p>
+                </div>
+                <p class="m-0 mr-3" style="font-size: 12px; text-align: center;">
+                  {{getTimeAgo(conversation.lastMessage?.creationTime)}}</p>
+              </div>
             </div>
-            <p style="font-size: 12px; text-align: center;">{{getTimeAgo(conversation.lastMessage?.creationTime)}}</p>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!conversations || conversations.length === 0">
+          <div class="flex justify-content center align-items-center flex-column w-full h-auto">
+            <div>
+              <i class="pi pi-database text-8xl text-gray-400 font-light p-4"></i>
+            </div>
+            <span>Không có cuộc trò chuyện</span>
           </div>
         </ng-container>
       </div>
     </div>
   </div>
-  <div class="message-box w-6">
+  <div [ngClass]="[((!thisConversation ||isShowInfoBox) && isMobile) ? 'hidden' : 'flex ']" class="message-box">
     <ng-container *ngIf="thisConversation != undefined">
-      <div class="message-header px-3">
-        <div class="conversation-info flex align-items-center justify-content-center" (click)="infoConversation()">
-          <p-avatar shape="circle"
+      <div class="message-header px-2 sm:px-3">
+        <div class="conversation-info flex align-items-center justify-content-center">
+          <i (click)="unmountCoversation()" *ngIf="isMobile" class="fa-solid fa-chevron-left mr-2 back-icon"></i>
+          <p-avatar (click)="infoConversation()" shape="circle"
             [image]="thisConversation?.conversationAvatar??'https://fsiconnected.cloud/images/default-avatar.jpg'"
             size="large"></p-avatar>
-          <h3 class="ml-2">{{thisConversation?.conversationName}}</h3>
+          <h3 (click)="infoConversation()" class="ml-2 text-xs sm:text-sm">{{thisConversation?.conversationName}}</h3>
         </div>
-        <div class="flex .align-items-center justify-content-end" style="gap: 10px;">
+        <div class="flex .align-items-center justify-content-end gap-0 sm:gap-1">
           <div class="other-message-type-item" pTooltip="Call âm thanh" tooltipPosition="top">
             <i class="fa-solid fa-phone"></i>
           </div>
@@ -60,9 +79,39 @@
             (click)="isVisibleCall = true">
             <i class="fa-solid fa-video"></i>
           </div>
+          <div class="other-message-type-item" [ngClass]="{'btn-active': isShowInfoBox}" pTooltip="Thông tin"
+            tooltipPosition="top" (click)="isShowInfoBox = !isShowInfoBox">
+            <i class="fa-solid fa-circle-info"></i>
+          </div>
         </div>
       </div>
-      <div class="message-content pl-5" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+      <div class="container-massage-pinned absolute w-full p-2 pt-1 bg-white" [ngClass]="[isAllPinned ? 'active' : 'inactive']">
+        <div class="content-pinned h-full flex align-items-center">
+          <i class="fa-regular fa-message font-xl text-lg p-2"></i>
+          <div>
+            <div class="header-massage-pinned text-gray-900">Tin nhắn đã ghim</div>
+            <div *ngIf="!isAllPinned" class="content-massage-pinned text-xs text-gray-600">{{listPinned[listPinned.length-1].sender}}: {{listPinned[listPinned.length-1].title}}</div>
+            <ng-container *ngFor="let item of listPinned">
+              <div *ngIf="isAllPinned" class="content-massage-pinned text-xs text-gray-600">{{item.sender}}: {{item.title}}</div>
+            </ng-container>
+          </div>
+        </div>
+        <div *ngIf="listPinned.length == 1" class="all-massage-pinned">
+          <div
+            class="absolute icon-absolute flex align-items-center justify-content-center cursor-pointer border-circle w-2rem h-2rem hover:bg-gray-200 top-50 right-0 mr-3">
+            <i class="pi pi-ellipsis-h"></i>
+          </div>
+        </div>
+        <div *ngIf="listPinned.length != 1" class="all-massage-pinned">
+          <div
+            class="absolute icon-absolute flex align-items-center justify-content-center top-50 right-0 mr-3">
+            <button pButton pRipple type="button" [label]="isAllPinned ? 'Ẩn bớt':'Tất cả' "
+            [ngClass]="{'p-button-outlined p-button-sm m-1 btn-new-padding w-5rem text-xs': true,'p-button-secondary': conversationType!= 0}"
+            (click)="isAllPinned=!isAllPinned"></button>
+          </div>
+        </div>
+      </div>
+      <div class="message-content" #scrollMe [scrollTop]="scrollMe.scrollHeight">
         <div class="message-wrapper">
           <ng-container *ngFor="let message of messages">
             <div app-message [message]="message"
@@ -108,8 +157,12 @@
         đầu cuộc trò chuyện mới</h2>
     </ng-container>
   </div>
-  <div class="infomation-box w-3">
-    <app-information-box></app-information-box>
+  <div [ngClass]="[(isShowInfoBox && isMobile) ? 'w-100 w-full' : 'nw-0', (isShowInfoBox && !isMobile)? 'w-25' : 'w-0']"
+    class="infomation-box">
+    <ng-container *ngIf="thisConversation != undefined && isShowInfoBox">
+      <app-information-box (close)="isShowInfoBox=false" [isMobile]="isMobile"
+        [conversation]="thisConversation"></app-information-box>
+    </ng-container>
   </div>
 </div>
 

@@ -2,7 +2,7 @@
   <div class="leftDiv">
     <img src="../../../../assets/img/logotitle.png" (click)="toHome()" id="logo" />
     <ng-container *ngFor="let menu of menuData">
-      <a [routerLink]="menu.href" [ngClass]="{'active-menu': thisRouteUrl == menu.href}">{{menu.title}}</a>
+      <a [routerLink]="menu.href" class="text-xs sm:text-sm" [ngClass]="{'active-menu': thisRouteUrl == menu.href}">{{menu.title}}</a>
     </ng-container>
   </div>
   <div class="rightDiv">

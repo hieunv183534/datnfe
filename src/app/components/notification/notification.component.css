@@ -12,7 +12,7 @@
 }
 .container-function {
     display: none;
-  }
+}
   
 .container-notification:hover .container-function {
     display: block;
