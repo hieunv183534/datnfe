@@ -3,32 +3,37 @@
   (mouseenter)="isHovered = true"
   (mouseleave)="isHovered = false"
 >
-  <img
-    [src]="
-      startuper.avatarUrl ??
-      'https://fsiconnected.cloud/images/default-avatar.jpg'
-    "
-    alt=""
-    id="avatar"
-  />
-  <div class="info">
+  <div class="grid info">
+    <div class="col-5 md-5">
+      <img
+        [src]="
+          startuper.avatarUrl ??
+          'https://fsiconnected.cloud/images/default-avatar.jpg'
+        "
+        alt=""
+        id="avatar"
+      />
+    </div>
+    <div class=" col-7 md-7">
+      <ul>
+        <li>
+          <div class="name">{{ startuper.name }}</div>
+        </li>
+        <li><i class="pi pi-search"></i> {{ startuper.describe }}</li>
+        <li>
+          <i class="pi pi-calendar"></i> {{ getAge(startuper.dateOfBirth) }} tuổi
+        </li>
+        <li>
+          <i class="pi pi-map-marker"></i> {{ getArea(startuper.location) }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div>
     <ul>
       <li>
-        <div class="name">{{ startuper.name }}</div>
-      </li>
-      <li><i class="pi pi-search"></i> {{ startuper.describe }}</li>
-      <li>
-        <i class="pi pi-calendar"></i> {{ getAge(startuper.dateOfBirth) }}
-      </li>
-      <li>
-        <i class="pi pi-map-marker"></i> {{ getArea(startuper.location) }}
-      </li>
-      <li>
         <p><b>Kỹ năng chuyên môn của tôi</b></p>
-        <p-tag
-          :value="{{ startuper.speciality }}"
-          class="ml-1"
-        ></p-tag>
+        <p-tag :value="{{ startuper.speciality }}"></p-tag>
       </li>
       <li>
         <p><b>Thời gian khả dụng</b></p>
@@ -40,11 +45,9 @@
         </span>
       </li>
       <li>
-        <p><b>Tôi quan tâm tới lĩnh vực</b></p>
+        <p><b>Lĩnh vực</b></p>
         <span>
-          <p-tag value="BĐS" class="ml-1"></p-tag>
-          <p-tag value="IT" class="ml-1"></p-tag>
-          <p-tag value="Phần mềm" class="ml-1"></p-tag>
+          <p-tag :value="{{ getField(startuper.field) }}" class="ml-1"></p-tag>
         </span>
       </li>
       <!-- <li>Độ tuổi: {{getAge(startuper.dateOfBirth)}}</li>

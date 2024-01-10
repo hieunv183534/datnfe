@@ -108,6 +108,7 @@ export class ProjectForStartuperComponent implements OnInit {
   onPageChange(value: any) {
     this.page = value.page + 1;
     this.pageSize = value.rows;
+    this.getListProject(true);
   }
 
 

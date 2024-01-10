@@ -3,48 +3,36 @@
   background-color: white;
   box-shadow: 0px 0px 3px 3px #00000022;
   border-radius: 20px;
-  display: flex;
   align-items: flex-start;
   font-size: 0.9rem;
   padding: 4px;
-  overflow-y: auto;
+  height: 100%;
 }
 
 .founderItem #avatar {
   height: 100%;
-  width: 35%;
-  object-fit: contain;
+  width: 100%;
   border-radius: 18px;
-  align-self: center;
 }
 
-.founderItem .info {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+.founderItem ul {
+  list-style: none;
 }
 
 .founderItem .info ul {
-  padding-left: 7%;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.founderItem .info li {
+  margin: 0;
+  padding: 0;
+  line-height: 2;
 }
 
 .founderItem .info .name {
   font-size: 1.2rem;
   font-weight: 700;
-}
-
-.founderItem .info .introduce {
-  font-weight: 300;
-  height: 40px;
-  width: 100%;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .founderItem #goldOutline {
@@ -53,35 +41,6 @@
   left: 0px;
   width: 100%;
   height: 100%;
-}
-
-#medal{
-  position: absolute;
-  z-index: 1;
-  margin-top: 60px;
-}
-
-.likes__wrapper{
-  display:flex;
-  align-content:center;
-  justify-content:center;
-
-}
-.likes__relavance{
-  position:relative;
-  padding:0 80px;
-}
-.likes__list{
-  position:absolute;
-  box-sizing: border-box;
-  overflow-y:scroll;
-  max-height:150px;
-  left:0%;
-  z-index:999;
-  background:white;
-  padding:10px;
-  border:1px solid grey;
-  box-shadow: 0 0 2px 2px grey;
 }
 
 .founderItem .hoverDiv {
@@ -120,11 +79,10 @@
 .founderItem .hoverDiv button:active {
   filter: brightness(0.8);
 }
-.founderItem .hoverDiv #xemthem{
+.founderItem .hoverDiv #xemthem {
   border-style: solid;
   border-width: 1px;
 }
 .founderItem .hoverDiv #ketnoi {
-  background: linear-gradient(90deg, #0386FF 0%, #01AAFF 100%, #01AAFF 100%);
+  background: linear-gradient(90deg, #0386ff 0%, #01aaff 100%, #01aaff 100%);
 }
-
