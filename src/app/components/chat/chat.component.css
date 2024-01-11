@@ -475,7 +475,7 @@ border: none;
   margin: 1px 0;
 }
 
-textarea {
+.container-input-message > textarea {
   overflow: auto;
   outline: none;
   -webkit-box-shadow: none;
