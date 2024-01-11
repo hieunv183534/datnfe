@@ -129,7 +129,7 @@
 .message-box {
   height: 100%;
   flex-grow: 1;
-  position: relative;
+  /* position: relative; */
 }
 
 .infomation-box {
@@ -213,7 +213,7 @@
   border-bottom: 1px solid #c9c9c9;
   width: 100%;
   height: 68px;
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   left: 0;
   display: flex;
@@ -227,9 +227,9 @@
 
 .message-content {
   width: 100%;
-  height: calc(100% - 168px);
+  /* height: calc(100% - 168px); */
   overflow-y: auto;
-  position: absolute;
+  /* position: absolute; */
   top: 68px;
   /* background-image: linear-gradient(to bottom right, #eaedf3, #C8C7BF88); */
   background-color: #eaedf3;
@@ -255,8 +255,8 @@
 .message-footer {
   border-top: 1px solid #c9c9c9;
   width: 100%;
-  height: 100px;
-  position: absolute;
+  height: auto;
+  /* position: absolute; */
   bottom: 0;
   left: 0;
   display: flex;
@@ -289,15 +289,15 @@
   background-color: #DFE2E7;
 }
 
-.text-type {
+/* .text-type {
   width: 100%;
-  height: 55px;
+  height: automessage-footer;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0px 10px;
   gap: 10px;
-}
+} */
 
 .text-type input {
   border: 1px solid #c9c9c9;
@@ -457,17 +457,33 @@
     opacity: 1;
   }
 }
-
-.container-massage-pinned {
-  max-height: auto;
-  overflow: hidden;
-  transition: max-height 0.5s ease-in-out;
+.p-component > img{
+  border-radius: 10px;
+}
+.p-inputtext:active{
+border: none;
+}
+.reply-message{
+  display: inline-block;
+  width: auto;
+  white-space: normal;
+  background-color: #FFFFFF;
+  padding: 8px 10px;
+  border-radius: 10px;
+  /* box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
+  margin: 1px 0;
 }
 
-.container-massage-pinned.active {
-  max-height: 1000px; 
-}
-
-.container-massage-pinned.inactive {
-  max-height: 3rem;
+textarea {
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ced4da;
+  appearance: none;
 }

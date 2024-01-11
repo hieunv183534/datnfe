@@ -25,7 +25,12 @@
     </div>
   </div>
   <div class="container-media p-2">
-    <p-accordion [multiple]="true">
+    <p-accordion>
+      <div class="pinned-message-header flex justify-content-start align-items-center cursor-pointer"
+        (click)="display=true">
+        <i class="fa-solid fa-thumbtack ml-1 -rotate-45"></i>
+        <span>Tin nhắn đã ghim</span>
+      </div>
       <p-accordionTab header="Ảnh/Video">
         <div class="grid m-0">
           <ng-container *ngFor="let item of items">
@@ -52,8 +57,10 @@
       <p-accordionTab header="Liên kết">
         <div class="grid m-0">
           <ng-container *ngFor="let link of links">
-            <a [href]="link.url" target="_blank" class="col-12 p-1 px-2 flex flex-row align-items-center hover:bg-gray-200  text-black-alpha-70 text-base font-semibold border-round-md cursor-pointer">
-              <div class="flex align-items-center justify-content-center border-round-md bg-gray-300 w-2rem h-2rem mr-2">
+            <a [href]="link.url" target="_blank"
+              class="col-12 p-1 px-2 flex flex-row align-items-center hover:bg-gray-200  text-black-alpha-70 text-base font-semibold border-round-md cursor-pointer">
+              <div
+                class="flex align-items-center justify-content-center border-round-md bg-gray-300 w-2rem h-2rem mr-2">
                 <i class="pi pi-link"></i>
               </div>
               <div class="flex flex-column w-9">
@@ -65,5 +72,47 @@
         </div>
       </p-accordionTab>
     </p-accordion>
+    <p-dialog [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '30vw'}">
+      <ng-template pTemplate="header">
+        Tin nhắn đã ghim
+      </ng-template>
+      <ng-container *ngFor="let message of pinnedMessage">
+        <div class="flex w-full border-bottom-1 border-300 p-2">
+          <div class="flex mr-3 mt-4">
+            <p-avatar shape="circle"
+              [image]="message?.avatar??'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
+          </div>
+          <div class="flex flex-column w-full">
+            <div class="flex justify-content-between text-sm text-gray-700 mb-1">
+              <span>{{message.sender}}</span>
+              <span>{{getDateTime(message.time)}}</span>
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <span class="w-9 text-sm message-pinned">{{message.title}}</span>
+              <div (click)="op.toggle($event)"
+                class="flex align-items-center justify-content-center cursor-pointer h-2rem w-2rem border-circle hover:bg-gray-200">
+                <i class="pi pi-ellipsis-h text-gray-500 hover:text-gray-700"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </p-dialog>
   </div>
+  <p-overlayPanel [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'200ms'" #op [dismissable]="true">
+    <ng-template pTemplate>
+      <div class="flex flex-column p-2">
+        <div
+          class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1">
+          <i class="fa-solid fa-link-slash mr-2 text-xs"></i>
+          <p class="text-sm my-0">Bỏ ghim</p>
+        </div>
+        <div
+          class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1">
+          <i class="fa-solid fa-location-dot mr-2 ml-1 text-sm"></i>
+          <p class="text-sm my-0">Xem trong đoạn chat</p>
+        </div>
+      </div>
+    </ng-template>
+  </p-overlayPanel>
 </div>

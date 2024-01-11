@@ -57,3 +57,20 @@
 .h-40rem{
     height: 40rem !important;
 }
+.pinned-message-header {
+    background-color: #f8f9fa;
+    padding: 0.5rem;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    height: 33.6px;
+}
+.pinned-message-header > span{
+    color: #6c757d;
+    font-weight: 700;
+    line-height: 1;
+}
+.pinned-message-header > i {
+    margin-right: 0.7rem !important;
+    color: #6c757d;
+}

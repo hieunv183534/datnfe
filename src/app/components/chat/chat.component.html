@@ -1,5 +1,5 @@
 <div class="chat-container px-0 mb-5" style="border-bottom: 1px solid #ccc; height: calc(100vh - 90px);">
-  <div class="conversation-box pl-2 sm:min-w-min sm:w-3 lg:max-w-23rem"
+  <div class="conversation-box pl-2 sm:min-w-min  max-w-23rem"
     [ngClass]="(thisConversation && isMobile) ? 'hidden hide-conversation-box' : 'flex  show-conversation-box'">
     <div class="conversation-header grid pl-1">
       <div class="col-12 flex justify-content-between align-items-center">
@@ -61,7 +61,8 @@
       </div>
     </div>
   </div>
-  <div [ngClass]="[((!thisConversation ||isShowInfoBox) && isMobile) ? 'hidden' : 'flex ']" class="message-box">
+  <div [ngClass]="[((!thisConversation ||isShowInfoBox) && isMobile) ? 'hidden' : 'flex ']"
+    class="message-box flex-column justify-content-between">
     <ng-container *ngIf="thisConversation != undefined">
       <div class="message-header px-2 sm:px-3">
         <div class="conversation-info flex align-items-center justify-content-center">
@@ -85,42 +86,16 @@
           </div>
         </div>
       </div>
-      <div class="container-massage-pinned absolute w-full p-2 pt-1 bg-white" [ngClass]="[isAllPinned ? 'active' : 'inactive']">
-        <div class="content-pinned h-full flex align-items-center">
-          <i class="fa-regular fa-message font-xl text-lg p-2"></i>
-          <div>
-            <div class="header-massage-pinned text-gray-900">Tin nhắn đã ghim</div>
-            <div *ngIf="!isAllPinned" class="content-massage-pinned text-xs text-gray-600">{{listPinned[listPinned.length-1].sender}}: {{listPinned[listPinned.length-1].title}}</div>
-            <ng-container *ngFor="let item of listPinned">
-              <div *ngIf="isAllPinned" class="content-massage-pinned text-xs text-gray-600">{{item.sender}}: {{item.title}}</div>
-            </ng-container>
-          </div>
-        </div>
-        <div *ngIf="listPinned.length == 1" class="all-massage-pinned">
-          <div
-            class="absolute icon-absolute flex align-items-center justify-content-center cursor-pointer border-circle w-2rem h-2rem hover:bg-gray-200 top-50 right-0 mr-3">
-            <i class="pi pi-ellipsis-h"></i>
-          </div>
-        </div>
-        <div *ngIf="listPinned.length != 1" class="all-massage-pinned">
-          <div
-            class="absolute icon-absolute flex align-items-center justify-content-center top-50 right-0 mr-3">
-            <button pButton pRipple type="button" [label]="isAllPinned ? 'Ẩn bớt':'Tất cả' "
-            [ngClass]="{'p-button-outlined p-button-sm m-1 btn-new-padding w-5rem text-xs': true,'p-button-secondary': conversationType!= 0}"
-            (click)="isAllPinned=!isAllPinned"></button>
-          </div>
-        </div>
-      </div>
-      <div class="message-content" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+      <div class="message-content h-full " #scrollMe [scrollTop]="scrollMe.scrollHeight">
         <div class="message-wrapper">
           <ng-container *ngFor="let message of messages">
-            <div app-message [message]="message"
+            <div app-message (replyMessage)="handleReplyMessage(message)" [message]="message"
               [ngClass]="{'w-full message-item flex': true, 'justify-content-start' : !message.isMine, 'justify-content-end': message.isMine ,'mt-3':message.showA }">
             </div>
           </ng-container>
         </div>
       </div>
-      <div class="message-footer">
+      <div class="message-footer max-h-full">
         <div class="other-message-type">
           <input style="display: none;" type="file" name="" id="" #inputFile>
           <button class="emoji-button other-message-type-item relative" pTooltip="Emoji" tooltipPosition="top">
@@ -136,16 +111,50 @@
             <i class="fa-solid fa-paperclip"></i>
           </div>
         </div>
-        <div class="text-type">
-          <input type="text" style="flex-grow: 1;" [(ngModel)]="contentText" placeholder="Nhập tin nhắn ..."
-            (keyup.enter)="send()">
-          <div *ngIf="!contentText" class="other-message-type-item" pTooltip="Gửi lượt thích" tooltipPosition="top"
-            style="width: 48px; height: 48px; font-size: 27px; color: #3B82F6;" (click)="sendLike()">
-            <i class="fa-solid fa-thumbs-up"></i>
+        <div class="flex flex-column w-full ">
+          <div *ngIf="replyMessage"
+            class="overflow-y-auto w-auto flex flex-column px-2 ml-2 mt-2 border-left-2 border-primary">
+            <div class="flex flex-row justify-content-between pb-1">
+              <div class="flex h-auto">
+                <div>
+                  <i class="fa-solid fa-reply text-gray-500"></i>
+                </div>
+                <p class="m-0 ml-2 font-italic">Đang trả lời <span
+                    class="font-semibold">{{replyMessage.sender?.name}}</span></p>
+              </div>
+              <div (click)="handleDeleteReplyMessage()" style="width:24px; height: 24px"
+                class="hover:bg-gray-200  cursor-pointer hover:text-primary border-circle flex align-items-center justify-content-center">
+                <i class="pi pi-times"></i>
+              </div>
+            </div>
+            <p class="reply-message ">{{replyMessage.content}}</p>
           </div>
-          <div *ngIf="contentText" class="other-message-type-item" pTooltip="Enter để gửi" tooltipPosition="top"
-            style="width: 48px; height: 48px; font-size: 27px;color: #3B82F6;" (click)="send()">
-            <i class="fa-solid fa-paper-plane"></i>
+          <div class="flex flex-row align-items-center">
+            <div class="w-full p-2 pb-1 relative">
+              <div style=" overflow: hidden" class="border-round-3xl bg-gray-200 pt-1">
+                <textarea style="resize: none; width: 98%; " [(ngModel)]="contentText" [rows]="rows"
+                  class="relative custom-textarea bg-gray-200 h-full border-none border-round-3xl "
+                  [ngClass]="{'pt-8' : (files.length > 0)}" (keydown)="handleKeyDown($event)"
+                  (keyup)="handleKeyUp($event)" (ngModelChange)="handleChange()" placeholder="Type your message...">
+                </textarea>
+              </div>
+              <div *ngIf="files.length>0" style="width: 95%;"
+                class="h-4rem absolute left-0 top-0 ml-2 pl-2 mt-2 overflow-y-auto flex">
+                <ng-container *ngFor="let file of files">
+                  <div class="bg-gay-300 min-w-max p-1 pt-2">
+                    <p-image [src]="file.url" alt="Image" width="100%" height="100%"></p-image>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+            <div *ngIf="!contentText" class="other-message-type-item" pTooltip="Gửi lượt thích" tooltipPosition="top"
+              style="width: 48px; height: 48px; font-size: 27px; color: #3B82F6;" (click)="sendLike()">
+              <i class="fa-solid fa-thumbs-up"></i>
+            </div>
+            <div *ngIf="contentText" class="other-message-type-item" pTooltip="Enter để gửi" tooltipPosition="top"
+              style="width: 48px; height: 48px; font-size: 27px;color: #3B82F6;" (click)="send()">
+              <i class="fa-solid fa-paper-plane"></i>
+            </div>
           </div>
         </div>
       </div>

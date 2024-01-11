@@ -61,8 +61,21 @@
   width: 1.5rem;
 }
 .icon-action-left{
-  right: -30px;
+  right: -90px;
 }
 .icon-action-right{
+  left: -30px;
+}
+
+.icon-reply-left{
+  right: -60px;
+}
+.icon-reply-right{
+  left: -60px;
+}
+.icon-react-left{
+  right: -30px;
+}
+.icon-react-right{
   left: -30px;
 }

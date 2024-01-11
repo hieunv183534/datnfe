@@ -1,5 +1,7 @@
 <div [ngClass]="{'message': true, 'justify-content-start' : !message.isMine , 'justify-content-end': message.isMine}">
-  <p-avatar *ngIf="!message.isMine && message.showA" shape="circle" [image]="message.sender.avatarUrl ??'https://fsiconnected.cloud/images/default-avatar.jpg'" class="message-avatar"></p-avatar>
+  <p-avatar *ngIf="!message.isMine && message.showA" shape="circle"
+    [image]="message.sender.avatarUrl ??'https://fsiconnected.cloud/images/default-avatar.jpg'"
+    class="message-avatar"></p-avatar>
 
   <ng-container *ngIf="message.type == MessageType.Text">
     <div class="flex flex-column align-items-end relative">
@@ -8,12 +10,26 @@
       </p>
       <div class="container-action">
         <div (click)="op1.toggle($event)" [ngClass]="message.isMine ? 'icon-action-right' :'icon-action-left'"
-         class="absolute icon-action top-50 -translateY-50 flex align-items-center justify-content-center cursor-pointer border-circle hover:shadow-5 hover:bg-white ">
+          class="absolute icon-action top-50 -translateY-50 flex align-items-center justify-content-center cursor-pointer border-circle hover:shadow-2 hover:bg-white ">
           <i class="pi pi-ellipsis-v text-gray-500 hover:text-gray-700"></i>
         </div>
       </div>
-      <span class="w-1rem h-1rem" *ngIf="message.index == message.conversation.lastIndexSeenA"   [tooltipPosition]="'top'" [pTooltip]="getDateTimeSeen(message.creationTime)">
-        <img [src]="message.conversation.conversationAvatar ??'https://fsiconnected.cloud/images/default-avatar.jpg'" class="avatar-custom mt-1" >
+      <div *ngIf="!message.isMine" class="container-action">
+        <div (click)="handleReply()" 
+          class="absolute icon-action icon-reply-left top-50 -translateY-50 flex align-items-center justify-content-center cursor-pointer border-circle hover:shadow-2 hover:bg-white ">
+          <i class="fa-solid fa-reply text-gray-500 hover:text-gray-700"></i>
+        </div>
+      </div>
+      <div *ngIf="!message.isMine" class="container-action">
+        <div (click)="op1.toggle($event)"
+          class="absolute icon-action icon-react-left top-50 -translateY-50 flex align-items-center justify-content-center cursor-pointer border-circle hover:shadow-2 hover:bg-white ">
+          <i class="fa-regular fa-face-smile text-gray-500 hover:text-gray-700"></i>
+        </div>
+      </div>
+      <span class="w-1rem h-1rem" *ngIf="message.index == message.conversation.lastIndexSeenA" [tooltipPosition]="'top'"
+        [pTooltip]="getDateTimeSeen(message.creationTime)">
+        <img [src]="message.conversation.conversationAvatar ??'https://fsiconnected.cloud/images/default-avatar.jpg'"
+          class="avatar-custom mt-1">
       </span>
     </div>
   </ng-container>

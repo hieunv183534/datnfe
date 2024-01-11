@@ -1,5 +1,5 @@
 import { MessageType } from 'src/app/model/enum';
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { MessageDto } from 'src/app/model/chat.class';
 import { Util } from 'src/app/shared/util/util';
 
@@ -14,16 +14,18 @@ export class MessageComponent implements OnInit {
   MessageType = MessageType;
 
   @Input() message?: any = {};
-
+  @Output() replyMessage: EventEmitter<void> = new EventEmitter<void>();
   constructor() { }
 
   ngOnInit() {
   }
-
-  getDateTime(d: any){
+  handleReply(){
+    this.replyMessage.emit();
+  }
+  getDateTime(d: any) {
     return Util.getDateTime(new Date(d));
   }
-  getDateTimeSeen(d: any){
+  getDateTimeSeen(d: any) {
     return `Đã xem lúc ${Util.getDateTime(new Date(d))}`
   }
 }

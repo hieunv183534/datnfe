@@ -24,6 +24,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   conversationFilter?: string = "";
   conversations?: ConversationDto[] = [];
   messages: MessageDto[] = [];
+  replyMessage?: MessageDto = undefined;
   timeAgo = new TimeAgo('vi-VI');
   contentText: string = "";
   connection?: signalR.HubConnection;
@@ -37,9 +38,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   isShowEmoji: boolean = true;
   isVisibleCall: boolean = false;
   isMobile: boolean = false;
-  isAllPinned: boolean = false;
-  listPinned: any[] = [];
-
+  rows: number = 1;
+  maxRows: number = 5;
+  files: any[] = [];
   constructor(
     private messageService: MessageService,
     private route: ActivatedRoute,
@@ -47,12 +48,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     private eventService: EventService,
     private eRef: ElementRef
   ) { }
-  @HostListener('document:click', ['$event'])
-  clickOutside(event:any) {
-    if (!this.eRef.nativeElement.contains(event.target)) {
-      this.isAllPinned = false;
-    }
-  }
   addEmoji(data: any) {
     this.contentText = this.contentText + " " + data.emoji.native;
   }
@@ -72,30 +67,20 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.initSignal();
     this.screenWidth = window.innerWidth;
     this.checkScreenSize();
-    this.listPinned=[
-      {
-        title:"tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyện, rip, ghim tin trong chat",
-        sender:"văn hiếu"
-      },
-      {
-        title:"lưu  trữ trò chuyện, ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyện, rip, ghim tin trong chat",
-        sender:"văn hiếu"
-
-      },
-      {
-        title:" ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyn",
-        sender:"văn hiếu"
-
-      },
-      {
-        title:"listPinned listPinnedlistPinned listPinned listPinned",
-        sender:"văn hiếu"
-      },
-      {
-        title:"l ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyn",
-        sender:"văn hiếu"
-      },
-    ]
+    // this.files=[
+    //   {
+    //     url:"https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg"
+    //   },
+    //   {
+    //     url:"https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg"
+    //   },
+    //   {
+    //     url:"https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg"
+    //   },
+    //   {
+    //     url:"https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg"
+    //   },
+    // ]
   }
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -106,7 +91,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   checkScreenSize() {
     // Set the width for 'sm' as per your requirement
     const sm = 576;
-    if (this.screenWidth <= sm) {
+    const md = 900;
+    if (this.screenWidth <= md) {
       this.isShowInfoBox = false;
     }
     if (this.screenWidth <= sm) {
@@ -358,6 +344,66 @@ export class ChatComponent implements OnInit, OnDestroy {
       return null;
     }
   }
+  // onBackspace(event: any) {
+  //   const textArea = event.target;
+  //   const lines = textArea.value.split('\n');
+  //   const lastLine = lines[lines.length - 1];
+  //   if (lastLine.trim() === '') {
+  //     this.inputRows--;
+  //   }
+  // }
+  handleKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' && event.shiftKey) {
+      console.log(1123123);
 
+      this.rows = Math.min(this.rows + 1, this.maxRows);
+    } else if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      this.send();
+      this.rows = 1;
+    } else if (event.key === 'Backspace' && this.contentText !== '') {
+      // event.preventDefault();
+      // this.removeLastRow();
+      const lines = this.contentText.split('\n');
+      const lastLine = lines[lines.length - 1];
+      if (lastLine.trim() === '') {
+        this.rows = Math.max(this.rows - 1, 1);
+      }
+    }
+  }
 
+  handleKeyUp(event: KeyboardEvent): void {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+    }
+  }
+  handleChange(): void {
+    if (this.contentText === '') {
+      this.rows = 1;
+    }
+  }
+  sendMessage(): void {
+    // Add your logic to handle the message
+    console.log('Sending message:', this.contentText);
+
+    // Clear the message input
+    this.contentText = '';
+    // Reset rows to 1 after sending the message
+    this.rows = 1;
+  }
+
+  removeLastRow(): void {
+    if (this.contentText !== '' && this.rows > 1) {
+
+      this.rows = Math.max(this.rows - 1, 1);
+    }
+  }
+  handleReplyMessage(message: any) {
+    this.replyMessage = message;
+    
+  }
+  handleDeleteReplyMessage() {
+    this.replyMessage = undefined;
+    
+  }
 }
