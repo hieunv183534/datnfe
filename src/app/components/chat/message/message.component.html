@@ -15,13 +15,13 @@
         </div>
       </div>
       <div *ngIf="!message.isMine" class="container-action">
-        <div (click)="handleReply()" 
+        <div (click)="replyMessage.emit()"
           class="absolute icon-action icon-reply-left top-50 -translateY-50 flex align-items-center justify-content-center cursor-pointer border-circle hover:shadow-2 hover:bg-white ">
           <i class="fa-solid fa-reply text-gray-500 hover:text-gray-700"></i>
         </div>
       </div>
       <div *ngIf="!message.isMine" class="container-action">
-        <div (click)="op1.toggle($event)"
+        <div (click)="op.toggle($event)"
           class="absolute icon-action icon-react-left top-50 -translateY-50 flex align-items-center justify-content-center cursor-pointer border-circle hover:shadow-2 hover:bg-white ">
           <i class="fa-regular fa-face-smile text-gray-500 hover:text-gray-700"></i>
         </div>
@@ -38,6 +38,15 @@
       <i class="fa-solid fa-thumbs-up" style="font-size: 30px;color: #3B82F6;"></i>
     </p>
   </ng-container>
+  <p-overlayPanel [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'200ms'" #op [dismissable]="true">
+    <ng-template pTemplate>
+      <div class="p-2 flex text-xl">
+        <ng-container  *ngFor="let e of favoriteEmojis">
+          <div class="cursor-pointer" (click)="reactMessage(e)">{{e}}</div>
+        </ng-container>
+      </div>
+    </ng-template>
+  </p-overlayPanel>
   <p-overlayPanel [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'200ms'" #op1 [dismissable]="true">
     <ng-template pTemplate>
       <div class="flex flex-column p-2">

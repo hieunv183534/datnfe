@@ -3,14 +3,9 @@
 }
 
 .conversation-box {
-  height: 100%;
-  width: 100%;
-  /* display: flex; */
-  flex-direction: column;
   border-right: 1px solid #c9c9c9;
   animation-duration: 0.5s;
   animation-fill-mode: both;
-  /* position: relative; */
 }
 @keyframes hideConversationBox {
   from { 
@@ -129,6 +124,7 @@
 .message-box {
   height: 100%;
   flex-grow: 1;
+  
   /* position: relative; */
 }
 
@@ -313,7 +309,7 @@
 .emoji-wrapper{
   display: none;
   width: 372px;
-  height: 300px;
+  height: auto;
   overflow: auto;
   top: -310px;
   left: 0;
@@ -478,12 +474,11 @@ border: none;
 .container-input-message > textarea {
   overflow: auto;
   outline: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
   box-shadow: none;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
   padding: 0.5rem 1rem;
   border: 1px solid #ced4da;
   appearance: none;
+  background-color: #eaedf3;
 }

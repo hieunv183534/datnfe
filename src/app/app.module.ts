@@ -115,7 +115,6 @@ import { VideoCallComponent } from './components/chat/video-call/video-call.comp
 import { WorkHistorySummaryComponent } from './components/common/work-history-summary/work-history-summary.component';
 import { InformationBoxComponent } from './components/chat/information-box/information-box.component';
 
-
 @NgModule({
   declarations: [
     InformationBoxComponent,

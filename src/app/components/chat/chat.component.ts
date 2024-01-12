@@ -311,6 +311,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.thisConversation = conversation;
     this.getListMessage();
     this.seenConversation(conversation.id);
+    this.replyMessage = undefined;
   }
 
   addConversationSuccess(newConversation: any) {
@@ -400,10 +401,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
   handleReplyMessage(message: any) {
     this.replyMessage = message;
-    
+
   }
   handleDeleteReplyMessage() {
     this.replyMessage = undefined;
-    
+
   }
 }

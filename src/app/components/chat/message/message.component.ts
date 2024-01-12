@@ -15,12 +15,25 @@ export class MessageComponent implements OnInit {
 
   @Input() message?: any = {};
   @Output() replyMessage: EventEmitter<void> = new EventEmitter<void>();
+
+  favoriteEmojis = [
+    '👍',
+    '❤️',
+    '😊',
+    '😂',
+    '😀',
+    '😅',
+    '😍',
+    '😱',
+    '😉',
+    '😉',
+  ];
   constructor() { }
 
   ngOnInit() {
   }
-  handleReply(){
-    this.replyMessage.emit();
+  reactMessage(e: any) {
+    
   }
   getDateTime(d: any) {
     return Util.getDateTime(new Date(d));
