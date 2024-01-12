@@ -64,7 +64,7 @@
   right: -90px;
 }
 .icon-action-right{
-  left: -30px;
+  left: -90px;
 }
 
 .icon-reply-left{
@@ -78,4 +78,7 @@
 }
 .icon-react-right{
   left: -30px;
+}
+.top-125{
+  top: 125% !important;
 }
