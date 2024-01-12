@@ -17,6 +17,21 @@
         <div class="justify-content-center grid">
           <div class="p-field col-2 md-12 mt-1">
             <span class="p-float-label">
+              <p-cascadeSelect
+                [options]="mySelects"
+                optionLabel="cname"
+                optionGroupLabel="name"
+                optionValue="code"
+                [optionGroupChildren]="['selects']"
+                appendTo="body"
+                formControlName="mode"
+                (ngModelChange)="submitSearch()"
+              ></p-cascadeSelect>
+              <label></label>
+            </span>
+          </div>
+          <div class="p-field col-2 md-12 mt-1">
+            <span class="p-float-label">
               <p-multiSelect
                 optionLabel="name"
                 optionValue="value"
@@ -85,8 +100,58 @@
               <label>Tính cách</label>
             </span>
           </div>
+          <div class="p-field col-2 md-12 mt-1">
+            <span class="p-float-label">
+              <p-multiSelect
+                optionLabel="name"
+                optionValue="value"
+                appendTo="body"
+                [options]="yearOfExps"
+                optionLabel="name"
+                formControlName="yearOfExps"
+              >
+              </p-multiSelect>
+              <label>Năm kinh nghiệm</label>
+            </span>
+          </div>
+          <div class="p-field col-2 md-12 mt-1">
+            <div class="flex justify-content-start align-items-center">
+              <p-checkbox
+                [binary]="true"
+                formControlName="isStudent"
+              ></p-checkbox>
+              <p class="ml-2">Bộ lọc sinh viên</p>
+            </div>
+          </div>
+          <ng-container *ngIf="f['isStudent'].value">
+            <div class="p-field col-2 md-12">
+              <label class="title">Trường học</label>
+              <p-dropdown
+                [filter]="true"
+                [options]="universities"
+                [style]="{ width: '100%' }"
+                [autoDisplayFirst]="false"
+                formControlName="university"
+                (onChange)="changeUniversity($event)"
+                optionLabel="name"
+                optionValue="value"
+              ></p-dropdown>
+            </div>
+            <div class="p-field col-2 md-12">
+              <label class="title">Ngành học</label>
+              <p-dropdown
+                [filter]="true"
+                [options]="universitySpecializeds ?? []"
+                [style]="{ width: '100%' }"
+                [autoDisplayFirst]="false"
+                formControlName="universitySpecialized"
+                optionLabel="name"
+                optionValue="value"
+              ></p-dropdown>
+            </div>
+          </ng-container>
 
-          <div class="col-2 flex justify-content-center mt-2">
+          <div class="col-2 flex justify-content-center mt-1">
             <p-button icon="pi pi-search" (onClick)="submitSearch()"></p-button>
             <p-button
               class="ml-4"
@@ -100,7 +165,7 @@
     <div class="flex mt-2" style="padding: 10px; justify-content: flex-end">
       <p-button (onClick)="routeToHistorySearch()">Lịch sử tìm kiếm</p-button>
     </div>
-    
+
     <p-dataView [value]="listStartuper" *ngIf="listStartuper.length > 0">
       <ng-template let-startuper pTemplate="listItem">
         <div class="col-12 md:col-4" style="padding: 30px">
