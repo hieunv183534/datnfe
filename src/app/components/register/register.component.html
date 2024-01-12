@@ -60,34 +60,34 @@
             >Số điện thoại không được để trống</span
           >
         </div>
-        <div class="grid register-form col-12">
+        <div class="p-field register-form">
           <label class="title">Mật khẩu<span style="color: red">*</span></label>
-          <div class="p-inputgroup">
+          <span class="p-float-label p-input-icon-right">
+            <i
+              *ngIf="isShowPassword"
+              (click)="showPassword()"
+              class="pi pi-eye"
+            ></i>
+            <i
+              *ngIf="!isShowPassword"
+              (click)="showPassword()"
+              class="pi pi-eye-slash"
+            ></i>
             <input
               *ngIf="!isShowPassword"
               type="password"
               pInputText
               formControlName="password"
+              id="inputtext-right"
             />
             <input
+              formControlName="password"
               *ngIf="isShowPassword"
               type="text"
+              id="inputtext-right"
               pInputText
-              formControlName="password"
             />
-            <span
-              *ngIf="isShowPassword"
-              (click)="showPassword()"
-              class="p-inputgroup-addon"
-              ><i class="pi pi-eye"></i
-            ></span>
-            <span
-              *ngIf="!isShowPassword"
-              (click)="showPassword()"
-              class="p-inputgroup-addon"
-              ><i class="pi pi-eye-slash"></i
-            ></span>
-          </div>
+          </span>
           <span
             class="text-error"
             *ngIf="
@@ -98,36 +98,36 @@
             >Mật khẩu không được để trống</span
           >
         </div>
-        <div class="grid col-12 register-form">
+        <div class="p-field register-form">
           <label class="title"
             >Nhập lại mật khẩu<span style="color: red">*</span></label
           >
-          <div class="p-inputgroup">
+          <span class="p-float-label p-input-icon-right">
+            <i
+              *ngIf="isShowRePassword"
+              (click)="showRePassword()"
+              class="pi pi-eye"
+            ></i>
+            <i
+              *ngIf="!isShowRePassword"
+              (click)="showRePassword()"
+              class="pi pi-eye-slash"
+            ></i>
             <input
               *ngIf="!isShowRePassword"
               type="password"
               pInputText
               formControlName="rePassword"
+              id="inputtext-right"
             />
             <input
+              formControlName="rePassword"
               *ngIf="isShowRePassword"
               type="text"
+              id="inputtext-right"
               pInputText
-              formControlName="rePassword"
             />
-            <span
-              *ngIf="isShowRePassword"
-              (click)="showRePassword()"
-              class="p-inputgroup-addon"
-              ><i class="pi pi-eye"></i
-            ></span>
-            <span
-              *ngIf="!isShowRePassword"
-              (click)="showRePassword()"
-              class="p-inputgroup-addon"
-              ><i class="pi pi-eye-slash"></i
-            ></span>
-          </div>
+          </span>
           <span
             class="text-error"
             *ngIf="
@@ -340,22 +340,25 @@
           </div>
         </p-fieldset>
         <div class="buttonDiv">
-          <div class="p-inputgroup">
+          <div class="field-checkbox">
             <p-checkbox
+              [binary]="true"
+              inputId="acceptDieuKhoan"
               (click)="accept()"
-              name="acceptDieuKhoan"
-              value="acceptDieuKhoan"
             ></p-checkbox>
-            <span
-              ><p [style]="{ fontSize: '1rem' }">
-                Tôi đã đọc và đồng ý với
-                <span [style]="{ color: '#0386FF', fontSize: '1rem' }"
-                  >Điều khoản dịch vụ và Chính sách bảo mật</span
-                >
-                của FSI Connected.
-              </p></span
-            >
+            <label for="acceptDieuKhoan">
+              <span
+                ><p [style]="{ fontSize: '1rem' }">
+                  Tôi đã đọc và đồng ý với
+                  <span [style]="{ color: '#0386FF', fontSize: '1rem' }"
+                    >Điều khoản dịch vụ và Chính sách bảo mật</span
+                  >
+                  của FSI Connected.
+                </p></span
+              >
+            </label>
           </div>
+
           <button *ngIf="!acceptDieuKhoan" disabled class="send" pRipple>
             Đồng ý và tiếp tục
           </button>
