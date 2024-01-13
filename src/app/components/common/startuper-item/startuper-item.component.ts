@@ -6,6 +6,7 @@ import { StartuperDto } from 'src/app/model/startuper.class';
 import { AdminService } from 'src/app/services/admin.service';
 import { EventService } from 'src/app/services/event.service';
 import { FsiValues, Util } from 'src/app/shared/util/util';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-startuper-item',
@@ -45,6 +46,10 @@ export class StartuperItemComponent implements OnInit {
 
   getAge(dob: any) {
     return Util.getAge(dob);
+  }
+
+  getDate(dob: any){
+    return moment(dob).format('DD/MM/YYYY');
   }
 
   getArea(val?: number) {
