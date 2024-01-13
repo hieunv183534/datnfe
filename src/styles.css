@@ -23,29 +23,39 @@
 }
 
 ::-webkit-scrollbar {
-  width: 15px;
-  background-color: #F1F1F1;
+  height: 10px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #B8BCC3;
+  background-color: #b8bcc3;
+  border-radius: 10px;
 }
 
+
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #888888;
+  background-color: #ababab
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar:horizontal {
-  height: 15px;
-  background-color: #F1F1F1;
+  height: 10px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb:horizontal {
-  background: #B8BCC3;
+  background-color: #b8bcc3;
+  border-radius: 10px;
 }
 
+
 ::-webkit-scrollbar-thumb:horizontal:hover {
-  background: #888888;
+  background-color: #ababab
+}
+::-webkit-scrollbar-track:horizontal {
+  border-radius: 10px;
 }
 
 body {

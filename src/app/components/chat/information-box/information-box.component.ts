@@ -1,18 +1,28 @@
-import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { OverlayPanel } from 'primeng/overlaypanel';
-@Component({
-  selector: 'app-notification',
-  templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.css'],
-  encapsulation: ViewEncapsulation.None
-})
-export class NotificationComponent implements OnInit {
-  items: any[] = [];
-  @Input() display: boolean = false;
-  @ViewChild('op') op!: OverlayPanel;
-  constructor() { }
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ConversationDto } from 'src/app/model/chat.class';
+import { Util } from 'src/app/shared/util/util';
 
+@Component({
+  selector: 'app-information-box',
+  templateUrl: './information-box.component.html',
+  styleUrls: ['./information-box.component.css'],
+  encapsulation: ViewEncapsulation.None
+
+})
+export class InformationBoxComponent implements OnInit {
+  items: any[] = [];
+  files: any[] = [];
+  links: any[] = [];
+  pinnedMessage: any[] = [];
+  display: boolean = false;
+  @Input() conversation?: ConversationDto
+  @Input() isMobile?: boolean
+  @Output() close: EventEmitter<any> = new EventEmitter();
+
+  constructor() { }
+  getDateTime(d: any){
+    return Util.getDateTime(new Date(d));
+  }
   ngOnInit(): void {
     this.items = [
       {
@@ -169,10 +179,135 @@ export class NotificationComponent implements OnInit {
         },
       },
     ];
+    this.files = [
+      {
+        title: 'thoikhos.doc',
+        size: "166kb",
+        command: () => {
+          // do something
+        },
+      },
+      {
+        title: 'doantotnghie.xlxsdoantotnghie.xlxsdoantotnghie.xlxs',
+        size: "166kb",
+        command: () => {
+          // do something
+        },
+      },
+      {
+        title: 'fsiconncect.pdf',
+        size: "166kb",
+        command: () => {
+          // do something
+        },
+      },
+      {
+        title: 'thoikhos.doc',
+        size: "166kb",
+        command: () => {
+          // do something
+        },
+      },
+    ]
+    this.links = [
+      {
+        title: 'http://localhost:4200/#/startuper/chat/0/0',
+        url: 'https://primeflex.org/textcolor',
+        command: () => {
+          // do something
+        },
+      },
+      {
+        title: 'doantotnghie.xlxsdoantotnghie.xlxsdoantotnghie.xlxs',
+        size: "166kb",
+        url: 'https://chat.openai.com/c/cfa96398-4b37-428d-bcf1-769ce074a3fa',
+        command: () => {
+          // do something
+        },
+      },
+      {
+        title: 'fsiconncect.pdf',
+        size: "166kb",
+        url: 'https://docs.google.com/spreadsheets/d/14toh0f2KmpwowmYSeJLODs5Rol3lFUkgqn8QgW6Yu3M/edit#gid=312801768',
+        command: () => {
+          // do something
+        },
+      },
+      {
+        title: 'thoikhos.doc',
+        size: "166kb",
+        url: 'https://primeflex.org/textcolor',
+        command: () => {
+          // do something
+        },
+      },
+    ]
+    this.pinnedMessage = [
+      {
+        title: "tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyện, rip, ghim tin trong chat",
+        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+        sender: "văn hiếu",
+        time: "2023-12-22T16:08:17.682627"
+      },
+      {
+        title: "lưu  trữ trò chuyện, ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyện, rip, ghim tin trong chat",
+        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+        sender: "văn hiếu",
+        time: "2023-12-22T16:08:17.682627"
 
-  }
-  toggle(event: any) {
-    this.op.toggle(event);
+      },
+      {
+        title: " ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyn",
+        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+        sender: "văn hiếu",
+        time: "2023-12-22T16:08:17.682627"
+
+      },
+      {
+        title: "listPinned listPinnedlistPinned listPinned listPinned",
+        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+        sender: "văn hiếu",
+        time: "2023-12-22T16:08:17.682627"
+      },
+      {
+        title: "l ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyn",
+        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+        sender: "văn hiếu",
+        time: "2023-12-22T16:08:17.682627"
+      },
+      {
+        title: "tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyện, rip, ghim tin trong chat",
+        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+        sender: "văn hiếu",
+        time: "2023-12-22T16:08:17.682627"
+      },
+      {
+        title: "lưu  trữ trò chuyện, ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyện, rip, ghim tin trong chat",
+        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+        sender: "văn hiếu",
+        time: "2023-12-22T16:08:17.682627"
+
+      },
+      {
+        title: " ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyn",
+        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+        sender: "văn hiếu",
+        time: "2023-12-22T16:08:17.682627"
+
+      },
+      {
+        title: "listPinned listPinnedlistPinned listPinned listPinned",
+        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+        sender: "văn hiếu",
+        time: "2023-12-22T16:08:17.682627"
+      },
+      {
+        title: "l ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyn",
+        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+        sender: "văn hiếu",
+        time: "2023-12-22T16:08:17.682627"
+      },
+    ]
   }
 
 }

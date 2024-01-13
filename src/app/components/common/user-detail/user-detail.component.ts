@@ -35,7 +35,6 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit() {
     this.startuperService.getUserDetail(this.userId).then((res: any) => {
-      debugger
       this.startuperInfo = res.data.startuperInfo;
       this.friendStatus = res.data.friendStatus;
       this.listProject = res.data.projectAsStartuper;

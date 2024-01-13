@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, ViewEncapsulation, ElementRef } from '@angular/core';
 import { ConversationDto, GetListConversationDto, GetListMessageDto, MessageDto, MessageSendToConversationDto, MessageSendToUserDto } from 'src/app/model/chat.class';
 import { MessageType } from 'src/app/model/enum';
 import * as signalR from '@microsoft/signalr';
@@ -15,36 +15,40 @@ TimeAgo.addDefaultLocale(vi)
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class ChatComponent implements OnInit, OnDestroy {
   conversationType: number = 0;
   conversationFilter?: string = "";
   conversations?: ConversationDto[] = [];
   messages: MessageDto[] = [];
+  replyMessage?: MessageDto = undefined;
   timeAgo = new TimeAgo('vi-VI');
   contentText: string = "";
   connection?: signalR.HubConnection;
-
+  screenWidth: number = window.innerWidth;
   emptyId: string = '00000000-0000-0000-0000-000000000000';
-
   userId: string = '';
-
   thisConversation?: ConversationDto = undefined;
   isVisibleAddConversation: boolean = false;
   isVisibleUpdateConversation: boolean = false;
-
+  isShowInfoBox: boolean = false;
   isShowEmoji: boolean = true;
   isVisibleCall: boolean = false;
+  isMobile: boolean = false;
+  rows: number = 1;
+  maxRows: number = 5;
+  files: any[] = [];
   constructor(
     private messageService: MessageService,
     private route: ActivatedRoute,
     private chatService: ChatService,
-    private eventService: EventService
+    private eventService: EventService,
+    private eRef: ElementRef
   ) { }
-
   addEmoji(data: any) {
-    console.log(data);
     this.contentText = this.contentText + " " + data.emoji.native;
   }
 
@@ -61,8 +65,45 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.getListConversation();
     this.initConversation();
     this.initSignal();
+    this.screenWidth = window.innerWidth;
+    this.checkScreenSize();
+    // this.files=[
+    //   {
+    //     url:"https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg"
+    //   },
+    //   {
+    //     url:"https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg"
+    //   },
+    //   {
+    //     url:"https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg"
+    //   },
+    //   {
+    //     url:"https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg"
+    //   },
+    // ]
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.screenWidth = window.innerWidth;
+    this.checkScreenSize();
   }
 
+  checkScreenSize() {
+    // Set the width for 'sm' as per your requirement
+    const sm = 576;
+    const md = 900;
+    if (this.screenWidth <= md) {
+      this.isShowInfoBox = false;
+    }
+    if (this.screenWidth <= sm) {
+      this.isMobile = true;
+      let avatar = document.querySelector('p-avatar');
+      avatar?.setAttribute('size', "sm");
+    }
+    else {
+      this.isMobile = false;
+    }
+  }
   ngOnDestroy(): void {
     this.connection?.stop();
   }
@@ -108,9 +149,11 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     });
   }
-
+  unmountCoversation() {
+    this.thisConversation = undefined
+  }
   initConversation() {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params: any) => {
       let mode = params["mode"];
       let id = params["id"];
       if (mode == 0) { // id conversation
@@ -177,6 +220,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         input.userId = this.userId;
         this.chatService.sendMessageToNewOther(input).then((res: any) => {
           this.thisConversation = res.data.newConversation;
+
           this.getListConversation();
           this.getListMessage();
           this.contentText = "";
@@ -267,6 +311,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.thisConversation = conversation;
     this.getListMessage();
     this.seenConversation(conversation.id);
+    this.replyMessage = undefined;
   }
 
   addConversationSuccess(newConversation: any) {
@@ -300,9 +345,71 @@ export class ChatComponent implements OnInit, OnDestroy {
       return null;
     }
   }
+  // onBackspace(event: any) {
+  //   const textArea = event.target;
+  //   const lines = textArea.value.split('\n');
+  //   const lastLine = lines[lines.length - 1];
+  //   if (lastLine.trim() === '') {
+  //     this.inputRows--;
+  //   }
+  // }
 
   callVideo() {
     window.open(`https://nice-water-0f00c4810.4.azurestaticapps.net?chanel=${this.thisConversation?.id}&token=${localStorage.getItem("TOKEN")}`, "_blank");
   }
 
+  handleKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' && event.shiftKey) {
+      console.log(1123123);
+
+      this.rows = Math.min(this.rows + 1, this.maxRows);
+    } else if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      this.send();
+      this.rows = 1;
+    } else if (event.key === 'Backspace' && this.contentText !== '') {
+      // event.preventDefault();
+      // this.removeLastRow();
+      const lines = this.contentText.split('\n');
+      const lastLine = lines[lines.length - 1];
+      if (lastLine.trim() === '') {
+        this.rows = Math.max(this.rows - 1, 1);
+      }
+    }
+  }
+
+  handleKeyUp(event: KeyboardEvent): void {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+    }
+  }
+  handleChange(): void {
+    if (this.contentText === '') {
+      this.rows = 1;
+    }
+  }
+  sendMessage(): void {
+    // Add your logic to handle the message
+    console.log('Sending message:', this.contentText);
+
+    // Clear the message input
+    this.contentText = '';
+    // Reset rows to 1 after sending the message
+    this.rows = 1;
+  }
+
+  removeLastRow(): void {
+    if (this.contentText !== '' && this.rows > 1) {
+
+      this.rows = Math.max(this.rows - 1, 1);
+    }
+  }
+  handleReplyMessage(message: any) {
+    this.replyMessage = message;
+
+  }
+  handleDeleteReplyMessage() {
+    this.replyMessage = undefined;
+
+  }
 }

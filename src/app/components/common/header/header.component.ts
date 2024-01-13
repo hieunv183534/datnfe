@@ -1,14 +1,17 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import jwt_decode from 'jwt-decode';
 import { StartuperService } from 'src/app/services/startuper.service';
+import { NotificationComponent } from '../../notification/notification.component';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   sub: Subscription = new Subscription();
@@ -16,10 +19,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   thisRouteUrl: string = "";
   items: MenuItem[] = [];
   userInfo: any = {};
+  @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
 
   @Input() menuData: { href: string, title: string }[] = [];
 
   isShowUpdateInfo: boolean = false;
+  isShowSidebar: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private router: Router
@@ -79,6 +84,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     } catch (Error) {
       return null;
     }
+  }
+  onBellClick(event: any) {
+    this.notificationComponent.toggle(event);
   }
 
 }
