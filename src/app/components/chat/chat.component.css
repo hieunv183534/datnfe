@@ -1,7 +1,12 @@
 .chat-container {
   display: flex;
+  height: calc(100vh - 90px);
 }
-
+@media (max-width: 576px) {
+  .chat-container {
+    height: calc(100vh - 55px);
+  }
+}
 .conversation-box {
   border-right: 1px solid #c9c9c9;
   animation-duration: 0.5s;

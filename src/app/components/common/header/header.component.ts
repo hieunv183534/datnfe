@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
@@ -9,7 +9,9 @@ import { NotificationComponent } from '../../notification/notification.component
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   sub: Subscription = new Subscription();
@@ -22,6 +24,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Input() menuData: { href: string, title: string }[] = [];
 
   isShowUpdateInfo: boolean = false;
+  isShowSidebar: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private router: Router

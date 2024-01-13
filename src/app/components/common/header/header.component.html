@@ -1,16 +1,21 @@
-<div [ngClass]="{'headerLogin': true, 'scrolled': isScrolled }">
-  <div class="leftDiv">
+<div [ngClass]="{'headerLogin': true, 'scrolled': isScrolled }" class="sm:mt-0">
+  <div class="leftDiv hidden sm:flex">
     <img src="../../../../assets/img/logotitle.png" (click)="toHome()" id="logo" />
     <ng-container *ngFor="let menu of menuData">
-      <a [routerLink]="menu.href" class="text-xs sm:text-sm" [ngClass]="{'active-menu': thisRouteUrl == menu.href}">{{menu.title}}</a>
+      <a [routerLink]="menu.href" class="text-xs sm:text-sm"
+        [ngClass]="{'active-menu': thisRouteUrl == menu.href}">{{menu.title}}</a>
     </ng-container>
+  </div>
+  <div class="leftDiv flex sm:hidden">
+    <i class="pi pi-bars text-xl cursor-pointer font-semibold hover:text-orange-400" (click)="isShowSidebar=true"></i>
+    <img src="../../../../assets/img/logo.png" (click)="toHome()" id="logo_mobile" />
   </div>
   <div class="rightDiv">
     <a class="notification" routerLink="./chat/0/0">
-      <i class="pi pi-comments"></i>
+      <i class="pi pi-comments text-xl sm:text-2xl hover:text-orange-400"></i>
     </a>
-    <a class="notification">
-      <i class="pi pi-bell" (click)="onBellClick($event)"></i>
+    <a class="notification cursor-pointer">
+      <i class="pi pi-bell text-xl sm:text-2xl hover:text-orange-400" (click)="onBellClick($event)"></i>
     </a>
     <a routerLink="#">
       <p-avatar shape="circle" [image]="userInfo?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"
@@ -25,5 +30,20 @@
   <app-update-user-info [display]="isShowUpdateInfo" (close)="isShowUpdateInfo= false"
     [userInfo]="userInfo"></app-update-user-info>
 </ng-container>
-
+<p-sidebar [(visible)]="isShowSidebar">
+    <ng-template pTemplate="header">
+    <img src="../../../../assets/img/logotitle.png" (click)="toHome()" id="logo" />
+  </ng-template>
+    <ng-template pTemplate="content">
+    <div class="flex flex-column ">
+      <ng-container *ngFor="let menu of menuData">
+        <div (click)="isShowSidebar=false" [routerLink]="menu.href"
+          class="p-2 pl-3 hover:bg-gray-200 text-black-alpha-90 active: hover:text-primary cursor-pointer"
+          [ngClass]="{'bg-gray-200': thisRouteUrl == menu.href}">
+          <a class="text-sm " [ngClass]="{'text-primary': thisRouteUrl == menu.href}">{{menu.title}}</a>
+        </div>
+      </ng-container>
+    </div>
+  </ng-template>
+</p-sidebar>
 <app-notification></app-notification>
