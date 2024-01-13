@@ -149,7 +149,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     });
   }
-  unmountCoversation() {
+  unmountConversation() {
     this.thisConversation = undefined
   }
   initConversation() {
@@ -187,9 +187,9 @@ export class ChatComponent implements OnInit, OnDestroy {
       return console.error(err.toString());
     });
 
-    this.connection.on("OnTestHehe", () => {
-      alert("vãi lồng")
-    });
+    // this.connection.on("OnTestHehe", () => {
+    //   alert("vãi lồng")
+    // });
 
     this.connection.on("OnMessage", (newMessage: any) => {
       this.getListConversation();
@@ -309,6 +309,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   selectConversation(conversation: any) {
     this.thisConversation = conversation;
+    this.messages = []
     this.getListMessage();
     this.seenConversation(conversation.id);
     this.replyMessage = undefined;

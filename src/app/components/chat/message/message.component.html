@@ -1,10 +1,11 @@
-<div [ngClass]="{'message': true, 'justify-content-start' : !message.isMine , 'justify-content-end': message.isMine}">
-  <p-avatar *ngIf="!message.isMine && message.showA" [pTooltip]="message.sender.name" tooltipPosition="top" shape="circle"
-    [image]="message.sender.avatarUrl ??'https://fsiconnected.cloud/images/default-avatar.jpg'"
+<div class="relative" [ngClass]="{'message': true, 'justify-content-start' : !message.isMine , 'justify-content-end': message.isMine}">
+  <p-avatar *ngIf="!message.isMine && message.showA" [pTooltip]="message.sender.name" tooltipPosition="top"
+    shape="circle" [image]="message.sender.avatarUrl ??'https://fsiconnected.cloud/images/default-avatar.jpg'"
     class="message-avatar"></p-avatar>
-
+  <span style="top:-18px" class="absolute left-0 text-xs text-gray-700"
+    *ngIf="!message.isMine && message.showA && !message.conversation.justTwoPeople">{{message.sender.name}}</span>
   <ng-container *ngIf="message.type == MessageType.Text">
-    <div class="flex flex-column align-items-end relative">
+    <div class="flex flex-column align-items-end relative" [ngClass]="{'mb-2':true}">
       <p [tooltipPosition]="message.isMine ? 'left' :'right'" [pTooltip]="getDateTime(message.creationTime)">
         {{message?.content}}
       </p>
@@ -27,13 +28,13 @@
         </div>
       </div>
       <div *ngIf="true" style="width:20px;height: 20px;"
-        class="absolute top-100 -translateY-50 right-0  border-circle bg-white flex justify-content-center align-items-center shadow-2 z-1">
+        class="absolute top-100 -translateY-50 right-0  border-circle bg-white flex justify-content-center align-items-center shadow-2">
         <span>
           😀
         </span>
       </div>
-      <div class="absolute top-100 w-1rem h-1rem" *ngIf="message.index == message.conversation.lastIndexSeenA" [ngClass]="{'top-125':true}"
-        [tooltipPosition]="'top'" [pTooltip]="getDateTimeSeen(message.creationTime)">
+      <div class="absolute top-100 w-1rem h-1rem" *ngIf="message.index == message.conversation.lastIndexSeenA"
+        [ngClass]="{'top-125':true}" [tooltipPosition]="'top'" [pTooltip]="getDateTimeSeen(message.creationTime)">
         <img [src]="message.conversation.conversationAvatar ??'https://fsiconnected.cloud/images/default-avatar.jpg'"
           class="avatar-custom mt-1">
       </div>
