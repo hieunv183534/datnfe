@@ -31,6 +31,7 @@
         <label class="title">Mật khẩu</label>
         <span class="p-float-label p-input-icon-right">
           <i
+            style="color: #01a9ff"
             *ngIf="isShowPassword"
             (click)="showPassword()"
             class="pi pi-eye"
@@ -62,8 +63,14 @@
           optionValue="value"></p-selectButton>
       </div> -->
       <div class="save">
-        <div class='checkbox'>
-          <p-checkbox class="mr-1" [(ngModel)]="savePassword" [binary]="true" inputId="binary"></p-checkbox> Lưu mật khẩu
+        <div class="checkbox">
+          <p-checkbox
+            class="mr-1"
+            [(ngModel)]="savePassword"
+            [binary]="true"
+            inputId="binary"
+          ></p-checkbox>
+          Lưu mật khẩu
         </div>
         <div class="help">Quên mật khẩu ?</div>
       </div>
