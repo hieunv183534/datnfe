@@ -153,7 +153,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.thisConversation = undefined
   }
   initConversation() {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params: any) => {
       let mode = params["mode"];
       let id = params["id"];
       if (mode == 0) { // id conversation
@@ -207,7 +207,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
 
     this.connection.on("OnNewRequestMessage", (newMessage: any) => {
-      alert(2222222222222222222222222222222222222222222)
+      debugger
     });
   }
 
@@ -354,6 +354,11 @@ export class ChatComponent implements OnInit, OnDestroy {
   //     this.inputRows--;
   //   }
   // }
+
+  callVideo() {
+    window.open(`https://nice-water-0f00c4810.4.azurestaticapps.net?chanel=${this.thisConversation?.id}&token=${localStorage.getItem("TOKEN")}`, "_blank");
+  }
+
   handleKeyDown(event: KeyboardEvent): void {
     if (event.key === 'Enter' && event.shiftKey) {
       console.log(1123123);

@@ -76,8 +76,8 @@
           <div class="other-message-type-item cursor-pointer" pTooltip="Call âm thanh" tooltipPosition="top">
             <i class="fa-solid fa-phone"></i>
           </div>
-          <div class="other-message-type-item cursor-pointer" pTooltip="Call video" tooltipPosition="top"
-            (click)="isVisibleCall = true">
+          <div class="other-message-type-item" pTooltip="Call video" tooltipPosition="top"
+            (click)="callVideo()">
             <i class="fa-solid fa-video"></i>
           </div>
           <div class="other-message-type-item cursor-pointer" [ngClass]="{'btn-active': isShowInfoBox}"

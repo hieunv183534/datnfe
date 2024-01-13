@@ -1,43 +1,123 @@
-<div class='founderItem' (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
-  <img [src]="startuper.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt='' id='avatar' />
-  <div class='info'>
-    <div class='name'>{{startuper.name}}</div>
+<div
+  class="founderItem"
+  (mouseenter)="isHovered = true"
+  (mouseleave)="isHovered = false"
+>
+  <div class="grid info">
+    <div class="col-5 md-5">
+      <img
+        [src]="
+          startuper.avatarUrl ??
+          'https://fsiconnected.cloud/images/default-avatar.jpg'
+        "
+        alt=""
+        id="avatar"
+      />
+    </div>
+    <div class=" col-7 md-7">
+      <ul>
+        <li>
+          <div class="name">{{ startuper.name }}</div>
+        </li>
+        <li><i class="pi pi-search"></i> {{ startuper.describe }}</li>
+        <li>
+          <i class="pi pi-calendar"></i> {{ getDate(startuper.dateOfBirth) }}
+        </li>
+        <li>
+          <i class="pi pi-map-marker"></i> {{ getArea(startuper.location) }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div>
     <ul>
-      <li>Độ tuổi: {{getAge(startuper.dateOfBirth)}}</li>
+      <li>
+        <p><b>Kỹ năng chuyên môn của tôi</b></p>
+        <p-tag :value="{{ startuper.speciality }}"></p-tag>
+      </li>
+      <li>
+        <p><b>Thời gian khả dụng</b></p>
+        <span>
+          <p-tag
+            :value="{{ getAvailableTime(startuper.availableTime) }}"
+            class="ml-1"
+          ></p-tag>
+        </span>
+      </li>
+      <li>
+        <p><b>Lĩnh vực</b></p>
+        <span>
+          <p-tag :value="{{ getField(startuper.field) }}" class="ml-1"></p-tag>
+        </span>
+      </li>
+      <!-- <li>Độ tuổi: {{getAge(startuper.dateOfBirth)}}</li>
       <li>Khu vực: {{getArea(startuper.location)}}</li>
       <li>Lĩnh vực: {{getField(startuper.field)}}</li>
       <li>Kinh nghiệm: {{getYOE(startuper.yearOfExp)}}</li>
       <li>Tính cách: {{getPersonalities(startuper.personality??[])}}</li>
       <li>Kỹ năng mềm: {{getSkills(startuper.skill??[])}}</li>
-      <li>Thời gian khả dụng: {{getAvailableTime(startuper.availableTime)}}</li>
+      <li>Thời gian khả dụng: {{getAvailableTime(startuper.availableTime)}}</li> -->
     </ul>
   </div>
 
-  <div *ngIf="isHovered" class='hoverDiv'>
-    <button type='button' id='xemthem' (click)="showUserDetail()">
+  <div *ngIf="isHovered" class="hoverDiv">
+    <button type="button" id="xemthem" (click)="showUserDetail()">
       <i class="pi pi-eye"></i> Xem thêm
     </button>
-    <button *ngIf="mode == UuidStartuperModeNew" type='button' id='ketnoi' (click)="requestFriendOnClick()">
+    <button
+      *ngIf="mode == UuidStartuperModeNew"
+      type="button"
+      id="ketnoi"
+      (click)="requestFriendOnClick()"
+    >
       <i class="pi pi-share-alt"></i> Kết nối
     </button>
     <button
-      *ngIf="mode != UuidStartuperModeNew && mode != UuidStartuperModeOFMe &&mode != UuidStartuperModeFromMe &&mode != UuidStartuperModeToMe &&mode != UuidStartuperModeAdmin"
-      type='button' id='ketnoi' (click)="requestFromProjectOnClick()">
+      *ngIf="
+        mode != UuidStartuperModeNew &&
+        mode != UuidStartuperModeOFMe &&
+        mode != UuidStartuperModeFromMe &&
+        mode != UuidStartuperModeToMe &&
+        mode != UuidStartuperModeAdmin
+      "
+      type="button"
+      id="ketnoi"
+      (click)="requestFromProjectOnClick()"
+    >
       <i class="pi pi-send"></i> Mời tham gia
     </button>
-    <button *ngIf="mode == UuidStartuperModeOFMe" type='button' id='ketnoi' (click)="openChatOnClick()">
+    <button
+      *ngIf="mode == UuidStartuperModeOFMe"
+      type="button"
+      id="ketnoi"
+      (click)="openChatOnClick()"
+    >
       <i class="pi pi-comments"></i> Trò chuyện
     </button>
-    <button *ngIf="mode == UuidStartuperModeFromMe" type='button' id='ketnoi' (click)="cancelRequestOnClick()">
+    <button
+      *ngIf="mode == UuidStartuperModeFromMe"
+      type="button"
+      id="ketnoi"
+      (click)="cancelRequestOnClick()"
+    >
       <i class="pi pi-times"></i> Hủy kết nối
     </button>
-    <button *ngIf="mode == UuidStartuperModeToMe" type='button' id='ketnoi' (click)="acceptRequestOnClick()">
+    <button
+      *ngIf="mode == UuidStartuperModeToMe"
+      type="button"
+      id="ketnoi"
+      (click)="acceptRequestOnClick()"
+    >
       <i class="pi pi-check"></i> Chấp nhận
     </button>
 
-    <button *ngIf="mode == UuidStartuperModeAdmin" type='button' id='ketnoi' (click)="deleteOnClick()">
+    <button
+      *ngIf="mode == UuidStartuperModeAdmin"
+      type="button"
+      id="ketnoi"
+      (click)="deleteOnClick()"
+    >
       <i class="pi pi-times"></i> Xóa tài khoản
     </button>
   </div>
-
 </div>

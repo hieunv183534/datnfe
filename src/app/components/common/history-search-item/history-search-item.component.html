@@ -1,0 +1,107 @@
+<div class="historySearchItem">
+  <div
+    *ngIf="typeSearch == 1"
+    style="
+      padding-bottom: 15px;
+      font-weight: bold;
+    "
+  >
+    Từ khóa bạn đã tìm kiếm
+  </div>
+  <div
+    *ngIf="typeSearch == 2 && typeProfile === 1"
+    style="
+      padding-bottom: 15px;
+      font-weight: bold;
+    "
+  >
+    Hồ sơ cá nhân bạn đã xem
+  </div>
+  <div
+    *ngIf="typeSearch == 2 && typeProfile === 2"
+    style="
+      padding-bottom: 15px;
+      font-weight: bold;
+    "
+  >
+    Hồ sơ dự án bạn đã xem
+  </div>
+  <div class="search_table">
+    <div style="font-weight: bold">Ngày 1 tháng 6</div>
+    <div class="flex justify-content-between flex-wrap history-search">
+      <div class="flex align-items-center justify-content-center m-2">
+        <img
+          class="image-history"
+          [src]="'https://fsiconnected.cloud/images/default-avatar.jpg'"
+          alt=""
+        />
+        <div class="flex align-items-center justify-content-center">
+          <ul>
+            <li *ngIf="typeSearch == 1">Bạn đã tìm kiếm</li>
+            <li *ngIf="typeSearch == 2 && typeProfile === 1">
+              Bạn đã xem hồ sơ của <b style="font-weight: bold">Hoàng Hà My</b>
+            </li>
+            <li *ngIf="typeSearch == 2 && typeProfile === 2">
+              Bạn đã xem hồ sơ của
+              <b style="font-weight: bold">Hoàng Hà My</b> - Dự án
+              <b style="font-weight: bold">FSI CONNECTED</b>
+            </li>
+            <li style="margin-top: 5px">
+              <span>
+                <p-tag value="Kế toán" class="ml-1"></p-tag>
+                <p-tag value="Công nghệ thông tin" class="ml-1"></p-tag>
+                <p-tag value="Kiểm toán" class="ml-1"></p-tag>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="flex align-items-center justify-content-center w-4rem h-4rem m-2"
+      >
+        <p class="mr-5">09:23</p>
+        <i class="pi pi-ellipsis-h"></i>
+      </div>
+    </div>
+  </div>
+  <div class="search_table">
+    <div style="font-weight: bold">Ngày 1 tháng 6</div>
+    <div class="flex justify-content-between flex-wrap history-search">
+      <div class="flex align-items-center justify-content-center m-2">
+        <img
+          class="image-history"
+          [src]="'https://fsiconnected.cloud/images/default-avatar.jpg'"
+          alt=""
+        />
+        <div class="flex align-items-center justify-content-center">
+          <ul>
+            <li *ngIf="typeSearch == 1">Bạn đã tìm kiếm</li>
+            <li *ngIf="typeSearch == 2 && typeProfile === 1">
+              Bạn đã xem hồ sơ của <b style="font-weight: bold">Hoàng Hà My</b>
+            </li>
+            <li *ngIf="typeSearch == 2 && typeProfile === 2">
+              Bạn đã xem hồ sơ của
+              <b style="font-weight: bold">Hoàng Hà My</b> - Dự án
+              <b style="font-weight: bold">FSI CONNECTED</b>
+            </li>
+            <li style="margin-top: 5px">
+              <span>
+                <p-tag value="Kế toán" class="ml-1"></p-tag>
+                <p-tag value="Công nghệ thông tin" class="ml-1"></p-tag>
+                <p-tag value="Kiểm toán" class="ml-1"></p-tag>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="flex align-items-center justify-content-center w-4rem h-4rem m-2"
+      >
+        <p class="mr-5">09:23</p>
+        <i class="pi pi-ellipsis-h"></i>
+      </div>
+    </div>
+  </div>
+</div>

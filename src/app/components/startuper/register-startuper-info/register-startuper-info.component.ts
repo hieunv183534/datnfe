@@ -125,11 +125,13 @@ export class RegisterStartuperInfoComponent implements OnInit {
 
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
+    console.log(event)
   }
 
   imageCropped(event: ImageCroppedEvent) {
     this.blob = event.blob;
     this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl ?? "");
+    console.log(event)
   }
 
   imageLoaded(image: LoadedImage) {
@@ -144,6 +146,7 @@ export class RegisterStartuperInfoComponent implements OnInit {
 
   uploadImage() {
     let file = new File([this.blob], '1.png');
+    console.log(file)
     this.startuperService.uploadAvatar(file).then((res: any) => {
       this.messageService.add({
         key: "toast",

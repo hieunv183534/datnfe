@@ -4,6 +4,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { HomeHeaderComponent } from './components/common/home-header/home-header.component';
 import { InvestorSpaceComponent } from './components/investor/investor-space.component';
 import { StartuperSpaceComponent } from './components/startuper/startuper-space.component';
+import { HistorySearchComponent } from './components/startuper/history-search/history-search.component';
 import { ProjectForInvestorComponent } from './components/investor/project-for-investor/project-for-investor.component';
 import { ProjectForStartuperComponent } from './components/startuper/project-for-startuper/project-for-startuper.component';
 import { StartuperForInvestorComponent } from './components/investor/startuper-for-investor/startuper-for-investor.component';
@@ -57,7 +58,10 @@ const routes: Routes = [
       },
       {
         path: 'chat/:mode/:id', component: ChatComponent
-      }
+      },
+      {
+        path: 'history-search', component: HistorySearchComponent
+      },
     ]
   },
   {

@@ -19,6 +19,10 @@ export class RegisterComponent implements OnInit {
       name: x.universityName
     }
   });
+  handleSubmit: boolean = false
+  isShowPassword: boolean = false
+  isShowRePassword: boolean = false
+  acceptDieuKhoan: boolean = false
 
   universitySpecializeds?: any[] = FsiValues.universities[0].specializeds?.map(x => {
     return {
@@ -29,6 +33,7 @@ export class RegisterComponent implements OnInit {
 
 
   @Output() close: EventEmitter<any> = new EventEmitter();
+  @Output() login: EventEmitter<any> = new EventEmitter();
   formRegister: FormGroup = this.fb.group({});
   roles: any[] = [{ name: "Nhà khởi nghiệp/ Founder/ Co-founder", value: FsiRole.Startuper }, { name: "Nhà đầu tư", value: FsiRole.Investor }];
   genders: any[] = [{ name: "Nam", value: true }, { name: "Nữ", value: false }];
@@ -46,6 +51,7 @@ export class RegisterComponent implements OnInit {
       rePassword: [null, [Validators.required]],
       roleRegister: [FsiRole.Startuper, [Validators.required]],
       baseInfomation: this.fb.group({
+        surname: [null, [Validators.required]],
         name: [null, [Validators.required]],
         dateOfBirth: [null, [Validators.required]],
         identityCard: [null, []],
@@ -79,7 +85,21 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  accept(){
+    this.acceptDieuKhoan = !this.acceptDieuKhoan
+  }
+
+  showPassword(){
+    this.isShowPassword = !this.isShowPassword
+  }
+
+  showRePassword(){
+    this.isShowRePassword = !this.isShowRePassword
+  }
+
   submit() {
+    console.log(this.acceptDieuKhoan)
+    this.handleSubmit = true
     if (this.formRegister.valid) {
       if (this.formRegister.value.password != this.formRegister.value.rePassword) {
         alert("Mật khẩu không trùng khớp!")
@@ -106,6 +126,11 @@ export class RegisterComponent implements OnInit {
         });
       }
     }
+  }
+
+  showLogin() {
+    // this.close.emit();
+    this.login.emit();
   }
 
 }

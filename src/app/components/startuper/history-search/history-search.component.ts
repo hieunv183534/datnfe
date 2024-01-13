@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { StartuperService } from 'src/app/services/startuper.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ProjectStage, RelationWithProject } from 'src/app/model/enum';
@@ -7,35 +9,22 @@ import { ProjectService } from 'src/app/services/project.service';
 import { FsiValues } from 'src/app/shared/util/util';
 
 @Component({
-  selector: 'app-project-for-startuper',
-  templateUrl: './project-for-startuper.component.html',
-  styleUrls: ['./project-for-startuper.component.css']
+  selector: 'app-history-search',
+  templateUrl: './history-search.component.html',
+  styleUrls: ['./history-search.component.css']
 })
-export class ProjectForStartuperComponent implements OnInit {
-
-  fields: any = FsiValues.fields;
+export class HistorySearchComponent implements OnInit {
+    fields: any = FsiValues.fields;
   areas: any = FsiValues.areas;
   availableTimes: any = FsiValues.availableTimes;
 
   formSearch: FormGroup = this.fb.group({});
 
-  projectStages: any = [
-    { name: "Xác lập", value: ProjectStage.XacLap },
-    { name: "Nghiên cứu", value: ProjectStage.NghienCuu },
-    { name: "MVP", value: ProjectStage.MVP },
-    { name: "Kiểm thử", value: ProjectStage.KiemThu },
-    { name: "Tăng trưởng 1", value: ProjectStage.TangTruong1 },
-    { name: "Tăng trưởng 2", value: ProjectStage.TangTruong2 },
-    { name: "Tăng trưởng 3", value: ProjectStage.TangTruong3 },
-    { name: "Tăng trưởng 4", value: ProjectStage.TangTruong4 }
+  profile: any = [
+    { name: "Hồ sơ bạn đã xem", value: 0},
+    { name: "Hồ sơ cá nhân", value: 1 },
+    { name: "Hồ sơ dự án", value: 2 }
   ];
-
-  relationWithProjects: any = [
-    { name: "Dự án đã tham gia", value: RelationWithProject.IsMemberOfProject },
-    { name: "Dự án mới", value: RelationWithProject.NotMemberOfProject },
-    { name: "Dự án mời kết nối tới bạn", value: RelationWithProject.ProjectRequestTo },
-    { name: "Dự án bạn đã yêu cầu kết nối", value: RelationWithProject.RequestToProject },
-  ]
 
   page: number = 1;
   pageSize: number = 10;
@@ -44,25 +33,46 @@ export class ProjectForStartuperComponent implements OnInit {
   startItem = 0;
   endItem = 0;
 
+  typeSearch: number = 1; 
+
   listProject: ProjectDto[] = []
 
   isVisibleAddProject: boolean = false;
   constructor(
     private messageService: MessageService,
     private fb: FormBuilder,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private startuperService: StartuperService,
   ) { }
+
+  menus = [{ href: "/startuper/project", title: "Dự án / Ý tưởng" }, { href: "/startuper/startuper/f6b77754-97c0-405f-86a5-f3f4959e2f3a", title: "Nhà khởi nghiệp" }]
+
+  isVisibleRegisterInfo: boolean = false;
 
   ngOnInit() {
     this.formSearch = this.fb.group({
       filter: [null, []],
       fields: [[], []],
       areas: [[], []],
-      stages: [[], []],
+      profile: [[], []],
       availableTimes: [[], []],
       relationWithProject: [RelationWithProject.NotMemberOfProject, []]
     });
-    this.getListProject();
+    this.startuperService.getCheckIsNewProfile().then((res: any) => {
+      this.isVisibleRegisterInfo = res.data;
+    }).catch((err: any) => {
+
+    });
+  }
+
+  searchTuKhoa(){
+    this.formSearch.controls["profile"].patchValue([0]);
+    this.typeSearch = 1
+  }
+
+  searchHoSo(){
+    this.formSearch.controls["areas"].patchValue([]);
+    this.typeSearch = 2
   }
 
   getListProject(reset: boolean = false) {
@@ -77,6 +87,7 @@ export class ProjectForStartuperComponent implements OnInit {
     input.skipCount = (this.page - 1) * this.pageSize;
     input.maxResultCount = this.pageSize;
     this.projectService.getListProjectForStartuper(input).then((res: any) => {
+      debugger
       this.totalRecords = res.data.totalCount;
       this.listProject = res.data.items;
     }).catch((err: any) => {
@@ -107,9 +118,7 @@ export class ProjectForStartuperComponent implements OnInit {
   onPageChange(value: any) {
     this.page = value.page + 1;
     this.pageSize = value.rows;
-    this.getListProject(true);
   }
-
 
   requestToProject(projectId: string) {
     this.projectService.requestToProject(projectId).then((res: any) => {
