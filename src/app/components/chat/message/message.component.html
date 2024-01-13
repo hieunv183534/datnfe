@@ -1,5 +1,5 @@
 <div [ngClass]="{'message': true, 'justify-content-start' : !message.isMine , 'justify-content-end': message.isMine}">
-  <p-avatar *ngIf="!message.isMine && message.showA" shape="circle"
+  <p-avatar *ngIf="!message.isMine && message.showA" [pTooltip]="message.sender.name" tooltipPosition="top" shape="circle"
     [image]="message.sender.avatarUrl ??'https://fsiconnected.cloud/images/default-avatar.jpg'"
     class="message-avatar"></p-avatar>
 

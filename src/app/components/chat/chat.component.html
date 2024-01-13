@@ -73,14 +73,14 @@
           <h3 (click)="infoConversation()" class="ml-2 text-xs sm:text-sm">{{thisConversation?.conversationName}}</h3>
         </div>
         <div class="flex .align-items-center justify-content-end gap-0 sm:gap-1">
-          <div class="other-message-type-item" pTooltip="Call âm thanh" tooltipPosition="top">
+          <div class="other-message-type-item cursor-pointer" pTooltip="Call âm thanh" tooltipPosition="top">
             <i class="fa-solid fa-phone"></i>
           </div>
-          <div class="other-message-type-item" pTooltip="Call video" tooltipPosition="top"
+          <div class="other-message-type-item cursor-pointer" pTooltip="Call video" tooltipPosition="top"
             (click)="isVisibleCall = true">
             <i class="fa-solid fa-video"></i>
           </div>
-          <div class="other-message-type-item" [ngClass]="{'btn-active': isShowInfoBox}" pTooltip="Thông tin"
+          <div class="other-message-type-item cursor-pointer" [ngClass]="{'btn-active': isShowInfoBox}" pTooltip="Thông tin"
             tooltipPosition="top" (click)="isShowInfoBox = !isShowInfoBox">
             <i class="fa-solid fa-circle-info"></i>
           </div>

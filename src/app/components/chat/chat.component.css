@@ -283,7 +283,6 @@
   align-items: center;
   justify-content: center;
   color: #081C36;
-  cursor: pointer;
 }
 
 .other-message-type-item:hover ,.btn-active{
