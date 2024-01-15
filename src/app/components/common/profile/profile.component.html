@@ -1,0 +1,209 @@
+<app-header [menuData]="menus"></app-header>
+
+<img src="../../../assets/img/qcao.png" width="100%" class="header-img" />
+
+<router-outlet></router-outlet>
+<div class="body-content" style="padding-left: 15%; padding-right: 15%;">
+  <div class="page">
+    <div class="profile relative mb-3">
+      <div class="flex relative">
+        <div
+          class="flex"
+          style="
+            background-image: url('../../../assets/img/qcao.png');
+            width: 100%;
+          "
+        >
+          <div
+            class="bg-right-bottom bg-no-repeat w-10rem h-10rem border-round"
+          >
+            <img
+              class="logo absolute"
+              style="top: 45%; left: 5%"
+              src="../../../assets/img/avatar1.png"
+              width="150px"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="flex mt-2" style="justify-content: flex-end">
+        <p-button (click)="editProfile()">Chỉnh sửa hồ sơ</p-button>
+      </div>
+    </div>
+    <div class="info">
+      <div class="mb-3">
+        <ul>
+          <li><div class="name">Lê Đình Đạt</div></li>
+          <li>"Coder in 2024"</li>
+          <li>
+            <i class="pi pi-search"></i> Tôi đang có một ý tưởng khởi nghiệp
+          </li>
+          <li><i class="pi pi-calendar"></i> 02/02/2000</li>
+          <li><i class="pi pi-map-marker"></i> Hà Nội, Việt Nam</li>
+          <li><i class="pi pi-thumbs-up"></i> Có 1000 người theo dõi</li>
+          <li><i class="pi pi-clock"></i> Tham gia vào tháng 8 2023</li>
+        </ul>
+      </div>
+      <p-tabView>
+        <p-tabPanel header="Tôi đang tìm kiếm">
+          <p>
+            <b>Kỹ năng chuyên môn: </b>
+            <span>
+              <p-tag value="Lập trình viên" class="ml-1"></p-tag>
+            </span>
+            <span>
+              <p-tag value="Lập trình viên fe" class="ml-1"></p-tag>
+            </span>
+            <span>
+              <p-tag value="Lập trình viên be" class="ml-1"></p-tag>
+            </span>
+          </p>
+          <p>
+            <b>Điểm cộng kỹ năng mềm: </b>
+            <span>
+              <p-tag value="Thuyết trình" class="ml-1"></p-tag>
+            </span>
+            <span>
+              <p-tag value="Tư duy phản biện" class="ml-1"></p-tag>
+            </span>
+            <span>
+              <p-tag value="Lập luận" class="ml-1"></p-tag>
+            </span>
+          </p>
+          <p>
+            <b>Điểm cộng tính cách: </b>
+            <span>
+              <p-tag value="Nhiệt huyết" class="ml-1"></p-tag>
+            </span>
+            <span>
+              <p-tag value="Sáng tạo" class="ml-1"></p-tag>
+            </span>
+            <span>
+              <p-tag value="Trách nhiệm" class="ml-1"></p-tag>
+            </span>
+          </p>
+        </p-tabPanel>
+        <p-tabPanel header="Giới thiệu bản thân">
+          <p>
+            <b>Kỹ năng chuyên môn: </b>
+            <span>
+              <p-tag value="Lập trình viên" class="ml-1"></p-tag>
+            </span>
+            <span>
+              <p-tag value="Lập trình viên fe" class="ml-1"></p-tag>
+            </span>
+            <span>
+              <p-tag value="Lập trình viên be" class="ml-1"></p-tag>
+            </span>
+          </p>
+          <p>
+            <b>Kỹ năng mềm nổi bật: </b>
+            <span>
+              <p-tag value="Thuyết trình" class="ml-1"></p-tag>
+            </span>
+            <span>
+              <p-tag value="Tư duy phản biện" class="ml-1"></p-tag>
+            </span>
+            <span>
+              <p-tag value="Lập luận" class="ml-1"></p-tag>
+            </span>
+          </p>
+          <p>
+            <b>Tính cách nổi bật: </b>
+            <span>
+              <p-tag value="Nhiệt huyết" class="ml-1"></p-tag>
+            </span>
+            <span>
+              <p-tag value="Sáng tạo" class="ml-1"></p-tag>
+            </span>
+            <span>
+              <p-tag value="Trách nhiệm" class="ml-1"></p-tag>
+            </span>
+          </p>
+          <p>
+            <b>Thời gian khả dụng: </b>
+            <span>
+              <p-tag value="10 - 20 tiếng một tuần" class="ml-1"></p-tag>
+            </span>
+          </p>
+          <p>
+            <b>Học vấn: </b>
+          </p>
+          <ul>
+            <li>
+              Đã tốt nghiệp
+              <span style="color: #01a9ff"
+                >chuyên ngành Quản trị kinh doanh</span
+              >
+              tại <span style="color: #01a9ff">Đại học KTQD</span>
+            </li>
+            <li>08/2023</li>
+            <li>
+              Đã tốt nghiệp
+              <span style="color: #01a9ff"
+                >chuyên ngành Quản trị kinh doanh</span
+              >
+              tại <span style="color: #01a9ff">Đại học KTQD</span>
+            </li>
+            <li>08/2023</li>
+          </ul>
+
+          <p>
+            <b>Kinh nghiệm làm việc: </b>
+          </p>
+          <ul>
+            <li>
+              <span style="color: #01a9ff">Lập trình viên</span>
+              tại <span style="color: #01a9ff">VIJCO</span>
+            </li>
+            <li>08/2023</li>
+            <li>
+              <span style="color: #01a9ff">Lập trình viên</span>
+              tại <span style="color: #01a9ff">VIVAS</span>
+            </li>
+            <li>08/2023</li>
+          </ul>
+
+          <p>
+            <b>Hoạt động xã hội: </b>
+          </p>
+          <ul>
+            <li>
+              <span style="color: #01a9ff">Tình nguyện viên</span>
+              tại <span style="color: #01a9ff">Áo ấm cho em</span>
+            </li>
+            <li>08/2023</li>
+            <li>
+              <span style="color: #01a9ff">Tình nguyện viên</span>
+              tại <span style="color: #01a9ff">Áo ấm cho em</span>
+            </li>
+            <li>08/2023</li>
+          </ul>
+
+          <p>
+            <b>Chứng chỉ thành tích: </b>
+          </p>
+          <ul>
+            <li>
+              <span style="color: #01a9ff">IELTS 7.5</span>
+            </li>
+            <li>08/2023</li>
+            <li>
+              <span style="color: #01a9ff">TOEIC 730</span>
+            </li>
+            <li>08/2023</li>
+          </ul>
+        </p-tabPanel>
+        <p-tabPanel header="Bài viết">
+          <p>Bài viết.</p>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</div>
+<ng-container *ngIf="isShowUpdateInfo">
+  <app-update-user-info
+    [display]="isShowUpdateInfo"
+    (close)="isShowUpdateInfo = false"
+  ></app-update-user-info>
+</ng-container>

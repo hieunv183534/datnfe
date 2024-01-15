@@ -77,6 +77,7 @@ import { InvestorService } from './services/investor.service';
 import { ProjectService } from './services/project.service';
 import { StartuperService } from './services/startuper.service';
 import { StartuperItemComponent } from './components/common/startuper-item/startuper-item.component';
+import { ProfileComponent } from './components/common/profile/profile.component';
 import { HistorySearchItemComponent } from './components/common/history-search-item/history-search-item.component';
 import { PopupConnectComponent } from './components/common/popup-connect/popup-connect.component';
 import { RegisterStartuperInfoComponent } from './components/startuper/register-startuper-info/register-startuper-info.component';
@@ -140,6 +141,7 @@ import {SidebarModule} from 'primeng/sidebar';
     RegisterComponent,
     NotificationComponent,
     StartuperItemComponent,
+    ProfileComponent,
     PopupConnectComponent,
     RegisterStartuperInfoComponent,
     AddNewProjectComponent,

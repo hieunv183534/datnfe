@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { HomeHeaderComponent } from './components/common/home-header/home-header.component';
+import { ProfileComponent } from './components/common/profile/profile.component';
 import { InvestorSpaceComponent } from './components/investor/investor-space.component';
 import { StartuperSpaceComponent } from './components/startuper/startuper-space.component';
 import { HistorySearchComponent } from './components/startuper/history-search/history-search.component';
@@ -39,6 +40,9 @@ const routes: Routes = [
         path: 'chat/:conversationId', component: ChatComponent
       }
     ]
+  },
+  {
+    path: 'profile', component: ProfileComponent
   },
   {
     path: 'startuper', component: StartuperSpaceComponent,
