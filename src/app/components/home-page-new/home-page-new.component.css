@@ -1,0 +1,31 @@
+.bg-gradient{
+    background-image: linear-gradient(to right,#017BE4,#41ACFF);
+}
+.p-button-label {
+    font-weight: 400;
+}
+/* Typing effect */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  
+  /* Blinking cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: white; }
+  }
+  
+  .typing-effect {
+    border-right: 3px solid white; /* The cursor */
+    white-space: nowrap;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    width: 0; /* Start with the width at 0 and let the animation reveal the text */
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+    /* Adjust the timing to fit your desired speed */
+  }
+  .typing-cursor {
+    border-right: 3px solid white; /* The cursor */
+    animation: blink-caret .75s step-end infinite;
+  }
+  

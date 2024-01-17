@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { InputTextModule } from 'primeng/inputtext';
 import { DividerModule } from 'primeng/divider';
@@ -117,9 +116,13 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { VideoCallComponent } from './components/chat/video-call/video-call.component';
 import { WorkHistorySummaryComponent } from './components/common/work-history-summary/work-history-summary.component';
 import { InformationBoxComponent } from './components/chat/information-box/information-box.component';
+import {HomePageNewComponent} from './components/home-page-new/home-page-new.component';
+import {CarouselModule} from 'primeng/carousel';
 import {SidebarModule} from 'primeng/sidebar';
+import {ButtonModule} from 'primeng/button';
 @NgModule({
   declarations: [
+    HomePageNewComponent,
     InformationBoxComponent,
     AppComponent,
     HomePageComponent,
@@ -232,7 +235,9 @@ import {SidebarModule} from 'primeng/sidebar';
     DragDropModule,
     ToggleButtonModule,
     PickerModule,
-    SidebarModule
+    SidebarModule,
+    ButtonModule,
+    CarouselModule
   ],
   providers: [
     MessageService,

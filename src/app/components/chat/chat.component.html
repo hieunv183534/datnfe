@@ -53,7 +53,7 @@
         <ng-container *ngIf="!conversations || conversations.length === 0">
           <div class="flex justify-content center align-items-center flex-column w-full h-auto">
             <div>
-              <i class="pi pi-database text-8xl text-gray-400 font-light p-4"></i>
+              <p-image src="../../../assets//img/nodata.jpg" alt="Image" width="250"></p-image>
             </div>
             <span>Không có cuộc trò chuyện</span>
           </div>
@@ -76,8 +76,7 @@
           <div class="other-message-type-item cursor-pointer" pTooltip="Call âm thanh" tooltipPosition="top">
             <i class="fa-solid fa-phone"></i>
           </div>
-          <div class="other-message-type-item" pTooltip="Call video" tooltipPosition="top"
-            (click)="callVideo()">
+          <div class="other-message-type-item" pTooltip="Call video" tooltipPosition="top" (click)="callVideo()">
             <i class="fa-solid fa-video"></i>
           </div>
           <div class="other-message-type-item cursor-pointer" [ngClass]="{'btn-active': isShowInfoBox}"
