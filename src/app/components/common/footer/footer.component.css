@@ -1,4 +1,4 @@
-.footer {
+/* .footer {
   display: flex;
   flex-direction: row;
   column-gap: 8%;
@@ -52,4 +52,15 @@
   display: flex;
   flex-direction: row;
   column-gap: 8px;
+} */
+/* Mặc định cho footer có chiều cao tự động */
+.footer {
+  height: auto;
+}
+
+/* Sử dụng media query để thay đổi chiều cao khi màn hình lớn hơn hoặc bằng lg */
+@media (min-width: 992px) {
+  .footer {
+    height: 300px;
+  }
 }

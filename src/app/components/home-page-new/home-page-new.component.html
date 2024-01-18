@@ -1,20 +1,48 @@
 <div class="h-screen flex flex-column">
-  <app-home-header (login)="isVisibleLogin = true" (register)="isVisibleRegister = true"></app-home-header>
-  <div class="w-auto h-25rem bg-gradient flex align-items-center justify-content-between">
-    
+  <div class="sticky top-0 bg-white z-1">
+    <app-home-header (login)="isVisibleLogin = true" (register)="isVisibleRegister = true"></app-home-header>
+  </div>
+
+  <!-- <div class="w-auto h-25rem bg-gradient flex align-items-center justify-content-between">
     <h1 style="letter-spacing: 5px;" class="text-white text-5xl ml-8">{{ typedText }}<span *ngIf="showCursor"
         class="typing-cursor"></span></h1>
     <div class="flex h-full align-items-end">
       <img src="../../../assets//img//hello.gif" alt="Animated image" class="h-20rem">
     </div>
+  </div> -->
+  <div class="">
+    <p-carousel [value]="yourItems" [numVisible]="1" [showNavigators]="false" [page]="currentCarouselPage"
+      [numScroll]="1" [circular]="true">
+      <ng-template let-item pTemplate="item">
+        <div class="content w-auto flex align-items-center justify-content-between"
+          [ngClass]="{'bg-gradient-blue': item.positionRight, 'bg-gradient-orange': !item.positionRight}">
+
+          <div class="flex h-full align-items-center md:align-items-end" *ngIf="!item.positionRight">
+            <img [src]="item.imageUrl" alt="Animated image" class="h-10rem md:h-20rem lg:h-20rem xl:h-25rem ml-3">
+          </div>
+
+          <h1 class="text-white text-base sm:text-xl md:text-3xl md:text-4xl xl:text-6xl"
+            [ngClass]="{'ml-3 md:ml-7': item.positionRight, 'mr-3 md:mr-7': !item.positionRight}">{{ item.typedText }}
+            <span *ngIf="showCursor" class="typing-cursor"></span>
+          </h1>
+
+          <div class="flex h-full align-items-center md:align-items-end" *ngIf="item.positionRight">
+            <img [src]="item.imageUrl" alt="Animated image" class="h-10rem md:h-20rem lg:h-20rem xl:h-25rem mr-3">
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+
   </div>
+
+
   <app-footer></app-footer>
 </div>
 
-<ng-container *ngIf="isVisibleLogin" >
+<ng-container *ngIf="isVisibleLogin">
   <app-login (close)="isVisibleLogin = false"></app-login>
 </ng-container>
 
-<ng-container *ngIf="isVisibleRegister" >
+<ng-container *ngIf="isVisibleRegister">
   <app-register (close)="isVisibleRegister = false"></app-register>
 </ng-container>

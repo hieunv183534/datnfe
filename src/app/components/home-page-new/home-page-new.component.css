@@ -1,5 +1,8 @@
-.bg-gradient{
+.bg-gradient-blue{
     background-image: linear-gradient(to right,#017BE4,#41ACFF);
+}
+.bg-gradient-orange{
+  background-image: linear-gradient(to right,#FF8000,#FFA143);
 }
 .p-button-label {
     font-weight: 400;
@@ -28,4 +31,29 @@
     border-right: 3px solid white; /* The cursor */
     animation: blink-caret .75s step-end infinite;
   }
-  
+  .content{
+    height: 32rem;
+  }
+  @media only screen and (max-width: 576px) {
+    .content{
+      height: 25rem;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 992px) {
+  .content{
+    height: 29rem;
+  }
+}
+
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+  .content{
+    height: 31rem;
+  }
+}
+
+@media only screen and (min-width: 1201px) {
+  .content{
+    height: 32rem;
+  }
+}
