@@ -19,11 +19,12 @@ import { AdminHomeComponent } from './components/admin/admin-home/admin-home.com
 import { ListAdminComponent } from './components/admin/admin-home/list-admin/list-admin.component';
 import { ListProjectComponent } from './components/admin/admin-home/list-project/list-project.component';
 import { ListStartuperComponent } from './components/admin/admin-home/list-startuper/list-startuper.component';
+import { HomePageNewComponent } from './components/home-page-new/home-page-new.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'homepage', pathMatch: 'full' },
   {
-    path: 'homepage', component: HomePageComponent
+    path: 'homepage', component: HomePageNewComponent
   },
   {
     path: 'investor', component: InvestorSpaceComponent,
