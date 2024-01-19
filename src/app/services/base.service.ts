@@ -15,7 +15,7 @@ export class BaseService {
   constructor(private router: Router, private messageService: MessageService) {
     this.apiController = '';
     this.BaseAPIConfig = axios.create({
-      baseURL: "https://fsiconnected.cloud/api/"
+      baseURL: "http://localhost:7777/api/"
     });
 
     this.BaseAPIConfig.interceptors.request.use((config: any) => {
