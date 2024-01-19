@@ -238,3 +238,18 @@ app-work-history-summary .p-card-body{
 app-work-history-summary .p-card-content{
   padding: 0px !important;
 }
+.p-sidebar .p-sidebar-header {
+	padding: 0.5rem !important;
+  
+  }
+  .p-sidebar .p-sidebar-content{
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+  }
+  .p-sidebar-header{
+	background-image: url('./assets/img/title.png');
+	background-repeat: no-repeat;
+	background-size: 60%;
+	background-position-x: 12px;
+	background-position-y: 12px;
+  }

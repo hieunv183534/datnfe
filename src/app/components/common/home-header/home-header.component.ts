@@ -1,13 +1,16 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-home-header',
   templateUrl: './home-header.component.html',
-  styleUrls: ['./home-header.component.css']
+  styleUrls: ['./home-header.component.css'], 
+  encapsulation: ViewEncapsulation.None
 })
 export class HomeHeaderComponent implements OnInit {
 
   isScrolled: boolean = false;
+  isShowSidebar: boolean = false;
+  isLogin: boolean = false
   @Output() login: EventEmitter<any> = new EventEmitter();
   @Output() register: EventEmitter<any> = new EventEmitter();
 
@@ -18,8 +21,14 @@ export class HomeHeaderComponent implements OnInit {
       this.isScrolled = window.pageYOffset <= 0 ? false : true;
       return () => (window.onscroll = null);
     };
+    this.checkingLogin();
   }
+  checkingLogin() {
+    const token = localStorage.getItem('TOKEN');
+    this.isLogin = token ? true : false
 
+
+  }
   showRegister() {
     this.register.emit();
   }
