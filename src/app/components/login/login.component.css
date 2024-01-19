@@ -20,8 +20,7 @@
 }
 
 .login .content {
-  width: 50%;
-  padding: 2rem;
+  height: auto;
   box-sizing: border-box;
   z-index: 1001;
   background-color: white;
