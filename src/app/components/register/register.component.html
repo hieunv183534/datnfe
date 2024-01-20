@@ -1,13 +1,13 @@
 <form [formGroup]="formRegister">
   <div class="register">
     <div class="background" (click)="closeRegister()"></div>
-    <div class="content w-12 sm:w-9 md:w-8 lg:w-6 xl:w-5 p-4 lg:p-5">
+    <div class="content w-12 sm:w-9 md:w-8 lg:w-6 xl:w-5 p-4  lg:p-5 overflow-y-auto">
       <div class="scroll">
         <div [style]="{ textAlign: 'center' }">
           <img src="../../../assets/img/full-logo.png" alt="main logo" height="40px" />
 
         </div>
-        <h3><i class="pi pi-user-plus"></i> Đăng ký tài khoản mới</h3>
+        <h3 class="mt-1"><i class="pi pi-user-plus"></i> Đăng ký tài khoản mới</h3>
         <div class="p-field register-form">
           <label class="title">Email<span style="color: red">*</span></label>
           <input required type="text" class="p-inputtext" pInputText formControlName="email" />
@@ -52,8 +52,7 @@
           <span class="text-error" *ngIf="
               !formRegister.value.rePassword &&
               !this.formRegister.valid &&
-              handleSubmit
-            ">Nhập lại mật khẩu không được để trống</span>
+              handleSubmit">Nhập lại mật khẩu không được để trống</span>
         </div>
         <!-- <div class="p-field">
           <label class="title">Vai trò</label>
@@ -154,19 +153,17 @@
             <input type="text" class="p-inputtext" pInputText formControlName="workingPlace" />
           </div>
         </p-fieldset>
-        <div class="buttonDiv">
+        <div class="buttonDiv border-round-md">
           <div class="flex align-items-start mb-3">
             <p-checkbox class="mr-3" [binary]="true" inputId="acceptDieuKhoan" (click)="accept()"></p-checkbox>
             <label for="acceptDieuKhoan">
               <span class="text-xs sm:text-sm">
-                Tôi đã đọc và đồng ý với <span class="text-primary cursor-pointer">Điều khoản dịch vụ và Chính sách bảo mật</span> của FSI Connected.
+                Tôi đã đọc và đồng ý với <span class="text-primary cursor-pointer">Điều khoản dịch vụ và Chính sách bảo
+                  mật</span> của FSI Connected.
               </span>
             </label>
           </div>
-          <button *ngIf="!acceptDieuKhoan" disabled class="send" pRipple>
-            Đồng ý và tiếp tục
-          </button>
-          <button *ngIf="acceptDieuKhoan" class="send" (click)="submit()" pRipple>
+          <button [disabled]="!acceptDieuKhoan" class="send" (click)="submit()" pRipple>
             Đồng ý và tiếp tục
           </button>
         </div>
@@ -184,7 +181,7 @@
           Bạn đã có tài khoản?
           <a class="text-primary cursor-pointer">Đăng nhập ngay</a>
         </p>
-        <div>
+        <div class="pb-3">
           <p class="text-xs sm:text-sm my-1 sm:my-2">
             Trang này được Google reCAPTCHA bảo vệ để đảm bảo bạn
           </p>

@@ -20,7 +20,7 @@
 }
 
 .register .content {
-  height: 100%;
+  height: 90%;
   /* width: 50%; */
   box-sizing: border-box;
   z-index: 1001;
@@ -33,12 +33,9 @@
 }
 
 .register .content .scroll{
-  padding: 2rem;
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-  overflow: auto;
-
 }
 
 .register .content .title {
@@ -78,7 +75,7 @@
 .register .content .buttonDiv {
   margin-top: 1rem;
   width: 100%;
-  background-color: #D3DFEF;
+  background-color: #e6effb;
   padding: 10px;
 }
 
@@ -98,8 +95,8 @@
 
 .register .content .buttonDiv button {
   width: 100%;
-  height: 3rem;
-  font-size: 1rem;
+  height: 39px;
+  font-size: 14px;
   font-weight: 600;
   background-color: white;
   border-radius: 5px;
@@ -137,4 +134,7 @@
 
 .register-form{
   margin-bottom: 10px;
+}
+.p-fieldset .p-fieldset-content {
+  padding: 0;
 }
