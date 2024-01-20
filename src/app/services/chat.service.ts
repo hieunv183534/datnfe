@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { MessageType } from '../model/enum';
-import { AddConversationDto, GetListConversationDto, GetListMessageDto, MessageSendToConversationDto, MessageSendToUserDto } from '../model/chat.class';
+import { MessageReact, MessageType } from '../model/enum';
+import { AddConversationDto, GetListConversationDto, GetListMessageDto, MessageSendToConversationDto, MessageSendToUserDto, PinMessageDto, ReactMessageDto } from '../model/chat.class';
 
 @Injectable({
   providedIn: 'root'
@@ -77,5 +77,17 @@ export class ChatService extends BaseService {
 
   test() {
     return this.BaseAPIConfig.post(`${this.apiController}/test-signal-r`, {});
+  }
+
+  reactMessage(input: ReactMessageDto){
+    return this.BaseAPIConfig.post(`${this.apiController}/react-message`, input);
+  }
+
+  pinMessage(input: PinMessageDto){
+    return this.BaseAPIConfig.post(`${this.apiController}/react-message`, input);
+  }
+
+  getListPinMessageByConversation(conversationId: string){
+    return this.BaseAPIConfig.get(`${this.apiController}/pin-message-by-conversation/${conversationId}`);
   }
 }

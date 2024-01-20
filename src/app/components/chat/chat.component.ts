@@ -213,6 +213,10 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.connection.on("OnReactMessage", (message: any) => {
       debugger
     });
+
+    this.connection.on("OnPinMessage", (message: any) => {
+      debugger
+    });
   }
 
   send() {
