@@ -173,7 +173,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   initSignal() {
     let token = localStorage.getItem("TOKEN") ?? "";
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl("http://localhost:7777/chat", {
+      .withUrl("https://fsiconnected.azurewebsites.net/chat", {
         accessTokenFactory: () => token,
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
@@ -207,6 +207,10 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
 
     this.connection.on("OnNewRequestMessage", (newMessage: any) => {
+      debugger
+    });
+
+    this.connection.on("OnReactMessage", (message: any) => {
       debugger
     });
   }
