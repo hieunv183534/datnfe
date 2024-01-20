@@ -33,7 +33,7 @@ export class MessageComponent implements OnInit {
   ngOnInit() {
   }
   reactMessage(e: any) {
-    
+
   }
   getDateTime(d: any) {
     return Util.getDateTime(new Date(d));

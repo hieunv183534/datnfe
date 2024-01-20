@@ -62,6 +62,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
     this.getListConversation();
     this.initConversation();
     this.initSignal();
