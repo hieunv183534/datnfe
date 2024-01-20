@@ -1,5 +1,5 @@
 import { FullAuditedEntityDto, PagedAndSortedResultRequestDto } from "./base.class";
-import { MessageType, UserConversationRole } from "./enum";
+import { MessageReact, MessageType, UserConversationRole } from "./enum";
 import { UserDto } from "./user.class";
 
 export class ConversationDto extends FullAuditedEntityDto<string>{
@@ -76,4 +76,14 @@ export class MessageSendToUserDto {
   type?: MessageType;
   content?: string;
   userId?: string;
+}
+
+export class ReactMessageDto{
+  messageId?: string;
+  react?: MessageReact;
+}
+
+export class PinMessageDto{
+  messageId?: string;
+  isPin?: boolean;
 }

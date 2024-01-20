@@ -62,6 +62,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
     this.getListConversation();
     this.initConversation();
     this.initSignal();
@@ -173,7 +174,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   initSignal() {
     let token = localStorage.getItem("TOKEN") ?? "";
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl("https://fsiconnected.azurewebsites.net", {
+      .withUrl("https://fsiconnected.azurewebsites.net/chat", {
         accessTokenFactory: () => token,
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
@@ -207,6 +208,14 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
 
     this.connection.on("OnNewRequestMessage", (newMessage: any) => {
+      debugger
+    });
+
+    this.connection.on("OnReactMessage", (message: any) => {
+      debugger
+    });
+
+    this.connection.on("OnPinMessage", (message: any) => {
       debugger
     });
   }
