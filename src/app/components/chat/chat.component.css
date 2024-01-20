@@ -460,6 +460,9 @@
 .p-component > img{
   border-radius: 10px;
 }
+app-chat .p-inputtext{
+ padding-left: 2.5rem !important;
+}
 .p-inputtext:active{
 border: none;
 }

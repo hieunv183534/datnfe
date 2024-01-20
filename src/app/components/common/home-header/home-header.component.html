@@ -69,15 +69,24 @@
       </div>
     </a>
   </div>
-  <div class="flex flex-row">
+  <div class="flex flex-row" *ngIf="!isLogin">
     <p-button label="ĐĂNG NHẬP" (click)="showLogin()"
       styleClass="p-button-outlined p-button-sm hidden md:flex px-1 sm:px-2 h-1rem sm:h-2rem min-w-max">
     </p-button>
     <p-button label="ĐĂNG KÝ" (click)="showRegister()"
       styleClass="p-button-primary p-button-sm  hidden md:flex px-1 sm:px-2 h-1rem sm:h-2rem ml-3 min-w-max">
     </p-button>
-    <img src="../../../assets//icons/login.svg"  pTooltip="Đăng nhập" tooltipPosition="top" alt="login-icon" class="h-2rem flex md:hidden cursor-pointer" (click)="showLogin()">
-    <img src="../../../assets//icons/register.svg"  pTooltip="Đăng ký" tooltipPosition="top" alt="register-icon" class="h-2rem flex md:hidden ml-2 cursor-pointer" (click)="showRegister()">
+    <img src="../../../assets//icons/login.svg" pTooltip="Đăng nhập" tooltipPosition="top" alt="login-icon"
+      class="h-2rem flex md:hidden cursor-pointer" (click)="showLogin()">
+    <img src="../../../assets//icons/register.svg" pTooltip="Đăng ký" tooltipPosition="top" alt="register-icon"
+      class="h-2rem flex md:hidden ml-2 cursor-pointer" (click)="showRegister()">
+  </div>
+  <div class="flex flex-row" *ngIf="isLogin">
+    <p-button [routerLink]="'../startuper'" id="move" type="button"
+      styleClass="p-button-warning p-button-sm  hidden md:flex px-1 sm:px-2 h-1rem sm:h-2rem ml-3 min-w-max">
+      <span>Đi tới khu vực cá nhân</span> </p-button>
+    <img [routerLink]="'../startuper'" src="../../../assets/icons/Console.svg" pTooltip="Khu vực cá nhân" tooltipPosition="left" alt="login-icon"
+      class="h-2rem flex md:hidden cursor-pointer">
   </div>
 </div>
 

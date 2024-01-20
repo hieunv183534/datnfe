@@ -1,5 +1,5 @@
 import { MessageService } from 'primeng/api';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FsiRole } from 'src/app/model/enum';
 import { AuthService } from 'src/app/services/auth.service';
@@ -8,7 +8,9 @@ import { FsiValues } from 'src/app/shared/util/util';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  // encapsulation: ViewEncapsulation.None
+
 })
 export class RegisterComponent implements OnInit {
   provinces: any[] = FsiValues.areas;
