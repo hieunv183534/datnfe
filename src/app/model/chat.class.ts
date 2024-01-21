@@ -33,8 +33,14 @@ export class MessageDto extends FullAuditedEntityDto<string>{
   content?: string;
   focusToMessageId?: string;
   isMine?: boolean;
-
+  isPinned?: boolean;
   showA?: boolean;
+  reacts?: UserReactMessageDto[];
+}
+
+export class UserReactMessageDto {
+  userId?: string;
+  react?: MessageReact;
 }
 
 export class UserConversation extends FullAuditedEntityDto<string>{
@@ -79,12 +85,12 @@ export class MessageSendToUserDto {
   userId?: string;
 }
 
-export class ReactMessageDto{
+export class ReactMessageDto {
   messageId?: string;
   react?: MessageReact;
 }
 
-export class PinMessageDto{
+export class PinMessageDto {
   messageId?: string;
   isPin?: boolean;
 }
