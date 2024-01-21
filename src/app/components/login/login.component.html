@@ -13,7 +13,7 @@
       <div class="p-field">
         <label class="title">Mật khẩu</label>
         <span class="p-float-label p-input-icon-right">
-          <i *ngIf="isShowPassword" (click)="showPassword()" class="pi pi-eye"></i>
+          <i style="color: #01A9FF;" *ngIf="isShowPassword" (click)="showPassword()" class="pi pi-eye"></i>
           <i *ngIf="!isShowPassword" (click)="showPassword()" class="pi pi-eye-slash"></i>
           <input *ngIf="!isShowPassword" type="password" pInputText formControlName="password" id="inputtext-right" />
           <input formControlName="password" *ngIf="isShowPassword" type="text" id="inputtext-right" pInputText />
