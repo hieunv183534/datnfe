@@ -70,6 +70,7 @@ export class MessageSendToConversationDto {
   type?: MessageType;
   content?: string;
   conversationId?: string;
+  focusToMessageId?: string;
 }
 
 export class MessageSendToUserDto {
