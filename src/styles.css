@@ -238,3 +238,47 @@ app-work-history-summary .p-card-body{
 app-work-history-summary .p-card-content{
   padding: 0px !important;
 }
+.p-sidebar .p-sidebar-header {
+	padding: 0.5rem !important;
+  
+  }
+  .p-sidebar .p-sidebar-content{
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+  }
+  .p-sidebar-header{
+	background-image: url('./assets/img/title.png');
+	background-repeat: no-repeat;
+	background-size: 60%;
+	background-position-x: 12px;
+	background-position-y: 12px;
+  }
+
+
+  /* custom style input */
+  .p-component {
+    font-size: 14px !important;
+  }
+  :not(app-login , app-chat) .p-inputtext{
+    padding: 0.5rem 0.75rem !important;
+  }
+  .p-fieldset .p-fieldset-content {
+    padding: 0 !important;
+}
+
+.p-multiselect .p-multiselect-label {
+  padding: 0.5rem 0.75rem !important;
+
+}
+.p-dropdown .p-dropdown-label {
+  padding: 0.5rem 0.75rem !important;
+}
+.p-multiselect, .p-cascadeselect {
+  height: 39px !important;
+}
+.p-button {
+  padding: 0.5rem 1rem !important;
+}
+.p-cascadeselect .p-cascadeselect-label {
+  padding: 0.5rem 0.75rem !important;
+}

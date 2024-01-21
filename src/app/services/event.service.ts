@@ -23,6 +23,9 @@ export class EventService {
   private projectFilesSource = new BehaviorSubject<any[]>([]);
   currentProjectFiles = this.projectFilesSource.asObservable();
 
+  private conversationUsersSource = new BehaviorSubject<any[]>([]);
+  currentConversationUsers = this.conversationUsersSource.asObservable();
+
   constructor() { }
 
   changeEvent(event: string) {
@@ -45,4 +48,8 @@ export class EventService {
     this.projectFilesSource.next(pjFiles);
   }
 
+
+  changeListConversationUsers(users: any[]){
+    this.conversationUsersSource.next(users);
+  }
 }

@@ -1,5 +1,5 @@
 import { FullAuditedEntityDto, PagedAndSortedResultRequestDto } from "./base.class";
-import { MessageType, UserConversationRole } from "./enum";
+import { MessageReact, MessageType, UserConversationRole } from "./enum";
 import { UserDto } from "./user.class";
 
 export class ConversationDto extends FullAuditedEntityDto<string>{
@@ -33,8 +33,14 @@ export class MessageDto extends FullAuditedEntityDto<string>{
   content?: string;
   focusToMessageId?: string;
   isMine?: boolean;
-
+  isPinned?: boolean;
   showA?: boolean;
+  reacts?: UserReactMessageDto[];
+}
+
+export class UserReactMessageDto {
+  userId?: string;
+  react?: MessageReact;
 }
 
 export class UserConversation extends FullAuditedEntityDto<string>{
@@ -70,10 +76,21 @@ export class MessageSendToConversationDto {
   type?: MessageType;
   content?: string;
   conversationId?: string;
+  focusToMessageId?: string;
 }
 
 export class MessageSendToUserDto {
   type?: MessageType;
   content?: string;
   userId?: string;
+}
+
+export class ReactMessageDto {
+  messageId?: string;
+  react?: MessageReact;
+}
+
+export class PinMessageDto {
+  messageId?: string;
+  isPin?: boolean;
 }

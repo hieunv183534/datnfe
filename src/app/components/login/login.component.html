@@ -1,60 +1,22 @@
 <form [formGroup]="formLogin">
   <div class="login">
     <div class="background" (click)="closeLogin()"></div>
-    <div class="content">
+    <div class="content w-12 sm:w-9 md:w-8 lg:w-6 xl:w-5 p-4 lg:p-5">
       <a to="/" class="logoDiv">
-        <img
-          src="../../../assets/img/logo.png"
-          alt="main logo"
-          width="30px"
-          height="30px"
-          style="margin-right: 10px"
-        />
-        <img
-          src="../../../assets/img/title.png"
-          alt="title"
-          width="150px"
-          height="30px"
-        />
+        <img src="../../../assets/img/full-logo.png" alt="main logo" height="40px" />
       </a>
-      <h3><i class="pi pi-user"></i> Đăng nhập</h3>
+      <h3 class="mt-1"><i class="pi pi-user"></i> Đăng nhập</h3>
       <div class="p-field">
         <label class="title">Email hoặc số điện thoại</label>
-        <input
-          type="text"
-          class="p-inputtext"
-          pInputText
-          formControlName="username"
-        />
+        <input type="text" class="p-inputtext" pInputText formControlName="username" />
       </div>
       <div class="p-field">
         <label class="title">Mật khẩu</label>
         <span class="p-float-label p-input-icon-right">
-          <i
-            style="color: #01a9ff"
-            *ngIf="isShowPassword"
-            (click)="showPassword()"
-            class="pi pi-eye"
-          ></i>
-          <i
-            *ngIf="!isShowPassword"
-            (click)="showPassword()"
-            class="pi pi-eye-slash"
-          ></i>
-          <input
-            *ngIf="!isShowPassword"
-            type="password"
-            pInputText
-            formControlName="password"
-            id="inputtext-right"
-          />
-          <input
-            formControlName="password"
-            *ngIf="isShowPassword"
-            type="text"
-            id="inputtext-right"
-            pInputText
-          />
+          <i *ngIf="isShowPassword" (click)="showPassword()" class="pi pi-eye"></i>
+          <i *ngIf="!isShowPassword" (click)="showPassword()" class="pi pi-eye-slash"></i>
+          <input *ngIf="!isShowPassword" type="password" pInputText formControlName="password" id="inputtext-right" />
+          <input formControlName="password" *ngIf="isShowPassword" type="text" id="inputtext-right" pInputText />
         </span>
       </div>
       <!-- <div class="p-field">
@@ -62,15 +24,10 @@
         <p-selectButton [options]="roles" optionLabel="name" formControlName="role"
           optionValue="value"></p-selectButton>
       </div> -->
-      <div class="save">
-        <div class="checkbox">
-          <p-checkbox
-            class="mr-1"
-            [(ngModel)]="savePassword"
-            [binary]="true"
-            inputId="binary"
-          ></p-checkbox>
-          Lưu mật khẩu
+      <div class="save text-xs sm:text-sm">
+        <div class='checkbox'>
+          <p-checkbox class="mr-1" [(ngModel)]="savePassword" [binary]="true" inputId="binary"></p-checkbox> Lưu mật
+          khẩu
         </div>
         <div class="help">Quên mật khẩu ?</div>
       </div>
@@ -78,37 +35,27 @@
       <div class="buttonDiv">
         <button class="send" (click)="submit()" pRipple>Đăng nhập</button>
       </div>
-      <p [style]="{ color: 'green', fontSize: '1rem' }">
+      <p class="text-green-600 text-xs sm:text-sm">
         Hoặc tiếp tục đăng ký với
       </p>
       <div id="iconDiv">
         <a to="/"><img src="../../../assets/img/facebook.png" alt="" /></a>
-        <a to="/"><img src="../../../assets/img/tik-tok.png" alt="" /></a>
+        <!-- <a to="/"><img src="../../../assets/img/tik-tok.png" alt="" /></a> -->
         <a to="/"><img src="../../../assets/img/youtube.png" alt="" /></a>
         <a to="/"><img src="../../../assets/img/twitter.png" alt="" /></a>
         <a to="/"><img src="../../../assets/img/linkedin.png" alt="" /></a>
       </div>
-      <p [style]="{ fontSize: '1rem' }">
+      <p class="text-xs sm:text-sm my-1 sm:my-2">
         Bạn chưa có tài khoản?
-        <a
-          href="#"
-          [style]="{
-            color: '#0386FF',
-            fontSize: '1rem',
-            textDecoration: 'none'
-          }"
-          >Đăng ký miễn phí ngay</a
-        >
+        <a class="text-primary cursor-pointer">Đăng ký miễn phí ngay</a>
       </p>
       <div>
-        <p [style]="{ fontSize: '1rem' }">
+        <p  class="text-xs sm:text-sm my-1 sm:my-2">
           Trang này được Google reCAPTCHA bảo vệ để đảm bảo bạn
         </p>
-        <p [style]="{ fontSize: '1rem' }">
+        <p  class="text-xs sm:text-sm my-1 sm:my-2">
           không phải là robot.
-          <span [style]="{ color: '#0386FF', fontSize: '1rem' }"
-            >Tìm hiểu thêm.</span
-          >
+          <span class="text-primary cursor-pointer  my-1 sm:my-2">Tìm hiểu thêm.</span>
         </p>
       </div>
     </div>

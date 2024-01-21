@@ -10,7 +10,7 @@
       <div class="col-12 flex justify-content-between align-items-center px-2 py-0">
         <span class="p-input-icon-left col-12 pr-0 pt-0">
           <i class="pi pi-search pl-2 pb-3"></i>
-          <input type="text" pInputText class="p-inputtext-sm w-full custom-input" placeholder="Tìm kiếm"
+          <input type="text" pInputText class="p-inputtext w-full custom-input" placeholder="Tìm kiếm"
             [(ngModel)]="conversationFilter" (keyup.enter)="getListConversation()">
         </span>
 
@@ -53,7 +53,7 @@
         <ng-container *ngIf="!conversations || conversations.length === 0">
           <div class="flex justify-content center align-items-center flex-column w-full h-auto">
             <div>
-              <i class="pi pi-database text-8xl text-gray-400 font-light p-4"></i>
+              <p-image src="../../../assets//img/nodata.jpg" alt="Image" width="250"></p-image>
             </div>
             <span>Không có cuộc trò chuyện</span>
           </div>
@@ -66,7 +66,7 @@
     <ng-container *ngIf="thisConversation != undefined">
       <div class="message-header px-2 sm:px-3">
         <div class="conversation-info flex align-items-center justify-content-center">
-          <i (click)="unmountCoversation()" *ngIf="isMobile" class="fa-solid fa-chevron-left mr-2 back-icon"></i>
+          <i (click)="unmountConversation()" *ngIf="isMobile" class="fa-solid fa-chevron-left mr-2 back-icon"></i>
           <p-avatar (click)="infoConversation()" shape="circle"
             [image]="thisConversation?.conversationAvatar??'https://fsiconnected.cloud/images/default-avatar.jpg'"
             size="large"></p-avatar>
@@ -76,12 +76,11 @@
           <div class="other-message-type-item cursor-pointer" pTooltip="Call âm thanh" tooltipPosition="top">
             <i class="fa-solid fa-phone"></i>
           </div>
-          <div class="other-message-type-item" pTooltip="Call video" tooltipPosition="top"
-            (click)="callVideo()">
+          <div class="other-message-type-item" pTooltip="Call video" tooltipPosition="top" (click)="callVideo()">
             <i class="fa-solid fa-video"></i>
           </div>
-          <div class="other-message-type-item cursor-pointer" [ngClass]="{'btn-active': isShowInfoBox}" pTooltip="Thông tin"
-            tooltipPosition="top" (click)="isShowInfoBox = !isShowInfoBox">
+          <div class="other-message-type-item cursor-pointer" [ngClass]="{'btn-active': isShowInfoBox}"
+            pTooltip="Thông tin" tooltipPosition="top" (click)="isShowInfoBox = !isShowInfoBox">
             <i class="fa-solid fa-circle-info"></i>
           </div>
         </div>
@@ -90,7 +89,7 @@
         <div class="message-wrapper">
           <ng-container *ngFor="let message of messages">
             <div app-message (replyMessage)="handleReplyMessage(message)" [message]="message"
-              [ngClass]="{'w-full message-item flex': true, 'justify-content-start' : !message.isMine, 'justify-content-end': message.isMine ,'mt-3':message.showA }">
+              [ngClass]="{'w-full message-item flex': true, 'justify-content-start' : !message.isMine, 'justify-content-end': message.isMine ,'mt-3':message.showA,'mt-4':(!message.isMine && message.showA && !thisConversation.justTwoPeople)}">
             </div>
           </ng-container>
         </div>
@@ -101,7 +100,7 @@
           <button class="emoji-button other-message-type-item relative" pTooltip="Emoji" tooltipPosition="top">
             <i class="fa-regular fa-face-smile"></i>
             <div class="emoji-wrapper absolute" *ngIf="isShowEmoji">
-              <emoji-mart  [darkMode]="false"  [showPreview]="false" (emojiClick)="addEmoji($event)"></emoji-mart>
+              <emoji-mart [darkMode]="false" [showPreview]="false" (emojiClick)="addEmoji($event)"></emoji-mart>
             </div>
           </button>
           <div class="other-message-type-item" pTooltip="Hình ảnh" tooltipPosition="top" (click)="inputFile.click()">

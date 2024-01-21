@@ -1,7 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 .header {
-	/* background-color: rgb(0, 0, 0); */
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
@@ -104,3 +103,48 @@
 .header .navigationDiv .connect a:hover::after {
 	width: 0%;
 }
+*/
+
+  .header {
+	background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.5) 50%);
+}
+.header .loginDiv button {
+	background: none;
+	border: none;
+	color: white;
+	font-weight: 400;
+	font-family: "Roboto", sans-serif;
+	cursor: pointer;
+}
+.header .loginDiv button:hover {
+	background-color: #faa00f;
+	border-radius: 8px;
+}
+.navigationDiv > a >div:hover{
+	box-sizing: border-box !important;
+	border-bottom: 2px white solid;
+}
+
+.p-sidebar .p-sidebar-header {
+	padding: 0.5rem;
+  
+  }
+  .p-sidebar .p-sidebar-content{
+	padding-left: 0;
+	padding-right: 0;
+  }
+  .p-sidebar-header{
+	background-image: url('../../../../assets/img/title.png');
+	background-repeat: no-repeat;
+	background-size: 60%;
+	background-position-x: 12px;
+	background-position-y: 12px;
+  }
+
+@media (max-width: 576px) {
+
+} 
+
+@media (min-width: 576px) and (max-width: 767px) {
+  
+} 
