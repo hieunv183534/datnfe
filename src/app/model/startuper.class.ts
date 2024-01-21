@@ -31,7 +31,7 @@ export class StartuperDto extends UserDto {
 
 export class GetListStartuperForProjectDto extends PagedAndSortedResultRequestDto {
   filter?: string;
-  fields?: number[];
+  specializies?: number[];
   areas?: number[];
   availableTimes?: number[];
   skills?: number[];

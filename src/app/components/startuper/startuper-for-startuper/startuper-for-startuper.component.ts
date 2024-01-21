@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./startuper-for-startuper.component.css']
 })
 export class StartuperForStartuperComponent implements OnInit, OnDestroy {
-  fields: any = FsiValues.fields;
+  specializies: any = FsiValues.specializies;
   areas: any = FsiValues.areas;
   availableTimes: any = FsiValues.availableTimes;
   personalities: any = FsiValues.personalities;
@@ -78,7 +78,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
 
     this.formSearch = this.fb.group({
       filter: [null, []],
-      fields: [[], []],
+      specializies: [[], []],
       areas: [[], []],
       availableTimes: [[], []],
       skills: [null, []],
@@ -155,7 +155,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
     if (reset) { this.page = 1; }
     let input = new GetListStartuperForProjectDto();
     input.areas = this.formSearch.value.areas ?? [];
-    input.fields = this.formSearch.value.fields ?? [];
+    input.specializies = this.formSearch.value.specializies ?? [];
     input.filter = this.formSearch.value.filter;
     input.personalities = this.formSearch.value.personalities ?? [];
     input.availableTimes = this.formSearch.value.availableTimes ?? [];
@@ -202,7 +202,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
 
   clearSearch() {
     this.formSearch.controls["filter"].patchValue(null);
-    this.formSearch.controls["fields"].patchValue([]);
+    this.formSearch.controls["specializies"].patchValue([]);
     this.formSearch.controls["areas"].patchValue([]);
     this.formSearch.controls["availableTimes"].patchValue([]);
     this.formSearch.controls["skills"].patchValue([]);
