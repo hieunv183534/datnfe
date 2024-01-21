@@ -36,13 +36,13 @@
   }
   @media only screen and (max-width: 576px) {
     .content{
-      height: 25rem;
+      height: 20rem;
     }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 992px) {
   .content{
-    height: 29rem;
+    height: 25rem;
   }
 }
 
