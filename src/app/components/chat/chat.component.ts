@@ -174,7 +174,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   initSignal() {
     let token = localStorage.getItem("TOKEN") ?? "";
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl("https://fsiconnected.azurewebsites.net/chat", {
+      .withUrl("https://fsiconnectedapi.azurewebsites.net/chat", {
         accessTokenFactory: () => token,
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
@@ -212,11 +212,24 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
 
     this.connection.on("OnReactMessage", (message: any) => {
-      debugger
-    });
+      // console.log("Tin nhắn mới",message);
+      this.getListMessage();
+      // this.seenConversation(this.thisConversation?.id ?? "");
 
+      this.messageService.add({
+        key: "newReact",
+        severity: "info",
+        summary: "Tin nhắn mới",
+        detail: "Đã bày tỏ cảm xúc",
+      });
+    });
     this.connection.on("OnPinMessage", (message: any) => {
-      debugger
+      this.messageService.add({
+        key: "newReact",
+        severity: "info",
+        summary: "Tin nhắn mới",
+        detail: "Đã ghim tin nhắn",
+      });
     });
   }
 
@@ -229,7 +242,6 @@ export class ChatComponent implements OnInit, OnDestroy {
         input.userId = this.userId;
         this.chatService.sendMessageToNewOther(input).then((res: any) => {
           this.thisConversation = res.data.newConversation;
-
           this.getListConversation();
           this.getListMessage();
           this.contentText = "";
@@ -247,8 +259,8 @@ export class ChatComponent implements OnInit, OnDestroy {
         input.type = MessageType.Text;
         input.conversationId = this.thisConversation?.id;
         this.chatService.sendMessageToConversation(input).then((res: any) => {
-          this.getListConversation();
-          this.getListMessage();
+          // this.getListConversation();
+          // this.getListMessage();
           this.contentText = "";
         }).catch((err: any) => {
           this.messageService.add({
@@ -294,8 +306,8 @@ export class ChatComponent implements OnInit, OnDestroy {
       input.type = MessageType.Sticker;
       input.conversationId = this.thisConversation?.id;
       this.chatService.sendMessageToConversation(input).then((res: any) => {
-        this.getListConversation();
-        this.getListMessage();
+        // this.getListConversation();
+        // this.getListMessage();
         this.contentText = "";
       }).catch((err: any) => {
         this.messageService.add({

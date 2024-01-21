@@ -120,6 +120,8 @@ import {HomePageNewComponent} from './components/home-page-new/home-page-new.com
 import {CarouselModule} from 'primeng/carousel';
 import {SidebarModule} from 'primeng/sidebar';
 import {ButtonModule} from 'primeng/button';
+import {VirtualScrollerModule} from 'primeng/virtualscroller';
+
 @NgModule({
   declarations: [
     HomePageNewComponent,
@@ -237,7 +239,8 @@ import {ButtonModule} from 'primeng/button';
     PickerModule,
     SidebarModule,
     ButtonModule,
-    CarouselModule
+    CarouselModule,
+    VirtualScrollerModule
   ],
   providers: [
     MessageService,

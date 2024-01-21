@@ -1,5 +1,7 @@
+import { MessageDto } from './../../../model/chat.class';
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { ConversationDto } from 'src/app/model/chat.class';
+import { ChatService } from 'src/app/services/chat.service';
 import { Util } from 'src/app/shared/util/util';
 
 @Component({
@@ -13,15 +15,27 @@ export class InformationBoxComponent implements OnInit {
   items: any[] = [];
   files: any[] = [];
   links: any[] = [];
-  pinnedMessage: any[] = [];
+  pinnedMessage: MessageDto[] = [];
   display: boolean = false;
   @Input() conversation?: ConversationDto
   @Input() isMobile?: boolean
   @Output() close: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
-  getDateTime(d: any){
+  constructor(private chatService: ChatService) { }
+  getDateTime(d: any) {
     return Util.getDateTime(new Date(d));
+  }
+  unpinMessage(){
+    this.chatService.pinMessage({})
+  }
+  openListPinnedMessage() {
+    console.log(this.conversation?.id);
+
+    this.display = true;
+    this.chatService.getListPinMessageByConversation(this.conversation?.id ?? '').then((res: any) => {
+      this.pinnedMessage= res.data
+    })
+
   }
   ngOnInit(): void {
     this.items = [
@@ -242,72 +256,94 @@ export class InformationBoxComponent implements OnInit {
         },
       },
     ]
-    this.pinnedMessage = [
-      {
-        title: "tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyện, rip, ghim tin trong chat",
-        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
-        sender: "văn hiếu",
-        time: "2023-12-22T16:08:17.682627"
-      },
-      {
-        title: "lưu  trữ trò chuyện, ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyện, rip, ghim tin trong chat",
-        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
-        sender: "văn hiếu",
-        time: "2023-12-22T16:08:17.682627"
+    // this.pinnedMessage = [
+    //   {
+    //     title: "tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyện, rip, ghim tin trong chat",
+    //     avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+    //     sender: "văn hiếu",
+    //     time: "2023-12-22T16:08:17.682627"
+    //   },
+    //   {
+    //     title: "lưu  trữ trò chuyện, ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyện, rip, ghim tin trong chat",
+    //     avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+    //     sender: "văn hiếu",
+    //     time: "2023-12-22T16:08:17.682627"
 
-      },
-      {
-        title: " ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyn",
-        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
-        sender: "văn hiếu",
-        time: "2023-12-22T16:08:17.682627"
+    //   },
+    //   {
+    //     title: " ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyn",
+    //     avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+    //     sender: "văn hiếu",
+    //     time: "2023-12-22T16:08:17.682627"
 
-      },
-      {
-        title: "listPinned listPinnedlistPinned listPinned listPinned",
-        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
-        sender: "văn hiếu",
-        time: "2023-12-22T16:08:17.682627"
-      },
-      {
-        title: "l ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyn",
-        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
-        sender: "văn hiếu",
-        time: "2023-12-22T16:08:17.682627"
-      },
-      {
-        title: "tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyện, rip, ghim tin trong chat",
-        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
-        sender: "văn hiếu",
-        time: "2023-12-22T16:08:17.682627"
-      },
-      {
-        title: "lưu  trữ trò chuyện, ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyện, rip, ghim tin trong chat",
-        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
-        sender: "văn hiếu",
-        time: "2023-12-22T16:08:17.682627"
+    //   },
+    //   {
+    //     title: "listPinned listPinnedlistPinned listPinned listPinned",
+    //     avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+    //     sender: "văn hiếu",
+    //     time: "2023-12-22T16:08:17.682627"
+    //   },
+    //   {
+    //     title: "l ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyn",
+    //     avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+    //     sender: "văn hiếu",
+    //     time: "2023-12-22T16:08:17.682627"
+    //   },
+    //   {
+    //     title: "tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyện, rip, ghim tin trong chat",
+    //     avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+    //     sender: "văn hiếu",
+    //     time: "2023-12-22T16:08:17.682627"
+    //   },
+    //   {
+    //     title: "lưu  trữ trò chuyện, ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyện, rip, ghim tin trong chat",
+    //     avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+    //     sender: "văn hiếu",
+    //     time: "2023-12-22T16:08:17.682627"
 
-      },
-      {
-        title: " ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyn",
-        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
-        sender: "văn hiếu",
-        time: "2023-12-22T16:08:17.682627"
+    //   },
+    //   {
+    //     title: " ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyn",
+    //     avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+    //     sender: "văn hiếu",
+    //     time: "2023-12-22T16:08:17.682627"
 
-      },
-      {
-        title: "listPinned listPinnedlistPinned listPinned listPinned",
-        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
-        sender: "văn hiếu",
-        time: "2023-12-22T16:08:17.682627"
-      },
-      {
-        title: "l ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyn",
-        avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
-        sender: "văn hiếu",
-        time: "2023-12-22T16:08:17.682627"
-      },
-    ]
+    //   },
+    //   {
+    //     title: "listPinned listPinnedlistPinned listPinned listPinned",
+    //     avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+    //     sender: "văn hiếu",
+    //     time: "2023-12-22T16:08:17.682627"
+    //   },
+    //   {
+    //     title: "l ghim, đánh dấu chưa đọc,tắt thông báo(tắt trong bao lâu), xóa cuộc trò chuyn",
+    //     avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
+    //     sender: "văn hiếu",
+    //     time: "2023-12-22T16:08:17.682627"
+    //   },
+    // ]
   }
 
 }
+
+  // handleScroll(event: Event) {
+  //   const target = event.target as HTMLDivElement;
+  //   const scrollPosition = target.scrollTop;
+  //   const elementHeight = target.scrollHeight;
+  //   const clientHeight = target.clientHeight;
+  //   console.log(scrollPosition);
+
+  //   if (scrollPosition / (elementHeight - clientHeight) < 0.1 && !this.isCalled && !this.fullMessage) {
+  //     // if (scrollPosition < 200 && !this.isCalled && !this.fullMessage) {
+
+  //     this.isCalled = true;
+  //     this.skipCount += this.maxResultCount;
+  //     // this.getListMessage();
+  //   } else {
+  //     this.isCalled = false;
+  //   }
+  //   if (scrollPosition / (elementHeight - clientHeight) >= 0.8) {
+  //     const element = this.elementRef.nativeElement.querySelector('.message-content');
+  //     element.scrollTo({ top: element.scrollHeight - element.clientHeight });
+  //   }
+  // }

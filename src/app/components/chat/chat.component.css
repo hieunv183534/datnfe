@@ -229,7 +229,7 @@
 .message-content {
   width: 100%;
   /* height: calc(100% - 168px); */
-  overflow-y: auto;
+  /* overflow-y: auto; */
   /* position: absolute; */
   top: 68px;
   /* background-image: linear-gradient(to bottom right, #eaedf3, #C8C7BF88); */

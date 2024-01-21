@@ -5,7 +5,7 @@
   <span style="top:-18px" class="absolute left-0 text-xs text-gray-700"
     *ngIf="!message.isMine && message.showA && !message.conversation.justTwoPeople">{{message.sender.name}}</span>
   <ng-container *ngIf="message.type == MessageType.Text">
-    <div class="flex flex-column align-items-end relative" [ngClass]="{'mb-2':true}">
+    <div class="flex flex-column align-items-end relative" [ngClass]="{'mb-2': message.reacts.length > 0}">
       <p [tooltipPosition]="message.isMine ? 'left' :'right'" [pTooltip]="getDateTime(message.creationTime)">
         {{message?.content}}
       </p>
@@ -27,11 +27,11 @@
           <i class="fa-regular fa-face-smile text-gray-500 hover:text-gray-700"></i>
         </div>
       </div>
-      <div *ngIf="true" style="width:20px;height: 20px;"
+      <div *ngIf="message.reacts.length > 0" style="width:20px;height: 20px;"
         class="absolute top-100 -translateY-50 right-0  border-circle bg-white flex justify-content-center align-items-center shadow-2">
-        <span>
-          😀
-        </span>
+        <div style="height: 100% !important;width: 94% !important;" class="">
+          {{getReacts(message.reacts)}}
+        </div>
       </div>
       <div class="absolute top-100 w-1rem h-1rem" *ngIf="message.index == message.conversation.lastIndexSeenA"
         [ngClass]="{'top-125':true}" [tooltipPosition]="'top'" [pTooltip]="getDateTimeSeen(message.creationTime)">
@@ -49,7 +49,7 @@
     <ng-template pTemplate>
       <div class="p-2 flex text-xl">
         <ng-container *ngFor="let e of favoriteEmojis">
-          <div class="cursor-pointer" (click)="reactMessage(e)">{{e}}</div>
+          <div class="cursor-pointer" (click)="reactMessage(e.value, message.id)">{{e.content}}</div>
         </ng-container>
       </div>
     </ng-template>
@@ -57,7 +57,7 @@
   <p-overlayPanel [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'200ms'" #op1 [dismissable]="true">
     <ng-template pTemplate>
       <div class="flex flex-column p-2">
-        <div
+        <div (click)="pinMessage(message)"
           class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1">
           <i class="pi pi-paperclip mr-2 text-xs"></i>
           <p class="text-xs my-0">Ghim tin nhắn</p>
