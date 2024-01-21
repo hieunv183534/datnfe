@@ -84,6 +84,7 @@ export class UpdateUserInfoComponent implements OnInit {
       purpose: [null, 0],
       ideaField:[null, []],
       targetField:[null, []],
+      targetSpecialize:[null, []],
       field: [null, []],
       speciality: [null, []],
       personality: [null, []],
@@ -141,6 +142,10 @@ export class UpdateUserInfoComponent implements OnInit {
       this.formStartuperInfo.patchValue({
         describe: res.data.describe,
         field: res.data.field,
+        purpose: res.data.purpose,
+        ideaField: res.data.ideaField,
+        targetField: res.data.targetField,
+        targetSpecialize: res.data.targetSpecialize,
         speciality: res.data.speciality,
         personality: res.data.personality,
         skill: res.data.skill,
