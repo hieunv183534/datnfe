@@ -25,6 +25,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   conversations?: ConversationDto[] = [];
   messages: MessageDto[] = [];
   replyMessage?: MessageDto = undefined;
+  focusToMessageId: string = ''
   timeAgo = new TimeAgo('vi-VI');
   contentText: string = "";
   connection?: signalR.HubConnection;
@@ -212,7 +213,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
 
     this.connection.on("OnReactMessage", (message: any) => {
-      // console.log("Tin nhắn mới",message);
       this.getListMessage();
       // this.seenConversation(this.thisConversation?.id ?? "");
 
@@ -257,6 +257,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         let input = new MessageSendToConversationDto();
         input.content = this.contentText;
         input.type = MessageType.Text;
+        input.focusToMessageId = this.focusToMessageId;
         input.conversationId = this.thisConversation?.id;
         this.chatService.sendMessageToConversation(input).then((res: any) => {
           // this.getListConversation();
@@ -428,10 +429,11 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
   handleReplyMessage(message: any) {
     this.replyMessage = message;
-
+    this.focusToMessageId = message.id
   }
   handleDeleteReplyMessage() {
     this.replyMessage = undefined;
+    this.focusToMessageId = ''
 
   }
 }

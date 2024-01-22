@@ -9,6 +9,9 @@
       <p [tooltipPosition]="message.isMine ? 'left' :'right'" [pTooltip]="getDateTime(message.creationTime)">
         {{message?.content}}
       </p>
+      <span class="container-reply inline-block white-space-normal max-w-full absolute top-0 right-0 w-auto bg-gray-100">
+        224 định công
+      </span>
       <div class="container-action">
         <div (click)="op1.toggle($event)" [ngClass]="message.isMine ? 'icon-action-right' :'icon-action-left'"
           class="absolute icon-action top-50 -translateY-50 flex align-items-center justify-content-center cursor-pointer border-circle hover:shadow-2 hover:bg-white ">

@@ -35,7 +35,6 @@ export class MessageComponent implements OnInit {
 
   getReacts(reacts: any[]) {
     return this.favoriteEmojis.find(e => reacts.some(r => r.react === e.value))?.content
-    // return reacts.map(x => x.react);
   }
   ngOnInit() {
   }
