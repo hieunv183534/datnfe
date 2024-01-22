@@ -88,8 +88,8 @@
       <div id="scroll-message" class="message-content overflow-y-auto h-full " #scrollMe [scrollTop]="scrollMe.scrollHeight">
         <div class="message-wrapper">
           <ng-container *ngFor="let message of messages">
-            <div app-message (replyMessage)="handleReplyMessage(message)" [message]="message"
-              [ngClass]="{'w-full message-item flex': true, 'justify-content-start' : !message.isMine, 'justify-content-end': message.isMine ,'mt-3':message.showA,'mt-4':(!message.isMine && message.showA && !thisConversation.justTwoPeople)}">
+            <div app-message (replyMessage)="handleReplyMessage(message)" [message]="message" class="'w-full message-item flex"
+              [ngClass]="{'justify-content-start' : !message.isMine, 'justify-content-end': message.isMine ,'mt-3':message.showA,'mt-4':(!message.isMine && message.showA && !thisConversation.justTwoPeople),'mt-6789':message.focusToMessageId}">
             </div>
           </ng-container>
         </div>

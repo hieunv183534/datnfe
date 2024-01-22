@@ -31,6 +31,7 @@ export class MessageDto extends FullAuditedEntityDto<string>{
   index?: number;
   type?: MessageType;
   content?: string;
+  focusToMessage?: MessageDto;
   focusToMessageId?: string;
   isMine?: boolean;
   isPinned?: boolean;

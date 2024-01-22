@@ -1,17 +1,29 @@
-<div class="relative" [ngClass]="{'message': true, 'justify-content-start' : !message.isMine , 'justify-content-end': message.isMine}">
+<div class="relative flex-column message"
+  [ngClass]="{'align-items-end': message.isMine,'align-items-start':!message.isMine}">
   <p-avatar *ngIf="!message.isMine && message.showA" [pTooltip]="message.sender.name" tooltipPosition="top"
     shape="circle" [image]="message.sender.avatarUrl ??'https://fsiconnected.cloud/images/default-avatar.jpg'"
     class="message-avatar"></p-avatar>
   <span style="top:-18px" class="absolute left-0 text-xs text-gray-700"
-    *ngIf="!message.isMine && message.showA && !message.conversation.justTwoPeople">{{message.sender.name}}</span>
+    *ngIf="!message.isMine && message.showA && !message.conversation.justTwoPeople && !message.focusToMessageId">{{message.sender.name}}</span>
+
+  <div class="text-xs text-gray-700 row-1 mt-1" [ngClass]="message.isMine? 'right-0' : 'left-0' "
+    *ngIf="message.focusToMessage">
+    <i class="fa-solid fa-reply text-gray-500 hover:text-gray-700 mr-2"></i>
+    <span>{{message.isMine ?'Bạn đã trả lời chính mình': message.sender.name + 'đã trả lời'}}</span>
+  </div>
+
+  <div *ngIf="message.focusToMessage" style="background-color: rgba(0, 0, 0, 0.03)"
+    class="container-reply  border-round-xl bg-white shadow-2 text-gray-700"
+    [ngClass]="message.isMine ? 'right-0' : 'left-0'">
+    {{message.focusToMessage.content??''}}
+  </div>
   <ng-container *ngIf="message.type == MessageType.Text">
-    <div class="flex flex-column align-items-end relative" [ngClass]="{'mb-2': message.reacts.length > 0}">
-      <p [tooltipPosition]="message.isMine ? 'left' :'right'" [pTooltip]="getDateTime(message.creationTime)">
+    <div class="flex flex-column relative" [ngClass]="{'mb-2': message.reacts.length > 0}">
+      <p [tooltipPosition]="message.isMine ? 'left' :'right'" [pTooltip]="getDateTime(message.creationTime)"
+        [ngClass]="message.isMine ? 'content-message-right align-items-end' : 'content-message-left align-items-start'">
         {{message?.content}}
       </p>
-      <span class="container-reply inline-block white-space-normal max-w-full absolute top-0 right-0 w-auto bg-gray-100">
-        224 định công
-      </span>
+
       <div class="container-action">
         <div (click)="op1.toggle($event)" [ngClass]="message.isMine ? 'icon-action-right' :'icon-action-left'"
           class="absolute icon-action top-50 -translateY-50 flex align-items-center justify-content-center cursor-pointer border-circle hover:shadow-2 hover:bg-white ">
@@ -31,7 +43,7 @@
         </div>
       </div>
       <div *ngIf="message.reacts.length > 0" style="width:20px;height: 20px;"
-        class="absolute top-100 -translateY-50 right-0  border-circle bg-white flex justify-content-center align-items-center shadow-2">
+        class="absolute top-100 -translateY-50 right-0  border-circle bg-white flex justify-content-center align-items-center shadow-2 z-1">
         <div style="height: 100% !important;width: 94% !important;" class="">
           {{getReacts(message.reacts)}}
         </div>
@@ -44,9 +56,10 @@
     </div>
   </ng-container>
   <ng-container *ngIf="message.type == MessageType.Sticker">
-    <p [tooltipPosition]="message.isMine ? 'left' :'right'" [pTooltip]="getDateTime(message.creationTime)">
-      <i class="fa-solid fa-thumbs-up" style="font-size: 30px;color: #3B82F6;"></i>
-    </p>
+    <span [tooltipPosition]="message.isMine ? 'left' :'right'" [pTooltip]="getDateTime(message.creationTime)">
+      <i class="fa-solid fa-thumbs-up" style="font-size: 30px;color: #3B82F6;"
+        [ngClass]="message.isMine ? 'content-message-right align-items-end' : 'content-message-left align-items-start'"></i>
+    </span>
   </ng-container>
   <p-overlayPanel [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'200ms'" #op [dismissable]="true">
     <ng-template pTemplate>
