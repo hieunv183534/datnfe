@@ -26,7 +26,7 @@ export class RegisterStartuperInfoComponent implements OnInit {
 
   activeIndex: number = 0;
   formStartuper: FormGroup = this.fb.group({});
-
+  
   constructor(
     private startuperService: StartuperService,
     private sanitizer: DomSanitizer,
@@ -46,7 +46,8 @@ export class RegisterStartuperInfoComponent implements OnInit {
       certificateAndAward: [null, []],
       hasProject: [null, []],
       yearOfExp: [null, []],
-      availableTime: [null, []]
+      availableTime: [null, []],
+      purpose: [null, []],
     })
   }
 

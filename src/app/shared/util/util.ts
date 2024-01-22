@@ -131,6 +131,49 @@ export class FsiValues {
     new DataPointDto("Đồng Tháp", 63, "DongThap")
   ];
 
+  static specializies: DataPointDto[] = [
+    new DataPointDto("Agency (Design/Development)", 1, "Design/Development"),
+    new DataPointDto("Agency (Marketing/Advertising)", 2, "Marketing/Advertising"),
+    new DataPointDto("Bán lẻ - Hàng tiêu dùng - FMCG", 3, "Retail/FMCG"),
+    new DataPointDto("Bảo hiểm", 4, "Insurance"),
+    new DataPointDto("Bảo trì / Sửa chữa", 5, "Maintenance/Repair"),
+    new DataPointDto("Bất động sản", 6, "Real Estate"),
+    new DataPointDto("Chứng khoán", 7, "Securities"),
+    new DataPointDto("Cơ khí", 8, "Mechanical"),
+    new DataPointDto("Cơ quan nhà nước", 9, "Government"),
+    new DataPointDto("Du lịch", 10, "Tourism"),
+    new DataPointDto("Dược phẩm / Y tế / Công nghệ sinh học", 11, "Pharmaceuticals/Healthcare/Biotechnology"),
+    new DataPointDto("Điện tử / Điện lạnh", 12, "Electronics/Refrigeration"),
+    new DataPointDto("Giải trí", 13, "Entertainment"),
+    new DataPointDto("Giáo dục / Đào tạo", 14, "Education/Training"),
+    new DataPointDto("In ấn / Xuất bản", 15, "Printing/Publishing"),
+    new DataPointDto("Internet / Online", 16, "Internet/Online"),
+    new DataPointDto("IT - Phần cứng", 17, "IT - Hardware"),
+    new DataPointDto("IT - Phần mềm", 18, "IT - Software"),
+    new DataPointDto("Kế toán / Kiểm toán", 19, "Accounting/Auditing"),
+    new DataPointDto("Khác", 20, "Other"),
+    new DataPointDto("Logistics - Vận tải", 21, "Logistics/Transportation"),
+    new DataPointDto("Luật", 22, "Law"),
+    new DataPointDto("Marketing / Truyền thông / Quảng cáo", 23, "Marketing/Communication/Advertising"),
+    new DataPointDto("Môi trường", 24, "Environment"),
+    new DataPointDto("Năng lượng", 25, "Energy"),
+    new DataPointDto("Ngân hàng", 26, "Banking"),
+    new DataPointDto("Nhà hàng / Khách sạn", 27, "Restaurant/Hotel"),
+    new DataPointDto("Nhân sự", 28, "Human Resources"),
+    new DataPointDto("Nông Lâm Ngư nghiệp", 29, "Agriculture/Fishery/Forestry"),
+    new DataPointDto("Sản xuất", 30, "Manufacturing"),
+    new DataPointDto("Tài chính", 31, "Finance"),
+    new DataPointDto("Thiết kế / kiến trúc", 32, "Design/Architecture"),
+    new DataPointDto("Thời trang", 33, "Fashion"),
+    new DataPointDto("Thương mại điện tử", 34, "E-commerce"),
+    new DataPointDto("Tổ chức phi lợi nhuận", 35, "Non-profit Organization"),
+    new DataPointDto("Tự động hóa", 36, "Automation"),
+    new DataPointDto("Tư vấn", 37, "Consulting"),
+    new DataPointDto("Viễn thông", 38, "Telecommunications"),
+    new DataPointDto("Xây dựng", 39, "Construction"),
+    new DataPointDto("Xuất nhập khẩu", 40, "Import/Export"),
+  ];
+
   static fields: DataPointDto[] = [
     new DataPointDto("Công nghệ thông tin", 1, "Information Technology"),
     new DataPointDto("Y tế và chăm sóc sức khỏe", 2, "Healthcare and Medical"),
@@ -142,7 +185,16 @@ export class FsiValues {
     new DataPointDto("Khách sạn và du lịch", 8, "Hospitality and Tourism"),
     new DataPointDto("Thực phẩm và nông nghiệp", 9, "Food and Agriculture"),
     new DataPointDto("Thương mại điện tử", 10, "E-commerce"),
-    new DataPointDto("Công nghiệp và sản xuất", 11, "Industrial and Manufacturing")
+    new DataPointDto("Công nghiệp và sản xuất", 11, "Industrial and Manufacturing"),
+    new DataPointDto("Khác", 0, "Other")
+  ];
+
+  
+  static purposes: DataPointDto[] = [
+    new DataPointDto("Tôi là người có ý tưởng", 1, "Have Idea"),
+    new DataPointDto("Tôi muốn tìm người có ý tưởng", 2, "Find People Have Idea"),
+    new DataPointDto("Tôi là người có dự án", 3, "Have Project"),
+    new DataPointDto("Tôi là người muốn tìm dự án", 4, "Find People Have Project"),
   ];
 
   static jobs: DataPointDto[] = [

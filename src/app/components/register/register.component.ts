@@ -100,7 +100,8 @@ export class RegisterComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.acceptDieuKhoan)
+    // console.log(this.acceptDieuKhoan)
+    // console.log('form', this.formRegister.value)
     this.handleSubmit = true
     if (this.formRegister.valid) {
       if (this.formRegister.value.password != this.formRegister.value.rePassword) {
@@ -108,6 +109,7 @@ export class RegisterComponent implements OnInit {
       } else {
         let value = this.formRegister.value;
         value.baseInfomation.phone = value.phoneNumber;
+        value.baseInfomation.name = value.baseInfomation.surname + " " + value.baseInfomation.name
         this.authService.register(this.formRegister.value).then((res: any) => {
           console.log(res);
           this.closeRegister();

@@ -14,17 +14,22 @@
         id="avatar"
       />
     </div>
-    <div class=" col-7 md-7">
+    <div class="col-7 md-7">
       <ul>
         <li>
           <div class="name">{{ startuper.name }}</div>
         </li>
-        <li><i class="pi pi-search"></i> {{ startuper.describe }}</li>
         <li>
-          <i class="pi pi-calendar"></i> {{ getDate(startuper.dateOfBirth) }}
+          <i class="pi pi-search"></i>
+          <b> {{ getPurpose(startuper.purpose) }}</b>
         </li>
         <li>
-          <i class="pi pi-map-marker"></i> {{ getArea(startuper.location) }}
+          <i class="pi pi-calendar"></i>
+          <b> {{ getDate(startuper.dateOfBirth) }}</b>
+        </li>
+        <li>
+          <i class="pi pi-map-marker"></i>
+          <b> {{ getArea(startuper.location) }}</b>
         </li>
       </ul>
     </div>
@@ -32,10 +37,66 @@
   <div>
     <ul>
       <li>
-        <p><b>Kỹ năng chuyên môn của tôi</b></p>
-        <p-tag :value="{{ startuper.speciality }}"></p-tag>
+        <p><b>Chuyên môn của tôi</b></p>
+        <span>
+          <p-tag
+            *ngFor="
+              let specialize of getSpecializies(startuper.specialize ?? [])
+            "
+            [value]="specialize"
+            styleClass="mr-1 mt-1"
+          ></p-tag>
+        </span>
       </li>
-      <li>
+      <li *ngIf="startuper.purpose == 1">
+        <p><b>Lĩnh vực của ý tưởng</b></p>
+        <span>
+          <p-tag
+            *ngFor="let ideaField of getIdeaField(startuper.ideaField ?? [])"
+            [value]="ideaField"
+            styleClass="mr-1 mt-1"
+          ></p-tag>
+        </span>
+      </li>
+      <li *ngIf="startuper.purpose == 1">
+        <p><b>Tôi muốn tìm người có chuyên môn</b></p>
+        <span>
+          <p-tag
+            *ngFor="
+              let targetSpecialize of getTargetSpecializies(
+                startuper.targetSpecialize ?? []
+              )
+            "
+            [value]="targetSpecialize"
+            styleClass="mr-1 mt-1"
+          ></p-tag>
+        </span>
+      </li>
+      <li *ngIf="startuper.purpose == 4">
+        <p><b>Lĩnh vực của dự án</b></p>
+        <span>
+          <p-tag
+            *ngFor="
+              let targetField of getTargetField(startuper.targetField ?? [])
+            "
+            [value]="targetField"
+            styleClass="mr-1 mt-1"
+          ></p-tag>
+        </span>
+      </li>
+      <li *ngIf="startuper.purpose == 2">
+        <p><b>Lĩnh vực của ý tưởng</b></p>
+        <span>
+          <p-tag
+            *ngFor="
+              let targetField of getTargetField(startuper.targetField ?? [])
+            "
+            [value]="targetField"
+            styleClass="mr-1 mt-1"
+          ></p-tag>
+        </span>
+      </li>
+      <li *ngIf="startuper.purpose == 0">
         <p><b>Thời gian khả dụng</b></p>
         <span>
           <p-tag
@@ -44,12 +105,12 @@
           ></p-tag>
         </span>
       </li>
-      <li>
+      <!-- <li>
         <p><b>Lĩnh vực</b></p>
         <span>
           <p-tag :value="{{ getField(startuper.field) }}" class="ml-1"></p-tag>
         </span>
-      </li>
+      </li> -->
       <!-- <li>Độ tuổi: {{getAge(startuper.dateOfBirth)}}</li>
       <li>Khu vực: {{getArea(startuper.location)}}</li>
       <li>Lĩnh vực: {{getField(startuper.field)}}</li>

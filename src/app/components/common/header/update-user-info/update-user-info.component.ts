@@ -23,10 +23,12 @@ export class UpdateUserInfoComponent implements OnInit {
   fields: any = FsiValues.fields;
   jobs: any = FsiValues.jobs;
   personalities: any = FsiValues.personalities;
+  specializies: any = FsiValues.specializies;
   skills: any = FsiValues.skills;
   yearOfExps: any = FsiValues.yearOfExps;
   availableTimes: any = FsiValues.availableTimes;
   genders: any[] = [{ name: "Nam", value: true }, { name: "Nữ", value: false }];
+  purposes: any[] =  FsiValues.purposes;
 
   universities: any[] = FsiValues.universities.map(x => {
     return {
@@ -42,6 +44,7 @@ export class UpdateUserInfoComponent implements OnInit {
   formChangePassword: FormGroup = this.fb.group({});
   activeIndex: number = 0;
   steps: MenuItem[] = [];
+ 
   constructor(
     private messageService: MessageService,
     private fb: FormBuilder,
@@ -78,6 +81,10 @@ export class UpdateUserInfoComponent implements OnInit {
 
     this.formStartuperInfo = this.fb.group({
       describe: [null, []],
+      purpose: [null, 0],
+      ideaField:[null, []],
+      targetField:[null, []],
+      targetSpecialize:[null, []],
       field: [null, []],
       speciality: [null, []],
       personality: [null, []],
@@ -87,7 +94,8 @@ export class UpdateUserInfoComponent implements OnInit {
       certificateAndAward: [null, []],
       hasProject: [null, []],
       yearOfExp: [null, []],
-      availableTime: [null, []]
+      availableTime: [null, []],
+      specialize: [null, []]
     });
 
     this.formChangePassword = this.fb.group({
@@ -134,6 +142,10 @@ export class UpdateUserInfoComponent implements OnInit {
       this.formStartuperInfo.patchValue({
         describe: res.data.describe,
         field: res.data.field,
+        purpose: res.data.purpose,
+        ideaField: res.data.ideaField,
+        targetField: res.data.targetField,
+        targetSpecialize: res.data.targetSpecialize,
         speciality: res.data.speciality,
         personality: res.data.personality,
         skill: res.data.skill,

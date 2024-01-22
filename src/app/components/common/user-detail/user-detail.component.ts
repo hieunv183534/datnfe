@@ -90,6 +90,11 @@ export class UserDetailComponent implements OnInit {
     return Util.getDate(new Date(d));
   }
 
+  routeToProfile(){
+    this.close.emit();
+    this.router.navigate(['./profile']);
+  }
+
   connectOnClick() {
     this.startuperService.requestFriendToOrtherStartuper(this.startuperInfo.id).then((res: any) => {
       this.messageService.add({

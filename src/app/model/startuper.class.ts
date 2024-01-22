@@ -3,8 +3,13 @@ import { UserDto } from "./user.class";
 
 export class CreateStartuperDto {
   field?: number;
+  purpose?: number;
   speciality?: string;
   personality?: number[];
+  specialize?:number[];
+  ideaField?:number[];
+  targetField?:number[];
+  targetSpecialize?:number[];
   skill?: number[];
   workingExperience?: string;
   activity?: string;
@@ -17,8 +22,13 @@ export class CreateStartuperDto {
 
 export class StartuperDto extends UserDto {
   field?: number;
+  purpose?: number;
   speciality?: string;
   personality?: number[];
+  specialize?:number[];
+  ideaField?:number[];
+  targetField?:number[];
+  targetSpecialize?:number[];
   skill?: number[];
   workingExperience?: string;
   activity?: string;
@@ -31,7 +41,7 @@ export class StartuperDto extends UserDto {
 
 export class GetListStartuperForProjectDto extends PagedAndSortedResultRequestDto {
   filter?: string;
-  fields?: number[];
+  specializies?: number[];
   areas?: number[];
   availableTimes?: number[];
   skills?: number[];

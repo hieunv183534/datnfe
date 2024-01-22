@@ -50,9 +50,9 @@
                 optionLabel="name"
                 optionValue="value"
                 appendTo="body"
-                [options]="fields"
+                [options]="specializies"
                 optionLabel="name"
-                formControlName="fields"
+                formControlName="specializies"
               >
               </p-multiSelect>
               <label>Chuyên môn</label>
@@ -103,7 +103,6 @@
           <div class="p-field col-2 md-12 mt-1">
             <span class="p-float-label">
               <p-multiSelect
-                optionLabel="name"
                 optionValue="value"
                 appendTo="body"
                 [options]="yearOfExps"
@@ -114,7 +113,7 @@
               <label>Năm kinh nghiệm</label>
             </span>
           </div>
-          <div class="p-field col-2 md-12 mt-1">
+          <!-- <div class="p-field col-2 md-12 mt-1">
             <div class="flex justify-content-start align-items-center">
               <p-checkbox
                 [binary]="true"
@@ -122,34 +121,32 @@
               ></p-checkbox>
               <p class="ml-2">Bộ lọc sinh viên</p>
             </div>
+          </div> -->
+          <div class="p-field col-2 md-12">
+            <label class="title">Trường học</label>
+            <p-dropdown
+              [filter]="true"
+              [options]="universities"
+              [style]="{ width: '100%' }"
+              [autoDisplayFirst]="false"
+              formControlName="university"
+              (onChange)="changeUniversity($event)"
+              optionLabel="name"
+              optionValue="value"
+            ></p-dropdown>
           </div>
-          <ng-container *ngIf="f['isStudent'].value">
-            <div class="p-field col-2 md-12">
-              <label class="title">Trường học</label>
-              <p-dropdown
-                [filter]="true"
-                [options]="universities"
-                [style]="{ width: '100%' }"
-                [autoDisplayFirst]="false"
-                formControlName="university"
-                (onChange)="changeUniversity($event)"
-                optionLabel="name"
-                optionValue="value"
-              ></p-dropdown>
-            </div>
-            <div class="p-field col-2 md-12">
-              <label class="title">Ngành học</label>
-              <p-dropdown
-                [filter]="true"
-                [options]="universitySpecializeds ?? []"
-                [style]="{ width: '100%' }"
-                [autoDisplayFirst]="false"
-                formControlName="universitySpecialized"
-                optionLabel="name"
-                optionValue="value"
-              ></p-dropdown>
-            </div>
-          </ng-container>
+          <div class="p-field col-2 md-12">
+            <label class="title">Ngành học</label>
+            <p-dropdown
+              [filter]="true"
+              [options]="universitySpecializeds ?? []"
+              [style]="{ width: '100%' }"
+              [autoDisplayFirst]="false"
+              formControlName="universitySpecialized"
+              optionLabel="name"
+              optionValue="value"
+            ></p-dropdown>
+          </div>
 
           <div class="col-2 flex justify-content-center mt-1">
             <p-button icon="pi pi-search" (onClick)="submitSearch()"></p-button>
