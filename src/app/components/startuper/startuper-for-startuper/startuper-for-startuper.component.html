@@ -15,7 +15,7 @@
           </span>
         </div>
         <div class="justify-content-center grid">
-          <div class="p-field col-2 md-12 mt-1">
+          <div class="p-field col-2 md-6 sm-6 mt-1">
             <span class="p-float-label">
               <p-cascadeSelect
                 [options]="mySelects"
@@ -30,7 +30,7 @@
               <label></label>
             </span>
           </div>
-          <div class="p-field col-2 md-12 mt-1">
+          <div class="p-field col-2 md-6 sm-6 mt-1">
             <span class="p-float-label">
               <p-multiSelect
                 optionLabel="name"
@@ -44,7 +44,7 @@
               <label>Khu vực</label>
             </span>
           </div>
-          <div class="p-field col-2 md-12 mt-1">
+          <div class="p-field col-2 md-6 sm-6 mt-1">
             <span class="p-float-label">
               <p-multiSelect
                 optionLabel="name"
@@ -58,7 +58,7 @@
               <label>Chuyên môn</label>
             </span>
           </div>
-          <div class="p-field col-2 md-12 mt-1">
+          <div class="p-field col-2 md-6 sm-6 mt-1">
             <span class="p-float-label">
               <p-multiSelect
                 optionLabel="name"
@@ -72,7 +72,7 @@
               <label>Kỹ năng mềm</label>
             </span>
           </div>
-          <div class="p-field col-2 md-12 mt-1">
+          <div class="p-field col-2 md-6 sm-6 mt-1">
             <span class="p-float-label">
               <p-multiSelect
                 optionLabel="name"
@@ -86,7 +86,7 @@
               <label>Thời gian khả dụng</label>
             </span>
           </div>
-          <div class="p-field col-2 md-12 mt-1">
+          <div class="p-field col-2 md-6 sm-6 mt-1">
             <span class="p-float-label">
               <p-multiSelect
                 optionLabel="name"
@@ -100,7 +100,7 @@
               <label>Tính cách</label>
             </span>
           </div>
-          <div class="p-field col-2 md-12 mt-1">
+          <div class="p-field col-2 md-6 sm-6 mt-1">
             <span class="p-float-label">
               <p-multiSelect
                 optionValue="value"
@@ -122,8 +122,7 @@
               <p class="ml-2">Bộ lọc sinh viên</p>
             </div>
           </div> -->
-          <div class="p-field col-2 md-12">
-            <label class="title">Trường học</label>
+          <div class="p-field col-2 md-6 sm-6 mt-1">
             <p-dropdown
               [filter]="true"
               [options]="universities"
@@ -131,16 +130,17 @@
               [autoDisplayFirst]="false"
               formControlName="university"
               (onChange)="changeUniversity($event)"
+              placeholder="Trường học"
               optionLabel="name"
               optionValue="value"
             ></p-dropdown>
           </div>
-          <div class="p-field col-2 md-12">
-            <label class="title">Ngành học</label>
+          <div class="p-field col-2 md-6 sm-6 mt-1">
             <p-dropdown
               [filter]="true"
               [options]="universitySpecializeds ?? []"
               [style]="{ width: '100%' }"
+              placeholder="Ngành học"
               [autoDisplayFirst]="false"
               formControlName="universitySpecialized"
               optionLabel="name"
@@ -148,7 +148,7 @@
             ></p-dropdown>
           </div>
 
-          <div class="col-2 flex justify-content-center mt-1">
+          <div class="col-2 md-6 sm-6 flex justify-content-center mt-1">
             <p-button icon="pi pi-search" (onClick)="submitSearch()"></p-button>
             <p-button
               class="ml-4"

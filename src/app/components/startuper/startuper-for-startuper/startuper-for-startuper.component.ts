@@ -1,5 +1,5 @@
 import { EventService } from 'src/app/services/event.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -14,7 +14,8 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-startuper-for-startuper',
   templateUrl: './startuper-for-startuper.component.html',
-  styleUrls: ['./startuper-for-startuper.component.css']
+  styleUrls: ['./startuper-for-startuper.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class StartuperForStartuperComponent implements OnInit, OnDestroy {
   specializies: any = FsiValues.specializies;

@@ -43,14 +43,33 @@
           <li>
             <div class="name">{{ startuperInfo.name }}</div>
           </li>
-          <li>{{ startuperInfo.describe }}</li>
           <li>
-            <i class="pi pi-search"></i> Tôi đang có một ý tưởng khởi nghiệp
+            <b>{{ startuperInfo.describe }}</b>
           </li>
-          <li><i class="pi pi-calendar"></i> 02/02/2000</li>
-          <li><i class="pi pi-map-marker"></i> Hà Nội, Việt Nam</li>
-          <li><i class="pi pi-thumbs-up"></i> Có 1000 người theo dõi</li>
-          <li><i class="pi pi-clock"></i> Tham gia vào tháng 8 2023</li>
+          <li>
+            <b>
+              <i class="pi pi-search"></i>
+              {{ getPurpose(startuperInfo.purpose) }}</b
+            >
+          </li>
+          <li>
+            <b>
+              <i class="pi pi-calendar"></i>
+              {{ getDate(startuperInfo.dateOfBirth) }}
+            </b>
+          </li>
+          <li>
+            <b>
+              <i class="pi pi-map-marker"></i>
+              {{ getArea(startuperInfo.location) }}
+            </b>
+          </li>
+          <li>
+            <b><i class="pi pi-thumbs-up"></i> Có 1000 người theo dõi</b>
+          </li>
+          <li>
+            <b><i class="pi pi-clock"></i> Tham gia vào tháng 8 2023</b>
+          </li>
         </ul>
       </div>
       <p-tabView>
@@ -96,112 +115,83 @@
           <p>
             <b>Kỹ năng chuyên môn: </b>
             <span>
-              <p-tag value="Lập trình viên" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Lập trình viên fe" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Lập trình viên be" class="ml-1"></p-tag>
+              <p-tag
+                *ngFor="
+                  let specialize of getSpecializies(
+                    startuperInfo.specialize ?? []
+                  )
+                "
+                [value]="specialize"
+                styleClass="mr-1 mt-1"
+              ></p-tag>
             </span>
           </p>
           <p>
             <b>Kỹ năng mềm nổi bật: </b>
             <span>
-              <p-tag value="Thuyết trình" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Tư duy phản biện" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Lập luận" class="ml-1"></p-tag>
+              <ng-container
+                *ngFor="let personality of getSkills(startuperInfo.skill ?? [])"
+              >
+                <p-tag [value]="personality" styleClass="mr-1 mt-1"></p-tag>
+              </ng-container>
             </span>
           </p>
           <p>
             <b>Tính cách nổi bật: </b>
             <span>
-              <p-tag value="Nhiệt huyết" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Sáng tạo" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Trách nhiệm" class="ml-1"></p-tag>
+              <ng-container
+                *ngFor="
+                  let personality of getPersonalities(
+                    startuperInfo.personality ?? []
+                  )
+                "
+              >
+                <p-tag [value]="personality" styleClass="mr-1 mt-1"></p-tag>
+              </ng-container>
             </span>
           </p>
           <p>
             <b>Thời gian khả dụng: </b>
             <span>
-              <p-tag value="10 - 20 tiếng một tuần" class="ml-1"></p-tag>
+              <p-tag
+                :value="{{ getAvailableTime(startuperInfo.availableTime) }}"
+                class="ml-1"
+              ></p-tag>
             </span>
           </p>
-          <p>
+          <p *ngIf="startuperInfo.job == 1">
             <b>Học vấn: </b>
           </p>
-          <ul>
-            <li>
-              Đã tốt nghiệp
-              <span style="color: #01a9ff"
-                >chuyên ngành Quản trị kinh doanh</span
-              >
-              tại <span style="color: #01a9ff">Đại học KTQD</span>
-            </li>
-            <li>08/2023</li>
-            <li>
-              Đã tốt nghiệp
-              <span style="color: #01a9ff"
-                >chuyên ngành Quản trị kinh doanh</span
-              >
-              tại <span style="color: #01a9ff">Đại học KTQD</span>
-            </li>
-            <li>08/2023</li>
-          </ul>
+          <p *ngIf="startuperInfo.job == 1">
+            <i class="pi pi-building mr-1"></i>
+            <b> Trường học: </b> {{ startuperInfo.university }}
+          </p>
+          <p *ngIf="startuperInfo.job == 1">
+            <i class="pi pi-briefcase mr-1"></i>
+            <b> Ngành học: </b> {{ startuperInfo.universitySpecialized }}
+          </p>
 
-          <p>
+          <!-- <p>
             <b>Kinh nghiệm làm việc: </b>
-          </p>
-          <ul>
-            <li>
-              <span style="color: #01a9ff">Lập trình viên</span>
-              tại <span style="color: #01a9ff">VIJCO</span>
-            </li>
-            <li>08/2023</li>
-            <li>
-              <span style="color: #01a9ff">Lập trình viên</span>
-              tại <span style="color: #01a9ff">VIVAS</span>
-            </li>
-            <li>08/2023</li>
-          </ul>
-
-          <p>
-            <b>Hoạt động xã hội: </b>
-          </p>
-          <ul>
-            <li>
-              <span style="color: #01a9ff">Tình nguyện viên</span>
-              tại <span style="color: #01a9ff">Áo ấm cho em</span>
-            </li>
-            <li>08/2023</li>
-            <li>
-              <span style="color: #01a9ff">Tình nguyện viên</span>
-              tại <span style="color: #01a9ff">Áo ấm cho em</span>
-            </li>
-            <li>08/2023</li>
-          </ul>
-
-          <p>
-            <b>Chứng chỉ thành tích: </b>
-          </p>
-          <ul>
-            <li>
-              <span style="color: #01a9ff">IELTS 7.5</span>
-            </li>
-            <li>08/2023</li>
-            <li>
-              <span style="color: #01a9ff">TOEIC 730</span>
-            </li>
-            <li>08/2023</li>
-          </ul>
+          </p> -->
+          <p-accordion
+            class="mt-3"
+            style="width: 120%; transform: scale(0.85)"
+            [multiple]="true"
+          >
+            <p-accordionTab header="Kinh nghiệm làm việc">
+              <app-work-history-summary
+                [(ngModel)]="startuperInfo.workingExperience"
+                [disabled]="true"
+              ></app-work-history-summary>
+            </p-accordionTab>
+            <p-accordionTab header="Hoạt động xã hội" class="mt-2">
+              {{ startuperInfo.activity }}
+            </p-accordionTab>
+            <p-accordionTab header="Chứng chỉ thành tích" class="mt-2">
+              {{ startuperInfo.certificateAndAward }}
+            </p-accordionTab>
+          </p-accordion>
         </p-tabPanel>
         <p-tabPanel header="Bài viết">
           <p>Bài viết.</p>

@@ -1,9 +1,9 @@
-.header-img{
-    height: 83px;
+.header-img {
+  height: 83px;
 }
 
 @media (max-width: 576px) {
-    .header-img{
-        height: 50px;
-    }
-  } 
+  .header-img {
+    height: 50px;
+  }
+}
