@@ -84,7 +84,7 @@ export class ChatService extends BaseService {
   }
 
   pinMessage(input: PinMessageDto){
-    return this.BaseAPIConfig.post(`${this.apiController}/react-message`, input);
+    return this.BaseAPIConfig.post(`${this.apiController}/pin-message`, input);
   }
 
   getListPinMessageByConversation(conversationId: string){

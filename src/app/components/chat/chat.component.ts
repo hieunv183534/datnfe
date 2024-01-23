@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener, ViewEncapsulation, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, ViewEncapsulation, ElementRef, ViewChild } from '@angular/core';
 import { ConversationDto, GetListConversationDto, GetListMessageDto, MessageDto, MessageSendToConversationDto, MessageSendToUserDto } from 'src/app/model/chat.class';
 import { MessageType } from 'src/app/model/enum';
 import * as signalR from '@microsoft/signalr';
@@ -25,6 +25,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   conversations?: ConversationDto[] = [];
   messages: MessageDto[] = [];
   replyMessage?: MessageDto = undefined;
+  focusToMessageId: string = ''
   timeAgo = new TimeAgo('vi-VI');
   contentText: string = "";
   connection?: signalR.HubConnection;
@@ -62,7 +63,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
+    this.scrollToBottom();
     this.getListConversation();
     this.initConversation();
     this.initSignal();
@@ -84,6 +85,16 @@ export class ChatComponent implements OnInit, OnDestroy {
     // ]
   }
   @HostListener('window:resize', ['$event'])
+  @ViewChild('scrollMessage', { static: false }) private scrollMessage!: ElementRef;
+
+
+
+
+  scrollToBottom(): void {
+    try {
+      this.scrollMessage.nativeElement.scrollTop = this.scrollMessage.nativeElement.scrollHeight;
+    } catch(err) { }
+  }
   onResize() {
     this.screenWidth = window.innerWidth;
     this.checkScreenSize();
@@ -212,11 +223,23 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
 
     this.connection.on("OnReactMessage", (message: any) => {
-      debugger
-    });
+      this.getListMessage();
+      // this.seenConversation(this.thisConversation?.id ?? "");
 
+      this.messageService.add({
+        key: "newReact",
+        severity: "info",
+        summary: "Tin nhắn mới",
+        detail: "Đã bày tỏ cảm xúc",
+      });
+    });
     this.connection.on("OnPinMessage", (message: any) => {
-      debugger
+      this.messageService.add({
+        key: "newReact",
+        severity: "info",
+        summary: "Tin nhắn mới",
+        detail: "Đã ghim tin nhắn",
+      });
     });
   }
 
@@ -229,7 +252,6 @@ export class ChatComponent implements OnInit, OnDestroy {
         input.userId = this.userId;
         this.chatService.sendMessageToNewOther(input).then((res: any) => {
           this.thisConversation = res.data.newConversation;
-
           this.getListConversation();
           this.getListMessage();
           this.contentText = "";
@@ -245,10 +267,13 @@ export class ChatComponent implements OnInit, OnDestroy {
         let input = new MessageSendToConversationDto();
         input.content = this.contentText;
         input.type = MessageType.Text;
+        if (this.focusToMessageId !== "")
+          input.focusToMessageId = this.focusToMessageId;
         input.conversationId = this.thisConversation?.id;
         this.chatService.sendMessageToConversation(input).then((res: any) => {
-          this.getListConversation();
-          this.getListMessage();
+          // this.getListConversation();
+          // this.getListMessage();
+          this.replyMessage = undefined;
           this.contentText = "";
         }).catch((err: any) => {
           this.messageService.add({
@@ -294,8 +319,8 @@ export class ChatComponent implements OnInit, OnDestroy {
       input.type = MessageType.Sticker;
       input.conversationId = this.thisConversation?.id;
       this.chatService.sendMessageToConversation(input).then((res: any) => {
-        this.getListConversation();
-        this.getListMessage();
+        // this.getListConversation();
+        // this.getListMessage();
         this.contentText = "";
       }).catch((err: any) => {
         this.messageService.add({
@@ -416,10 +441,11 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
   handleReplyMessage(message: any) {
     this.replyMessage = message;
-
+    this.focusToMessageId = message.id
   }
   handleDeleteReplyMessage() {
     this.replyMessage = undefined;
+    this.focusToMessageId = ''
 
   }
 }
