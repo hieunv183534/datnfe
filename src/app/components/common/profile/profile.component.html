@@ -3,7 +3,7 @@
 <img src="../../../assets/img/qcao.png" width="100%" class="header-img" />
 
 <router-outlet></router-outlet>
-<div class="body-content" style="padding-left: 15%; padding-right: 15%;">
+<div class="body-content" style="padding-left: 15%; padding-right: 15%">
   <div class="page">
     <div class="profile relative mb-3">
       <div class="flex relative">
@@ -20,26 +20,41 @@
             <img
               class="logo absolute"
               style="top: 45%; left: 5%"
-              src="../../../assets/img/avatar1.png"
+              [src]="
+                startuperInfo.avatarUrl ??
+                'https://fsiconnected.cloud/images/default-avatar.jpg'
+              "
               width="150px"
             />
           </div>
         </div>
       </div>
-      <div class="flex mt-2" style="justify-content: flex-end">
+      <div
+        *ngIf="userId == userInfo.nameid"
+        class="flex mt-2"
+        style="justify-content: flex-end"
+      >
         <p-button (click)="editProfile()">Chỉnh sửa hồ sơ</p-button>
       </div>
     </div>
-    <div class="info">
+    <div class="info" [ngClass]="{'change-style': isChangeStyle}">
       <div class="mb-3">
         <ul>
-          <li><div class="name">Lê Đình Đạt</div></li>
-          <li>"Coder in 2024"</li>
           <li>
-            <i class="pi pi-search"></i> Tôi đang có một ý tưởng khởi nghiệp
+            <div class="name">{{ startuperInfo.name }}</div>
           </li>
-          <li><i class="pi pi-calendar"></i> 02/02/2000</li>
-          <li><i class="pi pi-map-marker"></i> Hà Nội, Việt Nam</li>
+          <li>{{ startuperInfo.describe }}</li>
+          <li>
+            <i class="pi pi-search"></i> {{ getPurpose(startuperInfo.purpose) }}
+          </li>
+          <li>
+            <i class="pi pi-calendar"></i>
+            {{ getDate(startuperInfo.dateOfBirth) }}
+          </li>
+          <li>
+            <i class="pi pi-map-marker"></i>
+            {{ getArea(startuperInfo.location) }}
+          </li>
           <li><i class="pi pi-thumbs-up"></i> Có 1000 người theo dõi</li>
           <li><i class="pi pi-clock"></i> Tham gia vào tháng 8 2023</li>
         </ul>
@@ -87,66 +102,61 @@
           <p>
             <b>Kỹ năng chuyên môn: </b>
             <span>
-              <p-tag value="Lập trình viên" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Lập trình viên fe" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Lập trình viên be" class="ml-1"></p-tag>
+              <p-tag
+                *ngFor="
+                  let specialize of getSpecializies(
+                    startuperInfo.specialize ?? []
+                  )
+                "
+                [value]="specialize"
+                styleClass="mr-1 mt-1"
+              ></p-tag>
             </span>
           </p>
           <p>
             <b>Kỹ năng mềm nổi bật: </b>
             <span>
-              <p-tag value="Thuyết trình" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Tư duy phản biện" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Lập luận" class="ml-1"></p-tag>
+              <ng-container
+                *ngFor="let personality of getSkills(startuperInfo.skill ?? [])"
+              >
+                <p-tag [value]="personality" styleClass="mr-1 mt-1"></p-tag>
+              </ng-container>
             </span>
           </p>
           <p>
             <b>Tính cách nổi bật: </b>
             <span>
-              <p-tag value="Nhiệt huyết" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Sáng tạo" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Trách nhiệm" class="ml-1"></p-tag>
+              <ng-container
+                *ngFor="
+                  let personality of getPersonalities(
+                    startuperInfo.personality ?? []
+                  )
+                "
+              >
+                <p-tag [value]="personality" styleClass="mr-1 mt-1"></p-tag>
+              </ng-container>
             </span>
           </p>
           <p>
             <b>Thời gian khả dụng: </b>
             <span>
-              <p-tag value="10 - 20 tiếng một tuần" class="ml-1"></p-tag>
+              <p-tag
+                :value="{{ getAvailableTime(startuperInfo.availableTime) }}"
+                class="ml-1"
+              ></p-tag>
             </span>
           </p>
-          <p>
+          <p *ngIf="startuperInfo.job == 1">
             <b>Học vấn: </b>
           </p>
-          <ul>
-            <li>
-              Đã tốt nghiệp
-              <span style="color: #01a9ff"
-                >chuyên ngành Quản trị kinh doanh</span
-              >
-              tại <span style="color: #01a9ff">Đại học KTQD</span>
-            </li>
-            <li>08/2023</li>
-            <li>
-              Đã tốt nghiệp
-              <span style="color: #01a9ff"
-                >chuyên ngành Quản trị kinh doanh</span
-              >
-              tại <span style="color: #01a9ff">Đại học KTQD</span>
-            </li>
-            <li>08/2023</li>
-          </ul>
+          <p *ngIf="startuperInfo.job == 1">
+            <i class="pi pi-building mr-1"></i>
+            <b> Trường học: </b> {{ startuperInfo.university }}
+          </p>
+          <p *ngIf="startuperInfo.job == 1">
+            <i class="pi pi-briefcase mr-1"></i>
+            <b> Ngành học: </b> {{ startuperInfo.universitySpecialized }}
+          </p>
 
           <p>
             <b>Kinh nghiệm làm việc: </b>

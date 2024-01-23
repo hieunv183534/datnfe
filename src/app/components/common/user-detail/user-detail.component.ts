@@ -110,9 +110,9 @@ export class UserDetailComponent implements OnInit {
     return Util.getDate(new Date(d));
   }
 
-  routeToProfile(){
+  routeToProfile(value: any){
     this.close.emit();
-    this.router.navigate(['./profile']);
+    this.router.navigate([`./profile/${value}`]);
   }
 
   connectOnClick() {
