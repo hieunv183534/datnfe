@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { RoleInProject } from 'src/app/model/enum';
 import { StartuperDto } from 'src/app/model/startuper.class';
@@ -8,6 +8,7 @@ import { AdminService } from 'src/app/services/admin.service';
 import { EventService } from 'src/app/services/event.service';
 import { StartuperService } from 'src/app/services/startuper.service';
 import { Util, FsiValues } from 'src/app/shared/util/util';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-profile',
@@ -17,13 +18,15 @@ import { Util, FsiValues } from 'src/app/shared/util/util';
 export class ProfileComponent implements OnInit {
 
   @Input() visible: boolean = false;
-  @Input() userId: string = "";
+  @Input() userId: any;
   @Output() close: EventEmitter<any> = new EventEmitter();
 
   startuperInfo: StartuperDto = {};
   listProject: any[] = [];
   friendStatus: number = 0;
   isShowUpdateInfo: boolean = false;
+  userInfo: any = {};
+  isChangeStyle: boolean = false;
   menus = [{ href: "/startuper/project", title: "Dự án / Ý tưởng" }, { href: "/startuper/startuper/f6b77754-97c0-405f-86a5-f3f4959e2f3a", title: "Nhà khởi nghiệp" }]
 
   projectRoles = ["Nhà đầu tư", "Thành viên", "Đồng sáng lập", "Nhà sáng lập"]
@@ -32,10 +35,95 @@ export class ProfileComponent implements OnInit {
     private messageService: MessageService,
     private eventService: EventService,
     private router: Router,
+    private route:ActivatedRoute,
     private adminService: AdminService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.userInfo = this.getDecodedAccessToken();
+    this.userId = this.route.snapshot.paramMap.get('id')
+    await this.startuperService.getUserDetail(this.userId).then((res: any) => {
+      this.startuperInfo = res.data.startuperInfo;
+      this.friendStatus = res.data.friendStatus;
+      this.listProject = res.data.projectAsStartuper;
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Lấy thông tin người dùng thất bại. vui lòng thử lại!",
+      });
+    });
+
+    if(this.userId == this.userInfo.nameid){
+      this.isChangeStyle = false
+    } else {
+      this.isChangeStyle = true
+    }
+  }
+
+  getAge(dob: any) {
+    return Util.getAge(dob);
+  }
+
+  getArea(val?: number) {
+    return FsiValues.getName(val ?? 0, FsiValues.areas);
+  }
+
+  getAvailableTime(val?: number) {
+    return FsiValues.getName(val ?? 0, FsiValues.availableTimes);
+  }
+
+  getFields(val: number[]) {
+    return FsiValues.getMultiName(val, FsiValues.fields);
+  }
+
+  getPersonalities(val: number[]) {
+    return FsiValues.getMultiName(val, FsiValues.personalities).split(", ");
+  }
+
+  getSkills(val: number[]) {
+    return FsiValues.getMultiName(val, FsiValues.skills).split(", ");
+  }
+
+  getSpecializies(val: number[]){
+    return FsiValues.getMultiName(val, FsiValues.specializies).split(", ")
+  }
+
+  getTargetField(val: number[]){
+    return FsiValues.getMultiName(val, FsiValues.fields).split(", ")
+  }
+
+  getTargetSpecializies(val: number[]){
+    return FsiValues.getMultiName(val, FsiValues.specializies).split(", ")
+  }
+
+  getIdeaField(val: number[]){
+    return FsiValues.getMultiName(val, FsiValues.fields).split(", ")
+  }
+
+  getPurpose(val?: number) {
+    return FsiValues.getName(val ?? 0, FsiValues.purposes);
+  }
+
+  getField(val?: number) {
+    return FsiValues.getName(val ?? 0, FsiValues.fields);
+  }
+
+  getYOE(val?: number) {
+    return FsiValues.getName(val ?? 0, FsiValues.yearOfExps);
+  }
+
+  getDate(d: any) {
+    return Util.getDate(new Date(d));
+  }
+
+  getDecodedAccessToken(): any {
+    try {
+      return jwt_decode(localStorage.getItem("TOKEN") ?? "");
+    } catch (Error) {
+      return null;
+    }
   }
 
   editProfile(){

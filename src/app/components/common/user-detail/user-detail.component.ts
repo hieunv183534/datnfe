@@ -78,6 +78,26 @@ export class UserDetailComponent implements OnInit {
     return FsiValues.getMultiName(val, FsiValues.skills).split(", ");
   }
 
+  getSpecializies(val: number[]){
+    return FsiValues.getMultiName(val, FsiValues.specializies).split(", ")
+  }
+
+  getTargetField(val: number[]){
+    return FsiValues.getMultiName(val, FsiValues.fields).split(", ")
+  }
+
+  getTargetSpecializies(val: number[]){
+    return FsiValues.getMultiName(val, FsiValues.specializies).split(", ")
+  }
+
+  getIdeaField(val: number[]){
+    return FsiValues.getMultiName(val, FsiValues.fields).split(", ")
+  }
+
+  getPurpose(val?: number) {
+    return FsiValues.getName(val ?? 0, FsiValues.purposes);
+  }
+
   getField(val?: number) {
     return FsiValues.getName(val ?? 0, FsiValues.fields);
   }
@@ -90,9 +110,9 @@ export class UserDetailComponent implements OnInit {
     return Util.getDate(new Date(d));
   }
 
-  routeToProfile(){
+  routeToProfile(value: any){
     this.close.emit();
-    this.router.navigate(['./profile']);
+    this.router.navigate([`./profile/${value}`]);
   }
 
   connectOnClick() {

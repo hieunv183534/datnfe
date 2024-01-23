@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ProjectStage, RelationWithProject } from 'src/app/model/enum';
@@ -9,7 +9,8 @@ import { FsiValues } from 'src/app/shared/util/util';
 @Component({
   selector: 'app-project-for-startuper',
   templateUrl: './project-for-startuper.component.html',
-  styleUrls: ['./project-for-startuper.component.css']
+  styleUrls: ['./project-for-startuper.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProjectForStartuperComponent implements OnInit {
 
