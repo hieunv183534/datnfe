@@ -63,7 +63,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.scrollToBottom();
     this.getListConversation();
     this.initConversation();
     this.initSignal();
@@ -85,16 +84,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     // ]
   }
   @HostListener('window:resize', ['$event'])
-  @ViewChild('scrollMessage', { static: false }) private scrollMessage!: ElementRef;
 
-
-
-
-  scrollToBottom(): void {
-    try {
-      this.scrollMessage.nativeElement.scrollTop = this.scrollMessage.nativeElement.scrollHeight;
-    } catch(err) { }
-  }
   onResize() {
     this.screenWidth = window.innerWidth;
     this.checkScreenSize();
@@ -240,6 +230,9 @@ export class ChatComponent implements OnInit, OnDestroy {
         summary: "Tin nhắn mới",
         detail: "Đã ghim tin nhắn",
       });
+    });
+    this.connection.on("OnDeleteMessage", (message: any) => {
+      debugger
     });
   }
 

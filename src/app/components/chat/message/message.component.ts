@@ -62,7 +62,25 @@ export class MessageComponent implements OnInit {
     }
     return emojis;
   }
-
+  deleteMessage(messageId: string, m: MessageDto) {
+    // this.chatService.deleteMessage(messageId)
+    // .then(()=>{
+    //   this.messageService.add({
+    //     key: "toast",
+    //     severity: "success",
+    //     summary: "Thành công",
+    //     detail: "Xóa tin nhắn thành công!",
+    //   });
+    // })
+    // .catch(()=>{
+    //   this.messageService.add({
+    //     key: "toast",
+    //     severity: "error",
+    //     summary: "Thành công",
+    //     detail: "Xóa tin nhắn thất bại!",
+    //   });
+    // })
+  }
 
   ngOnInit() {
   }
