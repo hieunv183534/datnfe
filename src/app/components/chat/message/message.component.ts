@@ -3,6 +3,7 @@ import { Component, Input, OnInit, ViewEncapsulation, Output, EventEmitter } fro
 import { MessageDto } from 'src/app/model/chat.class';
 import { Util } from 'src/app/shared/util/util';
 import { ChatService } from 'src/app/services/chat.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'div[app-message]',
@@ -28,22 +29,66 @@ export class MessageComponent implements OnInit {
     { content: '😱', value: MessageReact.OhMyGod },
     { content: '😉', value: MessageReact.NhiuMay },
   ];
-  constructor(private chatService: ChatService
+  constructor(
+    private chatService: ChatService,
+    private messageService: MessageService
   ) {
 
   }
 
+  // getReacts(reacts: any[]) {
+  //   const emojis = [];
+  //   for (const react of reacts) {
+  //     const emoji = this.favoriteEmojis.find(e => e.value === react.react)?.content;
+  //     if (emoji) {
+  //       emojis.push(emoji);
+  //     }
+  //   }
+  //   return emojis;
+  // }
+
   getReacts(reacts: any[]) {
-    return this.favoriteEmojis.find(e => reacts.some(r => r.react === e.value))?.content
+    const emojis = [];
+    for (const react of reacts) {
+      const emoji = this.favoriteEmojis.find(e => e.value === react.react);
+      if (emoji) {
+        const index = emojis.findIndex(e => e.emoji === emoji.content);
+        if (index === -1) {
+          emojis.push({ emoji: emoji.content, repeat: 1 });
+        } else {
+          emojis[index].repeat++;
+        }
+      }
+    }
+    return emojis;
   }
+
+
   ngOnInit() {
   }
   reactMessage(e: number, id: string) {
     this.chatService.reactMessage({ messageId: id, react: e })
   }
   pinMessage(message: MessageDto) {
-    this.chatService.pinMessage({ messageId: message.id, isPin: false })
+    this.chatService.pinMessage({ messageId: message.id, isPin: true })
+      .then(() => {
+        this.messageService.add({
+          key: "toast",
+          severity: "success",
+          summary: "Thành công",
+          detail: "Ghim thành công!",
+        });
+      })
+      .catch(() => {
+        this.messageService.add({
+          key: "toast",
+          severity: "error",
+          summary: "Lỗi",
+          detail: "Ghim thất bại!",
+        });
+      })
   }
+
   getDateTime(d: any) {
     return Util.getDateTime(new Date(d));
   }

@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } fro
 import { ConversationDto } from 'src/app/model/chat.class';
 import { ChatService } from 'src/app/services/chat.service';
 import { Util } from 'src/app/shared/util/util';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-information-box',
@@ -17,23 +18,44 @@ export class InformationBoxComponent implements OnInit {
   links: any[] = [];
   pinnedMessage: MessageDto[] = [];
   display: boolean = false;
+  unpinMessId: string | undefined = '';
   @Input() conversation?: ConversationDto
   @Input() isMobile?: boolean
   @Output() close: EventEmitter<any> = new EventEmitter();
 
-  constructor(private chatService: ChatService) { }
+  constructor(
+    private chatService: ChatService,
+    private messageService: MessageService
+  ) { }
   getDateTime(d: any) {
     return Util.getDateTime(new Date(d));
   }
-  unpinMessage(){
-    this.chatService.pinMessage({})
+  unpinMessage() {
+    this.chatService.pinMessage({ messageId: this.unpinMessId, isPin: false }).then(() => {
+      this.messageService.add({
+        key: "toast",
+        severity: "success",
+        summary: "Thành công",
+        detail: "Bỏ ghim thành công!",
+      });
+      this.openListPinnedMessage();
+      this.unpinMessId = ''
+    }).catch(()=>{
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Bỏ ghim thất bại!",
+      });
+    })
+
   }
   openListPinnedMessage() {
     console.log(this.conversation?.id);
 
     this.display = true;
     this.chatService.getListPinMessageByConversation(this.conversation?.id ?? '').then((res: any) => {
-      this.pinnedMessage= res.data
+      this.pinnedMessage = res.data
     })
 
   }
