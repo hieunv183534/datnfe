@@ -25,14 +25,13 @@ export class RegisterComponent implements OnInit {
   isShowPassword: boolean = false
   isShowRePassword: boolean = false
   acceptDieuKhoan: boolean = false
-
+ 
   universitySpecializeds?: any[] = FsiValues.universities[0].specializeds?.map(x => {
     return {
       value: x,
       name: x
     }
   });
-
 
   @Output() close: EventEmitter<any> = new EventEmitter();
   @Output() login: EventEmitter<any> = new EventEmitter();
@@ -76,6 +75,11 @@ export class RegisterComponent implements OnInit {
 
   closeRegister() {
     this.close.emit();
+  }
+
+  routeToLogin(){
+    this.login.emit()
+    this.close.emit()
   }
 
   changeUniversity(e: any) {
@@ -131,10 +135,4 @@ export class RegisterComponent implements OnInit {
       }
     }
   }
-
-  showLogin() {
-    // this.close.emit();
-    this.login.emit();
-  }
-
 }
