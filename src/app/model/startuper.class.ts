@@ -11,6 +11,8 @@ export class CreateStartuperDto {
   targetField?:number[];
   targetSpecialize?:number[];
   skill?: number[];
+  requestPersonality?: number[];
+  requestSkill?: number[];
   workingExperience?: string;
   activity?: string;
   certificateAndAward?: string;
@@ -30,6 +32,8 @@ export class StartuperDto extends UserDto {
   targetField?:number[];
   targetSpecialize?:number[];
   skill?: number[];
+  requestPersonality?: number[];
+  requestSkill?: number[];
   workingExperience?: string;
   activity?: string;
   certificateAndAward?: string;

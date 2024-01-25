@@ -13,7 +13,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
   isShowPassword: boolean = false
   savePassword: boolean = false
-  @Output() close: EventEmitter<any> = new EventEmitter();
+  @Output() closeModalLogin: EventEmitter<any> = new EventEmitter();
+  @Output() register: EventEmitter<any> = new EventEmitter();
   roles: any[] = [{ name: "Nhà khởi nghiệp/ Founder/ Co-founder", value: FsiRole.Startuper }, { name: "Nhà đầu tư", value: FsiRole.Investor }];
   formLogin: FormGroup = this.fb.group({});
 
@@ -35,11 +36,16 @@ export class LoginComponent implements OnInit {
   }
 
   closeLogin() {
-    this.close.emit();
+    this.closeModalLogin.emit();
   }
 
   showPassword(){
     this.isShowPassword = !this.isShowPassword
+  }
+
+  routeToRegister(){
+    this.register.emit()
+    this.closeModalLogin.emit()
   }
 
   submit() {

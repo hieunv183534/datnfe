@@ -22,7 +22,9 @@ export class UserDetailComponent implements OnInit {
 
   startuperInfo: StartuperDto = {};
   listProject: any[] = [];
+  listWork: any[] = [];
   friendStatus: number = 0;
+  headerName: string = '';
 
   projectRoles = ["Nhà đầu tư", "Thành viên", "Đồng sáng lập", "Nhà sáng lập"]
   constructor(
@@ -38,6 +40,12 @@ export class UserDetailComponent implements OnInit {
       this.startuperInfo = res.data.startuperInfo;
       this.friendStatus = res.data.friendStatus;
       this.listProject = res.data.projectAsStartuper;
+      if(this.startuperInfo.purpose == 3){
+        this.headerName = 'Danh sách dự án'
+      } else {
+        this.headerName = 'Tôi đang tìm kiếm'
+      }
+      this.listWork = JSON.parse(this.startuperInfo.workingExperience ?? "[]")
     }).catch((err: any) => {
       this.messageService.add({
         key: "toast",

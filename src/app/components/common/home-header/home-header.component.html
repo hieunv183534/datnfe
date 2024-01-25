@@ -38,81 +38,150 @@
   </div>
 </div> -->
 
-
-
-
 <div
-  class="flex flex-row  w-full  h-4rem md:h-5rem justify-content-between align-items-center px-2 sm:px-2 md:px-4 lg:px-6 xl:px-7">
+  class="flex flex-row w-full h-4rem md:h-5rem justify-content-between align-items-center px-2 sm:px-2 md:px-4 lg:px-6 xl:px-7"
+>
   <div class="flex flex-row sm:block align-items-center">
-    <div (click)="isShowSidebar=true"
-      class="flex justify-content-center align-items-center sm:hidden h-2rem text-primary hover:text-blue-600 cursor-pointer mr-2">
+    <div
+      (click)="isShowSidebar = true"
+      class="flex justify-content-center align-items-center sm:hidden h-2rem text-primary hover:text-blue-600 cursor-pointer mr-2"
+    >
       <i class="pi pi-bars text-xl font-semibold"></i>
     </div>
     <a to="/" class="logoDiv flex align-items-center">
-      <img src="../../../../assets/img/full-logo.png" alt="main logo" class="h-2rem lg:h-3rem"
-        style="object-fit: contain;" />
+      <img
+        src="../../../../assets/img/full-logo.png"
+        alt="main logo"
+        class="h-2rem lg:h-3rem"
+        style="object-fit: contain"
+      />
     </a>
   </div>
   <div class="hidden sm:flex text-dark flex-row">
-    <a to="#" class="cursor-pointer  min-w-max">
-      <div class="navLink underline1 py-4 sm:px-2 md:px-3 lg:px-4 text-xs lg:text-sm hover:text-primary" id="connect">
-        KẾT NỐI</div>
-    </a>
-    <a to="#" class="cursor-pointer  min-w-max">
-      <div class="navLink underline1 py-4 sm:px-2 md:px-3 lg:px-4 text-xs lg:text-sm hover:text-primary">CỘNG ĐỒNG</div>
-    </a>
-    <a to="#" class="cursor-pointer  min-w-max">
-      <div class="navLink underline1 py-4 sm:px-2 md:px-3 lg:px-4 text-xs lg:text-sm hover:text-primary">HỖ TRỢ</div>
+    <a to="#" class="cursor-pointer min-w-max">
+      <div
+        class="navLink underline1 py-4 sm:px-2 md:px-3 lg:px-4 text-xs lg:text-sm hover:text-primary"
+        id="connect"
+      >
+        KẾT NỐI
+      </div>
     </a>
     <a to="#" class="cursor-pointer min-w-max">
-      <div class="navLink underline1 py-4 sm:px-2 md:px-3 lg:px-4 text-xs lg:text-sm hover:text-primary">VỀ CHÚNG TÔI
+      <div
+        class="navLink underline1 py-4 sm:px-2 md:px-3 lg:px-4 text-xs lg:text-sm hover:text-primary"
+      >
+        CỘNG ĐỒNG
+      </div>
+    </a>
+    <a to="#" class="cursor-pointer min-w-max">
+      <div
+        class="navLink underline1 py-4 sm:px-2 md:px-3 lg:px-4 text-xs lg:text-sm hover:text-primary"
+      >
+        HỖ TRỢ
+      </div>
+    </a>
+    <a to="#" class="cursor-pointer min-w-max">
+      <div
+        class="navLink underline1 py-4 sm:px-2 md:px-3 lg:px-4 text-xs lg:text-sm hover:text-primary"
+      >
+        VỀ CHÚNG TÔI
       </div>
     </a>
   </div>
   <div class="flex flex-row" *ngIf="!isLogin">
-    <p-button label="ĐĂNG NHẬP" (click)="showLogin()"
-      styleClass="p-button-outlined p-button-sm hidden md:flex px-1 sm:px-2 h-1rem sm:h-2rem min-w-max">
+    <p-button
+      label="ĐĂNG NHẬP"
+      (click)="showLogin()"
+      styleClass="p-button-outlined p-button-sm hidden md:flex px-1 sm:px-2 h-1rem sm:h-2rem min-w-max"
+    >
     </p-button>
-    <p-button label="ĐĂNG KÝ" (click)="showRegister()"
-      styleClass="p-button-primary p-button-sm  hidden md:flex px-1 sm:px-2 h-1rem sm:h-2rem ml-3 min-w-max">
+    <p-button
+      label="ĐĂNG KÝ"
+      (click)="showRegister()"
+      styleClass="p-button-primary p-button-sm  hidden md:flex px-1 sm:px-2 h-1rem sm:h-2rem ml-3 min-w-max"
+    >
     </p-button>
-    <img src="../../../assets//icons/login.svg" pTooltip="Đăng nhập" tooltipPosition="top" alt="login-icon"
-      class="h-2rem flex md:hidden cursor-pointer" (click)="showLogin()">
-    <img src="../../../assets//icons/register.svg" pTooltip="Đăng ký" tooltipPosition="top" alt="register-icon"
-      class="h-2rem flex md:hidden ml-2 cursor-pointer" (click)="showRegister()">
+    <img
+      src="../../../assets//icons/login.svg"
+      pTooltip="Đăng nhập"
+      tooltipPosition="top"
+      alt="login-icon"
+      class="h-2rem flex md:hidden cursor-pointer"
+      (click)="showLogin()"
+    />
+    <img
+      src="../../../assets//icons/register.svg"
+      pTooltip="Đăng ký"
+      tooltipPosition="top"
+      alt="register-icon"
+      class="h-2rem flex md:hidden ml-2 cursor-pointer"
+      (click)="showRegister()"
+    />
   </div>
   <div class="flex flex-row" *ngIf="isLogin">
-    <p-button [routerLink]="'../startuper'" id="move" type="button"
-      styleClass="p-button-warning p-button-sm  hidden md:flex px-1 sm:px-2 h-1rem sm:h-2rem ml-3 min-w-max">
-      <span>Đi tới khu vực cá nhân</span> </p-button>
-    <img [routerLink]="'../startuper'" src="../../../assets/icons/Console.svg" pTooltip="Khu vực cá nhân" tooltipPosition="left" alt="login-icon"
-      class="h-2rem flex md:hidden cursor-pointer">
+    <p-button
+      [routerLink]="'../startuper'"
+      id="move"
+      type="button"
+      styleClass="p-button-warning p-button-sm  hidden md:flex px-1 sm:px-2 h-1rem sm:h-2rem ml-3 min-w-max"
+    >
+      <span>Đi tới khu vực cá nhân</span>
+    </p-button>
+    <img
+      [routerLink]="'../startuper'"
+      src="../../../assets/icons/Console.svg"
+      pTooltip="Khu vực cá nhân"
+      tooltipPosition="left"
+      alt="login-icon"
+      class="h-2rem flex md:hidden cursor-pointer"
+    />
   </div>
 </div>
 
 <p-sidebar [(visible)]="isShowSidebar">
-    <ng-template pTemplate="header">
+   
+  <ng-template pTemplate="header">
     <img src="../../../../assets/img/logotitle.png" id="logo" />
   </ng-template>
-    <ng-template pTemplate="content">
-
-    <div (click)="isShowSidebar=false"
-      class="p-2 pl-3 hover:bg-gray-200 text-black-alpha-90 active: hover:text-primary cursor-pointer">
-      <a to="#" class="cursor-pointer  min-w-max">
+   
+  <ng-template pTemplate="content">
+    <div
+      (click)="isShowSidebar = false"
+      class="p-2 pl-3 hover:bg-gray-200 text-black-alpha-90 active: hover:text-primary cursor-pointer"
+    >
+      <a to="#" class="cursor-pointer min-w-max">
         <div class="" id="connect">KẾT NỐI</div>
       </a>
     </div>
-    <div (click)="isShowSidebar=false"
-      class="p-2 pl-3 hover:bg-gray-200 text-black-alpha-90 active: hover:text-primary cursor-pointer">
-      <a to="#" class="cursor-pointer  min-w-max">
+    <div
+      (click)="isShowSidebar = false"
+      class="p-2 pl-3 hover:bg-gray-200 text-black-alpha-90 active: hover:text-primary cursor-pointer"
+    >
+      <a to="#" class="cursor-pointer min-w-max">
         <div class="" id="connect">CỘNG ĐỒNG</div>
       </a>
     </div>
-    <div (click)="isShowSidebar=false"
-      class="p-2 pl-3 hover:bg-gray-200 text-black-alpha-90 active: hover:text-primary cursor-pointer">
-      <a to="#" class="cursor-pointer  min-w-max">
+    <div
+      (click)="isShowSidebar = false"
+      class="p-2 pl-3 hover:bg-gray-200 text-black-alpha-90 active: hover:text-primary cursor-pointer"
+    >
+      <a to="#" class="cursor-pointer min-w-max">
         <div class="" id="connect">HỖ TRỢ</div>
       </a>
     </div>
   </ng-template>
 </p-sidebar>
+
+<ng-container *ngIf="isVisibleLogin">
+  <app-login
+    (register)="isVisibleRegister = true"
+    (closeModalLogin)="isVisibleLogin = false"
+  ></app-login>
+</ng-container>
+
+<ng-container *ngIf="isVisibleRegister">
+  <app-register
+    (login)="isVisibleLogin = true"
+    (close)="isVisibleRegister = false"
+  ></app-register>
+</ng-container>

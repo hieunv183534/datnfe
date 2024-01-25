@@ -11,8 +11,8 @@ export class HomeHeaderComponent implements OnInit {
   isScrolled: boolean = false;
   isShowSidebar: boolean = false;
   isLogin: boolean = false
-  @Output() login: EventEmitter<any> = new EventEmitter();
-  @Output() register: EventEmitter<any> = new EventEmitter();
+  isVisibleLogin: boolean = false;
+  isVisibleRegister: boolean = false;
 
   constructor() { }
 
@@ -30,11 +30,11 @@ export class HomeHeaderComponent implements OnInit {
 
   }
   showRegister() {
-    this.register.emit();
+    this.isVisibleRegister = true
   }
 
   showLogin() {
-    this.login.emit();
+    this.isVisibleLogin = true
   }
 
 }

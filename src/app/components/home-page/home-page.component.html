@@ -1,43 +1,63 @@
-<app-home-header (login)="isVisibleLogin = true" (register)="isVisibleRegister = true"></app-home-header>
+<app-home-header></app-home-header>
 
-<div class='homepage'>
-  <div class='slideDiv' [style]="{ transform: 'translate3d( '+ (-(slideIndex-1) * 100) +'%, 0, 0)' }">
-    <div class='slide'>
-      <img src="../../../assets/img/slideImage2.jpg" alt='' />
+<div class="homepage">
+  <div
+    class="slideDiv"
+    [style]="{
+      transform: 'translate3d( ' + -(slideIndex - 1) * 100 + '%, 0, 0)'
+    }"
+  >
+    <div class="slide">
+      <img src="../../../assets/img/slideImage2.jpg" alt="" />
     </div>
-    <div class='slide'>
-      <img src="../../../assets/img/slideImage3.jpg" alt='' />
+    <div class="slide">
+      <img src="../../../assets/img/slideImage3.jpg" alt="" />
     </div>
-    <div class='slide'>
-      <img src="../../../assets/img/slideImage1.jpg" alt='' />
+    <div class="slide">
+      <img src="../../../assets/img/slideImage1.jpg" alt="" />
     </div>
   </div>
-  <div class='sizedBox'></div>
-  <div class='container-dots'>
+  <div class="sizedBox"></div>
+  <div class="container-dots">
     <ng-container *ngFor="let index of imagesIndex">
-      <div (click)="moveDot(index)" [ngClass]="{'dot' : true ,'active': slideIndex == index}"></div>
+      <div
+        (click)="moveDot(index)"
+        [ngClass]="{ dot: true, active: slideIndex == index }"
+      ></div>
     </ng-container>
   </div>
-  <div class='infoPanel' id='infoPanel1'>
-    <div id='essay1'>
+  <div class="infoPanel" id="infoPanel1">
+    <div id="essay1">
       <h1>Kết nối, cộng tác, rèn luyện kỹ năng và tạo dựng Startup của bạn</h1>
-      <p>Ra mắt lần đầu tiên tại Việt Nam, FSI Connected là nền tảng kết nối Hệ sinh thái Khởi nghiệp & Đổi mới sáng tạo
-        mở</p>
-      <p>Tạo lập Hệ sinh thái số, kết nối các nhà sáng tạo, startup, nhà đầu tư, nhà cung cấp, doanh nghiệp tuyển dụng
-        và người lao động.</p>
-      <button type='button'> Đăng ký miễn phí ngay </button>
-      <div class='grid'>
+      <p>
+        Ra mắt lần đầu tiên tại Việt Nam, FSI Connected là nền tảng kết nối Hệ
+        sinh thái Khởi nghiệp & Đổi mới sáng tạo mở
+      </p>
+      <p>
+        Tạo lập Hệ sinh thái số, kết nối các nhà sáng tạo, startup, nhà đầu tư,
+        nhà cung cấp, doanh nghiệp tuyển dụng và người lao động.
+      </p>
+      <button type="button">Đăng ký miễn phí ngay</button>
+      <div class="grid">
         <div>
           <h2>Tìm kiếm Co-founder</h2>
-          <p>Tìm kiếm người bạn đồng hành tương hợp của bạn dựa trên sở thích, kỹ năng, chuyên môn và địa điểm.</p>
+          <p>
+            Tìm kiếm người bạn đồng hành tương hợp của bạn dựa trên sở thích, kỹ
+            năng, chuyên môn và địa điểm.
+          </p>
         </div>
         <div>
           <h2>Gọi vốn</h2>
-          <p>Học cách thuyết trình và tìm kiếm Nhà đầu tư cho Startup của bạn.</p>
+          <p>
+            Học cách thuyết trình và tìm kiếm Nhà đầu tư cho Startup của bạn.
+          </p>
         </div>
         <div>
           <h2>Đàm phán</h2>
-          <p>Tìm kiếm nhà cung cấp phù hợp, các dịch vụ cần thiết và tối ưu hóa các khoản đầu tư.</p>
+          <p>
+            Tìm kiếm nhà cung cấp phù hợp, các dịch vụ cần thiết và tối ưu hóa
+            các khoản đầu tư.
+          </p>
         </div>
         <div>
           <h2>Tuyển dụng</h2>
@@ -45,149 +65,229 @@
         </div>
       </div>
     </div>
-    <img src="../../../assets/img/working1.png" alt='working1' id='working1' width='400px' height='400px' />
-    <img src="../../../assets/img/blueBackground.png" alt='blue' id='blueBackground' width='300px' height='300px' />
+    <img
+      src="../../../assets/img/working1.png"
+      alt="working1"
+      id="working1"
+      width="400px"
+      height="400px"
+    />
+    <img
+      src="../../../assets/img/blueBackground.png"
+      alt="blue"
+      id="blueBackground"
+      width="300px"
+      height="300px"
+    />
   </div>
-  <div class='infoPanel' id='infoPanel2'>
-    <img src="../../../assets/img/working2.png" alt='working2' id='working2' width='400px' height='400px' />
-    <img src="../../../assets/img/blueBackground.png" alt='blue' id='blueBackground2' width='300px' height='300px' />
-    <div id='essay2'>
+  <div class="infoPanel" id="infoPanel2">
+    <img
+      src="../../../assets/img/working2.png"
+      alt="working2"
+      id="working2"
+      width="400px"
+      height="400px"
+    />
+    <img
+      src="../../../assets/img/blueBackground.png"
+      alt="blue"
+      id="blueBackground2"
+      width="300px"
+      height="300px"
+    />
+    <div id="essay2">
       <h1>Kết nối, tìm kiếm những người bạn đồng hành cùng chung chí hướng</h1>
-      <p>Bằng sự cộng hưởng với toàn Hệ sinh thái, FSI Connected cung cấp các giải pháp giúp bạn tìm ra được những mảnh
-        ghép phù hợp nhất cho Startup của mình.</p>
-      <h2>Hệ sinh thái đa dạng </h2>
-      <p>Với sự tham gia của các nhà sáng tạo, nhà đầu tư, nhà cung cấp, các doanh nhân và các chuyên gia cố vấn ở khắp
-        các tỉnh thành trên cả nước. Hãy tìm kiếm những mảnh ghép hoàn hảo phù hợp với nhu cầu khởi nghiệp của bạn.</p>
-      <h2>Xây dựng mạng lưới quan hệ </h2>
-      <p>Mở rộng các mối quan hệ của bạn bằng cách kết nối thông qua mục cộng đồng của chúng tôi, Sự kiện Startup
-        Weekend được tổ chức hàng tuần hoặc đơn giản là tạo kết nối với các thành viên khác.</p>
-      <button type='button'> Đăng ký miễn phí ngay </button>
+      <p>
+        Bằng sự cộng hưởng với toàn Hệ sinh thái, FSI Connected cung cấp các
+        giải pháp giúp bạn tìm ra được những mảnh ghép phù hợp nhất cho Startup
+        của mình.
+      </p>
+      <h2>Hệ sinh thái đa dạng</h2>
+      <p>
+        Với sự tham gia của các nhà sáng tạo, nhà đầu tư, nhà cung cấp, các
+        doanh nhân và các chuyên gia cố vấn ở khắp các tỉnh thành trên cả nước.
+        Hãy tìm kiếm những mảnh ghép hoàn hảo phù hợp với nhu cầu khởi nghiệp
+        của bạn.
+      </p>
+      <h2>Xây dựng mạng lưới quan hệ</h2>
+      <p>
+        Mở rộng các mối quan hệ của bạn bằng cách kết nối thông qua mục cộng
+        đồng của chúng tôi, Sự kiện Startup Weekend được tổ chức hàng tuần hoặc
+        đơn giản là tạo kết nối với các thành viên khác.
+      </p>
+      <button type="button">Đăng ký miễn phí ngay</button>
     </div>
   </div>
-  <div class='infoPanel' id='infoPanel3'>
-    <div class='left'>
-      <h1>Xây dựng, phát triển cộng đồng của bạn trong thế giới của những nhà sáng tạo</h1>
-      <p>Tiếp cận với hàng trăm nghìn nhà sáng tạo, những người đồng đội và các chuyên gia cố vấn tiềm năng trên nền
-        tảng khởi nghiệp đầu tiên tại Việt Nam.</p>
-      <button type='button'> Đăng ký miễn phí ngay </button>
+  <div class="infoPanel" id="infoPanel3">
+    <div class="left">
+      <h1>
+        Xây dựng, phát triển cộng đồng của bạn trong thế giới của những nhà sáng
+        tạo
+      </h1>
+      <p>
+        Tiếp cận với hàng trăm nghìn nhà sáng tạo, những người đồng đội và các
+        chuyên gia cố vấn tiềm năng trên nền tảng khởi nghiệp đầu tiên tại Việt
+        Nam.
+      </p>
+      <button type="button">Đăng ký miễn phí ngay</button>
     </div>
-    <div class='right'>
+    <div class="right">
       <div>
-        <div class='gridTitle'>Thảo luận</div>
-        <p>Hãy để cộng đồng của chúng tôi hỗ trợ và trả lời tất cả những câu hỏi của bạn.</p>
+        <div class="gridTitle">Thảo luận</div>
+        <p>
+          Hãy để cộng đồng của chúng tôi hỗ trợ và trả lời tất cả những câu hỏi
+          của bạn.
+        </p>
       </div>
       <div>
-        <div class='gridTitle'>Công cụ hợp tác</div>
-        <p>Các tính năng đa dụng giúp thành viên của chúng tôi dễ dàng đạt được sự thống nhất.</p>
+        <div class="gridTitle">Công cụ hợp tác</div>
+        <p>
+          Các tính năng đa dụng giúp thành viên của chúng tôi dễ dàng đạt được
+          sự thống nhất.
+        </p>
       </div>
       <div>
-        <div class='gridTitle'>Giữ liên lạc</div>
+        <div class="gridTitle">Giữ liên lạc</div>
         <p>Tìm kiếm và nhắn tin với hàng nghìn thành viên trên khắp cả nước.</p>
       </div>
       <div>
-        <div class='gridTitle'>Hội thảo hàng tuần</div>
+        <div class="gridTitle">Hội thảo hàng tuần</div>
         <p>Tham gia hội thảo hàng tuần dành cho tất cả các thành viên.</p>
       </div>
     </div>
   </div>
-  <div class='infoPanel' id='infoPanel4'>
-    <img src="../../../assets/img/working3.png" alt='working4' id='working4' width='400px' height='400px' />
-    <img src="../../../assets/img/blueBackground.png" alt='blue' id='blueBackground4' width='300px' height='300px' />
-    <div class='right'>
-      <h1>Đào tạo, rèn luyện bản thân, học hỏi không ngừng và bứt phá Startup của bạn</h1>
-      <p>Các chương trình và khóa học được tuyển chọn từ các đối tác của chúng tôi sẽ giúp bạn rèn luyện bản thân, mở
-        rộng kiến ​​thức khởi nghiệp của mình từ con số 0 đến con số 1.</p>
-      <div id='row4'>
+  <div class="infoPanel" id="infoPanel4">
+    <img
+      src="../../../assets/img/working3.png"
+      alt="working4"
+      id="working4"
+      width="400px"
+      height="400px"
+    />
+    <img
+      src="../../../assets/img/blueBackground.png"
+      alt="blue"
+      id="blueBackground4"
+      width="300px"
+      height="300px"
+    />
+    <div class="right">
+      <h1>
+        Đào tạo, rèn luyện bản thân, học hỏi không ngừng và bứt phá Startup của
+        bạn
+      </h1>
+      <p>
+        Các chương trình và khóa học được tuyển chọn từ các đối tác của chúng
+        tôi sẽ giúp bạn rèn luyện bản thân, mở rộng kiến ​​thức khởi nghiệp của
+        mình từ con số 0 đến con số 1.
+      </p>
+      <div id="row4">
         <div>
           <h2>Tích lũy kiến thức</h2>
-          <p>Trung tâm kiến ​​thức với hơn 100 giờ học để giúp bạn xây dựng công ty khởi nghiệp của mình.</p>
+          <p>
+            Trung tâm kiến ​​thức với hơn 100 giờ học để giúp bạn xây dựng công
+            ty khởi nghiệp của mình.
+          </p>
         </div>
         <div>
           <h2>Cố vấn</h2>
-          <p>Nhận lời khuyên đến từ các chuyên gia kì cựu phù hợp nhất với Startup của bạn.</p>
+          <p>
+            Nhận lời khuyên đến từ các chuyên gia kì cựu phù hợp nhất với
+            Startup của bạn.
+          </p>
         </div>
       </div>
-      <button type='button'> Đăng ký miễn phí ngay </button>
+      <button type="button">Đăng ký miễn phí ngay</button>
     </div>
   </div>
-  <div class='infoPanel' id='infoPanel5'>
-    <div id='title5'>6 lý do để bạn đồng hành cùng chúng tôi</div>
-    <div class='grid'>
-      <app-reason [number]="1" title='Tiết kiệm thời gian và nguồn lực'
-        content='Nền tảng tích hợp đa dạng giải pháp, tối đa hoá hiệu năng và tốc độ của các dịch vụ dựa trên công nghệ trí tuệ nhân tạo AI.'></app-reason>
-      <app-reason [number]="2" title='Nâng cao thương hiệu'
-        content='Cộng hưởng với toàn hệ sinh thái KNĐMST Việt Nam, FSI hỗ trợ khách hàng nâng cao hình ảnh và vị thế thương hiệu trên thị trường.'></app-reason>
-      <app-reason [number]="3" title='Bảo mật cao'
-        content='Hệ thống được theo dõi chặt chẽ và dự phòng đầy đủ, đảm bảo độ sẵn sàng tối thiểu ở mức 99,99%.'></app-reason>
-      <app-reason [number]="4" title='Tinh gọn và tối ưu'
-        content='Mọi chức năng của nền tảng được đơn giản hóa tập trung chính xác theo đặc thù của từng nhóm khách hàng.'></app-reason>
-      <app-reason [number]="5" title='Thử nghiệm đơn giản'
-        content='Để khách hàng không còn lo lắng khi đưa ra quyết định FSI Connected hỗ trợ chính sách 15 ngày dùng thử miễn phí để khẳng định chất lượng.'></app-reason>
-      <app-reason [number]="6" title='Hỗ trợ 24/7'
-        content='Chúng tôi tiếp nhận thông tin 24/7 qua Hotline, Email, Facebook, Twitter. Livechat và làm hết sức để khách hàng hài lòng.'></app-reason>
+  <div class="infoPanel" id="infoPanel5">
+    <div id="title5">6 lý do để bạn đồng hành cùng chúng tôi</div>
+    <div class="grid">
+      <app-reason
+        [number]="1"
+        title="Tiết kiệm thời gian và nguồn lực"
+        content="Nền tảng tích hợp đa dạng giải pháp, tối đa hoá hiệu năng và tốc độ của các dịch vụ dựa trên công nghệ trí tuệ nhân tạo AI."
+      ></app-reason>
+      <app-reason
+        [number]="2"
+        title="Nâng cao thương hiệu"
+        content="Cộng hưởng với toàn hệ sinh thái KNĐMST Việt Nam, FSI hỗ trợ khách hàng nâng cao hình ảnh và vị thế thương hiệu trên thị trường."
+      ></app-reason>
+      <app-reason
+        [number]="3"
+        title="Bảo mật cao"
+        content="Hệ thống được theo dõi chặt chẽ và dự phòng đầy đủ, đảm bảo độ sẵn sàng tối thiểu ở mức 99,99%."
+      ></app-reason>
+      <app-reason
+        [number]="4"
+        title="Tinh gọn và tối ưu"
+        content="Mọi chức năng của nền tảng được đơn giản hóa tập trung chính xác theo đặc thù của từng nhóm khách hàng."
+      ></app-reason>
+      <app-reason
+        [number]="5"
+        title="Thử nghiệm đơn giản"
+        content="Để khách hàng không còn lo lắng khi đưa ra quyết định FSI Connected hỗ trợ chính sách 15 ngày dùng thử miễn phí để khẳng định chất lượng."
+      ></app-reason>
+      <app-reason
+        [number]="6"
+        title="Hỗ trợ 24/7"
+        content="Chúng tôi tiếp nhận thông tin 24/7 qua Hotline, Email, Facebook, Twitter. Livechat và làm hết sức để khách hàng hài lòng."
+      ></app-reason>
     </div>
   </div>
-  <div class='infoPanel' id='infoPanel6'>
-    <div class='text'>
+  <div class="infoPanel" id="infoPanel6">
+    <div class="text">
       <h2>Mạng lưới đối tác của chúng tôi</h2>
-      <p>Với mục tiêu chung là mang lại nhiều giá trị hơn
-        đồng thời giảm thiểu rủi ro và chi phí cho khách hàng,
-        FSI Connected và các đối tác chiến lược của chúng tôi hợp sức để tạo nên một hệ sinh thái số vững mạnh nhờ sự
-        hiểu biết kinh doanh và đổi mới công nghệ.
+      <p>
+        Với mục tiêu chung là mang lại nhiều giá trị hơn đồng thời giảm thiểu
+        rủi ro và chi phí cho khách hàng, FSI Connected và các đối tác chiến
+        lược của chúng tôi hợp sức để tạo nên một hệ sinh thái số vững mạnh nhờ
+        sự hiểu biết kinh doanh và đổi mới công nghệ.
       </p>
     </div>
-    <div class='row'>
-      <app-sponsor image='sponsor1.png'></app-sponsor>
-      <app-sponsor image='sponsor2.png'></app-sponsor>
-      <app-sponsor image='sponsor3.png'></app-sponsor>
-      <app-sponsor image='sponsor4.png'></app-sponsor>
+    <div class="row">
+      <app-sponsor image="sponsor1.png"></app-sponsor>
+      <app-sponsor image="sponsor2.png"></app-sponsor>
+      <app-sponsor image="sponsor3.png"></app-sponsor>
+      <app-sponsor image="sponsor4.png"></app-sponsor>
     </div>
-    <div class='row'>
-      <app-sponsor image='sponsor5.png'></app-sponsor>
-      <app-sponsor image='sponsor6.png'></app-sponsor>
-      <app-sponsor image='sponsor7.png'></app-sponsor>
-      <app-sponsor image='sponsor8.png'></app-sponsor>
+    <div class="row">
+      <app-sponsor image="sponsor5.png"></app-sponsor>
+      <app-sponsor image="sponsor6.png"></app-sponsor>
+      <app-sponsor image="sponsor7.png"></app-sponsor>
+      <app-sponsor image="sponsor8.png"></app-sponsor>
     </div>
-    <div class='row'>
-      <app-sponsor image='sponsor9.png'></app-sponsor>
-      <app-sponsor image='sponsor10.png'></app-sponsor>
-      <app-sponsor image='sponsor11.png'></app-sponsor>
+    <div class="row">
+      <app-sponsor image="sponsor9.png"></app-sponsor>
+      <app-sponsor image="sponsor10.png"></app-sponsor>
+      <app-sponsor image="sponsor11.png"></app-sponsor>
     </div>
   </div>
-  <div class='infoPanel' id='infoPanel7'>
+  <div class="infoPanel" id="infoPanel7">
     <h3>Bạn chưa tìm được giải pháp phù hợp?</h3>
     <h1>Hãy để FSI tư vấn cho bạn</h1>
-    <div class='row'>
-      <div class='help'>
-        <div class='upperDiv'>
-          <img src="../../../assets/img/phone.png" alt='' />
+    <div class="row">
+      <div class="help">
+        <div class="upperDiv">
+          <img src="../../../assets/img/phone.png" alt="" />
           <h2>Hotline Sale Tư vấn trực tiếp</h2>
         </div>
-        <button id='btnHotline'></button>
+        <button id="btnHotline"></button>
       </div>
-      <div class='help'>
-        <div class='upperDiv'>
-          <img src="../../../assets/img/mail.png" alt='' />
+      <div class="help">
+        <div class="upperDiv">
+          <img src="../../../assets/img/mail.png" alt="" />
           <h2>Tư vấn qua tin nhắn</h2>
         </div>
-        <button id='btnMail'></button>
+        <button id="btnMail"></button>
       </div>
-      <div class='help'>
-        <div class='upperDiv'>
-          <img src="../../../assets/img/paper.png" alt='' />
+      <div class="help">
+        <div class="upperDiv">
+          <img src="../../../assets/img/paper.png" alt="" />
           <h2>Để lại thông tin và FSI sẽ liên hệ lại</h2>
         </div>
-        <button id='btnInfo'></button>
+        <button id="btnInfo"></button>
       </div>
     </div>
   </div>
 </div>
-
-
-<ng-container *ngIf="isVisibleLogin" >
-  <app-login (close)="isVisibleLogin = false"></app-login>
-</ng-container>
-
-<ng-container *ngIf="isVisibleRegister" >
-  <app-register (close)="isVisibleRegister = false"></app-register>
-</ng-container>

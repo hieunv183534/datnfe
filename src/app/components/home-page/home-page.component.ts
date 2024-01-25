@@ -6,8 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  isVisibleLogin: boolean = false;
-  isVisibleRegister: boolean = false;
   slideIndex: number = 1;
 
   imagesIndex = [1, 2, 3];
