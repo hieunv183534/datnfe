@@ -4,6 +4,8 @@ import { MessageDto } from 'src/app/model/chat.class';
 import { Util } from 'src/app/shared/util/util';
 import { ChatService } from 'src/app/services/chat.service';
 import { MessageService } from 'primeng/api';
+import { EventService } from 'src/app/services/event.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'div[app-message]',
@@ -14,6 +16,8 @@ import { MessageService } from 'primeng/api';
 export class MessageComponent implements OnInit {
 
   MessageType = MessageType;
+  listUserInConversation: any[] = [];
+  display: boolean = false;
 
   @Input() message?: any = {};
   @Output() replyMessage: EventEmitter<void> = new EventEmitter<void>();
@@ -31,60 +35,66 @@ export class MessageComponent implements OnInit {
   ];
   constructor(
     private chatService: ChatService,
+    private eventService: EventService,
     private messageService: MessageService
   ) {
 
   }
 
-  // getReacts(reacts: any[]) {
-  //   const emojis = [];
-  //   for (const react of reacts) {
-  //     const emoji = this.favoriteEmojis.find(e => e.value === react.react)?.content;
-  //     if (emoji) {
-  //       emojis.push(emoji);
-  //     }
-  //   }
-  //   return emojis;
-  // }
+  deleteMessage(messageId: string, m: MessageDto) {
+    this.chatService.deleteMessage(messageId)
+      .then(() => {
+        this.messageService.add({
+          key: "toast",
+          severity: "success",
+          summary: "Thành công",
+          detail: "Xóa tin nhắn thành công!",
+        });
+      })
+      .catch(() => {
+        this.messageService.add({
+          key: "toast",
+          severity: "error",
+          summary: "Thành công",
+          detail: "Xóa tin nhắn thất bại!",
+        });
+      })
+  }
+  getDecodedAccessToken(): any {
+    try {
+      return jwt_decode(localStorage.getItem("TOKEN") ?? "");
+    } catch (Error) {
+      return null;
+    }
+  }
+  ngOnInit() {
+    this.eventService.currentConversationUsers.subscribe(users => {
+      this.listUserInConversation = users
+      console.log(users);
 
-  getReacts(reacts: any[]) {
+    })
     const emojis = [];
-    for (const react of reacts) {
-      const emoji = this.favoriteEmojis.find(e => e.value === react.react);
+    for (let i = 0; i < this.message.reacts.length; i++) {
+      const emoji = this.favoriteEmojis.find(e => e.value === this.message.reacts[i].react);
       if (emoji) {
-        const index = emojis.findIndex(e => e.emoji === emoji.content);
+        const user = this.listUserInConversation.find(u => u.user.id === this.message.reacts[i].userId);
+        const index = emojis.findIndex((e: { emoji?: string }) => e.emoji === emoji.content);
         if (index === -1) {
-          emojis.push({ emoji: emoji.content, repeat: 1 });
+          emojis.push({ ...this.message.reacts[i], emoji: emoji.content, repeat: 1, users: user ? [user.user] : [] });
         } else {
+          if (user) {
+            emojis[index].users.push(user.user);
+          }
           emojis[index].repeat++;
         }
       }
     }
-    return emojis;
-  }
-  deleteMessage(messageId: string, m: MessageDto) {
-    // this.chatService.deleteMessage(messageId)
-    // .then(()=>{
-    //   this.messageService.add({
-    //     key: "toast",
-    //     severity: "success",
-    //     summary: "Thành công",
-    //     detail: "Xóa tin nhắn thành công!",
-    //   });
-    // })
-    // .catch(()=>{
-    //   this.messageService.add({
-    //     key: "toast",
-    //     severity: "error",
-    //     summary: "Thành công",
-    //     detail: "Xóa tin nhắn thất bại!",
-    //   });
-    // })
-  }
+    this.message.reacts = emojis;
+    console.log(this.message.reacts);
 
-  ngOnInit() {
   }
-  reactMessage(e: number, id: string) {
+  reactMessage(e: number | null, id: string) {
+
     this.chatService.reactMessage({ messageId: id, react: e })
   }
   pinMessage(message: MessageDto) {

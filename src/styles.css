@@ -282,3 +282,8 @@ app-work-history-summary .p-card-content{
 .p-cascadeselect .p-cascadeselect-label {
   padding: 0.5rem 0.75rem !important;
 }
+.p-dialog .p-dialog-header {
+  font-weight: 600;
+  font-size: 16px;
+  padding: 1rem 1rem 0.5rem 1rem !important;
+}

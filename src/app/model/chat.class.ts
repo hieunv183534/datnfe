@@ -88,7 +88,7 @@ export class MessageSendToUserDto {
 
 export class ReactMessageDto {
   messageId?: string;
-  react?: MessageReact;
+  react?: MessageReact | null;
 }
 
 export class PinMessageDto {
