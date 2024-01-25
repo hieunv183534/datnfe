@@ -141,6 +141,35 @@
               ></p-tag>
             </span>
           </p>
+          <div *ngIf="startuperInfo.purpose == 3">
+            <div
+              *ngFor="let item of listProject; let i = index"
+              class="flex justify-content-between flex-wrap history-search"
+            >
+              <div class="flex align-items-center justify-content-center m-2">
+                <img
+                  class="image-history"
+                  [src]="
+                    item.project.avatarUrl ??
+                    'https://fsiconnected.cloud/images/default-avatar.jpg'
+                  "
+                  alt=""
+                  width="100px"
+                  style="border-radius: 50%"
+                />
+                <div
+                  class="flex align-items-center justify-content-center ml-2"
+                >
+                  <ul>
+                    <li>
+                      <b><span>Tên dự án: </span> </b>
+                      <span>{{ item.project.projectName }}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </p-tabPanel>
         <p-tabPanel header="Giới thiệu bản thân">
           <p>

@@ -77,6 +77,11 @@ export class ProfileComponent implements OnInit {
       this.friendStatus = res.data.friendStatus;
       this.listProject = res.data.projectAsStartuper;
       this.listWork = JSON.parse(this.startuperInfo.workingExperience ?? "[]")
+      if(this.startuperInfo.purpose == 3){
+        this.headerName = 'Danh sách dự án'
+      } else {
+        this.headerName = 'Tôi đang tìm kiếm'
+      }
     }).catch((err: any) => {
       this.messageService.add({
         key: "toast",
