@@ -14,6 +14,7 @@ img.avatar{
 
 .info {
   margin-left: 5%;
+  margin-top: 80px;
 }
 
 ul {
@@ -26,4 +27,8 @@ ul {
 .info .name {
   font-size: 1.2rem;
   font-weight: 700;
+}
+
+.color-text{
+  color: #01A9FF
 }

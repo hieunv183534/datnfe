@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges  } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { RoleInProject } from 'src/app/model/enum';
@@ -23,10 +23,12 @@ export class ProfileComponent implements OnInit {
 
   startuperInfo: StartuperDto = {};
   listProject: any[] = [];
+  listWork: any[] = [];
   friendStatus: number = 0;
   isShowUpdateInfo: boolean = false;
   userInfo: any = {};
   isChangeStyle: boolean = false;
+  headerName: string = '';
   menus = [{ href: "/startuper/project", title: "Dự án / Ý tưởng" }, { href: "/startuper/startuper/f6b77754-97c0-405f-86a5-f3f4959e2f3a", title: "Nhà khởi nghiệp" }]
 
   projectRoles = ["Nhà đầu tư", "Thành viên", "Đồng sáng lập", "Nhà sáng lập"]
@@ -46,6 +48,12 @@ export class ProfileComponent implements OnInit {
       this.startuperInfo = res.data.startuperInfo;
       this.friendStatus = res.data.friendStatus;
       this.listProject = res.data.projectAsStartuper;
+      this.listWork = JSON.parse(this.startuperInfo.workingExperience ?? "[]")
+      if(this.startuperInfo.purpose == 3){
+        this.headerName = 'Danh sách dự án'
+      } else {
+        this.headerName = 'Tôi đang tìm kiếm'
+      }
     }).catch((err: any) => {
       this.messageService.add({
         key: "toast",
@@ -60,6 +68,23 @@ export class ProfileComponent implements OnInit {
     } else {
       this.isChangeStyle = true
     }
+  }
+
+  closeModal(){
+    this.isShowUpdateInfo = false
+    this.startuperService.getUserDetail(this.userId).then((res: any) => {
+      this.startuperInfo = res.data.startuperInfo;
+      this.friendStatus = res.data.friendStatus;
+      this.listProject = res.data.projectAsStartuper;
+      this.listWork = JSON.parse(this.startuperInfo.workingExperience ?? "[]")
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Lấy thông tin người dùng thất bại. vui lòng thử lại!",
+      });
+    });
   }
 
   getAge(dob: any) {

@@ -33,9 +33,6 @@
           </div>
         </div>
       </div>
-      <div class="flex mt-2" style="justify-content: flex-end">
-        <p-button (click)="routeToProfile(startuperInfo.id)">Xem trang cá nhân chính</p-button>
-      </div>
     </div>
     <div class="info">
       <div class="mb-3">
@@ -73,41 +70,75 @@
         </ul>
       </div>
       <p-tabView>
-        <p-tabPanel header="Tôi đang tìm kiếm">
-          <p>
+        <p-tabPanel [header]="headerName" *ngIf="startuperInfo.purpose != 0">
+          <p *ngIf="startuperInfo.purpose == 1">
             <b>Kỹ năng chuyên môn: </b>
             <span>
-              <p-tag value="Lập trình viên" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Lập trình viên fe" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Lập trình viên be" class="ml-1"></p-tag>
+              <p-tag
+                *ngFor="
+                  let targetSpecialize of getSpecializies(
+                    startuperInfo.targetSpecialize ?? []
+                  )
+                "
+                [value]="targetSpecialize"
+                styleClass="mr-1 mt-1"
+              ></p-tag>
             </span>
           </p>
-          <p>
+          <p *ngIf="startuperInfo.purpose == 1">
             <b>Điểm cộng kỹ năng mềm: </b>
             <span>
-              <p-tag value="Thuyết trình" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Tư duy phản biện" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Lập luận" class="ml-1"></p-tag>
+              <p-tag
+                *ngFor="
+                  let requestSkill of getSkills(
+                    startuperInfo.requestSkill ?? []
+                  )
+                "
+                [value]="requestSkill"
+                styleClass="mr-1 mt-1"
+              ></p-tag>
             </span>
           </p>
-          <p>
+          <p *ngIf="startuperInfo.purpose == 1">
             <b>Điểm cộng tính cách: </b>
             <span>
-              <p-tag value="Nhiệt huyết" class="ml-1"></p-tag>
+              <p-tag
+                *ngFor="
+                  let requestPersonality of getPersonalities(
+                    startuperInfo.requestPersonality ?? []
+                  )
+                "
+                [value]="requestPersonality"
+                styleClass="mr-1 mt-1"
+              ></p-tag>
             </span>
+          </p>
+          <p *ngIf="startuperInfo.purpose == 2">
+            <b>Lĩnh vực của ý tưởng: </b>
             <span>
-              <p-tag value="Sáng tạo" class="ml-1"></p-tag>
+              <p-tag
+                *ngFor="
+                  let targetField of getTargetField(
+                    startuperInfo.targetField ?? []
+                  )
+                "
+                [value]="targetField"
+                styleClass="mr-1 mt-1"
+              ></p-tag>
             </span>
+          </p>
+          <p *ngIf="startuperInfo.purpose == 4">
+            <b>Lĩnh vực của dự án: </b>
             <span>
-              <p-tag value="Trách nhiệm" class="ml-1"></p-tag>
+              <p-tag
+                *ngFor="
+                  let targetField of getTargetField(
+                    startuperInfo.targetField ?? []
+                  )
+                "
+                [value]="targetField"
+                styleClass="mr-1 mt-1"
+              ></p-tag>
             </span>
           </p>
         </p-tabPanel>
@@ -170,11 +201,33 @@
             <i class="pi pi-briefcase mr-1"></i>
             <b> Ngành học: </b> {{ startuperInfo.universitySpecialized }}
           </p>
-
-          <!-- <p>
+          <p>
             <b>Kinh nghiệm làm việc: </b>
-          </p> -->
-          <p-accordion
+            <span *ngIf="listWork.length == 0">Không có</span>
+          </p>
+          <p *ngFor="let item of listWork; let i = index">
+            <span class="color-text">{{ item.position }}</span> tại
+            <span class="color-text">{{ item.name }}</span>
+            <span
+              *ngIf="item.start || item.end"
+              style="display: flex; margin-bottom: 3px"
+              >{{ getDate(item.start) }} - {{ getDate(item.end) }}</span
+            >
+          </p>
+          <p>
+            <b>Hoạt động xã hội: </b>
+            <span *ngIf="startuperInfo.activity; else invalidName">{{
+              startuperInfo.activity
+            }}</span>
+          </p>
+          <p>
+            <b>Chứng chỉ thành tích: </b>
+            <span *ngIf="startuperInfo.certificateAndAward; else invalidName">{{
+              startuperInfo.certificateAndAward
+            }}</span>
+            <ng-template #invalidName> Không có </ng-template>
+          </p>
+          <!-- <p-accordion
             class="mt-3"
             style="width: 120%; transform: scale(0.85)"
             [multiple]="true"
@@ -191,7 +244,7 @@
             <p-accordionTab header="Chứng chỉ thành tích" class="mt-2">
               {{ startuperInfo.certificateAndAward }}
             </p-accordionTab>
-          </p-accordion>
+          </p-accordion> -->
         </p-tabPanel>
         <p-tabPanel header="Bài viết">
           <p>Bài viết.</p>

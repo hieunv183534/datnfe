@@ -49,7 +49,7 @@ export class StartuperItemComponent implements OnInit {
   }
 
   getDate(dob: any){
-    return moment(dob).format('DD/MM/YYYY');
+    return Util.getDate(new Date(dob));
   }
 
   getArea(val?: number) {

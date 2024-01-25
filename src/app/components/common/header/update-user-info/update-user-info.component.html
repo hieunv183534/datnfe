@@ -237,12 +237,50 @@
                       [selectionLimit]="3"
                       appendTo="body"
                       [options]="specializies"
-                      defaultLabel="Chọn chuyên môn của mình"
+                      defaultLabel="Chọn chuyên môn"
                       optionLabel="name"
                       formControlName="targetSpecialize"
                     >
                     </p-multiSelect>
                     <label>Bạn muốn tìm người có chuyên môn như nào: </label>
+                  </span>
+                </div>
+                <div
+                  class="p-field col-12 md-12"
+                  *ngIf="formStartuperInfo.value.purpose == 1"
+                >
+                  <span class="p-float-label">
+                    <p-multiSelect
+                      optionLabel="name"
+                      optionValue="value"
+                      [selectionLimit]="3"
+                      appendTo="body"
+                      [options]="personalities"
+                      defaultLabel="Chọn tính cách"
+                      optionLabel="name"
+                      formControlName="requestPersonality"
+                    >
+                    </p-multiSelect>
+                    <label>Bạn muốn tìm người có tính cách như nào: </label>
+                  </span>
+                </div>
+                <div
+                  class="p-field col-12 md-12"
+                  *ngIf="formStartuperInfo.value.purpose == 1"
+                >
+                  <span class="p-float-label">
+                    <p-multiSelect
+                      optionLabel="name"
+                      optionValue="value"
+                      [selectionLimit]="3"
+                      appendTo="body"
+                      [options]="skills"
+                      defaultLabel="Chọn kỹ năng mềm"
+                      optionLabel="name"
+                      formControlName="requestSkill"
+                    >
+                    </p-multiSelect>
+                    <label>Bạn muốn tìm người có kỹ năng mềm như nào: </label>
                   </span>
                 </div>
                 <div
@@ -265,24 +303,24 @@
                   </span>
                 </div>
                 <div
-                class="p-field col-12 md-12"
-                *ngIf="formStartuperInfo.value.purpose == 2"
-              >
-                <span class="p-float-label">
-                  <p-multiSelect
-                    optionLabel="name"
-                    optionValue="value"
-                    [selectionLimit]="3"
-                    appendTo="body"
-                    [options]="fields"
-                    defaultLabel="Chọn lĩnh vực ý tưởng muốn tham gia"
-                    optionLabel="name"
-                    formControlName="targetField"
-                  >
-                  </p-multiSelect>
-                  <label>Lĩnh vực ý tưởng muốn tham gia: </label>
-                </span>
-              </div>
+                  class="p-field col-12 md-12"
+                  *ngIf="formStartuperInfo.value.purpose == 2"
+                >
+                  <span class="p-float-label">
+                    <p-multiSelect
+                      optionLabel="name"
+                      optionValue="value"
+                      [selectionLimit]="3"
+                      appendTo="body"
+                      [options]="fields"
+                      defaultLabel="Chọn lĩnh vực ý tưởng muốn tham gia"
+                      optionLabel="name"
+                      formControlName="targetField"
+                    >
+                    </p-multiSelect>
+                    <label>Lĩnh vực ý tưởng muốn tham gia: </label>
+                  </span>
+                </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
                     <p-multiSelect

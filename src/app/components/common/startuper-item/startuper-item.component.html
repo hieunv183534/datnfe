@@ -34,91 +34,93 @@
       </ul>
     </div>
   </div>
-  <div>
-    <ul>
-      <li>
-        <p><b>Chuyên môn của tôi</b></p>
-        <span>
-          <p-tag
-            *ngFor="
-              let specialize of getSpecializies(startuper.specialize ?? [])
-            "
-            [value]="specialize"
-            styleClass="mr-1 mt-1"
-          ></p-tag>
-        </span>
-      </li>
-      <li *ngIf="startuper.purpose == 1">
-        <p><b>Lĩnh vực của ý tưởng</b></p>
-        <span>
-          <p-tag
-            *ngFor="let ideaField of getIdeaField(startuper.ideaField ?? [])"
-            [value]="ideaField"
-            styleClass="mr-1 mt-1"
-          ></p-tag>
-        </span>
-      </li>
-      <li *ngIf="startuper.purpose == 1">
-        <p><b>Tôi muốn tìm người có chuyên môn</b></p>
-        <span>
-          <p-tag
-            *ngFor="
-              let targetSpecialize of getTargetSpecializies(
-                startuper.targetSpecialize ?? []
-              )
-            "
-            [value]="targetSpecialize"
-            styleClass="mr-1 mt-1"
-          ></p-tag>
-        </span>
-      </li>
-      <li *ngIf="startuper.purpose == 4">
-        <p><b>Lĩnh vực của dự án</b></p>
-        <span>
-          <p-tag
-            *ngFor="
-              let targetField of getTargetField(startuper.targetField ?? [])
-            "
-            [value]="targetField"
-            styleClass="mr-1 mt-1"
-          ></p-tag>
-        </span>
-      </li>
-      <li *ngIf="startuper.purpose == 2">
-        <p><b>Lĩnh vực của ý tưởng</b></p>
-        <span>
-          <p-tag
-            *ngFor="
-              let targetField of getTargetField(startuper.targetField ?? [])
-            "
-            [value]="targetField"
-            styleClass="mr-1 mt-1"
-          ></p-tag>
-        </span>
-      </li>
-      <li *ngIf="startuper.purpose == 0">
-        <p><b>Thời gian khả dụng</b></p>
-        <span>
-          <p-tag
-            :value="{{ getAvailableTime(startuper.availableTime) }}"
-            class="ml-1"
-          ></p-tag>
-        </span>
-      </li>
-      <!-- <li>
+  <div class="grid info">
+    <div class="col-12">
+      <ul>
+        <li>
+          <p><b>Chuyên môn của tôi</b></p>
+          <span>
+            <p-tag
+              *ngFor="
+                let specialize of getSpecializies(startuper.specialize ?? [])
+              "
+              [value]="specialize"
+              styleClass="mr-1 mt-1"
+            ></p-tag>
+          </span>
+        </li>
+        <li *ngIf="startuper.purpose == 1">
+          <p><b>Lĩnh vực của ý tưởng</b></p>
+          <span>
+            <p-tag
+              *ngFor="let ideaField of getIdeaField(startuper.ideaField ?? [])"
+              [value]="ideaField"
+              styleClass="mr-1 mt-1"
+            ></p-tag>
+          </span>
+        </li>
+        <li *ngIf="startuper.purpose == 1">
+          <p><b>Tôi muốn tìm người có chuyên môn</b></p>
+          <span>
+            <p-tag
+              *ngFor="
+                let targetSpecialize of getTargetSpecializies(
+                  startuper.targetSpecialize ?? []
+                )
+              "
+              [value]="targetSpecialize"
+              styleClass="mr-1 mt-1"
+            ></p-tag>
+          </span>
+        </li>
+        <li *ngIf="startuper.purpose == 4">
+          <p><b>Lĩnh vực của dự án</b></p>
+          <span>
+            <p-tag
+              *ngFor="
+                let targetField of getTargetField(startuper.targetField ?? [])
+              "
+              [value]="targetField"
+              styleClass="mr-1 mt-1"
+            ></p-tag>
+          </span>
+        </li>
+        <li *ngIf="startuper.purpose == 2">
+          <p><b>Lĩnh vực của ý tưởng</b></p>
+          <span>
+            <p-tag
+              *ngFor="
+                let targetField of getTargetField(startuper.targetField ?? [])
+              "
+              [value]="targetField"
+              styleClass="mr-1 mt-1"
+            ></p-tag>
+          </span>
+        </li>
+        <li *ngIf="startuper.purpose == 0 || startuper.purpose === 3">
+          <p><b>Thời gian khả dụng</b></p>
+          <span>
+            <p-tag
+              :value="{{ getAvailableTime(startuper.availableTime) }}"
+              class="ml-1"
+            ></p-tag>
+          </span>
+        </li>
+        <!-- <li>
         <p><b>Lĩnh vực</b></p>
         <span>
           <p-tag :value="{{ getField(startuper.field) }}" class="ml-1"></p-tag>
         </span>
       </li> -->
-      <!-- <li>Độ tuổi: {{getAge(startuper.dateOfBirth)}}</li>
+        <!-- <li>Độ tuổi: {{getAge(startuper.dateOfBirth)}}</li>
       <li>Khu vực: {{getArea(startuper.location)}}</li>
       <li>Lĩnh vực: {{getField(startuper.field)}}</li>
       <li>Kinh nghiệm: {{getYOE(startuper.yearOfExp)}}</li>
       <li>Tính cách: {{getPersonalities(startuper.personality??[])}}</li>
       <li>Kỹ năng mềm: {{getSkills(startuper.skill??[])}}</li>
       <li>Thời gian khả dụng: {{getAvailableTime(startuper.availableTime)}}</li> -->
-    </ul>
+      </ul>
+    </div>
   </div>
 
   <div *ngIf="isHovered" class="hoverDiv">

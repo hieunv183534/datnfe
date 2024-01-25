@@ -37,7 +37,7 @@
         <p-button (click)="editProfile()">Chỉnh sửa hồ sơ</p-button>
       </div>
     </div>
-    <div class="info" [ngClass]="{'change-style': isChangeStyle}">
+    <div class="info" [ngClass]="{ 'change-style': isChangeStyle }">
       <div class="mb-3">
         <ul>
           <li>
@@ -60,41 +60,75 @@
         </ul>
       </div>
       <p-tabView>
-        <p-tabPanel header="Tôi đang tìm kiếm">
-          <p>
+        <p-tabPanel [header]="headerName" *ngIf="startuperInfo.purpose != 0">
+          <p *ngIf="startuperInfo.purpose == 1">
             <b>Kỹ năng chuyên môn: </b>
             <span>
-              <p-tag value="Lập trình viên" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Lập trình viên fe" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Lập trình viên be" class="ml-1"></p-tag>
+              <p-tag
+                *ngFor="
+                  let targetSpecialize of getSpecializies(
+                    startuperInfo.targetSpecialize ?? []
+                  )
+                "
+                [value]="targetSpecialize"
+                styleClass="mr-1 mt-1"
+              ></p-tag>
             </span>
           </p>
-          <p>
+          <p *ngIf="startuperInfo.purpose == 1">
             <b>Điểm cộng kỹ năng mềm: </b>
             <span>
-              <p-tag value="Thuyết trình" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Tư duy phản biện" class="ml-1"></p-tag>
-            </span>
-            <span>
-              <p-tag value="Lập luận" class="ml-1"></p-tag>
+              <p-tag
+                *ngFor="
+                  let requestSkill of getSkills(
+                    startuperInfo.requestSkill ?? []
+                  )
+                "
+                [value]="requestSkill"
+                styleClass="mr-1 mt-1"
+              ></p-tag>
             </span>
           </p>
-          <p>
+          <p *ngIf="startuperInfo.purpose == 1">
             <b>Điểm cộng tính cách: </b>
             <span>
-              <p-tag value="Nhiệt huyết" class="ml-1"></p-tag>
+              <p-tag
+                *ngFor="
+                  let requestPersonality of getPersonalities(
+                    startuperInfo.requestPersonality ?? []
+                  )
+                "
+                [value]="requestPersonality"
+                styleClass="mr-1 mt-1"
+              ></p-tag>
             </span>
+          </p>
+          <p *ngIf="startuperInfo.purpose == 2">
+            <b>Lĩnh vực của ý tưởng: </b>
             <span>
-              <p-tag value="Sáng tạo" class="ml-1"></p-tag>
+              <p-tag
+                *ngFor="
+                  let targetField of getTargetField(
+                    startuperInfo.targetField ?? []
+                  )
+                "
+                [value]="targetField"
+                styleClass="mr-1 mt-1"
+              ></p-tag>
             </span>
+          </p>
+          <p *ngIf="startuperInfo.purpose == 4">
+            <b>Lĩnh vực của dự án: </b>
             <span>
-              <p-tag value="Trách nhiệm" class="ml-1"></p-tag>
+              <p-tag
+                *ngFor="
+                  let targetField of getTargetField(
+                    startuperInfo.targetField ?? []
+                  )
+                "
+                [value]="targetField"
+                styleClass="mr-1 mt-1"
+              ></p-tag>
             </span>
           </p>
         </p-tabPanel>
@@ -157,52 +191,32 @@
             <i class="pi pi-briefcase mr-1"></i>
             <b> Ngành học: </b> {{ startuperInfo.universitySpecialized }}
           </p>
-
           <p>
             <b>Kinh nghiệm làm việc: </b>
+            <span *ngIf="listWork.length == 0">Không có</span>
           </p>
-          <ul>
-            <li>
-              <span style="color: #01a9ff">Lập trình viên</span>
-              tại <span style="color: #01a9ff">VIJCO</span>
-            </li>
-            <li>08/2023</li>
-            <li>
-              <span style="color: #01a9ff">Lập trình viên</span>
-              tại <span style="color: #01a9ff">VIVAS</span>
-            </li>
-            <li>08/2023</li>
-          </ul>
-
+          <p *ngFor="let item of listWork; let i = index">
+            <span class="color-text">{{ item.position }}</span> tại
+            <span class="color-text">{{ item.name }}</span>
+            <span
+              *ngIf="item.start || item.end"
+              style="display: flex; margin-bottom: 3px"
+              >{{ getDate(item.start) }} - {{ getDate(item.end) }}</span
+            >
+          </p>
           <p>
             <b>Hoạt động xã hội: </b>
+            <span *ngIf="startuperInfo.activity; else invalidName">{{
+              startuperInfo.activity
+            }}</span>
           </p>
-          <ul>
-            <li>
-              <span style="color: #01a9ff">Tình nguyện viên</span>
-              tại <span style="color: #01a9ff">Áo ấm cho em</span>
-            </li>
-            <li>08/2023</li>
-            <li>
-              <span style="color: #01a9ff">Tình nguyện viên</span>
-              tại <span style="color: #01a9ff">Áo ấm cho em</span>
-            </li>
-            <li>08/2023</li>
-          </ul>
-
           <p>
             <b>Chứng chỉ thành tích: </b>
+            <span *ngIf="startuperInfo.certificateAndAward; else invalidName">{{
+              startuperInfo.certificateAndAward
+            }}</span>
+            <ng-template #invalidName> Không có </ng-template>
           </p>
-          <ul>
-            <li>
-              <span style="color: #01a9ff">IELTS 7.5</span>
-            </li>
-            <li>08/2023</li>
-            <li>
-              <span style="color: #01a9ff">TOEIC 730</span>
-            </li>
-            <li>08/2023</li>
-          </ul>
         </p-tabPanel>
         <p-tabPanel header="Bài viết">
           <p>Bài viết.</p>
@@ -214,6 +228,6 @@
 <ng-container *ngIf="isShowUpdateInfo">
   <app-update-user-info
     [display]="isShowUpdateInfo"
-    (close)="isShowUpdateInfo = false"
+    (close)="closeModal()"
   ></app-update-user-info>
 </ng-container>
