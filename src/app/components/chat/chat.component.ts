@@ -23,6 +23,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   conversationType: number = 0;
   conversationFilter?: string = "";
   conversations?: ConversationDto[] = [];
+  inviteUsers: any[] = [];
   messages: MessageDto[] = [];
   replyMessage?: MessageDto = undefined;
   focusToMessageId: string = ''
@@ -42,6 +43,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   rows: number = 1;
   maxRows: number = 5;
   files: any[] = [];
+  timeNow: any = new Date();
   constructor(
     private messageService: MessageService,
     private route: ActivatedRoute,
@@ -49,6 +51,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     private eventService: EventService,
     private eRef: ElementRef
   ) { }
+
   addEmoji(data: any) {
     this.contentText = this.contentText + " " + data.emoji.native;
   }
@@ -63,7 +66,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.scrollToBottom();
     this.getListConversation();
     this.initConversation();
     this.initSignal();
@@ -85,16 +87,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     // ]
   }
   @HostListener('window:resize', ['$event'])
-  @ViewChild('scrollMessage', { static: false }) private scrollMessage!: ElementRef;
 
-
-
-
-  scrollToBottom(): void {
-    try {
-      this.scrollMessage.nativeElement.scrollTop = this.scrollMessage.nativeElement.scrollHeight;
-    } catch(err) { }
-  }
   onResize() {
     this.screenWidth = window.innerWidth;
     this.checkScreenSize();
@@ -222,24 +215,39 @@ export class ChatComponent implements OnInit, OnDestroy {
       debugger
     });
 
-    this.connection.on("OnReactMessage", (message: any) => {
+    this.connection.on("OnReactMessage", (message: MessageDto) => {
       this.getListMessage();
       // this.seenConversation(this.thisConversation?.id ?? "");
-
-      this.messageService.add({
-        key: "newReact",
-        severity: "info",
-        summary: "Tin nhắn mới",
-        detail: "Đã bày tỏ cảm xúc",
-      });
+      // let userName
+      // this.eventService.currentConversationUsers.subscribe(users => {
+      //   userName = users.find(u => u.user.id == message.senderId).user.name
+      // })
+      if (this.getDecodedAccessToken().nameid !== message.senderId)
+        this.messageService.add({
+          key: "newMessage",
+          severity: "info",
+          summary: "Tin nhắn mới",
+          detail: `Đã bày tỏ cảm xúc`,
+        });
     });
-    this.connection.on("OnPinMessage", (message: any) => {
-      this.messageService.add({
-        key: "newReact",
-        severity: "info",
-        summary: "Tin nhắn mới",
-        detail: "Đã ghim tin nhắn",
-      });
+    this.connection.on("OnPinMessage", (message: MessageDto) => {
+      if (this.getDecodedAccessToken().nameid !== message.senderId)
+        this.messageService.add({
+          key: "newMessage",
+          severity: "info",
+          summary: "Tin nhắn mới",
+          detail: "Đã ghim tin nhắn",
+        });
+    });
+    this.connection.on("OnDeleteMessage", (message: MessageDto) => {
+      this.getListMessage();
+      if (this.getDecodedAccessToken().nameid !== message.senderId)
+        this.messageService.add({
+          key: "newMessage",
+          severity: "info",
+          summary: "Tin nhắn mới",
+          detail: "Đã xóa tin nhắn",
+        });
     });
   }
 
@@ -347,6 +355,14 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.getListMessage();
     this.seenConversation(conversation.id);
     this.replyMessage = undefined;
+    this.getListUserOfConversation(conversation);
+  }
+
+  getListUserOfConversation(conversation: any) {
+    this.chatService.getUsersByConversation(conversation.id).then((res: any) => {
+      this.eventService.changeListConversationUsers(res.data)
+    }).catch((err: any) => {
+    });
   }
 
   addConversationSuccess(newConversation: any) {

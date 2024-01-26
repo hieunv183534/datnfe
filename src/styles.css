@@ -281,3 +281,10 @@ app-work-history-summary .p-card-content {
     width: 300px !important;
   }
 }
+
+.p-dialog .p-dialog-header {
+  font-weight: 600;
+  font-size: 16px;
+  padding: 1rem 1rem 0.5rem 1rem !important;
+}
+
