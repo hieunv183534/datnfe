@@ -9,7 +9,7 @@
   <div class="text-xs text-gray-700 row-1 mt-1" [ngClass]="message.isMine? 'right-0' : 'left-0' "
     *ngIf="message.focusToMessage">
     <i class="fa-solid fa-reply text-gray-500 hover:text-gray-700 mr-2"></i>
-    <span>{{message.isMine ?'Bạn đã trả lời chính mình': message.sender.name + 'đã trả lời'}}</span>
+    <span>{{message.isMine ?'Bạn đã trả lời chính mình': message.sender.name + ' đã trả lời'}}</span>
   </div>
 
   <div *ngIf="message.focusToMessage" style="background-color: rgba(0, 0, 0, 0.03)"
@@ -42,11 +42,17 @@
           <i class="fa-regular fa-face-smile text-gray-500 hover:text-gray-700"></i>
         </div>
       </div>
-      <div *ngIf="message.reacts.length > 0" style="width:20px;height: 20px;"
-        class="absolute top-100 -translateY-50 right-0  border-circle bg-white flex justify-content-center align-items-center shadow-2 z-1">
-        <div style="height: 100% !important;width: 94% !important;" class="">
-          {{getReacts(message.reacts)}}
-        </div>
+      <div *ngIf="message.reacts.length > 0"
+        class="absolute top-100 -translateY-50 right-0 bg-white flex flex-row align-items-center border-round-xl w-auto shadow-2 z-1">
+        <ng-container *ngFor="let e of message.reacts">
+          <div style="height: 20px;" class="cursor-pointer" (click)="display=true">
+            {{e.emoji}}
+          </div>
+          <div style="width:10px" *ngIf="e.repeat !== 1"
+            class="flex justify-content-start align-items-center text-gray-700 text-xs h-1rem">
+            {{e.repeat}}
+          </div>
+        </ng-container>
       </div>
       <div class="absolute top-100 w-1rem h-1rem" *ngIf="message.index == message.conversation.lastIndexSeenA"
         [ngClass]="{'top-125':true}" [tooltipPosition]="'top'" [pTooltip]="getDateTimeSeen(message.creationTime)">
@@ -65,7 +71,7 @@
     <ng-template pTemplate>
       <div class="p-2 flex text-xl">
         <ng-container *ngFor="let e of favoriteEmojis">
-          <div class="cursor-pointer" (click)="reactMessage(e.value, message.id)">{{e.content}}</div>
+          <div class="cursor-pointer" (click)="reactMessage(e.value, message.id);op.hide()">{{e.content}}</div>
         </ng-container>
       </div>
     </ng-template>
@@ -73,12 +79,12 @@
   <p-overlayPanel [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'200ms'" #op1 [dismissable]="true">
     <ng-template pTemplate>
       <div class="flex flex-column p-2">
-        <div (click)="pinMessage(message)"
+        <div (click)="pinMessage(message);op1.hide()"
           class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1">
           <i class="pi pi-paperclip mr-2 text-xs"></i>
           <p class="text-xs my-0">Ghim tin nhắn</p>
         </div>
-        <div
+        <div *ngIf="message.isMine" (click)="deleteMessage(message.id,message);op1.hide()"
           class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1">
           <i class="pi pi-trash mr-2 text-xs"></i>
           <p class="text-xs my-0 text-red-600">Xóa</p>
@@ -86,4 +92,33 @@
       </div>
     </ng-template>
   </p-overlayPanel>
+  <p-dialog [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '30vw'}"
+    [modal]="true">
+    <ng-template pTemplate="header">
+      Cảm xúc về tin nhắn
+    </ng-template>
+    <p-tabView>
+      <ng-container *ngFor="let react of message.reacts">
+        <p-tabPanel >
+          <ng-template pTemplate="header">
+           <span  class="text-xl">{{react.emoji}}</span><span class='text-primary'>{{react.repeat}}</span>
+          </ng-template>
+          <ng-container *ngFor="let e of react.users">
+            <div class="flex justify-content-between p-2">
+              <div class="flex">
+                <p-avatar class="mr-2" shape="circle" size="large" [image]="e.avatarUrl"></p-avatar>
+                <div class="flex flex-column justify-content-center">
+                  <span class="font-semibold">{{e.name}}</span>
+                  <span *ngIf="e.id==getDecodedAccessToken().nameid"
+                    class="font-italic text-xs text-gray-700 cursor-pointer"
+                    (click)="reactMessage(null, message.id)">Nhấn để gỡ</span>
+                </div>
+              </div>
+              <div class="text-xl">{{react.emoji}}</div>
+            </div>
+          </ng-container>
+        </p-tabPanel>
+      </ng-container>
+    </p-tabView>
+  </p-dialog>
 </div>

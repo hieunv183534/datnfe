@@ -72,7 +72,8 @@
         </div>
       </p-accordionTab>
     </p-accordion>
-    <p-dialog [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '30vw'}">
+    <p-dialog [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '30vw'}"
+      [modal]="true">
       <ng-template pTemplate="header">
         Tin nhắn đã ghim
       </ng-template>
@@ -88,8 +89,10 @@
               <span>{{getDateTime(message.lastModificationTime)}}</span>
             </div>
             <div class="flex justify-content-between align-items-center">
-              <span class="w-9 text-sm message-pinned">{{message.content}}</span>
-              <div (click)="op.toggle($event)"
+              <div class="w-9">
+                <span class="text-sm message-pinned">{{message.content}}</span>
+              </div>
+              <div (click)="op.toggle($event);this.unpinMessId=message.id"
                 class="flex align-items-center justify-content-center cursor-pointer h-2rem w-2rem border-circle hover:bg-gray-200">
                 <i class="pi pi-ellipsis-h text-gray-500 hover:text-gray-700"></i>
               </div>
@@ -102,12 +105,12 @@
   <p-overlayPanel [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'200ms'" #op [dismissable]="true">
     <ng-template pTemplate>
       <div class="flex flex-column p-2">
-        <div (click)="unpinMessage()"
+        <div (click)="op.hide();unpinMessage()"
           class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1">
           <i class="fa-solid fa-link-slash mr-2 text-xs"></i>
           <p class="text-sm my-0">Bỏ ghim</p>
         </div>
-        <div
+        <div (click)="op.hide()"
           class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1">
           <i class="fa-solid fa-location-dot mr-2 ml-1 text-sm"></i>
           <p class="text-sm my-0">Xem trong đoạn chat</p>

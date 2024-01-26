@@ -79,15 +79,18 @@ export class ChatService extends BaseService {
     return this.BaseAPIConfig.post(`${this.apiController}/test-signal-r`, {});
   }
 
-  reactMessage(input: ReactMessageDto){
+  reactMessage(input: ReactMessageDto) {
     return this.BaseAPIConfig.post(`${this.apiController}/react-message`, input);
   }
 
-  pinMessage(input: PinMessageDto){
+  pinMessage(input: PinMessageDto) {
     return this.BaseAPIConfig.post(`${this.apiController}/pin-message`, input);
   }
 
-  getListPinMessageByConversation(conversationId: string){
+  getListPinMessageByConversation(conversationId: string) {
     return this.BaseAPIConfig.get(`${this.apiController}/pin-message-by-conversation/${conversationId}`);
+  }
+  deleteMessage(messageId: string) {
+    return this.BaseAPIConfig.delete(`${this.apiController}/message/${messageId}`);
   }
 }
