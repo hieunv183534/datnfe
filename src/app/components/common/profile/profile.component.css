@@ -2,9 +2,9 @@
   height: 83px;
 }
 
-.page{
-    background-color: #ffffff;
-    padding: 5px;
+.page {
+  background-color: #ffffff;
+  padding: 5px;
 }
 
 .profile .logo {
@@ -31,7 +31,28 @@ ul {
   margin-top: 80px;
 }
 
-.color-text{
-  color: #01A9FF
+.color-text {
+  color: #01a9ff;
 }
 
+.logo {
+  top: 45%;
+  left: 5%;
+  width: 150px;
+}
+
+@media (max-width: 576px) {
+  .logo {
+    top: 70%;
+    left: 5%;
+    width: 90px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .logo {
+    top: 70%;
+    left: 5%;
+    width: 90px;
+  }
+}

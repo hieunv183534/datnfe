@@ -29,6 +29,8 @@ export class UpdateUserInfoComponent implements OnInit {
   availableTimes: any = FsiValues.availableTimes;
   genders: any[] = [{ name: "Nam", value: true }, { name: "Nữ", value: false }];
   purposes: any[] =  FsiValues.purposes;
+  styleDialog: any = { width:'50vw' }
+  innerWidth: any;
 
   universities: any[] = FsiValues.universities.map(x => {
     return {
@@ -56,6 +58,10 @@ export class UpdateUserInfoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth <= 767){
+      this.styleDialog = {}
+    }
     this.croppedImage = this.userInfo.avatarUrl;
     this.steps = [
       { label: 'Ảnh đại diện' },

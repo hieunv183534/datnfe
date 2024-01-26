@@ -16,12 +16,15 @@
   overflow: hidden;
 }
 
+.startupItem .avatar-project {
+  padding: 15px;
+}
+
 .startupItem #logo {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
   border-radius: 17px;
   object-fit: contain;
   width: 100%;
-  margin: auto;
 }
 
 .startupItem #goldOutline {

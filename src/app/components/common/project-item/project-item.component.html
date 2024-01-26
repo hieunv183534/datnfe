@@ -1,57 +1,90 @@
-<div class='startupItem flex flex-column' (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
-  <div class="avatar-project w-full h-auto relative">
-    <img [src]="project.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt='' id='logo' />
+<div
+  class="startupItem flex flex-column"
+  (mouseenter)="isHovered = true"
+  (mouseleave)="isHovered = false"
+>
+  <div class="w-full h-auto relative">
+    <div class="avatar-project">
+      <img
+        [src]="
+          project.avatarUrl ??
+          'https://fsiconnected.cloud/images/default-avatar.jpg'
+        "
+        alt=""
+        id="logo"
+      />
+    </div>
     <ng-container *ngIf="isHovered">
-      <div class='hoverDiv'>
-        <button type='button' id='xemthem' (click)="showDetailProject()">
+      <div class="hoverDiv">
+        <button type="button" id="xemthem" (click)="showDetailProject()">
           <i class="pi pi-eye"></i> Xem thêm
         </button>
-        <button *ngIf="relationWithProject == 1" type='button' id='ketnoi' (click)="requestToProject()">
+        <button
+          *ngIf="relationWithProject == 1"
+          type="button"
+          id="ketnoi"
+          (click)="requestToProject()"
+        >
           <i class="pi pi-share-alt"></i> Kết nối
         </button>
-        <button *ngIf="relationWithProject == 2" type='button' id='ketnoi' (click)="acceptRequest()">
+        <button
+          *ngIf="relationWithProject == 2"
+          type="button"
+          id="ketnoi"
+          (click)="acceptRequest()"
+        >
           <i class="pi pi-check"></i> Chấp nhận
         </button>
-        <button *ngIf="relationWithProject == 3" type='button' id='ketnoi' (click)="cancelRequest()">
+        <button
+          *ngIf="relationWithProject == 3"
+          type="button"
+          id="ketnoi"
+          (click)="cancelRequest()"
+        >
           <i class="pi pi-times"></i> Hủy kết nối
         </button>
 
         <ng-container *ngIf="relationWithProject == 4">
-          <button *ngIf="!project.isActive" type='button' id='ketnoi' (click)="adminAccept1()">
+          <button
+            *ngIf="!project.isActive"
+            type="button"
+            id="ketnoi"
+            (click)="adminAccept1()"
+          >
             <i class="pi pi-check"></i> Duyệt
           </button>
-          <button type='button' id='ketnoi' (click)="adminDelete1()">
+          <button type="button" id="ketnoi" (click)="adminDelete1()">
             <i class="pi pi-times"></i> Xóa
           </button>
         </ng-container>
       </div>
     </ng-container>
   </div>
-  <div class='content'>
-    <div class='name'>{{project.projectName}}</div>
-    <div class='description'>{{project.description}}</div>
-    <span class="flex justify-content-between ">
+  <div class="content">
+    <div class="name">{{ project.projectName }}</div>
+    <div class="description">{{ project.description }}</div>
+    <span class="flex justify-content-between">
       <span class="flex align-items-center mr-6">
         <i class="pi pi-building"></i>
-        <p>{{getArea(project.area)}}</p>
+        <p>{{ getArea(project.area) }}</p>
       </span>
       <span class="flex align-items-center">
         <i class="pi pi-chart-line"></i>
-        <p>{{getStage(project.stage)}}</p>
+        <p>{{ getStage(project.stage) }}</p>
       </span>
     </span>
     <span class="flex align-items-center">
       <i class="pi pi-book"></i>
-      <p>{{getFields(project.fields)}}</p>
+      <p>{{ getFields(project.fields) }}</p>
     </span>
     <span class="flex justify-content-between">
       <span class="flex align-items-center mr-6">
         <i class="pi pi-users"></i>
-        <p>{{project.extraProperties.memberCount}}</p>
+        <p>{{ project.extraProperties.memberCount }}</p>
       </span>
       <span class="flex align-items-center">
         <i class="pi pi-money-bill"></i>
-        <p>{{project.extraProperties.totalInvesment}}$</p>
+        <p>{{ project.extraProperties.totalInvesment }}$</p>
       </span>
     </span>
   </div>

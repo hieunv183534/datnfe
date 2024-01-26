@@ -1,3 +1,15 @@
-app-startuper-for-startuper .p-inputtext{
-    padding-left: 2.5rem !important;
+app-startuper-for-startuper .p-inputtext {
+  padding-left: 2.5rem !important;
+}
+
+@media (max-width: 576px) {
+  .col-2 {
+    width: 50%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .col-2 {
+    width: 50%;
+  }
 }
