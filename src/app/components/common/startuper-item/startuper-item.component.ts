@@ -27,6 +27,8 @@ export class StartuperItemComponent implements OnInit {
   UuidStartuperModeToMe = UuidStartuperModeToMe;
   UuidStartuperModeAdmin = UuidStartuperModeAdmin;
 
+  handleConnect: boolean = false;
+
   @Output() requestFriend: EventEmitter<any> = new EventEmitter();
   @Output() acceptFriend: EventEmitter<any> = new EventEmitter();
   @Output() cancelRequestFriend: EventEmitter<any> = new EventEmitter();
@@ -42,6 +44,10 @@ export class StartuperItemComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  closeModal(){
+    this.handleConnect = false
   }
 
   getAge(dob: any) {
@@ -101,7 +107,12 @@ export class StartuperItemComponent implements OnInit {
   }
 
   requestFriendOnClick() {
+    this.handleConnect = true
+  }
+
+  requestConnect(){
     this.requestFriend.emit(this.startuper);
+    this.handleConnect = false
   }
 
   requestFromProjectOnClick() {

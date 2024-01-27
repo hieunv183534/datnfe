@@ -270,6 +270,10 @@ app-work-history-summary .p-card-content {
   padding: 0.5rem 0.75rem !important;
 }
 
+.p-tag {
+  background-color: #01a9ff !important;
+}
+
 @media (max-width: 576px) {
   .search .p-inputtext {
     width: 300px !important;

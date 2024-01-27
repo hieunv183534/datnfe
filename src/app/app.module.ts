@@ -116,6 +116,7 @@ import { RequestInfoComponent } from './components/startuper/project-space/list-
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { VideoCallComponent } from './components/chat/video-call/video-call.component';
 import { WorkHistorySummaryComponent } from './components/common/work-history-summary/work-history-summary.component';
+import { ModalConnectComponent } from './components/common/startuper-item/modalConnect/modal-connect.component';
 import { InformationBoxComponent } from './components/chat/information-box/information-box.component';
 import {HomePageNewComponent} from './components/home-page-new/home-page-new.component';
 import {CarouselModule} from 'primeng/carousel';
@@ -182,6 +183,7 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
     RequestInfoComponent,
     VideoCallComponent,
     WorkHistorySummaryComponent,
+    ModalConnectComponent,
     HistorySearchItemComponent
   ],
   imports: [

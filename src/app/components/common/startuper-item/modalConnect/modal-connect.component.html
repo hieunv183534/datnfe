@@ -1,0 +1,41 @@
+<p-dialog
+  [resizable]="true"
+  header="Gửi yêu cầu kết nối"
+  [(visible)]="display"
+  [modal]="true"
+  [style]="styleDialog"
+  [baseZIndex]="10000"
+  [draggable]="false"
+  (onHide)="close.emit()"
+>
+  <div class="p-fluid grid">
+    <p>
+      Ấn tượng ban đầu rất quan trọng, hãy gửi một lời chào thân thiện đến đối
+      tác tương lai của bạn. Khi yêu cầu kết nối được chấp nhận, chúng tôi sẽ
+      gửi thông báo cho bạn biết.
+    </p>
+    <div class="col-12">
+      <span class="p-float-label">
+        <textarea [rows]="5" pInputTextarea></textarea>
+        <label>Xin chào, tôi muốn kết nối với bạn vì.. </label>
+      </span>
+    </div>
+  </div>
+  <div class="flex justify-content-center flex-wrap mt-3">
+    <p-button
+      class="mr-1"
+      label="Hủy bỏ"
+      [style]="{
+        backgroundColor: 'white',
+        color: 'black',
+        borderRadius: '17px'
+      }"
+      (onClick)="close.emit()"
+    ></p-button>
+    <p-button
+      [style]="{ backgroundColor: '#01A9FF', borderRadius: '17px' }"
+      label="Hoàn tất"
+      (onClick)="requestConnect.emit()"
+    ></p-button>
+  </div>
+</p-dialog>

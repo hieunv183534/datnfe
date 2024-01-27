@@ -191,10 +191,10 @@ export class FsiValues {
 
   
   static purposes: DataPointDto[] = [
-    new DataPointDto("Tôi là người có ý tưởng", 1, "Have Idea"),
+    new DataPointDto("Tôi đang có ý tưởng khởi nghiệp", 1, "Have Idea"),
     new DataPointDto("Tôi muốn tìm người có ý tưởng", 2, "Find People Have Idea"),
-    new DataPointDto("Tôi là người có dự án", 3, "Have Project"),
-    new DataPointDto("Tôi là người muốn tìm dự án", 4, "Find People Have Project"),
+    new DataPointDto("Tôi đang tham gia dự án", 3, "Have Project"),
+    new DataPointDto("Tôi muốn tham gia dự án", 4, "Find People Have Project"),
   ];
 
   static jobs: DataPointDto[] = [
