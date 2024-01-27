@@ -149,10 +149,15 @@
           </div>
 
           <div class="col-2 md-6 sm-6 flex justify-content-center mt-1">
-            <p-button icon="pi pi-search" (onClick)="submitSearch()"></p-button>
+            <p-button
+              [style]="{ backgroundColor: '#01A9FF' }"
+              icon="pi pi-search"
+              (onClick)="submitSearch()"
+            ></p-button>
             <p-button
               class="ml-4"
               icon="pi pi-times"
+              [style]="{ backgroundColor: '#01A9FF' }"
               (onClick)="clearSearch()"
             ></p-button>
           </div>
@@ -160,7 +165,11 @@
       </div>
     </div>
     <div class="flex mt-2" style="padding: 10px; justify-content: flex-end">
-      <p-button (onClick)="routeToHistorySearch()">Lịch sử tìm kiếm</p-button>
+      <p-button
+        [style]="{ backgroundColor: '#01A9FF' }"
+        (onClick)="routeToHistorySearch()"
+        >Lịch sử tìm kiếm</p-button
+      >
     </div>
 
     <p-dataView [value]="listStartuper" *ngIf="listStartuper.length > 0">

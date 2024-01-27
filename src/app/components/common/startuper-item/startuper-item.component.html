@@ -3,8 +3,8 @@
   (mouseenter)="isHovered = true"
   (mouseleave)="isHovered = false"
 >
-  <div class="grid info">
-    <div class="col-5 md-5">
+  <div class="grid info" style="border-bottom: 1px solid #b9b3b0;">
+    <div class="col-4 md-4">
       <img
         [src]="
           startuper.avatarUrl ??
@@ -14,22 +14,22 @@
         id="avatar"
       />
     </div>
-    <div class="col-7 md-7">
+    <div class="col-8 md-8">
       <ul>
         <li>
           <div class="name">{{ startuper.name }}</div>
         </li>
         <li>
           <i class="pi pi-search"></i>
-          <b> {{ getPurpose(startuper.purpose) }}</b>
+          {{ getPurpose(startuper.purpose) }}
         </li>
         <li>
           <i class="pi pi-calendar"></i>
-          <b> {{ getDate(startuper.dateOfBirth) }}</b>
+          {{ getDate(startuper.dateOfBirth) }}
         </li>
         <li>
           <i class="pi pi-map-marker"></i>
-          <b> {{ getArea(startuper.location) }}</b>
+          {{ getArea(startuper.location) }}
         </li>
       </ul>
     </div>
@@ -37,24 +37,36 @@
   <div class="grid info">
     <div class="col-12">
       <ul>
+        <!-- <li *ngIf="startuper.purpose == 3">
+          <p><b>Dự án tôi đang tham gia</b></p>
+          <span>
+            <p-tag
+              *ngFor="
+                let targetField of getTargetField(startuper.targetField ?? [])
+              "
+              [value]="targetField"
+              styleClass="mr-1 mt-1"
+            ></p-tag>
+          </span>
+        </li> -->
+        <li *ngIf="startuper.purpose == 1">
+          <p><b>Ý tưởng của tôi thuộc lĩnh vực</b></p>
+          <span>
+            <p-tag
+              *ngFor="let ideaField of getIdeaField(startuper.ideaField ?? [])"
+              [value]="ideaField"
+              styleClass="mr-1 mt-1"
+            ></p-tag>
+          </span>
+        </li>
         <li>
-          <p><b>Chuyên môn của tôi</b></p>
+          <p><b>Kỹ năng chuyên môn của tôi</b></p>
           <span>
             <p-tag
               *ngFor="
                 let specialize of getSpecializies(startuper.specialize ?? [])
               "
               [value]="specialize"
-              styleClass="mr-1 mt-1"
-            ></p-tag>
-          </span>
-        </li>
-        <li *ngIf="startuper.purpose == 1">
-          <p><b>Lĩnh vực của ý tưởng</b></p>
-          <span>
-            <p-tag
-              *ngFor="let ideaField of getIdeaField(startuper.ideaField ?? [])"
-              [value]="ideaField"
               styleClass="mr-1 mt-1"
             ></p-tag>
           </span>
@@ -74,7 +86,7 @@
           </span>
         </li>
         <li *ngIf="startuper.purpose == 4">
-          <p><b>Lĩnh vực của dự án</b></p>
+          <p><b>Lĩnh vực tôi quan tâm</b></p>
           <span>
             <p-tag
               *ngFor="
@@ -86,7 +98,7 @@
           </span>
         </li>
         <li *ngIf="startuper.purpose == 2">
-          <p><b>Lĩnh vực của ý tưởng</b></p>
+          <p><b>Lĩnh vực tôi quan tâm</b></p>
           <span>
             <p-tag
               *ngFor="
@@ -97,7 +109,7 @@
             ></p-tag>
           </span>
         </li>
-        <li *ngIf="startuper.purpose == 0 || startuper.purpose === 3">
+        <li *ngIf="startuper.purpose != 1">
           <p><b>Thời gian khả dụng</b></p>
           <span>
             <p-tag
@@ -184,3 +196,10 @@
     </button>
   </div>
 </div>
+<ng-container *ngIf="handleConnect">
+  <app-modal-connect
+    [display]="handleConnect"
+    (close)="closeModal()"
+    (requestConnect)="requestConnect()"
+  ></app-modal-connect>
+</ng-container>

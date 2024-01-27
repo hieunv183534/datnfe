@@ -165,6 +165,10 @@
                       <b><span>Tên dự án: </span> </b>
                       <span>{{ item.project.projectName }}</span>
                     </li>
+                    <li>
+                      <b><span>Mô tả dự án: </span> </b>
+                      <span>{{ item.project.description }}</span>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -479,3 +483,11 @@
     ></p-button>
   </ng-template>
 </p-dialog>
+
+<ng-container *ngIf="handleConnect">
+  <app-modal-connect
+    [display]="handleConnect"
+    (close)="closeModal()"
+    (requestConnect)="requestConnect()"
+  ></app-modal-connect>
+</ng-container>

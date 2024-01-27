@@ -25,6 +25,7 @@ export class UserDetailComponent implements OnInit {
   listWork: any[] = [];
   friendStatus: number = 0;
   headerName: string = '';
+  handleConnect: boolean = false;
 
   projectRoles = ["Nhà đầu tư", "Thành viên", "Đồng sáng lập", "Nhà sáng lập"]
   constructor(
@@ -57,6 +58,9 @@ export class UserDetailComponent implements OnInit {
     });
   }
 
+  closeModal(){
+    this.handleConnect = false
+  }
 
   hide() {
     this.close.emit();
@@ -123,7 +127,8 @@ export class UserDetailComponent implements OnInit {
     this.router.navigate([`./profile/${value}`]);
   }
 
-  connectOnClick() {
+  requestConnect(){
+    this.handleConnect = false
     this.startuperService.requestFriendToOrtherStartuper(this.startuperInfo.id).then((res: any) => {
       this.messageService.add({
         key: "toast",
@@ -140,6 +145,11 @@ export class UserDetailComponent implements OnInit {
         detail: "Thất bại, vui lòng thử lại sau!",
       });
     });
+    this.close.emit();
+  }
+
+  connectOnClick() {
+    this.handleConnect = true
   }
 
   cancelOnClick() {
