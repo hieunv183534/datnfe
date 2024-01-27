@@ -18,7 +18,7 @@ export class MessageComponent implements OnInit {
   MessageType = MessageType;
   listUserInConversation: any[] = [];
   display: boolean = false;
-
+  now = new Date();
   @Input() message?: any = {};
   @Output() replyMessage: EventEmitter<void> = new EventEmitter<void>();
 
@@ -38,7 +38,6 @@ export class MessageComponent implements OnInit {
     private eventService: EventService,
     private messageService: MessageService
   ) {
-
   }
 
   deleteMessage(messageId: string, m: MessageDto) {
@@ -68,10 +67,13 @@ export class MessageComponent implements OnInit {
     }
   }
   ngOnInit() {
+    let creationTime = new Date(this.message.creationTime);
+    let diffInSeconds = (this.now.getTime() - creationTime.getTime()) / 1000;
+    if (diffInSeconds < 25440)
+      this.message.canDelete = true;
+
     this.eventService.currentConversationUsers.subscribe(users => {
       this.listUserInConversation = users
-      console.log(users);
-
     })
     const emojis = [];
     for (let i = 0; i < this.message.reacts.length; i++) {
@@ -90,7 +92,10 @@ export class MessageComponent implements OnInit {
       }
     }
     this.message.reacts = emojis;
-    console.log(this.message.reacts);
+
+
+  }
+  getCanDelete() {
 
   }
   reactMessage(e: number | null, id: string) {

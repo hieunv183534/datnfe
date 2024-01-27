@@ -287,4 +287,7 @@ app-work-history-summary .p-card-content {
   font-size: 16px;
   padding: 1rem 1rem 0.5rem 1rem !important;
 }
+.p-inputtext:active {
+  border: 1px solid !important;
+}
 

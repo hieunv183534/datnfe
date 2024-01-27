@@ -4,6 +4,7 @@ import { ConversationDto } from 'src/app/model/chat.class';
 import { ChatService } from 'src/app/services/chat.service';
 import { Util } from 'src/app/shared/util/util';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-information-box',
@@ -24,6 +25,7 @@ export class InformationBoxComponent implements OnInit {
   @Output() close: EventEmitter<any> = new EventEmitter();
 
   constructor(
+    private router: Router,
     private chatService: ChatService,
     private messageService: MessageService
   ) { }
@@ -58,6 +60,10 @@ export class InformationBoxComponent implements OnInit {
       this.pinnedMessage = res.data
     })
 
+  }
+  goToUserPage(userId:string|undefined) {
+    console.log(userId);
+    // this.router.navigate(['../startuper'], { relativeTo: this.route });
   }
   ngOnInit(): void {
     this.items = [

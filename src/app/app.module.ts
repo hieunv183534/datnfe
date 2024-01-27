@@ -122,6 +122,8 @@ import {CarouselModule} from 'primeng/carousel';
 import {SidebarModule} from 'primeng/sidebar';
 import {ButtonModule} from 'primeng/button';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 @NgModule({
   declarations: [
@@ -242,7 +244,9 @@ import {VirtualScrollerModule} from 'primeng/virtualscroller';
     SidebarModule,
     ButtonModule,
     CarouselModule,
-    VirtualScrollerModule
+    VirtualScrollerModule,
+    InfiniteScrollModule,
+    ProgressSpinnerModule
   ],
   providers: [
     MessageService,

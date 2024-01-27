@@ -165,7 +165,7 @@
     "uuid" "8.3.2"
     "yargs" "17.5.1"
 
-"@angular/common@^14.0.0", "@angular/common@^14.0.0 || ^15.0.0", "@angular/common@>=13.0.0", "@angular/common@>=13.3.3", "@angular/common@12 - 16", "@angular/common@14.2.0":
+"@angular/common@^14.0.0", "@angular/common@^14.0.0 || ^15.0.0", "@angular/common@>=13.0.0", "@angular/common@>=13.3.3", "@angular/common@>=14.0.0 <15.0.0", "@angular/common@12 - 16", "@angular/common@14.2.0":
   "integrity" "sha512-dXCGuM/Yh9B8OVVHHfPuXLYdu0olemKmuYLZXGoqyzeYU5OpQ6+qcHYTrlREkWpF9QY+pk2ewfM9Hke1UENEHA=="
   "resolved" "https://registry.npmjs.org/@angular/common/-/common-14.2.0.tgz"
   "version" "14.2.0"
@@ -195,7 +195,7 @@
   dependencies:
     "tslib" "^2.3.0"
 
-"@angular/core@^14.0.0", "@angular/core@^14.0.0 || ^15.0.0", "@angular/core@>=13.0.0", "@angular/core@>=13.3.3", "@angular/core@>=14.0.0-0", "@angular/core@12 - 16", "@angular/core@14.2.0":
+"@angular/core@^14.0.0", "@angular/core@^14.0.0 || ^15.0.0", "@angular/core@>=13.0.0", "@angular/core@>=13.3.3", "@angular/core@>=14.0.0 <15.0.0", "@angular/core@>=14.0.0-0", "@angular/core@12 - 16", "@angular/core@14.2.0":
   "integrity" "sha512-m00WZL+df90QjrNmA43W8oSP1hyePoEXgw36JcFLQ+2ISO1HvqoeuKXIccyIQKpCuQ9VLNv5ptlTio6pjmcCqg=="
   "resolved" "https://registry.npmjs.org/@angular/core/-/core-14.2.0.tgz"
   "version" "14.2.0"
@@ -4449,6 +4449,13 @@
   "integrity" "sha512-bnhuaXW5dVasTxnecA2w4BrJ8G2CMPLjVsz9ePae+gCuDjRpxYEXsg/5TwceyxI6azXwbDCNCAfACAeBcsyTpg=="
   "resolved" "https://registry.npmjs.org/ngx-image-cropper/-/ngx-image-cropper-7.0.0.tgz"
   "version" "7.0.0"
+  dependencies:
+    "tslib" "^2.3.0"
+
+"ngx-infinite-scroll@^14.0.0":
+  "integrity" "sha512-YZB5PBPXSERNtCGQRZTVflbgkh5asp01NPfC8KPItemmQik1Ip8ZCCbcyHA77TDTdilmaiu8TbguA3geg/LMWw=="
+  "resolved" "https://registry.npmjs.org/ngx-infinite-scroll/-/ngx-infinite-scroll-14.0.0.tgz"
+  "version" "14.0.0"
   dependencies:
     "tslib" "^2.3.0"
 
