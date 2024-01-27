@@ -3,24 +3,28 @@
   <p-tabView (onChange)="tabChange($event)">
     <p-tabPanel header="Thông tin chung">
       <p-divider align="left"> <b>Tên nhóm</b> </p-divider>
-      <input type="text" pInputText class="w-full" [(ngModel)]="conversationName"/>
+      <input type="text" pInputText class="w-full" [(ngModel)]="conversationName" />
       <p-divider align="left"> <b>Tải lên ảnh đại diện</b> </p-divider>
       <input type="file" (change)="fileChangeEvent($event)" />
+      <!-- <p-fileUpload mode="basic" name="demo[]" accept="image/*"  (onUpload)="fileChangeEvent($event)" [auto]="true"></p-fileUpload> -->
 
-      <div class="image-cropper-wrapper">
-        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1"
-          format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)"
-          (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+      <div class="flex justify-content-center mt-2">
+        <div *ngIf="imageChangedEvent === '' " class="flex flex-column justify-content-between h-15rem w-auto">
+          <img class="preview-image h-full border-circle" style="object-fit: contain;" [src]="croppedImage" />
+        </div>
+        <div *ngIf="imageChangedEvent !== '' " class="image-cropper-wrapper h-15rem w-auto">
+          <image-cropper [roundCropper]="true" [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1"
+            format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)"
+            (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+        </div>
       </div>
-
-      <img class="preview-image" [src]="croppedImage" />
     </p-tabPanel>
     <p-tabPanel header="Thành viên">
       <p-table #dt [value]="inviteUsers" [rowHover]="true" dataKey="id" class="w-full mt-3"
         styleClass="p-datatable-customers p-datatable-gridlines p-datatable-striped p-datatable-sm"
         [globalFilterFields]="['code','name']">
         <ng-template pTemplate="caption">
-          <div class="flex flex-column md:flex-row md:justify-content-between table-header">
+          <div class="flex flex-row justify-content-between table-header">
             <span class="flex justify-content-between w-full">
               <input type="text" pInputText placeholder="Tìm theo sdt/ email" class="mr-10" style="width: 90%;"
                 [(ngModel)]="keySearchUser" />
@@ -51,8 +55,9 @@
           <tr>
             <td>
               <span class="flex align-items-center">
-                <p-avatar shape="circle" [image]="user.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
-                <p class="ml-4">{{user.name}}</p>
+                <p-avatar size="large" shape="circle"
+                  [image]="user.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
+                <span class="ml-3">{{user.name}}</span>
               </span>
             </td>
             <td>
