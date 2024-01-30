@@ -184,12 +184,22 @@
                       [rows]="5"
                       pInputTextarea
                       formControlName="describe"
+                      (input)="handleChange()"
                     ></textarea>
                     <label
                       >Mô tả thêm, slogan của bản thân:
                       <span style="color: red">*</span>
                     </label>
                   </span>
+                  <span
+                    class="text-error"
+                    *ngIf="
+                      !formStartuperInfo.value.describe &&
+                      !this.formStartuperInfo.valid &&
+                      handleSubmit
+                    "
+                    >Mô tả thêm, slogan của bản thân không được để trống</span
+                  >
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
@@ -200,12 +210,18 @@
                       formControlName="purpose"
                       [autoDisplayFirst]="false"
                       emptyMessage="Chọn 1"
+                      (onChange)="handleChange()"
                     ></p-dropdown>
                     <label
                       >Mục đích tham gia FSI CONNECTED?:
                       <span style="color: red">*</span>
                     </label>
                   </span>
+                  <span
+                    class="text-error"
+                    *ngIf="formStartuperInfo.value.purpose == 0 && handleSubmit"
+                    >Mục đích tham gia FSI CONNECTED không được để trống</span
+                  >
                 </div>
                 <div
                   class="p-field col-12 md-12"
@@ -221,10 +237,23 @@
                       defaultLabel="Chọn chuyên môn của mình"
                       optionLabel="name"
                       formControlName="ideaField"
+                      (onChange)="handleChange()"
                     >
                     </p-multiSelect>
-                    <label>Lĩnh vực ý tưởng của bạn: </label>
+                    <label
+                      >Lĩnh vực ý tưởng của bạn:
+                      <span style="color: red">*</span></label
+                    >
                   </span>
+                  <span
+                    class="text-error"
+                    *ngIf="
+                      formStartuperInfo.value.ideaField.length == 0 &&
+                      !this.formStartuperInfo.valid &&
+                      handleSubmit
+                    "
+                    >Lĩnh vực ý tưởng của bạn không được để trống</span
+                  >
                 </div>
                 <div
                   class="p-field col-12 md-12"
@@ -242,8 +271,20 @@
                       formControlName="targetSpecialize"
                     >
                     </p-multiSelect>
-                    <label>Bạn muốn tìm người có chuyên môn như nào: </label>
+                    <label
+                      >Bạn muốn tìm người có chuyên môn như nào:
+                      <span style="color: red">*</span></label
+                    >
                   </span>
+                  <span
+                    class="text-error"
+                    *ngIf="
+                      formStartuperInfo.value.targetSpecialize.length == 0 &&
+                      !this.formStartuperInfo.valid &&
+                      handleSubmit
+                    "
+                    >Tìm người có chuyên môn như nào không được để trống</span
+                  >
                 </div>
                 <div
                   class="p-field col-12 md-12"
@@ -261,8 +302,20 @@
                       formControlName="requestPersonality"
                     >
                     </p-multiSelect>
-                    <label>Bạn muốn tìm người có tính cách như nào: </label>
+                    <label
+                      >Bạn muốn tìm người có tính cách như nào:
+                      <span style="color: red">*</span></label
+                    >
                   </span>
+                  <span
+                    class="text-error"
+                    *ngIf="
+                      formStartuperInfo.value.requestPersonality.length == 0 &&
+                      !this.formStartuperInfo.valid &&
+                      handleSubmit
+                    "
+                    >Tìm người có tính cách như nào không được để trống</span
+                  >
                 </div>
                 <div
                   class="p-field col-12 md-12"
@@ -280,8 +333,20 @@
                       formControlName="requestSkill"
                     >
                     </p-multiSelect>
-                    <label>Bạn muốn tìm người có kỹ năng mềm như nào: </label>
+                    <label
+                      >Bạn muốn tìm người có kỹ năng mềm như nào:
+                      <span style="color: red">*</span></label
+                    >
                   </span>
+                  <span
+                    class="text-error"
+                    *ngIf="
+                      formStartuperInfo.value.requestSkill.length == 0 &&
+                      !this.formStartuperInfo.valid &&
+                      handleSubmit
+                    "
+                    >Tìm người có kỹ năng mềm như nào không được để trống</span
+                  >
                 </div>
                 <div
                   class="p-field col-12 md-12"
@@ -299,8 +364,20 @@
                       formControlName="targetField"
                     >
                     </p-multiSelect>
-                    <label>Lĩnh vực của dự án muốn tham gia: </label>
+                    <label
+                      >Lĩnh vực của dự án muốn tham gia:
+                      <span style="color: red">*</span></label
+                    >
                   </span>
+                  <span
+                    class="text-error"
+                    *ngIf="
+                      formStartuperInfo.value.targetField.length == 0 &&
+                      !this.formStartuperInfo.valid &&
+                      handleSubmit
+                    "
+                    >Lĩnh vực của dự án muốn tham gia không được để trống</span
+                  >
                 </div>
                 <div
                   class="p-field col-12 md-12"
@@ -318,8 +395,20 @@
                       formControlName="targetField"
                     >
                     </p-multiSelect>
-                    <label>Lĩnh vực ý tưởng muốn tham gia: </label>
+                    <label
+                      >Lĩnh vực ý tưởng muốn tham gia:
+                      <span style="color: red">*</span></label
+                    >
                   </span>
+                  <span
+                    class="text-error"
+                    *ngIf="
+                      formStartuperInfo.value.targetField.length == 0 &&
+                      !this.formStartuperInfo.valid &&
+                      handleSubmit
+                    "
+                    >Lĩnh vực ý tưởng muốn tham gia không được để trống</span
+                  >
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
@@ -339,6 +428,15 @@
                       <span style="color: red">*</span>
                     </label>
                   </span>
+                  <span
+                    class="text-error"
+                    *ngIf="
+                      formStartuperInfo.value.specialize.length == 0 &&
+                      !this.formStartuperInfo.valid &&
+                      handleSubmit
+                    "
+                    >Chuyên môn không được để trống</span
+                  >
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
@@ -352,7 +450,6 @@
                     ></p-dropdown>
                     <label
                       >Bạn đang hoạt động/Làm việc trong lĩnh vực nào?:
-                      <span style="color: red">*</span>
                     </label>
                   </span>
                 </div>
@@ -366,25 +463,9 @@
                       formControlName="yearOfExp"
                       emptyMessage="Chọn 1"
                     ></p-dropdown>
-                    <label
-                      >Số năm kinh nghiệm trong lĩnh vực:
-                      <span style="color: red">*</span>
-                    </label>
+                    <label>Số năm kinh nghiệm trong lĩnh vực: </label>
                   </span>
                 </div>
-                <!-- <div class="p-field col-12 md-12">
-                  <span class="p-float-label">
-                    <textarea
-                      [rows]="5"
-                      pInputTextarea
-                      formControlName="speciality"
-                    ></textarea>
-                    <label
-                      >Kỹ năng chuyên môn của bạn:
-                      <span style="color: red">*</span>
-                    </label>
-                  </span>
-                </div> -->
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
                     <p-dropdown
@@ -400,6 +481,15 @@
                       trong một dự án?: <span style="color: red">*</span>
                     </label>
                   </span>
+                  <span
+                    class="text-error"
+                    *ngIf="
+                      !formStartuperInfo.value.availableTime &&
+                      !this.formStartuperInfo.valid &&
+                      handleSubmit
+                    "
+                    >Thời gian không được để trống</span
+                  >
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
@@ -416,7 +506,6 @@
                     </p-multiSelect>
                     <label
                       >Hãy lựa chọn 3 từ mô tả đúng nhất về tính cách của bạn:
-                      <span style="color: red">*</span>
                     </label>
                   </span>
                 </div>
@@ -435,7 +524,7 @@
                     </p-multiSelect>
                     <label
                       >Hãy lựa chọn 3 kỹ năng mềm của bản thân mà bạn tâm đắc
-                      nhất: <span style="color: red">*</span>
+                      nhất:
                     </label>
                   </span>
                 </div>
@@ -454,7 +543,6 @@
                     <label>
                       Các hoạt động xã hội, từ thiện, tình nguyện khác... (bao
                       gồm: Tổ chức, vị trí, khoảng thời gian):
-                      <span style="color: red">*</span>
                     </label>
                   </span>
                 </div>
@@ -465,9 +553,7 @@
                       pInputTextarea
                       formControlName="certificateAndAward"
                     ></textarea>
-                    <label
-                      >Chứng chỉ, thành tích: <span style="color: red">*</span>
-                    </label>
+                    <label>Chứng chỉ, thành tích: </label>
                   </span>
                 </div>
               </div>
