@@ -1,5 +1,5 @@
 <div class="chat-container w-full px-0" style="border-bottom: 1px solid #ccc;">
-  <div style="" class="conversation-box flex-column pl-2 md:w-min md:max-w-24rem lg:w-max"
+  <div class="conversation-box flex-column pl-2 md:w-min md:max-w-24rem lg:w-max"
     [ngClass]="[(thisConversation && isMobile) ? 'hidden hide-conversation-box' : 'flex  show-conversation-box w-full']">
     <div class="conversation-header grid pl-1">
       <div class="col-12 flex justify-content-between align-items-center">
@@ -85,10 +85,15 @@
           </div>
         </div>
       </div>
-      <div id="scroll-message" class="message-content overflow-y-auto h-full " #scrollMe [scrollTop]="scrollMe.scrollHeight">
+      <div id="scroll-message" class="message-content overflow-y-auto h-full " #scrollMe
+        (scroll)="handleScroll($event)">
         <div class="message-wrapper">
+          <div *ngIf="isLoading" class="flex justify-content-center align-items-center h-4rem">
+            <p-progressSpinner styleClass="h-3rem"></p-progressSpinner>
+          </div>
           <ng-container *ngFor="let message of messages">
-            <div app-message (replyMessage)="handleReplyMessage(message)" [message]="message" class="'w-full message-item flex"
+            <div app-message (replyMessage)="handleReplyMessage(message)" [message]="message"
+              class="'w-full message-item flex"
               [ngClass]="{'justify-content-start' : !message.isMine, 'justify-content-end': message.isMine ,'mt-3':message.showA,'mt-4':(!message.isMine && message.showA && !thisConversation.justTwoPeople),'mt-6789':message.focusToMessageId}">
             </div>
           </ng-container>
@@ -132,7 +137,7 @@
             <div class="w-full p-2 pb-1 relative">
               <div style="overflow: hidden; background-color: #eaedf3;"
                 class="container-input-message border-round-3xl pt-1">
-                <textarea style="resize: none; width: 98%; " [(ngModel)]="contentText" [rows]="rows"
+                <textarea style="resize: none; width: 98%; " [(ngModel)]="contentText" [rows]="rows" #areaInput
                   class="relative custom-textarea h-full border-none border-round-3xl "
                   [ngClass]="{'pt-8' : (files.length > 0)}" (keydown)="handleKeyDown($event)"
                   (keyup)="handleKeyUp($event)" (ngModelChange)="handleChange()" placeholder="Type your message...">

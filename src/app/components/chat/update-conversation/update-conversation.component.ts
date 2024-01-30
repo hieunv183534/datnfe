@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageCropperComponent, ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { MessageService } from 'primeng/api';
@@ -8,7 +8,9 @@ import jwt_decode from 'jwt-decode';
 @Component({
   selector: 'app-update-conversation',
   templateUrl: './update-conversation.component.html',
-  styleUrls: ['./update-conversation.component.css']
+  styleUrls: ['./update-conversation.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class UpdateConversationComponent implements OnInit {
 

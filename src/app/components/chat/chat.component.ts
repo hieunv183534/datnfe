@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener, ViewEncapsulation, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, ViewEncapsulation, ElementRef, ViewChild, ViewChildren, QueryList, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { ConversationDto, GetListConversationDto, GetListMessageDto, MessageDto, MessageSendToConversationDto, MessageSendToUserDto } from 'src/app/model/chat.class';
 import { MessageType } from 'src/app/model/enum';
 import * as signalR from '@microsoft/signalr';
@@ -26,6 +26,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   inviteUsers: any[] = [];
   messages: MessageDto[] = [];
   replyMessage?: MessageDto = undefined;
+  replyMe?: boolean = false;
   focusToMessageId: string = ''
   timeAgo = new TimeAgo('vi-VI');
   contentText: string = "";
@@ -44,6 +45,18 @@ export class ChatComponent implements OnInit, OnDestroy {
   maxRows: number = 5;
   files: any[] = [];
   timeNow: any = new Date();
+  maxResultCount: number = 20
+  skipCount: number = 0
+  isCalled: boolean = false;
+  isLoading: boolean = false;
+  preScrollHeight: number = 0
+  loadedFull: boolean = false
+  @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
+  @ViewChild("areaInput") set areaInput(ref: ElementRef) {
+    if (!!ref) {
+      ref.nativeElement.focus() ;
+    }
+  }
   constructor(
     private messageService: MessageService,
     private route: ActivatedRoute,
@@ -85,7 +98,39 @@ export class ChatComponent implements OnInit, OnDestroy {
     //     url:"https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg"
     //   },
     // ]
+
   }
+
+  handleScroll(event: Event) {
+    const target = event.target as HTMLDivElement;
+    const scrollPosition = target.scrollTop;
+    const elementHeight = target.scrollHeight;
+    const clientHeight = target.clientHeight;
+    this.preScrollHeight = elementHeight
+
+    if ((scrollPosition / (elementHeight - clientHeight) == 0)) {
+      if (this.loadedFull) {
+        return;
+      }
+      if (!this.isCalled) {
+        this.isCalled = true;
+        // this.skipCount += this.maxResultCount;
+        this.skipCount = this.skipCount == 0 ? (this.maxResultCount == 20 ? 20 : this.maxResultCount) : (this.skipCount + 20);
+        this.isLoading = true
+        setTimeout(() => {
+          this.getListMessage(false, false, 20);
+        }, 200)
+
+      }
+    } else {
+      this.isCalled = false;
+    }
+  }
+
+  scrollToBottom() {
+    this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+  }
+
   @HostListener('window:resize', ['$event'])
 
   onResize() {
@@ -126,13 +171,40 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
   }
 
-  getListMessage() {
+  async getListMessage(scrollToBottom: boolean, isLast: boolean, loadMoreSize?: number) {
+    // this.isLoading = true
     let input = new GetListMessageDto();
     input.conversationId = this.thisConversation?.id;
-    input.skipCount = 0;
-    input.maxResultCount = 1000;
-    this.chatService.getListMessageByConversation(input).then((res: any) => {
-      this.messages = res.data.items.reverse();
+    input.skipCount = this.skipCount;
+    input.maxResultCount = loadMoreSize ? loadMoreSize : this.maxResultCount;
+    await this.chatService.getListMessageByConversation(input).then((res: any) => {
+      // this.messages = res.data.items.reverse();
+      // this.messages?.forEach((m: MessageDto, i: number) => {
+      //   if (i == 0) {
+      //     m.showA = true;
+      //   } else {
+      //     let _m = this.messages[i - 1];
+      //     if (m.sender?.id == _m.sender?.id) {
+      //       let diff = Number(new Date(m.creationTime ?? "")) - Number(new Date(_m.creationTime ?? ""));
+      //       if (diff > 240000) {
+      //         m.showA = true;
+      //       } else {
+      //         m.showA = false;
+      //       }
+      //     } else {
+      //       m.showA = true;
+      //     }
+      //   }
+      // });
+      const data = res.data.items.reverse();
+      if (data.length < 20 && loadMoreSize) {
+        this.maxResultCount = res.data.totalCount
+        this.loadedFull = true;
+      }
+      if (isLast)
+        this.messages = data;
+      else
+        this.messages.unshift(...data);
       this.messages?.forEach((m: MessageDto, i: number) => {
         if (i == 0) {
           m.showA = true;
@@ -150,10 +222,24 @@ export class ChatComponent implements OnInit, OnDestroy {
           }
         }
       });
-    }).catch((err: any) => {
+      if (this.preScrollHeight < this.myScrollContainer.nativeElement.scrollHeight) {
+        setTimeout(() => {
+          this.myScrollContainer.nativeElement.scrollTop += this.myScrollContainer.nativeElement.scrollHeight - (this.preScrollHeight + 64);
+        }, 1)
 
-    });
+      }
+
+      if (scrollToBottom)
+        setTimeout(() => {
+          this.scrollToBottom()
+        }, 1)
+    }).catch((err: any) => {
+    })
+      .finally(() => this.isLoading = false)
+      ;
+
   }
+
   unmountConversation() {
     this.thisConversation = undefined
   }
@@ -167,7 +253,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.userId = id;
         this.chatService.getConversationByUserId(id).then((res: any) => {
           this.thisConversation = res.data;
-          this.getListMessage();
+          this.getListMessage(true, true);
         }).catch((err: any) => {
 
         });
@@ -199,7 +285,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.connection.on("OnMessage", (newMessage: any) => {
       this.getListConversation();
       if (newMessage.conversationId == this.thisConversation?.id) {
-        this.getListMessage();
+        this.getListMessage(true, true);
         this.seenConversation(this.thisConversation?.id ?? "");
       } else {
         this.messageService.add({
@@ -216,7 +302,9 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
 
     this.connection.on("OnReactMessage", (message: MessageDto) => {
-      this.getListMessage();
+      this.maxResultCount = this.loadedFull ? this.maxResultCount : ((this.skipCount == 0) ? this.maxResultCount : this.skipCount + 20)
+      this.skipCount = 0
+      this.getListMessage(false, true);
       // this.seenConversation(this.thisConversation?.id ?? "");
       // let userName
       // this.eventService.currentConversationUsers.subscribe(users => {
@@ -240,7 +328,10 @@ export class ChatComponent implements OnInit, OnDestroy {
         });
     });
     this.connection.on("OnDeleteMessage", (message: MessageDto) => {
-      this.getListMessage();
+      this.maxResultCount = this.loadedFull ? this.maxResultCount - 1 : ((this.skipCount == 0) ? this.maxResultCount - 1 : this.skipCount + 20)
+
+      this.skipCount = 0
+      this.getListMessage(false, true);
       if (this.getDecodedAccessToken().nameid !== message.senderId)
         this.messageService.add({
           key: "newMessage",
@@ -252,6 +343,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   send() {
+    this.maxResultCount = this.loadedFull ? this.maxResultCount + 1 : ((this.skipCount == 0) ? (this.maxResultCount + 1) : (this.skipCount + 21))
+    this.skipCount = 0
     if (this.contentText) {
       if (this.thisConversation?.id == this.emptyId) {
         let input = new MessageSendToUserDto();
@@ -261,7 +354,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.chatService.sendMessageToNewOther(input).then((res: any) => {
           this.thisConversation = res.data.newConversation;
           this.getListConversation();
-          this.getListMessage();
+          this.getListMessage(true, true);
           this.contentText = "";
         }).catch((err: any) => {
           this.messageService.add({
@@ -282,6 +375,7 @@ export class ChatComponent implements OnInit, OnDestroy {
           // this.getListConversation();
           // this.getListMessage();
           this.replyMessage = undefined;
+          this.focusToMessageId = '';
           this.contentText = "";
         }).catch((err: any) => {
           this.messageService.add({
@@ -303,6 +397,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   sendLike() {
+    this.maxResultCount = this.loadedFull ? this.maxResultCount + 1 : ((this.skipCount == 0) ? (this.maxResultCount + 1) : (this.skipCount + 21))
+
+    this.skipCount = 0
     if (this.thisConversation?.id == this.emptyId) {
       let input = new MessageSendToUserDto();
       input.type = MessageType.Sticker;
@@ -311,7 +408,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.chatService.sendMessageToNewOther(input).then((res: any) => {
         this.thisConversation = res.data.newConversation;
         this.getListConversation();
-        this.getListMessage();
+        this.getListMessage(true, true);
         this.contentText = "";
       }).catch((err: any) => {
         this.messageService.add({
@@ -350,9 +447,12 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   selectConversation(conversation: any) {
+    this.loadedFull = false;
+    this.maxResultCount = 20
+    this.skipCount = 0
     this.thisConversation = conversation;
     this.messages = []
-    this.getListMessage();
+    this.getListMessage(true, true);
     this.seenConversation(conversation.id);
     this.replyMessage = undefined;
     this.getListUserOfConversation(conversation);
@@ -368,14 +468,14 @@ export class ChatComponent implements OnInit, OnDestroy {
   addConversationSuccess(newConversation: any) {
     this.getListConversation();
     this.thisConversation = newConversation;
-    this.getListMessage();
+    // this.getListMessage();
     this.isVisibleAddConversation = false;
   }
 
   updateConversationSuccess(conversation: any) {
     this.getListConversation();
     this.thisConversation = conversation;
-    this.getListMessage();
+    this.getListMessage(true, true);
     this.isVisibleUpdateConversation = false;
   }
 
@@ -441,7 +541,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
   sendMessage(): void {
     // Add your logic to handle the message
-    console.log('Sending message:', this.contentText);
+    // console.log('Sending message:', this.contentText);
 
     // Clear the message input
     this.contentText = '';
@@ -456,12 +556,14 @@ export class ChatComponent implements OnInit, OnDestroy {
     }
   }
   handleReplyMessage(message: any) {
+    console.log(message);
+    if (message.senderId === this.getDecodedAccessToken().nameid)
+      this.replyMe = true
     this.replyMessage = message;
     this.focusToMessageId = message.id
   }
   handleDeleteReplyMessage() {
     this.replyMessage = undefined;
     this.focusToMessageId = ''
-
   }
 }

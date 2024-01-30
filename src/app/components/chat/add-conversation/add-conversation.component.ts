@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageCropperComponent, ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { MessageService } from 'primeng/api';
@@ -9,7 +9,9 @@ import { ChatService } from 'src/app/services/chat.service';
 @Component({
   selector: 'app-add-conversation',
   templateUrl: './add-conversation.component.html',
-  styleUrls: ['./add-conversation.component.css']
+  styleUrls: ['./add-conversation.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class AddConversationComponent implements OnInit {
 
