@@ -122,7 +122,7 @@ a {
   align-items: center;
   column-gap: 8%;
   height: 7rem;
-  padding-left: 20px;
+  /* padding-left: 20px; */
   justify-content: space-between;
 }
 
@@ -142,8 +142,9 @@ a {
 }
 
 .body-content {
-  background-color: #f3f4f6;
-  padding: 20px;
+  /* background-color: #f3f4f6; */
+  padding-left: 82px;
+  padding-right: 82px;
 }
 
 .list-data {
@@ -271,7 +272,14 @@ app-work-history-summary .p-card-content {
 }
 
 .p-tag {
-  background-color: #01a9ff !important;
+  background-color: #c1e5ff !important;
+  margin-left: 12px !important;
+  margin-top: 8px !important;
+  margin-bottom: 0px !important;
+}
+
+.p-tag-value {
+  color: #495057 !important;
 }
 
 @media (max-width: 576px) {
@@ -294,4 +302,3 @@ app-work-history-summary .p-card-content {
 .p-inputtext:active {
   border: 1px solid !important;
 }
-

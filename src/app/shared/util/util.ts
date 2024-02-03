@@ -189,7 +189,7 @@ export class FsiValues {
     new DataPointDto("Khác", 0, "Other")
   ];
 
-  
+
   static purposes: DataPointDto[] = [
     new DataPointDto("Tôi đang có ý tưởng khởi nghiệp", 1, "Have Idea"),
     new DataPointDto("Tôi muốn tìm người có ý tưởng", 2, "Find People Have Idea"),
@@ -356,5 +356,46 @@ export class FsiValues {
         "Quản trị khách sạn"
       ]),
       new UniversitySpecialized("HUST", ["IT1","IT2"])
+  ]
+
+  static suggestOpen: DataPointDto[] = [
+    new DataPointDto("Xin chào!", 1),
+    new DataPointDto("Kính gửi!", 2),
+    new DataPointDto("Dear Sir!", 3),
+    new DataPointDto("Dear Madam!", 4),
+    new DataPointDto("Gửi người cộng sự tương lai của tôi!", 5),
+  ]
+
+  static suggestContent: DataPointDto[] = [
+    new DataPointDto("Tôi đang rất quan tâm đến dự án mà bạn đang triển khai. Tôi tin rằng với kinh nghiệm và kỹ năng của mình, tôi có thể đóng góp một phần vào sự thành công của dự án.", 1),
+    new DataPointDto("Tôi đang tìm kiếm những người có ý tưởng sáng tạo và muốn biến ý tưởng đó thành hiện thực. Tôi tin rằng với sự hợp tác của chúng ta, chúng ta có thể tạo ra những điều tuyệt vời. Nếu bạn có ý tưởng nào muốn chia sẻ, tôi rất mong muốn được gặp gỡ và thảo luận với bạn.", 2),
+    new DataPointDto("Tôi tin rằng dự án của mình có tiềm năng lớn và tôi muốn biến nó thành hiện thực. Tuy nhiên, tôi cần sự giúp đỡ của bạn. Bạn có kinh nghiệm và chuyên môn trong lĩnh vực này và tôi tin rằng bạn sẽ là một cộng sự tuyệt vời cho dự án. Tôi muốn mời bạn cùng tham gia. Nếu bạn quan tâm, chúng ta có thể gặp mặt để thảo luận thêm.", 3),
+    new DataPointDto("Tôi tin rằng ý tưởng của mình có tiềm năng lớn và tôi muốn biến nó thành hiện thực. Tuy nhiên, tôi cần sự giúp đỡ của bạn. Bạn có kinh nghiệm và chuyên môn trong lĩnh vực này và tôi tin rằng bạn sẽ là một cộng sự tuyệt vời. Tôi muốn mời bạn cùng tham gia. Nếu bạn quan tâm, chúng ta có thể gặp mặt để thảo luận thêm.", 4),
+  ]
+
+  static suggestEnd: DataPointDto[] = [
+    new DataPointDto("Trân trọng!", 1),
+    new DataPointDto("Thân ái!", 2),
+    new DataPointDto("Chúc bạn một ngày tốt lành!", 3),
+    new DataPointDto("Chúc bạn mọi điều tốt đẹp!", 4),
+    new DataPointDto("Tôi rất vui được gặp bạn!", 5),
+    new DataPointDto("Chào bạn, người bạn đồng hành lý tưởng của tôi!", 6),
+    new DataPointDto("Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với tôi, tôi đợi tin từ bạn!", 7),
+    new DataPointDto("Cảm ơn bạn đã dành thời gian, chúc bạn sức khoẻ, thành công và may mắn. Mong sớm nhận được tin từ bạn!", 8),
+    new DataPointDto("Hãy cùng nhau tạo ra một thế giới tốt đẹp hơn. Tôi mong sớm được làm việc cùng bạn!", 9),
+    new DataPointDto("Hãy theo đuổi ước mơ của bạn, ngay cả khi chúng có vẻ điên rồ!", 10),
+    new DataPointDto("Hãy tin vào những điều không thể!", 11),
+    new DataPointDto("Hãy sống trọn từng khoảnh khắc!", 12),
+    new DataPointDto("Thank you for reading. I wish you to always be happy. I hope to receive news from you soon.", 13),
+    new DataPointDto("Tập hợp nhiều cây thành rừng, nhiều người thành đoàn!", 14),
+    new DataPointDto("Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao!", 15),
+    new DataPointDto("'Đoàn kết là sức mạnh.' - Chủ tịch Hồ Chí Minh", 16),
+    new DataPointDto("'Hợp tác là nền tảng của sự phát triển.' - Thủ tướng Nguyễn Xuân Phúc", 17),
+    new DataPointDto("'Một mình chúng ta có thể làm rất ít, cùng nhau chúng ta có thể làm rất nhiều.' - Helen Keller", 18),
+    new DataPointDto("'Hợp tác là sức mạnh.' -  Franklin D. Roosevelt", 19),
+    new DataPointDto("'Trí tuệ của một người là giới hạn. Trí tuệ của nhiều người là không giới hạn.' - Albert Einstein", 20),
+    new DataPointDto("'Hợp tác là chìa khóa cho sự thành công.' - Paul McCartney", 21),
+    new DataPointDto("'Hợp tác là chìa khóa cho sự đổi mới.' - Peter Drucker", 22),
+    new DataPointDto("'Chúng ta không thể làm được nhiều điều lớn lao nếu chúng ta không làm cùng nhau.' - Helen Keller", 23),
   ]
 }

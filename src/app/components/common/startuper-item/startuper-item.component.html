@@ -3,7 +3,7 @@
   (mouseenter)="isHovered = true"
   (mouseleave)="isHovered = false"
 >
-  <div class="grid info" style="border-bottom: 1px solid #b9b3b0;">
+  <div class="grid info" style="border-bottom: 1px solid #b9b3b0">
     <div class="col-4 md-4">
       <img
         [src]="
@@ -24,11 +24,11 @@
           {{ getPurpose(startuper.purpose) }}
         </li>
         <li>
-          <i class="pi pi-calendar"></i>
+          <i class="fa-solid fa-calendar-days"></i>
           {{ getDate(startuper.dateOfBirth) }}
         </li>
         <li>
-          <i class="pi pi-map-marker"></i>
+          <i class="fa-solid fa-location-dot"></i>
           {{ getArea(startuper.location) }}
         </li>
       </ul>
@@ -45,7 +45,7 @@
                 let targetField of getTargetField(startuper.targetField ?? [])
               "
               [value]="targetField"
-              styleClass="mr-1 mt-1"
+
             ></p-tag>
           </span>
         </li> -->
@@ -55,7 +55,6 @@
             <p-tag
               *ngFor="let ideaField of getIdeaField(startuper.ideaField ?? [])"
               [value]="ideaField"
-              styleClass="mr-1 mt-1"
             ></p-tag>
           </span>
         </li>
@@ -67,7 +66,6 @@
                 let specialize of getSpecializies(startuper.specialize ?? [])
               "
               [value]="specialize"
-              styleClass="mr-1 mt-1"
             ></p-tag>
           </span>
         </li>
@@ -81,7 +79,6 @@
                 )
               "
               [value]="targetSpecialize"
-              styleClass="mr-1 mt-1"
             ></p-tag>
           </span>
         </li>
@@ -93,7 +90,6 @@
                 let targetField of getTargetField(startuper.targetField ?? [])
               "
               [value]="targetField"
-              styleClass="mr-1 mt-1"
             ></p-tag>
           </span>
         </li>
@@ -105,7 +101,6 @@
                 let targetField of getTargetField(startuper.targetField ?? [])
               "
               [value]="targetField"
-              styleClass="mr-1 mt-1"
             ></p-tag>
           </span>
         </li>
