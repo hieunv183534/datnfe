@@ -22,11 +22,11 @@ app-startuper-for-startuper .grid {
   margin: 0px 0px 8px 0px !important;
 }
 
-app-startuper-for-startuper .p-paginator{
+app-startuper-for-startuper .p-paginator {
   padding: 0px !important;
 }
 
-.hienThi{
+.hienThi {
   margin-left: 8px;
   margin-right: 8px;
   margin-bottom: 8px;
@@ -34,15 +34,9 @@ app-startuper-for-startuper .p-paginator{
 }
 
 @media (max-width: 576px) {
-  .col-12 {
-    width: 50%;
-  }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
-  .col-12 {
-    width: 50%;
-  }
 }
 
 @media (min-width: 1820px) {
