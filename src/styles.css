@@ -276,6 +276,15 @@ app-work-history-summary .p-card-content {
   margin-left: 12px !important;
   margin-top: 8px !important;
   margin-bottom: 0px !important;
+  font-weight: unset !important;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link{
+  font-weight: bold !important;
+}
+
+.p-tabview-title{
+  font-weight: bold !important;
 }
 
 .p-tag-value {

@@ -20,8 +20,11 @@
           <div class="name">{{ startuper.name }}</div>
         </li>
         <li>
-          <i class="pi pi-search"></i>
-          {{ getPurpose(startuper.purpose) }}
+          <i class="pi pi-search"></i> {{ getPurpose(startuper.purpose) }}
+        </li>
+        <li *ngIf="userInfo.job == '1'">
+          <i class="fa-solid fa-graduation-cap"></i>
+          {{ startuper.university }}
         </li>
         <li>
           <i class="fa-solid fa-calendar-days"></i>

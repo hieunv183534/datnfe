@@ -8,6 +8,7 @@ import { AdminService } from 'src/app/services/admin.service';
 import { EventService } from 'src/app/services/event.service';
 import { StartuperService } from 'src/app/services/startuper.service';
 import { Util, FsiValues } from 'src/app/shared/util/util';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-user-detail',
@@ -26,6 +27,7 @@ export class UserDetailComponent implements OnInit {
   friendStatus: number = 0;
   headerName: string = '';
   handleConnect: boolean = false;
+  userInfo: any = {};
 
   projectRoles = ["Nhà đầu tư", "Thành viên", "Đồng sáng lập", "Nhà sáng lập"]
   constructor(
@@ -37,6 +39,7 @@ export class UserDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.userInfo = this.getDecodedAccessToken();
     this.startuperService.getUserDetail(this.userId).then((res: any) => {
       this.startuperInfo = res.data.startuperInfo;
       this.friendStatus = res.data.friendStatus;
@@ -56,6 +59,14 @@ export class UserDetailComponent implements OnInit {
       });
       this.close.emit();
     });
+  }
+
+  getDecodedAccessToken(): any {
+    try {
+      return jwt_decode(localStorage.getItem("TOKEN") ?? "");
+    } catch (Error) {
+      return null;
+    }
   }
 
   closeModal(){

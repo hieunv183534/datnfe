@@ -2,7 +2,9 @@
   <div class="body-content">
     <div class="grid row">
       <div class="md:col-2">
-        <h2 class="marginTop">Bộ lọc tìm kiếm</h2>
+        <h2 class="marginTop" style="margin-top: 16px !important">
+          Bộ lọc tìm kiếm
+        </h2>
         <div class="p-field col-12 md-12 marginTop">
           <span class="p-float-label">
             <p-cascadeSelect
@@ -90,7 +92,7 @@
           >
           </p-multiSelect>
         </div>
-        <ng-container>
+        <ng-container *ngIf="userInfo.job == '1'">
           <div class="p-field col-12 md-12 marginTop">
             <p-dropdown
               [filter]="true"
@@ -126,8 +128,8 @@
           ></p-button>
         </div>
       </div>
-      <div class="md:col-10">
-        <div class="grid marginTop row">
+      <div class="md:col-10" style="padding-left: 24px !important">
+        <div class="grid marginTop row" style="margin-top: 16px !important">
           <div class="col-10">
             <span class="p-input-icon-left col-12">
               <i class="pi pi-search"></i>
@@ -141,7 +143,7 @@
               />
             </span>
           </div>
-          <div class="md:col-2">
+          <div class="md:col-2" style="padding-left: 16px !important">
             <p-button
               [style]="{ backgroundColor: '#01A9FF' }"
               (onClick)="routeToHistorySearch()"
@@ -150,7 +152,11 @@
           </div>
           <div
             class="col-10 grid"
-            style="background-color: #f3f4f6; padding: 8px !important"
+            style="
+              background-color: #f3f4f6;
+              padding: 8px !important;
+              margin-top: 12px !important;
+            "
           >
             <div class="hienThi" style="padding-top: 5px">
               <span>Ưu tiên hiển thị</span>
@@ -168,7 +174,7 @@
               >Năm kinh nghiệm</p-button
             >
             <p-paginator
-              style="margin-left: 16px"
+              style="margin-left: 12px"
               [pageLinkSize]="pageSize"
               [rows]="pageSize"
               [totalRecords]="totalRecords"
@@ -181,9 +187,13 @@
         </div>
         <p-dataView [value]="listStartuper" *ngIf="listStartuper.length > 0">
           <ng-template let-startuper pTemplate="listItem">
-            <div class="col-12 md:col-4" style="padding: 8px !important">
+            <div
+              class="col-12 md:col-4"
+              style="padding: 8px 16px 8px 0 !important"
+            >
               <app-startuper-item
                 [startuper]="startuper"
+                [userInfo]="userInfo"
                 [mode]="formSearch.value.mode"
                 (acceptFriend)="acceptFriend($event)"
                 (requestFriend)="requestFriend($event)"

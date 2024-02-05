@@ -41,32 +41,26 @@
             <div class="name">{{ startuperInfo.name }}</div>
           </li>
           <li>
-            <b>{{ startuperInfo.describe }}</b>
+            {{ startuperInfo.describe }}
           </li>
           <li>
-            <b>
-              <i class="pi pi-search"></i>
-              {{ getPurpose(startuperInfo.purpose) }}</b
-            >
+            <i class="pi pi-search"></i>
+            {{ getPurpose(startuperInfo.purpose) }}
+          </li>
+          <li *ngIf="userInfo.job == '1'">
+            <i class="fa-solid fa-graduation-cap"></i>
+            {{ startuperInfo.university }}
           </li>
           <li>
-            <b>
-              <i class="pi pi-calendar"></i>
-              {{ getDate(startuperInfo.dateOfBirth) }}
-            </b>
+            <i class="fa-solid fa-calendar-days"></i>
+            {{ getDate(startuperInfo.dateOfBirth) }}
           </li>
           <li>
-            <b>
-              <i class="pi pi-map-marker"></i>
-              {{ getArea(startuperInfo.location) }}
-            </b>
+            <i class="fa-solid fa-location-dot"></i>
+            {{ getArea(startuperInfo.location) }}
           </li>
-          <li>
-            <b><i class="pi pi-thumbs-up"></i> Có 1000 người theo dõi</b>
-          </li>
-          <li>
-            <b><i class="pi pi-clock"></i> Tham gia vào tháng 8 2023</b>
-          </li>
+          <li><i class="pi pi-thumbs-up"></i> Có 1000 người theo dõi</li>
+          <!-- <li><i class="pi pi-clock"></i> Tham gia vào tháng 8 2023</li> -->
         </ul>
       </div>
       <p-tabView>

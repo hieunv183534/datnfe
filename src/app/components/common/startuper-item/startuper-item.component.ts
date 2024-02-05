@@ -17,6 +17,8 @@ export class StartuperItemComponent implements OnInit {
 
   @Input() startuper: StartuperDto = {}
 
+  @Input() userInfo : any
+
   @Input() mode: any = UuidStartuperModeNew;
 
   isHovered: boolean = false;

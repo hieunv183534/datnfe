@@ -2,3 +2,12 @@
   align-items: center;
   justify-content: center;
 }
+
+.col-12 {
+  padding: 0 !important;
+}
+
+.p-fluid.grid .p-field {
+  margin-top: 0px !important;
+  margin-bottom: 8px !important;
+}

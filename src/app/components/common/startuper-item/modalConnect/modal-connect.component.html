@@ -1,6 +1,6 @@
 <p-dialog
   [resizable]="true"
-  header="Gửi yêu cầu kết nối"
+  header="Gửi lời mời kết nối"
   [(visible)]="display"
   [modal]="true"
   [style]="styleDialog"
@@ -8,19 +8,64 @@
   [draggable]="false"
   (onHide)="close.emit()"
 >
-  <div class="p-fluid grid">
-    <p>
-      Ấn tượng ban đầu rất quan trọng, hãy gửi một lời chào thân thiện đến đối
-      tác tương lai của bạn. Khi yêu cầu kết nối được chấp nhận, chúng tôi sẽ
-      gửi thông báo cho bạn biết.
-    </p>
-    <div class="col-12">
-      <span class="p-float-label">
-        <textarea [rows]="5" pInputTextarea></textarea>
-        <label>Xin chào, tôi muốn kết nối với bạn vì.. </label>
-      </span>
+  <form [formGroup]="formConnect">
+    <div class="p-fluid grid">
+      <p>
+        Ấn tượng ban đầu rất quan trọng, hãy gửi một lời chào thân thiện đến đối
+        tác tương lai của bạn. Hãy nhớ rằng chân thành là bí quyết thành công
+        của mọi cuộc giao tiếp.
+      </p>
+      <div class="p-field col-12 md-12">
+        <p-dropdown
+          [filter]="true"
+          [style]="{ width: '100%' }"
+          [autoDisplayFirst]="false"
+          formControlName="suggestOpen"
+          [options]="suggestOpen"
+          optionLabel="name"
+          optionValue="value"
+          placeholder="Lời mở đầu gợi ý"
+          (onChange)="changeContent()"
+        ></p-dropdown>
+      </div>
+      <div class="p-field col-12 md-12">
+        <p-dropdown
+          [filter]="true"
+          [style]="{ width: '100%' }"
+          [autoDisplayFirst]="false"
+          formControlName="suggestContent"
+          [options]="suggestContent"
+          optionLabel="name"
+          optionValue="value"
+          placeholder="Nội dung gợi ý"
+          (onChange)="changeContent()"
+        ></p-dropdown>
+      </div>
+      <div class="p-field col-12 md-12">
+        <p-dropdown
+          [filter]="true"
+          [style]="{ width: '100%' }"
+          [autoDisplayFirst]="false"
+          formControlName="suggestEnd"
+          [options]="suggestEnd"
+          optionLabel="name"
+          optionValue="value"
+          placeholder="Lời kết gợi ý"
+          (onChange)="changeContent()"
+        ></p-dropdown>
+      </div>
+      <div class="col-12">
+        <textarea
+          style="padding-left: 0.75rem !important"
+          [(ngModel)]="formConnect.value.content"
+          [rows]="5"
+          pInputTextarea
+          placeholder="Hoặc bạn có thể tự nói lên suy nghĩ của riêng mình..."
+          formControlName="content"
+        ></textarea>
+      </div>
     </div>
-  </div>
+  </form>
   <div class="flex justify-content-center flex-wrap mt-3">
     <p-button
       class="mr-1"

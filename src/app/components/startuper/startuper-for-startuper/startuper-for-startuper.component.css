@@ -14,6 +14,14 @@ app-startuper-for-startuper .md\:col-10 {
   padding: 0px !important;
 }
 
+app-startuper-for-startuper .col-10 {
+  padding: 0px !important;
+}
+
+app-startuper-for-startuper .md\:col-2 {
+  padding: 0px !important;
+}
+
 app-startuper-for-startuper .marginTop {
   margin-bottom: 12px !important;
 }

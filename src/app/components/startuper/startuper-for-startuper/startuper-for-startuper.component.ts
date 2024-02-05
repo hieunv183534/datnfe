@@ -10,6 +10,7 @@ import { ProjectService } from 'src/app/services/project.service';
 import { StartuperService } from 'src/app/services/startuper.service';
 import { FsiValues } from 'src/app/shared/util/util';
 import { Subscription } from 'rxjs';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-startuper-for-startuper',
@@ -52,6 +53,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
 
   mySelects: any[] = [];
   userSelect: UserDto = {};
+  userInfo: any = {};
 
   private subscription = new Subscription();
 
@@ -76,6 +78,10 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
         this.getListStartuper();
       }
     });
+
+    this.userInfo = this.getDecodedAccessToken();
+
+    console.log('user info', this.userInfo)
 
     this.formSearch = this.fb.group({
       filter: [null, []],
@@ -146,6 +152,14 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
       });
     });
 
+  }
+
+  getDecodedAccessToken(): any {
+    try {
+      return jwt_decode(localStorage.getItem("TOKEN") ?? "");
+    } catch (Error) {
+      return null;
+    }
   }
 
   routeToHistorySearch(){
