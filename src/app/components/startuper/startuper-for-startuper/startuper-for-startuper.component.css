@@ -26,12 +26,44 @@ app-startuper-for-startuper .marginTop {
   margin-bottom: 12px !important;
 }
 
+app-startuper-for-startuper .boLoc {
+  margin-bottom: 20px !important;
+}
+
 app-startuper-for-startuper .grid {
   margin: 0px 0px 8px 0px !important;
 }
 
 app-startuper-for-startuper .p-paginator {
   padding: 0px !important;
+}
+
+app-startuper-for-startuper .p-paginator .p-dropdown {
+  height: 2.15rem !important;
+}
+
+app-startuper-for-startuper .p-paginator .p-paginator-current {
+  height: 2.15rem !important;
+}
+
+app-startuper-for-startuper .p-paginator .p-paginator-first {
+  height: 2.15rem !important;
+}
+
+app-startuper-for-startuper .p-paginator .p-paginator-pages .p-paginator-page {
+  height: 2.15rem !important;
+}
+
+.p-paginator .p-paginator-prev{
+  height: 2.15rem !important;
+}
+
+.p-paginator .p-paginator-next{
+  height: 2.15rem !important;
+}
+
+.p-paginator .p-paginator-last{
+  height: 2.15rem !important;
 }
 
 .hienThi {

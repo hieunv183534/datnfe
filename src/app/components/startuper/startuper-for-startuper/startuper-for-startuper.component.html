@@ -2,7 +2,7 @@
   <div class="body-content">
     <div class="grid row">
       <div class="md:col-2">
-        <h2 class="marginTop" style="margin-top: 16px !important">
+        <h2 class="boLoc" style="margin-top: 16px !important">
           Bộ lọc tìm kiếm
         </h2>
         <div class="p-field col-12 md-12 marginTop">
@@ -119,11 +119,15 @@
             ></p-dropdown>
           </div>
         </ng-container>
-        <div class="col-12 flex justify-content-center mt-2">
-          <p-button icon="pi pi-search" (onClick)="submitSearch()"></p-button>
+        <div class="col-12 mt-2 flex justify-content-center">
+          <p-button label="Áp dụng" (onClick)="submitSearch()"></p-button>
           <p-button
-            class="ml-4"
-            icon="pi pi-times"
+            label=" Cài lại "
+            [style]="{
+              backgroundColor: 'white',
+              color: 'black'
+            }"
+            class="ml-5"
             (onClick)="clearSearch()"
           ></p-button>
         </div>
@@ -174,7 +178,7 @@
               >Năm kinh nghiệm</p-button
             >
             <p-paginator
-              style="margin-left: 12px"
+              style="margin-left: 12px; margin-top: 10px; margin-bottom: 10px"
               [pageLinkSize]="pageSize"
               [rows]="pageSize"
               [totalRecords]="totalRecords"
