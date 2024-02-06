@@ -1,0 +1,62 @@
+#avatar {
+  height: 93px;
+  width: 93px;
+  border-radius: 50%;
+}
+
+p {
+  margin-bottom: 12px !important;
+  margin-top: 0px !important;
+}
+
+ul {
+  list-style: none;
+}
+
+.info ul {
+  margin: 0;
+  padding: 8px 0px 8px 0px;
+}
+
+.info li {
+  margin: 0;
+  padding: 0px 0px 8px 0px;
+  color: #000000;
+}
+
+.info .name {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.col-2 {
+  padding-left: 0 !important;
+}
+
+.col-8 {
+  padding: 0 !important;
+}
+
+.content {
+  border: 1px solid #b9b3b0;
+  padding: 12px;
+  border-radius: 17px;
+}
+
+@media (max-width: 576px) {
+  .col-8 {
+    padding-left: 20px !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .col-8 {
+    padding-left: 20px !important;
+  }
+}
+
+@media (max-width: 1820px) {
+  .col-2 {
+    width: 25%;
+  }
+}

@@ -168,6 +168,22 @@
   </div>
 
   <div *ngIf="isHovered" class="hoverDiv">
+    <button
+      *ngIf="mode == UuidStartuperModeFromMe"
+      type="button"
+      id="ketnoi"
+      (click)="openChatOnClick()"
+    >
+      <i class="pi pi-comments"></i> Trò chuyện
+    </button>
+    <button
+      *ngIf="mode == UuidStartuperModeToMe"
+      type="button"
+      id="ketnoi"
+      (click)="acceptRequestOnClick()"
+    >
+      <i class="pi pi-check"></i> Chấp nhận
+    </button>
     <button type="button" id="xemthem" (click)="showUserDetail()">
       <i class="pi pi-eye"></i> Xem thêm
     </button>
@@ -202,20 +218,23 @@
       <i class="pi pi-comments"></i> Trò chuyện
     </button>
     <button
-      *ngIf="mode == UuidStartuperModeFromMe"
+      *ngIf="mode == UuidStartuperModeFromMe || mode == UuidStartuperModeToMe"
       type="button"
-      id="ketnoi"
-      (click)="cancelRequestOnClick()"
+      id="xemthem"
+      (click)="openRequest()"
     >
-      <i class="pi pi-times"></i> Hủy kết nối
+      <i class="pi pi-envelope"></i>Xem lời mời
+    </button>
+    <button *ngIf="mode == UuidStartuperModeToMe" type="button" id="xemthem">
+      <i class="pi pi-times"></i> Từ chối
     </button>
     <button
-      *ngIf="mode == UuidStartuperModeToMe"
+      *ngIf="mode == UuidStartuperModeFromMe"
       type="button"
-      id="ketnoi"
-      (click)="acceptRequestOnClick()"
+      id="xemthem"
+      (click)="cancelRequestOnClick()"
     >
-      <i class="pi pi-check"></i> Chấp nhận
+      <i class="pi pi-times"></i> Thu hồi lời mời
     </button>
 
     <button
@@ -234,4 +253,12 @@
     (close)="closeModal()"
     (requestConnect)="requestConnect()"
   ></app-modal-connect>
+</ng-container>
+
+<ng-container *ngIf="handleOpenRequest">
+  <app-modal-detail-connect
+    [display]="handleOpenRequest"
+    [mode]="mode"
+    (close)="closeModalOpen()"
+  ></app-modal-detail-connect>
 </ng-container>
