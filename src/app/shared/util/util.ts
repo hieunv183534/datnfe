@@ -114,7 +114,7 @@ export class FsiValues {
     new DataPointDto("Đồng Tháp", 46, "DongThap"),
     new DataPointDto("Bình Dương", 47, "BinhDuong"),
     new DataPointDto("Bình Phước", 48, "BinhPhuoc"),
-    new DataPointDto("Hồ Chí Minh", 49, "HoChiMinh"),
+    new DataPointDto("Thành phố Hồ Chí Minh", 49, "HoChiMinh"),
     new DataPointDto("Long An", 50, "LongAn"),
     new DataPointDto("Tiền Giang", 51, "TienGiang"),
     new DataPointDto("An Giang", 52, "AnGiang"),

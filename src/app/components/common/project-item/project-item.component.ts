@@ -53,7 +53,7 @@ export class ProjectItemComponent implements OnInit {
   }
 
   getFields(val: number[]) {
-    return FsiValues.getMultiName(val, FsiValues.fields);
+    return FsiValues.getMultiName(val, FsiValues.fields).split(", ");
   }
 
   showDetailProject() {

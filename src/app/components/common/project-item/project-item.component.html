@@ -1,9 +1,76 @@
 <div
-  class="startupItem flex flex-column"
+  class="startupItem"
   (mouseenter)="isHovered = true"
   (mouseleave)="isHovered = false"
 >
-  <div class="w-full h-auto relative">
+  <div class="grid info" style="border-bottom: 1px solid #b9b3b0">
+    <div class="col-4 md-4">
+      <img
+        [src]="
+          project.avatarUrl ??
+          'https://fsiconnected.cloud/images/default-avatar.jpg'
+        "
+        alt=""
+        id="avatar"
+      />
+    </div>
+    <div class="col-8 md-8">
+      <ul>
+        <li>
+          <div class="name">{{ project.projectName }}</div>
+        </li>
+        <li>
+          <i class="fa-solid fa-clock"></i>
+          {{ getStage(project.stage) }}
+        </li>
+        <li>
+          <i class="fa-solid fa-location-dot"></i>
+          {{ getArea(project.area) }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid info">
+    <div class="col-12">
+      <ul>
+        <!-- <li *ngIf="startuper.purpose == 3">
+          <p><b>Dự án tôi đang tham gia</b></p>
+          <span>
+            <p-tag
+              *ngFor="
+                let targetField of getTargetField(startuper.targetField ?? [])
+              "
+              [value]="targetField"
+
+            ></p-tag>
+          </span>
+        </li> -->
+        <li>
+          <p><b>Lĩnh vực</b></p>
+          <span>
+            <p-tag
+              *ngFor="let ideaField of getFields(project.fields ?? [])"
+              [value]="ideaField"
+            ></p-tag>
+          </span>
+        </li>
+        <!-- <li>
+        <p><b>Lĩnh vực</b></p>
+        <span>
+          <p-tag :value="{{ getField(startuper.field) }}" class="ml-1"></p-tag>
+        </span>
+      </li> -->
+        <!-- <li>Độ tuổi: {{getAge(startuper.dateOfBirth)}}</li>
+      <li>Khu vực: {{getArea(startuper.location)}}</li>
+      <li>Lĩnh vực: {{getField(startuper.field)}}</li>
+      <li>Kinh nghiệm: {{getYOE(startuper.yearOfExp)}}</li>
+      <li>Tính cách: {{getPersonalities(startuper.personality??[])}}</li>
+      <li>Kỹ năng mềm: {{getSkills(startuper.skill??[])}}</li>
+      <li>Thời gian khả dụng: {{getAvailableTime(startuper.availableTime)}}</li> -->
+      </ul>
+    </div>
+  </div>
+  <!-- <div class="w-full h-auto relative">
     <div class="avatar-project">
       <img
         [src]="
@@ -13,8 +80,8 @@
         alt=""
         id="logo"
       />
-    </div>
-    <ng-container *ngIf="isHovered">
+    </div> -->
+  <!-- <ng-container *ngIf="isHovered">
       <div class="hoverDiv">
         <button type="button" id="xemthem" (click)="showDetailProject()">
           <i class="pi pi-eye"></i> Xem thêm
@@ -59,8 +126,8 @@
         </ng-container>
       </div>
     </ng-container>
-  </div>
-  <div class="content">
+  </div> -->
+  <!-- <div class="content">
     <div class="name">{{ project.projectName }}</div>
     <div class="description">{{ project.description }}</div>
     <span class="flex justify-content-between">
@@ -87,5 +154,5 @@
         <p>{{ project.extraProperties.totalInvesment }}$</p>
       </span>
     </span>
-  </div>
+  </div> -->
 </div>

@@ -61,6 +61,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
             }
           },
           {
+            label: 'Lịch sử tìm kiếm',
+            icon: 'pi pi-history',
+            command: () => {
+              this.router.navigate(['/startuper/history-search']);
+            }
+          },
+          {
             label: 'Đăng xuất',
             icon: 'pi pi-sign-out',
             command: () => {

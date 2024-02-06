@@ -1,23 +1,43 @@
 .startupItem {
-  width: 90%;
-  height: auto;
-  padding: auto;
+  position: relative;
   background-color: white;
   box-shadow: 0px 0px 3px 3px #00000022;
-  border-radius: 17px;
-  position: relative;
+  border-radius: 20px;
+  height: 100%;
 }
 
-.startupItem p {
-  margin: 2px;
-  max-width: 90%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+p {
+  margin-bottom: 4px !important;
+  margin-left: 12px !important;
+  margin-top: 12px !important;
 }
 
-.startupItem .avatar-project {
-  padding: 15px;
+.startupItem #avatar {
+  height: 93px;
+  width: 93px;
+  border-radius: 50%;
+  margin-top: 12px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.startupItem ul {
+  list-style: none;
+}
+
+.startupItem .info ul {
+  margin: 0;
+  padding: 8px 0px 8px 0px;
+}
+
+.startupItem .info li {
+  margin: 0;
+  padding: 0px 0px 8px 0px;
+}
+
+.startupItem .info .name {
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
 .startupItem #logo {
@@ -49,7 +69,7 @@
 }
 
 .startupItem .content .subtitle {
-  color: #0011A7;
+  color: #0011a7;
   font-size: 0.8rem;
 }
 
@@ -99,6 +119,22 @@
   color: white;
 }
 
+.col-4 {
+  padding: 0 !important;
+}
+
+.col-8 {
+  padding: 0 !important;
+}
+
+.col-12 {
+  padding: 0px !important;
+}
+
+.grid {
+  margin: 0px !important;
+}
+
 .startupItem .hoverDiv button:hover {
   filter: brightness(0.9);
 }
@@ -113,5 +149,43 @@
 }
 
 .startupItem .hoverDiv #ketnoi {
-  background: linear-gradient(90deg, #0386FF 0%, #01AAFF 100%, #01AAFF 100%);
+  background: linear-gradient(90deg, #0386ff 0%, #01aaff 100%, #01aaff 100%);
+}
+
+@media (max-width: 576px) {
+  .startupItem .info ul {
+    margin: 0;
+    padding: 0px 0px 8px 8px;
+  }
+  .startupItem #avatar {
+    height: 52px !important;
+    width: 52px !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .startupItem .info ul {
+    margin: 0;
+    padding: 0px 0px 8px 8px;
+  }
+  .startupItem #avatar {
+    height: 52px !important;
+    width: 52px !important;
+  }
+}
+
+@media (max-width: 1820px) {
+  .startupItem .info ul {
+    margin: 0;
+    padding: 12px 0px 8px 12px;
+  }
+
+  .startupItem #avatar {
+    height: 93px;
+    width: 93px;
+    border-radius: 50%;
+    margin-top: 12px;
+    margin-left: 16px;
+    margin-right: 12px;
+  }
 }

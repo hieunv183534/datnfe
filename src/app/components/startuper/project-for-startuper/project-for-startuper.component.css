@@ -1,15 +1,86 @@
-app-project-for-startuper .p-inputtext{
-    padding-left: 2.5rem !important;
+app-project-for-startuper .p-inputtext {
+  padding-left: 2.5rem !important;
+}
+
+app-project-for-startuper h2 {
+  margin: 0px !important;
+}
+
+app-project-for-startuper .col-12 {
+  padding: 0px !important;
+}
+
+app-project-for-startuper .md\:col-10 {
+  padding: 0px !important;
+}
+
+app-project-for-startuper .col-10 {
+  padding: 0px !important;
+}
+
+app-project-for-startuper .md\:col-2 {
+  padding: 0px !important;
+}
+
+app-project-for-startuper .marginTop {
+  margin-bottom: 12px !important;
+}
+
+app-project-for-startuper .boLoc {
+  margin-bottom: 20px !important;
+}
+
+app-project-for-startuper .grid {
+  margin: 0px 0px 8px 0px !important;
+}
+
+app-project-for-startuper .p-paginator {
+  padding: 0px !important;
+}
+
+app-project-for-startuper .p-paginator .p-dropdown {
+  height: 2.15rem !important;
+}
+
+app-project-for-startuper .p-paginator .p-paginator-current {
+  height: 2.15rem !important;
+}
+
+app-project-for-startuper .p-paginator .p-paginator-first {
+  height: 2.15rem !important;
+}
+
+app-project-for-startuper .p-paginator .p-paginator-pages .p-paginator-page {
+  height: 2.15rem !important;
+}
+
+.p-paginator .p-paginator-prev {
+  height: 2.15rem !important;
+}
+
+.p-paginator .p-paginator-next {
+  height: 2.15rem !important;
+}
+
+.p-paginator .p-paginator-last {
+  height: 2.15rem !important;
+}
+
+.hienThi {
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  margin-top: 8px;
 }
 
 @media (max-width: 576px) {
-    .col-2 {
-      width: 50%;
-    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+}
+
+@media (min-width: 1820px) {
+  .md\:col-4 {
+    width: 25%;
   }
-  
-  @media (min-width: 576px) and (max-width: 767px) {
-    .col-2 {
-      width: 50%;
-    }
-  }
+}

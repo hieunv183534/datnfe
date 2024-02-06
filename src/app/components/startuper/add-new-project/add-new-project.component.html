@@ -1,5 +1,13 @@
-<p-dialog [resizable]="true" header="Tạo mới dự án" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}"
-  [baseZIndex]="10000" [draggable]="false" (onHide)="hide()">
+<p-dialog
+  [resizable]="true"
+  header="Tạo mới dự án"
+  [(visible)]="display"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+  [draggable]="false"
+  (onHide)="hide()"
+>
   <div class="p-fluid grid">
     <p-card class="col-12 w-full">
       <ng-template pTemplate="content">
@@ -9,107 +17,162 @@
               <div class="p-fluid grid">
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <input type="text" pInputText formControlName="projectName" />
-                    <label>Tên dự án: <span style="color: red;">*</span>
+                    <input
+                      type="text"
+                      pInputText
+                      formControlName="projectName"
+                    />
+                    <label>Tên dự án: <span style="color: red">*</span> </label>
+                  </span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <textarea
+                      [rows]="5"
+                      pInputTextarea
+                      formControlName="description"
+                      [maxlength]="80"
+                    ></textarea>
+                    <label
+                      >Mô tả chi tiết về dự án:
+                      <span style="color: red">*</span>
                     </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <textarea [rows]="5" pInputTextarea formControlName="description"></textarea>
-                    <label>Mô tả chi tiết về dự án: <span style="color: red;">*</span>
-                    </label>
-                  </span>
-                </div>
-                <div class="p-field col-12 md-12">
-                  <span class="p-float-label">
-                    <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="fields"
-                      optionLabel="name" formControlName="fields">
+                    <p-multiSelect
+                      optionLabel="name"
+                      optionValue="value"
+                      appendTo="body"
+                      [options]="fields"
+                      optionLabel="name"
+                      formControlName="fields"
+                    >
                     </p-multiSelect>
-                    <label>Lĩnh vực của dự án: <span style="color: red;">*</span>
+                    <label
+                      >Lĩnh vực của dự án: <span style="color: red">*</span>
                     </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-dropdown [autoDisplayFirst]="false" [options]="projectStages" optionValue="value"
-                      optionLabel="name" formControlName="stage"></p-dropdown>
-                    <label>Giai đoạn hiện tại của dự án: <span style="color: red;">*</span>
+                    <p-dropdown
+                      [autoDisplayFirst]="false"
+                      [options]="projectStages"
+                      optionValue="value"
+                      optionLabel="name"
+                      formControlName="stage"
+                    ></p-dropdown>
+                    <label
+                      >Giai đoạn hiện tại của dự án:
+                      <span style="color: red">*</span>
                     </label>
                   </span>
                 </div>
                 <p-panel class="col-12 md-12" header="Chi tiết các giai đoạn">
-                  <b>Xác lập</b> - Ý tưởng mới được hình thành <br>
-                  <b>Nghiên cứu</b> - Đang xác định mô hình kinh doanh, lập kế hoạch, viết hồ sơ <br>
-                  <b>MVP</b> - Đang nghiên cứu, xây dựng mô hình dịch vụ/sản phẩm mẫu <br>
-                  <b>Kiểm thử</b> - Đã có mô hình dịch vụ/sản phẩm mẫu <br>
-                  <b>Tăng trưởng 1</b> - Mô hình dịch vụ/sản phẩm mẫu đã vận hành ổn định, tuy nhiên chưa có nhiều khách
-                  hàng/người dùng <br>
-                  <b>Tăng trưởng 2</b> - Bắt đầu tiếp cận được một nhóm khách hàng/người dùng nhất định <br>
-                  <b>Tăng trưởng 3</b> - Đã định vị được thương hiệu và có tệp khách hàng/người dùng ổn định <br>
-                  <b>Tăng trưởng 4</b> - Đạt điểm hòa vốn <br>
+                  <b>Xác lập</b> - Ý tưởng mới được hình thành <br />
+                  <b>Nghiên cứu</b> - Đang xác định mô hình kinh doanh, lập kế
+                  hoạch, viết hồ sơ <br />
+                  <b>MVP</b> - Đang nghiên cứu, xây dựng mô hình dịch vụ/sản
+                  phẩm mẫu <br />
+                  <b>Kiểm thử</b> - Đã có mô hình dịch vụ/sản phẩm mẫu <br />
+                  <b>Tăng trưởng 1</b> - Mô hình dịch vụ/sản phẩm mẫu đã vận
+                  hành ổn định, tuy nhiên chưa có nhiều khách hàng/người dùng
+                  <br />
+                  <b>Tăng trưởng 2</b> - Bắt đầu tiếp cận được một nhóm khách
+                  hàng/người dùng nhất định <br />
+                  <b>Tăng trưởng 3</b> - Đã định vị được thương hiệu và có tệp
+                  khách hàng/người dùng ổn định <br />
+                  <b>Tăng trưởng 4</b> - Đạt điểm hòa vốn <br />
                 </p-panel>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-calendar appendTo="body" formControlName="foundedTime"></p-calendar>
-                    <label>Thời gian thành lập: <span style="color: red;">*</span>
+                    <p-calendar
+                      appendTo="body"
+                      formControlName="foundedTime"
+                    ></p-calendar>
+                    <label
+                      >Thời gian thành lập: <span style="color: red">*</span>
                     </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-dropdown [autoDisplayFirst]="false" [options]="areas" optionValue="value" optionLabel="name"
-                      formControlName="area" [filter]="true"></p-dropdown>
-                    <label>Khu vực: <span style="color: red;">*</span>
-                    </label>
+                    <p-dropdown
+                      [autoDisplayFirst]="false"
+                      [options]="areas"
+                      optionValue="value"
+                      optionLabel="name"
+                      formControlName="area"
+                      [filter]="true"
+                    ></p-dropdown>
+                    <label>Khu vực: <span style="color: red">*</span> </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
                     <input type="text" pInputText formControlName="website" />
-                    <label>Website:
-                    </label>
+                    <label>Website: </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
                     <input type="text" pInputText formControlName="fb" />
-                    <label>Facebook:
-                    </label>
+                    <label>Facebook: </label>
                   </span>
                 </div>
               </div>
             </form>
-
           </ng-container>
           <ng-container *ngSwitchCase="1">
             <p-divider align="left"> <b>Tải lên ảnh đại diện</b> </p-divider>
             <input type="file" (change)="fileChangeEvent($event)" />
 
             <div class="image-cropper-wrapper">
-              <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1"
-                format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)"
-                (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+              <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="1"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded($event)"
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"
+              ></image-cropper>
             </div>
 
             <img class="preview-image" [src]="croppedImage" />
           </ng-container>
           <ng-container *ngSwitchCase="2">
-            <b>Khai báo hoàn tất!</b><br>
-            <b>Hiện tại</b>, dự án của bạn đang nằm trong danh sách chờ phê duyệt. Quá trình phê duyệt sẽ diễn ra trong tối đa
-            6 giờ. Sau khi được chấp thuận, dự án của bạn sẽ được phép hiển thị lên danh sách tìm kiếm <br>
-            <b>Trong thời gian chờ</b>, hãy thử tìm kiếm cơ hội kết nối với những người cộng sự mới tại trang NHÀ KHỞI NGHIỆP. <br>
-            <b>Hotline: 0343 954 599</b>. Chúng tôi sẽ luôn ở đây nếu bạn cần hỗ trợ! <br>
+            <b>Khai báo hoàn tất!</b><br />
+            <b>Hiện tại</b>, dự án của bạn đang nằm trong danh sách chờ phê
+            duyệt. Quá trình phê duyệt sẽ diễn ra trong tối đa 6 giờ. Sau khi
+            được chấp thuận, dự án của bạn sẽ được phép hiển thị lên danh sách
+            tìm kiếm <br />
+            <b>Trong thời gian chờ</b>, hãy thử tìm kiếm cơ hội kết nối với
+            những người cộng sự mới tại trang NHÀ KHỞI NGHIỆP. <br />
+            <b>Hotline: 0343 954 599</b>. Chúng tôi sẽ luôn ở đây nếu bạn cần hỗ
+            trợ! <br />
           </ng-container>
         </ng-container>
       </ng-template>
       <ng-template pTemplate="footer">
         <div class="flex justify-content-between">
-          <span *ngIf="activeIndex == 0" style="visibility: hidden;"></span>
-          <p-button *ngIf="activeIndex > 0" label="Trước" (onClick)="back()" icon="pi pi-angle-left">
+          <span *ngIf="activeIndex == 0" style="visibility: hidden"></span>
+          <p-button
+            *ngIf="activeIndex > 0"
+            label="Trước"
+            (onClick)="back()"
+            icon="pi pi-angle-left"
+          >
           </p-button>
-          <p-button [label]="activeIndex == 2 ? 'Hoàn thành' : 'Tiếp'" (onClick)="next()" icon="pi pi-angle-right"
-            iconPos="right">
+          <p-button
+            [label]="activeIndex == 2 ? 'Hoàn thành' : 'Tiếp'"
+            (onClick)="next()"
+            icon="pi pi-angle-right"
+            iconPos="right"
+          >
           </p-button>
         </div>
       </ng-template>
