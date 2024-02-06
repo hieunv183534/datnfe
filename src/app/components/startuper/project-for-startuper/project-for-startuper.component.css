@@ -22,6 +22,10 @@ app-project-for-startuper .md\:col-2 {
   padding: 0px !important;
 }
 
+app-project-for-startuper .left {
+  padding-left: 16px !important;
+}
+
 app-project-for-startuper .marginTop {
   margin-bottom: 12px !important;
 }
@@ -74,9 +78,21 @@ app-project-for-startuper .p-paginator .p-paginator-pages .p-paginator-page {
 }
 
 @media (max-width: 576px) {
+  app-project-for-startuper .md\:col-2 {
+    margin-top: 8px !important;
+  }
+  app-project-for-startuper .left {
+    padding-left: 0px !important;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
+  app-project-for-startuper .md\:col-2 {
+    margin-top: 8px !important;
+  }
+  app-project-for-startuper .left {
+    padding-left: 0px !important;
+  }
 }
 
 @media (min-width: 1820px) {

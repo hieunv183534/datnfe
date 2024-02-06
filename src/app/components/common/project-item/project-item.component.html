@@ -20,11 +20,37 @@
           <div class="name">{{ project.projectName }}</div>
         </li>
         <li>
-          <i class="fa-solid fa-clock"></i>
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 13 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M6.5 13C10.0899 13 13 10.0899 13 6.5C13 2.91005 10.0899 0 6.5 0C2.91005 0 0 2.91005 0 6.5C0 10.0899 2.91005 13 6.5 13ZM7.15 3.25C7.15 3.07761 7.08152 2.91228 6.95962 2.79038C6.83772 2.66848 6.67239 2.6 6.5 2.6C6.32761 2.6 6.16228 2.66848 6.04038 2.79038C5.91848 2.91228 5.85 3.07761 5.85 3.25V6.2309C5.85007 6.57565 5.98709 6.90626 6.2309 7.15L7.99045 8.90955C8.11304 9.02795 8.27723 9.09347 8.44766 9.09199C8.61809 9.09051 8.78112 9.02215 8.90163 8.90163C9.02215 8.78112 9.09051 8.61809 9.09199 8.44766C9.09347 8.27723 9.02795 8.11304 8.90955 7.99045L7.15 6.2309V3.25Z"
+              fill="black"
+            />
+          </svg>
+
           {{ getStage(project.stage) }}
         </li>
         <li>
-          <i class="fa-solid fa-location-dot"></i>
+          <svg
+            width="13"
+            height="15"
+            viewBox="0 0 13 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6.5 0C2.90643 0 0 2.3475 0 5.25C0 9.1875 6.5 15 6.5 15C6.5 15 13 9.1875 13 5.25C13 2.3475 10.0936 0 6.5 0ZM6.5 7.125C5.21857 7.125 4.17857 6.285 4.17857 5.25C4.17857 4.215 5.21857 3.375 6.5 3.375C7.78143 3.375 8.82143 4.215 8.82143 5.25C8.82143 6.285 7.78143 7.125 6.5 7.125Z"
+              fill="black"
+            />
+          </svg>
+
           {{ getArea(project.area) }}
         </li>
       </ul>
@@ -33,18 +59,9 @@
   <div class="grid info">
     <div class="col-12">
       <ul>
-        <!-- <li *ngIf="startuper.purpose == 3">
-          <p><b>Dự án tôi đang tham gia</b></p>
-          <span>
-            <p-tag
-              *ngFor="
-                let targetField of getTargetField(startuper.targetField ?? [])
-              "
-              [value]="targetField"
-
-            ></p-tag>
-          </span>
-        </li> -->
+        <li>
+          <p>{{ project.description }}</p>
+        </li>
         <li>
           <p><b>Lĩnh vực</b></p>
           <span>
@@ -54,105 +71,59 @@
             ></p-tag>
           </span>
         </li>
-        <!-- <li>
-        <p><b>Lĩnh vực</b></p>
-        <span>
-          <p-tag :value="{{ getField(startuper.field) }}" class="ml-1"></p-tag>
-        </span>
-      </li> -->
-        <!-- <li>Độ tuổi: {{getAge(startuper.dateOfBirth)}}</li>
-      <li>Khu vực: {{getArea(startuper.location)}}</li>
-      <li>Lĩnh vực: {{getField(startuper.field)}}</li>
-      <li>Kinh nghiệm: {{getYOE(startuper.yearOfExp)}}</li>
-      <li>Tính cách: {{getPersonalities(startuper.personality??[])}}</li>
-      <li>Kỹ năng mềm: {{getSkills(startuper.skill??[])}}</li>
-      <li>Thời gian khả dụng: {{getAvailableTime(startuper.availableTime)}}</li> -->
+        <li>
+          <p><b>Chúng tôi đang tìm kiếm</b></p>
+          <span>
+            <p-tag
+              *ngFor="let ideaField of getFields(project.fields ?? [])"
+              [value]="ideaField"
+            ></p-tag>
+          </span>
+        </li>
       </ul>
     </div>
   </div>
-  <!-- <div class="w-full h-auto relative">
-    <div class="avatar-project">
-      <img
-        [src]="
-          project.avatarUrl ??
-          'https://fsiconnected.cloud/images/default-avatar.jpg'
-        "
-        alt=""
-        id="logo"
-      />
-    </div> -->
-  <!-- <ng-container *ngIf="isHovered">
-      <div class="hoverDiv">
-        <button type="button" id="xemthem" (click)="showDetailProject()">
-          <i class="pi pi-eye"></i> Xem thêm
-        </button>
-        <button
-          *ngIf="relationWithProject == 1"
-          type="button"
-          id="ketnoi"
-          (click)="requestToProject()"
-        >
-          <i class="pi pi-share-alt"></i> Kết nối
-        </button>
-        <button
-          *ngIf="relationWithProject == 2"
-          type="button"
-          id="ketnoi"
-          (click)="acceptRequest()"
-        >
-          <i class="pi pi-check"></i> Chấp nhận
-        </button>
-        <button
-          *ngIf="relationWithProject == 3"
-          type="button"
-          id="ketnoi"
-          (click)="cancelRequest()"
-        >
-          <i class="pi pi-times"></i> Hủy kết nối
-        </button>
+  <div *ngIf="isHovered" class="hoverDiv">
+    <button type="button" id="xemthem" (click)="showDetailProject()">
+      <i class="pi pi-eye"></i> Xem thêm
+    </button>
+    <button
+      *ngIf="relationWithProject == 1"
+      type="button"
+      id="ketnoi"
+      (click)="requestToProject()"
+    >
+      <i class="pi pi-share-alt"></i> Kết nối
+    </button>
+    <button
+      *ngIf="relationWithProject == 2"
+      type="button"
+      id="ketnoi"
+      (click)="acceptRequest()"
+    >
+      <i class="pi pi-check"></i> Chấp nhận
+    </button>
+    <button
+      *ngIf="relationWithProject == 3"
+      type="button"
+      id="ketnoi"
+      (click)="cancelRequest()"
+    >
+      <i class="pi pi-times"></i> Hủy kết nối
+    </button>
 
-        <ng-container *ngIf="relationWithProject == 4">
-          <button
-            *ngIf="!project.isActive"
-            type="button"
-            id="ketnoi"
-            (click)="adminAccept1()"
-          >
-            <i class="pi pi-check"></i> Duyệt
-          </button>
-          <button type="button" id="ketnoi" (click)="adminDelete1()">
-            <i class="pi pi-times"></i> Xóa
-          </button>
-        </ng-container>
-      </div>
+    <ng-container *ngIf="relationWithProject == 4">
+      <button
+        *ngIf="!project.isActive"
+        type="button"
+        id="ketnoi"
+        (click)="adminAccept1()"
+      >
+        <i class="pi pi-check"></i> Duyệt
+      </button>
+      <button type="button" id="ketnoi" (click)="adminDelete1()">
+        <i class="pi pi-times"></i> Xóa
+      </button>
     </ng-container>
-  </div> -->
-  <!-- <div class="content">
-    <div class="name">{{ project.projectName }}</div>
-    <div class="description">{{ project.description }}</div>
-    <span class="flex justify-content-between">
-      <span class="flex align-items-center mr-6">
-        <i class="pi pi-building"></i>
-        <p>{{ getArea(project.area) }}</p>
-      </span>
-      <span class="flex align-items-center">
-        <i class="pi pi-chart-line"></i>
-        <p>{{ getStage(project.stage) }}</p>
-      </span>
-    </span>
-    <span class="flex align-items-center">
-      <i class="pi pi-book"></i>
-      <p>{{ getFields(project.fields) }}</p>
-    </span>
-    <span class="flex justify-content-between">
-      <span class="flex align-items-center mr-6">
-        <i class="pi pi-users"></i>
-        <p>{{ project.extraProperties.memberCount }}</p>
-      </span>
-      <span class="flex align-items-center">
-        <i class="pi pi-money-bill"></i>
-        <p>{{ project.extraProperties.totalInvesment }}$</p>
-      </span>
-    </span>
-  </div> -->
+  </div>
 </div>
