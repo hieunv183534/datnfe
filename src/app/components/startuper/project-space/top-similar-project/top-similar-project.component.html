@@ -1,8 +1,13 @@
 <div class="grid flex align-items-center justify-content-start p-3">
-  <ng-container *ngFor=" let project of projects">
-    <div class="lg:col-3 md:col-4 sm:col-12">
-      <app-project-item [project]="project" [relationWithProject]="1"
-        (request)="requestToProject($event)"></app-project-item>
-    </div>
-  </ng-container>
+  <p-dataView [value]="projects" *ngIf="projects.length > 0">
+    <ng-template let-project pTemplate="listItem">
+      <div class="lg:col-3 md:col-4 sm:col-12" style="padding: 8px 16px 8px 0 !important">
+        <app-project-item
+          [project]="project"
+          [relationWithProject]="1"
+          (request)="requestToProject($event)"
+        ></app-project-item>
+      </div>
+    </ng-template>
+  </p-dataView>
 </div>
