@@ -1,0 +1,620 @@
+<p-dialog
+  [resizable]="true"
+  header="Thông tin dự án"
+  [(visible)]="display"
+  [modal]="true"
+  [style]="{ width: '800px' }"
+  [baseZIndex]="10000"
+  [draggable]="false"
+  (onHide)="close.emit()"
+>
+  <div class="page">
+    <div class="profile relative mb-3">
+      <div class="flex relative">
+        <div
+          class="flex"
+          style="
+            background-image: url('../../../assets/img/qcao.png');
+            width: 100%;
+          "
+        >
+          <div
+            class="bg-right-bottom bg-no-repeat w-10rem h-10rem border-round"
+          >
+            <img
+              class="logo absolute"
+              style="top: 45%; left: 5%"
+              [src]="'https://fsiconnected.cloud/images/default-avatar.jpg'"
+              width="150px"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="info">
+      <div>
+        <ul>
+          <li>
+            <div class="name">FSI CONNECTED</div>
+          </li>
+          <li>Nền tảng kết nối hệ sinh thái</li>
+          <li>
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 13 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12.4091 5.90909H12.3791C12.101 3.12183 9.87817 0.899009 7.09091 0.620868V0.590909C7.09091 0.264314 6.8266 0 6.5 0C6.1734 0 5.90909 0.264314 5.90909 0.590909V0.620868C3.12183 0.899009 0.899009 3.12183 0.620868 5.90909H0.590909C0.264314 5.90909 0 6.1734 0 6.5C0 6.8266 0.264314 7.09091 0.590909 7.09091H0.620868C0.899009 9.87817 3.12183 12.101 5.90909 12.3791V12.4091C5.90909 12.7357 6.1734 13 6.5 13C6.8266 13 7.09091 12.7357 7.09091 12.4091V12.3791C9.87817 12.101 12.101 9.87817 12.3791 7.09091H12.4091C12.7357 7.09091 13 6.8266 13 6.5C13 6.1734 12.7357 5.90909 12.4091 5.90909ZM10.6364 7.09091H11.1862C10.9183 9.22504 9.22498 10.9183 7.09091 11.1862V10.6364C7.09091 10.3098 6.8266 10.0455 6.5 10.0455C6.1734 10.0455 5.90909 10.3098 5.90909 10.6364V11.1862C3.77496 10.9183 2.08171 9.22504 1.8138 7.09091H2.36364C2.69023 7.09091 2.95455 6.8266 2.95455 6.5C2.95455 6.1734 2.69023 5.90909 2.36364 5.90909H1.8138C2.08171 3.77496 3.77496 2.08171 5.90909 1.8138V2.36364C5.90909 2.69023 6.1734 2.95455 6.5 2.95455C6.8266 2.95455 7.09091 2.69023 7.09091 2.36364V1.8138C9.22504 2.08171 10.9183 3.77502 11.1862 5.90909H10.6364C10.3098 5.90909 10.0455 6.1734 10.0455 6.5C10.0455 6.8266 10.3098 7.09091 10.6364 7.09091Z"
+                fill="black"
+              />
+            </svg>
+
+            Dự án vì lợi nhuận
+          </li>
+          <li>
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 13 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M6.5 13C10.0899 13 13 10.0899 13 6.5C13 2.91005 10.0899 0 6.5 0C2.91005 0 0 2.91005 0 6.5C0 10.0899 2.91005 13 6.5 13ZM7.15 3.25C7.15 3.07761 7.08152 2.91228 6.95962 2.79038C6.83772 2.66848 6.67239 2.6 6.5 2.6C6.32761 2.6 6.16228 2.66848 6.04038 2.79038C5.91848 2.91228 5.85 3.07761 5.85 3.25V6.2309C5.85007 6.57565 5.98709 6.90626 6.2309 7.15L7.99045 8.90955C8.11304 9.02795 8.27723 9.09347 8.44766 9.09199C8.61809 9.09051 8.78112 9.02215 8.90163 8.90163C9.02215 8.78112 9.09051 8.61809 9.09199 8.44766C9.09347 8.27723 9.02795 8.11304 8.90955 7.99045L7.15 6.2309V3.25Z"
+                fill="black"
+              />
+            </svg>
+
+            Tăng trưởng 1
+          </li>
+          <li>
+            <svg
+              width="13"
+              height="10"
+              viewBox="0 0 13 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4.225 5C5.48194 5 6.5 3.88125 6.5 2.5C6.5 1.11875 5.48194 0 4.225 0C2.96806 0 1.95 1.11875 1.95 2.5C1.95 3.88125 2.96806 5 4.225 5ZM11.375 3.75C11.375 4.83525 10.5751 5.71429 9.5875 5.71429C8.59992 5.71429 7.8 4.83525 7.8 3.75C7.8 2.66471 8.59992 1.78571 9.5875 1.78571C10.5751 1.78571 11.375 2.66471 11.375 3.75ZM4.225 5.71429C5.11342 5.71429 6.55947 6.01825 7.50786 6.62329C7.89523 7.05661 8.125 7.52907 8.125 8V10H0V8C0 6.48 2.81489 5.71429 4.225 5.71429ZM13 10H8.775V8C8.775 7.49418 8.60879 7.02861 8.34483 6.61307C8.84562 6.49018 9.33865 6.42857 9.71513 6.42857C10.9269 6.42857 13 7.06668 13 8.33332V10Z"
+                fill="black"
+              />
+            </svg>
+
+            50 thành viên
+          </li>
+          <li>
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 13 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.3995 13C10.3995 7.29462 5.70538 2.6 0 2.6V0C7.13104 0 13 5.86896 13 13H10.3995ZM1.78262 9.43313C2.76521 9.43313 3.56633 10.2342 3.56633 11.2179C3.56633 12.2 2.76196 13 1.77829 13C0.79625 13 0 12.2016 0 11.2179C0 10.2342 0.798958 9.43367 1.78262 9.43313ZM8.61738 13H6.0905C6.0905 9.65846 3.34154 6.90896 0 6.90896V4.38208C4.72712 4.38208 8.61738 8.27342 8.61738 13Z"
+                fill="black"
+              />
+            </svg>
+
+            Có 1000 lượt kết nối
+          </li>
+        </ul>
+      </div>
+      <p-tabView>
+        <p-tabPanel header="Tìm kiếm">
+          <div
+            class="grid info"
+            style="
+              border: 1px solid #b9b3b0;
+              border-radius: 17px;
+              margin-top: 16px !important;
+              margin-bottom: 16px !important;
+            "
+          >
+            <div class="col-2 md-4">
+              <img
+                [src]="'https://fsiconnected.cloud/images/default-avatar.jpg'"
+                alt=""
+                id="avatar"
+              />
+            </div>
+            <div class="col-10 md-8">
+              <ul>
+                <li>
+                  <div class="name">Lập trình viên Full Stack</div>
+                </li>
+                <li style="color: red">Thu thập: Thương lượng</li>
+                <li>Thời hạn: 17/10/2024</li>
+                <li>Khu vực: Thành phố Hồ Chí Minh</li>
+                <li class="justify-content-end flex">Cập nhật: 17/10/2023</li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="grid info"
+            style="
+              border: 1px solid #b9b3b0;
+              border-radius: 17px;
+              margin-top: 8px !important;
+              margin-bottom: 16px !important;
+            "
+          >
+            <div class="col-2 md-4">
+              <img
+                [src]="'https://fsiconnected.cloud/images/default-avatar.jpg'"
+                alt=""
+                id="avatar"
+              />
+            </div>
+            <div class="col-10 md-8">
+              <ul>
+                <li>
+                  <div class="name">Lập trình viên Full Stack</div>
+                </li>
+                <li style="color: red">Thu thập: Thương lượng</li>
+                <li>Thời hạn: 17/10/2024</li>
+                <li>Khu vực: Thành phố Hồ Chí Minh</li>
+                <li class="justify-content-end flex">Cập nhật: 17/10/2023</li>
+              </ul>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Giới thiệu">
+          <div
+            class="grid info"
+            style="
+              border: 1px solid #b9b3b0;
+              border-radius: 17px;
+              margin-top: 16px !important;
+              margin-bottom: 16px !important;
+            "
+          >
+            <div class="col-2 md-4">
+              <img
+                [src]="'https://fsiconnected.cloud/images/default-avatar.jpg'"
+                alt=""
+                id="avatar"
+              />
+            </div>
+            <div class="col-10 md-8">
+              <ul>
+                <li>
+                  <div class="name">Lập trình viên Full Stack</div>
+                </li>
+                <li style="color: red">Thu thập: Thương lượng</li>
+                <li>Thời hạn: 17/10/2024</li>
+                <li>Khu vực: Thành phố Hồ Chí Minh</li>
+                <li class="justify-content-end flex">Cập nhật: 17/10/2023</li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="grid info"
+            style="
+              border: 1px solid #b9b3b0;
+              border-radius: 17px;
+              margin-top: 8px !important;
+              margin-bottom: 16px !important;
+            "
+          >
+            <div class="col-2 md-4">
+              <img
+                [src]="'https://fsiconnected.cloud/images/default-avatar.jpg'"
+                alt=""
+                id="avatar"
+              />
+            </div>
+            <div class="col-10 md-8">
+              <ul>
+                <li>
+                  <div class="name">Lập trình viên Full Stack</div>
+                </li>
+                <li style="color: red">Thu thập: Thương lượng</li>
+                <li>Thời hạn: 17/10/2024</li>
+                <li>Khu vực: Thành phố Hồ Chí Minh</li>
+                <li class="justify-content-end flex">Cập nhật: 17/10/2023</li>
+              </ul>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Thành viên">
+          <p-accordion [multiple]="true" [activeIndex]="[0, 1, 2]">
+            <p-accordionTab header="Đội ngũ sáng lập (5)">
+              <div
+                class="grid info"
+                style="
+                  border-radius: 17px;
+                  margin-top: 16px !important;
+                  margin-bottom: 16px !important;
+                "
+              >
+                <div class="col-2 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    id="avatar"
+                  />
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>Trần Việt Anh</b></li>
+                    <li><b>Vai trò:</b> Founder</li>
+                    <li><b>Chuyên môn:</b> Quản trị kinh doanh</li>
+                    <li>
+                      <b>Vị trí đảm nhiệm:</b> Phân tích tài chính, thiết kế đồ
+                      họa
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class="grid info"
+                style="
+                  border-radius: 17px;
+                  margin-top: 8px !important;
+                  margin-bottom: 16px !important;
+                "
+              >
+                <div class="col-2 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    id="avatar"
+                  />
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>Trần Việt Anh</b></li>
+                    <li><b>Vai trò:</b> Founder</li>
+                    <li><b>Chuyên môn:</b> Quản trị kinh doanh</li>
+                    <li>
+                      <b>Vị trí đảm nhiệm:</b> Phân tích tài chính, thiết kế đồ
+                      họa
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </p-accordionTab>
+            <p-accordionTab header="Danh sách nhà đầu tư (6)">
+              <div
+                class="grid info"
+                style="
+                  border-radius: 17px;
+                  margin-top: 8px !important;
+                  margin-bottom: 16px !important;
+                "
+              >
+                <div class="col-2 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    id="avatar"
+                  />
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>Trần Việt Anh</b></li>
+                    <li><b>Vai trò:</b> Founder</li>
+                    <li><b>Chuyên môn:</b> Quản trị kinh doanh</li>
+                    <li>
+                      <b>Vị trí đảm nhiệm:</b> Phân tích tài chính, thiết kế đồ
+                      họa
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class="grid info"
+                style="
+                  border-radius: 17px;
+                  margin-top: 8px !important;
+                  margin-bottom: 16px !important;
+                "
+              >
+                <div class="col-2 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    id="avatar"
+                  />
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>Trần Việt Anh</b></li>
+                    <li><b>Vai trò:</b> Founder</li>
+                    <li><b>Chuyên môn:</b> Quản trị kinh doanh</li>
+                    <li>
+                      <b>Vị trí đảm nhiệm:</b> Phân tích tài chính, thiết kế đồ
+                      họa
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </p-accordionTab>
+            <p-accordionTab header="Danh sách cố vấn (8)">
+              <div
+                class="grid info"
+                style="
+                  border-radius: 17px;
+                  margin-top: 8px !important;
+                  margin-bottom: 16px !important;
+                "
+              >
+                <div class="col-2 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    id="avatar"
+                  />
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>Trần Việt Anh</b></li>
+                    <li><b>Vai trò:</b> Founder</li>
+                    <li><b>Chuyên môn:</b> Quản trị kinh doanh</li>
+                    <li>
+                      <b>Vị trí đảm nhiệm:</b> Phân tích tài chính, thiết kế đồ
+                      họa
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class="grid info"
+                style="
+                  border-radius: 17px;
+                  margin-top: 8px !important;
+                  margin-bottom: 16px !important;
+                "
+              >
+                <div class="col-2 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    id="avatar"
+                  />
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>Trần Việt Anh</b></li>
+                    <li><b>Vai trò:</b> Founder</li>
+                    <li><b>Chuyên môn:</b> Quản trị kinh doanh</li>
+                    <li>
+                      <b>Vị trí đảm nhiệm:</b> Phân tích tài chính, thiết kế đồ
+                      họa
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </p-accordionTab>
+          </p-accordion>
+        </p-tabPanel>
+        <p-tabPanel header="Pitch deck"> </p-tabPanel>
+        <p-tabPanel header="Tài liệu">
+          <p-accordion [multiple]="true" [activeIndex]="[0, 1, 2]">
+            <p-accordionTab header="File">
+              <div
+                class="grid info"
+                style="border-radius: 17px; margin-top: 16px !important"
+              >
+                <div class="col-2 md-4">
+                  <svg
+                    style="margin: 12px"
+                    width="39"
+                    height="39"
+                    viewBox="0 0 39 39"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20.3824 0H23.0318V3.62791C27.7726 3.65512 32.509 3.57784 37.2455 3.65512C38.2557 3.55063 39.0486 4.35349 38.9557 5.38744C39.0308 14.3212 38.938 23.2592 39 32.193C38.9557 33.109 39.0886 34.1248 38.5701 34.9364C37.9232 35.408 37.0856 35.3492 36.3328 35.3852C31.8972 35.363 27.4667 35.3721 23.0318 35.3721V39H20.2629C13.5199 37.7393 6.7585 36.5831 0.00204791 35.3721C-0.00255989 24.7924 0.00204791 14.2123 0.00204791 3.63698C6.79359 2.42163 13.5901 1.2382 20.3824 0Z"
+                      fill="#2A5699"
+                    />
+                    <path
+                      d="M23.032 4.9884H37.6529V34.0117H23.032V30.3838H34.5515V28.5698H23.032V26.3024H34.5515V24.4884H23.032V22.221H34.5515V20.407H23.032V18.1396H34.5515V16.3256H23.032V14.0582H34.5515V12.2442H23.032V9.97678H34.5515V8.16282H23.032V4.9884ZM9.15542 13.0014C9.99723 12.9517 10.839 12.9154 11.6808 12.87C12.2699 15.9313 12.8725 18.9874 13.5105 22.0348C14.0113 18.8876 14.5653 15.7495 15.1009 12.607C15.987 12.5754 16.8731 12.5254 17.755 12.471C16.7537 16.8651 15.8764 21.2958 14.7819 25.6628C14.0418 26.0575 12.9342 25.6446 12.0569 25.7081C11.4675 22.7064 10.7809 19.7221 10.2535 16.7065C9.73529 19.6361 9.06184 22.5384 8.46815 25.4502C7.61748 25.4048 6.76255 25.3504 5.90692 25.2913C5.1718 21.3006 4.30766 17.3371 3.62109 13.3373C4.37855 13.301 5.14061 13.2691 5.89841 13.2419C6.35458 16.1304 6.87314 19.0059 7.27189 21.8988C7.89749 18.9334 8.53514 15.9675 9.15542 13.0014Z"
+                      fill="white"
+                    />
+                  </svg>
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>Thuyết trình giới thiệu sản phẩm</b></li>
+                    <li>788 KB</li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class="grid info"
+                style="border-radius: 17px; margin-bottom: 16px !important"
+              >
+                <div class="col-2 md-4">
+                  <svg
+                    style="margin: 12px"
+                    width="39"
+                    height="39"
+                    viewBox="0 0 39 39"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20.3824 0H23.0318V3.62791C27.7726 3.65512 32.509 3.57784 37.2455 3.65512C38.2557 3.55063 39.0486 4.35349 38.9557 5.38744C39.0308 14.3212 38.938 23.2592 39 32.193C38.9557 33.109 39.0886 34.1248 38.5701 34.9364C37.9232 35.408 37.0856 35.3492 36.3328 35.3852C31.8972 35.363 27.4667 35.3721 23.0318 35.3721V39H20.2629C13.5199 37.7393 6.7585 36.5831 0.00204791 35.3721C-0.00255989 24.7924 0.00204791 14.2123 0.00204791 3.63698C6.79359 2.42163 13.5901 1.2382 20.3824 0Z"
+                      fill="#107C42"
+                    />
+                  </svg>
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>Thuyết trình giới thiệu sản phẩm</b></li>
+                    <li>788 KB</li>
+                  </ul>
+                </div>
+              </div>
+            </p-accordionTab>
+            <p-accordionTab header="Link">
+              <div
+                class="grid info"
+                style="border-radius: 17px; margin-top: 16px !important"
+              >
+                <div class="col-2 md-4">
+                  <svg
+                    width="39"
+                    height="39"
+                    viewBox="0 0 39 39"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="margin: 12px"
+                  >
+                    <rect
+                      x="0.5"
+                      y="0.5"
+                      width="38"
+                      height="38"
+                      rx="3.5"
+                      fill="white"
+                      stroke="#D8DFE8"
+                    />
+                  </svg>
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>https://fsiconnected/#admin</b></li>
+                    <li style="color: #01a9ff">fsiconnected.tech</li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class="grid info"
+                style="border-radius: 17px; margin-bottom: 16px !important"
+              >
+                <div class="col-2 md-4">
+                  <svg
+                    width="39"
+                    height="39"
+                    viewBox="0 0 39 39"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="margin: 12px"
+                  >
+                    <rect
+                      x="0.5"
+                      y="0.5"
+                      width="38"
+                      height="38"
+                      rx="3.5"
+                      fill="white"
+                      stroke="#D8DFE8"
+                    />
+                  </svg>
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>https://fsiconnected/#admin</b></li>
+                    <li style="color: #01a9ff">fsiconnected.tech</li>
+                  </ul>
+                </div>
+              </div>
+            </p-accordionTab>
+            <p-accordionTab header="Ảnh/Video">
+              <div
+                class="grid info"
+                style="
+                  border-radius: 17px;
+                  margin-top: 8px !important;
+                  margin-bottom: 16px !important;
+                "
+              >
+                <div class="col-2.4 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    style="
+                      margin: 12px 6px 6px 12px;
+                      height: 103px;
+                      width: 103px;
+                      border-radius: 17px;
+                    "
+                  />
+                </div>
+                <div class="col-2.4 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    class="image-video"
+                  />
+                </div>
+                <div class="col-2.4 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    class="image-video"
+                  />
+                </div>
+                <div class="col-2.4 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    class="image-video"
+                  />
+                </div>
+                <div class="col-2.4 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    class="image-video"
+                  />
+                </div>
+                <div class="col-2.4 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    class="image-video"
+                  />
+                </div>
+              </div>
+            </p-accordionTab>
+          </p-accordion>
+        </p-tabPanel>
+        <p-tabPanel header="Hỏi đáp"> </p-tabPanel>
+        <p-tabPanel header="Bài viết"> </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button label="Kết nối" icon="pi pi-share-alt"></p-button>
+    <p-button
+      label="Trò chuyện"
+      icon="pi pi-comments"
+      class="p-button-success"
+    ></p-button>
+  </ng-template>
+</p-dialog>

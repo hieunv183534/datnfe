@@ -77,6 +77,19 @@ app-project-for-startuper .p-paginator .p-paginator-pages .p-paginator-page {
   margin-top: 8px;
 }
 
+app-project-for-startuper .p-accordion .p-accordion-content {
+  padding: 0px !important;
+}
+
+app-project-for-startuper .p-accordion p-accordiontab .p-accordion-tab {
+  margin-top: 16px !important;
+  margin-bottom: 16px !important;
+}
+
+app-project-for-startuper .p-tabview .p-tabview-panels{
+  padding-top: 0px !important;
+}
+
 @media (max-width: 576px) {
   app-project-for-startuper .md\:col-2 {
     margin-top: 8px !important;

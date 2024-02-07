@@ -83,6 +83,7 @@ import { RegisterStartuperInfoComponent } from './components/startuper/register-
 import { AddNewProjectComponent } from './components/startuper/add-new-project/add-new-project.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ProjectItemComponent } from './components/common/project-item/project-item.component';
+import { ProjectDetailComponent } from './components/common/project-item/project-detail/project-detail.component';
 import { ProjectSpaceComponent } from './components/startuper/project-space/project-space.component';
 import { ListProjectMemberComponent } from './components/startuper/project-space/list-project-member/list-project-member.component';
 import { ListProjectMemberInviteComponent } from './components/startuper/project-space/list-project-member-invite/list-project-member-invite.component';
@@ -154,6 +155,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     RegisterStartuperInfoComponent,
     AddNewProjectComponent,
     ProjectItemComponent,
+    ProjectDetailComponent,
     ProjectSpaceComponent,
     ListProjectMemberComponent,
     ListProjectMemberInviteComponent,
