@@ -94,6 +94,10 @@ app-project-for-startuper .p-galleria-item {
   margin-top: 16px !important;
 }
 
+app-project-for-startuper .p-panel .p-panel-content {
+  padding: 0px !important;
+}
+
 @media (max-width: 576px) {
   app-project-for-startuper .md\:col-2 {
     margin-top: 8px !important;

@@ -396,10 +396,10 @@ export class FsiValues {
   ]
 
   static scale: DataPointDto[] = [
-    new DataPointDto("Dưới 10", 1),
-    new DataPointDto("10 - 30", 2),
-    new DataPointDto("30 - 50", 3),
-    new DataPointDto("Trên 50", 4),
+    new DataPointDto("Dưới 10 người", 1),
+    new DataPointDto("10 - 30 người", 2),
+    new DataPointDto("30 - 50 người", 3),
+    new DataPointDto("Trên 50 người", 4),
   ]
 
   static activePurpose: DataPointDto[] = [
