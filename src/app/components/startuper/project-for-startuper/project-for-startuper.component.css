@@ -86,8 +86,12 @@ app-project-for-startuper .p-accordion p-accordiontab .p-accordion-tab {
   margin-bottom: 16px !important;
 }
 
-app-project-for-startuper .p-tabview .p-tabview-panels{
+app-project-for-startuper .p-tabview .p-tabview-panels {
   padding-top: 0px !important;
+}
+
+app-project-for-startuper .p-galleria-item {
+  margin-top: 16px !important;
 }
 
 @media (max-width: 576px) {

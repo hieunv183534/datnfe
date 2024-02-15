@@ -17,6 +17,11 @@ export class ProjectForStartuperComponent implements OnInit {
   fields: any = FsiValues.fields;
   areas: any = FsiValues.areas;
   availableTimes: any = FsiValues.availableTimes;
+  scale: any = FsiValues.scale;
+  activePurpose: any = FsiValues.activePurpose;
+  specialize: any = FsiValues.specializies;
+  skill: any = FsiValues.skills;
+  experience: any = FsiValues.yearOfExps
 
   formSearch: FormGroup = this.fb.group({});
 
@@ -61,6 +66,11 @@ export class ProjectForStartuperComponent implements OnInit {
       areas: [[], []],
       stages: [[], []],
       availableTimes: [[], []],
+      scale: [[], []],
+      activePurpose: [[], []],
+      specialize: [[], []],
+      skill: [[], []],
+      experience: [[], []],
       relationWithProject: [RelationWithProject.NotMemberOfProject, []]
     });
     this.getListProject();
@@ -73,6 +83,11 @@ export class ProjectForStartuperComponent implements OnInit {
     input.fields = this.formSearch.value.fields ?? [];
     input.filter = this.formSearch.value.filter;
     input.stages = this.formSearch.value.stages ?? [];
+    input.scale = this.formSearch.value.scale ?? [];
+    input.activePurpose = this.formSearch.value.activePurpose ?? [];
+    input.specialize = this.formSearch.value.specialize ?? [];
+    input.skill = this.formSearch.value.skill ?? [];
+    input.experience = this.formSearch.value.experience ?? [];
     input.availableTimes = this.formSearch.value.availableTimes ?? [];
     input.relationWithProject = this.formSearch.value.relationWithProject;
     input.skipCount = (this.page - 1) * this.pageSize;
@@ -99,6 +114,11 @@ export class ProjectForStartuperComponent implements OnInit {
     this.formSearch.controls["fields"].patchValue([]);
     this.formSearch.controls["areas"].patchValue([]);
     this.formSearch.controls["stages"].patchValue([]);
+    this.formSearch.controls["scale"].patchValue([]);
+    this.formSearch.controls["activePurpose"].patchValue([]);
+    this.formSearch.controls["specialize"].patchValue([]);
+    this.formSearch.controls["skill"].patchValue([]);
+    this.formSearch.controls["experience"].patchValue([]);
     this.formSearch.controls["availableTimes"].patchValue([]);
     this.page = 1;
     this.pageSize = 10;

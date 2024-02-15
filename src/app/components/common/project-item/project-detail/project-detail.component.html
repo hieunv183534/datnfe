@@ -407,7 +407,27 @@
             </p-accordionTab>
           </p-accordion>
         </p-tabPanel>
-        <p-tabPanel header="Pitch deck"> </p-tabPanel>
+        <p-tabPanel header="Pitch deck">
+          <p-galleria
+            [value]="images"
+            [responsiveOptions]="responsiveOptions"
+            [numVisible]="5"
+            [showThumbnails]="false"
+            [showIndicators]="true"
+          >
+            <ng-template pTemplate="item" let-item>
+              <img
+                [src]="item.previewImageSrc"
+                style="width: 100%; display: block"
+              />
+            </ng-template>
+            <ng-template pTemplate="thumbnail" let-item>
+              <div class="grid grid-nogutter justify-content-center">
+                <img [src]="item.thumbnailImageSrc" style="display: block" />
+              </div>
+            </ng-template>
+          </p-galleria>
+        </p-tabPanel>
         <p-tabPanel header="Tài liệu">
           <p-accordion [multiple]="true" [activeIndex]="[0, 1, 2]">
             <p-accordionTab header="File">
@@ -605,7 +625,7 @@
           </p-accordion>
         </p-tabPanel>
         <p-tabPanel header="Hỏi đáp"> </p-tabPanel>
-        <p-tabPanel header="Bài viết"> </p-tabPanel>
+        <p-tabPanel header="Bài viết">Bài viết </p-tabPanel>
       </p-tabView>
     </div>
   </div>
