@@ -62,7 +62,15 @@ p {
   width: unset !important;
 }
 
+.col-1 {
+  padding: 0 !important;
+}
+
 .col-10 {
+  padding: 0 !important;
+}
+
+.col-11 {
   padding: 0 !important;
 }
 
@@ -101,4 +109,9 @@ h4 {
 
 .p-accordion .p-accordion-content {
   padding: 0px !important;
+}
+
+.arrange {
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
