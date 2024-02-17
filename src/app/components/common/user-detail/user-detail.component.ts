@@ -27,6 +27,7 @@ export class UserDetailComponent implements OnInit {
   friendStatus: number = 0;
   headerName: string = '';
   handleConnect: boolean = false;
+  handleOpenRequest: boolean = false;
   userInfo: any = {};
 
   projectRoles = ["Nhà đầu tư", "Thành viên", "Đồng sáng lập", "Nhà sáng lập"]
@@ -59,6 +60,10 @@ export class UserDetailComponent implements OnInit {
       });
       this.close.emit();
     });
+  }
+
+  closeModalOpen(){
+    this.handleOpenRequest = false
   }
 
   getDecodedAccessToken(): any {

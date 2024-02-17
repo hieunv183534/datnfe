@@ -84,7 +84,7 @@
     </div>
   </div>
   <div *ngIf="isHovered" class="hoverDiv">
-    <button type="button" id="xemthem" (click)="showDetailProject()">
+    <button type="button" id="xemthem" (click)="handleDetail = true">
       <i class="pi pi-eye"></i> Xem thêm
     </button>
     <button
@@ -127,3 +127,9 @@
     </ng-container>
   </div>
 </div>
+<ng-container *ngIf="handleDetail">
+  <app-project-detail
+    [display]="handleDetail"
+    (close)="handleDetail = false"
+  ></app-project-detail>
+</ng-container>

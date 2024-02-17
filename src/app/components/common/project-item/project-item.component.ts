@@ -20,6 +20,7 @@ export class ProjectItemComponent implements OnInit {
   @Output() adminViewDetail: EventEmitter<any> = new EventEmitter();
 
   isHovered: boolean = false;
+  handleDetail: boolean = false;
 
   fields: any = FsiValues.fields;
   areas: any = FsiValues.areas;

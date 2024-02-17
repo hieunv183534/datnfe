@@ -395,6 +395,18 @@ export class FsiValues {
     new DataPointDto("Tăng trưởng 4", 8)
   ]
 
+  static scale: DataPointDto[] = [
+    new DataPointDto("Dưới 10 người", 1),
+    new DataPointDto("10 - 30 người", 2),
+    new DataPointDto("30 - 50 người", 3),
+    new DataPointDto("Trên 50 người", 4),
+  ]
+
+  static activePurpose: DataPointDto[] = [
+    new DataPointDto("Lợi nhuận", 1),
+    new DataPointDto("Phi lợi nhuận", 2),
+  ]
+
   static universities: UniversitySpecialized[] = [
     new UniversitySpecialized("Trường Đại học Kinh tế - Kỹ thuật Công nghiệp UNETI",
       [

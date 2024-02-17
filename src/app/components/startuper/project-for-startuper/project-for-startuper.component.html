@@ -20,6 +20,18 @@
             optionLabel="name"
             optionValue="value"
             appendTo="body"
+            [options]="activePurpose"
+            optionLabel="name"
+            formControlName="activePurpose"
+            defaultLabel="Mục đích hoạt động"
+          >
+          </p-multiSelect>
+        </div>
+        <div class="p-field col-12 md-12 marginTop">
+          <p-multiSelect
+            optionLabel="name"
+            optionValue="value"
+            appendTo="body"
             [options]="areas"
             optionLabel="name"
             formControlName="areas"
@@ -35,7 +47,7 @@
             [options]="fields"
             optionLabel="name"
             formControlName="fields"
-            defaultLabel="Lĩnh vực của dự án"
+            defaultLabel="Lĩnh vực"
           >
           </p-multiSelect>
         </div>
@@ -47,7 +59,43 @@
             [options]="projectStages"
             optionLabel="name"
             formControlName="stages"
-            defaultLabel="Giai đoạn của dự án"
+            defaultLabel="Giai đoạn"
+          >
+          </p-multiSelect>
+        </div>
+        <div class="p-field col-12 md-12 marginTop">
+          <p-multiSelect
+            optionLabel="name"
+            optionValue="value"
+            appendTo="body"
+            [options]="scale"
+            optionLabel="name"
+            formControlName="scale"
+            defaultLabel="Quy mô nhân sự"
+          >
+          </p-multiSelect>
+        </div>
+        <div class="p-field col-12 md-12 marginTop">
+          <p-multiSelect
+            optionLabel="name"
+            optionValue="value"
+            appendTo="body"
+            [options]="specialize"
+            optionLabel="name"
+            formControlName="specialize"
+            defaultLabel="Chuyên môn yêu cầu"
+          >
+          </p-multiSelect>
+        </div>
+        <div class="p-field col-12 md-12 marginTop">
+          <p-multiSelect
+            optionLabel="name"
+            optionValue="value"
+            appendTo="body"
+            [options]="skill"
+            optionLabel="name"
+            formControlName="skill"
+            defaultLabel="Kỹ năng mềm yêu cầu"
           >
           </p-multiSelect>
         </div>
@@ -60,6 +108,18 @@
             optionLabel="name"
             formControlName="availableTimes"
             defaultLabel="Thời gian yêu cầu"
+          >
+          </p-multiSelect>
+        </div>
+        <div class="p-field col-12 md-12 marginTop">
+          <p-multiSelect
+            optionLabel="name"
+            optionValue="value"
+            appendTo="body"
+            [options]="experience"
+            optionLabel="name"
+            formControlName="experience"
+            defaultLabel="Kinh nghiệm yêu cầu"
           >
           </p-multiSelect>
         </div>

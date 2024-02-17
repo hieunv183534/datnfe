@@ -83,6 +83,7 @@ import { RegisterStartuperInfoComponent } from './components/startuper/register-
 import { AddNewProjectComponent } from './components/startuper/add-new-project/add-new-project.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ProjectItemComponent } from './components/common/project-item/project-item.component';
+import { ProjectDetailComponent } from './components/common/project-item/project-detail/project-detail.component';
 import { ProjectSpaceComponent } from './components/startuper/project-space/project-space.component';
 import { ListProjectMemberComponent } from './components/startuper/project-space/list-project-member/list-project-member.component';
 import { ListProjectMemberInviteComponent } from './components/startuper/project-space/list-project-member-invite/list-project-member-invite.component';
@@ -117,6 +118,7 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { VideoCallComponent } from './components/chat/video-call/video-call.component';
 import { WorkHistorySummaryComponent } from './components/common/work-history-summary/work-history-summary.component';
 import { ModalConnectComponent } from './components/common/startuper-item/modalConnect/modal-connect.component';
+import { ModalDetailConnectComponent } from './components/common/startuper-item/modalDetailConnect/modal-detail-connect.component';
 import { InformationBoxComponent } from './components/chat/information-box/information-box.component';
 import {HomePageNewComponent} from './components/home-page-new/home-page-new.component';
 import {CarouselModule} from 'primeng/carousel';
@@ -153,6 +155,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     RegisterStartuperInfoComponent,
     AddNewProjectComponent,
     ProjectItemComponent,
+    ProjectDetailComponent,
     ProjectSpaceComponent,
     ListProjectMemberComponent,
     ListProjectMemberInviteComponent,
@@ -183,6 +186,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     VideoCallComponent,
     WorkHistorySummaryComponent,
     ModalConnectComponent,
+    ModalDetailConnectComponent,
     HistorySearchItemComponent
   ],
   imports: [

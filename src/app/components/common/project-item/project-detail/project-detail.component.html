@@ -1,0 +1,1237 @@
+<p-dialog
+  [resizable]="true"
+  header="Thông tin dự án"
+  [(visible)]="display"
+  [modal]="true"
+  [style]="{ width: '800px' }"
+  [baseZIndex]="10000"
+  [draggable]="false"
+  (onHide)="close.emit()"
+>
+  <div class="page">
+    <div class="profile relative mb-3">
+      <div class="flex relative">
+        <div
+          class="flex"
+          style="
+            background-image: url('../../../assets/img/qcao.png');
+            width: 100%;
+          "
+        >
+          <div
+            class="bg-right-bottom bg-no-repeat w-10rem h-10rem border-round"
+          >
+            <img
+              class="logo absolute"
+              style="top: 45%; left: 5%"
+              [src]="'https://fsiconnected.cloud/images/default-avatar.jpg'"
+              width="150px"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="info">
+      <div>
+        <ul>
+          <li>
+            <div class="name">FSI CONNECTED</div>
+          </li>
+          <li>Nền tảng kết nối hệ sinh thái</li>
+          <li>
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 13 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12.4091 5.90909H12.3791C12.101 3.12183 9.87817 0.899009 7.09091 0.620868V0.590909C7.09091 0.264314 6.8266 0 6.5 0C6.1734 0 5.90909 0.264314 5.90909 0.590909V0.620868C3.12183 0.899009 0.899009 3.12183 0.620868 5.90909H0.590909C0.264314 5.90909 0 6.1734 0 6.5C0 6.8266 0.264314 7.09091 0.590909 7.09091H0.620868C0.899009 9.87817 3.12183 12.101 5.90909 12.3791V12.4091C5.90909 12.7357 6.1734 13 6.5 13C6.8266 13 7.09091 12.7357 7.09091 12.4091V12.3791C9.87817 12.101 12.101 9.87817 12.3791 7.09091H12.4091C12.7357 7.09091 13 6.8266 13 6.5C13 6.1734 12.7357 5.90909 12.4091 5.90909ZM10.6364 7.09091H11.1862C10.9183 9.22504 9.22498 10.9183 7.09091 11.1862V10.6364C7.09091 10.3098 6.8266 10.0455 6.5 10.0455C6.1734 10.0455 5.90909 10.3098 5.90909 10.6364V11.1862C3.77496 10.9183 2.08171 9.22504 1.8138 7.09091H2.36364C2.69023 7.09091 2.95455 6.8266 2.95455 6.5C2.95455 6.1734 2.69023 5.90909 2.36364 5.90909H1.8138C2.08171 3.77496 3.77496 2.08171 5.90909 1.8138V2.36364C5.90909 2.69023 6.1734 2.95455 6.5 2.95455C6.8266 2.95455 7.09091 2.69023 7.09091 2.36364V1.8138C9.22504 2.08171 10.9183 3.77502 11.1862 5.90909H10.6364C10.3098 5.90909 10.0455 6.1734 10.0455 6.5C10.0455 6.8266 10.3098 7.09091 10.6364 7.09091Z"
+                fill="black"
+              />
+            </svg>
+
+            Dự án vì lợi nhuận
+          </li>
+          <li>
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 13 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M6.5 13C10.0899 13 13 10.0899 13 6.5C13 2.91005 10.0899 0 6.5 0C2.91005 0 0 2.91005 0 6.5C0 10.0899 2.91005 13 6.5 13ZM7.15 3.25C7.15 3.07761 7.08152 2.91228 6.95962 2.79038C6.83772 2.66848 6.67239 2.6 6.5 2.6C6.32761 2.6 6.16228 2.66848 6.04038 2.79038C5.91848 2.91228 5.85 3.07761 5.85 3.25V6.2309C5.85007 6.57565 5.98709 6.90626 6.2309 7.15L7.99045 8.90955C8.11304 9.02795 8.27723 9.09347 8.44766 9.09199C8.61809 9.09051 8.78112 9.02215 8.90163 8.90163C9.02215 8.78112 9.09051 8.61809 9.09199 8.44766C9.09347 8.27723 9.02795 8.11304 8.90955 7.99045L7.15 6.2309V3.25Z"
+                fill="black"
+              />
+            </svg>
+
+            Tăng trưởng 1
+          </li>
+          <li>
+            <svg
+              width="13"
+              height="10"
+              viewBox="0 0 13 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4.225 5C5.48194 5 6.5 3.88125 6.5 2.5C6.5 1.11875 5.48194 0 4.225 0C2.96806 0 1.95 1.11875 1.95 2.5C1.95 3.88125 2.96806 5 4.225 5ZM11.375 3.75C11.375 4.83525 10.5751 5.71429 9.5875 5.71429C8.59992 5.71429 7.8 4.83525 7.8 3.75C7.8 2.66471 8.59992 1.78571 9.5875 1.78571C10.5751 1.78571 11.375 2.66471 11.375 3.75ZM4.225 5.71429C5.11342 5.71429 6.55947 6.01825 7.50786 6.62329C7.89523 7.05661 8.125 7.52907 8.125 8V10H0V8C0 6.48 2.81489 5.71429 4.225 5.71429ZM13 10H8.775V8C8.775 7.49418 8.60879 7.02861 8.34483 6.61307C8.84562 6.49018 9.33865 6.42857 9.71513 6.42857C10.9269 6.42857 13 7.06668 13 8.33332V10Z"
+                fill="black"
+              />
+            </svg>
+
+            50 thành viên
+          </li>
+          <li>
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 13 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.3995 13C10.3995 7.29462 5.70538 2.6 0 2.6V0C7.13104 0 13 5.86896 13 13H10.3995ZM1.78262 9.43313C2.76521 9.43313 3.56633 10.2342 3.56633 11.2179C3.56633 12.2 2.76196 13 1.77829 13C0.79625 13 0 12.2016 0 11.2179C0 10.2342 0.798958 9.43367 1.78262 9.43313ZM8.61738 13H6.0905C6.0905 9.65846 3.34154 6.90896 0 6.90896V4.38208C4.72712 4.38208 8.61738 8.27342 8.61738 13Z"
+                fill="black"
+              />
+            </svg>
+
+            Có 1000 lượt kết nối
+          </li>
+        </ul>
+      </div>
+      <p-tabView>
+        <p-tabPanel header="Tìm kiếm">
+          <div
+            class="grid info"
+            style="
+              border: 1px solid #b9b3b0;
+              border-radius: 17px;
+              margin-top: 16px !important;
+              margin-bottom: 16px !important;
+            "
+          >
+            <div class="col-2 md-4">
+              <img
+                [src]="'https://fsiconnected.cloud/images/default-avatar.jpg'"
+                alt=""
+                id="avatar"
+              />
+            </div>
+            <div class="col-10 md-8">
+              <ul>
+                <li>
+                  <div class="name">Lập trình viên Full Stack</div>
+                </li>
+                <li style="color: red">Thu thập: Thương lượng</li>
+                <li>Thời hạn: 17/10/2024</li>
+                <li>Khu vực: Thành phố Hồ Chí Minh</li>
+                <li class="justify-content-end flex">Cập nhật: 17/10/2023</li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="grid info"
+            style="
+              border: 1px solid #b9b3b0;
+              border-radius: 17px;
+              margin-top: 8px !important;
+              margin-bottom: 16px !important;
+            "
+          >
+            <div class="col-2 md-4">
+              <img
+                [src]="'https://fsiconnected.cloud/images/default-avatar.jpg'"
+                alt=""
+                id="avatar"
+              />
+            </div>
+            <div class="col-10 md-8">
+              <ul>
+                <li>
+                  <div class="name">Lập trình viên Full Stack</div>
+                </li>
+                <li style="color: red">Thu thập: Thương lượng</li>
+                <li>Thời hạn: 17/10/2024</li>
+                <li>Khu vực: Thành phố Hồ Chí Minh</li>
+                <li class="justify-content-end flex">Cập nhật: 17/10/2023</li>
+              </ul>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Giới thiệu">
+          <p-panel
+            header="The Lean Canvas Business Model"
+            [style]="{ marginTop: '16px' }"
+          >
+            <div class="grid info">
+              <div class="col-introduce">
+                <h4 style="text-align: center; margin-bottom: 20px !important">
+                  Problem
+                </h4>
+                <div
+                  class="content-introduce"
+                  style="
+                    border-radius: 17px;
+                    border: 1px solid #b9b3b0;
+                    background-color: #fec56f;
+                  "
+                >
+                  Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản
+                  phẩm
+                </div>
+              </div>
+              <div class="col-introduce">
+                <h4 style="text-align: center; margin-bottom: 20px !important">
+                  Solution
+                </h4>
+                <div
+                  class="content-introduce"
+                  style="
+                    border-radius: 17px;
+                    border: 1px solid #b9b3b0;
+                    background-color: #feee6f;
+                  "
+                >
+                  Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản
+                  phẩm
+                </div>
+              </div>
+              <div class="col-introduce">
+                <h4 style="text-align: center">Unique Value Proposition</h4>
+                <div
+                  class="content-introduce"
+                  style="
+                    border-radius: 17px;
+                    border: 1px solid #b9b3b0;
+                    background-color: #c8fe6f;
+                  "
+                >
+                  Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản
+                  phẩm
+                </div>
+              </div>
+              <div class="col-introduce">
+                <h4 style="text-align: center; margin-bottom: 20px !important">
+                  Unfair Advantage
+                </h4>
+                <div
+                  class="content-introduce"
+                  style="
+                    border-radius: 17px;
+                    border: 1px solid #b9b3b0;
+                    background-color: #6ffea8;
+                  "
+                >
+                  Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản
+                  phẩm
+                </div>
+              </div>
+              <div class="col-introduce">
+                <h4 style="text-align: center">Customer Segments</h4>
+                <div
+                  class="content-introduce"
+                  style="
+                    border-radius: 17px;
+                    border: 1px solid #b9b3b0;
+                    background-color: #6ff5fe;
+                  "
+                >
+                  Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản
+                  phẩm
+                </div>
+              </div>
+              <div class="col-introduce">
+                <h4 style="text-align: center">Exiting Alternatives</h4>
+                <div
+                  class="content-introduce"
+                  style="
+                    border-radius: 17px;
+                    border: 1px solid #b9b3b0;
+                    background-color: #6ff5fe;
+                  "
+                >
+                  Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản
+                  phẩm
+                </div>
+              </div>
+              <div class="col-introduce">
+                <h4 style="text-align: center; margin-bottom: 20px !important">
+                  Key Metrics
+                </h4>
+                <div
+                  class="content-introduce"
+                  style="
+                    border-radius: 17px;
+                    border: 1px solid #b9b3b0;
+                    background-color: #6ffea8;
+                  "
+                >
+                  Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản
+                  phẩm
+                </div>
+              </div>
+              <div class="col-introduce">
+                <h4 style="text-align: center">High-Level Concept</h4>
+                <div
+                  class="content-introduce"
+                  style="
+                    border-radius: 17px;
+                    border: 1px solid #b9b3b0;
+                    background-color: #c8fe6f;
+                  "
+                >
+                  Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản
+                  phẩm
+                </div>
+              </div>
+              <div class="col-introduce">
+                <h4 style="text-align: center; margin-bottom: 20px !important">
+                  Channels
+                </h4>
+                <div
+                  class="content-introduce"
+                  style="
+                    border-radius: 17px;
+                    border: 1px solid #b9b3b0;
+                    background-color: #feee6f;
+                  "
+                >
+                  Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản
+                  phẩm
+                </div>
+              </div>
+              <div class="col-introduce">
+                <h4 style="text-align: center; margin-bottom: 20px !important">
+                  Early Adopter
+                </h4>
+                <div
+                  class="content-introduce"
+                  style="
+                    border-radius: 17px;
+                    border: 1px solid #b9b3b0;
+                    background-color: #fec56f;
+                  "
+                >
+                  Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản
+                  phẩm
+                </div>
+              </div>
+              <div class="col-6">
+                <h4 style="text-align: center; margin-bottom: 20px !important">
+                  Cost Structure
+                </h4>
+                <div
+                  class="content-introduce"
+                  style="
+                    border-radius: 17px;
+                    border: 1px solid #b9b3b0;
+                    background-color: #fec56f;
+                  "
+                >
+                  Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản
+                  phẩm
+                </div>
+              </div>
+              <div class="col-6">
+                <h4 style="text-align: center; margin-bottom: 20px !important">
+                  Revenue Streams
+                </h4>
+                <div
+                  class="content-introduce"
+                  style="
+                    border-radius: 17px;
+                    border: 1px solid #b9b3b0;
+                    background-color: #6ff5fe;
+                  "
+                >
+                  Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản
+                  phẩm
+                </div>
+              </div>
+            </div>
+          </p-panel>
+        </p-tabPanel>
+        <p-tabPanel header="Thành viên">
+          <p-accordion [multiple]="true" [activeIndex]="[0, 1, 2]">
+            <p-accordionTab header="Đội ngũ sáng lập (5)">
+              <div
+                class="grid info"
+                style="
+                  border-radius: 17px;
+                  margin-top: 16px !important;
+                  margin-bottom: 16px !important;
+                "
+              >
+                <div class="col-2 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    id="avatar"
+                  />
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>Trần Việt Anh</b></li>
+                    <li><b>Vai trò:</b> Founder</li>
+                    <li><b>Chuyên môn:</b> Quản trị kinh doanh</li>
+                    <li>
+                      <b>Vị trí đảm nhiệm:</b> Phân tích tài chính, thiết kế đồ
+                      họa
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class="grid info"
+                style="
+                  border-radius: 17px;
+                  margin-top: 8px !important;
+                  margin-bottom: 16px !important;
+                "
+              >
+                <div class="col-2 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    id="avatar"
+                  />
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>Trần Việt Anh</b></li>
+                    <li><b>Vai trò:</b> Founder</li>
+                    <li><b>Chuyên môn:</b> Quản trị kinh doanh</li>
+                    <li>
+                      <b>Vị trí đảm nhiệm:</b> Phân tích tài chính, thiết kế đồ
+                      họa
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </p-accordionTab>
+            <p-accordionTab header="Danh sách nhà đầu tư (6)">
+              <div
+                class="grid info"
+                style="
+                  border-radius: 17px;
+                  margin-top: 8px !important;
+                  margin-bottom: 16px !important;
+                "
+              >
+                <div class="col-2 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    id="avatar"
+                  />
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>Trần Việt Anh</b></li>
+                    <li><b>Vai trò:</b> Founder</li>
+                    <li><b>Chuyên môn:</b> Quản trị kinh doanh</li>
+                    <li>
+                      <b>Vị trí đảm nhiệm:</b> Phân tích tài chính, thiết kế đồ
+                      họa
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class="grid info"
+                style="
+                  border-radius: 17px;
+                  margin-top: 8px !important;
+                  margin-bottom: 16px !important;
+                "
+              >
+                <div class="col-2 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    id="avatar"
+                  />
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>Trần Việt Anh</b></li>
+                    <li><b>Vai trò:</b> Founder</li>
+                    <li><b>Chuyên môn:</b> Quản trị kinh doanh</li>
+                    <li>
+                      <b>Vị trí đảm nhiệm:</b> Phân tích tài chính, thiết kế đồ
+                      họa
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </p-accordionTab>
+            <p-accordionTab header="Danh sách cố vấn (8)">
+              <div
+                class="grid info"
+                style="
+                  border-radius: 17px;
+                  margin-top: 8px !important;
+                  margin-bottom: 16px !important;
+                "
+              >
+                <div class="col-2 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    id="avatar"
+                  />
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>Trần Việt Anh</b></li>
+                    <li><b>Vai trò:</b> Founder</li>
+                    <li><b>Chuyên môn:</b> Quản trị kinh doanh</li>
+                    <li>
+                      <b>Vị trí đảm nhiệm:</b> Phân tích tài chính, thiết kế đồ
+                      họa
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class="grid info"
+                style="
+                  border-radius: 17px;
+                  margin-top: 8px !important;
+                  margin-bottom: 16px !important;
+                "
+              >
+                <div class="col-2 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    id="avatar"
+                  />
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>Trần Việt Anh</b></li>
+                    <li><b>Vai trò:</b> Founder</li>
+                    <li><b>Chuyên môn:</b> Quản trị kinh doanh</li>
+                    <li>
+                      <b>Vị trí đảm nhiệm:</b> Phân tích tài chính, thiết kế đồ
+                      họa
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </p-accordionTab>
+          </p-accordion>
+        </p-tabPanel>
+        <p-tabPanel header="Pitch deck">
+          <p-galleria
+            [value]="images"
+            [responsiveOptions]="responsiveOptions"
+            [numVisible]="5"
+            [circular]="true"
+            [showItemNavigators]="true"
+            [showThumbnails]="false"
+          >
+            <ng-template pTemplate="item" let-item>
+              <img
+                [src]="item.previewImageSrc"
+                style="width: 100%; display: block"
+              />
+            </ng-template>
+            <ng-template pTemplate="thumbnail" let-item>
+              <div class="grid grid-nogutter justify-content-center">
+                <img [src]="item.thumbnailImageSrc" style="display: block" />
+              </div>
+            </ng-template>
+          </p-galleria>
+        </p-tabPanel>
+        <p-tabPanel header="Tài liệu">
+          <p-accordion [multiple]="true" [activeIndex]="[0, 1, 2]">
+            <p-accordionTab header="File">
+              <div
+                class="grid info"
+                style="border-radius: 17px; margin-top: 16px !important"
+              >
+                <div class="col-2 md-4">
+                  <svg
+                    style="margin: 12px"
+                    width="39"
+                    height="39"
+                    viewBox="0 0 39 39"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20.3824 0H23.0318V3.62791C27.7726 3.65512 32.509 3.57784 37.2455 3.65512C38.2557 3.55063 39.0486 4.35349 38.9557 5.38744C39.0308 14.3212 38.938 23.2592 39 32.193C38.9557 33.109 39.0886 34.1248 38.5701 34.9364C37.9232 35.408 37.0856 35.3492 36.3328 35.3852C31.8972 35.363 27.4667 35.3721 23.0318 35.3721V39H20.2629C13.5199 37.7393 6.7585 36.5831 0.00204791 35.3721C-0.00255989 24.7924 0.00204791 14.2123 0.00204791 3.63698C6.79359 2.42163 13.5901 1.2382 20.3824 0Z"
+                      fill="#2A5699"
+                    />
+                    <path
+                      d="M23.032 4.9884H37.6529V34.0117H23.032V30.3838H34.5515V28.5698H23.032V26.3024H34.5515V24.4884H23.032V22.221H34.5515V20.407H23.032V18.1396H34.5515V16.3256H23.032V14.0582H34.5515V12.2442H23.032V9.97678H34.5515V8.16282H23.032V4.9884ZM9.15542 13.0014C9.99723 12.9517 10.839 12.9154 11.6808 12.87C12.2699 15.9313 12.8725 18.9874 13.5105 22.0348C14.0113 18.8876 14.5653 15.7495 15.1009 12.607C15.987 12.5754 16.8731 12.5254 17.755 12.471C16.7537 16.8651 15.8764 21.2958 14.7819 25.6628C14.0418 26.0575 12.9342 25.6446 12.0569 25.7081C11.4675 22.7064 10.7809 19.7221 10.2535 16.7065C9.73529 19.6361 9.06184 22.5384 8.46815 25.4502C7.61748 25.4048 6.76255 25.3504 5.90692 25.2913C5.1718 21.3006 4.30766 17.3371 3.62109 13.3373C4.37855 13.301 5.14061 13.2691 5.89841 13.2419C6.35458 16.1304 6.87314 19.0059 7.27189 21.8988C7.89749 18.9334 8.53514 15.9675 9.15542 13.0014Z"
+                      fill="white"
+                    />
+                  </svg>
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>Thuyết trình giới thiệu sản phẩm</b></li>
+                    <li>788 KB</li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class="grid info"
+                style="border-radius: 17px; margin-bottom: 16px !important"
+              >
+                <div class="col-2 md-4">
+                  <svg
+                    style="margin: 12px"
+                    width="39"
+                    height="39"
+                    viewBox="0 0 39 39"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20.3824 0H23.0318V3.62791C27.7726 3.65512 32.509 3.57784 37.2455 3.65512C38.2557 3.55063 39.0486 4.35349 38.9557 5.38744C39.0308 14.3212 38.938 23.2592 39 32.193C38.9557 33.109 39.0886 34.1248 38.5701 34.9364C37.9232 35.408 37.0856 35.3492 36.3328 35.3852C31.8972 35.363 27.4667 35.3721 23.0318 35.3721V39H20.2629C13.5199 37.7393 6.7585 36.5831 0.00204791 35.3721C-0.00255989 24.7924 0.00204791 14.2123 0.00204791 3.63698C6.79359 2.42163 13.5901 1.2382 20.3824 0Z"
+                      fill="#107C42"
+                    />
+                  </svg>
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>Thuyết trình giới thiệu sản phẩm</b></li>
+                    <li>788 KB</li>
+                  </ul>
+                </div>
+              </div>
+            </p-accordionTab>
+            <p-accordionTab header="Link">
+              <div
+                class="grid info"
+                style="border-radius: 17px; margin-top: 16px !important"
+              >
+                <div class="col-2 md-4">
+                  <svg
+                    width="39"
+                    height="39"
+                    viewBox="0 0 39 39"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="margin: 12px"
+                  >
+                    <rect
+                      x="0.5"
+                      y="0.5"
+                      width="38"
+                      height="38"
+                      rx="3.5"
+                      fill="white"
+                      stroke="#D8DFE8"
+                    />
+                  </svg>
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>https://fsiconnected/#admin</b></li>
+                    <li style="color: #01a9ff">fsiconnected.tech</li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class="grid info"
+                style="border-radius: 17px; margin-bottom: 16px !important"
+              >
+                <div class="col-2 md-4">
+                  <svg
+                    width="39"
+                    height="39"
+                    viewBox="0 0 39 39"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="margin: 12px"
+                  >
+                    <rect
+                      x="0.5"
+                      y="0.5"
+                      width="38"
+                      height="38"
+                      rx="3.5"
+                      fill="white"
+                      stroke="#D8DFE8"
+                    />
+                  </svg>
+                </div>
+                <div class="col-10 md-8">
+                  <ul>
+                    <li><b>https://fsiconnected/#admin</b></li>
+                    <li style="color: #01a9ff">fsiconnected.tech</li>
+                  </ul>
+                </div>
+              </div>
+            </p-accordionTab>
+            <p-accordionTab header="Ảnh/Video">
+              <div
+                class="grid info"
+                style="
+                  border-radius: 17px;
+                  margin-top: 8px !important;
+                  margin-bottom: 16px !important;
+                "
+              >
+                <div class="col-2.4 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    style="
+                      margin: 12px 6px 6px 12px;
+                      height: 103px;
+                      width: 103px;
+                      border-radius: 17px;
+                    "
+                  />
+                </div>
+                <div class="col-2.4 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    class="image-video"
+                  />
+                </div>
+                <div class="col-2.4 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    class="image-video"
+                  />
+                </div>
+                <div class="col-2.4 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    class="image-video"
+                  />
+                </div>
+                <div class="col-2.4 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    class="image-video"
+                  />
+                </div>
+                <div class="col-2.4 md-4">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    class="image-video"
+                  />
+                </div>
+              </div>
+            </p-accordionTab>
+          </p-accordion>
+        </p-tabPanel>
+        <p-tabPanel header="Hỏi đáp">
+          <div class="arrange justify-content-end flex">
+            <span>
+              Sắp xếp theo
+              <svg
+                width="13"
+                height="7"
+                viewBox="0 0 13 7"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0.650108 0H12.3499C12.464 -1.28746e-05 12.5761 0.0184045 12.6749 0.0534019C12.7738 0.0883994 12.8558 0.138744 12.9129 0.199373C12.97 0.260002 13 0.328779 13 0.398791C13 0.468802 12.97 0.537582 12.9129 0.598214L7.06303 6.81481C7.00133 6.87176 6.91764 6.91847 6.81941 6.95078C6.72118 6.98309 6.61146 7 6.5 7C6.38854 7 6.27882 6.98309 6.18059 6.95078C6.08236 6.91847 5.99867 6.87176 5.93697 6.81481L0.087081 0.598214C0.0300283 0.537582 -4.76837e-06 0.468802 0 0.398791C5.72205e-06 0.328779 0.0300503 0.260002 0.0871124 0.199373C0.144175 0.138744 0.226245 0.0883994 0.325072 0.0534019C0.4239 0.0184045 0.536001 -1.28746e-05 0.650108 0Z"
+                  fill="#666666"
+                />
+              </svg>
+            </span>
+          </div>
+          <div class="grid info" style="margin-bottom: 8px !important">
+            <div class="col-1">
+              <img
+                [src]="'https://fsiconnected.cloud/images/default-avatar.jpg'"
+                style="
+                  width: 41px !important;
+                  height: 41px !important;
+                  border-radius: 50%;
+                "
+              />
+            </div>
+            <div class="col-11">
+              <div
+                style="
+                  border-radius: 8px;
+                  border: 1px solid #b9b3b0;
+                  background-color: #f2f2f2;
+                  padding: 8px;
+                  margin-bottom: 8px;
+                "
+              >
+                <div><b>Uông Thị Thùy Linh</b></div>
+                <div>Các bạn cho mình hỏi dự án còn tìm Co Founder không ạ</div>
+              </div>
+              <div>
+                <span style="margin-right: 9px">20 giờ</span>
+                <span style="margin-right: 17px">Thích</span>
+                <span>Phản hồi</span>
+              </div>
+              <div style="margin-top: 8px">
+                <svg
+                  width="13"
+                  height="7"
+                  viewBox="0 0 13 7"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 1C1 2.29877 1.25171 4.22829 2.26671 5.14666C3.28171 6.06503 4.97687 5.89703 6.41231 5.89703H11.8246"
+                    stroke="#666666"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span style="color: #666666; margin-left: 8px"
+                  >Xem tất cả 68 phản hồi</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="grid info" style="margin-bottom: 8px !important">
+            <div class="col-1">
+              <img
+                [src]="'https://fsiconnected.cloud/images/default-avatar.jpg'"
+                style="
+                  width: 41px !important;
+                  height: 41px !important;
+                  border-radius: 50%;
+                "
+              />
+            </div>
+            <div class="col-11">
+              <div
+                style="
+                  border-radius: 8px;
+                  border: 1px solid #b9b3b0;
+                  background-color: #f2f2f2;
+                  padding: 8px;
+                  margin-bottom: 8px;
+                "
+              >
+                <div><b>Uông Thị Thùy Linh</b></div>
+                <div>Các bạn cho mình hỏi dự án còn tìm Co Founder không ạ</div>
+              </div>
+              <div>
+                <span style="margin-right: 9px">20 giờ</span>
+                <span style="margin-right: 17px">Thích</span>
+                <span>Phản hồi</span>
+              </div>
+              <div style="margin-top: 8px !important" class="grid">
+                <div class="col-1">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    style="
+                      width: 33px !important;
+                      height: 33px !important;
+                      border-radius: 50%;
+                    "
+                  />
+                </div>
+                <div class="col-11">
+                  <div
+                    style="
+                      border-radius: 8px;
+                      border: 1px solid #b9b3b0;
+                      background-color: #f2f2f2;
+                      padding: 8px;
+                      margin-bottom: 8px;
+                    "
+                  >
+                    <div><b>Uông Thị Thùy Linh</b></div>
+                    <div>
+                      Các bạn cho mình hỏi dự án còn tìm Co Founder không ạ
+                    </div>
+                  </div>
+                  <div>
+                    <span style="margin-right: 9px">20 giờ</span>
+                    <span style="margin-right: 17px">Thích</span>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top: 8px !important" class="grid">
+                <div class="col-1">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    style="
+                      width: 33px !important;
+                      height: 33px !important;
+                      border-radius: 50%;
+                    "
+                  />
+                </div>
+                <div class="col-11">
+                  <div
+                    style="
+                      border-radius: 8px;
+                      border: 1px solid #b9b3b0;
+                      background-color: #f2f2f2;
+                      padding: 8px;
+                      margin-bottom: 8px;
+                    "
+                  >
+                    <div><b>Uông Thị Thùy Linh</b></div>
+                    <div>
+                      Các bạn cho mình hỏi dự án còn tìm Co Founder không ạ
+                    </div>
+                  </div>
+                  <div>
+                    <span style="margin-right: 9px">20 giờ</span>
+                    <span style="margin-right: 17px">Thích</span>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top: 8px !important" class="grid">
+                <div class="col-1">
+                  <img
+                    [src]="
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    style="
+                      width: 33px !important;
+                      height: 33px !important;
+                      border-radius: 50%;
+                    "
+                  />
+                </div>
+                <div class="field col-11 md:col-11">
+                  <span class="p-input-icon-right">
+                    <i>
+                      <svg
+                        width="13"
+                        height="13"
+                        viewBox="0 0 13 13"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="margin-right: 8px"
+                      >
+                        <path
+                          d="M8.034 7.9495C7.59949 8.29983 7.05815 8.49087 6.5 8.49087C5.94185 8.49087 5.40052 8.29983 4.966 7.9495C4.83326 7.83917 4.66213 7.78609 4.49025 7.80193C4.31837 7.81778 4.15983 7.90126 4.0495 8.034C3.93917 8.16674 3.88609 8.33787 3.90194 8.50975C3.91779 8.68162 4.00126 8.84017 4.134 8.9505C4.79787 9.50469 5.63522 9.80826 6.5 9.80826C7.36479 9.80826 8.20213 9.50469 8.866 8.9505C8.99874 8.84017 9.08222 8.68162 9.09806 8.50975C9.11391 8.33787 9.06083 8.16674 8.9505 8.034C8.89587 7.96827 8.82883 7.91395 8.75321 7.87413C8.67758 7.83431 8.59486 7.80978 8.50975 7.80193C8.33787 7.78609 8.16674 7.83917 8.034 7.9495ZM4.6865 5.551C4.80829 5.67206 4.97303 5.74001 5.14475 5.74001C5.31647 5.74001 5.48122 5.67206 5.603 5.551C5.72406 5.42921 5.79202 5.26447 5.79202 5.09275C5.79202 4.92103 5.72406 4.75628 5.603 4.6345C5.23102 4.28154 4.73779 4.08478 4.225 4.08478C3.71222 4.08478 3.21898 4.28154 2.847 4.6345C2.77896 4.69277 2.7237 4.76448 2.68468 4.84512C2.64567 4.92576 2.62374 5.0136 2.62028 5.10311C2.61683 5.19263 2.63191 5.2819 2.66459 5.36531C2.69727 5.44872 2.74683 5.52448 2.81018 5.58782C2.87352 5.65117 2.94928 5.70073 3.03269 5.73341C3.1161 5.76609 3.20537 5.78118 3.29489 5.77772C3.3844 5.77426 3.47224 5.75233 3.55288 5.71332C3.63352 5.6743 3.70523 5.61904 3.7635 5.551C3.82393 5.49007 3.89582 5.44172 3.97503 5.40872C4.05424 5.37572 4.13919 5.35873 4.225 5.35873C4.31081 5.35873 4.39577 5.37572 4.47498 5.40872C4.55419 5.44172 4.62608 5.49007 4.6865 5.551ZM10.153 4.6345C9.78102 4.28154 9.28778 4.08478 8.775 4.08478C8.26222 4.08478 7.76898 4.28154 7.397 4.6345C7.29051 4.75884 7.23487 4.91879 7.24119 5.08238C7.24751 5.24597 7.31532 5.40115 7.43109 5.51691C7.54685 5.63268 7.70203 5.70049 7.86562 5.70681C8.02921 5.71313 8.18916 5.65749 8.3135 5.551C8.37393 5.49007 8.44582 5.44172 8.52503 5.40872C8.60423 5.37572 8.68919 5.35873 8.775 5.35873C8.86081 5.35873 8.94577 5.37572 9.02498 5.40872C9.10418 5.44172 9.17607 5.49007 9.2365 5.551C9.35829 5.67206 9.52303 5.74001 9.69475 5.74001C9.86647 5.74001 10.0312 5.67206 10.153 5.551C10.2741 5.42921 10.342 5.26447 10.342 5.09275C10.342 4.92103 10.2741 4.75628 10.153 4.6345ZM6.5 0C5.21442 0 3.95772 0.381218 2.8888 1.09545C1.81988 1.80968 0.986755 2.82484 0.494786 4.01256C0.00281635 5.20028 -0.125905 6.50721 0.124899 7.76808C0.375702 9.02896 0.994767 10.1872 1.90381 11.0962C2.81285 12.0052 3.97104 12.6243 5.23191 12.8751C6.49279 13.1259 7.79972 12.9972 8.98744 12.5052C10.1752 12.0132 11.1903 11.1801 11.9046 10.1112C12.6188 9.04228 13 7.78558 13 6.5C13 5.64641 12.8319 4.80117 12.5052 4.01256C12.1786 3.22394 11.6998 2.50739 11.0962 1.90381C10.4926 1.30022 9.77606 0.821438 8.98744 0.494783C8.19883 0.168127 7.35359 0 6.5 0ZM6.5 11.7C5.47154 11.7 4.46617 11.395 3.61104 10.8236C2.7559 10.2523 2.0894 9.44013 1.69583 8.48995C1.30225 7.53978 1.19928 6.49423 1.39992 5.48553C1.60056 4.47683 2.09581 3.55028 2.82305 2.82304C3.55028 2.09581 4.47683 1.60056 5.48553 1.39992C6.49423 1.19927 7.53978 1.30225 8.48995 1.69583C9.44013 2.0894 10.2523 2.7559 10.8236 3.61103C11.395 4.46617 11.7 5.47154 11.7 6.5C11.7 7.87912 11.1521 9.20176 10.177 10.177C9.20177 11.1521 7.87913 11.7 6.5 11.7Z"
+                          fill="#666666"
+                        />
+                      </svg>
+                      <svg
+                        width="15"
+                        height="13"
+                        viewBox="0 0 15 13"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="margin-right: 8px"
+                      >
+                        <path
+                          d="M12.9545 5.45932C12.7737 5.45932 12.6003 5.53121 12.4724 5.65919C12.3446 5.78717 12.2727 5.96074 12.2727 6.14173V10.9186C12.2727 11.0996 12.2009 11.2732 12.073 11.4012C11.9452 11.5292 11.7717 11.6011 11.5909 11.6011H2.04545C1.86463 11.6011 1.6912 11.5292 1.56334 11.4012C1.43547 11.2732 1.36364 11.0996 1.36364 10.9186V5.45932C1.36364 5.27833 1.43547 5.10476 1.56334 4.97678C1.6912 4.8488 1.86463 4.7769 2.04545 4.7769H3.40909C3.55777 4.78467 3.70491 4.74352 3.82802 4.65972C3.95114 4.57593 4.04347 4.45411 4.09091 4.31286L4.45909 3.1937C4.50483 3.05816 4.59198 2.94043 4.70821 2.85716C4.82444 2.77389 4.96388 2.72929 5.10682 2.72966H8.86364C9.04447 2.72966 9.21789 2.65776 9.34575 2.52978C9.47362 2.40181 9.54545 2.22823 9.54545 2.04724C9.54545 1.86626 9.47362 1.69268 9.34575 1.5647C9.21789 1.43673 9.04447 1.36483 8.86364 1.36483H5.07273C4.64424 1.36563 4.22682 1.5011 3.87939 1.7521C3.53195 2.00311 3.27205 2.35698 3.13636 2.76378L2.91818 3.44619H2.04545C1.50297 3.44619 0.982697 3.66189 0.5991 4.04582C0.215503 4.42975 0 4.95048 0 5.49344V10.9528C0 11.4957 0.215503 12.0164 0.5991 12.4004C0.982697 12.7843 1.50297 13 2.04545 13H11.5909C12.1334 13 12.6537 12.7843 13.0373 12.4004C13.4209 12.0164 13.6364 11.4957 13.6364 10.9528V6.17585C13.641 6.08341 13.6268 5.99099 13.5946 5.90421C13.5624 5.81744 13.5129 5.73813 13.4491 5.6711C13.3854 5.60407 13.3086 5.55073 13.2236 5.51433C13.1386 5.47792 13.047 5.4592 12.9545 5.45932ZM6.81818 4.7769C6.27878 4.7769 5.75149 4.937 5.30299 5.23693C4.85449 5.53687 4.50493 5.96319 4.29851 6.46197C4.09209 6.96075 4.03808 7.50959 4.14331 8.03909C4.24855 8.56859 4.50829 9.05497 4.88971 9.43672C5.27112 9.81847 5.75708 10.0784 6.28612 10.1838C6.81516 10.2891 7.36352 10.235 7.86186 10.0284C8.36021 9.82184 8.78615 9.47197 9.08583 9.02308C9.3855 8.57419 9.54545 8.04644 9.54545 7.50656C9.54545 6.78261 9.25812 6.08831 8.74666 5.5764C8.23519 5.06449 7.5415 4.7769 6.81818 4.7769ZM6.81818 8.87139C6.54848 8.87139 6.28483 8.79135 6.06059 8.64138C5.83634 8.49141 5.66156 8.27825 5.55835 8.02886C5.45514 7.77947 5.42813 7.50505 5.48075 7.2403C5.53336 6.97555 5.66324 6.73236 5.85395 6.54148C6.04465 6.35061 6.28763 6.22062 6.55215 6.16796C6.81667 6.11529 7.09085 6.14232 7.34002 6.24562C7.58919 6.34892 7.80217 6.52386 7.952 6.7483C8.10184 6.97275 8.18182 7.23662 8.18182 7.50656C8.18182 7.86854 8.03815 8.21569 7.78242 8.47164C7.52669 8.7276 7.17984 8.87139 6.81818 8.87139ZM14.3182 1.36483H13.6364V0.682415C13.6364 0.501427 13.5645 0.327852 13.4367 0.199875C13.3088 0.071897 13.1354 0 12.9545 0C12.7737 0 12.6003 0.071897 12.4724 0.199875C12.3446 0.327852 12.2727 0.501427 12.2727 0.682415V1.36483H11.5909C11.4101 1.36483 11.2367 1.43673 11.1088 1.5647C10.9809 1.69268 10.9091 1.86626 10.9091 2.04724C10.9091 2.22823 10.9809 2.40181 11.1088 2.52978C11.2367 2.65776 11.4101 2.72966 11.5909 2.72966H12.2727V3.41207C12.2727 3.59306 12.3446 3.76664 12.4724 3.89461C12.6003 4.02259 12.7737 4.09449 12.9545 4.09449C13.1354 4.09449 13.3088 4.02259 13.4367 3.89461C13.5645 3.76664 13.6364 3.59306 13.6364 3.41207V2.72966H14.3182C14.499 2.72966 14.6724 2.65776 14.8003 2.52978C14.9282 2.40181 15 2.22823 15 2.04724C15 1.86626 14.9282 1.69268 14.8003 1.5647C14.6724 1.43673 14.499 1.36483 14.3182 1.36483Z"
+                          fill="#666666"
+                        />
+                      </svg>
+
+                      <svg
+                        width="15"
+                        height="13"
+                        viewBox="0 0 15 13"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="margin-right: 8px"
+                      >
+                        <rect
+                          x="0.65"
+                          y="0.65"
+                          width="13.7"
+                          height="11.7"
+                          rx="2.35"
+                          stroke="#666666"
+                          stroke-width="1.3"
+                        />
+                        <path
+                          d="M7.78125 4.53125V8.46875"
+                          stroke="#666666"
+                          stroke-width="0.84375"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M11.0156 4.53125H9.32812V8.46875"
+                          stroke="#666666"
+                          stroke-width="0.84375"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M10.5938 6.5H9.32812"
+                          stroke="#666666"
+                          stroke-width="0.84375"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M5.53125 6.64063H6.375V7.34375C6.375 7.64212 6.25647 7.92827 6.0455 8.13925C5.83452 8.35023 5.54837 8.46875 5.25 8.46875C4.95163 8.46875 4.66548 8.35023 4.4545 8.13925C4.24353 7.92827 4.125 7.64212 4.125 7.34375V5.65625C4.12504 5.38242 4.22494 5.118 4.40597 4.91255C4.58701 4.7071 4.83675 4.57472 5.1084 4.54022C5.38005 4.50572 5.65496 4.57147 5.8816 4.72514C6.10825 4.87882 6.27107 5.10987 6.33956 5.375"
+                          stroke="#666666"
+                          stroke-width="0.84375"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+
+                      <svg
+                        width="15"
+                        height="15"
+                        viewBox="0 0 15 15"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="margin-right: 12px"
+                      >
+                        <path
+                          d="M8.09091 14H4.54545C3.60514 14 2.70334 13.6265 2.03844 12.9616C1.37354 12.2967 1 11.3949 1 10.4545V4.54545C1 3.60514 1.37354 2.70334 2.03844 2.03844C2.70334 1.37354 3.60514 1 4.54545 1H10.4545C11.3949 1 12.2967 1.37354 12.9616 2.03844C13.6265 2.70334 14 3.60514 14 4.54545V8.09091C13.4091 9.86364 9.86364 13.4091 8.09091 14Z"
+                          stroke="#666666"
+                          stroke-width="1.18182"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M5.35552 4.24949C5.51756 4.22383 5.66186 4.26095 5.78843 4.36088C5.91724 4.46044 5.99626 4.6025 6.02549 4.78704C6.05508 4.97384 6.02382 5.13337 5.93172 5.26561C5.84223 5.39975 5.71646 5.47966 5.55442 5.50532C5.39238 5.53099 5.24695 5.49404 5.11813 5.39447C4.99193 5.2968 4.91403 5.15457 4.88444 4.96777C4.85521 4.78322 4.88535 4.62388 4.97484 4.48973C5.06658 4.35524 5.19347 4.27516 5.35552 4.24949ZM8.04948 3.82281C8.21152 3.79715 8.35582 3.83427 8.48239 3.93419C8.6112 4.03376 8.69022 4.17581 8.71945 4.36036C8.74904 4.54716 8.71778 4.70669 8.62568 4.83893C8.53619 4.97307 8.41042 5.05298 8.24838 5.07864C8.08634 5.10431 7.94091 5.06736 7.81209 4.96779C7.68589 4.87012 7.60799 4.72789 7.5784 4.54109C7.54917 4.35654 7.5793 4.19719 7.6688 4.06305C7.76054 3.92856 7.88743 3.84848 8.04948 3.82281ZM7.42164 7.81193L7.32712 7.82691C6.88375 7.89713 6.46387 7.91172 6.06748 7.87069C5.67145 7.8319 5.31152 7.75164 4.98771 7.6299C4.6639 7.50816 4.38639 7.35832 4.15519 7.18038C3.92209 7.00505 3.74549 6.815 3.62539 6.61024L4.15104 6.30205C4.26327 6.41347 4.40855 6.51504 4.58688 6.60676C4.76332 6.70109 4.97492 6.77716 5.22171 6.83497C5.46849 6.89278 5.75257 6.92392 6.07396 6.92838C6.3957 6.9351 6.75913 6.90638 7.16424 6.84222L7.27226 6.82511C7.67737 6.76094 8.03188 6.67596 8.33581 6.57014C8.64008 6.46658 8.90064 6.34918 9.11748 6.21794C9.33432 6.0867 9.51206 5.94896 9.65071 5.80473C9.79197 5.66239 9.89875 5.5209 9.97107 5.38025L10.5662 5.51092C10.5175 5.74242 10.4094 5.97756 10.2419 6.21634C10.0748 6.45737 9.85601 6.68581 9.58567 6.90165C9.31533 7.1175 8.99782 7.30506 8.63316 7.46432C8.26885 7.62584 7.86501 7.74171 7.42164 7.81193Z"
+                          fill="#666666"
+                        />
+                        <path
+                          d="M8.09082 14V11.6364C8.09082 10.6961 8.46436 9.79428 9.12926 9.12938C9.79416 8.46448 10.696 8.09094 11.6363 8.09094H13.9999"
+                          stroke="#666666"
+                          stroke-width="1.18182"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+
+                      <svg
+                        width="13"
+                        height="13"
+                        viewBox="0 0 13 13"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1.34684 7.52837L5.39179 6.64319C5.75298 6.56424 5.75298 6.43576 5.39179 6.35681L1.34684 5.47163C1.1059 5.419 0.871252 5.16203 0.823152 4.89865L0.0141177 0.472953C-0.0582491 0.0775352 0.154734 -0.106187 0.489485 0.0628374L12.8328 6.29589C13.0557 6.40849 13.0557 6.59151 12.8328 6.70411L0.489485 12.9372C0.154734 13.1062 -0.0582491 12.9225 0.0141177 12.527L0.823152 8.10135C0.871252 7.83797 1.1059 7.581 1.34684 7.52837Z"
+                          fill="#666666"
+                        />
+                      </svg>
+                    </i>
+
+                    <input
+                      style="padding-left: 0.75rem !important"
+                      type="text"
+                      pInputText
+                      placeholder="Viết phản hồi công khai"
+                      [style]="{
+                        width: '590px',
+                        backgroundColor: '#f2f2f2',
+                        borderRadius: '8px'
+                      }"
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid info" style="margin-bottom: 8px !important">
+            <div class="col-1">
+              <img
+                [src]="'https://fsiconnected.cloud/images/default-avatar.jpg'"
+                style="
+                  width: 41px !important;
+                  height: 41px !important;
+                  border-radius: 50%;
+                "
+              />
+            </div>
+            <div class="col-11">
+              <div class="field col-12 md:col-12">
+                <span class="p-input-icon-right">
+                  <i>
+                    <svg
+                      width="13"
+                      height="13"
+                      viewBox="0 0 13 13"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="margin-right: 8px"
+                    >
+                      <path
+                        d="M8.034 7.9495C7.59949 8.29983 7.05815 8.49087 6.5 8.49087C5.94185 8.49087 5.40052 8.29983 4.966 7.9495C4.83326 7.83917 4.66213 7.78609 4.49025 7.80193C4.31837 7.81778 4.15983 7.90126 4.0495 8.034C3.93917 8.16674 3.88609 8.33787 3.90194 8.50975C3.91779 8.68162 4.00126 8.84017 4.134 8.9505C4.79787 9.50469 5.63522 9.80826 6.5 9.80826C7.36479 9.80826 8.20213 9.50469 8.866 8.9505C8.99874 8.84017 9.08222 8.68162 9.09806 8.50975C9.11391 8.33787 9.06083 8.16674 8.9505 8.034C8.89587 7.96827 8.82883 7.91395 8.75321 7.87413C8.67758 7.83431 8.59486 7.80978 8.50975 7.80193C8.33787 7.78609 8.16674 7.83917 8.034 7.9495ZM4.6865 5.551C4.80829 5.67206 4.97303 5.74001 5.14475 5.74001C5.31647 5.74001 5.48122 5.67206 5.603 5.551C5.72406 5.42921 5.79202 5.26447 5.79202 5.09275C5.79202 4.92103 5.72406 4.75628 5.603 4.6345C5.23102 4.28154 4.73779 4.08478 4.225 4.08478C3.71222 4.08478 3.21898 4.28154 2.847 4.6345C2.77896 4.69277 2.7237 4.76448 2.68468 4.84512C2.64567 4.92576 2.62374 5.0136 2.62028 5.10311C2.61683 5.19263 2.63191 5.2819 2.66459 5.36531C2.69727 5.44872 2.74683 5.52448 2.81018 5.58782C2.87352 5.65117 2.94928 5.70073 3.03269 5.73341C3.1161 5.76609 3.20537 5.78118 3.29489 5.77772C3.3844 5.77426 3.47224 5.75233 3.55288 5.71332C3.63352 5.6743 3.70523 5.61904 3.7635 5.551C3.82393 5.49007 3.89582 5.44172 3.97503 5.40872C4.05424 5.37572 4.13919 5.35873 4.225 5.35873C4.31081 5.35873 4.39577 5.37572 4.47498 5.40872C4.55419 5.44172 4.62608 5.49007 4.6865 5.551ZM10.153 4.6345C9.78102 4.28154 9.28778 4.08478 8.775 4.08478C8.26222 4.08478 7.76898 4.28154 7.397 4.6345C7.29051 4.75884 7.23487 4.91879 7.24119 5.08238C7.24751 5.24597 7.31532 5.40115 7.43109 5.51691C7.54685 5.63268 7.70203 5.70049 7.86562 5.70681C8.02921 5.71313 8.18916 5.65749 8.3135 5.551C8.37393 5.49007 8.44582 5.44172 8.52503 5.40872C8.60423 5.37572 8.68919 5.35873 8.775 5.35873C8.86081 5.35873 8.94577 5.37572 9.02498 5.40872C9.10418 5.44172 9.17607 5.49007 9.2365 5.551C9.35829 5.67206 9.52303 5.74001 9.69475 5.74001C9.86647 5.74001 10.0312 5.67206 10.153 5.551C10.2741 5.42921 10.342 5.26447 10.342 5.09275C10.342 4.92103 10.2741 4.75628 10.153 4.6345ZM6.5 0C5.21442 0 3.95772 0.381218 2.8888 1.09545C1.81988 1.80968 0.986755 2.82484 0.494786 4.01256C0.00281635 5.20028 -0.125905 6.50721 0.124899 7.76808C0.375702 9.02896 0.994767 10.1872 1.90381 11.0962C2.81285 12.0052 3.97104 12.6243 5.23191 12.8751C6.49279 13.1259 7.79972 12.9972 8.98744 12.5052C10.1752 12.0132 11.1903 11.1801 11.9046 10.1112C12.6188 9.04228 13 7.78558 13 6.5C13 5.64641 12.8319 4.80117 12.5052 4.01256C12.1786 3.22394 11.6998 2.50739 11.0962 1.90381C10.4926 1.30022 9.77606 0.821438 8.98744 0.494783C8.19883 0.168127 7.35359 0 6.5 0ZM6.5 11.7C5.47154 11.7 4.46617 11.395 3.61104 10.8236C2.7559 10.2523 2.0894 9.44013 1.69583 8.48995C1.30225 7.53978 1.19928 6.49423 1.39992 5.48553C1.60056 4.47683 2.09581 3.55028 2.82305 2.82304C3.55028 2.09581 4.47683 1.60056 5.48553 1.39992C6.49423 1.19927 7.53978 1.30225 8.48995 1.69583C9.44013 2.0894 10.2523 2.7559 10.8236 3.61103C11.395 4.46617 11.7 5.47154 11.7 6.5C11.7 7.87912 11.1521 9.20176 10.177 10.177C9.20177 11.1521 7.87913 11.7 6.5 11.7Z"
+                        fill="#666666"
+                      />
+                    </svg>
+                    <svg
+                      width="15"
+                      height="13"
+                      viewBox="0 0 15 13"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="margin-right: 8px"
+                    >
+                      <path
+                        d="M12.9545 5.45932C12.7737 5.45932 12.6003 5.53121 12.4724 5.65919C12.3446 5.78717 12.2727 5.96074 12.2727 6.14173V10.9186C12.2727 11.0996 12.2009 11.2732 12.073 11.4012C11.9452 11.5292 11.7717 11.6011 11.5909 11.6011H2.04545C1.86463 11.6011 1.6912 11.5292 1.56334 11.4012C1.43547 11.2732 1.36364 11.0996 1.36364 10.9186V5.45932C1.36364 5.27833 1.43547 5.10476 1.56334 4.97678C1.6912 4.8488 1.86463 4.7769 2.04545 4.7769H3.40909C3.55777 4.78467 3.70491 4.74352 3.82802 4.65972C3.95114 4.57593 4.04347 4.45411 4.09091 4.31286L4.45909 3.1937C4.50483 3.05816 4.59198 2.94043 4.70821 2.85716C4.82444 2.77389 4.96388 2.72929 5.10682 2.72966H8.86364C9.04447 2.72966 9.21789 2.65776 9.34575 2.52978C9.47362 2.40181 9.54545 2.22823 9.54545 2.04724C9.54545 1.86626 9.47362 1.69268 9.34575 1.5647C9.21789 1.43673 9.04447 1.36483 8.86364 1.36483H5.07273C4.64424 1.36563 4.22682 1.5011 3.87939 1.7521C3.53195 2.00311 3.27205 2.35698 3.13636 2.76378L2.91818 3.44619H2.04545C1.50297 3.44619 0.982697 3.66189 0.5991 4.04582C0.215503 4.42975 0 4.95048 0 5.49344V10.9528C0 11.4957 0.215503 12.0164 0.5991 12.4004C0.982697 12.7843 1.50297 13 2.04545 13H11.5909C12.1334 13 12.6537 12.7843 13.0373 12.4004C13.4209 12.0164 13.6364 11.4957 13.6364 10.9528V6.17585C13.641 6.08341 13.6268 5.99099 13.5946 5.90421C13.5624 5.81744 13.5129 5.73813 13.4491 5.6711C13.3854 5.60407 13.3086 5.55073 13.2236 5.51433C13.1386 5.47792 13.047 5.4592 12.9545 5.45932ZM6.81818 4.7769C6.27878 4.7769 5.75149 4.937 5.30299 5.23693C4.85449 5.53687 4.50493 5.96319 4.29851 6.46197C4.09209 6.96075 4.03808 7.50959 4.14331 8.03909C4.24855 8.56859 4.50829 9.05497 4.88971 9.43672C5.27112 9.81847 5.75708 10.0784 6.28612 10.1838C6.81516 10.2891 7.36352 10.235 7.86186 10.0284C8.36021 9.82184 8.78615 9.47197 9.08583 9.02308C9.3855 8.57419 9.54545 8.04644 9.54545 7.50656C9.54545 6.78261 9.25812 6.08831 8.74666 5.5764C8.23519 5.06449 7.5415 4.7769 6.81818 4.7769ZM6.81818 8.87139C6.54848 8.87139 6.28483 8.79135 6.06059 8.64138C5.83634 8.49141 5.66156 8.27825 5.55835 8.02886C5.45514 7.77947 5.42813 7.50505 5.48075 7.2403C5.53336 6.97555 5.66324 6.73236 5.85395 6.54148C6.04465 6.35061 6.28763 6.22062 6.55215 6.16796C6.81667 6.11529 7.09085 6.14232 7.34002 6.24562C7.58919 6.34892 7.80217 6.52386 7.952 6.7483C8.10184 6.97275 8.18182 7.23662 8.18182 7.50656C8.18182 7.86854 8.03815 8.21569 7.78242 8.47164C7.52669 8.7276 7.17984 8.87139 6.81818 8.87139ZM14.3182 1.36483H13.6364V0.682415C13.6364 0.501427 13.5645 0.327852 13.4367 0.199875C13.3088 0.071897 13.1354 0 12.9545 0C12.7737 0 12.6003 0.071897 12.4724 0.199875C12.3446 0.327852 12.2727 0.501427 12.2727 0.682415V1.36483H11.5909C11.4101 1.36483 11.2367 1.43673 11.1088 1.5647C10.9809 1.69268 10.9091 1.86626 10.9091 2.04724C10.9091 2.22823 10.9809 2.40181 11.1088 2.52978C11.2367 2.65776 11.4101 2.72966 11.5909 2.72966H12.2727V3.41207C12.2727 3.59306 12.3446 3.76664 12.4724 3.89461C12.6003 4.02259 12.7737 4.09449 12.9545 4.09449C13.1354 4.09449 13.3088 4.02259 13.4367 3.89461C13.5645 3.76664 13.6364 3.59306 13.6364 3.41207V2.72966H14.3182C14.499 2.72966 14.6724 2.65776 14.8003 2.52978C14.9282 2.40181 15 2.22823 15 2.04724C15 1.86626 14.9282 1.69268 14.8003 1.5647C14.6724 1.43673 14.499 1.36483 14.3182 1.36483Z"
+                        fill="#666666"
+                      />
+                    </svg>
+
+                    <svg
+                      width="15"
+                      height="13"
+                      viewBox="0 0 15 13"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="margin-right: 8px"
+                    >
+                      <rect
+                        x="0.65"
+                        y="0.65"
+                        width="13.7"
+                        height="11.7"
+                        rx="2.35"
+                        stroke="#666666"
+                        stroke-width="1.3"
+                      />
+                      <path
+                        d="M7.78125 4.53125V8.46875"
+                        stroke="#666666"
+                        stroke-width="0.84375"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M11.0156 4.53125H9.32812V8.46875"
+                        stroke="#666666"
+                        stroke-width="0.84375"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M10.5938 6.5H9.32812"
+                        stroke="#666666"
+                        stroke-width="0.84375"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M5.53125 6.64063H6.375V7.34375C6.375 7.64212 6.25647 7.92827 6.0455 8.13925C5.83452 8.35023 5.54837 8.46875 5.25 8.46875C4.95163 8.46875 4.66548 8.35023 4.4545 8.13925C4.24353 7.92827 4.125 7.64212 4.125 7.34375V5.65625C4.12504 5.38242 4.22494 5.118 4.40597 4.91255C4.58701 4.7071 4.83675 4.57472 5.1084 4.54022C5.38005 4.50572 5.65496 4.57147 5.8816 4.72514C6.10825 4.87882 6.27107 5.10987 6.33956 5.375"
+                        stroke="#666666"
+                        stroke-width="0.84375"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+
+                    <svg
+                      width="15"
+                      height="15"
+                      viewBox="0 0 15 15"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="margin-right: 12px"
+                    >
+                      <path
+                        d="M8.09091 14H4.54545C3.60514 14 2.70334 13.6265 2.03844 12.9616C1.37354 12.2967 1 11.3949 1 10.4545V4.54545C1 3.60514 1.37354 2.70334 2.03844 2.03844C2.70334 1.37354 3.60514 1 4.54545 1H10.4545C11.3949 1 12.2967 1.37354 12.9616 2.03844C13.6265 2.70334 14 3.60514 14 4.54545V8.09091C13.4091 9.86364 9.86364 13.4091 8.09091 14Z"
+                        stroke="#666666"
+                        stroke-width="1.18182"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M5.35552 4.24949C5.51756 4.22383 5.66186 4.26095 5.78843 4.36088C5.91724 4.46044 5.99626 4.6025 6.02549 4.78704C6.05508 4.97384 6.02382 5.13337 5.93172 5.26561C5.84223 5.39975 5.71646 5.47966 5.55442 5.50532C5.39238 5.53099 5.24695 5.49404 5.11813 5.39447C4.99193 5.2968 4.91403 5.15457 4.88444 4.96777C4.85521 4.78322 4.88535 4.62388 4.97484 4.48973C5.06658 4.35524 5.19347 4.27516 5.35552 4.24949ZM8.04948 3.82281C8.21152 3.79715 8.35582 3.83427 8.48239 3.93419C8.6112 4.03376 8.69022 4.17581 8.71945 4.36036C8.74904 4.54716 8.71778 4.70669 8.62568 4.83893C8.53619 4.97307 8.41042 5.05298 8.24838 5.07864C8.08634 5.10431 7.94091 5.06736 7.81209 4.96779C7.68589 4.87012 7.60799 4.72789 7.5784 4.54109C7.54917 4.35654 7.5793 4.19719 7.6688 4.06305C7.76054 3.92856 7.88743 3.84848 8.04948 3.82281ZM7.42164 7.81193L7.32712 7.82691C6.88375 7.89713 6.46387 7.91172 6.06748 7.87069C5.67145 7.8319 5.31152 7.75164 4.98771 7.6299C4.6639 7.50816 4.38639 7.35832 4.15519 7.18038C3.92209 7.00505 3.74549 6.815 3.62539 6.61024L4.15104 6.30205C4.26327 6.41347 4.40855 6.51504 4.58688 6.60676C4.76332 6.70109 4.97492 6.77716 5.22171 6.83497C5.46849 6.89278 5.75257 6.92392 6.07396 6.92838C6.3957 6.9351 6.75913 6.90638 7.16424 6.84222L7.27226 6.82511C7.67737 6.76094 8.03188 6.67596 8.33581 6.57014C8.64008 6.46658 8.90064 6.34918 9.11748 6.21794C9.33432 6.0867 9.51206 5.94896 9.65071 5.80473C9.79197 5.66239 9.89875 5.5209 9.97107 5.38025L10.5662 5.51092C10.5175 5.74242 10.4094 5.97756 10.2419 6.21634C10.0748 6.45737 9.85601 6.68581 9.58567 6.90165C9.31533 7.1175 8.99782 7.30506 8.63316 7.46432C8.26885 7.62584 7.86501 7.74171 7.42164 7.81193Z"
+                        fill="#666666"
+                      />
+                      <path
+                        d="M8.09082 14V11.6364C8.09082 10.6961 8.46436 9.79428 9.12926 9.12938C9.79416 8.46448 10.696 8.09094 11.6363 8.09094H13.9999"
+                        stroke="#666666"
+                        stroke-width="1.18182"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+
+                    <svg
+                      width="13"
+                      height="13"
+                      viewBox="0 0 13 13"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1.34684 7.52837L5.39179 6.64319C5.75298 6.56424 5.75298 6.43576 5.39179 6.35681L1.34684 5.47163C1.1059 5.419 0.871252 5.16203 0.823152 4.89865L0.0141177 0.472953C-0.0582491 0.0775352 0.154734 -0.106187 0.489485 0.0628374L12.8328 6.29589C13.0557 6.40849 13.0557 6.59151 12.8328 6.70411L0.489485 12.9372C0.154734 13.1062 -0.0582491 12.9225 0.0141177 12.527L0.823152 8.10135C0.871252 7.83797 1.1059 7.581 1.34684 7.52837Z"
+                        fill="#666666"
+                      />
+                    </svg>
+                  </i>
+                  <input
+                    style="padding-left: 0.75rem !important"
+                    type="text"
+                    pInputText
+                    placeholder="Viết phản hồi công khai"
+                    [style]="{
+                      width: '642px',
+                      backgroundColor: '#f2f2f2',
+                      borderRadius: '8px'
+                    }"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Bài viết">Bài viết </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button label="Kết nối" icon="pi pi-share-alt"></p-button>
+    <p-button
+      label="Trò chuyện"
+      icon="pi pi-comments"
+      class="p-button-success"
+    ></p-button>
+  </ng-template>
+</p-dialog>

@@ -30,6 +30,7 @@ export class StartuperItemComponent implements OnInit {
   UuidStartuperModeAdmin = UuidStartuperModeAdmin;
 
   handleConnect: boolean = false;
+  handleOpenRequest: boolean = false;
 
   @Output() requestFriend: EventEmitter<any> = new EventEmitter();
   @Output() acceptFriend: EventEmitter<any> = new EventEmitter();
@@ -50,6 +51,14 @@ export class StartuperItemComponent implements OnInit {
 
   closeModal(){
     this.handleConnect = false
+  }
+
+  closeModalOpen(){
+    this.handleOpenRequest = false
+  }
+
+  openRequest(){
+    this.handleOpenRequest = true
   }
 
   getAge(dob: any) {

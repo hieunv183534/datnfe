@@ -1,0 +1,82 @@
+<p-dialog
+  [resizable]="true"
+  [(visible)]="display"
+  [modal]="true"
+  [style]="styleDialog"
+  [baseZIndex]="100001"
+  [draggable]="false"
+  (onHide)="close.emit()"
+>
+  <div class="grid info">
+    <div class="col-2 md-4">
+      <img
+        [src]="'https://fsiconnected.cloud/images/default-avatar.jpg'"
+        alt=""
+        id="avatar"
+      />
+    </div>
+    <div class="col-8 md-8">
+      <ul>
+        <li>
+          <div class="name">Nguyễn Ngọc Thanh Như Tâm</div>
+        </li>
+        <li>Hà Nội, 17:00, 17/10/2023</li>
+      </ul>
+    </div>
+  </div>
+  <div class="content">
+    <p>Gửi người cộng sự tương lai của tôi!</p>
+    <p style="font-weight: bold">
+      Nội dung mẫu: Google Bard AI là một mô hình ngôn ngữ lớn được đào tạo trên
+      một tập dữ liệu khổng lồ gồm văn bản và mã. Nó có thể tạo văn bản, dịch
+      ngôn ngữ và trả lời câu hỏi của bạn một cách đầy đủ thông tin. Bard vẫn
+      đang trong quá trình phát triển, nhưng nó đã học được cách thực hiện nhiều
+      loại nhiệm vụ, bao gồm: Trả lời câu hỏi: Bard có thể trả lời câu hỏi của
+      bạn một cách đầy đủ thông tin, ngay cả khi chúng là câu hỏi mở, thách thức
+      là ò hoặc kỳ lạ. Bard là một công cụ có khả năng thay đổi cách chúng ta
+      tương tác với máy tính. Nó có thể được sử dụng để tạo nội dung sáng tạo,
+      dịch ngôn ngữ và trả lời câu hỏi của chúng ta một cách đầy đủ thông tin.
+    </p>
+    <p>
+      Cảm ơn bạn đã dành thời gian, chúc bạn sức khoẻ, thành công và hạnh phúc.
+      Mong sớm nhận được tin từ bạn!
+    </p>
+  </div>
+  <div
+    class="flex justify-content-center flex-wrap mt-3"
+    *ngIf="mode == UuidStartuperModeFromMe || friendStatus == 2"
+  >
+    <p-button
+      class="mr-2"
+      label="Chỉnh sửa"
+      [style]="{
+        backgroundColor: 'white',
+        color: 'black',
+        borderRadius: '17px'
+      }"
+    ></p-button>
+    <p-button
+      [style]="{ backgroundColor: '#01A9FF', borderRadius: '17px' }"
+      label="Gửi lời mời"
+    ></p-button>
+  </div>
+
+  <div
+    class="flex justify-content-center flex-wrap mt-3"
+    *ngIf="mode == UuidStartuperModeToMe || friendStatus == 3"
+  >
+    <p-button
+      class="mr-2"
+      label="Từ chối"
+      [style]="{
+        backgroundColor: 'white',
+        color: 'black',
+        borderRadius: '17px'
+      }"
+    ></p-button>
+    <p-button
+      [style]="{ backgroundColor: '#01A9FF', borderRadius: '17px' }"
+      label="Chấp nhận"
+    ></p-button>
+  </div>
+</p-dialog>

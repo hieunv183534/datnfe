@@ -31,6 +31,7 @@ p {
 .startupItem .info li {
   margin: 0;
   padding: 0px 0px 8px 0px;
+  color: #000000;
 }
 
 .startupItem .info .name {
