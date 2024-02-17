@@ -286,6 +286,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.getListConversation();
       if (newMessage.conversationId == this.thisConversation?.id) {
         this.getListMessage(true, true);
+        // this.messages.push(newMessage)
         this.seenConversation(this.thisConversation?.id ?? "");
       } else {
         this.messageService.add({

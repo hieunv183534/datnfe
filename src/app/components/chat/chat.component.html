@@ -72,17 +72,17 @@
             size="large"></p-avatar>
           <h3 (click)="infoConversation()" class="ml-2 text-xs sm:text-sm">{{thisConversation?.conversationName}}</h3>
         </div>
-        <div class="flex .align-items-center justify-content-end gap-0 sm:gap-1">
-          <div class="other-message-type-item cursor-pointer" pTooltip="Call âm thanh" tooltipPosition="top">
+        <div class="flex align-items-center justify-content-end gap-0 sm:gap-1">
+          <div class="flex justify-content-center align-items-center border-round-sm h-2rem w-2rem hover:bg-gray-300 cursor-pointer" pTooltip="Call âm thanh" tooltipPosition="top">
             <i class="fa-solid fa-phone"></i>
           </div>
-          <div class="other-message-type-item" pTooltip="Call video" tooltipPosition="top" (click)="callVideo()">
+          <div class="flex justify-content-center align-items-center border-round-sm h-2rem w-2rem hover:bg-gray-300 cursor-pointer" pTooltip="Call video" tooltipPosition="top" (click)="callVideo()">
             <i class="fa-solid fa-video"></i>
           </div>
-          <div class="other-message-type-item cursor-pointer" [ngClass]="{'btn-active': isShowInfoBox}"
-            pTooltip="Thông tin" tooltipPosition="top" (click)="isShowInfoBox = !isShowInfoBox">
+          <div class="flex justify-content-center align-items-center border-round-sm h-2rem w-2rem hover:bg-gray-300 cursor-pointer" pTooltip="Thông tin" tooltipPosition="left" [ngClass]="{'bg-gray-300': isShowInfoBox}" (click)="isShowInfoBox = !isShowInfoBox">
             <i class="fa-solid fa-circle-info"></i>
           </div>
+
         </div>
       </div>
       <div id="scroll-message" class="message-content overflow-y-auto h-full " #scrollMe
@@ -102,16 +102,16 @@
       <div class="message-footer max-h-full">
         <div class="other-message-type">
           <input style="display: none;" type="file" name="" id="" #inputFile>
-          <button class="emoji-button other-message-type-item relative" pTooltip="Emoji" tooltipPosition="top">
+          <button class="emoji-button flex justify-content-center align-items-center border-round-sm h-2rem w-2rem hover:bg-gray-300 cursor-pointer relative" pTooltip="Emoji" tooltipPosition="top">
             <i class="fa-regular fa-face-smile"></i>
             <div class="emoji-wrapper absolute" *ngIf="isShowEmoji">
               <emoji-mart [darkMode]="false" [showPreview]="false" (emojiClick)="addEmoji($event)"></emoji-mart>
             </div>
           </button>
-          <div class="other-message-type-item" pTooltip="Hình ảnh" tooltipPosition="top" (click)="inputFile.click()">
+          <div class="flex justify-content-center align-items-center border-round-sm h-2rem w-2rem hover:bg-gray-300 cursor-pointer" pTooltip="Hình ảnh" tooltipPosition="top" (click)="inputFile.click()">
             <i class="fa-regular fa-images"></i>
           </div>
-          <div class="other-message-type-item" pTooltip="Tài liệu" tooltipPosition="top">
+          <div class="flex justify-content-center align-items-center border-round-sm h-2rem w-2rem hover:bg-gray-300 cursor-pointer" pTooltip="Tài liệu" tooltipPosition="top">
             <i class="fa-solid fa-paperclip"></i>
           </div>
         </div>
@@ -127,7 +127,7 @@
                     class="font-semibold">{{replyMessage.sender?.name}}</span></p>
               </div>
               <div (click)="handleDeleteReplyMessage()" style="width:24px; height: 24px"
-                class="hover:bg-gray-200  cursor-pointer hover:text-primary border-circle flex align-items-center justify-content-center">
+                class="hover:bg-gray-200 cursor-pointer hover:text-primary border-circle flex align-items-center justify-content-center">
                 <i class="pi pi-times"></i>
               </div>
             </div>
@@ -152,13 +152,13 @@
                 </ng-container>
               </div>
             </div>
-            <div *ngIf="!contentText" class="other-message-type-item" pTooltip="Gửi lượt thích" tooltipPosition="top"
+            <div *ngIf="!contentText" class="flex justify-content-center align-items-center border-round-sm h-3rem w-3rem cursor-pointer hover:bg-gray-300 mr-2" pTooltip="Gửi lượt thích" tooltipPosition="top"
               style="width: 48px; height: 48px; font-size: 27px; color: #3B82F6;" (click)="sendLike()">
               <i class="fa-solid fa-thumbs-up"></i>
             </div>
-            <div *ngIf="contentText" class="other-message-type-item" pTooltip="Enter để gửi" tooltipPosition="top"
+            <div *ngIf="contentText" class="flex justify-content-center align-items-center border-round-sm h-3rem w-3rem cursor-pointer hover:bg-gray-300 mr-2" pTooltip="Enter để gửi" tooltipPosition="top"
               style="width: 48px; height: 48px; font-size: 27px;color: #3B82F6;" (click)="send()">
-              <i class="fa-solid fa-paper-plane"></i>
+              <i class="pi pi-send text-2xl"></i>
             </div>
           </div>
         </div>
