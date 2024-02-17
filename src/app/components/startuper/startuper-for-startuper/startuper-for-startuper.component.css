@@ -34,7 +34,11 @@ app-startuper-for-startuper .grid {
   margin: 0px 0px 8px 0px !important;
 }
 
-app-startuper-for-startuper .p-paginator {
+app-startuper-for-startuper .p-dataview .p-dataview-content {
+  background: unset !important;
+}
+
+/* app-startuper-for-startuper .p-paginator {
   padding: 0px !important;
 }
 
@@ -64,7 +68,7 @@ app-startuper-for-startuper .p-paginator .p-paginator-pages .p-paginator-page {
 
 .p-paginator .p-paginator-last{
   height: 2.15rem !important;
-}
+} */
 
 .hienThi {
   margin-left: 8px;

@@ -142,9 +142,10 @@ a {
 }
 
 .body-content {
-  /* background-color: #f3f4f6; */
+  background-color: #f3f4f6;
   padding-left: 82px;
   padding-right: 82px;
+  padding-bottom: 82px;
 }
 
 .list-data {
@@ -279,11 +280,11 @@ app-work-history-summary .p-card-content {
   font-weight: unset !important;
 }
 
-.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link{
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
   font-weight: bold !important;
 }
 
-.p-tabview-title{
+.p-tabview-title {
   font-weight: bold !important;
 }
 

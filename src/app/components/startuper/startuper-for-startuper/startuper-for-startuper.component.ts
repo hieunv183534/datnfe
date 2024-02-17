@@ -104,19 +104,19 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
         code: 1,
         selects: [
           {
-            cname: "NKN mới cho tôi",
+            cname: "Nhà khởi nghiệp mới cho tôi",
             code: UuidStartuperModeNew
           },
           {
-            cname: "NKN đã kết nối",
+            cname: "Nhà khởi nghiệp đã kết nối",
             code: UuidStartuperModeOFMe
           },
           {
-            cname: "NKN đã gửi yêu cầu kết nối",
+            cname: "Nhà khởi nghiệp đã gửi yêu cầu kết nối",
             code: UuidStartuperModeFromMe
           },
           {
-            cname: "NKN gửi yêu cầu kết nối tới bạn",
+            cname: "Nhà khởi nghiệp gửi yêu cầu kết nối tới bạn",
             code: UuidStartuperModeToMe
           }
         ]
@@ -191,7 +191,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
         key: "toast",
         severity: "error",
         summary: "Lỗi",
-        detail: "Lấy danh sách nkn thất bại, vui lòng thử lại!",
+        detail: "Lấy danh sách Nhà khởi nghiệp thất bại, vui lòng thử lại!",
       });
     });
   }

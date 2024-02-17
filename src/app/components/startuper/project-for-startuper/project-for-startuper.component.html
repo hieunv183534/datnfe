@@ -123,17 +123,37 @@
           >
           </p-multiSelect>
         </div>
-        <div class="col-12 mt-2 flex justify-content-center">
-          <p-button label="Áp dụng" (onClick)="submitSearch()"></p-button>
-          <p-button
-            label=" Cài lại "
-            [style]="{
-              backgroundColor: 'white',
-              color: 'black'
-            }"
-            class="ml-5"
-            (onClick)="clearSearch()"
-          ></p-button>
+        <div class="col-12 mt-2">
+          <div class="grid">
+            <div
+              style="width: 50%; padding-right: 6px"
+              (click)="submitSearch()"
+            >
+              <div
+                style="
+                  background-color: #0387ff;
+                  color: #ffffff;
+                  padding: 12px;
+                  border-radius: 4px;
+                  cursor: pointer;
+                "
+              >
+                <span class="flex justify-content-center">Áp dụng</span>
+              </div>
+            </div>
+            <div style="width: 50%; padding-left: 6px" (click)="clearSearch()">
+              <div
+                style="
+                  background-color: #d8dfe8;
+                  padding: 12px;
+                  border-radius: 4px;
+                  cursor: pointer;
+                "
+              >
+                <span class="flex justify-content-center">Cài lại</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="md:col-10" style="padding-left: 24px !important">
@@ -172,16 +192,6 @@
             <p-button class="hienThi">Khoảng cách</p-button>
             <p-button class="hienThi">Giai đoạn</p-button>
             <p-button class="hienThi">Quy mô</p-button>
-            <p-paginator
-              style="margin-left: 12px; margin-top: 10px; margin-bottom: 10px"
-              [pageLinkSize]="pageSize"
-              [rows]="pageSize"
-              [totalRecords]="totalRecords"
-              currentPageReportTemplate="Tổng {totalRecords}"
-              [showCurrentPageReport]="true"
-              [rowsPerPageOptions]="pageSizeOptions"
-              (onPageChange)="onPageChange($event)"
-            ></p-paginator>
           </div>
         </div>
         <p-dataView [value]="listProject" *ngIf="listProject.length > 0">
@@ -208,6 +218,18 @@
             style="margin: auto; justify-content: center; display: flex"
           />
         </ng-container>
+        <div class="flex justify-content-center">
+          <p-paginator
+            style="margin-left: 12px; margin-top: 10px"
+            [pageLinkSize]="pageSize"
+            [rows]="pageSize"
+            [totalRecords]="totalRecords"
+            currentPageReportTemplate="Hiển thị từ {first} đến {last} trên {totalRecords} dự án"
+            [showCurrentPageReport]="true"
+            [rowsPerPageOptions]="pageSizeOptions"
+            (onPageChange)="onPageChange($event)"
+          ></p-paginator>
+        </div>
       </div>
     </div>
   </div>
