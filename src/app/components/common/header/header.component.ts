@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   thisRouteUrl: string = "";
   items: MenuItem[] = [];
   itemsHeader: MenuItem[] = [];
+  itemsAsideMenu: MenuItem[] = [];
   userInfo: any = {};
   @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
 
@@ -91,6 +92,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
         ]
       })
     })
+    this.itemsAsideMenu = [
+      {
+        label: 'Kết nối',
+        items: this.menuData.map((menu) => ({
+          label: menu.title,
+          command: () => {
+            this.router.navigate([`${menu.href}`]);
+            this.isShowSidebar = false
+          },
+        })),
+      },
+      {
+        label: 'Cộng đồng',
+      },
+      {
+        label: 'Hỗ trợ',
+      },
+
+    ];
 
   }
 

@@ -126,8 +126,7 @@ import {SidebarModule} from 'primeng/sidebar';
 import {ButtonModule} from 'primeng/button';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
-import {TieredMenuModule} from 'primeng/tieredmenu';
-
+import {PanelMenuModule} from 'primeng/panelmenu';
 @NgModule({
   declarations: [
     HomePageNewComponent,
@@ -192,7 +191,7 @@ import {TieredMenuModule} from 'primeng/tieredmenu';
   ],
   imports: [
     CommonModule,
-    TieredMenuModule,
+    PanelMenuModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

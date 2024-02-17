@@ -43,10 +43,7 @@
         </div>
       </a>
       
-      <p-menu [showTransitionOptions]="'100ms'" [hideTransitionOptions]="'100ms'" #menuHeader [popup]="true" [model]="itemsHeader">
-        <ng-template let-item pTemplate="item">
-          <span class="custom-label text-primary">{{ item.label }}</span>
-        </ng-template>
+      <p-menu class="custom-menu" [showTransitionOptions]="'100ms'" [hideTransitionOptions]="'100ms'" #menuHeader [popup]="true" [model]="itemsHeader">
       </p-menu>
     </div>
   </div>
@@ -81,7 +78,7 @@
    
   <ng-template pTemplate="content">
     <div class="flex flex-column">
-      <p-tieredMenu [model]="itemsHeader"></p-tieredMenu>
+      <p-panelMenu [model]="itemsAsideMenu" [style]="{'width':'100%'}"></p-panelMenu>
       <!-- <ng-container *ngFor="let menu of menuData">
         <div (click)="isShowSidebar = false" [routerLink]="menu.href"
           class="p-2 pl-3 hover:bg-gray-200 text-black-alpha-90 active: hover:text-primary cursor-pointer"
