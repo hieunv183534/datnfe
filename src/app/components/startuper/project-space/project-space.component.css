@@ -1,8 +1,8 @@
-.project-info p {
+/* .project-info p {
   margin: 0.5rem !important;
-}
+} */
 
-.project-info {
+/* .project-info {
   border-bottom: 1px solid #c9c9c9;
   padding-bottom: 1rem;
 }
@@ -33,4 +33,10 @@
   flex-shrink: unset;
   flex-basis: auto;
   flex-flow: initial;
+} */
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  padding: 1rem;
+}
+.p-tabview .p-tabview-panels {
+  padding-top: 0 !important;
 }

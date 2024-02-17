@@ -128,6 +128,8 @@ import {ButtonModule} from 'primeng/button';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {PanelMenuModule} from 'primeng/panelmenu';
+import { RecruitComponent } from './components/startuper/project-space/recruit/recruit.component';
+import { IntroduceComponent } from './components/startuper/project-space/introduce/introduce.component';
 @NgModule({
   declarations: [
     HomePageNewComponent,
@@ -136,6 +138,8 @@ import {PanelMenuModule} from 'primeng/panelmenu';
     HomePageComponent,
     ReasonComponent,
     SponsorComponent,
+    RecruitComponent,
+    IntroduceComponent,
     FooterComponent,
     HeaderComponent,
     HomeHeaderComponent,

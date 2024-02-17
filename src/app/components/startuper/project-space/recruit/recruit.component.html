@@ -1,0 +1,41 @@
+<div class="flex flex-column w-full h-auto p-2 px-2" style="background-color: #F3F4F6;">
+  <div class="flex w-full pl-1 mt-2">
+    <button pButton type="button" label="Thêm vị trí tuyển dụng mới" icon="pi pi-plus"
+      class="p-button-sm font-normal"></button>
+  </div>
+  <div class="flex h-auto w-full flex-wrap mt-3">
+    <ng-container *ngFor="let job of listJobs">
+      <div class="p-1 h-auto w-6" style="background-color: #F3F4F6;">
+        <div class="flex border-1 p-2 border-300 border-round-md h-full w-full bg-white">
+          <div class="w-5rem flex align-items-start justify-content-center h-full mr-2">
+            <div class="flex align-items-center justify-content-center w-4rem h-4rem border-1 border-400 border-circle z-1">
+              <span class="text-xl font-semibold">+9</span>
+            </div>
+          </div>
+          <div class="flex flex-column w-full h-full ">
+            <span class="font-semibold mb-1">{{job.title}}</span>
+            <div class="text-red-500 mb-1">
+              <span class="font-semibold">Thu nhập: </span>
+              <span>{{job.salary}}</span>
+            </div>
+            <div class="mb-1">
+              <span class="font-semibold">Thời hạn: </span>
+              <span>{{job.dueTo}}</span>
+            </div>
+            <div class="mb-1">
+              <span class="font-semibold">Khu vực: </span>
+              <span>{{job.area}}</span>
+            </div>
+            <div class="flex">
+              <span>{{job.view}}</span>
+              <div>
+                <span class="font-semibold ml-2">Cập nhật: </span>
+                <span>{{job.dueTo}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

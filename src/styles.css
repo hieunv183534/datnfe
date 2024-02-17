@@ -247,7 +247,7 @@ app-work-history-summary .p-card-content {
 .p-component {
   font-size: 14px !important;
 }
-:not(app-login, app-chat) .p-inputtext {
+:not(app-login, app-chat,app-list-project-member) .p-inputtext {
   padding: 0.5rem 0.75rem !important;
 }
 .p-fieldset .p-fieldset-content {
@@ -307,6 +307,9 @@ app-work-history-summary .p-card-content {
   font-weight: 600;
   font-size: 16px;
   padding: 1rem 1rem 0.5rem 1rem !important;
+}
+.p-button-label {
+  font-weight: 400 !important;
 }
 /* .p-inputtext:active {
   border: 1px solid !important;

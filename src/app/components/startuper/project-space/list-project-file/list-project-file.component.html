@@ -1,10 +1,10 @@
-<div class="grid flex">
+<div class="flex flex-column">
   <span class="flex align-items-center justify-content-center ml-3">
     <i class="pi pi-file-o mr-2" style="font-size: 27px;"></i>
     <h3 style="margin: 2px;" class="flex align-items-center">Tài liệu <h4>({{files.length}})</h4>
     </h3>
   </span>
-  <div class="col-12 list-member .grid">
+  <div class="w list-member .grid">
     <ng-container *ngFor="let file of files">
       <span class="file-item flex flex-column relative" [pTooltip]="'File:'+ file.file.url + '\n'+
                     'Kiểu: '+  file.file.contentType+ '\n'+
@@ -18,24 +18,24 @@
       </span>
     </ng-container>
     <button *ngIf="isMyProject" pButton pRipple type="button" label="Tải lên tài liệu"
-      class="p-button-outlined mt-3 col-12" (click)="isShowUpload = true"></button>
+      class="p-button-outlined mt-3 w-full" (click)="isShowUpload = true"></button>
   </div>
 </div>
 
 <p-dialog [resizable]="true" header="Tải lên tài liệu mới" [(visible)]="isShowUpload" [modal]="true"
   [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false">
   <div class="grid p-fluid">
-    <div class="col-12">
+    <div class="w-full">
       <input (change)="onFileChange($event)" type="file" id="fileUpload">
     </div>
-    <div class="p-field col-12 md-12">
+    <div class="p-field w-full md-12">
       <span class="p-float-label">
         <input type="text" pInputText [(ngModel)]="title" />
         <label>Tiêu đề: <span style="color: red;">*</span>
         </label>
       </span>
     </div>
-    <div class="p-field col-12 md-12">
+    <div class="p-field w-full md-12">
       <span class="p-float-label">
         <textarea pInputTextarea [(ngModel)]="note"></textarea>
         <label>Ghi chú/ mô tả:
