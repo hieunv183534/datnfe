@@ -11,6 +11,10 @@ import { FsiValues } from 'src/app/shared/util/util';
 export class ProjectDetailComponent implements OnInit {
   @Input() display: boolean = false;
   styleDialog: any = { width: '50vw' };
+  widthDialog: string = '800px';
+  widthBox1: string = '590px';
+  widthBox2: string = '642px';
+  innerWidth: any;
   @Output() close: EventEmitter<any> = new EventEmitter();
   showModal: boolean = true;
   showInfoJob: boolean = false;
@@ -50,7 +54,14 @@ export class ProjectDetailComponent implements OnInit {
     },
   ];
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.innerWidth = window.innerWidth;
+    if (this.innerWidth <= 767) {
+      this.widthDialog = '400px';
+      this.widthBox1 = '250px';
+      this.widthBox2 = '300px';
+    }
+  }
 
   showDialogJob() {
     this.showModal = false

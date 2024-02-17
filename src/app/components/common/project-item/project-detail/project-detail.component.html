@@ -160,7 +160,7 @@
   header="Thông tin dự án"
   [(visible)]="display"
   [modal]="showModal"
-  [style]="{ width: '800px' }"
+  [style]="{ width: widthDialog }"
   [baseZIndex]="10001"
   [draggable]="false"
   (onHide)="close.emit()"
@@ -1225,7 +1225,7 @@
                       pInputText
                       placeholder="Viết phản hồi công khai"
                       [style]="{
-                        width: '590px',
+                        width: widthBox1,
                         backgroundColor: '#f2f2f2',
                         borderRadius: '8px'
                       }"
@@ -1372,7 +1372,7 @@
                     pInputText
                     placeholder="Viết phản hồi công khai"
                     [style]="{
-                      width: '642px',
+                      width: widthBox2,
                       backgroundColor: '#f2f2f2',
                       borderRadius: '8px'
                     }"
