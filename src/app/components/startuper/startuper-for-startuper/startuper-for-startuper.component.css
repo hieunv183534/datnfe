@@ -38,6 +38,14 @@ app-startuper-for-startuper .p-dataview .p-dataview-content {
   background: unset !important;
 }
 
+div.btnSearch:hover {
+  background-color: #0964b9 !important;
+}
+
+div.btnClear:hover {
+  background-color: #a8abad !important;
+}
+
 /* app-startuper-for-startuper .p-paginator {
   padding: 0px !important;
 }

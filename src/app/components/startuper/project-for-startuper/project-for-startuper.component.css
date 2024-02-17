@@ -81,6 +81,14 @@ app-project-for-startuper .p-paginator .p-paginator-pages .p-paginator-page {
   margin-top: 8px;
 }
 
+div.btnSearch:hover {
+  background-color: #0964b9 !important;
+}
+
+div.btnClear:hover {
+  background-color: #a8abad !important;
+}
+
 app-project-for-startuper .p-accordion .p-accordion-content {
   padding: 0px !important;
 }
