@@ -152,9 +152,7 @@
             </span>
           </div>
           <div class="md:col-2 left">
-            <p-button
-              [style]="{ backgroundColor: '#01A9FF' }"
-              (click)="isVisibleAddProject = true"
+            <p-button (click)="isVisibleAddProject = true"
               >Thêm dự án mới</p-button
             >
           </div>
@@ -169,21 +167,11 @@
             <div class="hienThi" style="padding-top: 5px">
               <span>Ưu tiên hiển thị</span>
             </div>
-            <p-button class="hienThi" [style]="{ backgroundColor: '#01A9FF' }"
-              >Phù hợp nhất</p-button
-            >
-            <p-button class="hienThi" [style]="{ backgroundColor: '#01A9FF' }"
-              >Làm việc từ xa</p-button
-            >
-            <p-button class="hienThi" [style]="{ backgroundColor: '#01A9FF' }"
-              >Khoảng cách</p-button
-            >
-            <p-button class="hienThi" [style]="{ backgroundColor: '#01A9FF' }"
-              >Giai đoạn</p-button
-            >
-            <p-button class="hienThi" [style]="{ backgroundColor: '#01A9FF' }"
-              >Quy mô</p-button
-            >
+            <p-button class="hienThi">Phù hợp nhất</p-button>
+            <p-button class="hienThi">Làm việc từ xa</p-button>
+            <p-button class="hienThi">Khoảng cách</p-button>
+            <p-button class="hienThi">Giai đoạn</p-button>
+            <p-button class="hienThi">Quy mô</p-button>
             <p-paginator
               style="margin-left: 12px; margin-top: 10px; margin-bottom: 10px"
               [pageLinkSize]="pageSize"

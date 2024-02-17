@@ -32,6 +32,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { CheckboxModule } from 'primeng/checkbox';
 import { PanelModule } from 'primeng/panel';
+import { SplitterModule } from 'primeng/splitter';
 import { BadgeModule } from 'primeng/badge';
 import { ChartModule } from 'primeng/chart';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
@@ -221,6 +222,7 @@ import {PanelMenuModule} from 'primeng/panelmenu';
     TabViewModule,
     CheckboxModule,
     PanelModule,
+    SplitterModule,
     ChartModule,
     OverlayPanelModule,
     DropdownModule,
