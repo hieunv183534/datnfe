@@ -6,7 +6,7 @@ import { FsiValues } from 'src/app/shared/util/util';
 @Component({
   selector: 'app-project-item',
   templateUrl: './project-item.component.html',
-  styleUrls: ['./project-item.component.css']
+  styleUrls: ['./project-item.component.css'],
 })
 export class ProjectItemComponent implements OnInit {
   @Input() project?: any;
@@ -26,23 +26,19 @@ export class ProjectItemComponent implements OnInit {
   areas: any = FsiValues.areas;
 
   projectStages: any[] = [
-    { name: "Xác lập", value: ProjectStage.XacLap },
-    { name: "Nghiên cứu", value: ProjectStage.NghienCuu },
-    { name: "MVP", value: ProjectStage.MVP },
-    { name: "Kiểm thử", value: ProjectStage.KiemThu },
-    { name: "Tăng trưởng 1", value: ProjectStage.TangTruong1 },
-    { name: "Tăng trưởng 2", value: ProjectStage.TangTruong2 },
-    { name: "Tăng trưởng 3", value: ProjectStage.TangTruong3 },
-    { name: "Tăng trưởng 4", value: ProjectStage.TangTruong4 }
+    { name: 'Xác lập', value: ProjectStage.XacLap },
+    { name: 'Nghiên cứu', value: ProjectStage.NghienCuu },
+    { name: 'MVP', value: ProjectStage.MVP },
+    { name: 'Kiểm thử', value: ProjectStage.KiemThu },
+    { name: 'Tăng trưởng 1', value: ProjectStage.TangTruong1 },
+    { name: 'Tăng trưởng 2', value: ProjectStage.TangTruong2 },
+    { name: 'Tăng trưởng 3', value: ProjectStage.TangTruong3 },
+    { name: 'Tăng trưởng 4', value: ProjectStage.TangTruong4 },
   ];
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router
-  ) { }
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     console.log(this.project);
-
   }
 
   getArea(val: number) {
@@ -50,11 +46,19 @@ export class ProjectItemComponent implements OnInit {
   }
 
   getStage(val: ProjectStage) {
-    return this.projectStages.find(x => x.value == val).name;
+    return this.projectStages.find((x) => x.value == val).name;
   }
 
   getFields(val: number[]) {
-    return FsiValues.getMultiName(val, FsiValues.fields).split(", ");
+    return FsiValues.getMultiName(val, FsiValues.fields).split(', ');
+  }
+
+  viewProject() {
+    if (this.relationWithProject == 0) {
+      this.showDetailProject();
+    } else {
+      this.handleDetail = true;
+    }
   }
 
   showDetailProject() {
@@ -77,11 +81,11 @@ export class ProjectItemComponent implements OnInit {
     this.cancel.emit(this.project.id);
   }
 
-  adminAccept1(){
+  adminAccept1() {
     this.adminAccept.emit(this.project.id);
   }
 
-  adminDelete1(){
+  adminDelete1() {
     this.adminDelete.emit(this.project.id);
   }
 }

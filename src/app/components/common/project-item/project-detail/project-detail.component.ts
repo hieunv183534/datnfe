@@ -12,6 +12,9 @@ export class ProjectDetailComponent implements OnInit {
   @Input() display: boolean = false;
   styleDialog: any = { width: '50vw' };
   @Output() close: EventEmitter<any> = new EventEmitter();
+  showModal: boolean = true;
+  showInfoJob: boolean = false;
+  positionDialog: string = '';
   responsiveOptions: any[] = [
     {
       breakpoint: '1024px',
@@ -48,4 +51,16 @@ export class ProjectDetailComponent implements OnInit {
   ];
 
   ngOnInit() {}
+
+  showDialogJob() {
+    this.showModal = false
+    this.showInfoJob = true
+    this.positionDialog = 'left'
+  }
+
+  closeModalInfoJob() {
+    this.showModal = true
+    this.showInfoJob = false
+    this.positionDialog = ''
+  }
 }

@@ -1,12 +1,170 @@
 <p-dialog
   [resizable]="true"
-  header="Thông tin dự án"
-  [(visible)]="display"
-  [modal]="true"
-  [style]="{ width: '800px' }"
+  header="Thông tin công việc"
+  [(visible)]="showInfoJob"
+  [style]="{ width: '35vw' }"
   [baseZIndex]="10000"
   [draggable]="false"
+  (onHide)="closeModalInfoJob()"
+  position="right"
+>
+  <div
+    class="grid"
+    style="
+      border-bottom: 1px solid #b9b3b0;
+      border-top: 1px solid #b9b3b0;
+      margin-top: 16px !important;
+      margin-bottom: 8px !important;
+    "
+  >
+    <div style="width: 20%">
+      <img
+        [src]="'https://fsiconnected.cloud/images/default-avatar.jpg'"
+        alt=""
+        id="avatar"
+      />
+    </div>
+    <div style="width: 80%; padding-left: 12px">
+      <ul>
+        <li>
+          <div style="font-size: 1.2rem; font-weight: 700">
+            Lập trình viên Full Stack
+          </div>
+        </li>
+        <li style="color: red">Thu thập: Thương lượng</li>
+        <li>Thời hạn: 17/10/2024</li>
+        <li>Khu vực: Thành phố Hồ Chí Minh</li>
+      </ul>
+    </div>
+  </div>
+  <div class="info-job">
+    <div>
+      <ul>
+        <li>
+          <b
+            ><svg
+              width="3"
+              height="18"
+              viewBox="0 0 3 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="3" height="18" rx="1.5" fill="#01A4FF" />
+            </svg>
+            Mô tả công việc
+          </b>
+        </li>
+        <li>- Quay phim, dựng phim, chụp ảnh, cắt ghép video, ...</li>
+        <li>- Sáng tạo nội dung mới</li>
+        <li>- Xây dựng các clip quảng cáo</li>
+        <li>- Chụp ảnh sản phẩm thương hiệu theo yêu cầu của công ty...</li>
+        <li>
+          - Hỗ trợ các công việc khác trong team truyền thông nội bộ và các công
+          việc khác theo yêu cầu của cấp trên
+        </li>
+        <li>- Quản lý tài sản được giao để phục vụ công việc</li>
+      </ul>
+
+      <ul>
+        <li>
+          <b
+            ><svg
+              width="3"
+              height="18"
+              viewBox="0 0 3 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="3" height="18" rx="1.5" fill="#01A4FF" />
+            </svg>
+            Yêu cầu
+          </b>
+        </li>
+        <li>- Bằng cấp: <b>Cao đẳng trở lên</b></li>
+        <li>- Thời gian làm việc: <b>30+ giờ/tuần</b></li>
+        <li>- Hình thức làm việc: <b>Làm việc từ xa</b></li>
+        <li>- Kinh nghiệm: <b>1 - 2 năm</b></li>
+        <li>
+          - Kỹ năng mềm:
+          <b
+            >Kỹ năng ra quyết định trong điều kiện khó khăn, kỹ năng chăm sóc
+            duy trì mối quan hệ</b
+          >
+        </li>
+        <li>- Giới tính: <b>Nam</b></li>
+        <li>- Tính cách: <b>Nhiệt tình, sáng tạo</b></li>
+      </ul>
+
+      <ul>
+        <li>
+          <b
+            ><svg
+              width="3"
+              height="18"
+              viewBox="0 0 3 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="3" height="18" rx="1.5" fill="#01A4FF" />
+            </svg>
+            Quyền lợi
+          </b>
+        </li>
+        <li>- Ca 4 tiếng, xoay ca theo nhu cầu - 25k/1 giờ</li>
+      </ul>
+
+      <ul>
+        <li>
+          <b
+            ><svg
+              width="3"
+              height="18"
+              viewBox="0 0 3 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="3" height="18" rx="1.5" fill="#01A4FF" />
+            </svg>
+            Địa điểm làm việc
+          </b>
+        </li>
+        <li>- Hà Nội: Tòa nhà ngân hàng công đoàn Việt Nam</li>
+      </ul>
+
+      <ul>
+        <li>
+          <b
+            ><svg
+              width="3"
+              height="18"
+              viewBox="0 0 3 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="3" height="18" rx="1.5" fill="#01A4FF" />
+            </svg>
+            Thông tin khác
+          </b>
+        </li>
+        <li>
+          - Vị trí này chủ yếu liên quan đến vận hành và bảo trì, cần biết một
+          số kỹ năng IT cơ bản, không yêu cầu trực tiếp code
+        </li>
+      </ul>
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog
+  [resizable]="true"
+  header="Thông tin dự án"
+  [(visible)]="display"
+  [modal]="showModal"
+  [style]="{ width: '800px' }"
+  [baseZIndex]="10001"
+  [draggable]="false"
   (onHide)="close.emit()"
+  [position]="positionDialog"
 >
   <div class="page">
     <div class="profile relative mb-3">
@@ -116,6 +274,7 @@
               margin-top: 16px !important;
               margin-bottom: 16px !important;
             "
+            (click)="showDialogJob()"
           >
             <div class="col-2 md-4">
               <img
@@ -144,6 +303,7 @@
               margin-top: 8px !important;
               margin-bottom: 16px !important;
             "
+            (click)="showDialogJob()"
           >
             <div class="col-2 md-4">
               <img
