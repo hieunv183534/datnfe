@@ -1,49 +1,65 @@
-<div [ngClass]="{ headerLogin: true, scrolled: isScrolled }" class="sm:mt-0">
-  <div class="leftDiv hidden sm:flex">
-    <img
-      src="../../../../assets/img/logotitle.png"
-      (click)="toHome()"
-      id="logo"
-    />
-    <ng-container *ngFor="let menu of menuData">
-      <a
-        [routerLink]="menu.href"
-        class="text-xs sm:text-sm"
-        [ngClass]="{ 'active-menu': thisRouteUrl == menu.href }"
-        >{{ menu.title }}</a
-      >
-    </ng-container>
-  </div>
-  <div class="leftDiv flex sm:hidden">
-    <i
-      class="pi pi-bars text-xl cursor-pointer font-semibold hover:text-orange-400"
+<div [ngClass]="{ headerLogin: true, scrolled: isScrolled }"
+  class="flex justify-content-between align-items-center sm:mt-0 h-4rem md:h-5rem w-full sticky top-0 z-1  px-2 sm:pl-2 md:pl-4 lg:pl-6 xl:pl-7 sm:pr-5">
+  <div class="flex flex-row md:block align-items-center">
+    <div
       (click)="isShowSidebar = true"
-    ></i>
-    <img
-      src="../../../../assets/img/logo.png"
-      (click)="toHome()"
-      id="logo_mobile"
-    />
+      class="flex justify-content-center align-items-center md:hidden h-2rem text-primary hover:text-blue-600 cursor-pointer mr-2"
+    >
+      <i class="pi pi-bars text-xl font-semibold"></i>
+    </div>
+    <a to="/" class="logoDiv flex align-items-center">
+      <img
+        (click)="toHome()"
+        src="../../../../assets/img/full-logo.png"
+        alt="main logo"
+        class="h-2rem lg:h-3rem cursor-pointer"
+        style="object-fit: contain"
+      />
+    </a>
   </div>
-  <div class="rightDiv">
-    <a class="notification" routerLink="./chat/0/0">
-      <i class="pi pi-comments text-xl sm:text-2xl hover:text-orange-400"></i>
+  <div class="center-div">
+    <div class="hidden md:flex text-dark flex-row">
+      <!-- <ng-container *ngFor="let menu of menuData">
+        <a [routerLink]="menu.href" class="cursor-pointer min-w-max">
+          <div [ngClass]="thisRouteUrl == menu.href ? 'text-primary' : 'text-900'"
+            class="navLink underline1 py-4 sm:px-2 md:px-3 lg:px-4 text-xs lg:text-sm hover:text-primary">
+            {{ menu.title }}
+          </div>
+        </a>
+      </ng-container> -->
+      <a class="cursor-pointer min-w-max">
+        <div (click)="menuHeader.toggle($event)"  class="navLink underline1 pt-4 pb-2 mb-2 sm:mx-2 md:mx-3 lg:mx-4 text-xs lg:text-sm hover:text-primary">
+          KẾT NỐI
+        </div>
+      </a>
+      <a to="#" class="cursor-pointer min-w-max">
+        <div class="navLink underline1 py-4 sm:mx-2 md:mx-3 lg:mx-4 text-xs lg:text-sm hover:text-primary">
+          CỘNG ĐỒNG
+        </div>
+      </a>
+      <a to="#" class="cursor-pointer min-w-max">
+        <div class="navLink underline1 py-4 sm:mx-2 md:mx-3 lg:mx-4 text-xs lg:text-sm hover:text-primary">
+          HỖ TRỢ
+        </div>
+      </a>
+      
+      <p-menu class="custom-menu" [showTransitionOptions]="'100ms'" [hideTransitionOptions]="'100ms'" #menuHeader [popup]="true" [model]="itemsHeader">
+      </p-menu>
+    </div>
+  </div>
+
+  <div class="rightDiv flex align-items-center">
+    <a class="px-2 sm:px-3" routerLink="./chat/0/0">
+      <i class="pi pi-comments text-xl sm:text-2xl text-900 hover:text-primary"></i>
     </a>
-    <a class="notification cursor-pointer">
-      <i
-        class="pi pi-bell text-xl sm:text-2xl hover:text-orange-400"
-        (click)="onBellClick($event)"
-      ></i>
+    <a class="px-2 sm:px-3 cursor-pointer">
+      <i class="pi pi-bell text-xl sm:text-2xl text-900 hover:text-primary" (click)="onBellClick($event)"></i>
     </a>
-    <a routerLink="#">
-      <p-avatar
-        shape="circle"
-        [image]="
+    <a routerLink="#" class="pl-2 sm:pl-3">
+      <p-avatar shape="circle" [image]="
           userInfo?.avatarUrl ??
           'https://fsiconnected.cloud/images/default-avatar.jpg'
-        "
-        (click)="menu.toggle($event)"
-      ></p-avatar>
+        " (click)="menu.toggle($event)"></p-avatar>
     </a>
   </div>
 </div>
@@ -51,38 +67,25 @@
 <p-menu #menu [popup]="true" [model]="items"></p-menu>
 
 <ng-container *ngIf="isShowUpdateInfo">
-  <app-update-user-info
-    [display]="isShowUpdateInfo"
-    (close)="isShowUpdateInfo = false"
-    [userInfo]="userInfo"
-  ></app-update-user-info>
+  <app-update-user-info [display]="isShowUpdateInfo" (close)="isShowUpdateInfo = false"
+    [userInfo]="userInfo"></app-update-user-info>
 </ng-container>
 <p-sidebar [(visible)]="isShowSidebar">
    
   <ng-template pTemplate="header">
-    <img
-      src="../../../../assets/img/logotitle.png"
-      (click)="toHome()"
-      id="logo"
-    />
+    <img src="../../../../assets/img/logotitle.png" (click)="toHome()" id="logo" />
   </ng-template>
    
   <ng-template pTemplate="content">
     <div class="flex flex-column">
-      <ng-container *ngFor="let menu of menuData">
-        <div
-          (click)="isShowSidebar = false"
-          [routerLink]="menu.href"
+      <p-panelMenu [model]="itemsAsideMenu" [style]="{'width':'100%'}"></p-panelMenu>
+      <!-- <ng-container *ngFor="let menu of menuData">
+        <div (click)="isShowSidebar = false" [routerLink]="menu.href"
           class="p-2 pl-3 hover:bg-gray-200 text-black-alpha-90 active: hover:text-primary cursor-pointer"
-          [ngClass]="{ 'bg-gray-200': thisRouteUrl == menu.href }"
-        >
-          <a
-            class="text-sm"
-            [ngClass]="{ 'text-primary': thisRouteUrl == menu.href }"
-            >{{ menu.title }}</a
-          >
+          [ngClass]="{ 'bg-gray-200': thisRouteUrl == menu.href }">
+          <a class="text-sm" [ngClass]="{ 'text-primary': thisRouteUrl == menu.href }">{{ menu.title }}</a>
         </div>
-      </ng-container>
+      </ng-container> -->
     </div>
   </ng-template>
 </p-sidebar>
