@@ -1,26 +1,15 @@
 .headerLogin {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  color: white;
-  z-index: 999;
-  padding: 0px 2% 0px 2%;
-  display: flex;
-  justify-content: space-between;
-  background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.6) 50%);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-.headerLogin .leftDiv {
+/* .headerLogin .leftDiv {
   column-gap: 7%;
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 65%;
-}
+} */
 
-.headerLogin #logo {
-  width: 5.5rem;
-}
 @media (max-width: 576px) {
   .headerLogin #logo {
     width: 4rem;
@@ -37,21 +26,21 @@
   }
   
 } 
-.headerLogin #logo_mobile {
+/* .headerLogin #logo_mobile {
   width: 2rem;
-}
+} */
 
 .headerLogin a {
-  color: white;
+  /* color: white; */
   text-decoration: none;
   font-weight: 500;
   text-transform: uppercase;
 }
-.headerLogin a:hover {
+/* .headerLogin a:hover {
   color: #FAA00F;
-}
+} */
 
-.headerLogin .rightDiv {
+/* .headerLogin .rightDiv {
   display: flex;
   align-items: center;
   column-gap: 7%;
@@ -68,7 +57,7 @@
   font-weight: 500;
   font-size: 1rem;
   cursor: pointer;
-}
+} */
 
 
 .headerLogin .notification {
@@ -76,7 +65,7 @@
   position: relative;
   display: inline-block;
   font-size: 20px !important;
-  color: #fff;
+  /* color: #fff; */
 }
 
 .headerLogin .notification .badge {
@@ -87,7 +76,7 @@
   padding: 2px 2px;
   border-radius: 30%;
   background-color: red;
-  color: white;
+  /* color: white; */
   font-size: 10px;
 }
 
@@ -100,9 +89,7 @@
   filter: brightness(0) invert(1);
 }
 
-.headerLogin .leftDiv a {
-  padding: 30px 0px 30px 0px;
-}
+
 .headerLogin .dropdown {
 display: flex;
 flex-direction: column;
@@ -179,3 +166,16 @@ box-shadow: 1px 2px 4px rgb(0, 0, 0, 0.1);
   background-position-x: 12px;
   background-position-y: 12px;
 }
+.p-menu .p-submenu-header{
+  padding: 0 !important;
+}
+.p-menu .p-menuitem-link .p-menuitem-text {
+  color: #212121 !important;
+  font-family: 'NotosansRegular' !important;
+}
+.p-menu .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
+  color: #3B82F6 !important;
+}
+/* .p-menu .p-menuitem-link .p-menuitem-text:hover {
+  color: #3B82F6 !important;
+} */

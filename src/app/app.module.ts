@@ -126,6 +126,7 @@ import {SidebarModule} from 'primeng/sidebar';
 import {ButtonModule} from 'primeng/button';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {TieredMenuModule} from 'primeng/tieredmenu';
 
 @NgModule({
   declarations: [
@@ -191,6 +192,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
   ],
   imports: [
     CommonModule,
+    TieredMenuModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

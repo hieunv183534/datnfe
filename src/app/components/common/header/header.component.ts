@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isScrolled: boolean = false;
   thisRouteUrl: string = "";
   items: MenuItem[] = [];
+  itemsHeader: MenuItem[] = [];
   userInfo: any = {};
   @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
 
@@ -78,6 +79,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
         ]
       }
     ];
+    this.menuData.map((menu) => {
+      this.itemsHeader.push({
+        items: [
+          {
+            label: menu.title,
+            command: () => {
+              this.router.navigate([`${menu.href}`]);
+            }
+          },
+        ]
+      })
+    })
+
   }
 
   toHome() {
