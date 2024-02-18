@@ -1,0 +1,6 @@
+.p-multiselect {
+    width: 100% !important;
+}
+.p-multiselect, .p-cascadeselect {
+    height: 37px !important;
+}

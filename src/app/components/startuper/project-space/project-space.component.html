@@ -154,7 +154,7 @@
     <h2>DỰ ÁN GỢI Ý</h2>
     <app-top-similar-project [projectId]="project.id"></app-top-similar-project>
   </div>
-</div>
+</div> -->
 
 <ng-container *ngIf="isShowAddMember">
   <app-list-project-invite-member [display]="isShowAddMember" (close)="isShowAddMember = false" [projectId]="project.id"
@@ -165,4 +165,4 @@
 <ng-container *ngIf="isShowUpdateProject">
   <app-update-project [display]="isShowUpdateProject" (close)="isShowUpdateProject = false" [project]="project"
     (changeProjectInfo)="changeProjectInfo($event)"></app-update-project>
-</ng-container> -->
+</ng-container>

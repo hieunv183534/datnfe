@@ -130,9 +130,13 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import { RecruitComponent } from './components/startuper/project-space/recruit/recruit.component';
 import { IntroduceComponent } from './components/startuper/project-space/introduce/introduce.component';
+import { AddRecruitComponent } from './components/startuper/project-space/recruit/add-recruit/add-recruit.component';
+import { ViewRecruitComponent } from './components/startuper/project-space/recruit/view-recruit/view-recruit.component';
 @NgModule({
   declarations: [
     HomePageNewComponent,
+    AddRecruitComponent,
+    ViewRecruitComponent,
     InformationBoxComponent,
     AppComponent,
     HomePageComponent,

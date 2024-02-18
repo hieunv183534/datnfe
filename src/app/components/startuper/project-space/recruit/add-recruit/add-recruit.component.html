@@ -1,0 +1,122 @@
+
+  <div>
+    <div class="flex flex-column">
+      <div class="h-auto flex align-items-center mb-3">
+        <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+        <span class="font-semibold">Thông tin công việc</span>
+      </div>
+      <div class="flex flex-column mb-3">
+        <span class="mb-2">Tiêu đề công việc</span>
+        <input type="text" class="p-inputtext-sm" pInputText />
+      </div>
+      <div class="flex w-full">
+        <div class="flex flex-column mb-3 w-6">
+          <span class="mb-2">Vị trí cần tuyển</span>
+          <input type="text" class="p-inputtext-sm" pInputText />
+        </div>
+        <div class="flex flex-column mb-3 ml-3 w-6">
+          <span class="mb-2">Số lượng cần tuyển</span>
+          <input type="text" class="p-inputtext-sm" pInputText />
+        </div>
+      </div>
+      <div class="flex w-full">
+        <div class="flex flex-column mb-3 w-6">
+          <span class="mb-2">Chuyên môn</span>
+          <input type="text" class="p-inputtext-sm" pInputText />
+        </div>
+        <div class="flex flex-column mb-3 ml-3 w-6">
+          <span class="mb-2">Hình thức làm việc</span>
+          <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="workTypes" optionLabel="name"
+            formControlName="personalities">
+          </p-multiSelect>
+        </div>
+      </div>
+      <div class="flex w-full">
+        <div class="flex flex-column mb-3 w-6">
+          <span class="mb-2">Khu vực làm việc</span>
+          <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="areas" optionLabel="name"
+            formControlName="personalities">
+          </p-multiSelect>
+        </div>
+      </div>
+      <div class="flex flex-column mb-3">
+        <span class="mb-2">Địa điểm làm việc</span>
+        <input type="text" class="p-inputtext-sm" pInputText />
+      </div>
+      <div class="flex w-full">
+        <div class="flex flex-column mb-3 w-6">
+          <span class="mb-2">Thời gian làm việc</span>
+          <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="availableTimes" optionLabel="name"
+            formControlName="personalities">
+          </p-multiSelect>
+        </div>
+        <div class="flex flex-column mb-3 ml-3 w-6">
+          <span class="mb-2">Thu nhập</span>
+          <input type="text" class="p-inputtext-sm" pInputText />
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-column">
+      <div class="h-auto flex align-items-center mb-3">
+        <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+        <span class="font-semibold">Mô tả công việc</span>
+      </div>
+      <div class="flex flex-column mb-3">
+        <textarea pInputTextarea [rows]="5"></textarea>
+      </div>
+    </div>
+    <div class="flex flex-column">
+      <div class="h-auto flex align-items-center mb-3">
+        <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+        <span class="font-semibold">Yêu cầu công việc</span>
+      </div>
+      <div class="flex w-full">
+        <div class="flex flex-column mb-3 w-6">
+          <span class="mb-2">Kinh nghiệm</span>
+          <div class="w-full">
+            <p-multiSelect class="w-full" optionLabel="name" optionValue="value" appendTo="body" [options]="yearOfExps"
+              optionLabel="name" formControlName="yearOfExps">
+            </p-multiSelect>
+          </div>
+        </div>
+        <div class="flex flex-column mb-3 ml-3 w-6">
+          <span class="mb-2">Bằng cấp</span>
+          <input type="text" class="p-inputtext-sm" pInputText />
+        </div>
+      </div>
+      <div class="flex flex-column mb-3">
+        <span class="mb-2">Kỹ năng mềm</span>
+        <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="skills" optionLabel="name"
+          formControlName="skills">
+        </p-multiSelect>
+      </div>
+      <div class="flex w-full">
+        <div class="flex flex-column mb-3 w-6">
+          <span class="mb-2">Tính cách</span>
+          <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="personalities"
+            optionLabel="name" formControlName="personalities">
+          </p-multiSelect>
+        </div>
+        <div class="flex flex-column mb-3 ml-3 w-6">
+          <span class="mb-2">Giới tính</span>
+          <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="genders"
+            optionLabel="name" formControlName="personalities">
+          </p-multiSelect>
+        </div>
+      </div>
+      <div class="flex flex-column mb-3">
+        <span class="mb-2">Yêu cầu khác</span>
+        <textarea pInputTextarea [rows]="5"></textarea>
+      </div>
+    </div>
+    <div class="flex flex-column">
+      <div class="h-auto flex align-items-center mb-3">
+        <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+        <span class="font-semibold">Thông tin khác</span>
+      </div>
+      <div class="flex flex-column mb-3">
+        <textarea pInputTextarea [rows]="5"></textarea>
+      </div>
+    </div>
+  </div>
+  

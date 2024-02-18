@@ -1,0 +1,6 @@
+.function-recruit{
+    display: block;
+}
+.container-recruit:hover .function-recruit {
+    display: block;
+  }

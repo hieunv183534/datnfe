@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecruitComponent implements OnInit {
   listJobs: any[] = [];
+  isShowAddRecruit: boolean = false;
+  isShowViewRecruit: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
