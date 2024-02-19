@@ -289,7 +289,11 @@ app-work-history-summary .p-card-content {
 }
 
 .p-tag-value {
-  color: #495057 !important;
+  color: #000000 !important;
+}
+
+.p-dataview.p-dataview-list .p-dataview-content > .p-grid > div {
+  border: unset !important;
 }
 
 @media (max-width: 576px) {
