@@ -25,6 +25,11 @@ export class ProjectForStartuperComponent implements OnInit {
 
   formSearch: FormGroup = this.fb.group({});
 
+  sorting: string = 'suitable';
+  styleBtnSuitable: any = {};
+  styleBtnAvailableTime: any = 'p-button-secondary';
+  styleBtnYearOfExp: any = 'p-button-secondary';
+
   projectStages: any = [
     { name: "Xác lập", value: ProjectStage.XacLap },
     { name: "Nghiên cứu", value: ProjectStage.NghienCuu },
@@ -76,6 +81,24 @@ export class ProjectForStartuperComponent implements OnInit {
     this.getListProject();
   }
 
+  sortingSearch(value: string) {
+    this.sorting = value;
+    if (value == 'suitable') {
+      this.styleBtnSuitable = '';
+      this.styleBtnAvailableTime = 'p-button-secondary';
+      this.styleBtnYearOfExp = 'p-button-secondary';
+    } else if (value == 'availableTime') {
+      this.styleBtnSuitable = 'p-button-secondary';
+      this.styleBtnAvailableTime = '';
+      this.styleBtnYearOfExp = 'p-button-secondary';
+    } else if (value == 'yearOfExp') {
+      this.styleBtnSuitable = 'p-button-secondary';
+      this.styleBtnAvailableTime = 'p-button-secondary';
+      this.styleBtnYearOfExp = '';
+    }
+    this.getListProject(true);
+  }
+
   getListProject(reset: boolean = false) {
     if (reset) { this.page = 1; }
     let input = new GetListProjectForStartuperDto();
@@ -92,6 +115,7 @@ export class ProjectForStartuperComponent implements OnInit {
     input.relationWithProject = this.formSearch.value.relationWithProject;
     input.skipCount = (this.page - 1) * this.pageSize;
     input.maxResultCount = this.pageSize;
+    input.sorting = this.sorting;
     this.projectService.getListProjectForStartuper(input).then((res: any) => {
       this.totalRecords = res.data.totalCount;
       this.listProject = res.data.items;
