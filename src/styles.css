@@ -280,12 +280,22 @@ app-work-history-summary .p-card-content {
   font-weight: unset !important;
 }
 
+.p-tabview-title {
+  font-weight: bold !important;
+  color: #000000 !important;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link > .p-tabview-title {
+  color: #3B82F6 !important;
+}
+
 .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
   font-weight: bold !important;
 }
 
-.p-tabview-title {
-  font-weight: bold !important;
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
 }
 
 .p-tag-value {
