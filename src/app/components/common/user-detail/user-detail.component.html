@@ -3,7 +3,7 @@
   header="Thông tin người dùng"
   [(visible)]="visible"
   [modal]="true"
-  [style]="{ width: '800px' }"
+  [style]="{ width: '800px', padding: '0px' }"
   [baseZIndex]="10000"
   [draggable]="false"
   (onHide)="hide()"
@@ -23,7 +23,7 @@
           >
             <img
               class="logo absolute"
-              style="top: 60%; left: 1.5rem"
+              style="top: 60%; left: 24px"
               [src]="
                 startuperInfo.avatarUrl ??
                 'https://fsiconnected.cloud/images/default-avatar.jpg'
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="info">
-      <div style="border-bottom: 1px solid #D8DFE8">
+      <div style="border-bottom: 1px solid #D8DFE8; padding-left: 8px;">
         <ul>
           <li>
             <div class="name">{{ startuperInfo.name }}</div>

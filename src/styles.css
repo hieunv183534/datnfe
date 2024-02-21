@@ -285,8 +285,12 @@ app-work-history-summary .p-card-content {
   color: #000000 !important;
 }
 
-.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link > .p-tabview-title {
-  color: #3B82F6 !important;
+.p-tabview
+  .p-tabview-nav
+  li.p-highlight
+  .p-tabview-nav-link
+  > .p-tabview-title {
+  color: #3b82f6 !important;
 }
 
 .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
