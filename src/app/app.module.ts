@@ -132,6 +132,7 @@ import { RecruitComponent } from './components/startuper/project-space/recruit/r
 import { IntroduceComponent } from './components/startuper/project-space/introduce/introduce.component';
 import { AddRecruitComponent } from './components/startuper/project-space/recruit/add-recruit/add-recruit.component';
 import { ViewRecruitComponent } from './components/startuper/project-space/recruit/view-recruit/view-recruit.component';
+import {AutoFocusModule} from 'primeng/autofocus';
 @NgModule({
   declarations: [
     HomePageNewComponent,
@@ -200,6 +201,7 @@ import { ViewRecruitComponent } from './components/startuper/project-space/recru
   ],
   imports: [
     CommonModule,
+    AutoFocusModule,
     PanelMenuModule,
     BrowserModule,
     AppRoutingModule,

@@ -10,27 +10,27 @@
           style="padding-right: 1.5rem !important;">
           <div class="w-5rem flex align-items-start justify-content-center h-full mr-2">
             <div class="flex align-items-center justify-content-center w-4rem h-4rem border-1 border-400 border-circle">
-              <span class="text-xl font-semibold">+9</span>
+              <span class="text-xl font-semibold">{{job.quantity}}</span>
             </div>
           </div>
           <div class="flex flex-column w-full h-full ">
             <span class="font-semibold mb-1 hover:text-primary cursor-pointer"
-              (click)="isShowViewRecruit=true">{{job.title}}</span>
+              (click)="getRecruitById(job.id)">{{job.title}}</span>
             <div class="text-red-500 mb-1">
               <span class="font-semibold">Thu nhập: </span>
-              <span>{{job.salary}}</span>
+              <span>{{job.income}}</span>
             </div>
             <div class="mb-1">
               <span class="font-semibold">Thời hạn: </span>
-              <span>{{job.dueTo}}</span>
+              <span>{{job.duration}}</span>
             </div>
             <div class="mb-1">
               <span class="font-semibold">Khu vực: </span>
-              <span>{{job.area}}</span>
+              <span>{{job.location}}</span>
             </div>
             <div class="flex">
               <span>Cập nhật: </span>
-              <span>{{job.dueTo}}</span>
+              <!-- <span>{{job.dueTo}}</span> -->
             </div>
           </div>
           <div class="function-recruit">
@@ -49,12 +49,12 @@
   <ng-template pTemplate>
     <div class="flex flex-column p-2">
       <div (click)="op.hide()"
-        class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1">
+        class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1 hover:text-primary">
         <i class="pi pi-pencil mr-2 text-xs"></i>
         <p class="text-xs my-0">Sửa</p>
       </div>
       <div (click)="op.hide()"
-        class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1">
+        class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1 hover:text-red-500">
         <i class="pi pi-trash mr-2 text-xs"></i>
         <p class="text-xs my-0 text-red-600">Xóa</p>
       </div>
@@ -81,6 +81,6 @@
     <ng-template pTemplate="header">
       Thông tin công việc
     </ng-template>
-    <app-view-recruit></app-view-recruit>
+    <app-view-recruit [recruit]="recruit"></app-view-recruit>
   </p-dialog>
 </ng-container>

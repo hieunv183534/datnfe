@@ -5,197 +5,97 @@
     </div>
     <div class="flex flex-column">
       <div class="flex flex-wrap h-auto w-full">
-        <div
-          class="flex flex-column justify-content-start align-items-center p-2 w-20 h-auto border-custom border-1 bg-white"
-          style="min-height: 3rem;">
-          <span class="font-semibold">Problem</span>
+        <ng-container *ngFor="let items of businessModel | slice:0:10;let index = index">
           <div
-            class="container-canvas relative flex h-auto w-full border-round-md my-2 p-2 text-black-alpha-90 shadow-10"
-            style="background-color: #FEC56F; padding-right: 1.5rem !important;">
-            <div class="w-full">
-              Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản phẩm Bán lẻ / Bán sỉ, Bảo hiểm, Bất Động Sản /
-              Cho thuê
-            </div>
-            <div class="function-item">
-              <div (click)="op1.toggle($event)"
-                class=" flex align-items-center justify-content-center absolute bg-gray-200 hover:bg-gray-300 cursor-pointer border-circle"
-                style="top:4px; right: 4px; height: 24px; width: 24px;">
-                <i class="pi pi-ellipsis-h text-gray-500 hover:text-gray-700"></i>
+            class="flex flex-column justify-content-start align-items-center p-2 w-custom-responsive h-auto border-custom border-1 bg-white"
+            style="min-height: 3rem;">
+            <span class="font-semibold">{{items.title}}</span>
+            <ng-container *ngFor="let item of items.content;let indexItem = index;let isLast= last, let isFirst=first">
+              <div :key="index"
+                class="container-canvas relative flex h-auto w-full border-round-md my-2 p-2 text-black-alpha-90 shadow-10"
+                [style.background-color]="items.bg" style="padding-right: 1.5rem !important;">
+                <div  (dblclick)="indexItemEdit=indexItem;modelIndex=index" [(ngModel)]="value" ngDefaultControl
+                  (keyup.enter)="handleEdit()" [attr.contenteditable]="indexItem===indexItemEdit && modelIndex===index"
+                  class="flex w-full h-auto">
+                  {{item.value}}
+                </div>
+                <div class="function-item">
+                  <div
+                    (click)="op1.toggle($event);itemIndex= indexItem;modelIndex=index;isLastItem=isLast;isFirstItem=isFirst"
+                    class=" flex align-items-center justify-content-center absolute bg-gray-200 hover:bg-gray-300 cursor-pointer border-circle"
+                    style="top:4px; right: 4px; height: 24px; width: 24px;">
+                    <i class="pi pi-ellipsis-h text-gray-500 hover:text-gray-700"></i>
+                  </div>
+                </div>
               </div>
+            </ng-container>
+            <div class="w-auto flex mt-2">
+              <button *ngIf="isNewContent!==index" (click)="isNewContent=index" pButton type="button" icon="pi pi-plus"
+                class="p-button-text p-button-plain" label="Thêm nội dung"></button>
+              <ng-container *ngIf="isNewContent===index">
+                <textarea pInputTextarea (blur)="handleUpdate()" (keydown)="handleKeyDown($event)" [(ngModel)]="value"
+                  [rows]="2" [pAutoFocus]="true"></textarea>
+              </ng-container>
             </div>
           </div>
-          <div class="w-auto">
-            <button pButton type="button" icon="pi pi-plus" class="p-button-text p-button-plain"
-              label="Thêm nội dung"></button>
-          </div>
-        </div>
-        <div
-          class="flex flex-column justify-content-start align-items-center p-2 w-20 h-auto border-custom border-1 bg-white"
-          style="min-height: 3rem;">
-          <span class="font-semibold">Problem</span>
-          <div class="h-auto w-full border-round-md my-2 p-2 text-black-alpha-90 shadow-10"
-            style="background-color: #FEEE6F;">
-            Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản phẩm
-          </div>
-          <div class="w-auto">
-            <button pButton type="button" icon="pi pi-plus" class="p-button-text p-button-plain"
-              label="Thêm nội dung"></button>
-          </div>
-        </div>
-        <div
-          class="flex flex-column justify-content-start align-items-center p-2 w-20 h-auto border-custom border-1 bg-white"
-          style="min-height: 3rem;">
-          <span class="font-semibold">Problem</span>
-          <div class="h-auto w-full border-round-md my-2 p-2 text-black-alpha-90 shadow-10"
-            style="background-color: #C8FE6F;">
-            Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản phẩm
-          </div>
-          <div class="w-auto">
-            <button pButton type="button" icon="pi pi-plus" class="p-button-text p-button-plain"
-              label="Thêm nội dung"></button>
-          </div>
-        </div>
-        <div
-          class="flex flex-column justify-content-start align-items-center p-2 w-20 h-auto border-custom border-1 bg-white"
-          style="min-height: 3rem;">
-          <span class="font-semibold">Problem</span>
-          <div class="h-auto w-full border-round-md my-2 p-2 text-black-alpha-90 shadow-10"
-            style="background-color: #6FFEA8;">
-            Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản phẩm
-          </div>
-          <div class="w-auto">
-            <button pButton type="button" icon="pi pi-plus" class="p-button-text p-button-plain"
-              label="Thêm nội dung"></button>
-          </div>
-        </div>
-        <div
-          class="flex flex-column justify-content-start align-items-center p-2 w-20 h-auto border-custom border-1 bg-white"
-          style="min-height: 3rem;">
-          <span class="font-semibold">Problem</span>
-          <div class="h-auto w-full border-round-md my-2 p-2 text-black-alpha-90 shadow-10"
-            style="background-color: #6FF5FE;">
-            Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản phẩm
-          </div>
-          <div class="w-auto">
-            <button pButton type="button" icon="pi pi-plus" class="p-button-text p-button-plain"
-              label="Thêm nội dung"></button>
-          </div>
-        </div>
-        <div
-          class="flex flex-column justify-content-start align-items-center p-2 w-20 h-auto border-custom border-1 bg-white"
-          style="min-height: 3rem;">
-          <span class="font-semibold">Problem</span>
-          <div class="h-auto w-full border-round-md my-2 p-2 text-black-alpha-90 shadow-10"
-            style="background-color: #6FF5FE;">
-            Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản phẩm
-          </div>
-          <div class="w-auto">
-            <button pButton type="button" icon="pi pi-plus" class="p-button-text p-button-plain"
-              label="Thêm nội dung"></button>
-          </div>
-        </div>
-        <div
-          class="flex flex-column justify-content-start align-items-center p-2 w-20 h-auto border-custom border-1 bg-white"
-          style="min-height: 3rem;">
-          <span class="font-semibold">Problem</span>
-          <div class="h-auto w-full border-round-md my-2 p-2 text-black-alpha-90 shadow-10"
-            style="background-color: #6FFEA8;">
-            Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản phẩm
-          </div>
-          <div class="w-auto">
-            <button pButton type="button" icon="pi pi-plus" class="p-button-text p-button-plain"
-              label="Thêm nội dung"></button>
-          </div>
-        </div>
-        <div
-          class="flex flex-column justify-content-start align-items-center p-2 w-20 h-auto border-custom border-1 bg-white"
-          style="min-height: 3rem;">
-          <span class="font-semibold">Problem</span>
-          <div class="h-auto w-full border-round-md my-2 p-2 text-black-alpha-90 shadow-10"
-            style="background-color: #C8FE6F;">
-            Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản phẩm
-          </div>
-          <div class="w-auto">
-            <button pButton type="button" icon="pi pi-plus" class="p-button-text p-button-plain"
-              label="Thêm nội dung"></button>
-          </div>
-        </div>
-        <div
-          class="flex flex-column justify-content-start align-items-center p-2 w-20 h-auto border-custom border-1 bg-white"
-          style="min-height: 3rem;">
-          <span class="font-semibold">Problem</span>
-          <div class="h-auto w-full border-round-md my-2 p-2 text-black-alpha-90 shadow-10"
-            style="background-color: #FEEE6F;">
-            Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản phẩm
-          </div>
-          <div class="w-auto">
-            <button pButton type="button" icon="pi pi-plus" class="p-button-text p-button-plain text"
-              label="Thêm nội dung"></button>
-          </div>
-        </div>
-        <div
-          class="flex flex-column justify-content-start align-items-center p-2 w-20 h-auto border-custom border-1 bg-white"
-          style="min-height: 3rem;">
-          <span class="font-semibold">Problem</span>
-          <div class="h-auto w-full border-round-md my-2 p-2 text-black-alpha-90 shadow-10"
-            style="background-color: #FEC56F;">
-            Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản phẩm
-          </div>
-          <div class="h-auto w-full border-round-md my-2 p-2 text-black-alpha-90 shadow-10"
-            style="background-color: #FEC56F;">
-            Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản phẩm
-          </div>
-          <div class="w-auto">
-            <button pButton type="button" icon="pi pi-plus" class="p-button-text p-button-plain"
-              label="Thêm nội dung"></button>
-          </div>
-        </div>
+        </ng-container>
       </div>
       <div class="flex flex-wrap h-auto w-full">
-        <div
-          class="flex flex-column justify-content-start align-items-center p-2 w-6 h-auto border-custom border-1 bg-white"
-          style="min-height: 3rem;">
-          <span class="font-semibold">Problem</span>
-          <div class="h-auto w-full border-round-md my-2 p-2 text-black-alpha-90 shadow-10"
-            style="background-color: #FEC56F;">
-            Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản phẩm
+        <ng-container *ngFor="let items of businessModel | slice:10:12;let index = index">
+          <div
+            class="flex flex-column justify-content-start align-items-center p-2 w-12 md:w-6 h-auto border-custom border-1 bg-white"
+            style="min-height: 3rem;">
+            <span class="font-semibold">{{items.title}}</span>
+            <ng-container *ngFor="let item of items.content;let indexItem = index;let isLast= last, let isFirst=first">
+              <div
+                class="container-canvas relative flex h-auto w-full border-round-md my-2 p-2 text-black-alpha-90 shadow-10"
+                [style.background-color]="items.bg" style="padding-right: 1.5rem !important;">
+                <div class="flex w-full h-auto">
+                  {{item.value}}
+                </div>
+                <div class="function-item">
+                  <div
+                    (click)="op1.toggle($event);itemIndex= indexItem;modelIndex=index;isLastItem=isLast;isFirstItem=isFirst"
+                    class=" flex align-items-center justify-content-center absolute bg-gray-200 hover:bg-gray-300 cursor-pointer border-circle"
+                    style="top:4px; right: 4px; height: 24px; width: 24px;">
+                    <i class="pi pi-ellipsis-h text-gray-500 hover:text-gray-700"></i>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <div class="w-auto flex mt-2">
+              <button *ngIf="isNewContent!==index+10" (click)="isNewContent=index+10" pButton type="button"
+                icon="pi pi-plus" class="p-button-text p-button-plain" label="Thêm nội dung"></button>
+              <ng-container *ngIf="isNewContent===index+10">
+                <textarea pInputTextarea (blur)="handleUpdate()" (keydown)="handleKeyDown($event)" [(ngModel)]="value"
+                  [rows]="2" [pAutoFocus]="true"></textarea>
+              </ng-container>
+            </div>
           </div>
-          <div class="w-auto">
-            <button pButton type="button" icon="pi pi-plus" class="p-button-text p-button-plain"
-              label="Thêm nội dung"></button>
-          </div>
-        </div>
-        <div
-          class="flex flex-column justify-content-start align-items-center p-2 w-6 h-auto border-custom border-1 bg-white"
-          style="min-height: 3rem;">
-          <span class="font-semibold">Problem</span>
-          <div class="h-auto w-full border-round-md my-2 p-2 text-black-alpha-90 shadow-10"
-            style="background-color: #6FF5FE;">
-            Người nông dân gặp khó khăn trong việc tìm nguồn ra cho sản phẩm
-          </div>
-          <div class="w-auto">
-            <button pButton type="button" icon="pi pi-plus" class="p-button-text p-button-plain"
-              label="Thêm nội dung"></button>
-          </div>
-        </div>
+        </ng-container>
       </div>
     </div>
   </div>
-  <p-overlayPanel [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'200ms'" #op1 [dismissable]="true">
+  <p-overlayPanel [showTransitionOptions]="'100ms'" [hideTransitionOptions]="'100ms'" #op1 [dismissable]="true">
     <ng-template pTemplate>
       <div class="flex flex-column p-2">
-        <div (click)="op1.hide()"
-          class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1">
-          <i class="pi pi-paperclip mr-2 text-xs"></i>
-          <p class="text-xs my-0">Ghim</p>
+        <div *ngIf="!isFirstItem" (click)="op1.hide();;moveUp()"
+          class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1 hover:text-primary">
+          <i class="pi pi-arrow-up mr-2 text-xs"></i>
+          <p class="text-xs my-0">Chuyển lên trên</p>
+        </div>
+        <div *ngIf="!isLastItem" (click)="op1.hide();moveDown()"
+          class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1 hover:text-primary">
+          <i class="pi pi-arrow-down mr-2 text-xs"></i>
+          <p class="text-xs my-0">Chuyển xuống dưới</p>
         </div>
         <div (click)="op1.hide()"
-          class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1">
+          class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1 hover:text-primary">
           <i class="pi pi-pencil mr-2 text-xs"></i>
           <p class="text-xs my-0">Sửa</p>
         </div>
-        <div (click)="op1.hide()"
-          class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1">
+        <div (click)="op1.hide();handleDelete()"
+          class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1 hover:text-red-500">
           <i class="pi pi-trash mr-2 text-xs"></i>
           <p class="text-xs my-0 text-red-600">Xóa</p>
         </div>

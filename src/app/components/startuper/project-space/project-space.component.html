@@ -46,7 +46,7 @@
       <div class="project-work-space w-full h-auto">
         <p-tabView (onChange)="tabChange($event)">
           <p-tabPanel header="Tìm kiếm">
-            <app-recruit></app-recruit>
+            <app-recruit [projectId]="project.id"></app-recruit>
           </p-tabPanel>
           <p-tabPanel header="Giới thiệu">
             <app-introduce></app-introduce>

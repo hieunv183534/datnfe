@@ -1,3 +1,5 @@
+import { ProjectService } from 'src/app/services/project.service';
+import { RecruitDto } from './../../../../../model/project.class';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
@@ -7,8 +9,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ViewRecruitComponent implements OnInit {
 
-  @Input() job: any
-  constructor() { }
+  @Input() recruit!: RecruitDto
+  constructor(
+    private projectService: ProjectService
+  ) {
+
+  }
 
   ngOnInit() {
   }
