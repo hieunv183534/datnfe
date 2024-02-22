@@ -22,6 +22,11 @@
   src: url("./assets/font/notosans-semibold.df3e6dc4.woff2") format("woff2");
 }
 
+@font-face {
+  font-family: "Ephesis";
+  src: url("./assets/font/Ephesis-Regular.ttf") format("woff2");
+}
+
 ::-webkit-scrollbar {
   height: 10px;
   width: 10px;
@@ -68,6 +73,12 @@ body {
 
 * {
   box-sizing: border-box !important;
+}
+
+.chuKy {
+  font-family: "Ephesis";
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .p-speeddial.p-component.p-speeddial-linear.p-speeddial-direction-down {

@@ -15,7 +15,7 @@
           <ng-container *ngSwitchCase="0">
             <form [formGroup]="formProject">
               <div class="p-fluid grid">
-                <div class="p-field col-12 md-12">
+                <div class="p-field col-12 md-12 mb-2">
                   <span class="p-float-label">
                     <input
                       type="text"
@@ -25,7 +25,7 @@
                     <label>Tên dự án: <span style="color: red">*</span> </label>
                   </span>
                 </div>
-                <div class="p-field col-12 md-12">
+                <div class="p-field col-12 md-12 mb-2">
                   <span class="p-float-label">
                     <textarea
                       [rows]="5"
@@ -39,7 +39,7 @@
                     </label>
                   </span>
                 </div>
-                <div class="p-field col-12 md-12">
+                <div class="p-field col-12 md-12 mb-2">
                   <span class="p-float-label">
                     <p-multiSelect
                       optionLabel="name"
@@ -55,7 +55,7 @@
                     </label>
                   </span>
                 </div>
-                <div class="p-field col-12 md-12">
+                <div class="p-field col-12 md-12 mb-2">
                   <span class="p-float-label">
                     <p-dropdown
                       [autoDisplayFirst]="false"
@@ -70,23 +70,25 @@
                     </label>
                   </span>
                 </div>
-                <p-panel class="col-12 md-12" header="Chi tiết các giai đoạn">
-                  <b>Xác lập</b> - Ý tưởng mới được hình thành <br />
-                  <b>Nghiên cứu</b> - Đang xác định mô hình kinh doanh, lập kế
-                  hoạch, viết hồ sơ <br />
-                  <b>MVP</b> - Đang nghiên cứu, xây dựng mô hình dịch vụ/sản
-                  phẩm mẫu <br />
-                  <b>Kiểm thử</b> - Đã có mô hình dịch vụ/sản phẩm mẫu <br />
-                  <b>Tăng trưởng 1</b> - Mô hình dịch vụ/sản phẩm mẫu đã vận
-                  hành ổn định, tuy nhiên chưa có nhiều khách hàng/người dùng
-                  <br />
-                  <b>Tăng trưởng 2</b> - Bắt đầu tiếp cận được một nhóm khách
-                  hàng/người dùng nhất định <br />
-                  <b>Tăng trưởng 3</b> - Đã định vị được thương hiệu và có tệp
-                  khách hàng/người dùng ổn định <br />
-                  <b>Tăng trưởng 4</b> - Đạt điểm hòa vốn <br />
+                <p-panel class="col-12 md-12 mb-2" header="Chi tiết các giai đoạn">
+                  <div style="padding: 1.25rem">
+                    <b>Xác lập</b> - Ý tưởng mới được hình thành <br />
+                    <b>Nghiên cứu</b> - Đang xác định mô hình kinh doanh, lập kế
+                    hoạch, viết hồ sơ <br />
+                    <b>MVP</b> - Đang nghiên cứu, xây dựng mô hình dịch vụ/sản
+                    phẩm mẫu <br />
+                    <b>Kiểm thử</b> - Đã có mô hình dịch vụ/sản phẩm mẫu <br />
+                    <b>Tăng trưởng 1</b> - Mô hình dịch vụ/sản phẩm mẫu đã vận
+                    hành ổn định, tuy nhiên chưa có nhiều khách hàng/người dùng
+                    <br />
+                    <b>Tăng trưởng 2</b> - Bắt đầu tiếp cận được một nhóm khách
+                    hàng/người dùng nhất định <br />
+                    <b>Tăng trưởng 3</b> - Đã định vị được thương hiệu và có tệp
+                    khách hàng/người dùng ổn định <br />
+                    <b>Tăng trưởng 4</b> - Đạt điểm hòa vốn <br />
+                  </div>
                 </p-panel>
-                <div class="p-field col-12 md-12">
+                <div class="p-field col-12 md-12 mb-2">
                   <span class="p-float-label">
                     <p-calendar
                       appendTo="body"
@@ -97,7 +99,7 @@
                     </label>
                   </span>
                 </div>
-                <div class="p-field col-12 md-12">
+                <div class="p-field col-12 md-12 mb-2">
                   <span class="p-float-label">
                     <p-dropdown
                       [autoDisplayFirst]="false"
@@ -110,13 +112,13 @@
                     <label>Khu vực: <span style="color: red">*</span> </label>
                   </span>
                 </div>
-                <div class="p-field col-12 md-12">
+                <div class="p-field col-12 md-12 mb-2">
                   <span class="p-float-label">
                     <input type="text" pInputText formControlName="website" />
                     <label>Website: </label>
                   </span>
                 </div>
-                <div class="p-field col-12 md-12">
+                <div class="p-field col-12 md-12 mb-2">
                   <span class="p-float-label">
                     <input type="text" pInputText formControlName="fb" />
                     <label>Facebook: </label>
