@@ -82,7 +82,6 @@ export class HistorySearchComponent implements OnInit {
     input.fields = this.formSearch.value.fields ?? [];
     input.filter = this.formSearch.value.filter;
     input.stages = this.formSearch.value.stages ?? [];
-    input.availableTimes = this.formSearch.value.availableTimes ?? [];
     input.relationWithProject = this.formSearch.value.relationWithProject;
     input.skipCount = (this.page - 1) * this.pageSize;
     input.maxResultCount = this.pageSize;

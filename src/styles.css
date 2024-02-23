@@ -22,6 +22,11 @@
   src: url("./assets/font/notosans-semibold.df3e6dc4.woff2") format("woff2");
 }
 
+@font-face {
+  font-family: "Ephesis";
+  src: url("./assets/font/Ephesis-Regular.ttf") format("woff2");
+}
+
 ::-webkit-scrollbar {
   height: 10px;
   width: 10px;
@@ -68,6 +73,12 @@ body {
 
 * {
   box-sizing: border-box !important;
+}
+
+.chuKy {
+  font-family: "Ephesis";
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .p-speeddial.p-component.p-speeddial-linear.p-speeddial-direction-down {
@@ -142,9 +153,10 @@ a {
 }
 
 .body-content {
-  /* background-color: #f3f4f6; */
+  background-color: #f3f4f6;
   padding-left: 82px;
   padding-right: 82px;
+  padding-bottom: 82px;
 }
 
 .list-data {
@@ -279,16 +291,34 @@ app-work-history-summary .p-card-content {
   font-weight: unset !important;
 }
 
-.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link{
+.p-tabview-title {
+  font-weight: bold !important;
+  color: #000000 !important;
+}
+
+.p-tabview
+  .p-tabview-nav
+  li.p-highlight
+  .p-tabview-nav-link
+  > .p-tabview-title {
+  color: #3b82f6 !important;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
   font-weight: bold !important;
 }
 
-.p-tabview-title{
-  font-weight: bold !important;
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
 }
 
 .p-tag-value {
-  color: #495057 !important;
+  color: #000000 !important;
+}
+
+.p-dataview.p-dataview-list .p-dataview-content > .p-grid > div {
+  border: unset !important;
 }
 
 @media (max-width: 576px) {

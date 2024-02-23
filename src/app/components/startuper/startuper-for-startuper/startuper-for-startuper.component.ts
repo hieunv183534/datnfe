@@ -3,8 +3,16 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { UuidStartuperModeFromMe, UuidStartuperModeNew, UuidStartuperModeOFMe, UuidStartuperModeToMe } from 'src/app/model/enum';
-import { GetListStartuperForProjectDto, StartuperDto } from 'src/app/model/startuper.class';
+import {
+  UuidStartuperModeFromMe,
+  UuidStartuperModeNew,
+  UuidStartuperModeOFMe,
+  UuidStartuperModeToMe,
+} from 'src/app/model/enum';
+import {
+  GetListStartuperForProjectDto,
+  StartuperDto,
+} from 'src/app/model/startuper.class';
 import { UserDto } from 'src/app/model/user.class';
 import { ProjectService } from 'src/app/services/project.service';
 import { StartuperService } from 'src/app/services/startuper.service';
@@ -16,7 +24,7 @@ import jwt_decode from 'jwt-decode';
   selector: 'app-startuper-for-startuper',
   templateUrl: './startuper-for-startuper.component.html',
   styleUrls: ['./startuper-for-startuper.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class StartuperForStartuperComponent implements OnInit, OnDestroy {
   specializies: any = FsiValues.specializies;
@@ -26,19 +34,21 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
   skills: any = FsiValues.skills;
   yearOfExps: any = FsiValues.yearOfExps;
 
-  universities: any[] = FsiValues.universities.map(x => {
+  universities: any[] = FsiValues.universities.map((x) => {
     return {
       value: x.universityName,
-      name: x.universityName
-    }
+      name: x.universityName,
+    };
   });
 
-  universitySpecializeds?: any[] = FsiValues.universities[0].specializeds?.map(x => {
-    return {
-      value: x,
-      name: x
+  universitySpecializeds?: any[] = FsiValues.universities[0].specializeds?.map(
+    (x) => {
+      return {
+        value: x,
+        name: x,
+      };
     }
-  });
+  );
 
   listStartuper: StartuperDto[] = [];
 
@@ -50,6 +60,11 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
   totalRecords: number = 0;
   startItem = 0;
   endItem = 0;
+
+  sorting: string = 'suitable';
+  styleBtnSuitable: any = {};
+  styleBtnAvailableTime: any = 'p-button-secondary';
+  styleBtnYearOfExp: any = 'p-button-secondary';
 
   mySelects: any[] = [];
   userSelect: UserDto = {};
@@ -65,23 +80,25 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
     private projectService: ProjectService,
     private eventService: EventService,
     private router: Router
-  ) { }
+  ) {}
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  get f() { return this.formSearch.controls; }
+  get f() {
+    return this.formSearch.controls;
+  }
 
   ngOnInit() {
-    this.eventService.currentReloadStartuper.subscribe(reload => {
-      if (reload != "FSI") {
+    this.eventService.currentReloadStartuper.subscribe((reload) => {
+      if (reload != 'FSI') {
         this.getListStartuper();
       }
     });
 
     this.userInfo = this.getDecodedAccessToken();
 
-    console.log('user info', this.userInfo)
+    console.log('user info', this.userInfo);
 
     this.formSearch = this.fb.group({
       filter: [null, []],
@@ -95,79 +112,102 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
       isStudent: [false, []],
       university: [null, []],
       universitySpecialized: [null, []],
-      studentId: [null, []]
+      studentId: [null, []],
     });
 
     this.mySelects = [
       {
-        name: "Dành cho bản thân",
+        name: 'Dành cho bản thân',
         code: 1,
         selects: [
           {
-            cname: "NKN mới cho tôi",
-            code: UuidStartuperModeNew
+            cname: 'Nhà khởi nghiệp mới cho tôi',
+            code: UuidStartuperModeNew,
           },
           {
-            cname: "NKN đã kết nối",
-            code: UuidStartuperModeOFMe
+            cname: 'Nhà khởi nghiệp đã kết nối',
+            code: UuidStartuperModeOFMe,
           },
           {
-            cname: "NKN đã gửi yêu cầu kết nối",
-            code: UuidStartuperModeFromMe
+            cname: 'Nhà khởi nghiệp đã gửi yêu cầu kết nối',
+            code: UuidStartuperModeFromMe,
           },
           {
-            cname: "NKN gửi yêu cầu kết nối tới bạn",
-            code: UuidStartuperModeToMe
-          }
-        ]
+            cname: 'Nhà khởi nghiệp gửi yêu cầu kết nối tới bạn',
+            code: UuidStartuperModeToMe,
+          },
+        ],
       },
       {
-        name: "Nhà khởi nghiệp dành cho dự án",
+        name: 'Nhà khởi nghiệp dành cho dự án',
         code: 2,
-        selects: []
-      }
+        selects: [],
+      },
     ];
 
-    this.startuperService.getMyProjects().then((res: any) => {
-      this.mySelects[1].selects = res.data.map((x: any) => {
-        return {
-          code: x.project.id,
-          cname: "Dành cho dự án " + x.project.projectName
-        };
+    this.startuperService
+      .getMyProjects()
+      .then((res: any) => {
+        this.mySelects[1].selects = res.data.map((x: any) => {
+          return {
+            code: x.project.id,
+            cname: 'Dành cho dự án ' + x.project.projectName,
+          };
+        });
+        var obs = this.route.params.subscribe((params) => {
+          let mode = params['mode'];
+          this.formSearch.controls['mode'].patchValue(mode);
+          setTimeout(() => {
+            this.getListStartuper(true);
+          }, 1000);
+        });
+        this.subscription.add(obs);
+      })
+      .catch((err: any) => {
+        this.messageService.add({
+          key: 'toast',
+          severity: 'error',
+          summary: 'Lỗi',
+          detail: 'Lấy danh sách dự án của tôi thất bại!',
+        });
       });
-      var obs = this.route.params.subscribe(params => {
-        let mode = params["mode"];
-        this.formSearch.controls["mode"].patchValue(mode);
-        setTimeout(() => {
-          this.getListStartuper(true);
-        }, 1000);
-      });
-      this.subscription.add(obs);
-    }).catch((err: any) => {
-      this.messageService.add({
-        key: "toast",
-        severity: "error",
-        summary: "Lỗi",
-        detail: "Lấy danh sách dự án của tôi thất bại!",
-      });
-    });
-
   }
 
   getDecodedAccessToken(): any {
     try {
-      return jwt_decode(localStorage.getItem("TOKEN") ?? "");
+      return jwt_decode(localStorage.getItem('TOKEN') ?? '');
     } catch (Error) {
       return null;
     }
   }
 
-  routeToHistorySearch(){
+  routeToHistorySearch() {
     this.router.navigate(['/startuper/history-search']);
   }
 
+  sortingSearch(value: string) {
+    this.sorting = value;
+    if (value == 'suitable') {
+      this.styleBtnSuitable = '';
+      this.styleBtnAvailableTime = 'p-button-secondary';
+      this.styleBtnYearOfExp = 'p-button-secondary';
+    } else if (value == 'availableTime') {
+      this.styleBtnSuitable = 'p-button-secondary';
+      this.styleBtnAvailableTime = '';
+      this.styleBtnYearOfExp = 'p-button-secondary';
+    } else if (value == 'yearOfExp') {
+      this.styleBtnSuitable = 'p-button-secondary';
+      this.styleBtnAvailableTime = 'p-button-secondary';
+      this.styleBtnYearOfExp = '';
+    }
+    console.log(this.styleBtnAvailableTime);
+    this.getListStartuper(true);
+  }
+
   getListStartuper(reset: boolean = false) {
-    if (reset) { this.page = 1; }
+    if (reset) {
+      this.page = 1;
+    }
     let input = new GetListStartuperForProjectDto();
     input.areas = this.formSearch.value.areas ?? [];
     input.specializies = this.formSearch.value.specializies ?? [];
@@ -183,26 +223,32 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
     input.studentId = this.formSearch.value.studentId;
     input.skipCount = (this.page - 1) * this.pageSize;
     input.maxResultCount = this.pageSize;
-    this.startuperService.getListStartuper(input).then((res: any) => {
-      this.totalRecords = res.data.totalCount;
-      this.listStartuper = res.data.items;
-    }).catch((err: any) => {
-      this.messageService.add({
-        key: "toast",
-        severity: "error",
-        summary: "Lỗi",
-        detail: "Lấy danh sách nkn thất bại, vui lòng thử lại!",
+    input.sorting = this.sorting;
+    this.startuperService
+      .getListStartuper(input)
+      .then((res: any) => {
+        this.totalRecords = res.data.totalCount;
+        this.listStartuper = res.data.items;
+      })
+      .catch((err: any) => {
+        this.messageService.add({
+          key: 'toast',
+          severity: 'error',
+          summary: 'Lỗi',
+          detail: 'Lấy danh sách Nhà khởi nghiệp thất bại, vui lòng thử lại!',
+        });
       });
-    });
   }
 
   changeUniversity(e: any) {
-    this.universitySpecializeds = FsiValues.universities.find(x => x.universityName == e.value)?.specializeds?.map(x => {
-      return {
-        value: x,
-        name: x
-      }
-    });
+    this.universitySpecializeds = FsiValues.universities
+      .find((x) => x.universityName == e.value)
+      ?.specializeds?.map((x) => {
+        return {
+          value: x,
+          name: x,
+        };
+      });
   }
 
   onPageChange(value: any) {
@@ -216,91 +262,103 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
   }
 
   clearSearch() {
-    this.formSearch.controls["filter"].patchValue(null);
-    this.formSearch.controls["specializies"].patchValue([]);
-    this.formSearch.controls["areas"].patchValue([]);
-    this.formSearch.controls["availableTimes"].patchValue([]);
-    this.formSearch.controls["skills"].patchValue([]);
-    this.formSearch.controls["yearOfExps"].patchValue([]);
-    this.formSearch.controls["mode"].patchValue(UuidStartuperModeNew);
+    this.formSearch.controls['filter'].patchValue(null);
+    this.formSearch.controls['specializies'].patchValue([]);
+    this.formSearch.controls['areas'].patchValue([]);
+    this.formSearch.controls['availableTimes'].patchValue([]);
+    this.formSearch.controls['skills'].patchValue([]);
+    this.formSearch.controls['yearOfExps'].patchValue([]);
+    this.formSearch.controls['mode'].patchValue(UuidStartuperModeNew);
     this.page = 1;
     this.pageSize = 10;
     this.getListStartuper(true);
   }
 
   acceptFriend(startuper: StartuperDto) {
-    this.startuperService.acceptRequestFriendFromOrtherStartuper(startuper.id).then((res: any) => {
-      this.messageService.add({
-        key: "toast",
-        severity: "success",
-        summary: "Thành công",
-        detail: "Chấp nhận yêu cầu kết nối thành công!",
+    this.startuperService
+      .acceptRequestFriendFromOrtherStartuper(startuper.id)
+      .then((res: any) => {
+        this.messageService.add({
+          key: 'toast',
+          severity: 'success',
+          summary: 'Thành công',
+          detail: 'Chấp nhận yêu cầu kết nối thành công!',
+        });
+        this.getListStartuper();
+      })
+      .catch((err: any) => {
+        this.messageService.add({
+          key: 'toast',
+          severity: 'error',
+          summary: 'Lỗi',
+          detail: 'Thất bại, vui lòng thử lại sau!',
+        });
       });
-      this.getListStartuper();
-    }).catch((err: any) => {
-      this.messageService.add({
-        key: "toast",
-        severity: "error",
-        summary: "Lỗi",
-        detail: "Thất bại, vui lòng thử lại sau!",
-      });
-    });
   }
 
   requestFriend(startuper: StartuperDto) {
-    this.startuperService.requestFriendToOrtherStartuper(startuper.id).then((res: any) => {
-      this.messageService.add({
-        key: "toast",
-        severity: "success",
-        summary: "Thành công",
-        detail: "Yêu cầu kết nối thành công!",
+    this.startuperService
+      .requestFriendToOrtherStartuper(startuper.id)
+      .then((res: any) => {
+        this.messageService.add({
+          key: 'toast',
+          severity: 'success',
+          summary: 'Thành công',
+          detail: 'Yêu cầu kết nối thành công!',
+        });
+        this.getListStartuper();
+      })
+      .catch((err: any) => {
+        this.messageService.add({
+          key: 'toast',
+          severity: 'error',
+          summary: 'Lỗi',
+          detail: 'Thất bại, vui lòng thử lại sau!',
+        });
       });
-      this.getListStartuper();
-    }).catch((err: any) => {
-      this.messageService.add({
-        key: "toast",
-        severity: "error",
-        summary: "Lỗi",
-        detail: "Thất bại, vui lòng thử lại sau!",
-      });
-    });
   }
 
   requestFromProject(startuper: StartuperDto) {
-    this.projectService.requestToUserFromProject(this.formSearch.value.mode, startuper.id).then((res: any) => {
-      this.messageService.add({
-        key: "toast",
-        severity: "success",
-        summary: "Thành công",
-        detail: "Invite thành công!",
+    this.projectService
+      .requestToUserFromProject(this.formSearch.value.mode, startuper.id)
+      .then((res: any) => {
+        this.messageService.add({
+          key: 'toast',
+          severity: 'success',
+          summary: 'Thành công',
+          detail: 'Invite thành công!',
+        });
+        this.getListStartuper();
+      })
+      .catch((err: any) => {
+        this.messageService.add({
+          key: 'toast',
+          severity: 'error',
+          summary: 'Lỗi',
+          detail: 'Invite thất bại!',
+        });
       });
-      this.getListStartuper();
-    }).catch((err: any) => {
-      this.messageService.add({
-        key: "toast",
-        severity: "error",
-        summary: "Lỗi",
-        detail: "Invite thất bại!",
-      });
-    });
   }
 
   cancelRequestFriend(startuper: StartuperDto) {
-    this.startuperService.cancelRequestToOrtherStartuper(startuper.id).then((res: any) => {
-      this.messageService.add({
-        key: "toast",
-        severity: "success",
-        summary: "Thành công",
-        detail: "Hủy yêu cầu kết nối thành công!",
+    this.startuperService
+      .cancelRequestToOrtherStartuper(startuper.id)
+      .then((res: any) => {
+        this.messageService.add({
+          key: 'toast',
+          severity: 'success',
+          summary: 'Thành công',
+          detail: 'Hủy yêu cầu kết nối thành công!',
+        });
+        this.getListStartuper();
+      })
+      .catch((err: any) => {
+        this.messageService.add({
+          key: 'toast',
+          severity: 'error',
+          summary: 'Lỗi',
+          detail: 'Thất bại, vui lòng thử lại sau!',
+        });
       });
-      this.getListStartuper();
-    }).catch((err: any) => {
-      this.messageService.add({
-        key: "toast",
-        severity: "error",
-        summary: "Lỗi",
-        detail: "Thất bại, vui lòng thử lại sau!",
-      });
-    });
   }
 }

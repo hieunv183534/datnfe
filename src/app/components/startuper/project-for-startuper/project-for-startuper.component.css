@@ -38,7 +38,11 @@ app-project-for-startuper .grid {
   margin: 0px 0px 8px 0px !important;
 }
 
-app-project-for-startuper .p-paginator {
+app-project-for-startuper .p-dataview .p-dataview-content {
+  background: unset !important;
+}
+
+/* app-project-for-startuper .p-paginator {
   padding: 0px !important;
 }
 
@@ -56,9 +60,9 @@ app-project-for-startuper .p-paginator .p-paginator-first {
 
 app-project-for-startuper .p-paginator .p-paginator-pages .p-paginator-page {
   height: 2.15rem !important;
-}
+} */
 
-.p-paginator .p-paginator-prev {
+/* .p-paginator .p-paginator-prev {
   height: 2.15rem !important;
 }
 
@@ -68,13 +72,21 @@ app-project-for-startuper .p-paginator .p-paginator-pages .p-paginator-page {
 
 .p-paginator .p-paginator-last {
   height: 2.15rem !important;
-}
+} */
 
 .hienThi {
   margin-left: 8px;
   margin-right: 8px;
   margin-bottom: 8px;
   margin-top: 8px;
+}
+
+div.btnSearch:hover {
+  background-color: #2563eb !important;
+}
+
+div.btnClear:hover {
+  background-color: #a8abad !important;
 }
 
 app-project-for-startuper .p-accordion .p-accordion-content {

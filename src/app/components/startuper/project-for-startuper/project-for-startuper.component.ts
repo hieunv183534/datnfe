@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { ProjectStage, RelationWithProject } from 'src/app/model/enum';
+import { ProjectStage, RelationWithProject, WorkingForm } from 'src/app/model/enum';
 import { GetListProjectForStartuperDto, ProjectDto } from 'src/app/model/project.class';
 import { ProjectService } from 'src/app/services/project.service';
 import { FsiValues } from 'src/app/shared/util/util';
@@ -17,13 +17,20 @@ export class ProjectForStartuperComponent implements OnInit {
   fields: any = FsiValues.fields;
   areas: any = FsiValues.areas;
   availableTimes: any = FsiValues.availableTimes;
-  scale: any = FsiValues.scale;
-  activePurpose: any = FsiValues.activePurpose;
+  scales: any = FsiValues.scales;
   specialize: any = FsiValues.specializies;
   skill: any = FsiValues.skills;
   experience: any = FsiValues.yearOfExps
 
+  activePurposes: any[] = [{ name: "Lợi nhuận", value: true }, { name: "Phi lợi nhuận", value: false }];
+  workingForms: any[] = [{ name: "Offline", value: WorkingForm.Offline }, { name: "Remote", value: WorkingForm.Remote }, { name: "Hybrid", value: WorkingForm.Hybrid }];
+
   formSearch: FormGroup = this.fb.group({});
+
+  sorting: string = 'suitable';
+  styleBtnSuitable: any = {};
+  styleBtnAvailableTime: any = 'p-button-secondary';
+  styleBtnYearOfExp: any = 'p-button-secondary';
 
   projectStages: any = [
     { name: "Xác lập", value: ProjectStage.XacLap },
@@ -65,15 +72,30 @@ export class ProjectForStartuperComponent implements OnInit {
       fields: [[], []],
       areas: [[], []],
       stages: [[], []],
-      availableTimes: [[], []],
-      scale: [[], []],
-      activePurpose: [[], []],
-      specialize: [[], []],
-      skill: [[], []],
-      experience: [[], []],
-      relationWithProject: [RelationWithProject.NotMemberOfProject, []]
+      relationWithProject: [RelationWithProject.NotMemberOfProject, []],
+      scales: [[], []],
+      workingForm: [WorkingForm.Offline, []],
+      isProfit: [true, []]
     });
     this.getListProject();
+  }
+
+  sortingSearch(value: string) {
+    this.sorting = value;
+    if (value == 'suitable') {
+      this.styleBtnSuitable = '';
+      this.styleBtnAvailableTime = 'p-button-secondary';
+      this.styleBtnYearOfExp = 'p-button-secondary';
+    } else if (value == 'availableTime') {
+      this.styleBtnSuitable = 'p-button-secondary';
+      this.styleBtnAvailableTime = '';
+      this.styleBtnYearOfExp = 'p-button-secondary';
+    } else if (value == 'yearOfExp') {
+      this.styleBtnSuitable = 'p-button-secondary';
+      this.styleBtnAvailableTime = 'p-button-secondary';
+      this.styleBtnYearOfExp = '';
+    }
+    this.getListProject(true);
   }
 
   getListProject(reset: boolean = false) {
@@ -83,15 +105,13 @@ export class ProjectForStartuperComponent implements OnInit {
     input.fields = this.formSearch.value.fields ?? [];
     input.filter = this.formSearch.value.filter;
     input.stages = this.formSearch.value.stages ?? [];
-    input.scale = this.formSearch.value.scale ?? [];
-    input.activePurpose = this.formSearch.value.activePurpose ?? [];
-    input.specialize = this.formSearch.value.specialize ?? [];
-    input.skill = this.formSearch.value.skill ?? [];
-    input.experience = this.formSearch.value.experience ?? [];
-    input.availableTimes = this.formSearch.value.availableTimes ?? [];
     input.relationWithProject = this.formSearch.value.relationWithProject;
+    input.scales = this.formSearch.value.scales ?? [];
+    input.isProfit = this.formSearch.value.isProfit;
+    input.workingForm = this.formSearch.value.workingForm;
     input.skipCount = (this.page - 1) * this.pageSize;
     input.maxResultCount = this.pageSize;
+    input.sorting = this.sorting;
     this.projectService.getListProjectForStartuper(input).then((res: any) => {
       this.totalRecords = res.data.totalCount;
       this.listProject = res.data.items;
