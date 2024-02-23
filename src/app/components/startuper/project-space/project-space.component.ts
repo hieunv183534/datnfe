@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ProjectService } from 'src/app/services/project.service';
@@ -13,7 +13,9 @@ import jwt_decode from 'jwt-decode';
 @Component({
   selector: 'app-project-space',
   templateUrl: './project-space.component.html',
-  styleUrls: ['./project-space.component.css']
+  styleUrls: ['./project-space.component.css'],
+  encapsulation: ViewEncapsulation.None
+  
 })
 export class ProjectSpaceComponent implements OnInit {
   fields: any = FsiValues.fields;

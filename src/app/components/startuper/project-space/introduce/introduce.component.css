@@ -1,0 +1,33 @@
+/* Kích thước màn hình XS và SM */
+.w-custom-responsive {
+    width: 100% !important;
+  }
+  
+  /* Kích thước màn hình MD */
+  @media (min-width: 768px) {
+    .w-custom-responsive {
+      width: 50% !important;
+    }
+  }
+  
+  /* Kích thước màn hình XL */
+  @media (min-width: 1200px) {
+    .w-custom-responsive {
+      width: 20% !important;
+    }
+  }
+.shadow-10{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.35);
+}
+.border-custom{
+    border: 0.5px solid #D8DFE8;
+}
+.function-item{
+    display: none;
+}
+.container-canvas:hover .function-item {
+    display: block;
+  }
+  /* [contenteditable] {
+    outline: 0.5px solid #D8DFE8;
+  } */

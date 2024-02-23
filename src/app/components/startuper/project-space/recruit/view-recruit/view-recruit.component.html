@@ -1,0 +1,83 @@
+<div>
+  <div class="relative flex border-1 p-2 border-300 border-round-md h-full w-full bg-white mb-3"
+    style="padding-right: 1.5rem !important;">
+    <div class="w-5rem flex align-items-start justify-content-center h-full mr-2">
+      <div class="flex align-items-center justify-content-center w-4rem h-4rem border-1 border-400 border-circle">
+        <span class="text-xl font-semibold">{{recruit.quantity}}</span>
+      </div>
+    </div>
+    <div class="flex flex-column w-full h-full ">
+      <span class="font-semibold mb-1 hover:text-primary cursor-pointer">{{recruit.title}}</span>
+      <div class="text-red-500 mb-1">
+        <span class="font-semibold">Thu nhập: </span>
+        <span>{{recruit.incomeMode}}</span>
+      </div>
+      <div class="mb-1">
+        <span class="font-semibold">Thời hạn: </span>
+        <span>{{recruit.duration | date: 'dd/MM/yyyy'}}</span>
+      </div>
+      <div class="mb-1">
+        <span class="font-semibold">Khu vực: </span>
+        <span>{{recruit.location}}</span>
+      </div>
+      <div class="flex">
+        <span>Cập nhật: </span>
+        <span>17/1/2034</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-column">
+    <div class="h-auto flex align-items-center mb-2">
+      <div class="flex flex-column">
+        <div class="flex flex-row">
+          <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+          <span class="font-semibold">Mô tả công việc</span>
+        </div>
+        <span [innerHTML]="recruit.description"></span>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-column">
+    <div class="h-auto flex align-items-center mb-2">
+      <div class="flex flex-column">
+        <div class="flex flex-row">
+          <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+          <span class="font-semibold">Yêu cầu</span>
+        </div>
+        <div>
+          <span>Bằng cấp: <span>{{recruit.degree}}</span></span>
+          <span>Thời gian làm việc: <span>{{recruit.workingTimes}}</span></span>
+          <span>Hình thức làm việc: <span>{{recruit.workingForm}}</span></span>
+          <span>Kinh nghiệm: <span>{{recruit.yearOfExps}}</span></span>
+          <span>Kỹ năng mềm: <span>{{recruit.skills}}</span></span>
+          <span>Tính cách: <span>{{recruit.personalities}}</span></span>
+          <span>{{recruit.otherRequest}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-column">
+    <div class="h-auto flex align-items-center mb-3">
+      <div class="flex flex-column">
+        <div class="flex flex-row">
+          <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+          <span class="font-semibold">Địa điểm làm việc</span>
+        </div>
+        <span>{{recruit.workingAddress}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-column">
+    <div class="h-auto flex align-items-center mb-3">
+      <div class="flex flex-column">
+        <div class="flex flex-column">
+          <div class="flex flex-row">
+            <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+            <span class="font-semibold">Thông tin khác</span>
+          </div>
+          <span>{{recruit.otherDetail}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

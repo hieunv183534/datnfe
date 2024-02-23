@@ -1,48 +1,138 @@
-<div class="grid px-3 mt-1 mb-5" style="border-bottom: 1px solid #ccc;">
-  <div class="col-2 pr-3">
-    <app-list-project-member (addNewMember)="isShowAddMember = true" [projectId]="project.id"
-      [isMyProject]="project.extraProperties.relationWithProject == 0"></app-list-project-member>
-    <app-list-project-member-invite *ngIf="project.extraProperties.relationWithProject == 0"
-      [projectId]="project.id"></app-list-project-member-invite>
+<div class="flex mt-0" style="min-height: calc(100% - 80px);">
+  <div class="col-2 p-3">
+    <div class="sticky left-0 " style="top: 96px;">
+      <app-list-project-member (addNewMember)="isShowAddMember = true" [projectId]="project.id"
+        [isMyProject]="project.extraProperties.relationWithProject == 0"></app-list-project-member>
+      <app-list-project-member-invite *ngIf="project.extraProperties.relationWithProject == 0"
+        [projectId]="project.id"></app-list-project-member-invite>
+    </div>
   </div>
-  <div class="col-8 center-col">
+  <div class="col-8 p-0 h-auto border-x-1 border-400">
+    <div class="project-info flex flex-column h-auto align-items-center relative">
+      <button *ngIf="isFounder" pButton pRipple type="button" icon="pi pi-cog"
+        class="top-0 right-0 absolute p-button-rounded p-button-secondary p-button-text"
+        (click)="isShowUpdateProject = true"></button>
+      <div class="cover-image bg-orange-300 h-20rem w-full relative" style="margin-bottom: 3.5rem;">
+        <div class="h-6rem w-6rem absolute left-0 bottom-0 ml-3" style="transform: translateY(50%);">
+          <img class="border-circle h-full w-full border-1 border-gray-200"
+            [src]="project.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt="">
+        </div>
+        <img src="/assets/images/default_cover.jpg" alt="" />
+      </div>
+      <div class="main-info h-auto flex flex-column w-full align-items-start px-3">
+        <span class="text-lg font-semibold">{{project.projectName}}</span>
+        <span class="text-sm my-2">{{project.description}}</span>
+        <span class="flex align-items-center mb-2">
+          <img src="../../../../assets/icons/Crosshairs.svg" class="mr-2">
+          <span>{{getStage(project.stage)}}</span>
+        </span>
+        <span class="flex align-items-center mb-2">
+          <img src="../../../../assets/icons/Positon.svg" class="mr-2">
+          <span>{{getArea(project.area)}}</span>
+        </span>
+        <span class="flex align-items-center mb-2">
+          <img src="../../../../assets/icons/Clock.svg" class="mr-2">
+          <span>{{getFields(project.fields)}}</span>
+        </span>
+        <span class="flex align-items-center mb-2">
+          <img src="../../../../assets/icons/Member.svg" class="mr-2">
+          <span>{{project.extraProperties.memberCount}}</span>
+        </span>
+        <span class="flex align-items-center">
+          <img src="../../../../assets/icons/Follow.svg" class="mr-2">
+          <span>{{project.extraProperties.totalInvesment}}$</span>
+        </span>
+      </div>
+      <div class="project-work-space w-full h-auto">
+        <p-tabView (onChange)="tabChange($event)">
+          <p-tabPanel header="Tìm kiếm">
+            <app-recruit [projectId]="project.id"></app-recruit>
+          </p-tabPanel>
+          <p-tabPanel header="Giới thiệu">
+            <app-introduce></app-introduce>
+          </p-tabPanel>
+          <p-tabPanel header="Thành viên">
+          </p-tabPanel>
+          <p-tabPanel header="Pitch deck">
+          </p-tabPanel>
+          <p-tabPanel header="Lịch">
+            <app-project-calendar [projectId]="project.id" [mode]="project.extraProperties.relationWithProject"
+              #appCalendar></app-project-calendar>
+          </p-tabPanel>
+          <p-tabPanel header="Thông tin">
+            <app-project-event [project]="project" #appFeed></app-project-event>
+          </p-tabPanel>
+          <ng-container *ngIf="project.extraProperties.relationWithProject == 0">
+            <p-tabPanel header="Công việc" #appWork>
+              <app-project-work [projectId]="project.id"></app-project-work>
+            </p-tabPanel>
+          </ng-container>
+        </p-tabView>
+      </div>
+    </div>
+  </div>
+  <div class="col-2  p-3 bg-gray-300">
+    <div class="sticky left-0 " style="top: 96px;">
+      <app-list-project-file [projectId]="project.id"
+        [isMyProject]="project.extraProperties.relationWithProject == 0"></app-list-project-file>
+    </div>
+  </div>
+</div>
+<!-- <div class="grid px-3 mt-0 h-auto">
+ 
+  <div class="col-8 p-0 center-col h-auto overflow-y-auto ">
     <div class="project-info flex flex-column align-items-center relative">
       <button *ngIf="isFounder" pButton pRipple type="button" icon="pi pi-cog"
         class="top-0 right-0 absolute p-button-rounded p-button-secondary p-button-text"
         (click)="isShowUpdateProject = true"></button>
-      <img class="border-round" width="180px" [src]="project.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt="">
-      <h2 class="m-1">{{project.projectName}}</h2>
-      <p class="text-center m-1">{{project.description}}</p>
-      <span class="flex">
-        <span class="flex align-items-center mr-6">
-          <i class="pi pi-building"></i>
-          <p>{{getArea(project.area)}}</p>
+
+      <div class="cover-image bg-orange-300 h-20rem w-full relative" style="margin-bottom: 3.5rem;">
+        <div class="h-6rem w-6rem absolute left-0 bottom-0 ml-3" style="transform: translateY(50%);">
+          <img class="border-circle h-full w-full border-1 border-gray-200"
+            [src]="project.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt="">
+        </div>
+        <img src="/assets/images/default_cover.jpg" alt="" />
+      </div>
+      <div class="main-info h-auto flex flex-column w-full align-items-start px-3">
+        <span class="text-lg font-semibold">{{project.projectName}}</span>
+        <span class="text-sm my-2">{{project.description}}</span>
+        <span class="flex align-items-center mb-2">
+          <img src="../../../../assets/icons/Crosshairs.svg" class="mr-2">
+          <span>{{getStage(project.stage)}}</span>
+        </span>
+        <span class="flex align-items-center mb-2">
+          <img src="../../../../assets/icons/Positon.svg" class="mr-2">
+          <span>{{getArea(project.area)}}</span>
+        </span>
+        <span class="flex align-items-center mb-2">
+          <img src="../../../../assets/icons/Clock.svg" class="mr-2">
+          <span>{{getFields(project.fields)}}</span>
+        </span>
+        <span class="flex align-items-center mb-2">
+          <img src="../../../../assets/icons/Member.svg" class="mr-2">
+          <span>{{project.extraProperties.memberCount}}</span>
         </span>
         <span class="flex align-items-center">
-          <i class="pi pi-chart-line"></i>
-          <p>{{getStage(project.stage)}}</p>
+          <img src="../../../../assets/icons/Follow.svg" class="mr-2">
+          <span>{{project.extraProperties.totalInvesment}}$</span>
         </span>
-      </span>
-      <span class="flex align-items-center">
-        <i class="pi pi-book"></i>
-        <p>{{getFields(project.fields)}}</p>
-      </span>
-      <span class="flex">
-        <span class="flex align-items-center mr-6">
-          <i class="pi pi-users"></i>
-          <p>{{project.extraProperties.memberCount}}</p>
-        </span>
-        <span class="flex align-items-center">
-          <i class="pi pi-money-bill"></i>
-          <p>{{project.extraProperties.totalInvesment}}$</p>
-        </span>
-      </span>
+      </div>
     </div>
 
     <div class="project-work-space">
       <p-tabView (onChange)="tabChange($event)">
+        <p-tabPanel header="Tìm kiếm">
+          <app-recruit></app-recruit>
+        </p-tabPanel>
+        <p-tabPanel header="Giới thiệu">
+        </p-tabPanel>
+        <p-tabPanel header="Thành viên">
+        </p-tabPanel>
+        <p-tabPanel header="Pitch deck">
+        </p-tabPanel>
         <p-tabPanel header="Lịch">
-          <app-project-calendar [projectId]="project.id" [mode]="project.extraProperties.relationWithProject" #appCalendar></app-project-calendar>
+          <app-project-calendar [projectId]="project.id" [mode]="project.extraProperties.relationWithProject"
+            #appCalendar></app-project-calendar>
         </p-tabPanel>
         <p-tabPanel header="Thông tin">
           <app-project-event [project]="project" #appFeed></app-project-event>
@@ -55,7 +145,7 @@
       </p-tabView>
     </div>
   </div>
-  <div class="col-2">
+  <div class="col-2 sticky right-0" style="top:80px">
     <app-list-project-file [projectId]="project.id"
       [isMyProject]="project.extraProperties.relationWithProject == 0"></app-list-project-file>
   </div>
@@ -64,7 +154,7 @@
     <h2>DỰ ÁN GỢI Ý</h2>
     <app-top-similar-project [projectId]="project.id"></app-top-similar-project>
   </div>
-</div>
+</div> -->
 
 <ng-container *ngIf="isShowAddMember">
   <app-list-project-invite-member [display]="isShowAddMember" (close)="isShowAddMember = false" [projectId]="project.id"
