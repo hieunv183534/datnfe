@@ -20,7 +20,7 @@ export class AddRecruitComponent implements OnInit {
   yearOfExps: any = FsiValues.yearOfExps;
   areas: any = FsiValues.areas;
   degrees: any = FsiValues.degrees;
-  specializes: any = FsiValues.specializes;
+  specializes: any = FsiValues.specializies;
   @Input() projectId: string = '';
   @Output() fetchData = new EventEmitter();
   handleSubmit: boolean = false

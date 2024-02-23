@@ -75,9 +75,12 @@ export class FsiValues {
     new DataPointDto("Hybrid", 3),
   ]
   static degrees: DataPointDto[] = [
-    new DataPointDto("Đại học", 1),
+    new DataPointDto("Tiến sĩ", 1),
     new DataPointDto("Thạc sĩ", 2),
-    new DataPointDto("Tiến sĩ", 3),
+    new DataPointDto("Đại học", 3),
+    new DataPointDto("Cao đẳng", 4),
+    new DataPointDto("Trung câp", 5),
+    new DataPointDto("Trung học phổ thông", 6),
   ]
   static specializes: DataPointDto[] = [
     new DataPointDto("hehe", 1),
