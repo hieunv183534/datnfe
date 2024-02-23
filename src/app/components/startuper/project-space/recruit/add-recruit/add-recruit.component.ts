@@ -19,10 +19,12 @@ export class AddRecruitComponent implements OnInit {
   availableTimes: any = FsiValues.availableTimes;
   yearOfExps: any = FsiValues.yearOfExps;
   areas: any = FsiValues.areas;
-  genders: any = FsiValues.genders;
-
+  degrees: any = FsiValues.degrees;
+  specializes: any = FsiValues.specializes;
+  @Input() projectId: string = '';
+  @Output() fetchData = new EventEmitter();
   handleSubmit: boolean = false
-
+  isLoading: boolean = false;
   formRecruit: FormGroup = this.fb.group({});
 
   constructor(
@@ -39,25 +41,28 @@ export class AddRecruitComponent implements OnInit {
       quantity: [null, [Validators.required]],
       location: [null, [Validators.required]],
       workingForm: [null, [Validators.required]],
-      workingAddress: [null, [Validators.required]],
+      workingAddress: [null, []],
       duration: [null, [Validators.required]],
       income: [null, [Validators.required]],
       description: [null, []],
-      workingPlace: [null, []],
+      workingTimes: [null, [Validators.required]],
       yearOfExps: [null, []],
+      degree: [null, []],
       skills: [null, []],
       personalities: [null, []],
       otherDetail: [null, []],
       otherRequest: [null, []],
-
+      projectId: [null, []],
     })
   }
   submit() {
     // console.log(this.acceptDieuKhoan)
     this.handleSubmit = true
     if (this.formRecruit.valid) {
+      this.isLoading = true;
+      this.formRecruit.value.projectId = this.projectId;
       this.projectService.addRecruit(this.formRecruit.value).then((res: any) => {
-        console.log(res);
+        this.fetchData.emit();
         this.messageService.add({
           key: "toast",
           severity: "success",
@@ -72,7 +77,7 @@ export class AddRecruitComponent implements OnInit {
           summary: "Lỗi",
           detail: "Đăng ký thất bại!",
         });
-      });
+      }).finally(() => this.isLoading = false);;
     }
   }
 }

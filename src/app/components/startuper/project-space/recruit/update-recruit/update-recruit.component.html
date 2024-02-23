@@ -44,7 +44,7 @@
           <div class="flex flex-column mb-3 pr-1">
             <span class="mb-2">Khu vực làm việc<span style="color: red">*</span></span>
             <p-dropdown [autoDisplayFirst]="false" [options]="areas" optionValue="value" optionLabel="name"
-              formControlName="location" [filter]="true" filterBy="name"></p-dropdown>
+              formControlName="location"></p-dropdown>
             <span class="text-error" *ngIf="
           !formRecruit.value.location &&
           !this.formRecruit.valid &&
@@ -175,7 +175,6 @@
     </div>
   </div>
   <div class="sticky bg-white flex align-items-center justify-content-end pt-3 pb-1" style="bottom: 1px;">
-    <button pButton type="button" label="Thêm" class="p-button-sm font-normal" [loading]="isLoading"
-      (click)="submit()"></button>
+    <button pButton type="button" label="Cập nhật" class="p-button-sm font-normal" [loading]="isLoading" (click)="submit()"></button>
   </div>
 </form>

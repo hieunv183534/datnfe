@@ -72,6 +72,17 @@ export class FsiValues {
   static workTypes: DataPointDto[] = [
     new DataPointDto("Làm việc offline", 1),
     new DataPointDto("Làm việc từ xa", 2),
+    new DataPointDto("Hybrid", 3),
+  ]
+  static degrees: DataPointDto[] = [
+    new DataPointDto("Đại học", 1),
+    new DataPointDto("Thạc sĩ", 2),
+    new DataPointDto("Tiến sĩ", 3),
+  ]
+  static specializes: DataPointDto[] = [
+    new DataPointDto("hehe", 1),
+    new DataPointDto("Lhaha", 2),
+    new DataPointDto("Hhuhu", 3),
   ]
   static areas: DataPointDto[] = [
     new DataPointDto("Bắc Giang", 1, "BacGiang"),

@@ -133,9 +133,12 @@ import { IntroduceComponent } from './components/startuper/project-space/introdu
 import { AddRecruitComponent } from './components/startuper/project-space/recruit/add-recruit/add-recruit.component';
 import { ViewRecruitComponent } from './components/startuper/project-space/recruit/view-recruit/view-recruit.component';
 import {AutoFocusModule} from 'primeng/autofocus';
+import { UpdateRecruitComponent } from './components/startuper/project-space/recruit/update-recruit/update-recruit.component';
+import {ConfirmPopupModule} from 'primeng/confirmpopup';
 @NgModule({
   declarations: [
     HomePageNewComponent,
+    UpdateRecruitComponent,
     AddRecruitComponent,
     ViewRecruitComponent,
     InformationBoxComponent,
@@ -212,6 +215,7 @@ import {AutoFocusModule} from 'primeng/autofocus';
     ImageModule,
     RippleModule,
     InputTextModule,
+    ConfirmPopupModule,
     DividerModule,
     TagModule,
     ToastModule,

@@ -175,6 +175,7 @@ export class RecruitDto {
   personalities?:number[];
   otherRequest?: string;
   otherDetail?: string;
-  duration?: string;
+  duration?: Date;
   projectId?: string;
+  lastModificationTime?: string;
 }

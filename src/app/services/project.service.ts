@@ -176,4 +176,7 @@ export class ProjectService extends BaseService {
   getRecruitById(projectId: string, recruitId: string) {
     return this.BaseAPIConfig.get(`${this.apiController}/project-hiring?projectId=${projectId}&hiringId=${recruitId}`);
   }
+  deleteRecruit(projectId: string, recruitId: string) {
+    return this.BaseAPIConfig.delete(`${this.apiController}/project-hiring?projectId=${projectId}&hiringId=${recruitId}`);
+  }
 }

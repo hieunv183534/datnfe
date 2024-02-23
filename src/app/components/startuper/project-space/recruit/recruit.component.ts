@@ -1,77 +1,88 @@
 import { RecruitDto } from './../../../../model/project.class';
 import { ProjectService } from 'src/app/services/project.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { FsiValues } from 'src/app/shared/util/util';
+import { AddRecruitComponent } from './add-recruit/add-recruit.component';
+import { UpdateRecruitComponent } from './update-recruit/update-recruit.component';
 
 @Component({
   selector: 'app-recruit',
   templateUrl: './recruit.component.html',
-  styleUrls: ['./recruit.component.css']
+  styleUrls: ['./recruit.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class RecruitComponent implements OnInit {
   listJobs: RecruitDto[] = [];
   isShowAddRecruit: boolean = false;
+  isShowUpdateRecruit: boolean = false;
   isShowViewRecruit: boolean = false;
   recruit: RecruitDto = new RecruitDto();
   @Input() projectId: string = '';
-
+  @ViewChild("addRecruit") addRecruit?: AddRecruitComponent;
+  @ViewChild("updateRecruit") updateRecruit?: UpdateRecruitComponent;
   constructor(
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) { }
-
+  handleAddRecruit() {
+    this.addRecruit?.submit();
+  }
+  handleEditRecruit() {
+    this.updateRecruit?.submit();
+  }
   ngOnInit() {
     this.getListRecruit();
-    // this.listJobs = [
-    //   {
-    //     title: "Lập trình viện fullstack",
-    //     salary: "thương lượng",
-    //     dueTo: "17/1/2034",
-    //     area: "Tp.Hồ chí minh",
-    //     view: '999 lượt xem',
-    //     updateDate: "17/1/2034"
-    //   },
-    //   {
-    //     title: "Lập trình viện fullstack",
-    //     salary: "thương lượng",
-    //     dueTo: "17/1/2034",
-    //     area: "Tp.Hồ chí minh",
-    //     view: '999 lượt xem',
-    //     updateDate: "17/1/2034"
-    //   },
-    //   {
-    //     title: "Lập trình viện fullstack",
-    //     salary: "thương lượng",
-    //     dueTo: "17/1/2034",
-    //     area: "Tp.Hồ chí minh",
-    //     view: '999 lượt xem',
-    //     updateDate: "17/1/2034"
-    //   },
-    //   {
-    //     title: "Lập trình viện fullstack",
-    //     salary: "thương lượng",
-    //     dueTo: "17/1/2034",
-    //     area: "Tp.Hồ chí minh",
-    //     view: '999 lượt xem',
-    //     updateDate: "17/1/2034"
-    //   },
-    //   {
-    //     title: "Lập trình viện fullstack",
-    //     salary: "thương lượng",
-    //     dueTo: "17/1/2034",
-    //     area: "Tp.Hồ chí minh",
-    //     view: '999 lượt xem',
-    //     updateDate: "17/1/2034"
-    //   },
-    // ]
+  }
+  getAreaName(value?: number) {
+    if (value)
+      return FsiValues.getName(value, FsiValues.areas)
+    else
+      return ''
   }
   async getListRecruit() {
     let res = await this.projectService.getRecruitsByProjectId(this.projectId)
     this.listJobs = res.data
   }
-  async getRecruitById(recruitId?: string) {
+  async getRecruitById(recruitId?: string, type?: string) {
     if (recruitId)
       await this.projectService.getRecruitById(this.projectId, recruitId).then((res: any) => {
         this.recruit = res.data;
       })
+    if (type === "view")
       this.isShowViewRecruit = true;
+    else
+      this.isShowUpdateRecruit = true;
+  }
+
+  deleteRecruit(event: any, id?: string, title?: string) {
+    this.confirmationService.confirm({
+      target: event.target,
+      message: `Bạn có muốn xóa ${title} không?`,
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        if (id)
+          this.projectService.deleteRecruit(this.projectId, id).then((res: any) => {
+            this.messageService.add({
+              key: "toast",
+              severity: "success",
+              summary: "Thành công",
+              detail: "Xóa bài đăng thành công!",
+            });
+            this.getListRecruit();
+          }).catch((err: any) => {
+            this.messageService.add({
+              key: "toast",
+              severity: "error",
+              summary: "Lỗi",
+              detail: "Xóa bài đăng thất bại!",
+            });
+          })
+      },
+      reject: () => {
+      }
+    });
   }
 }
