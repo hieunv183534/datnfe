@@ -1,8 +1,8 @@
 import { FullAuditedEntityDto, PagedAndSortedResultRequestDto } from "./base.class";
-import { CalendarEventType, ProjectEventType, ProjectStage, RelationWithProject, WorkStatus } from "./enum";
+import { CalendarEventType, ProjectEventType, ProjectStage, RelationWithProject, WorkStatus, WorkingForm } from "./enum";
 import { UserDto } from "./user.class";
 
-export class ProjectDto extends FullAuditedEntityDto<string>{
+export class ProjectDto extends FullAuditedEntityDto<string> {
   projectName?: string;
   description?: string;
   fields?: number[];
@@ -15,9 +15,10 @@ export class ProjectDto extends FullAuditedEntityDto<string>{
   avatarUrl?: string;
   founderId?: string;
   founder?: UserDto;
-  isHireNewMember?: boolean;
-  availableTimeRequire?: number[];
   isActive?: boolean;
+  scale?: number;
+  workingForm?: WorkingForm;
+  isProfit?: boolean;
 }
 
 export class CreateUpdateProjectDto {
@@ -34,8 +35,9 @@ export class CreateUpdateProjectDto {
   avatarUrl?: string;
   founderId?: string;
   founder?: UserDto;
-  isHireNewMember?: boolean;
-  availableTimeRequire?: number[];
+  scale?: number;
+  workingForm?: WorkingForm;
+  isProfit?: boolean;
 }
 
 export class ProjectEventDto extends FullAuditedEntityDto<string> {
@@ -77,13 +79,10 @@ export class GetListProjectForStartuperDto extends PagedAndSortedResultRequestDt
   stages?: ProjectStage[];
   fields?: number[];
   areas?: number[];
-  availableTimes?: number[];
   relationWithProject?: RelationWithProject;
-  scale?: number[];
-  activePurpose?: number[];
-  specialize?: number[];
-  skill?: number[];
-  experience?: number[];
+  scales?: number[];
+  workingForm?: WorkingForm;
+  isProfit?: boolean;
 }
 
 export class GetListProjectForInvestorDto extends PagedAndSortedResultRequestDto {
@@ -117,7 +116,7 @@ export class ProjectCalendarEventDto {
   isPublic?: boolean;
 }
 
-export class ProjectWorkDto extends FullAuditedEntityDto<string>{
+export class ProjectWorkDto extends FullAuditedEntityDto<string> {
   projectId?: string;
   status?: WorkStatus;
   title?: string;

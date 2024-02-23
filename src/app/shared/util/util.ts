@@ -395,7 +395,7 @@ export class FsiValues {
     new DataPointDto("Tăng trưởng 4", 8)
   ]
 
-  static scale: DataPointDto[] = [
+  static scales: DataPointDto[] = [
     new DataPointDto("Dưới 10 người", 1),
     new DataPointDto("10 - 30 người", 2),
     new DataPointDto("30 - 50 người", 3),
