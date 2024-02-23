@@ -18,7 +18,7 @@
         <div class="w-6">
           <div class="flex flex-column mb-3 pr-1">
             <span class="mb-2">Chuyên môn<span style="color: red">*</span></span>
-            <p-dropdown [autoDisplayFirst]="false" [options]="specializes" optionValue="value" optionLabel="name"
+            <p-dropdown [autoDisplayFirst]="false" [filter]="true" [options]="specializes" optionValue="value" optionLabel="name"
               formControlName="specialize"></p-dropdown>
             <span class="text-error" *ngIf="
           !formRecruit.value.specialize &&
@@ -118,7 +118,7 @@
         <span class="font-semibold">Mô tả công việc</span>
       </div>
       <div class="flex flex-column mb-3">
-        <textarea pInputTextarea [rows]="5" formControlName="description"></textarea>
+        <p-editor formControlName="description" [style]="{'height':'200px'}"></p-editor>
       </div>
     </div>
     <div class="flex flex-column">

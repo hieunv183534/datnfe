@@ -43,7 +43,7 @@ export class AddRecruitComponent implements OnInit {
       workingForm: [null, [Validators.required]],
       workingAddress: [null, []],
       duration: [null, [Validators.required]],
-      income: [null, [Validators.required]],
+      incomeMode: [null, [Validators.required]],
       description: [null, []],
       workingTimes: [null, [Validators.required]],
       yearOfExps: [null, []],
@@ -56,7 +56,6 @@ export class AddRecruitComponent implements OnInit {
     })
   }
   submit() {
-    // console.log(this.acceptDieuKhoan)
     this.handleSubmit = true
     if (this.formRecruit.valid) {
       this.isLoading = true;

@@ -43,7 +43,7 @@ export class UpdateRecruitComponent implements OnInit {
       workingForm: [this.recruit.workingForm, [Validators.required]],
       workingAddress: [this.recruit.workingAddress, []],
       workingTimes: [this.recruit.workingTimes, [Validators.required]],
-      income: [this.recruit.income, [Validators.required]],
+      incomeMode: [this.recruit.incomeMode, [Validators.required]],
       duration: [new Date(this.recruit.duration ?? ''), [Validators.required]],
       description: [this.recruit.description, []],
       yearOfExps: [this.recruit.yearOfExps, []],

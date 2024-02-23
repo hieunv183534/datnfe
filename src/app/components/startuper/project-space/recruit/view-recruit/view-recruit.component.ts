@@ -1,6 +1,7 @@
 import { ProjectService } from 'src/app/services/project.service';
 import { RecruitDto } from './../../../../../model/project.class';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DataPointDto, FsiValues } from 'src/app/shared/util/util';
 
 @Component({
   selector: 'app-view-recruit',
@@ -15,7 +16,12 @@ export class ViewRecruitComponent implements OnInit {
   ) {
 
   }
-
+  // getName(value?: number, arr?: DataPointDto[]) {
+  //   if (value)
+  //     return FsiValues.getName(value, arr)
+  //   else
+  //     return ''
+  // }
   ngOnInit() {
   }
 

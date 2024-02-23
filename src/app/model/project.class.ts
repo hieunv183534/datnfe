@@ -166,7 +166,10 @@ export class RecruitDto {
   location?: number;
   workingAddress?: string;
   workingTimes?:number[];
-  income?: string;
+  incomeMode?: number;
+  incomeFrom?: number;
+  incomeTo?: number;
+  incomeRange?: number
   description?: string;
   yearOfExps?:number[];
   degree?:number;

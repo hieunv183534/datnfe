@@ -344,3 +344,10 @@ app-work-history-summary .p-card-content {
 /* .p-inputtext:active {
   border: 1px solid !important;
 } */
+p {
+  display: block;
+  margin-block-start: 0 !important;
+  margin-block-end: 0 !important;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
