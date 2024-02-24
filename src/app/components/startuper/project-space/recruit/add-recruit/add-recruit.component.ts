@@ -21,10 +21,16 @@ export class AddRecruitComponent implements OnInit {
   areas: any = FsiValues.areas;
   degrees: any = FsiValues.degrees;
   specializes: any = FsiValues.specializies;
+  incomeModes: any = FsiValues.incomeModes;
+  incomeRanges: any = FsiValues.incomeRanges;
   @Input() projectId: string = '';
   @Output() fetchData = new EventEmitter();
   handleSubmit: boolean = false
   isLoading: boolean = false;
+  isRequiredIncomeFrom: boolean = false;
+  isRequiredIncomeTo: boolean = false;
+  isRequiredIncomeRange: boolean = false;
+  isValidIncome: boolean = false;
   formRecruit: FormGroup = this.fb.group({});
 
   constructor(
@@ -34,6 +40,24 @@ export class AddRecruitComponent implements OnInit {
 
   ) { }
 
+  checkRequiredIncome() {
+    if (this.formRecruit.value.incomeMode === 1) {
+      this.isValidIncome = true;
+    }
+    else if (this.formRecruit.value.incomeMode === 2 && this.formRecruit.value.incomeFrom) {
+      this.isValidIncome = true;
+    }
+    else if (this.formRecruit.value.incomeMode === 3 && this.formRecruit.value.incomeTo) {
+      this.isValidIncome = true;
+    }
+    else if (this.formRecruit.value.incomeMode === 4 && this.formRecruit.value.incomeFrom && this.formRecruit.value.incomeTo) {
+      this.isValidIncome = true;
+    }
+    else if (this.formRecruit.value.incomeMode === 5 && this.formRecruit.value.incomeRange)
+      this.isValidIncome = true;
+    else
+      this.isValidIncome = false;
+  }
   ngOnInit() {
     this.formRecruit = this.fb.group({
       title: [null, [Validators.required]],
@@ -43,7 +67,10 @@ export class AddRecruitComponent implements OnInit {
       workingForm: [null, [Validators.required]],
       workingAddress: [null, []],
       duration: [null, [Validators.required]],
-      incomeMode: [null, [Validators.required]],
+      incomeMode: [1, [Validators.required]],
+      incomeFrom: [null, []],
+      incomeTo: [null, []],
+      incomeRange: [null, []],
       description: [null, []],
       workingTimes: [null, [Validators.required]],
       yearOfExps: [null, []],
@@ -57,7 +84,7 @@ export class AddRecruitComponent implements OnInit {
   }
   submit() {
     this.handleSubmit = true
-    if (this.formRecruit.valid) {
+    if (this.formRecruit.valid && this.isValidIncome) {
       this.isLoading = true;
       this.formRecruit.value.projectId = this.projectId;
       this.projectService.addRecruit(this.formRecruit.value).then((res: any) => {
