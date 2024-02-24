@@ -46,6 +46,7 @@
         </div>
         <div class="flex flex-column">
           <span class="mb-1" *ngIf="recruit.degree">- Bằng cấp: <span class="font-semibold">{{getName(recruit.degree,degrees)}}</span></span>
+          <span class="mb-1" *ngIf="recruit.degree">- Chuyên môn: <span class="font-semibold">{{getName(recruit.specialize??0,specializes)}}</span></span>
           <span class="mb-1" *ngIf="recruit.workingTimes">- Thời gian làm việc:
             <span class="font-semibold">{{getMultiName(recruit.workingTimes,availableTimes)}}</span></span>
           <span class="mb-1" *ngIf="recruit.workingForm">- Hình thức làm việc:
