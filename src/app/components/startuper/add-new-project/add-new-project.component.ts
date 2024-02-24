@@ -20,7 +20,7 @@ export class AddNewProjectComponent implements OnInit {
   @Output() close: EventEmitter<any> = new EventEmitter();
   @Output() submit: EventEmitter<any> = new EventEmitter();
 
-  activeIndex: number = 0;
+  activeIndex: number = 1;
   formProject: FormGroup = this.fb.group({});
   formEvent: FormGroup = this.fb.group({});
   project: any = "";
