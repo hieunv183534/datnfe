@@ -138,16 +138,16 @@ box-shadow: 1px 2px 4px rgb(0, 0, 0, 0.1);
 app-header .custom-menu > .p-menu .p-submenu-header{
   padding: 0 !important;
 }
-app-header .p-menu .p-menuitem-link .p-menuitem-text {
+app-header .custom-menu > .p-menu .p-menuitem-link .p-menuitem-text {
   color: #212121 !important;
   font-family: 'NotosansRegular' !important;
 }
 @media (max-width: 991px) {
-app-header .p-menu .p-menuitem-link .p-menuitem-text {
+app-header .custom-menu > .p-menu .p-menuitem-link .p-menuitem-text {
   font-size: 12px!important;
 }
 }
-app-header .p-menu .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
+app-header .custom-menu > .p-menu .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
   color: #3B82F6 !important;
 }
 

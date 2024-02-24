@@ -156,3 +156,28 @@ export class ProjectRequestStartuperInfoDto {
   availableTimes?: number[];
   projectId?: string;
 }
+
+export class RecruitDto {
+  id?: string;
+  title?: string;
+  quantity?: string;
+  specialize?: number;
+  workingForm?: number;
+  location?: number;
+  workingAddress?: string;
+  workingTimes?:number[];
+  incomeMode?: number;
+  incomeFrom?: number;
+  incomeTo?: number;
+  incomeRange?: number
+  description?: string;
+  yearOfExps?:number[];
+  degree?:number;
+  skills?:number[];
+  personalities?:number[];
+  otherRequest?: string;
+  otherDetail?: string;
+  duration?: Date;
+  projectId?: string;
+  lastModificationTime?: string;
+}

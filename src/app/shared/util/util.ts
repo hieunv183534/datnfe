@@ -64,7 +64,29 @@ export class FsiValues {
   static getMultiName(values: number[], arr: DataPointDto[]) {
     return arr.filter(x => values?.includes(x.value ?? 0)).map(x => x.name).join(', ');
   }
-
+  static genders: DataPointDto[] = [
+    new DataPointDto("Nam", 1),
+    new DataPointDto("Nữ", 2),
+    new DataPointDto("Không xác định", 3),
+  ]
+  static workTypes: DataPointDto[] = [
+    new DataPointDto("Làm việc offline", 1),
+    new DataPointDto("Làm việc từ xa", 2),
+    new DataPointDto("Hybrid", 3),
+  ]
+  static degrees: DataPointDto[] = [
+    new DataPointDto("Tiến sĩ", 1),
+    new DataPointDto("Thạc sĩ", 2),
+    new DataPointDto("Đại học", 3),
+    new DataPointDto("Cao đẳng", 4),
+    new DataPointDto("Trung câp", 5),
+    new DataPointDto("Trung học phổ thông", 6),
+  ]
+  static specializes: DataPointDto[] = [
+    new DataPointDto("hehe", 1),
+    new DataPointDto("Lhaha", 2),
+    new DataPointDto("Hhuhu", 3),
+  ]
   static areas: DataPointDto[] = [
     new DataPointDto("Bắc Giang", 1, "BacGiang"),
     new DataPointDto("Bắc Kạn", 2, "BacKan"),

@@ -128,14 +128,26 @@ import {ButtonModule} from 'primeng/button';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {PanelMenuModule} from 'primeng/panelmenu';
+import { RecruitComponent } from './components/startuper/project-space/recruit/recruit.component';
+import { IntroduceComponent } from './components/startuper/project-space/introduce/introduce.component';
+import { AddRecruitComponent } from './components/startuper/project-space/recruit/add-recruit/add-recruit.component';
+import { ViewRecruitComponent } from './components/startuper/project-space/recruit/view-recruit/view-recruit.component';
+import {AutoFocusModule} from 'primeng/autofocus';
+import { UpdateRecruitComponent } from './components/startuper/project-space/recruit/update-recruit/update-recruit.component';
+import {ConfirmPopupModule} from 'primeng/confirmpopup';
 @NgModule({
   declarations: [
     HomePageNewComponent,
+    UpdateRecruitComponent,
+    AddRecruitComponent,
+    ViewRecruitComponent,
     InformationBoxComponent,
     AppComponent,
     HomePageComponent,
     ReasonComponent,
     SponsorComponent,
+    RecruitComponent,
+    IntroduceComponent,
     FooterComponent,
     HeaderComponent,
     HomeHeaderComponent,
@@ -192,6 +204,7 @@ import {PanelMenuModule} from 'primeng/panelmenu';
   ],
   imports: [
     CommonModule,
+    AutoFocusModule,
     PanelMenuModule,
     BrowserModule,
     AppRoutingModule,
@@ -202,6 +215,7 @@ import {PanelMenuModule} from 'primeng/panelmenu';
     ImageModule,
     RippleModule,
     InputTextModule,
+    ConfirmPopupModule,
     DividerModule,
     TagModule,
     ToastModule,
