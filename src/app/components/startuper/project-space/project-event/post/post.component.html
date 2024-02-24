@@ -1,9 +1,9 @@
-<div class="post-item grid flex flex-column w-full">
+<div class="post-item p-3 flex flex-column w-full">
   <ng-container *ngIf="event.type == 0">
-    <div class="col-12 flex justify-content-between align-items-center">
-      <span class="user-item flex align-items-center justify-content-center relative">
-        <p-avatar shape="circle" [image]="project?.founder?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
-        <p class="ml-3">{{project?.founder?.name}}</p>
+    <div class="w-full flex justify-content-between align-items-center">
+      <span class="flex align-items-center justify-content-center relative">
+        <img shape="circle" class="h-2rem w-2rem border-circle outline-primary" [src]="project?.founder?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"/>
+        <p class="ml-2">{{project?.founder?.name}}</p>
       </span>
       <span class="flex align-items-center justify-content-center">
         <i class="pi pi-clock mr-2"></i>
@@ -11,102 +11,56 @@
       </span>
     </div>
 
-    <div class="col-12 flex flex-column justify-content-between align-items-center">
-      <img class="avatar-content" [src]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt="" width="200px" height="auto">
+    <div class="w-full flex flex-column justify-content-between align-items-center">
+      <img class="h-4rem w-4rem border-circle" [src]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'">
       <p class="mt-2">Dự án {{project?.projectName}} được khởi tạo</p>
+      
     </div>
   </ng-container>
 
-  <ng-container *ngIf="event.type == 1">
-    <div class="col-12 flex justify-content-between align-items-center">
-      <span class="user-item flex align-items-center justify-content-center relative">
-        <p-avatar shape="circle" [image]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
-        <p class="ml-3">{{project?.projectName}}</p>
+  <ng-container *ngIf="event.type == 1 || event.type == 2 ||event.type == 3 || event.type == 4">
+    <div class="w-full flex justify-content-between align-items-center">
+      <span class="flex align-items-center justify-content-center relative">
+        <img shape="circle" class="h-2rem w-2rem border-circle outline-primary" [src]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"/>
+        <p class="ml-2">{{project?.projectName}}</p>
       </span>
       <span class="flex align-items-center justify-content-center">
         <i class="pi pi-clock mr-2"></i>
         <p>{{getDateTime(event?.eventTime)}}</p>
       </span>
     </div>
-    <div class="col-12 flex flex-column justify-content-between align-items-center">
-      <img class="avatar-content" [src]="event?.user?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt="" width="200px" height="auto">
-      <p class="mt-2">{{event?.user?.name}} tham gia dự án với vai trò Co-founder</p>
-    </div>
-  </ng-container>
+    <div class="w-full flex flex-column justify-content-between align-items-center">
+      <img class="h-4rem w-4rem border-circle" [src]="event?.user?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'">
+      <p class="mt-2" *ngIf="event.type == 1">{{event?.user?.name}} tham gia dự án với vai trò Co-founder</p>
+      <p class="mt-2" *ngIf="event.type == 2">Co-founder {{event?.user?.name}} đã rời khỏi dự án</p>
+      <p class="mt-2" *ngIf="event.type == 3">{{event?.user?.name}} trở thành nhà đầu tư của dự án</p>
+      <p class="mt-2" *ngIf="event.type == 4">{{event?.user?.name}} đã rời khỏi vị trí nhà đầu tư của dự án</p>
 
-  <ng-container *ngIf="event.type == 2">
-    <div class="col-12 flex justify-content-between align-items-center">
-      <span class="user-item flex align-items-center justify-content-center relative">
-        <p-avatar shape="circle" [image]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
-        <p class="ml-3">{{project?.projectName}}</p>
-      </span>
-      <span class="flex align-items-center justify-content-center">
-        <i class="pi pi-clock mr-2"></i>
-        <p>{{getDateTime(event?.eventTime)}}</p>
-      </span>
-    </div>
-    <div class="col-12 flex flex-column justify-content-between align-items-center">
-      <img class="avatar-content" [src]="event?.user?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt="" width="200px" height="auto">
-      <p class="mt-2">Co-founder {{event?.user?.name}} đã rời khỏi dự án</p>
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="event.type == 3">
-    <div class="col-12 flex justify-content-between align-items-center">
-      <span class="user-item flex align-items-center justify-content-center relative">
-        <p-avatar shape="circle" [image]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
-        <p class="ml-3">{{project?.projectName}}</p>
-      </span>
-      <span class="flex align-items-center justify-content-center">
-        <i class="pi pi-clock mr-2"></i>
-        <p>{{getDateTime(event?.eventTime)}}</p>
-      </span>
-    </div>
-    <div class="col-12 flex flex-column justify-content-between align-items-center">
-      <img class="avatar-content" [src]="event?.user?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt="" width="200px" height="auto">
-      <p class="mt-2">{{event?.user?.name}} trở thành nhà đầu tư của dự án</p>
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="event.type == 4">
-    <div class="col-12 flex justify-content-between align-items-center">
-      <span class="user-item flex align-items-center justify-content-center relative">
-        <p-avatar shape="circle" [image]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
-        <p class="ml-3">{{project?.projectName}}</p>
-      </span>
-      <span class="flex align-items-center justify-content-center">
-        <i class="pi pi-clock mr-2"></i>
-        <p>{{getDateTime(event?.eventTime)}}</p>
-      </span>
-    </div>
-    <div class="col-12 flex flex-column justify-content-between align-items-center">
-      <img class="avatar-content" [src]="event?.user?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt="" width="200px" height="auto">
-      <p class="mt-2">{{event?.user?.name}} đã rời khỏi vị trí nhà đầu tư của dự án</p>
     </div>
   </ng-container>
 
   <ng-container *ngIf="event.type == 5">
-    <div class="col-12 flex justify-content-between align-items-center">
-      <span class="user-item flex align-items-center justify-content-center relative">
-        <p-avatar shape="circle" [image]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
-        <p class="ml-3">{{project?.projectName}}</p>
+    <div class="w-full flex justify-content-between align-items-center">
+      <span class="flex align-items-center justify-content-center relative">
+        <img shape="circle" class="h-2rem w-2rem border-circle outline-primary" [src]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"/>
+        <p class="ml-2">{{project?.projectName}}</p>
       </span>
       <span class="flex align-items-center justify-content-center">
         <i class="pi pi-clock mr-2"></i>
         <p>{{getDateTime(event?.eventTime)}}</p>
       </span>
     </div>
-    <div class="col-12 flex flex-column justify-content-between align-items-center">
+    <div class="w-full flex flex-column justify-content-between align-items-center">
       <img class="avatar-content" [src]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt="" width="200px" height="auto">
       <p class="mt-2">Dự án chuyển qua gia đoạn mới: {{getStage(event.stage)}}</p>
     </div>
   </ng-container>
 
   <ng-container *ngIf="event.type == 7">
-    <div class="col-12 flex justify-content-between align-items-center">
-      <span class="user-item flex align-items-center justify-content-center relative">
-        <p-avatar shape="circle" [image]="event?.poster?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
-        <p class="ml-3">{{event?.poster?.name}}</p>
+    <div class="w-full flex justify-content-between align-items-center">
+      <span class="flex align-items-center justify-content-center relative">
+        <img shape="circle" class="h-2rem w-2rem border-circle outline-primary" [src]="event?.poster?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"/>
+        <p class="ml-2">{{event?.poster?.name}}</p>
       </span>
       <span class="flex">
         <span *ngIf="event?.location" class="flex align-items-center justify-content-center">
@@ -119,10 +73,8 @@
         </span>
       </span>
     </div>
-    <div class="col-12 flex flex-column justify-content-between align-items-start">
-      <p class="ml-3">{{event?.content}}</p>
-
-
+    <div class="w-full flex flex-column justify-content-between align-items-start mt-2 ml-4">
+      <p >{{event?.content}}</p>
       <p-galleria [value]="medias" class="w-full">
         <ng-template pTemplate="item" let-item>
           <div class="w-full h-auto flex justify-content-center">
@@ -135,19 +87,18 @@
           </div>
         </ng-template>
       </p-galleria>
-
-      <div class="col-12 grid mt-3">
+      <div class="w-full grid mt-3">
         <ng-container *ngFor="let link of event?.links">
-          <div class="col-12 flex align-items-center">
+          <div class="w-full flex align-items-center">
             <i class="fa-solid fa-link mr-1"></i>
             <a [href]="link" target="link">{{link}}</a>
           </div>
         </ng-container>
       </div>
 
-      <div class="col-12 grid">
+      <div class="w-full grid">
         <ng-container *ngFor="let fileId of event?.fileIds">
-          <app-file-item class="col-12" [projectFileId]="fileId"></app-file-item>
+          <app-file-item class="w-full" [projectFileId]="fileId"></app-file-item>
         </ng-container>
       </div>
 

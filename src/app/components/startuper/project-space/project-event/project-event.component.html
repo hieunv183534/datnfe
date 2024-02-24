@@ -1,41 +1,40 @@
-<div class="grid flex flex-column justify-content-start w-full">
-
-  <div class="flex w-full justify-content-between">
-    <p-button *ngIf="project.extraProperties.relationWithProject < 1" label="Đăng bài mới" icon="pi pi-plus" (onClick)="isVisibleAddPost = true"></p-button>
-    <span class="flex align-items-center justify-content-end">
-      <span class="p-input-icon-left mr-2">
-        <i class="pi pi-search"></i>
-        <input type="text" pInputText placeholder="Search" [(ngModel)]="filter">
+<div class="flex py-3" style="background-color: #F3F4F6;">
+  <div class="flex flex-column justify-content-start w-full mx-3">
+    <div class="flex w-full justify-content-between">
+      <p-button *ngIf="project.extraProperties.relationWithProject < 1" label="Đăng bài mới" icon="pi pi-plus"
+        (onClick)="isVisibleAddPost = true"></p-button>
+      <span class="flex align-items-center justify-content-end">
+        <span class="p-input-icon-left mr-2">
+          <i class="pi pi-search"></i>
+          <input type="text" pInputText placeholder="Search" [(ngModel)]="filter">
+        </span>
+        <p-dropdown [options]="eventTypes" optionValue="value" optionLabel="name" [style]="{'width': '220px'}"
+          [(ngModel)]="type" (ngModelChange)="submitSearch()"></p-dropdown>
       </span>
-      <p-dropdown [options]="eventTypes" optionValue="value" optionLabel="name" [style]="{'width': '220px'}"
-        [(ngModel)]="type" (ngModelChange)="submitSearch()"></p-dropdown>
-    </span>
-  </div>
-  <p-divider align="left"></p-divider>
+    </div>
+    <p-divider align="left"></p-divider>
+    <div class="flex flex-column align-items-center justify-content-center w-full">
+      <ng-container *ngIf="listEvent.length == 0">
+        <img width="300px" src="../../../../../assets/img/nodata.jpg" alt="" style="margin: auto;">
+      </ng-container>
+      <ng-container *ngFor=" let event of listEvent">
+        <div class="w-full">
+          <app-post [project]="project" [event]="event"></app-post>
+        </div>
+      </ng-container>
+    </div>
+    <div class="w-full flex justify-content-center">
+      <p-paginator [pageLinkSize]="pageSize" [rows]="pageSize" [totalRecords]="totalRecords"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} project" [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="pageSizeOptions" (onPageChange)="onPageChange($event)"></p-paginator>
+    </div>
 
-  <div class="list-data col-12 grid flex align-items-center justify-content-center w-full" style="transform: translateX(20px);">
-    <ng-container *ngIf="listEvent.length == 0">
-      <img width="300px" src="../../../../../assets/img/nodata.jpg" alt="" style="margin: auto;">
-    </ng-container>
-
-    <ng-container *ngFor=" let event of listEvent">
-      <div class="col-12">
-        <app-post [project]="project" [event]="event"></app-post>
-      </div>
-    </ng-container>
   </div>
-  <div class="col-12 flex justify-content-center">
-    <p-paginator [pageLinkSize]="pageSize" [rows]="pageSize" [totalRecords]="totalRecords"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} project" [showCurrentPageReport]="true"
-      [rowsPerPageOptions]="pageSizeOptions" (onPageChange)="onPageChange($event)"></p-paginator>
-  </div>
-
 </div>
-
 
 
 
 <ng-container *ngIf="isVisibleAddPost">
   <app-add-post [visible]="isVisibleAddPost" (close)="isVisibleAddPost = false" [projectId]="project.id"
-  (addSuccess)="isVisibleAddPost = false; getListEvent()"></app-add-post>
+    (addSuccess)="isVisibleAddPost = false; getListEvent()"></app-add-post>
 </ng-container>
