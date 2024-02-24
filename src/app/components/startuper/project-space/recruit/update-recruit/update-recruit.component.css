@@ -1,0 +1,15 @@
+.p-multiselect {
+    width: 100% !important;
+}
+
+.p-multiselect,
+.p-cascadeselect,
+.p-dropdown,
+.p-inputgroup  {
+    height: 37px !important;
+}
+
+.p-dropdown,
+.p-calendar {
+    width: 100%;
+}

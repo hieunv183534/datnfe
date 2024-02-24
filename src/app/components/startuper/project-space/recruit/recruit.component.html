@@ -1,0 +1,105 @@
+<div class="flex flex-column w-full h-auto p-2 px-2" style="background-color: #F3F4F6;">
+  <div class="flex w-full pl-1 mt-2">
+    <button pButton type="button" label="Thêm vị trí tuyển dụng mới" (click)="isShowAddRecruit=true" icon="pi pi-plus"
+      class="p-button-sm font-normal"></button>
+  </div>
+  <div class="flex h-auto w-full flex-wrap mt-3">
+    <ng-container *ngFor="let job of listJobs">
+      <div class="container-recruit p-1 h-auto w-6" style="background-color: #F3F4F6;" >
+        <div class="relative flex border-1 p-2 border-300 border-round-md h-full w-full bg-white  cursor-pointer hover:bg-primary-100" (click)="getRecruitById(job.id,'view')"
+          style="padding-right: 1.5rem !important;">
+          <div class="w-5rem flex align-items-start justify-content-center h-full mr-2">
+            <div class="flex align-items-center justify-content-center w-4rem h-4rem border-1 border-400 border-circle">
+              <span class="text-xl font-semibold">{{job.quantity}}</span>
+            </div>
+          </div>
+          <div class="flex flex-column w-full h-full ">
+            <span class="font-semibold mb-1">{{job.title}}</span>
+            <div class="text-red-500 mb-1">
+              <span class="font-semibold">Thu nhập: </span>
+              <span>{{getIncome(job.incomeMode,job)}}</span>
+            </div>
+            <div class="mb-1">
+              <span class="font-semibold">Thời hạn: </span>
+              <span>{{job.duration | date: 'dd/MM/yyyy'}}</span>
+            </div>
+            <div class="mb-1">
+              <span class="font-semibold">Khu vực: </span>
+              <span>{{getAreaName(job.location)}}</span>
+            </div>
+            <div class="flex">
+              <span class="mr-1">Cập nhật:</span>
+              <span> {{job.lastModificationTime | date : 'hh:mm:ss, dd/MM/yyyy' : 'vi'}}</span>
+            </div>
+          </div>
+          <div class="function-recruit">
+            <div (click)="op.toggle($event)"
+              class=" flex align-items-center justify-content-center absolute bg-gray-200 hover:bg-gray-300 cursor-pointer border-circle top-50"
+              style="right: 8px; height: 24px; width: 24px; transform: translateY(-50%);">
+              <i class="pi pi-ellipsis-h text-gray-500 hover:text-gray-700"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p-overlayPanel [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'200ms'" #op [dismissable]="true">
+        <ng-template pTemplate>
+          <div class="flex flex-column p-2">
+            <div (click)="op.hide();getRecruitById(job.id,'edit')"
+              class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1 hover:text-primary">
+              <i class="pi pi-pencil mr-2 text-xs"></i>
+              <p class="text-xs my-0">Sửa</p>
+            </div>
+            <p-confirmPopup></p-confirmPopup>
+            <div (click)="deleteRecruit($event,job.id,job.title)"
+              class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1 hover:text-red-500">
+              <i class="pi pi-trash mr-2 text-xs"></i>
+              <p class="text-xs my-0 text-red-600">Xóa</p>
+            </div>
+          </div>
+        </ng-template>
+      </p-overlayPanel>
+    </ng-container>
+  </div>
+</div>
+
+<ng-container *ngIf="isShowAddRecruit">
+  <p-dialog [(visible)]="isShowAddRecruit" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '40vw'}"
+    [baseZIndex]="10000" [draggable]="false">
+    <ng-template pTemplate="header">
+      Đăng tin
+    </ng-template>
+    <app-add-recruit #addRecruit (fetchData)="getListRecruit();isShowAddRecruit=false"
+      [projectId]="projectId"></app-add-recruit>
+    <!-- <ng-template pTemplate="footer">
+      <div class="pt-3">
+        <button pButton type="button" label="Thêm cha " class="p-button-sm font-normal"
+          (click)="handleAddRecruit()"></button>
+      </div>
+    </ng-template> -->
+  </p-dialog>
+</ng-container>
+<ng-container *ngIf="isShowUpdateRecruit">
+  <p-dialog [(visible)]="isShowUpdateRecruit" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
+    [style]="{width: '40vw'}" [baseZIndex]="10000" [draggable]="false">
+    <ng-template pTemplate="header">
+      Sửa tin
+    </ng-template>
+    <app-update-recruit #updateRecruit (fetchData)="getListRecruit();isShowUpdateRecruit=false" [projectId]="projectId"
+      [recruit]="recruit"></app-update-recruit>
+    <!-- <ng-template pTemplate="footer">
+      <div class="pt-3">
+        <button pButton type="button" label="Thêm cha " class="p-button-sm font-normal"
+          (click)="handleEditRecruit()"></button>
+      </div>
+    </ng-template> -->
+  </p-dialog>
+</ng-container>
+<ng-container *ngIf="isShowViewRecruit">
+  <p-dialog [(visible)]="isShowViewRecruit" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
+    [style]="{width: '40vw'}" [baseZIndex]="10000" [draggable]="false">
+    <ng-template pTemplate="header">
+      Thông tin công việc
+    </ng-template>
+    <app-view-recruit [recruit]="recruit"></app-view-recruit>
+  </p-dialog>
+</ng-container>

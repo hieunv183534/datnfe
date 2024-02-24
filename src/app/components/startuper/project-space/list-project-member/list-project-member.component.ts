@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { UserDto } from 'src/app/model/user.class';
@@ -9,7 +9,9 @@ import { Util } from 'src/app/shared/util/util';
 @Component({
   selector: 'app-list-project-member',
   templateUrl: './list-project-member.component.html',
-  styleUrls: ['./list-project-member.component.css']
+  styleUrls: ['./list-project-member.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class ListProjectMemberComponent implements OnInit, OnChanges {
   @Input() projectId: string = "";
@@ -23,14 +25,14 @@ export class ListProjectMemberComponent implements OnInit, OnChanges {
     {
       label: "Xem chi tiết",
       icon: "pi pi-id-card",
-      command:()=>{
+      command: () => {
         this.eventService.showUserDetail(this.userSelectId)
       }
     },
     {
       label: "Trò chuyện",
       icon: "pi pi-comments",
-      command:()=>{
+      command: () => {
         this.router.navigate(['./startuper/chat/1/' + this.userSelectId]);
       }
     }
@@ -48,11 +50,16 @@ export class ListProjectMemberComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.eventService.currentEvent.subscribe(e=>{
+    this.eventService.currentEvent.subscribe(e => {
       this.getListMembers();
     });
   }
-
+  viewDetail() {
+    this.eventService.showUserDetail(this.userSelectId)
+  }
+  navigateChat() {
+    this.router.navigate(['./startuper/chat/1/' + this.userSelectId]);
+  }
   getListMembers() {
     this.projectService.getMembersOfProject(this.projectId).then((res: any) => {
       this.members = res.data;
@@ -66,7 +73,7 @@ export class ListProjectMemberComponent implements OnInit, OnChanges {
     });
   }
 
-  getDate(d: any){
+  getDate(d: any) {
     return Util.getDate(new Date(d));
   }
 

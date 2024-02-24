@@ -64,7 +64,29 @@ export class FsiValues {
   static getMultiName(values: number[], arr: DataPointDto[]) {
     return arr.filter(x => values?.includes(x.value ?? 0)).map(x => x.name).join(', ');
   }
-
+  static genders: DataPointDto[] = [
+    new DataPointDto("Nam", 1),
+    new DataPointDto("Nữ", 2),
+    new DataPointDto("Không xác định", 3),
+  ]
+  static workTypes: DataPointDto[] = [
+    new DataPointDto("Offline", 1),
+    new DataPointDto("Online", 2),
+    new DataPointDto("Hybrid", 3),
+  ]
+  static degrees: DataPointDto[] = [
+    new DataPointDto("Tiến sĩ", 1),
+    new DataPointDto("Thạc sĩ", 2),
+    new DataPointDto("Đại học", 3),
+    new DataPointDto("Cao đẳng", 4),
+    new DataPointDto("Trung câp", 5),
+    new DataPointDto("Trung học phổ thông", 6),
+  ]
+  static specializes: DataPointDto[] = [
+    new DataPointDto("hehe", 1),
+    new DataPointDto("Lhaha", 2),
+    new DataPointDto("Hhuhu", 3),
+  ]
   static areas: DataPointDto[] = [
     new DataPointDto("Bắc Giang", 1, "BacGiang"),
     new DataPointDto("Bắc Kạn", 2, "BacKan"),
@@ -395,7 +417,30 @@ export class FsiValues {
     new DataPointDto("Tăng trưởng 4", 8)
   ]
 
-  static scale: DataPointDto[] = [
+  static incomeModes: DataPointDto[] = [
+    new DataPointDto("Thỏa thuận", 1),
+    new DataPointDto("Từ mức", 2),
+    new DataPointDto("Đến mức", 3),
+    new DataPointDto("Từ mức - Đến mức", 4),
+    new DataPointDto("Trong khoảng", 5)
+  ]
+
+  static incomeRanges: DataPointDto[] = [
+    new DataPointDto("1 - 3 triệu", 1),
+    new DataPointDto("3 - 5 triệu", 2),
+    new DataPointDto("5 - 7 triệu", 3),
+    new DataPointDto("7 - 10 triệu", 4),
+    new DataPointDto("10 - 15 triệu", 5),
+    new DataPointDto("15 - 20 triệu", 6),
+    new DataPointDto("20 - 30 triệu", 7),
+    new DataPointDto("Trên 30 triệu", 8),
+    new DataPointDto("Trên 50 triệu", 9),
+    new DataPointDto("Trên 100 triệu", 10)
+  ]
+
+
+
+  static scales: DataPointDto[] = [
     new DataPointDto("Dưới 10 người", 1),
     new DataPointDto("10 - 30 người", 2),
     new DataPointDto("30 - 50 người", 3),
@@ -435,7 +480,7 @@ export class FsiValues {
         "Quản trị dịch vụ du lịch và lữ hành",
         "Quản trị khách sạn"
       ]),
-      new UniversitySpecialized("HUST", ["IT1","IT2"])
+    new UniversitySpecialized("HUST", ["IT1", "IT2"])
   ]
 
   static suggestOpen: DataPointDto[] = [

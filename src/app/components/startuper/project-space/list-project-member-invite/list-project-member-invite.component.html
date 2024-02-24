@@ -1,18 +1,42 @@
-<div class="grid flex mt-2">
-  <span class="flex align-items-center justify-content-center ml-3">
-    <i class="pi pi-user-plus mr-2" style="font-size: 27px;"></i>
-    <h3 style="margin: 2px;" class="flex align-items-center">Yêu cầu<h4>({{members.length}})</h4></h3>
-  </span>
-  <div class="col-12 list-member .grid">
-    <ng-container *ngFor="let user of members">
-      <span class="user-item flex align-items-center justify-content-start relative pl-5 relative">
-        <p-avatar shape="circle" [image]="user.user.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
-        <p class="ml-3">{{user.user.name}}</p>
+<!-- <p-menu #menu [popup]="true" [model]="items"></p-menu> -->
+<div class="w-full list-member .grid py-1">
+  <p-panel header="Yêu cầu" [toggleable]="true">
+    <ng-container *ngFor="let user of members; let isFirst = first">
+      <div class="flex border-400 border-1 border-round-md align-items-center justify-content-between  mb-1 p-2"
+        [pTooltip]="'Ngày yêu cầu: ' + getDate(user.joinTime)">
+        <div class="flex align-items-center justify-content-start">
+          <div class=" w-2rem h-2rem">
+            <img [src]="user.user.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"
+              class="w-2rem h-2rem border-circle">
+          </div>
+          <span class="ml-2">{{user.user.name}}</span>
+        </div>
         <button pButton pRipple type="button" icon="pi pi-caret-down"
-          class="p-button-rounded p-button-secondary p-button-text absolute right-0 top-0" (click)="menu.toggle($event); userId= user.user.id"></button>
-      </span>
-    </ng-container>
-  </div>
-</div>
+          class="p-button-rounded p-button-secondary p-button-text"
+          (click)="op.toggle($event); userId= user.user.id;userSelectId= user.user.id"></button>
 
-<p-menu #menu [popup]="true" [model]="items"></p-menu>
+      </div>
+    </ng-container>
+  </p-panel>
+</div>
+<p-overlayPanel [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'200ms'" #op [dismissable]="true">
+  <ng-template pTemplate>
+    <div class="flex flex-column p-2">
+      <div (click)="op.hide();viewDetail()"
+        class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1 hover:text-primary">
+        <i class="pi pi-id-card mr-2 text-xs"></i>
+        <p class="text-xs my-0">Xem chi tiết</p>
+      </div>
+      <div (click)="op.hide();handleAccept()"
+        class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1 hover:text-primary">
+        <i class="pi pi-comments mr-2 text-xs"></i>
+        <p class="text-xs my-0">Chấp nhận</p>
+      </div>
+      <div (click)="op.hide();handleReject()"
+        class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1 hover:text-red-500">
+        <i class="pi pi-times mr-2 text-xs"></i>
+        <p class="text-xs my-0">Từ chối</p>
+      </div>
+    </div>
+  </ng-template>
+</p-overlayPanel>

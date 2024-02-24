@@ -1,3 +1,4 @@
+import { RecruitDto } from './../model/project.class';
 import { WorkStatus } from './../model/enum';
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
@@ -156,5 +157,26 @@ export class ProjectService extends BaseService {
 
   getProjectRequestStartuperInfo(projectId: string) {
     return this.BaseAPIConfig.get(`${this.apiController}/project-request-startuper-info/${projectId}`);
+  }
+  getProjectBusinessModel(projectId: string) {
+    return this.BaseAPIConfig.get(`${this.apiController}/project-canvas-model/${projectId}`);
+  }
+  updateProjectBusinessModel(projectId: string, model: string) {
+    return this.BaseAPIConfig.put(`${this.apiController}/project-canvas-model`, { projectId, model });
+  }
+  addRecruit(input: RecruitDto) {
+    return this.BaseAPIConfig.post(`${this.apiController}/project-hiring`, input);
+  }
+  updateRecruit(input: RecruitDto) {
+    return this.BaseAPIConfig.put(`${this.apiController}/project-hiring`, input);
+  }
+  getRecruitsByProjectId(projectId: string) {
+    return this.BaseAPIConfig.get(`${this.apiController}/project-hirings/${projectId}`);
+  }
+  getRecruitById(projectId: string, recruitId: string) {
+    return this.BaseAPIConfig.get(`${this.apiController}/project-hiring?projectId=${projectId}&hiringId=${recruitId}`);
+  }
+  deleteRecruit(projectId: string, recruitId: string) {
+    return this.BaseAPIConfig.delete(`${this.apiController}/project-hiring?projectId=${projectId}&hiringId=${recruitId}`);
   }
 }

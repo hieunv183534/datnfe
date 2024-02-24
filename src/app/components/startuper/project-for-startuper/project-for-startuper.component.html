@@ -29,16 +29,15 @@
           ></p-dropdown>
         </div>
         <div class="p-field col-12 md-12 marginTop">
-          <p-multiSelect
-            optionLabel="name"
+          <p-dropdown
+            [options]="activePurposes"
             optionValue="value"
-            appendTo="body"
-            [options]="activePurpose"
             optionLabel="name"
-            formControlName="activePurpose"
+            [style]="{ width: '100%' }"
+            formControlName="isProfit"
+            (onChange)="submitSearch()"
             defaultLabel="Mục đích hoạt động"
-          >
-          </p-multiSelect>
+          ></p-dropdown>
         </div>
         <div class="p-field col-12 md-12 marginTop">
           <p-multiSelect
@@ -81,58 +80,10 @@
             optionLabel="name"
             optionValue="value"
             appendTo="body"
-            [options]="scale"
+            [options]="scales"
             optionLabel="name"
-            formControlName="scale"
+            formControlName="scales"
             defaultLabel="Quy mô nhân sự"
-          >
-          </p-multiSelect>
-        </div>
-        <div class="p-field col-12 md-12 marginTop">
-          <p-multiSelect
-            optionLabel="name"
-            optionValue="value"
-            appendTo="body"
-            [options]="specialize"
-            optionLabel="name"
-            formControlName="specialize"
-            defaultLabel="Chuyên môn yêu cầu"
-          >
-          </p-multiSelect>
-        </div>
-        <div class="p-field col-12 md-12 marginTop">
-          <p-multiSelect
-            optionLabel="name"
-            optionValue="value"
-            appendTo="body"
-            [options]="skill"
-            optionLabel="name"
-            formControlName="skill"
-            defaultLabel="Kỹ năng mềm yêu cầu"
-          >
-          </p-multiSelect>
-        </div>
-        <div class="p-field col-12 md-12 marginTop">
-          <p-multiSelect
-            optionLabel="name"
-            optionValue="value"
-            appendTo="body"
-            [options]="availableTimes"
-            optionLabel="name"
-            formControlName="availableTimes"
-            defaultLabel="Thời gian yêu cầu"
-          >
-          </p-multiSelect>
-        </div>
-        <div class="p-field col-12 md-12 marginTop">
-          <p-multiSelect
-            optionLabel="name"
-            optionValue="value"
-            appendTo="body"
-            [options]="experience"
-            optionLabel="name"
-            formControlName="experience"
-            defaultLabel="Kinh nghiệm yêu cầu"
           >
           </p-multiSelect>
         </div>
@@ -191,7 +142,7 @@
               >Thêm dự án mới</p-button
             >
           </div>
-          <div
+          <!-- <div
             class="col-10 grid"
             style="
               background-color: #e6e6e6;
@@ -233,7 +184,7 @@
             >
               Quy mô
             </button>
-          </div>
+          </div> -->
         </div>
         <p-dataView [value]="listProject" *ngIf="listProject.length > 0">
           <ng-template let-project pTemplate="listItem">

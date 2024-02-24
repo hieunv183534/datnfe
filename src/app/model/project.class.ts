@@ -1,8 +1,8 @@
 import { FullAuditedEntityDto, PagedAndSortedResultRequestDto } from "./base.class";
-import { CalendarEventType, ProjectEventType, ProjectStage, RelationWithProject, WorkStatus } from "./enum";
+import { CalendarEventType, ProjectEventType, ProjectStage, RelationWithProject, WorkStatus, WorkingForm } from "./enum";
 import { UserDto } from "./user.class";
 
-export class ProjectDto extends FullAuditedEntityDto<string>{
+export class ProjectDto extends FullAuditedEntityDto<string> {
   projectName?: string;
   description?: string;
   fields?: number[];
@@ -15,9 +15,10 @@ export class ProjectDto extends FullAuditedEntityDto<string>{
   avatarUrl?: string;
   founderId?: string;
   founder?: UserDto;
-  isHireNewMember?: boolean;
-  availableTimeRequire?: number[];
   isActive?: boolean;
+  scale?: number;
+  workingForm?: WorkingForm;
+  isProfit?: boolean;
 }
 
 export class CreateUpdateProjectDto {
@@ -34,8 +35,9 @@ export class CreateUpdateProjectDto {
   avatarUrl?: string;
   founderId?: string;
   founder?: UserDto;
-  isHireNewMember?: boolean;
-  availableTimeRequire?: number[];
+  scale?: number;
+  workingForm?: WorkingForm;
+  isProfit?: boolean;
 }
 
 export class ProjectEventDto extends FullAuditedEntityDto<string> {
@@ -77,14 +79,9 @@ export class GetListProjectForStartuperDto extends PagedAndSortedResultRequestDt
   stages?: ProjectStage[];
   fields?: number[];
   areas?: number[];
-  availableTimes?: number[];
   relationWithProject?: RelationWithProject;
   scales?: number[];
-  activePurpose?: number[];
-  specialize?: number[];
-  skill?: number[];
-  experience?: number[];
-  workingFrom?: number;
+  workingForm?: WorkingForm;
   isProfit?: boolean;
 }
 
@@ -119,7 +116,7 @@ export class ProjectCalendarEventDto {
   isPublic?: boolean;
 }
 
-export class ProjectWorkDto extends FullAuditedEntityDto<string>{
+export class ProjectWorkDto extends FullAuditedEntityDto<string> {
   projectId?: string;
   status?: WorkStatus;
   title?: string;
@@ -158,4 +155,29 @@ export class ProjectRequestStartuperInfoDto {
   yearOfExps?: number[];
   availableTimes?: number[];
   projectId?: string;
+}
+
+export class RecruitDto {
+  id?: string;
+  title?: string;
+  quantity?: string;
+  specialize?: number;
+  workingForm?: number;
+  location?: number;
+  workingAddress?: string;
+  workingTimes?:number[];
+  incomeMode?: number;
+  incomeFrom?: number;
+  incomeTo?: number;
+  incomeRange?: number
+  description?: string;
+  yearOfExps?:number[];
+  degree?:number;
+  skills?:number[];
+  personalities?:number[];
+  otherRequest?: string;
+  otherDetail?: string;
+  duration?: Date;
+  projectId?: string;
+  lastModificationTime?: string;
 }

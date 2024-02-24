@@ -1,0 +1,88 @@
+<div>
+  <div class="relative flex border-1 p-2 border-300 border-round-md h-full w-full bg-white mb-3"
+    style="padding-right: 1.5rem !important;">
+    <div class="w-5rem flex align-items-start justify-content-center h-full mr-2">
+      <div class="flex align-items-center justify-content-center w-4rem h-4rem border-1 border-400 border-circle">
+        <span class="text-xl font-semibold">{{recruit.quantity}}</span>
+      </div>
+    </div>
+    <div class="flex flex-column w-full h-full ">
+      <span class="font-semibold mb-1">{{recruit.title}}</span>
+      <div class="text-red-500 mb-1">
+        <span class="font-semibold">Thu nhập: </span>
+        <span>{{getIncome()}}</span>
+      </div>
+      <div class="mb-1">
+        <span class="font-semibold">Thời hạn: </span>
+        <span>{{recruit.duration | date: 'dd/MM/yyyy'}}</span>
+      </div>
+      <div class="mb-1">
+        <span class="font-semibold">Khu vực: </span>
+        <span>{{getName(recruit.location??0,areas)}}</span>
+      </div>
+      <div class="flex">
+        <span class="mr-1">Cập nhật:</span>
+        <span>{{recruit.lastModificationTime | date : 'hh:mm:ss, dd/MM/yyyy' : 'vi'}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-column">
+    <div class="h-auto flex align-items-center mb-2">
+      <div class="flex flex-column">
+        <div class="flex flex-row mb-1">
+          <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+          <span class="font-semibold">Mô tả công việc</span>
+        </div>
+        <span [innerHTML]="recruit.description"></span>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-column">
+    <div class="h-auto flex align-items-center mb-2">
+      <div class="flex flex-column">
+        <div class="flex flex-row mb-1">
+          <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+          <span class="font-semibold">Yêu cầu</span>
+        </div>
+        <div class="flex flex-column">
+          <span class="mb-1" *ngIf="recruit.degree">- Bằng cấp: <span>{{getName(recruit.degree,degrees)}}</span></span>
+          <span class="mb-1" *ngIf="recruit.workingTimes">- Thời gian làm việc:
+            <span>{{getMultiName(recruit.workingTimes,availableTimes)}}</span></span>
+          <span class="mb-1" *ngIf="recruit.workingForm">- Hình thức làm việc:
+            <span>{{getName(recruit.workingForm,workTypes)}}</span></span>
+          <span class="mb-1" *ngIf="recruit.yearOfExps">- Kinh nghiệm:
+            <span>{{getMultiName(recruit.yearOfExps,yearOfExps)}}</span></span>
+          <span class="mb-1" *ngIf="recruit.skills">- Kỹ năng mềm:
+            <span>{{getMultiName(recruit.skills,skills)}}</span></span>
+          <span class="mb-1" *ngIf="recruit.personalities">- Tính cách:
+            <span>{{getMultiName(recruit.personalities,personalities)}}</span></span>
+          <span class="mb-1" *ngIf="recruit.otherRequest">- Yêu cầu khác: {{recruit.otherRequest}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-column">
+    <div class="h-auto flex align-items-center mb-2">
+      <div class="flex flex-column">
+        <div class="flex flex-row mb-1">
+          <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+          <span class="font-semibold">Địa điểm làm việc</span>
+        </div>
+        <span *ngIf="recruit.workingAddress">- {{recruit.workingAddress}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-column">
+    <div class="h-auto flex align-items-center mb-3">
+      <div class="flex flex-column">
+        <div class="flex flex-column">
+          <div class="flex flex-row mb-1">
+            <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+            <span class="font-semibold">Thông tin khác</span>
+          </div>
+          <span *ngIf="recruit.otherDetail">- {{recruit.otherDetail}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
