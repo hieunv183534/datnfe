@@ -74,7 +74,6 @@ export class ProjectForStartuperComponent implements OnInit {
       stages: [[], []],
       relationWithProject: [RelationWithProject.NotMemberOfProject, []],
       scales: [[], []],
-      workingForm: [WorkingForm.Offline, []],
       isProfit: [true, []]
     });
     this.getListProject();
@@ -108,7 +107,6 @@ export class ProjectForStartuperComponent implements OnInit {
     input.relationWithProject = this.formSearch.value.relationWithProject;
     input.scales = this.formSearch.value.scales ?? [];
     input.isProfit = this.formSearch.value.isProfit;
-    input.workingForm = this.formSearch.value.workingForm;
     input.skipCount = (this.page - 1) * this.pageSize;
     input.maxResultCount = this.pageSize;
     input.sorting = this.sorting;
