@@ -10,7 +10,7 @@ export class AuthService extends BaseService {
 
   constructor(private _router: Router, private _messageService: MessageService) {
     super(_router, _messageService);
-    this.apiController = 'auth';
+    this.apiController = 'fsi/admin';
   }
 
   login(username: string, password: string, role: number) {
