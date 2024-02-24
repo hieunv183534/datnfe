@@ -20,10 +20,13 @@ export class UpdateRecruitComponent implements OnInit {
   yearOfExps: any = FsiValues.yearOfExps;
   areas: any = FsiValues.areas;
   degrees: any = FsiValues.degrees;
-  specializes: any = FsiValues.specializes;
+  specializes: any = FsiValues.specializies;
+  incomeModes: any = FsiValues.incomeModes;
+  incomeRanges: any = FsiValues.incomeRanges;
   formRecruit: FormGroup = this.fb.group({});
   handleSubmit: boolean = false;
   isLoading: boolean = false;
+  isValidIncome: boolean = false;
   @Input() recruit!: RecruitDto;
   @Input() projectId: string = '';
   @Output() fetchData = new EventEmitter();
@@ -34,6 +37,24 @@ export class UpdateRecruitComponent implements OnInit {
     private messageService: MessageService
 
   ) { }
+  checkRequiredIncome() {
+    if (this.formRecruit.value.incomeMode === 1) {
+      this.isValidIncome = true;
+    }
+    else if (this.formRecruit.value.incomeMode === 2 && this.formRecruit.value.incomeFrom) {
+      this.isValidIncome = true;
+    }
+    else if (this.formRecruit.value.incomeMode === 3 && this.formRecruit.value.incomeTo) {
+      this.isValidIncome = true;
+    }
+    else if (this.formRecruit.value.incomeMode === 4 && this.formRecruit.value.incomeFrom && this.formRecruit.value.incomeTo) {
+      this.isValidIncome = true;
+    }
+    else if (this.formRecruit.value.incomeMode === 5 && this.formRecruit.value.incomeRange)
+      this.isValidIncome = true;
+    else
+      this.isValidIncome = false;
+  }
   ngOnInit() {
     this.formRecruit = this.fb.group({
       title: [this.recruit.title, [Validators.required]],
@@ -44,6 +65,9 @@ export class UpdateRecruitComponent implements OnInit {
       workingAddress: [this.recruit.workingAddress, []],
       workingTimes: [this.recruit.workingTimes, [Validators.required]],
       incomeMode: [this.recruit.incomeMode, [Validators.required]],
+      incomeFrom: [this.recruit.incomeFrom, []],
+      incomeTo: [this.recruit.incomeTo, []],
+      incomeRange: [this.recruit.incomeRange, []],
       duration: [new Date(this.recruit.duration ?? ''), [Validators.required]],
       description: [this.recruit.description, []],
       yearOfExps: [this.recruit.yearOfExps, []],
@@ -54,10 +78,11 @@ export class UpdateRecruitComponent implements OnInit {
       otherRequest: [this.recruit.otherRequest, []],
       projectId: [this.recruit.projectId, []],
     })
+    this.checkRequiredIncome()
   }
   submit() {
     this.handleSubmit = true;
-    if (this.formRecruit.valid) {
+    if (this.formRecruit.valid && this.isValidIncome) {
       this.isLoading = true;
       this.formRecruit.value.projectId = this.projectId;
       this.formRecruit.value.id = this.recruit.id;

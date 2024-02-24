@@ -42,6 +42,7 @@ export class RecruitComponent implements OnInit {
     else
       return ''
   }
+
   async getListRecruit() {
     let res = await this.projectService.getRecruitsByProjectId(this.projectId)
     this.listJobs = res.data
@@ -56,7 +57,18 @@ export class RecruitComponent implements OnInit {
     else
       this.isShowUpdateRecruit = true;
   }
-
+  getIncome(value?: number, recruit?: RecruitDto) {
+    if (value === 1)
+      return "Thỏa thuận";
+    else if (value === 2)
+      return "Từ " + recruit?.incomeFrom + " triệu"
+    else if (value === 3)
+      return 'Lên đến ' + recruit?.incomeTo + " triệu"
+    else if (value === 4)
+      return recruit?.incomeFrom + ' - ' + recruit?.incomeTo + " triệu"
+    else (value === 5)
+    return FsiValues.getName(5, FsiValues.incomeRanges)
+  }
   deleteRecruit(event: any, id?: string, title?: string) {
     this.confirmationService.confirm({
       target: event.target,

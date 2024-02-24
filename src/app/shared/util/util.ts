@@ -70,8 +70,8 @@ export class FsiValues {
     new DataPointDto("Không xác định", 3),
   ]
   static workTypes: DataPointDto[] = [
-    new DataPointDto("Làm việc offline", 1),
-    new DataPointDto("Làm việc từ xa", 2),
+    new DataPointDto("Offline", 1),
+    new DataPointDto("Online", 2),
     new DataPointDto("Hybrid", 3),
   ]
   static degrees: DataPointDto[] = [

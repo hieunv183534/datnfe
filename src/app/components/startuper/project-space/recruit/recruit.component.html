@@ -5,8 +5,8 @@
   </div>
   <div class="flex h-auto w-full flex-wrap mt-3">
     <ng-container *ngFor="let job of listJobs">
-      <div class="container-recruit p-1 h-auto w-6" style="background-color: #F3F4F6;">
-        <div class="relative flex border-1 p-2 border-300 border-round-md h-full w-full bg-white"
+      <div class="container-recruit p-1 h-auto w-6" style="background-color: #F3F4F6;" >
+        <div class="relative flex border-1 p-2 border-300 border-round-md h-full w-full bg-white  cursor-pointer hover:bg-primary-100" (click)="getRecruitById(job.id,'view')"
           style="padding-right: 1.5rem !important;">
           <div class="w-5rem flex align-items-start justify-content-center h-full mr-2">
             <div class="flex align-items-center justify-content-center w-4rem h-4rem border-1 border-400 border-circle">
@@ -14,11 +14,10 @@
             </div>
           </div>
           <div class="flex flex-column w-full h-full ">
-            <span class="font-semibold mb-1 hover:text-primary cursor-pointer"
-              (click)="getRecruitById(job.id,'view')">{{job.title}}</span>
+            <span class="font-semibold mb-1">{{job.title}}</span>
             <div class="text-red-500 mb-1">
               <span class="font-semibold">Thu nhập: </span>
-              <span>{{job.incomeMode}}</span>
+              <span>{{getIncome(job.incomeMode,job)}}</span>
             </div>
             <div class="mb-1">
               <span class="font-semibold">Thời hạn: </span>
@@ -29,8 +28,8 @@
               <span>{{getAreaName(job.location)}}</span>
             </div>
             <div class="flex">
-              <span>Cập nhật: </span>
-              <!-- <span>{{job.dueTo}}</span> -->
+              <span class="mr-1">Cập nhật:</span>
+              <span> {{job.lastModificationTime | date : 'hh:mm:ss, dd/MM/yyyy' : 'vi'}}</span>
             </div>
           </div>
           <div class="function-recruit">

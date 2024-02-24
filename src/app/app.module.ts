@@ -135,6 +135,8 @@ import { ViewRecruitComponent } from './components/startuper/project-space/recru
 import {AutoFocusModule} from 'primeng/autofocus';
 import { UpdateRecruitComponent } from './components/startuper/project-space/recruit/update-recruit/update-recruit.component';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
+import {InputMaskModule} from 'primeng/inputmask';
+
 @NgModule({
   declarations: [
     HomePageNewComponent,
@@ -208,6 +210,7 @@ import {ConfirmPopupModule} from 'primeng/confirmpopup';
     PanelMenuModule,
     BrowserModule,
     AppRoutingModule,
+    InputMaskModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
