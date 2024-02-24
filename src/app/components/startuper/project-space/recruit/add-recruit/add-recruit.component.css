@@ -4,7 +4,8 @@
 
 .p-multiselect,
 .p-cascadeselect,
-.p-dropdown {
+.p-dropdown,
+.p-inputgroup  {
     height: 37px !important;
 }
 

@@ -7,10 +7,10 @@
       </div>
     </div>
     <div class="flex flex-column w-full h-full ">
-      <span class="font-semibold mb-1 hover:text-primary cursor-pointer">{{recruit.title}}</span>
+      <span class="font-semibold mb-1">{{recruit.title}}</span>
       <div class="text-red-500 mb-1">
         <span class="font-semibold">Thu nhập: </span>
-        <span>{{recruit.incomeMode}}</span>
+        <span>{{getIncome()}}</span>
       </div>
       <div class="mb-1">
         <span class="font-semibold">Thời hạn: </span>
@@ -18,18 +18,18 @@
       </div>
       <div class="mb-1">
         <span class="font-semibold">Khu vực: </span>
-        <span>{{recruit.location}}</span>
+        <span>{{getName(recruit.location??0,areas)}}</span>
       </div>
       <div class="flex">
-        <span>Cập nhật: </span>
-        <span>17/1/2034</span>
+        <span class="mr-1">Cập nhật:</span>
+        <span>{{recruit.lastModificationTime | date : 'hh:mm:ss, dd/MM/yyyy' : 'vi'}}</span>
       </div>
     </div>
   </div>
   <div class="flex flex-column">
     <div class="h-auto flex align-items-center mb-2">
       <div class="flex flex-column">
-        <div class="flex flex-row">
+        <div class="flex flex-row mb-1">
           <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
           <span class="font-semibold">Mô tả công việc</span>
         </div>
@@ -40,30 +40,35 @@
   <div class="flex flex-column">
     <div class="h-auto flex align-items-center mb-2">
       <div class="flex flex-column">
-        <div class="flex flex-row">
+        <div class="flex flex-row mb-1">
           <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
           <span class="font-semibold">Yêu cầu</span>
         </div>
-        <div>
-          <span>Bằng cấp: <span>{{recruit.degree}}</span></span>
-          <span>Thời gian làm việc: <span>{{recruit.workingTimes}}</span></span>
-          <span>Hình thức làm việc: <span>{{recruit.workingForm}}</span></span>
-          <span>Kinh nghiệm: <span>{{recruit.yearOfExps}}</span></span>
-          <span>Kỹ năng mềm: <span>{{recruit.skills}}</span></span>
-          <span>Tính cách: <span>{{recruit.personalities}}</span></span>
-          <span>{{recruit.otherRequest}}</span>
+        <div class="flex flex-column">
+          <span class="mb-1" *ngIf="recruit.degree">- Bằng cấp: <span>{{getName(recruit.degree,degrees)}}</span></span>
+          <span class="mb-1" *ngIf="recruit.workingTimes">- Thời gian làm việc:
+            <span>{{getMultiName(recruit.workingTimes,availableTimes)}}</span></span>
+          <span class="mb-1" *ngIf="recruit.workingForm">- Hình thức làm việc:
+            <span>{{getName(recruit.workingForm,workTypes)}}</span></span>
+          <span class="mb-1" *ngIf="recruit.yearOfExps">- Kinh nghiệm:
+            <span>{{getMultiName(recruit.yearOfExps,yearOfExps)}}</span></span>
+          <span class="mb-1" *ngIf="recruit.skills">- Kỹ năng mềm:
+            <span>{{getMultiName(recruit.skills,skills)}}</span></span>
+          <span class="mb-1" *ngIf="recruit.personalities">- Tính cách:
+            <span>{{getMultiName(recruit.personalities,personalities)}}</span></span>
+          <span class="mb-1" *ngIf="recruit.otherRequest">- Yêu cầu khác: {{recruit.otherRequest}}</span>
         </div>
       </div>
     </div>
   </div>
   <div class="flex flex-column">
-    <div class="h-auto flex align-items-center mb-3">
+    <div class="h-auto flex align-items-center mb-2">
       <div class="flex flex-column">
-        <div class="flex flex-row">
+        <div class="flex flex-row mb-1">
           <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
           <span class="font-semibold">Địa điểm làm việc</span>
         </div>
-        <span>{{recruit.workingAddress}}</span>
+        <span *ngIf="recruit.workingAddress">- {{recruit.workingAddress}}</span>
       </div>
     </div>
   </div>
@@ -71,11 +76,11 @@
     <div class="h-auto flex align-items-center mb-3">
       <div class="flex flex-column">
         <div class="flex flex-column">
-          <div class="flex flex-row">
+          <div class="flex flex-row mb-1">
             <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
             <span class="font-semibold">Thông tin khác</span>
           </div>
-          <span>{{recruit.otherDetail}}</span>
+          <span *ngIf="recruit.otherDetail">- {{recruit.otherDetail}}</span>
         </div>
       </div>
     </div>

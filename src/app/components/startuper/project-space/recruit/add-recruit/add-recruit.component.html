@@ -18,8 +18,8 @@
         <div class="w-6">
           <div class="flex flex-column mb-3 pr-1">
             <span class="mb-2">Chuyên môn<span style="color: red">*</span></span>
-            <p-dropdown [autoDisplayFirst]="false" [filter]="true" [options]="specializes" optionValue="value" optionLabel="name"
-              formControlName="specialize"></p-dropdown>
+            <p-dropdown [autoDisplayFirst]="false" [filter]="true" [options]="specializes" optionValue="value"
+              optionLabel="name" formControlName="specialize"></p-dropdown>
             <span class="text-error" *ngIf="
           !formRecruit.value.specialize &&
           !this.formRecruit.valid &&
@@ -91,13 +91,50 @@
         <div class="w-6">
           <div class="flex flex-column mb-3 pl-1">
             <span class="mb-2">Thu nhập<span style="color: red">*</span></span>
-            <input type="text" class="p-inputtext-sm" pInputText formControlName="income" />
+            <p-dropdown [autoDisplayFirst]="false" [options]="incomeModes" optionValue="value" optionLabel="name"
+              (onChange)="checkRequiredIncome()" formControlName="incomeMode"></p-dropdown>
             <span class="text-error" *ngIf="
-          !formRecruit.value.income &&
+          !formRecruit.value.incomeMode &&
           !this.formRecruit.valid &&
           handleSubmit
         ">Không được để trống</span>
           </div>
+        </div>
+      </div>
+      <div *ngIf="formRecruit.get('incomeMode')!.value === 2 || formRecruit.get('incomeMode')!.value === 4"
+        class="flex w-full">
+        <div class="flex flex-column mb-3 w-12">
+          <span class="mb-2">Từ mức lương<span style="color: red">*</span></span>
+          <div class="w-12">
+            <div class="p-inputgroup">
+              <input type="number" class="p-inputtext-sm" pInputText formControlName="incomeFrom"
+                (input)="checkRequiredIncome()" />
+              <span class="p-inputgroup-addon">Triệu</span>
+            </div>
+            <span class="text-error" *ngIf="!isValidIncome">Không được để trống</span>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="formRecruit.get('incomeMode')!.value === 3 || formRecruit.get('incomeMode')!.value === 4"
+        class="flex w-full">
+        <div class="flex flex-column mb-3 w-12">
+          <span class="mb-2">Đến mức lương<span style="color: red">*</span></span>
+          <div class="w-12">
+            <div class="p-inputgroup">
+              <input type="number" class="p-inputtext-sm" pInputText formControlName="incomeTo"
+                (input)="checkRequiredIncome()" />
+              <span class="p-inputgroup-addon">Triệu</span>
+            </div>
+            <span class="text-error" *ngIf="!isValidIncome">Không được để trống</span>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="formRecruit.get('incomeMode')!.value === 5" class="flex w-full">
+        <div class="flex flex-column mb-3 w-12">
+          <span class="mb-2">Trong khoảng<span style="color: red">*</span></span>
+          <p-dropdown [autoDisplayFirst]="false" [options]="incomeRanges" optionValue="value" optionLabel="name"
+            formControlName="incomeRange" (onChange)="checkRequiredIncome()"></p-dropdown>
+          <span class="text-error" *ngIf="!isValidIncome">Không được để trống</span>
         </div>
       </div>
       <div class="flex w-full">
@@ -170,7 +207,9 @@
         <span class="font-semibold">Thông tin khác</span>
       </div>
       <div class="flex flex-column mb-3">
-        <textarea pInputTextarea [rows]="5" formControlName="otherDetail"></textarea>
+        <textarea
+          placeholder="Ví dụ: Phúc lợi khi tham gia dự án (máy tính, điện thoại, trợ cấp đi lại, đào tạo, du lịch, thưởng, khám sức khoẻ, thư viện, chứng chỉ...)"
+          pInputTextarea [rows]="5" formControlName="otherDetail"></textarea>
       </div>
     </div>
   </div>
