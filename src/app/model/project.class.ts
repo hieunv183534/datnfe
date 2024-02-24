@@ -79,11 +79,13 @@ export class GetListProjectForStartuperDto extends PagedAndSortedResultRequestDt
   areas?: number[];
   availableTimes?: number[];
   relationWithProject?: RelationWithProject;
-  scale?: number[];
+  scales?: number[];
   activePurpose?: number[];
   specialize?: number[];
   skill?: number[];
   experience?: number[];
+  workingFrom?: number;
+  isProfit?: boolean;
 }
 
 export class GetListProjectForInvestorDto extends PagedAndSortedResultRequestDto {

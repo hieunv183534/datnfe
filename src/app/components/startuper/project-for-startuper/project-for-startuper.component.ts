@@ -106,7 +106,9 @@ export class ProjectForStartuperComponent implements OnInit {
     input.fields = this.formSearch.value.fields ?? [];
     input.filter = this.formSearch.value.filter;
     input.stages = this.formSearch.value.stages ?? [];
-    input.scale = this.formSearch.value.scale ?? [];
+    input.scales = this.formSearch.value.scale ?? [];
+    input.workingFrom = 0
+    input.isProfit = true
     input.activePurpose = this.formSearch.value.activePurpose ?? [];
     input.specialize = this.formSearch.value.specialize ?? [];
     input.skill = this.formSearch.value.skill ?? [];
