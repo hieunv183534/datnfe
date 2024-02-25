@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="info">
-      <div style="border-bottom: 1px solid #D8DFE8; padding-left: 8px;">
+      <div style="border-bottom: 1px solid #d8dfe8; padding-left: 8px">
         <ul>
           <li>
             <div class="name">{{ startuperInfo.name }}</div>
@@ -357,43 +357,45 @@
   </div>
 
   <ng-template pTemplate="footer">
-    <p-button
-      *ngIf="friendStatus == 0"
-      label="Kết nối"
-      icon="pi pi-share-alt"
-      (onClick)="connectOnClick()"
-    ></p-button>
-    <p-button
-      *ngIf="friendStatus == 2"
-      label="Thu hồi lời mời"
-      icon="pi pi-times"
-      (onClick)="cancelOnClick()"
-    ></p-button>
-    <p-button
-      *ngIf="friendStatus == 2 || friendStatus == 3"
-      label="Xem lời mời"
-      icon="pi pi-envelope"
-      (onClick)="handleOpenRequest = true"
-    ></p-button>
-    <p-button
-      *ngIf="friendStatus == 3"
-      label="Chấp nhận"
-      icon="pi pi-check"
-      (onClick)="acceptOnClick()"
-    ></p-button>
-    <p-button
-      *ngIf="friendStatus != -1"
-      label="Trò chuyện"
-      icon="pi pi-comments"
-      class="p-button-success"
-      (onClick)="chatOnClick()"
-    ></p-button>
-    <p-button
-      *ngIf="friendStatus == -1"
-      label="Xóa tài khoản"
-      icon="pi pi-times"
-      (onClick)="deleteOnClick()"
-    ></p-button>
+    <div style="padding-top: 1.5rem">
+      <p-button
+        *ngIf="friendStatus == 0"
+        label="Kết nối"
+        icon="pi pi-share-alt"
+        (onClick)="connectOnClick()"
+      ></p-button>
+      <p-button
+        *ngIf="friendStatus == 2"
+        label="Thu hồi lời mời"
+        icon="pi pi-times"
+        (onClick)="cancelOnClick()"
+      ></p-button>
+      <p-button
+        *ngIf="friendStatus == 2 || friendStatus == 3"
+        label="Xem lời mời"
+        icon="pi pi-envelope"
+        (onClick)="handleOpenRequest = true"
+      ></p-button>
+      <p-button
+        *ngIf="friendStatus == 3"
+        label="Chấp nhận"
+        icon="pi pi-check"
+        (onClick)="acceptOnClick()"
+      ></p-button>
+      <p-button
+        *ngIf="friendStatus != -1"
+        label="Trò chuyện"
+        icon="pi pi-comments"
+        class="p-button-success"
+        (onClick)="chatOnClick()"
+      ></p-button>
+      <p-button
+        *ngIf="friendStatus == -1"
+        label="Xóa tài khoản"
+        icon="pi pi-times"
+        (onClick)="deleteOnClick()"
+      ></p-button>
+    </div>
   </ng-template>
 </p-dialog>
 
