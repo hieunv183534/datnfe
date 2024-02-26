@@ -132,162 +132,227 @@
       </div>
       <p-tabView>
         <p-tabPanel [header]="headerName" *ngIf="startuperInfo.purpose != 0">
-          <p *ngIf="startuperInfo.purpose == 1">
-            <b>Kỹ năng chuyên môn: </b>
-            <span>
-              <p-tag
-                *ngFor="
-                  let targetSpecialize of getSpecializies(
-                    startuperInfo.targetSpecialize ?? []
-                  )
-                "
-                [value]="targetSpecialize"
-                styleClass="mr-1 mt-1"
-              ></p-tag>
-            </span>
-          </p>
-          <p *ngIf="startuperInfo.purpose == 1">
-            <b>Điểm cộng kỹ năng mềm: </b>
-            <span>
-              <p-tag
-                *ngFor="
-                  let requestSkill of getSkills(
-                    startuperInfo.requestSkill ?? []
-                  )
-                "
-                [value]="requestSkill"
-                styleClass="mr-1 mt-1"
-              ></p-tag>
-            </span>
-          </p>
-          <p *ngIf="startuperInfo.purpose == 1">
-            <b>Điểm cộng tính cách: </b>
-            <span>
-              <p-tag
-                *ngFor="
-                  let requestPersonality of getPersonalities(
-                    startuperInfo.requestPersonality ?? []
-                  )
-                "
-                [value]="requestPersonality"
-                styleClass="mr-1 mt-1"
-              ></p-tag>
-            </span>
-          </p>
-          <p *ngIf="startuperInfo.purpose == 2">
-            <b>Lĩnh vực của ý tưởng: </b>
-            <span>
-              <p-tag
-                *ngFor="
-                  let targetField of getTargetField(
-                    startuperInfo.targetField ?? []
-                  )
-                "
-                [value]="targetField"
-                styleClass="mr-1 mt-1"
-              ></p-tag>
-            </span>
-          </p>
-          <p *ngIf="startuperInfo.purpose == 4">
-            <b>Lĩnh vực của dự án: </b>
-            <span>
-              <p-tag
-                *ngFor="
-                  let targetField of getTargetField(
-                    startuperInfo.targetField ?? []
-                  )
-                "
-                [value]="targetField"
-                styleClass="mr-1 mt-1"
-              ></p-tag>
-            </span>
-          </p>
+          <ul>
+            <li *ngIf="startuperInfo.purpose == 1">
+              <p>
+                <b>Kỹ năng chuyên môn: </b>
+              </p>
+              <span>
+                <p-tag
+                  *ngFor="
+                    let targetSpecialize of getSpecializies(
+                      startuperInfo.targetSpecialize ?? []
+                    )
+                  "
+                  [value]="targetSpecialize"
+                ></p-tag>
+              </span>
+            </li>
+            <li *ngIf="startuperInfo.purpose == 1">
+              <p>
+                <b>Điểm cộng kỹ năng mềm: </b>
+              </p>
+              <span>
+                <p-tag
+                  *ngFor="
+                    let requestSkill of getSkills(
+                      startuperInfo.requestSkill ?? []
+                    )
+                  "
+                  [value]="requestSkill"
+                ></p-tag>
+              </span>
+            </li>
+            <li *ngIf="startuperInfo.purpose == 1">
+              <p>
+                <b>Điểm cộng tính cách: </b>
+              </p>
+              <span>
+                <p-tag
+                  *ngFor="
+                    let requestPersonality of getPersonalities(
+                      startuperInfo.requestPersonality ?? []
+                    )
+                  "
+                  [value]="requestPersonality"
+                ></p-tag>
+              </span>
+            </li>
+            <li *ngIf="startuperInfo.purpose == 2">
+              <p>
+                <b>Lĩnh vực của ý tưởng: </b>
+              </p>
+              <span>
+                <p-tag
+                  *ngFor="
+                    let targetField of getTargetField(
+                      startuperInfo.targetField ?? []
+                    )
+                  "
+                  [value]="targetField"
+                ></p-tag>
+              </span>
+            </li>
+            <li *ngIf="startuperInfo.purpose == 4">
+              <p>
+                <b>Lĩnh vực của dự án: </b>
+              </p>
+              <span>
+                <p-tag
+                  *ngFor="
+                    let targetField of getTargetField(
+                      startuperInfo.targetField ?? []
+                    )
+                  "
+                  [value]="targetField"
+                ></p-tag>
+              </span>
+            </li>
+            <div *ngIf="startuperInfo.purpose == 3">
+              <div
+                *ngFor="let item of listProject; let i = index"
+                class="flex justify-content-between flex-wrap history-search"
+              >
+                <div class="flex align-items-center justify-content-center m-2">
+                  <img
+                    class="image-history"
+                    [src]="
+                      item.project.avatarUrl ??
+                      'https://fsiconnected.cloud/images/default-avatar.jpg'
+                    "
+                    alt=""
+                    width="100px"
+                    style="border-radius: 50%"
+                  />
+                  <div
+                    class="flex align-items-center justify-content-center ml-2"
+                  >
+                    <ul>
+                      <li>
+                        <b><span>Tên dự án: </span> </b>
+                        <span>{{ item.project.projectName }}</span>
+                      </li>
+                      <li>
+                        <b><span>Mô tả dự án: </span> </b>
+                        <span>{{ item.project.description }}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ul>
         </p-tabPanel>
         <p-tabPanel header="Giới thiệu bản thân">
-          <p>
-            <b>Kỹ năng chuyên môn: </b>
-            <span>
-              <p-tag
-                *ngFor="
-                  let specialize of getSpecializies(
-                    startuperInfo.specialize ?? []
-                  )
-                "
-                [value]="specialize"
-                styleClass="mr-1 mt-1"
-              ></p-tag>
-            </span>
-          </p>
-          <p>
-            <b>Kỹ năng mềm nổi bật: </b>
-            <span>
-              <ng-container
-                *ngFor="let personality of getSkills(startuperInfo.skill ?? [])"
-              >
-                <p-tag [value]="personality" styleClass="mr-1 mt-1"></p-tag>
-              </ng-container>
-            </span>
-          </p>
-          <p>
-            <b>Tính cách nổi bật: </b>
-            <span>
-              <ng-container
-                *ngFor="
-                  let personality of getPersonalities(
-                    startuperInfo.personality ?? []
-                  )
-                "
-              >
-                <p-tag [value]="personality" styleClass="mr-1 mt-1"></p-tag>
-              </ng-container>
-            </span>
-          </p>
-          <p>
-            <b>Thời gian khả dụng: </b>
-            <span>
-              <p-tag
-                :value="{{ getAvailableTime(startuperInfo.availableTime) }}"
-                class="ml-1"
-              ></p-tag>
-            </span>
-          </p>
-          <p *ngIf="startuperInfo.job == 1">
-            <b>Học vấn: </b>
-          </p>
-          <p *ngIf="startuperInfo.job == 1">
-            <i class="pi pi-building mr-1"></i>
-            <b> Trường học: </b> {{ startuperInfo.university }}
-          </p>
-          <p *ngIf="startuperInfo.job == 1">
-            <i class="pi pi-briefcase mr-1"></i>
-            <b> Ngành học: </b> {{ startuperInfo.universitySpecialized }}
-          </p>
-          <p>
-            <b>Kinh nghiệm làm việc: </b>
-            <span *ngIf="listWork.length == 0">Không có</span>
-          </p>
-          <p *ngFor="let item of listWork; let i = index">
-            <span class="color-text">{{ item.position }}</span> tại
-            <span class="color-text">{{ item.name }}</span>
-            <span
-              *ngIf="item.start || item.end"
-              style="display: flex; margin-bottom: 3px"
-              >{{ getDate(item.start) }} - {{ getDate(item.end) }}</span
-            >
-          </p>
-          <p>
-            <b>Hoạt động xã hội: </b>
-            <span *ngIf="startuperInfo.activity; else invalidName">{{
-              startuperInfo.activity
-            }}</span>
-          </p>
-          <p>
-            <b>Chứng chỉ thành tích: </b>
-            <span *ngIf="startuperInfo.certificateAndAward; else invalidName">{{
-              startuperInfo.certificateAndAward
-            }}</span>
-            <ng-template #invalidName> Không có </ng-template>
-          </p>
+          <ul style="padding: 0px !important">
+            <li>
+              <p>
+                <b>Kỹ năng chuyên môn: </b>
+              </p>
+              <span>
+                <p-tag
+                  *ngFor="
+                    let specialize of getSpecializies(
+                      startuperInfo.specialize ?? []
+                    )
+                  "
+                  [value]="specialize"
+                ></p-tag>
+              </span>
+            </li>
+            <li>
+              <p>
+                <b>Kỹ năng mềm nổi bật: </b>
+              </p>
+              <span>
+                <ng-container
+                  *ngFor="
+                    let personality of getSkills(startuperInfo.skill ?? [])
+                  "
+                >
+                  <p-tag [value]="personality"></p-tag>
+                </ng-container>
+              </span>
+            </li>
+            <li>
+              <p>
+                <b>Tính cách nổi bật: </b>
+              </p>
+              <span>
+                <ng-container
+                  *ngFor="
+                    let personality of getPersonalities(
+                      startuperInfo.personality ?? []
+                    )
+                  "
+                >
+                  <p-tag [value]="personality"></p-tag>
+                </ng-container>
+              </span>
+            </li>
+            <li>
+              <p>
+                <b>Thời gian khả dụng: </b>
+              </p>
+              <span>
+                <p-tag
+                  :value="{{ getAvailableTime(startuperInfo.availableTime) }}"
+                  class="ml-1"
+                ></p-tag>
+              </span>
+            </li>
+
+            <li *ngIf="startuperInfo.job == 1">
+              <p>
+                <b>Học vấn: </b>
+              </p>
+            </li>
+            <li *ngIf="startuperInfo.job == 1">
+              <p>
+                <i class="pi pi-building mr-1"></i>
+                <b> Trường học: </b> {{ startuperInfo.university }}
+              </p>
+            </li>
+            <li *ngIf="startuperInfo.job == 1">
+              <p>
+                <i class="pi pi-briefcase mr-1"></i>
+                <b> Ngành học: </b> {{ startuperInfo.universitySpecialized }}
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Kinh nghiệm làm việc: </b>
+                <span *ngIf="listWork.length == 0">Không có</span>
+              </p>
+              <p *ngFor="let item of listWork; let i = index">
+                <span class="color-text">{{ item.position }}</span> tại
+                <span class="color-text">{{ item.name }}</span>
+                <span
+                  *ngIf="item.start || item.end"
+                  style="display: flex; margin-bottom: 3px"
+                  >{{ getDate(item.start) }} - {{ getDate(item.end) }}</span
+                >
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Hoạt động xã hội: </b>
+                <span *ngIf="startuperInfo.activity; else invalidName">{{
+                  startuperInfo.activity
+                }}</span>
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Chứng chỉ thành tích: </b>
+                <span
+                  *ngIf="startuperInfo.certificateAndAward; else invalidName"
+                  >{{ startuperInfo.certificateAndAward }}</span
+                >
+                <ng-template #invalidName> Không có </ng-template>
+              </p>
+            </li>
+          </ul>
         </p-tabPanel>
         <p-tabPanel header="Bài viết">
           <p>Bài viết.</p>

@@ -33,6 +33,9 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
   personalities: any = FsiValues.personalities;
   skills: any = FsiValues.skills;
   yearOfExps: any = FsiValues.yearOfExps;
+  purposes: any = FsiValues.purposes;
+
+  disabledSearch: boolean = false;
 
   universities: any[] = FsiValues.universities.map((x) => {
     return {
@@ -106,6 +109,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
       areas: [[], []],
       availableTimes: [[], []],
       skills: [null, []],
+      purposes: [null, []],
       personalities: [[], []],
       yearOfExps: [[], []],
       mode: [UuidStartuperModeNew, []],
@@ -224,11 +228,13 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
     input.skipCount = (this.page - 1) * this.pageSize;
     input.maxResultCount = this.pageSize;
     input.sorting = this.sorting;
+    input.purposes = this.formSearch.value.purposes ?? [];
     this.startuperService
       .getListStartuper(input)
       .then((res: any) => {
         this.totalRecords = res.data.totalCount;
         this.listStartuper = res.data.items;
+        this.disabledSearch = false
       })
       .catch((err: any) => {
         this.messageService.add({
@@ -258,6 +264,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
   }
 
   submitSearch() {
+    this.disabledSearch = true
     this.getListStartuper(true);
   }
 
