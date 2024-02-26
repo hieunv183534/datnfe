@@ -1,0 +1,5 @@
+<div class="flex p-3" style="background-color: #F3F4F6;">
+  <div class="w-full h-auto">
+    <p-fileUpload name="myfile[]" [customUpload]="true" [multiple]="true" accept="image/*" (uploadHandler)="myUploader($event)"></p-fileUpload>
+  </div>
+</div>

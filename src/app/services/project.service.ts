@@ -179,4 +179,19 @@ export class ProjectService extends BaseService {
   deleteRecruit(projectId: string, recruitId: string) {
     return this.BaseAPIConfig.delete(`${this.apiController}/project-hiring?projectId=${projectId}&hiringId=${recruitId}`);
   }
+  getPitchDeck(projectId?: string) {
+    return this.BaseAPIConfig.get(`${this.apiController}/project-pitch-deck/${projectId}`);
+  }
+  addPitchDeck(files?: File[], projectId?: string) {
+    let formData = new FormData();
+    files?.forEach((file,index) => {
+      formData.append(`file${index}`, file)
+    })
+    return this.BaseAPIConfig.post(`${this.apiController}/upload-pitch-deck/${projectId}`, formData);
+  }
+  updatePitchDeck(projectId: string, avatarFile?: any) {
+    let formData = new FormData();
+    formData.append("file", avatarFile);
+    return this.BaseAPIConfig.put(`${this.apiController}/upload-pitch-deck/${projectId}`, formData);
+  }
 }

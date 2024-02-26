@@ -259,7 +259,7 @@ app-work-history-summary .p-card-content {
 .p-component {
   font-size: 14px !important;
 }
-:not(app-login, app-chat,app-list-project-member) .p-inputtext {
+:not(app-login, app-chat, app-list-project-member) .p-inputtext {
   padding: 0.5rem 0.75rem !important;
 }
 .p-fieldset .p-fieldset-content {
@@ -311,6 +311,7 @@ app-work-history-summary .p-card-content {
 .p-tabview .p-tabview-nav li .p-tabview-nav-link {
   padding-top: 16px !important;
   padding-bottom: 16px !important;
+  padding-right: 16px !important;
 }
 
 .p-tag-value {
@@ -336,8 +337,14 @@ app-work-history-summary .p-card-content {
 .p-dialog .p-dialog-header {
   font-weight: 600;
   font-size: 16px;
-  padding: 1rem 1rem 0.5rem 1rem !important;
+  padding: 1rem 1rem 0.5rem 1.5rem !important;
+  border-bottom: 1px solid #b9b3b0 !important;
 }
+
+.p-dialog .p-dialog-footer {
+  border-top: 1px solid #b9b3b0 !important;
+}
+
 .p-button-label {
   font-weight: 400 !important;
 }

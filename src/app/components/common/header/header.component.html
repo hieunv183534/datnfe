@@ -43,8 +43,7 @@
         </div>
       </a>
       
-      <p-menu class="custom-menu" [showTransitionOptions]="'100ms'" [hideTransitionOptions]="'100ms'" #menuHeader [popup]="true" [model]="itemsHeader">
-      </p-menu>
+
     </div>
   </div>
 
@@ -65,7 +64,8 @@
 </div>
 
 <p-menu #menu [popup]="true" [model]="items"></p-menu>
-
+<p-menu class="custom-menu" [showTransitionOptions]="'100ms'" [hideTransitionOptions]="'100ms'" #menuHeader [popup]="true" [model]="itemsHeader">
+</p-menu>
 <ng-container *ngIf="isShowUpdateInfo">
   <app-update-user-info [display]="isShowUpdateInfo" (close)="isShowUpdateInfo = false"
     [userInfo]="userInfo"></app-update-user-info>

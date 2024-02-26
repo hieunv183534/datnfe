@@ -136,6 +136,7 @@ import {AutoFocusModule} from 'primeng/autofocus';
 import { UpdateRecruitComponent } from './components/startuper/project-space/recruit/update-recruit/update-recruit.component';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import {InputMaskModule} from 'primeng/inputmask';
+import { PitchDeckComponent } from './components/startuper/project-space/pitch-deck/pitch-deck.component';
 
 @NgModule({
   declarations: [
@@ -202,7 +203,8 @@ import {InputMaskModule} from 'primeng/inputmask';
     WorkHistorySummaryComponent,
     ModalConnectComponent,
     ModalDetailConnectComponent,
-    HistorySearchItemComponent
+    HistorySearchItemComponent,
+    PitchDeckComponent
   ],
   imports: [
     CommonModule,

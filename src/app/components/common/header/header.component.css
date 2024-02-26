@@ -138,6 +138,10 @@ box-shadow: 1px 2px 4px rgb(0, 0, 0, 0.1);
 app-header .custom-menu > .p-menu .p-submenu-header{
   padding: 0 !important;
 }
+
+app-header .custom-menu > .p-menu .p-menuitem-link {
+  text-transform: uppercase;
+}
 app-header .custom-menu > .p-menu .p-menuitem-link .p-menuitem-text {
   color: #212121 !important;
   font-family: 'NotosansRegular' !important;
