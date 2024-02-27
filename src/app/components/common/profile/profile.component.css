@@ -12,14 +12,29 @@
 }
 
 .info {
-  margin-left: 5%;
+  margin-left: 16px;
 }
 
 ul {
   list-style: none;
-  line-height: 2;
   margin: 0;
-  padding: 0;
+  padding: 8px 0px 8px 0px;
+}
+
+li {
+  margin: 0;
+  padding: 0px 0px 8px 0px;
+  color: #000000;
+}
+
+p {
+  margin-bottom: 4px !important;
+  margin-left: 12px !important;
+  margin-top: 12px !important;
+}
+
+.p-tabview-panels {
+  padding-top: 0 !important;
 }
 
 .info .name {
@@ -27,18 +42,12 @@ ul {
   font-weight: 700;
 }
 
-.change-style {
-  margin-top: 80px;
-}
-
 .color-text {
   color: #01a9ff;
 }
 
-.logo {
-  top: 45%;
-  left: 5%;
-  width: 150px;
+.change-style {
+  margin-top: 80px;
 }
 
 @media (max-width: 576px) {

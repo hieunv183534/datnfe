@@ -59,7 +59,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
             icon: 'pi pi-cog',
             command: () => {
               // this.isShowUpdateInfo = true;
-              this.router.navigate([`./profile/${this.userInfo.nameid}`]);
+              this.router.navigate(['./profile/' + this.userInfo.nameid]);
             }
           },
           {

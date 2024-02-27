@@ -3,6 +3,10 @@ img.avatar {
   border-radius: 20px;
 }
 
+h4 {
+  color: #000000;
+}
+
 #avatar {
   height: 93px;
   width: 93px;
@@ -80,9 +84,6 @@ p {
   padding-bottom: 12px;
   padding-right: 6px;
   padding-top: 20px;
-  border-left: 1px solid #b9b3b0;
-  border-right: 1px solid #b9b3b0;
-  border-bottom: 1px solid #b9b3b0;
 }
 
 .col-6 {
@@ -90,9 +91,6 @@ p {
   padding-bottom: 12px !important;
   padding-right: 6px !important;
   padding-top: 20px !important;
-  border-left: 1px solid #b9b3b0;
-  border-right: 1px solid #b9b3b0;
-  border-bottom: 1px solid #b9b3b0;
 }
 
 h4 {
@@ -105,6 +103,7 @@ h4 {
 
 .content-introduce {
   padding: 6px;
+  color: #000000;
 }
 
 .p-accordion .p-accordion-content {

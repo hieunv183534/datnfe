@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
   userInfo: any = {};
   isChangeStyle: boolean = false;
   headerName: string = '';
-  menus = [{ href: "/startuper/project", title: "Dự án / Ý tưởng" }, { href: "/startuper/startuper/f6b77754-97c0-405f-86a5-f3f4959e2f3a", title: "Nhà khởi nghiệp" }]
+  menus = [{ href: "/startuper/project", title: "Tìm kiếm dự án" }, { href: "/startuper/startuper/f6b77754-97c0-405f-86a5-f3f4959e2f3a", title: "Tìm kiếm Co-founder" }]
 
   projectRoles = ["Nhà đầu tư", "Thành viên", "Đồng sáng lập", "Nhà sáng lập"]
   constructor(

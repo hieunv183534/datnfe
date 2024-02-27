@@ -38,6 +38,18 @@
             optionLabel="name"
             optionValue="value"
             appendTo="body"
+            [options]="purposes"
+            optionLabel="name"
+            formControlName="purposes"
+            defaultLabel="Mục đích tham gia"
+          >
+          </p-multiSelect>
+        </div>
+        <div class="p-field col-12 md-12 marginTop">
+          <p-multiSelect
+            optionLabel="name"
+            optionValue="value"
+            appendTo="body"
             [options]="areas"
             optionLabel="name"
             formControlName="areas"
@@ -105,33 +117,33 @@
           >
           </p-multiSelect>
         </div>
-        <ng-container *ngIf="userInfo.job == '1'">
-          <div class="p-field col-12 md-12 marginTop">
-            <p-dropdown
-              [filter]="true"
-              [options]="universities"
-              [style]="{ width: '100%' }"
-              [autoDisplayFirst]="false"
-              formControlName="university"
-              (onChange)="changeUniversity($event)"
-              optionLabel="name"
-              optionValue="value"
-              placeholder="Trường học"
-            ></p-dropdown>
-          </div>
-          <div class="p-field col-12 md-12 marginTop">
-            <p-dropdown
-              [filter]="true"
-              [options]="universitySpecializeds ?? []"
-              [style]="{ width: '100%' }"
-              [autoDisplayFirst]="false"
-              formControlName="universitySpecialized"
-              optionLabel="name"
-              optionValue="value"
-              placeholder="Ngành học"
-            ></p-dropdown>
-          </div>
-        </ng-container>
+        <!-- <ng-container *ngIf="userInfo.job == '1'"> -->
+        <div class="p-field col-12 md-12 marginTop">
+          <p-dropdown
+            [filter]="true"
+            [options]="universities"
+            [style]="{ width: '100%' }"
+            [autoDisplayFirst]="false"
+            formControlName="university"
+            (onChange)="changeUniversity($event)"
+            optionLabel="name"
+            optionValue="value"
+            placeholder="Trường học"
+          ></p-dropdown>
+        </div>
+        <div class="p-field col-12 md-12 marginTop">
+          <p-dropdown
+            [filter]="true"
+            [options]="universitySpecializeds ?? []"
+            [style]="{ width: '100%' }"
+            [autoDisplayFirst]="false"
+            formControlName="universitySpecialized"
+            optionLabel="name"
+            optionValue="value"
+            placeholder="Ngành học"
+          ></p-dropdown>
+        </div>
+        <!-- </ng-container> -->
         <div class="col-12 mt-2">
           <div class="grid">
             <div

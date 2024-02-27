@@ -38,6 +38,14 @@ app-startuper-for-startuper .p-dataview .p-dataview-content {
   background: unset !important;
 }
 
+app-startuper-for-startuper .p-dialog .p-dialog-header {
+  border-bottom: 1px solid #b9b3b0 !important;
+}
+
+app-startuper-for-startuper .p-dialog .p-dialog-footer {
+  border-top: 1px solid #b9b3b0 !important;
+}
+
 div.btnSearch:hover {
   background-color: #2563eb !important;
 }
