@@ -1,5 +1,4 @@
 .project-work-header{
-  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -78,4 +77,8 @@
 
 ::-webkit-scrollbar-thumb:horizontal:hover {
   background: #888888;
+}
+
+.p-fluid .p-dropdown {
+    height: 37px !important;
 }

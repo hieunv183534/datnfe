@@ -1,5 +1,30 @@
 <div class="flex p-3" style="background-color: #F3F4F6;">
-  <div class="w-full h-auto">
-    <p-fileUpload name="myfile[]" [customUpload]="true" [multiple]="true" accept="image/*" (uploadHandler)="myUploader($event)"></p-fileUpload>
+  <div class="flex flex-column w-full">
+    <p-fileUpload [files]="myFiles" [customUpload]="true" [multiple]="true" accept="image/*" (uploadHandler)="myUploader($event)">
+
+    </p-fileUpload>
+    <div *ngIf="listPitchDeck.length !== 0" class="bg-white border-1 border-round-md border-gray-200 pt-3 mt-1">
+      <p-carousel [value]="listPitchDeck">
+        <ng-template let-item pTemplate="item">
+          <div class="flex w-full align-items-center justify-content-center">
+            <img class="w-full h-auto" [src]="item.url" alt="" style="object-fit: contain;max-height: 500px;">
+          </div>
+        </ng-template>
+      </p-carousel>
+      <div class="pr-3 pb-3">
+        <p-orderList [dragdrop]="true" [value]="listPitchDeck" (onReorder)="onReorder()">
+          <ng-template let-item pTemplate="item">
+            <div class="flex justify-content-between">
+              <div class="flex align-items-center">
+                <img [src]="item.url" class="w-4rem h-auto mr-3" style="object-fit: contain;">
+                <span>{{item.name}}</span>
+              </div>
+              <button  pButton type="button" icon="pi pi-trash" iconPos="left" (mousedown)="deletePitchDeck($event,item)"
+                class="p-button-danger p-button-raised p-button-rounded"></button>
+            </div>
+          </ng-template>
+        </p-orderList>
+      </div>
+    </div>
   </div>
 </div>

@@ -184,14 +184,15 @@ export class ProjectService extends BaseService {
   }
   addPitchDeck(files?: File[], projectId?: string) {
     let formData = new FormData();
-    files?.forEach((file,index) => {
+    files?.forEach((file, index) => {
       formData.append(`file${index}`, file)
     })
     return this.BaseAPIConfig.post(`${this.apiController}/upload-pitch-deck/${projectId}`, formData);
   }
-  updatePitchDeck(projectId: string, avatarFile?: any) {
-    let formData = new FormData();
-    formData.append("file", avatarFile);
-    return this.BaseAPIConfig.put(`${this.apiController}/upload-pitch-deck/${projectId}`, formData);
+  sortPitchDeck(projectId: string, pitchDecks?: string[]) {
+    return this.BaseAPIConfig.post(`${this.apiController}/sort-pitch-deck/${projectId}`, pitchDecks);
+  }
+  deletePitchDeck(projectId?: string, pitchDeck?: string) {
+    return this.BaseAPIConfig.delete(`${this.apiController}/pitch-deck?projectId=${projectId}&pitchId=${pitchDeck}`);
   }
 }

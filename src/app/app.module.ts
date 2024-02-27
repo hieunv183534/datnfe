@@ -137,7 +137,7 @@ import { UpdateRecruitComponent } from './components/startuper/project-space/rec
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import {InputMaskModule} from 'primeng/inputmask';
 import { PitchDeckComponent } from './components/startuper/project-space/pitch-deck/pitch-deck.component';
-
+import {OrderListModule} from 'primeng/orderlist';
 @NgModule({
   declarations: [
     HomePageNewComponent,
@@ -272,7 +272,8 @@ import { PitchDeckComponent } from './components/startuper/project-space/pitch-d
     ButtonModule,
     CarouselModule,
     VirtualScrollerModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    OrderListModule
   ],
   providers: [
     MessageService,
