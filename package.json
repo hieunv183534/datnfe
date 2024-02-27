@@ -29,7 +29,6 @@
     "@microsoft/signalr": "^6.0.1",
     "@ngstack/code-editor": "^4.0.0",
     "@types/uuid": "^9.0.2",
-    "agora-rtc-sdk-ng": "^4.18.2",
     "axios": "^0.27.2",
     "chart.js": "^3.9.1",
     "javascript-time-ago": "^2.5.9",
