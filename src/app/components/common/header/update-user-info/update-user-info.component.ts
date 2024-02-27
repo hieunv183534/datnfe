@@ -99,7 +99,7 @@ export class UpdateUserInfoComponent implements OnInit {
     });
 
     this.formStartuperInfo = this.fb.group({
-      describe: [null, [Validators.required]],
+      describe: [null, []],
       purpose: [null, 0],
       ideaField: [null, [Validators.required]],
       targetField: [null, [Validators.required]],

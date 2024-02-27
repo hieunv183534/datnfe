@@ -82,11 +82,6 @@ export class FsiValues {
     new DataPointDto("Trung câp", 5),
     new DataPointDto("Trung học phổ thông", 6),
   ]
-  static specializes: DataPointDto[] = [
-    new DataPointDto("hehe", 1),
-    new DataPointDto("Lhaha", 2),
-    new DataPointDto("Hhuhu", 3),
-  ]
   static areas: DataPointDto[] = [
     new DataPointDto("Bắc Giang", 1, "BacGiang"),
     new DataPointDto("Bắc Kạn", 2, "BacKan"),

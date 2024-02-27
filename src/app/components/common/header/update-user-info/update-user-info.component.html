@@ -184,22 +184,9 @@
                       [rows]="5"
                       pInputTextarea
                       formControlName="describe"
-                      (input)="handleChange()"
                     ></textarea>
-                    <label
-                      >Mô tả thêm, slogan của bản thân:
-                      <span style="color: red">*</span>
-                    </label>
+                    <label>Mô tả thêm, slogan của bản thân: </label>
                   </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
-                      !formStartuperInfo.value.describe &&
-                      !this.formStartuperInfo.valid &&
-                      handleSubmit
-                    "
-                    >Mô tả thêm, slogan của bản thân không được để trống</span
-                  >
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">

@@ -117,33 +117,42 @@
           >
           </p-multiSelect>
         </div>
-        <!-- <ng-container *ngIf="userInfo.job == '1'"> -->
-        <div class="p-field col-12 md-12 marginTop">
-          <p-dropdown
-            [filter]="true"
-            [options]="universities"
-            [style]="{ width: '100%' }"
-            [autoDisplayFirst]="false"
-            formControlName="university"
-            (onChange)="changeUniversity($event)"
-            optionLabel="name"
-            optionValue="value"
-            placeholder="Trường học"
-          ></p-dropdown>
+        <div class="field-checkbox">
+          <p-checkbox
+            (click)="chooseStudent()"
+            [binary]="true"
+            inputId="locSinhVien"
+          ></p-checkbox>
+          <label for="locSinhVien">Bộ lọc sinh viên</label>
         </div>
-        <div class="p-field col-12 md-12 marginTop">
-          <p-dropdown
-            [filter]="true"
-            [options]="universitySpecializeds ?? []"
-            [style]="{ width: '100%' }"
-            [autoDisplayFirst]="false"
-            formControlName="universitySpecialized"
-            optionLabel="name"
-            optionValue="value"
-            placeholder="Ngành học"
-          ></p-dropdown>
-        </div>
-        <!-- </ng-container> -->
+        <ng-container *ngIf="checkStudent">
+          <div class="p-field col-12 md-12 marginTop">
+            <p-dropdown
+              [filter]="true"
+              [options]="universities"
+              [style]="{ width: '100%' }"
+              [autoDisplayFirst]="false"
+              formControlName="university"
+              (onChange)="changeUniversity($event)"
+              optionLabel="name"
+              optionValue="value"
+              placeholder="Trường học"
+            ></p-dropdown>
+          </div>
+          <div class="p-field col-12 md-12 marginTop">
+            <p-dropdown
+              [filter]="true"
+              [options]="universitySpecializeds ?? []"
+              [disabled]="!formSearch.value.university"
+              [style]="{ width: '100%' }"
+              [autoDisplayFirst]="false"
+              formControlName="universitySpecialized"
+              optionLabel="name"
+              optionValue="value"
+              placeholder="Ngành học"
+            ></p-dropdown>
+          </div>
+        </ng-container>
         <div class="col-12 mt-2">
           <div class="grid">
             <div
@@ -180,8 +189,11 @@
         </div>
       </div>
       <div class="md:col-10" style="padding-left: 24px !important">
-        <div class="grid marginTop row" style="margin-top: 16px !important">
-          <div class="col-10">
+        <div
+          class="grid marginTop row"
+          style="margin-top: 16px !important; margin-bottom: 16px !important"
+        >
+          <div class="col-8">
             <span class="p-input-icon-left col-12">
               <i class="pi pi-search"></i>
               <input
@@ -194,13 +206,24 @@
               />
             </span>
           </div>
-          <!-- <div class="md:col-2" style="padding-left: 16px !important">
-            <p-button
-              [style]="{ backgroundColor: '#01A9FF' }"
-              (onClick)="routeToHistorySearch()"
-              >Lịch sử tìm kiếm</p-button
-            >
-          </div> -->
+          <div
+            class="col-4"
+            style="padding-left: 8px !important; padding-right: 16px !important"
+          >
+            <div class="p-field col-12 md-12">
+              <p-dropdown
+                [filter]="true"
+                [options]="listSort"
+                [style]="{ width: '100%' }"
+                [autoDisplayFirst]="false"
+                (onChange)="changeSort($event)"
+                optionLabel="label"
+                optionValue="name"
+                placeholder="Sắp xếp theo"
+              ></p-dropdown>
+            </div>
+          </div>
+          <!--
           <div
             class="col-10 grid"
             style="
@@ -243,7 +266,7 @@
             >
               Năm kinh nghiệm
             </button>
-          </div>
+          </div> -->
         </div>
         <p-dataView [value]="listStartuper" *ngIf="listStartuper.length > 0">
           <ng-template let-startuper pTemplate="listItem">

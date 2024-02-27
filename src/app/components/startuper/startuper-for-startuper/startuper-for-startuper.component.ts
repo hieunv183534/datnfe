@@ -36,6 +36,15 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
   purposes: any = FsiValues.purposes;
 
   disabledSearch: boolean = false;
+  checkStudent: boolean = false;
+
+  listSort: any = [
+    { name: 'suitable', label: 'Phù hợp nhất' },
+    { name: 'availableTime', label: 'Thời gian khả dụng tăng ⇧' },
+    { name: 'availableTimeDESC', label: 'Thời gian khả dụng giảm ⇩' },
+    { name: 'yearOfExp', label: 'Năm kinh nghiệm tăng ⇧' },
+    { name: 'yearOfExpDESC', label: 'Năm kinh nghiệm giảm ⇩' },
+  ];
 
   universities: any[] = FsiValues.universities.map((x) => {
     return {
@@ -64,7 +73,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
   startItem = 0;
   endItem = 0;
 
-  sorting: string = 'suitable';
+  sorting: string = '';
   styleBtnSuitable: any = {};
   styleBtnAvailableTime: any = 'p-button-secondary';
   styleBtnYearOfExp: any = 'p-button-secondary';
@@ -208,6 +217,10 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
     this.getListStartuper(true);
   }
 
+  chooseStudent() {
+    this.checkStudent = !this.checkStudent
+  }
+
   getListStartuper(reset: boolean = false) {
     if (reset) {
       this.page = 1;
@@ -234,7 +247,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
       .then((res: any) => {
         this.totalRecords = res.data.totalCount;
         this.listStartuper = res.data.items;
-        this.disabledSearch = false
+        this.disabledSearch = false;
       })
       .catch((err: any) => {
         this.messageService.add({
@@ -244,6 +257,12 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
           detail: 'Lấy danh sách Nhà khởi nghiệp thất bại, vui lòng thử lại!',
         });
       });
+  }
+
+  changeSort(e: any){
+    // console.log(e.value)
+    this.sorting = e.value
+    this.getListStartuper(true);
   }
 
   changeUniversity(e: any) {
@@ -264,7 +283,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
   }
 
   submitSearch() {
-    this.disabledSearch = true
+    this.disabledSearch = true;
     this.getListStartuper(true);
   }
 
@@ -276,6 +295,8 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
     this.formSearch.controls['skills'].patchValue([]);
     this.formSearch.controls['yearOfExps'].patchValue([]);
     this.formSearch.controls['mode'].patchValue(UuidStartuperModeNew);
+    this.formSearch.controls['university'].patchValue(null);
+    this.formSearch.controls['universitySpecialized'].patchValue(null);
     this.page = 1;
     this.pageSize = 10;
     this.getListStartuper(true);

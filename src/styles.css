@@ -338,11 +338,6 @@ app-work-history-summary .p-card-content {
   font-weight: 600;
   font-size: 16px;
   padding: 1rem 1rem 0.5rem 1.5rem !important;
-  border-bottom: 1px solid #b9b3b0 !important;
-}
-
-.p-dialog .p-dialog-footer {
-  border-top: 1px solid #b9b3b0 !important;
 }
 
 .p-button-label {

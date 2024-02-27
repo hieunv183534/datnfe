@@ -14,7 +14,11 @@ app-startuper-for-startuper .md\:col-10 {
   padding: 0px !important;
 }
 
-app-startuper-for-startuper .col-10 {
+app-startuper-for-startuper .col-8 {
+  padding: 0px !important;
+}
+
+app-startuper-for-startuper .col-4 {
   padding: 0px !important;
 }
 
@@ -36,14 +40,6 @@ app-startuper-for-startuper .grid {
 
 app-startuper-for-startuper .p-dataview .p-dataview-content {
   background: unset !important;
-}
-
-app-startuper-for-startuper .p-dialog .p-dialog-header {
-  border-bottom: 1px solid #b9b3b0 !important;
-}
-
-app-startuper-for-startuper .p-dialog .p-dialog-footer {
-  border-top: 1px solid #b9b3b0 !important;
 }
 
 div.btnSearch:hover {
