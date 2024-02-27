@@ -116,7 +116,6 @@ import { ListStartuperComponent } from './components/admin/admin-home/list-start
 import { TopSimilarProjectComponent } from './components/startuper/project-space/top-similar-project/top-similar-project.component';
 import { RequestInfoComponent } from './components/startuper/project-space/list-project-invite-member/request-info/request-info.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
-import { VideoCallComponent } from './components/chat/video-call/video-call.component';
 import { WorkHistorySummaryComponent } from './components/common/work-history-summary/work-history-summary.component';
 import { ModalConnectComponent } from './components/common/startuper-item/modalConnect/modal-connect.component';
 import { ModalDetailConnectComponent } from './components/common/startuper-item/modalDetailConnect/modal-detail-connect.component';
@@ -198,7 +197,6 @@ import {InputMaskModule} from 'primeng/inputmask';
     ListAdminComponent,
     TopSimilarProjectComponent,
     RequestInfoComponent,
-    VideoCallComponent,
     WorkHistorySummaryComponent,
     ModalConnectComponent,
     ModalDetailConnectComponent,

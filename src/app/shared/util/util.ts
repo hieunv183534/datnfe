@@ -53,8 +53,6 @@ export class UniversitySpecialized {
   specializeds?: string[];
 }
 
-
-
 export class FsiValues {
 
   static getName(value: number, arr: DataPointDto[]) {

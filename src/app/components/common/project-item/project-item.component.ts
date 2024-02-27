@@ -53,6 +53,10 @@ export class ProjectItemComponent implements OnInit {
     return FsiValues.getMultiName(val, FsiValues.fields).split(', ');
   }
 
+  getSpecializes(val: number[]){
+    return FsiValues.getMultiName(val, FsiValues.specializies).split(', ');
+  }
+
   viewProject() {
     if (this.relationWithProject == 0) {
       this.showDetailProject();
