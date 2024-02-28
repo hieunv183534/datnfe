@@ -17,3 +17,18 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+.p-chips {
+  display: flex !important;
+  width: 100% !important;
+}
+.p-chips .p-chips-multiple-container {
+  width: 100% !important;
+}
+
+.p-chips .p-chips-multiple-container .p-chips-input-token {
+  padding: 0;
+}
+.p-chips .p-chips-multiple-container .p-chips-token {
+  padding: 0.1rem 0.5rem;
+}
