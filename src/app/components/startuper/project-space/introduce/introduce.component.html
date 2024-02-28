@@ -9,16 +9,17 @@
           <div
             class="flex flex-column justify-content-start align-items-center p-2 w-custom-responsive h-auto border-custom border-1 bg-white"
             style="min-height: 3rem;">
-            <span class="font-semibold">{{items.title}}</span>
+            <div class="h-auto">
+              <span class="font-semibold">{{items.title}}</span>
+            </div>
             <ng-container *ngFor="let item of items.content;let indexItem = index;let isLast= last, let isFirst=first">
               <div :key="index"
                 class="container-canvas relative flex h-auto w-full border-round-md my-2 p-2 text-black-alpha-90 shadow-10"
                 [style.background-color]="items.bg" style="padding-right: 1.5rem !important;">
-                <div  (dblclick)="indexItemEdit=indexItem;modelIndex=index" [(ngModel)]="value" ngDefaultControl
-                  (keyup.enter)="handleEdit()" [attr.contenteditable]="indexItem===indexItemEdit && modelIndex===index"
-                  class="flex w-full h-auto">
+                <div ngDefaultControl class="flex w-full h-auto">
                   {{item.value}}
                 </div>
+
                 <div class="function-item">
                   <div
                     (click)="op1.toggle($event);itemIndex= indexItem;modelIndex=index;isLastItem=isLast;isFirstItem=isFirst"
@@ -89,7 +90,7 @@
           <i class="pi pi-arrow-down mr-2 text-xs"></i>
           <p class="text-xs my-0">Chuyển xuống dưới</p>
         </div>
-        <div (click)="op1.hide()"
+        <div (click)="op1.hide();handleShowEditItem()"
           class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1 hover:text-primary">
           <i class="pi pi-pencil mr-2 text-xs"></i>
           <p class="text-xs my-0">Sửa</p>
@@ -102,4 +103,21 @@
       </div>
     </ng-template>
   </p-overlayPanel>
+  <p-dialog header="Sửa" [(visible)]="isShowEditItem">
+    <ng-template pTemplate="header">
+      Sửa
+    </ng-template>
+    <ng-template pTemplate>
+      <div class="flex flex-column">
+        <textarea pInputTextarea (blur)="handleUpdate()" (keydown)="handleKeyDown($event)" [(ngModel)]="value"
+          [rows]="2" [pAutoFocus]="true"></textarea>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button pButton type="button" label="Lưu" class="p-button-sm font-normal" (click)="handleEditItem()"></button>
+      <button pButton type="button" label="Đóng" class="p-button-outlined p-button-secondary" (click)="isShowEditItem=false"></button>
+
+    </ng-template>
+
+  </p-dialog>
 </div>

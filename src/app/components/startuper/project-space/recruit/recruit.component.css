@@ -1,5 +1,5 @@
 .function-recruit{
-    display: block;
+    display: hidden !important;
 }
 .container-recruit:hover .function-recruit {
     display: block;

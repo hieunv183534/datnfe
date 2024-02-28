@@ -10,6 +10,7 @@ import { ProjectService } from 'src/app/services/project.service';
 export class IntroduceComponent implements OnInit {
   isFirstItem: boolean = false
   isLastItem: boolean = false
+  isShowEditItem: boolean = false
   indexItemEdit?: number = undefined
   itemIndex?: number = undefined
   modelIndex?: number = undefined
@@ -121,7 +122,6 @@ export class IntroduceComponent implements OnInit {
       this.projectService.updateProjectBusinessModel(this.projectId, businessModelStr).then((res: any) => {
 
       }).catch((err: any) => {
-        debugger
       });
       this.value = '';
       this.isNewContent = undefined
@@ -132,15 +132,22 @@ export class IntroduceComponent implements OnInit {
       }
     }
   }
-  handleEdit() {
-    if (this.modelIndex !== undefined && this.indexItemEdit != undefined) {
-      this.businessModel[this.modelIndex].content[this.indexItemEdit].value = this.value
-      debugger
-      let businessModelStr = JSON.stringify(this.businessModel);
-      // this.projectService.updateProjectBusinessModel(this.projectId, businessModelStr).then((res: any) => {
-      // }).catch((err: any) => {
-      // });
+  handleShowEditItem() {
+    this.isShowEditItem = true;
+    if (this.itemIndex !== undefined && this.modelIndex !== undefined) {
+      this.value = this.businessModel[this.modelIndex].content[this.itemIndex].value
     }
+  }
+  handleEditItem() {
+    this.isShowEditItem = false;
+    if (this.itemIndex !== undefined && this.modelIndex !== undefined) {
+      this.businessModel[this.modelIndex].content[this.itemIndex].value = this.value;
+    }
+    let businessModelStr = JSON.stringify(this.businessModel);
+    this.projectService.updateProjectBusinessModel(this.projectId, businessModelStr).then((res: any) => {
+
+    }).catch((err: any) => {
+    }).finally(() => { this.value = ''; });
   }
   handleDelete() {
     if (this.itemIndex !== undefined && this.modelIndex !== undefined) {

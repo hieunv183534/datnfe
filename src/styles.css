@@ -201,7 +201,7 @@ app-admin .p-multiselect.p-component {
 }
 
 .p-galleria .p-galleria-thumbnail-container {
-  background-color: #3b82f6 !important;
+  /* background-color: #3b82f6 !important; */
   padding: 4px !important;
 }
 
@@ -352,4 +352,7 @@ p {
   margin-block-end: 0 !important;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
+}
+.outline-primary{
+  outline: 2px solid #00a3ff ;
 }

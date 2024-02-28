@@ -1,42 +1,45 @@
-<div class="w-full h-auto flex flex-column">
-  <div class="col-12 mb-2 project-work-header">
-    <span class="flex align-items-center justify-content-start">
-      <span class="p-input-icon-left mr-2">
-        <i class="pi pi-search"></i>
-        <input type="text" pInputText placeholder="Search">
+<div class="flex p-3" style="background-color: #F3F4F6;">
+
+  <div class="w-full h-auto flex flex-column bg-white border-1 border-round-md border-gray-200 p-3">
+    <div class="w-full mb-3 project-work-header">
+      <span class="flex align-items-center justify-content-start">
+        <span class="p-input-icon-left mr-2">
+          <i class="pi pi-search"></i>
+          <input type="text" pInputText placeholder="Search">
+        </span>
       </span>
-    </span>
-    <p-button label="Công việc mới" icon="pi pi-plus" (onClick)="isVisibleAddWork = true"></p-button>
-  </div>
-  <div class="col-12 flex align-items-start justify-content-between"
-    style="height: 700px; gap:20px ;padding: 0px 40px 0px 0px;" cdkDropListGroup>
-    <div class="col-4 work-column">
-      <div class="work-column-header">
-        <h4>NEW</h4>
-      </div>
-      <div class="work-list" cdkDropList [cdkDropListData]="newWorks" (cdkDropListDropped)="drop($event,0)">
-        <div *ngFor="let work of newWorks" class="work-item" cdkDrag>
-          <ng-container *ngTemplateOutlet="workItem; context:{ work: work}"></ng-container>
+      <p-button label="Công việc mới" icon="pi pi-plus" (onClick)="isVisibleAddWork = true"></p-button>
+    </div>
+    <div class="w-full flex align-items-start justify-content-between "
+      style="height: 700px; gap:20px ;padding: 0px 40px 0px 0px;" cdkDropListGroup>
+      <div class="col-4 work-column">
+        <div class="work-column-header">
+          <h4>NEW</h4>
+        </div>
+        <div class="work-list" cdkDropList [cdkDropListData]="newWorks" (cdkDropListDropped)="drop($event,0)">
+          <div *ngFor="let work of newWorks" class="work-item" cdkDrag>
+            <ng-container *ngTemplateOutlet="workItem; context:{ work: work}"></ng-container>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-4 work-column flex flex-column relative">
-      <div class="work-column-header">
-        <h4>INPROGRESS</h4>
-      </div>
-      <div class="work-list" cdkDropList [cdkDropListData]="inprogressWorks" (cdkDropListDropped)="drop($event,1)">
-        <div *ngFor="let work of inprogressWorks" class="work-item" cdkDrag>
-          <ng-container *ngTemplateOutlet="workItem; context:{ work: work}"></ng-container>
+      <div class="col-4 work-column flex flex-column relative">
+        <div class="work-column-header">
+          <h4>INPROGRESS</h4>
+        </div>
+        <div class="work-list" cdkDropList [cdkDropListData]="inprogressWorks" (cdkDropListDropped)="drop($event,1)">
+          <div *ngFor="let work of inprogressWorks" class="work-item" cdkDrag>
+            <ng-container *ngTemplateOutlet="workItem; context:{ work: work}"></ng-container>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-4 work-column flex flex-column relative">
-      <div class="work-column-header">
-        <h4>DONE</h4>
-      </div>
-      <div class="work-list" cdkDropList [cdkDropListData]="doneWorks" (cdkDropListDropped)="drop($event,2)">
-        <div *ngFor="let work of doneWorks" class="work-item" cdkDrag>
-          <ng-container *ngTemplateOutlet="workItem; context:{ work: work}"></ng-container>
+      <div class="col-4 work-column flex flex-column relative">
+        <div class="work-column-header">
+          <h4>DONE</h4>
+        </div>
+        <div class="work-list" cdkDropList [cdkDropListData]="doneWorks" (cdkDropListDropped)="drop($event,2)">
+          <div *ngFor="let work of doneWorks" class="work-item" cdkDrag>
+            <ng-container *ngTemplateOutlet="workItem; context:{ work: work}"></ng-container>
+          </div>
         </div>
       </div>
     </div>
@@ -48,12 +51,14 @@
   <h4>{{work.title}}</h4>
   <span class="flex align-items-center">
     <i class="pi pi-window-maximize mr-3"></i>
-    <p-avatar shape="circle" [image]="work.assignor.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
+    <p-avatar shape="circle"
+      [image]="work.assignor.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
     <p class="ml-3">{{work.assignor.name}}</p>
   </span>
   <span class="flex align-items-center">
     <i class="pi pi-window-minimize mr-3"></i>
-    <p-avatar shape="circle" [image]="work.assignee.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
+    <p-avatar shape="circle"
+      [image]="work.assignee.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
     <p class="ml-3">{{work.assignee.name}}</p>
   </span>
   <span class="flex align-items-center">
@@ -66,28 +71,30 @@
 <p-dialog [resizable]="true" header="Thêm mới công việc" [(visible)]="isVisibleAddWork" [modal]="true"
   [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false">
   <div class="grid p-fluid">
-    <div class="p-field col-12 md-12">
+    <div class="p-field w-full md-12">
       <span class="p-float-label">
         <input type="text" pInputText [(ngModel)]="title" />
         <label>Tiêu đề công việc: <span style="color: red;">*</span>
         </label>
       </span>
     </div>
-    <div class="p-field col-6">
-      <span class="p-float-label">
+    <div class="p-field w-6">
+      <span class="p-float-label pr-1">
         <p-dropdown appendTo="body" [options]="users" [(ngModel)]="selectAssignee" optionLabel="name" [filter]="true"
           filterBy="name" [showClear]="true" placeholder="Select a Country">
           <ng-template pTemplate="selectedItem">
             <div class="country-item country-item-value" *ngIf="selectAssignee">
               <span class="flex align-items-center">
-                <p-avatar shape="circle" [image]="selectAssignee.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
+                <p-avatar shape="circle"
+                  [image]="selectAssignee.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
                 <p class="ml-3">{{selectAssignee.name}}</p>
               </span>
             </div>
           </ng-template>
           <ng-template let-user pTemplate="item">
             <span class="flex align-items-center">
-              <p-avatar shape="circle" [image]="user.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
+              <p-avatar shape="circle"
+                [image]="user.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"></p-avatar>
               <p class="ml-3">{{user.name}}</p>
             </span>
           </ng-template>
@@ -96,14 +103,14 @@
         </label>
       </span>
     </div>
-    <div class="p-field col-6">
-      <span class="p-float-label">
+    <div class="p-field w-6">
+      <span class="p-float-label pl-1">
         <p-calendar appendTo="body" [(ngModel)]="deadline"></p-calendar>
         <label>Deadline:
         </label>
       </span>
     </div>
-    <div class="p-field col-12 md-12">
+    <div class="p-field w-full md-12">
       <span class="p-float-label">
         <textarea [rows]="5" pInputTextarea [(ngModel)]="description"></textarea>
         <label>Chi tiết:

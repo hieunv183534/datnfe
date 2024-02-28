@@ -45,20 +45,20 @@
       </div>
       <div class="project-work-space w-full h-auto">
         <p-tabView (onChange)="tabChange($event)">
+          <p-tabPanel header="Lịch">
+            <app-project-calendar [projectId]="project.id" [mode]="project.extraProperties.relationWithProject"
+              #appCalendar></app-project-calendar>
+          </p-tabPanel>
           <p-tabPanel header="Tìm kiếm">
             <app-recruit [projectId]="project.id"></app-recruit>
           </p-tabPanel>
           <p-tabPanel header="Giới thiệu">
             <app-introduce></app-introduce>
           </p-tabPanel>
-          <p-tabPanel header="Thành viên">
-          </p-tabPanel>
           <p-tabPanel header="Pitch deck">
+            <app-pitch-deck [projectId]="project.id"></app-pitch-deck>
           </p-tabPanel>
-          <p-tabPanel header="Lịch">
-            <app-project-calendar [projectId]="project.id" [mode]="project.extraProperties.relationWithProject"
-              #appCalendar></app-project-calendar>
-          </p-tabPanel>
+          
           <p-tabPanel header="Thông tin">
             <app-project-event [project]="project" #appFeed></app-project-event>
           </p-tabPanel>

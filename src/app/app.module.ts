@@ -135,7 +135,8 @@ import {AutoFocusModule} from 'primeng/autofocus';
 import { UpdateRecruitComponent } from './components/startuper/project-space/recruit/update-recruit/update-recruit.component';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import {InputMaskModule} from 'primeng/inputmask';
-
+import { PitchDeckComponent } from './components/startuper/project-space/pitch-deck/pitch-deck.component';
+import {OrderListModule} from 'primeng/orderlist';
 @NgModule({
   declarations: [
     HomePageNewComponent,
@@ -200,7 +201,8 @@ import {InputMaskModule} from 'primeng/inputmask';
     WorkHistorySummaryComponent,
     ModalConnectComponent,
     ModalDetailConnectComponent,
-    HistorySearchItemComponent
+    HistorySearchItemComponent,
+    PitchDeckComponent
   ],
   imports: [
     CommonModule,
@@ -268,7 +270,8 @@ import {InputMaskModule} from 'primeng/inputmask';
     ButtonModule,
     CarouselModule,
     VirtualScrollerModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    OrderListModule
   ],
   providers: [
     MessageService,

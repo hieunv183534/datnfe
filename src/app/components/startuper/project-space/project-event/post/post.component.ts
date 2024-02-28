@@ -30,6 +30,9 @@ export class PostComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log("event",this.event);
+    console.log("project",this.project);
+    
     if(this.event.images){
       this.medias = this.event.images.map((url: string)=>{
         return {

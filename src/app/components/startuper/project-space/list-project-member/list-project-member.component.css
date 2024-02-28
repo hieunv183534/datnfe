@@ -11,6 +11,9 @@
 .owner-outline{
   outline: 2px solid #ffcd36 ;
 }
+.outline-primary{
+  outline: 2px solid #00a3ff ;
+}
 .user-item:hover{
   background-color: #ddd;
 }
