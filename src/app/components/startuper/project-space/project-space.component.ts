@@ -21,6 +21,8 @@ export class ProjectSpaceComponent implements OnInit {
   fields: any = FsiValues.fields;
   areas: any = FsiValues.areas;
 
+  isShowMember: boolean = false;
+  isShowDocuments: boolean = false;
   isShowAddMember: boolean = false;
   isShowUpdateProject: boolean = false;
 

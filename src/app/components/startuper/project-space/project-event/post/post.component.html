@@ -2,7 +2,8 @@
   <ng-container *ngIf="event.type == 0">
     <div class="w-full flex justify-content-between align-items-center">
       <span class="flex align-items-center justify-content-center relative">
-        <img shape="circle" class="h-2rem w-2rem border-circle outline-primary" [src]="project?.founder?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"/>
+        <img shape="circle" class="h-2rem w-2rem border-circle outline-primary"
+          [src]="project?.founder?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" />
         <p class="ml-2">{{project?.founder?.name}}</p>
       </span>
       <span class="flex align-items-center justify-content-center">
@@ -12,16 +13,18 @@
     </div>
 
     <div class="w-full flex flex-column justify-content-between align-items-center">
-      <img class="h-4rem w-4rem border-circle" [src]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'">
+      <img class="h-4rem w-4rem border-circle"
+        [src]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'">
       <p class="mt-2">Dự án {{project?.projectName}} được khởi tạo</p>
-      
+
     </div>
   </ng-container>
 
   <ng-container *ngIf="event.type == 1 || event.type == 2 ||event.type == 3 || event.type == 4">
     <div class="w-full flex justify-content-between align-items-center">
       <span class="flex align-items-center justify-content-center relative">
-        <img shape="circle" class="h-2rem w-2rem border-circle outline-primary" [src]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"/>
+        <img shape="circle" class="h-2rem w-2rem border-circle outline-primary"
+          [src]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" />
         <p class="ml-2">{{project?.projectName}}</p>
       </span>
       <span class="flex align-items-center justify-content-center">
@@ -30,7 +33,8 @@
       </span>
     </div>
     <div class="w-full flex flex-column justify-content-between align-items-center">
-      <img class="h-4rem w-4rem border-circle" [src]="event?.user?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'">
+      <img class="h-4rem w-4rem border-circle"
+        [src]="event?.user?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'">
       <p class="mt-2" *ngIf="event.type == 1">{{event?.user?.name}} tham gia dự án với vai trò Co-founder</p>
       <p class="mt-2" *ngIf="event.type == 2">Co-founder {{event?.user?.name}} đã rời khỏi dự án</p>
       <p class="mt-2" *ngIf="event.type == 3">{{event?.user?.name}} trở thành nhà đầu tư của dự án</p>
@@ -42,7 +46,8 @@
   <ng-container *ngIf="event.type == 5">
     <div class="w-full flex justify-content-between align-items-center">
       <span class="flex align-items-center justify-content-center relative">
-        <img shape="circle" class="h-2rem w-2rem border-circle outline-primary" [src]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"/>
+        <img shape="circle" class="h-2rem w-2rem border-circle outline-primary"
+          [src]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" />
         <p class="ml-2">{{project?.projectName}}</p>
       </span>
       <span class="flex align-items-center justify-content-center">
@@ -51,7 +56,8 @@
       </span>
     </div>
     <div class="w-full flex flex-column justify-content-between align-items-center">
-      <img class="avatar-content" [src]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt="" width="200px" height="auto">
+      <img class="avatar-content" [src]="project?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"
+        alt="" width="200px" height="auto">
       <p class="mt-2">Dự án chuyển qua gia đoạn mới: {{getStage(event.stage)}}</p>
     </div>
   </ng-container>
@@ -59,7 +65,8 @@
   <ng-container *ngIf="event.type == 7">
     <div class="w-full flex justify-content-between align-items-center">
       <span class="flex align-items-center justify-content-center relative">
-        <img shape="circle" class="h-2rem w-2rem border-circle outline-primary" [src]="event?.poster?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"/>
+        <img shape="circle" class="h-2rem w-2rem border-circle outline-primary"
+          [src]="event?.poster?.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" />
         <p class="ml-2">{{event?.poster?.name}}</p>
       </span>
       <span class="flex">
@@ -73,20 +80,27 @@
         </span>
       </span>
     </div>
-    <div class="w-full flex flex-column justify-content-between align-items-start mt-2 ml-4">
-      <p >{{event?.content}}</p>
-      <p-galleria [value]="medias" class="w-full">
-        <ng-template pTemplate="item" let-item>
-          <div class="w-full h-auto flex justify-content-center">
-            <img [src]="item.previewImageSrc" style="max-width: 100%; max-height: 500px;" />
-          </div>
-        </ng-template>
-        <ng-template pTemplate="thumbnail" let-item>
-          <div class="grid grid-nogutter justify-content-center">
-            <img [src]="item.thumbnailImageSrc" width="100px" />
-          </div>
-        </ng-template>
-      </p-galleria>
+    <div class="w-full flex flex-column justify-content-between align-items-start mt-2">
+      <p>{{event?.content}}</p>
+      <div class="w-full flex justify-content-center flex-wrap mt-2">
+        <ng-container *ngFor="let item of medias">
+              <p-image [src]="item.previewImageSrc" styleClass="p-1 bg-secondary" alt="Image" width="200px" height="200px" [preview]="true">
+            </p-image>
+        </ng-container>
+        <!-- <p-galleria [value]="medias" class="w-full">
+          <ng-template pTemplate="item" let-item>
+            <div class="w-full h-auto flex justify-content-center">
+              <img [src]="item.previewImageSrc" class="h-20rem" />
+            </div>
+          </ng-template>
+          <ng-template pTemplate="thumbnail" let-item>
+            <div class="grid grid-nogutter justify-content-center">
+              <img [src]="item.thumbnailImageSrc" width="100px" />
+            </div>
+          </ng-template>
+        </p-galleria> -->
+
+      </div>
       <div class="w-full grid mt-3">
         <ng-container *ngFor="let link of event?.links">
           <div class="w-full flex align-items-center">

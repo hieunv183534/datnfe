@@ -1,5 +1,5 @@
 <div class="flex mt-0" style="min-height: calc(100% - 80px);">
-  <div class="col-2 p-3">
+  <div class="col-2 p-3 hidden md:block min-w-min">
     <div class="sticky left-0 " style="top: 96px;">
       <app-list-project-member (addNewMember)="isShowAddMember = true" [projectId]="project.id"
         [isMyProject]="project.extraProperties.relationWithProject == 0"></app-list-project-member>
@@ -7,7 +7,7 @@
         [projectId]="project.id"></app-list-project-member-invite>
     </div>
   </div>
-  <div class="col-8 p-0 h-auto border-x-1 border-400">
+  <div class="col-12 md:col-8  p-0 h-auto border-x-1 border-400">
     <div class="project-info flex flex-column h-auto align-items-center relative">
       <button *ngIf="isFounder" pButton pRipple type="button" icon="pi pi-cog"
         class="top-0 right-0 absolute p-button-rounded p-button-secondary p-button-text"
@@ -16,6 +16,16 @@
         <div class="h-6rem w-6rem absolute left-0 bottom-0 ml-3" style="transform: translateY(50%);">
           <img class="border-circle h-full w-full border-1 border-gray-200"
             [src]="project.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt="">
+        </div>
+        <div class="flex md:hidden absolute" style="right: 8px; bottom: -36px;">
+          <div
+            class="flex justify-content-center align-items-center p-2 border-round-md cursor-pointer hover:bg-gray-200">
+            <i class="pi pi-users" (click)="isShowMember=true"></i>
+          </div>
+          <div
+            class="flex justify-content-center align-items-center p-2 border-round-md cursor-pointer hover:bg-gray-200">
+            <i class="pi pi-list" (click)="isShowDocuments=true"></i>
+          </div>
         </div>
         <img src="/assets/images/default_cover.jpg" alt="" />
       </div>
@@ -50,15 +60,15 @@
               #appCalendar></app-project-calendar>
           </p-tabPanel>
           <p-tabPanel header="Tìm kiếm">
-            <app-recruit [projectId]="project.id"></app-recruit>
+            <app-recruit [isView]="false" [projectId]="project.id"></app-recruit>
           </p-tabPanel>
           <p-tabPanel header="Giới thiệu">
-            <app-introduce></app-introduce>
+            <app-introduce [isView]="false"></app-introduce>
           </p-tabPanel>
           <p-tabPanel header="Pitch deck">
             <app-pitch-deck [projectId]="project.id"></app-pitch-deck>
           </p-tabPanel>
-          
+
           <p-tabPanel header="Thông tin">
             <app-project-event [project]="project" #appFeed></app-project-event>
           </p-tabPanel>
@@ -71,7 +81,7 @@
       </div>
     </div>
   </div>
-  <div class="col-2  p-3 bg-gray-300">
+  <div class="col-2  p-3 bg-gray-300 hidden md:block min-w-min">
     <div class="sticky left-0 " style="top: 96px;">
       <app-list-project-file [projectId]="project.id"
         [isMyProject]="project.extraProperties.relationWithProject == 0"></app-list-project-file>
@@ -166,3 +176,14 @@
   <app-update-project [display]="isShowUpdateProject" (close)="isShowUpdateProject = false" [project]="project"
     (changeProjectInfo)="changeProjectInfo($event)"></app-update-project>
 </ng-container>
+
+<p-sidebar [(visible)]="isShowMember" position="left">
+  <app-list-project-member (addNewMember)="isShowAddMember = true" [projectId]="project.id"
+    [isMyProject]="project.extraProperties.relationWithProject == 0"></app-list-project-member>
+  <app-list-project-member-invite *ngIf="project.extraProperties.relationWithProject == 0"
+    [projectId]="project.id"></app-list-project-member-invite>
+</p-sidebar>
+<p-sidebar [(visible)]="isShowDocuments" position="right">
+  <app-list-project-file [projectId]="project.id"
+    [isMyProject]="project.extraProperties.relationWithProject == 0"></app-list-project-file>
+</p-sidebar>

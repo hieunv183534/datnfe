@@ -97,6 +97,7 @@ export class AddPostComponent implements OnInit {
       input.projectId = this.projectId;
       var medias = this.files.map(x => x.file);
       this.projectService.postToProject(input, medias).then((res: any) => {
+        this.addSuccess.emit();
         this.messageService.add({
           key: "toast",
           severity: "success",

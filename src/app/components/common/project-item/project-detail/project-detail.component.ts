@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ProjectStage, RelationWithProject } from 'src/app/model/enum';
+import { MessageService } from 'primeng/api';
+import { ProjectStage } from 'src/app/model/enum';
+import { ProjectService } from 'src/app/services/project.service';
 import { FsiValues } from 'src/app/shared/util/util';
 
 @Component({
@@ -10,12 +11,14 @@ import { FsiValues } from 'src/app/shared/util/util';
 })
 export class ProjectDetailComponent implements OnInit {
   @Input() display: boolean = false;
+  @Input() projectId: string = '';
   styleDialog: any = { width: '50vw' };
-  widthDialog: string = '800px';
+  // widthDialog: string = '800px';
   widthDialogJob: string = '35vw';
   widthBox1: string = '590px';
   widthBox2: string = '642px';
   innerWidth: any;
+  project: any = { extraProperties: {} };
   @Output() close: EventEmitter<any> = new EventEmitter();
   showModal: boolean = true;
   showInfoJob: boolean = false;
@@ -34,35 +37,42 @@ export class ProjectDetailComponent implements OnInit {
       numVisible: 1,
     },
   ];
-  images: any = [
-    {
-      previewImageSrc: '../../../assets/img/slideImage2.jpg',
-      thumbnailImageSrc: '../../../assets/img/slideImage2.jpg',
-      alt: 'Description for Image 15',
-      title: 'Title 15',
-    },
-    {
-      previewImageSrc: '../../../assets/img/slideImage3.jpg',
-      thumbnailImageSrc: '../../../assets/img/slideImage3.jpg',
-      alt: 'Description for Image 15',
-      title: 'Title 15',
-    },
-    {
-      previewImageSrc: '../../../assets/img/slideImage1.jpg',
-      thumbnailImageSrc: '../../../assets/img/slideImage1.jpg',
-      alt: 'Description for Image 15',
-      title: 'Title 15',
-    },
+  projectStages: any[] = [
+    { name: "Xác lập", value: ProjectStage.XacLap },
+    { name: "Nghiên cứu", value: ProjectStage.NghienCuu },
+    { name: "MVP", value: ProjectStage.MVP },
+    { name: "Kiểm thử", value: ProjectStage.KiemThu },
+    { name: "Tăng trưởng 1", value: ProjectStage.TangTruong1 },
+    { name: "Tăng trưởng 2", value: ProjectStage.TangTruong2 },
+    { name: "Tăng trưởng 3", value: ProjectStage.TangTruong3 },
+    { name: "Tăng trưởng 4", value: ProjectStage.TangTruong4 }
   ];
+  constructor(
+    private projectService: ProjectService,
+    private messageService: MessageService
+  ) { }
+  getArea(val: number) {
+    return FsiValues.getName(val, FsiValues.areas);
+  }
 
+  getStage(val: ProjectStage) {
+    return this.projectStages.find(x => x.value == val)?.name;
+  }
+
+  getFields(val: number[]) {
+    return FsiValues.getMultiName(val, FsiValues.fields);
+  }
   ngOnInit() {
-    this.innerWidth = window.innerWidth;
-    if (this.innerWidth <= 767) {
-      this.widthDialog = '400px';
-      this.widthBox1 = '250px';
-      this.widthBox2 = '300px';
-      this.widthDialogJob = '70vw'
-    }
+    this.projectService.getProjectById(this.projectId).then((res: any) => {
+      this.project = res.data;
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Lấy thông tin dự án thất bại!",
+      });
+    });
   }
 
   showDialogJob() {

@@ -13,7 +13,7 @@ export class PitchDeckComponent implements OnInit {
   listPitchDeck: any[] = [];
   myFiles: any[] = [];
   @Input() projectId: string = '';
-
+  @Input() isView: boolean = false;
   constructor(
     private confirmationService: ConfirmationService,
     private messageService: MessageService,

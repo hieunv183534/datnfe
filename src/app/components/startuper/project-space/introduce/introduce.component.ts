@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 
@@ -8,6 +8,8 @@ import { ProjectService } from 'src/app/services/project.service';
   styleUrls: ['./introduce.component.css']
 })
 export class IntroduceComponent implements OnInit {
+  @Input() isView: boolean = false
+  @Input() projectIdProp: string = '';
   isFirstItem: boolean = false
   isLastItem: boolean = false
   isShowEditItem: boolean = false
@@ -90,13 +92,18 @@ export class IntroduceComponent implements OnInit {
 
   ) { }
   ngOnInit() {
-    this.route.params.subscribe((params: any) => {
-      this.projectId = params["projectId"];
-    });
-    this.getCanvasBusinessModel()
+    if (this.projectIdProp === '') {
+      this.route.params.subscribe((params: any) => {
+        this.projectId = params["projectId"];
+      });
+      this.getCanvasBusinessModel(this.projectId)
+    }
+    else {
+      this.getCanvasBusinessModel(this.projectIdProp)
+    }
   }
-  getCanvasBusinessModel() {
-    this.projectService.getProjectBusinessModel(this.projectId).then((res: any) => {
+  getCanvasBusinessModel(id: string) {
+    this.projectService.getProjectBusinessModel(id).then((res: any) => {
       if (res.data) {
         this.businessModel = res.data
       }
