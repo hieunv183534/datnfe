@@ -1,6 +1,6 @@
 <p-dialog [resizable]="true" header="Đăng bài" [(visible)]="visible" [modal]="true" [style]="{width: '50vw'}"
   [baseZIndex]="10000" [draggable]="false" (onHide)="close.emit()">
-  <div class="grid p-fluid">
+  <!-- <div class="grid p-fluid">
     <p-divider align="left" class="col-12"> <b>Content</b> </p-divider>
     <div class="p-field col-12 md-12">
       <span class="p-input-icon-right">
@@ -51,8 +51,68 @@
         </span>
       </ng-container>
     </div>
-  </div>
+  </div> -->
 
+  <div>
+    <div class="flex flex-column">
+      <div class="h-auto flex align-items-center mb-3">
+        <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+        <span class="font-semibold">Nội dung</span>
+      </div>
+      <div class="flex flex-column mb-2">
+        <span class="mb-2">Vị trí</span>
+        <input type="text" pInputText placeholder="Vị trí" [(ngModel)]="location">
+      </div>
+      <div class="flex flex-column mb-3">
+        <span class="mb-2">Nội dung<span style="color: red">*</span></span>
+        <input type="text" pInputText placeholder="Vị trí" [(ngModel)]="content">
+      </div>
+      <div class="h-auto flex align-items-center mb-3">
+        <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+        <span class="font-semibold">Media</span>
+      </div>
+      <div class="flex flex-column mb-2">
+        <div class="flex flex-row flex-wrap">
+          <ng-container *ngFor="let img of images">
+            <div class="relative p-1">
+              <img class="h-5rem w-auto border-1 border-gray-300 border-round-md" style="object-fit: contain;"
+                [src]="img.previewImageSrc" />
+                <div (click)="deleteImage(img.id)" class="absolute flex align-items-center justify-content-center top-0 right-0 h-1rem w-1rem border-circle bg-red-500 hover:bg-red-600 cursor-pointer">
+                  <i class="pi pi-times text-0" style="font-size: 10px;"></i>
+                </div>
+            </div>
+          </ng-container>
+        </div>
+        <div class="w-12 flex justify-content-center">
+          <input type="file" id="inputFile" (change)="onFileChange($event)" accept="image/*" multiple>
+        </div>
+      </div>
+      <div class="h-auto flex align-items-center mb-3">
+        <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+        <span class="font-semibold">Links</span>
+      </div>
+      <div class="flex flex-column mb-2">
+        <p-chips class="w-full" [(ngModel)]="links"></p-chips>
+      </div>
+      <div class="h-auto flex align-items-center mb-3">
+        <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+        <span class="font-semibold">Documents</span>
+      </div>
+      <div class="col-12 flex justify-content-center">
+        <p-button icon="pi pi-plus" (onClick)="isShowUpload = true"></p-button>
+      </div>
+      <div class="col-12 list-member" >
+        <ng-container *ngFor="let file of documents">
+          <span class="file-item flex flex-column relative col-8 col-offset-2">
+            <h4 class="text-overflow-ellipsis">{{file.title}}</h4>
+            <p class="text-overflow-ellipsis">{{file.name}}</p>
+            <button pButton pRipple type="button" icon="pi pi-times"
+              class="p-button-rounded p-button-danger p-button-outlined absolute" (click)="deleteDocument(file.id)"></button>
+          </span>
+        </ng-container>
+      </div>
+    </div>
+  </div>
   <ng-template pTemplate="footer">
     <p-button label="Đăng" (onClick)="addPostOnClick()">
     </p-button>

@@ -44,10 +44,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     });
 
-    window.onscroll = () => {
-      this.isScrolled = window.pageYOffset <= 0 ? false : true;
-      return () => (window.onscroll = null);
-    };
+    // window.onscroll = () => {
+    //   this.isScrolled = window.pageYOffset <= 0 ? false : true;
+    //   return () => (window.onscroll = null);
+    // };
 
     this.userInfo = this.getDecodedAccessToken();
     this.items = [

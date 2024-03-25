@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ProjectEventType } from 'src/app/model/enum';
 import { GetProjectEventsDto, PostToProjectDto } from 'src/app/model/project.class';
@@ -7,7 +7,8 @@ import { ProjectService } from 'src/app/services/project.service';
 @Component({
   selector: 'app-project-event',
   templateUrl: './project-event.component.html',
-  styleUrls: ['./project-event.component.css']
+  styleUrls: ['./project-event.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProjectEventComponent implements OnInit, OnChanges {
 

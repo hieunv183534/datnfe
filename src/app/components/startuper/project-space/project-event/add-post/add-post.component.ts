@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { PostToProjectDto } from 'src/app/model/project.class';
 import { EventService } from 'src/app/services/event.service';
@@ -8,7 +8,8 @@ import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
-  styleUrls: ['./add-post.component.css']
+  styleUrls: ['./add-post.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddPostComponent implements OnInit {
 

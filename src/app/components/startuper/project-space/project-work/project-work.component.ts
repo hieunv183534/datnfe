@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { WorkStatus } from 'src/app/model/enum';
 import { AddProjectWorkDto, ProjectWorkDto } from 'src/app/model/project.class';
 import { Util } from 'src/app/shared/util/util';
@@ -9,7 +9,9 @@ import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-project-work',
   templateUrl: './project-work.component.html',
-  styleUrls: ['./project-work.component.css']
+  styleUrls: ['./project-work.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class ProjectWorkComponent implements OnInit {
 

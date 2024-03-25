@@ -1,6 +1,7 @@
 <div class="flex p-3" style="background-color: #F3F4F6;">
   <div class="flex flex-column w-full">
-    <p-fileUpload [files]="myFiles" [customUpload]="true" [multiple]="true" accept="image/*" (uploadHandler)="myUploader($event)">
+    <p-fileUpload [files]="myFiles" [customUpload]="true" [multiple]="true" accept="image/*"
+      (uploadHandler)="myUploader($event)">
 
     </p-fileUpload>
     <div *ngIf="listPitchDeck.length !== 0" class="bg-white border-1 border-round-md border-gray-200 pt-3 mt-1">
@@ -19,12 +20,15 @@
                 <img [src]="item.url" class="w-4rem h-auto mr-3" style="object-fit: contain;">
                 <span>{{item.name}}</span>
               </div>
-              <button  pButton type="button" icon="pi pi-trash" iconPos="left" (mousedown)="deletePitchDeck($event,item)"
+              <button pButton type="button" icon="pi pi-trash" iconPos="left" (mousedown)="deletePitchDeck($event,item)"
                 class="p-button-danger p-button-raised p-button-rounded"></button>
             </div>
           </ng-template>
         </p-orderList>
       </div>
+    </div>
+    <div *ngIf="listPitchDeck.length == 0" class="flex align-items-center justify-content-center bg-white border-1 border-round-md border-gray-200 pt-3 mt-1">
+      <img class="w-25rem h-auto" src="../../../../../assets/img/nodata.jpg" alt="" style="object-fit: contain;">
     </div>
   </div>
 </div>
