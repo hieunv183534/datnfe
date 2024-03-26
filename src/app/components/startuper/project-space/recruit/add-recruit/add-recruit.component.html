@@ -1,220 +1,221 @@
-<form [formGroup]="formRecruit">
-  <div>
-    <div class="flex flex-column">
-      <div class="h-auto flex align-items-center mb-3">
-        <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
-        <span class="font-semibold">Thông tin công việc</span>
-      </div>
-      <div class="flex flex-column mb-3">
-        <span class="mb-2">Tiêu đề công việc<span style="color: red">*</span></span>
-        <input required type="text" class="p-inputtext-sm" pInputText formControlName="title" />
-        <span class="text-error" *ngIf="
+<p-dialog [resizable]="true" header="Đăng bài" [(visible)]="visible" [modal]="true" [style]="{width: '40vw'}"
+  [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [baseZIndex]="10000" [draggable]="false">
+  <ng-template pTemplate="header">
+    Thông tin công việc
+  </ng-template>
+  <form [formGroup]="formRecruit">
+    <div>
+      <div class="flex flex-column">
+        <div class="h-auto flex align-items-center mb-3">
+          <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+          <span class="font-semibold">Thông tin công việc</span>
+        </div>
+        <div class="flex flex-column mb-3">
+          <span class="mb-2">Tiêu đề công việc<span style="color: red">*</span></span>
+          <input required type="text" class="p-inputtext-sm" pInputText formControlName="title" />
+          <span class="text-error" *ngIf="
         !formRecruit.value.title &&
         !this.formRecruit.valid &&
         handleSubmit
       ">Không được để trống</span>
-      </div>
-      <div class="flex w-full">
-        <div class="w-6">
-          <div class="flex flex-column mb-3 pr-1">
-            <span class="mb-2">Chuyên môn<span style="color: red">*</span></span>
-            <p-dropdown [autoDisplayFirst]="false" [filter]="true" [options]="specializes" optionValue="value"
-              optionLabel="name" formControlName="specialize"></p-dropdown>
-            <span class="text-error" *ngIf="
+        </div>
+        <div class="flex w-full">
+          <div class="w-6">
+            <div class="flex flex-column mb-3 pr-1">
+              <span class="mb-2">Chuyên môn<span style="color: red">*</span></span>
+              <p-dropdown [autoDisplayFirst]="false" [filter]="true" [options]="specializes" optionValue="value"
+                optionLabel="name" formControlName="specialize"></p-dropdown>
+              <span class="text-error" *ngIf="
           !formRecruit.value.specialize &&
           !this.formRecruit.valid &&
           handleSubmit
         ">Không được để trống</span>
+            </div>
           </div>
-        </div>
-        <div class="w-6">
-          <div class="flex flex-column mb-3 pl-1">
-            <span class="mb-2">Số lượng cần tuyển<span style="color: red">*</span></span>
-            <input type="number" class="p-inputtext-sm" pInputText formControlName="quantity" />
-            <span class="text-error" *ngIf="
+          <div class="w-6">
+            <div class="flex flex-column mb-3 pl-1">
+              <span class="mb-2">Số lượng cần tuyển<span style="color: red">*</span></span>
+              <input type="number" class="p-inputtext-sm" pInputText formControlName="quantity" />
+              <span class="text-error" *ngIf="
           !formRecruit.value.quantity &&
           !this.formRecruit.valid &&
           handleSubmit
         ">Không được để trống</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="flex w-full">
-        <div class="w-6">
-          <div class="flex flex-column mb-3 pr-1">
-            <span class="mb-2">Khu vực làm việc<span style="color: red">*</span></span>
-            <p-dropdown [autoDisplayFirst]="false" [options]="areas" optionValue="value" optionLabel="name"
-              formControlName="location" [filter]="true" filterBy="name"></p-dropdown>
-            <span class="text-error" *ngIf="
+        <div class="flex w-full">
+          <div class="w-6">
+            <div class="flex flex-column mb-3 pr-1">
+              <span class="mb-2">Khu vực làm việc<span style="color: red">*</span></span>
+              <p-dropdown [autoDisplayFirst]="false" [options]="areas" optionValue="value" optionLabel="name"
+                formControlName="location" [filter]="true" filterBy="name"></p-dropdown>
+              <span class="text-error" *ngIf="
           !formRecruit.value.location &&
           !this.formRecruit.valid &&
           handleSubmit
         ">Không được để trống</span>
+            </div>
           </div>
-        </div>
-        <div class="w-6">
-          <div class="flex flex-column mb-3 pl-1">
-            <span class="mb-2">Hình thức làm việc<span style="color: red">*</span></span>
-            <p-dropdown [autoDisplayFirst]="false" [options]="workTypes" optionValue="value" optionLabel="name"
-              formControlName="workingForm"></p-dropdown>
-            <span class="text-error" *ngIf="
+          <div class="w-6">
+            <div class="flex flex-column mb-3 pl-1">
+              <span class="mb-2">Hình thức làm việc<span style="color: red">*</span></span>
+              <p-dropdown [autoDisplayFirst]="false" [options]="workTypes" optionValue="value" optionLabel="name"
+                formControlName="workingForm"></p-dropdown>
+              <span class="text-error" *ngIf="
           !formRecruit.value.workingForm &&
           !this.formRecruit.valid &&
           handleSubmit
         ">Không được để trống</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="flex flex-column mb-3">
-        <span class="mb-2">Địa điểm làm việc</span>
-        <input type="text" class="p-inputtext-sm" pInputText formControlName="workingAddress" />
-        <span class="text-error" *ngIf="
-        !formRecruit.value.workingAddress &&
-        !this.formRecruit.valid &&
-        handleSubmit
-      ">Không được để trống</span>
-      </div>
-      <div class="flex w-full">
-        <div class="w-6">
-          <div class="flex flex-column mb-3 pr-1">
-            <span class="mb-2">Thời gian làm việc<span style="color: red">*</span></span>
-            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="availableTimes"
-              optionLabel="name" formControlName="workingTimes">
-            </p-multiSelect>
-            <span class="text-error" *ngIf="
+        <div class="flex flex-column mb-3">
+          <span class="mb-2">Địa điểm làm việc</span>
+          <input type="text" class="p-inputtext-sm" pInputText formControlName="workingAddress" />
+        </div>
+        <div class="flex w-full">
+          <div class="w-6">
+            <div class="flex flex-column mb-3 pr-1">
+              <span class="mb-2">Thời gian làm việc<span style="color: red">*</span></span>
+              <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="availableTimes"
+                optionLabel="name" formControlName="workingTimes">
+              </p-multiSelect>
+              <span class="text-error" *ngIf="
           !formRecruit.value.workingTimes &&
           !this.formRecruit.valid &&
           handleSubmit
         ">Không được để trống</span>
+            </div>
           </div>
-        </div>
-        <div class="w-6">
-          <div class="flex flex-column mb-3 pl-1">
-            <span class="mb-2">Thu nhập<span style="color: red">*</span></span>
-            <p-dropdown [autoDisplayFirst]="false" [options]="incomeModes" optionValue="value" optionLabel="name"
-              (onChange)="checkRequiredIncome()" formControlName="incomeMode"></p-dropdown>
-            <span class="text-error" *ngIf="
+          <div class="w-6">
+            <div class="flex flex-column mb-3 pl-1">
+              <span class="mb-2">Thu nhập<span style="color: red">*</span></span>
+              <p-dropdown [autoDisplayFirst]="false" [options]="incomeModes" optionValue="value" optionLabel="name"
+                (onChange)="checkRequiredIncome()" formControlName="incomeMode"></p-dropdown>
+              <span class="text-error" *ngIf="
           !formRecruit.value.incomeMode &&
           !this.formRecruit.valid &&
           handleSubmit
         ">Không được để trống</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div *ngIf="formRecruit.get('incomeMode')!.value === 2 || formRecruit.get('incomeMode')!.value === 4"
-        class="flex w-full">
-        <div class="flex flex-column mb-3 w-12">
-          <span class="mb-2">Từ mức lương<span style="color: red">*</span></span>
-          <div class="w-12">
-            <div class="p-inputgroup">
-              <input type="number" class="p-inputtext-sm" pInputText formControlName="incomeFrom"
-                (input)="checkRequiredIncome()" />
-              <span class="p-inputgroup-addon">Triệu</span>
+        <div *ngIf="formRecruit.get('incomeMode')!.value === 2 || formRecruit.get('incomeMode')!.value === 4"
+          class="flex w-full">
+          <div class="flex flex-column mb-3 w-12">
+            <span class="mb-2">Từ mức lương<span style="color: red">*</span></span>
+            <div class="w-12">
+              <div class="p-inputgroup">
+                <input type="number" class="p-inputtext-sm" pInputText formControlName="incomeFrom"
+                  (input)="checkRequiredIncome()" />
+                <span class="p-inputgroup-addon">Triệu</span>
+              </div>
+              <span class="text-error" *ngIf="!isValidIncome">Không được để trống</span>
             </div>
+          </div>
+        </div>
+        <div *ngIf="formRecruit.get('incomeMode')!.value === 3 || formRecruit.get('incomeMode')!.value === 4"
+          class="flex w-full">
+          <div class="flex flex-column mb-3 w-12">
+            <span class="mb-2">Đến mức lương<span style="color: red">*</span></span>
+            <div class="w-12">
+              <div class="p-inputgroup">
+                <input type="number" class="p-inputtext-sm" pInputText formControlName="incomeTo"
+                  (input)="checkRequiredIncome()" />
+                <span class="p-inputgroup-addon">Triệu</span>
+              </div>
+              <span class="text-error" *ngIf="!isValidIncome">Không được để trống</span>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="formRecruit.get('incomeMode')!.value === 5" class="flex w-full">
+          <div class="flex flex-column mb-3 w-12">
+            <span class="mb-2">Trong khoảng<span style="color: red">*</span></span>
+            <p-dropdown [autoDisplayFirst]="false" [options]="incomeRanges" optionValue="value" optionLabel="name"
+              formControlName="incomeRange" (onChange)="checkRequiredIncome()"></p-dropdown>
             <span class="text-error" *ngIf="!isValidIncome">Không được để trống</span>
           </div>
         </div>
-      </div>
-      <div *ngIf="formRecruit.get('incomeMode')!.value === 3 || formRecruit.get('incomeMode')!.value === 4"
-        class="flex w-full">
-        <div class="flex flex-column mb-3 w-12">
-          <span class="mb-2">Đến mức lương<span style="color: red">*</span></span>
-          <div class="w-12">
-            <div class="p-inputgroup">
-              <input type="number" class="p-inputtext-sm" pInputText formControlName="incomeTo"
-                (input)="checkRequiredIncome()" />
-              <span class="p-inputgroup-addon">Triệu</span>
-            </div>
-            <span class="text-error" *ngIf="!isValidIncome">Không được để trống</span>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="formRecruit.get('incomeMode')!.value === 5" class="flex w-full">
-        <div class="flex flex-column mb-3 w-12">
-          <span class="mb-2">Trong khoảng<span style="color: red">*</span></span>
-          <p-dropdown [autoDisplayFirst]="false" [options]="incomeRanges" optionValue="value" optionLabel="name"
-            formControlName="incomeRange" (onChange)="checkRequiredIncome()"></p-dropdown>
-          <span class="text-error" *ngIf="!isValidIncome">Không được để trống</span>
-        </div>
-      </div>
-      <div class="flex w-full">
-        <div class="flex flex-column mb-3 w-12">
-          <span class="mb-2">Thời hạn<span style="color: red">*</span></span>
-          <p-calendar appendTo="body" formControlName="duration"></p-calendar>
-          <span class="text-error" *ngIf="
+        <div class="flex w-full">
+          <div class="flex flex-column mb-3 w-12">
+            <span class="mb-2">Thời hạn<span style="color: red">*</span></span>
+            <p-calendar appendTo="body" formControlName="duration"></p-calendar>
+            <span class="text-error" *ngIf="
           !formRecruit.value.duration &&
           !this.formRecruit.valid &&
           handleSubmit
         ">Không được để trống</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="flex flex-column">
-      <div class="h-auto flex align-items-center mb-3">
-        <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
-        <span class="font-semibold">Mô tả công việc</span>
+      <div class="flex flex-column">
+        <div class="h-auto flex align-items-center mb-3">
+          <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+          <span class="font-semibold">Mô tả công việc</span>
+        </div>
+        <div class="flex flex-column mb-3">
+          <p-editor formControlName="description" [style]="{'height':'200px'}"></p-editor>
+        </div>
       </div>
-      <div class="flex flex-column mb-3">
-        <p-editor formControlName="description" [style]="{'height':'200px'}"></p-editor>
-      </div>
-    </div>
-    <div class="flex flex-column">
-      <div class="h-auto flex align-items-center mb-3">
-        <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
-        <span class="font-semibold">Yêu cầu công việc</span>
-      </div>
-      <div class="flex w-full">
-        <div class="w-6">
-          <div class="flex flex-column mb-3 pr-1">
-            <span class="mb-2">Kinh nghiệm</span>
-            <div class="w-full">
-              <p-multiSelect class="w-full" optionLabel="name" optionValue="value" appendTo="body"
-                [options]="yearOfExps" optionLabel="name" formControlName="yearOfExps">
-              </p-multiSelect>
+      <div class="flex flex-column">
+        <div class="h-auto flex align-items-center mb-3">
+          <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+          <span class="font-semibold">Yêu cầu công việc</span>
+        </div>
+        <div class="flex w-full">
+          <div class="w-6">
+            <div class="flex flex-column mb-3 pr-1">
+              <span class="mb-2">Kinh nghiệm</span>
+              <div class="w-full">
+                <p-multiSelect class="w-full" optionLabel="name" optionValue="value" appendTo="body"
+                  [options]="yearOfExps" optionLabel="name" formControlName="yearOfExps">
+                </p-multiSelect>
+              </div>
+            </div>
+          </div>
+          <div class="w-6">
+            <div class="flex flex-column mb-3 pl-1">
+              <span class="mb-2">Bằng cấp</span>
+              <p-dropdown [autoDisplayFirst]="false" [options]="degrees" optionValue="value" optionLabel="name"
+                formControlName="degree"></p-dropdown>
             </div>
           </div>
         </div>
-        <div class="w-6">
-          <div class="flex flex-column mb-3 pl-1">
-            <span class="mb-2">Bằng cấp</span>
-            <p-dropdown [autoDisplayFirst]="false" [options]="degrees" optionValue="value" optionLabel="name"
-              formControlName="degree"></p-dropdown>
-          </div>
-        </div>
-      </div>
-      <div class="flex flex-column mb-3">
-        <span class="mb-2">Kỹ năng mềm</span>
-        <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="skills" optionLabel="name"
-          formControlName="skills">
-        </p-multiSelect>
-      </div>
-      <div class="flex w-full">
-        <div class="flex flex-column mb-3 w-12">
-          <span class="mb-2">Tính cách</span>
-          <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="personalities"
-            optionLabel="name" formControlName="personalities">
+        <div class="flex flex-column mb-3">
+          <span class="mb-2">Kỹ năng mềm</span>
+          <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="skills" optionLabel="name"
+            formControlName="skills">
           </p-multiSelect>
         </div>
+        <div class="flex w-full">
+          <div class="flex flex-column mb-3 w-12">
+            <span class="mb-2">Tính cách</span>
+            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="personalities"
+              optionLabel="name" formControlName="personalities">
+            </p-multiSelect>
+          </div>
+        </div>
+        <div class="flex flex-column mb-3">
+          <span class="mb-2">Yêu cầu khác</span>
+          <textarea pInputTextarea [rows]="5" formControlName="otherRequest"></textarea>
+        </div>
       </div>
-      <div class="flex flex-column mb-3">
-        <span class="mb-2">Yêu cầu khác</span>
-        <textarea pInputTextarea [rows]="5" formControlName="otherRequest"></textarea>
+      <div class="flex flex-column">
+        <div class="h-auto flex align-items-center mb-3">
+          <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
+          <span class="font-semibold">Thông tin khác</span>
+        </div>
+        <div class="flex flex-column mb-3">
+          <textarea
+            placeholder="Ví dụ: Phúc lợi khi tham gia dự án (máy tính, điện thoại, trợ cấp đi lại, đào tạo, du lịch, thưởng, khám sức khoẻ, thư viện, chứng chỉ...)"
+            pInputTextarea [rows]="5" formControlName="otherDetail"></textarea>
+        </div>
       </div>
     </div>
-    <div class="flex flex-column">
-      <div class="h-auto flex align-items-center mb-3">
-        <div class="bg-blue-400 border-round-md h-1rem mr-2" style="width:3px"></div>
-        <span class="font-semibold">Thông tin khác</span>
-      </div>
-      <div class="flex flex-column mb-3">
-        <textarea
-          placeholder="Ví dụ: Phúc lợi khi tham gia dự án (máy tính, điện thoại, trợ cấp đi lại, đào tạo, du lịch, thưởng, khám sức khoẻ, thư viện, chứng chỉ...)"
-          pInputTextarea [rows]="5" formControlName="otherDetail"></textarea>
-      </div>
-    </div>
-  </div>
-  <div class="sticky bg-white flex align-items-center justify-content-end pt-3 pb-1" style="bottom: 1px;">
-    <button pButton type="button" label="Thêm" class="p-button-sm font-normal" [loading]="isLoading"
-      (click)="submit()"></button>
-  </div>
-</form>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button label="Thêm" class="p-button-sm font-normal" [loading]="isLoading" (onClick)="submit()">
+    </p-button>
+  </ng-template>
+</p-dialog>

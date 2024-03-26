@@ -5,7 +5,7 @@
   </div>
   <div *ngIf="listJobs.length>0" class="flex h-auto w-full flex-wrap" [ngClass]="{'mt-3': !isView}">
     <ng-container *ngFor="let job of listJobs">
-      <div class="container-recruit p-1 h-auto w-6" style="background-color: #F3F4F6;">
+      <div class="container-recruit p-1 h-auto w-12 sm:w-6" style="background-color: #F3F4F6;">
         <div
           class="relative flex border-1 p-2 border-300 border-round-md h-full w-full bg-white  cursor-pointer hover:bg-primary-100"
           (click)="getRecruitById(job.id,'view')" style="padding-right: 1.5rem !important;">
@@ -66,39 +66,16 @@
     <img class="w-25rem h-auto" src="../../../../../assets/img/nodata.jpg" alt="" style="object-fit: contain;">
   </div>
 </div>
-
 <ng-container *ngIf="isShowAddRecruit">
-  <p-dialog [(visible)]="isShowAddRecruit" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '40vw'}"
-    [baseZIndex]="10000" [draggable]="false">
-    <ng-template pTemplate="header">
-      Đăng tin
-    </ng-template>
-    <app-add-recruit #addRecruit (fetchData)="getListRecruit();isShowAddRecruit=false"
-      [projectId]="projectId"></app-add-recruit>
-    <!-- <ng-template pTemplate="footer">
-      <div class="pt-3">
-        <button pButton type="button" label="Thêm cha " class="p-button-sm font-normal"
-          (click)="handleAddRecruit()"></button>
-      </div>
-    </ng-template> -->
-  </p-dialog>
+  <app-add-recruit [visible]="isShowAddRecruit" #addRecruit (fetchData)="getListRecruit();isShowAddRecruit=false"
+  [projectId]="projectId"></app-add-recruit>
 </ng-container>
+
 <ng-container *ngIf="isShowUpdateRecruit">
-  <p-dialog [(visible)]="isShowUpdateRecruit" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
-    [style]="{width: '40vw'}" [baseZIndex]="10000" [draggable]="false">
-    <ng-template pTemplate="header">
-      Sửa tin
-    </ng-template>
-    <app-update-recruit #updateRecruit (fetchData)="getListRecruit();isShowUpdateRecruit=false" [projectId]="projectId"
+    <app-update-recruit [visible]="isShowUpdateRecruit" #updateRecruit (fetchData)="getListRecruit();isShowUpdateRecruit=false" [projectId]="projectId"
       [recruit]="recruit"></app-update-recruit>
-    <!-- <ng-template pTemplate="footer">
-      <div class="pt-3">
-        <button pButton type="button" label="Thêm cha " class="p-button-sm font-normal"
-          (click)="handleEditRecruit()"></button>
-      </div>
-    </ng-template> -->
-  </p-dialog>
 </ng-container>
+
 <ng-container *ngIf="isShowViewRecruit">
   <p-dialog [(visible)]="isShowViewRecruit" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
     [style]="{width: '40vw'}" [baseZIndex]="10000" [draggable]="false">

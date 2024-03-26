@@ -676,7 +676,9 @@
           </div>
         </div>
       </p-tabPanel>
-      <p-tabPanel header="Bài viết">Bài viết </p-tabPanel>
+      <p-tabPanel header="Bài viết">
+        <app-project-event [type]="7" [projectId]="projectId" [isView]="true"></app-project-event>
+      </p-tabPanel>
     </p-tabView>
   </div>
   <ng-template pTemplate="footer">

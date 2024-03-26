@@ -9,10 +9,11 @@
   </div>
   <div class="col-12 md:col-8  p-0 h-auto border-x-1 border-400">
     <div class="project-info flex flex-column h-auto align-items-center relative">
-      <button *ngIf="isFounder" pButton pRipple type="button" icon="pi pi-cog"
-        class="top-0 right-0 absolute p-button-rounded p-button-secondary p-button-text"
-        (click)="isShowUpdateProject = true"></button>
+
       <div class="cover-image bg-orange-300 h-20rem w-full relative" style="margin-bottom: 3.5rem;">
+        <button *ngIf="isFounder" label="Cập nhật thông tin" pButton type="button" class="absolute"
+          style="bottom: 8px; right: 16px;" styleClass="bg-white" icon="pi pi-cog"
+          (click)="isShowUpdateProject = true"></button>
         <div class="h-6rem w-6rem absolute left-0 bottom-0 ml-3" style="transform: translateY(50%);">
           <img class="border-circle h-full w-full border-1 border-gray-200"
             [src]="project.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt="">
@@ -26,7 +27,9 @@
             class="flex justify-content-center align-items-center p-2 border-round-md cursor-pointer hover:bg-gray-200">
             <i class="pi pi-list" (click)="isShowDocuments=true"></i>
           </div>
+
         </div>
+
         <img src="/assets/images/default_cover.jpg" alt="" />
       </div>
       <div class="main-info h-auto flex flex-column w-full align-items-start px-3">
@@ -81,7 +84,7 @@
       </div>
     </div>
   </div>
-  <div class="col-2  p-3 bg-gray-300 hidden md:block min-w-min">
+  <div class="col-2  p-3 hidden md:block min-w-min">
     <div class="sticky left-0 " style="top: 96px;">
       <app-list-project-file [projectId]="project.id"
         [isMyProject]="project.extraProperties.relationWithProject == 0"></app-list-project-file>

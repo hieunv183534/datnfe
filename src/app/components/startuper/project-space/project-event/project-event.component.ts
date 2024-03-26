@@ -13,11 +13,12 @@ import { ProjectService } from 'src/app/services/project.service';
 export class ProjectEventComponent implements OnInit, OnChanges {
 
   @Input() project: any = {};
+  @Input() projectId: string = '';
+  @Input() type: number = -1;
+  @Input() isView: boolean = false;
   isVisibleAddPost: boolean = false;
 
   filter?: string = "";
-  type?: number = -1;
-
 
   eventTypes: any[] = [
     {
@@ -73,7 +74,7 @@ export class ProjectEventComponent implements OnInit, OnChanges {
   getListEvent(reset: boolean = false) {
     if (reset) { this.page = 1; }
     let input = new GetProjectEventsDto();
-    input.projectId = this.project.id;
+    input.projectId = this.projectId !="" ? this.projectId  : this.project.id;
     input.filter = this.filter;
     input.type = this.type;
     input.skipCount = (this.page - 1) * this.pageSize;

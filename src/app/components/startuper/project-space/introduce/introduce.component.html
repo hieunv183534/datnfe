@@ -20,7 +20,7 @@
                   {{item.value}}
                 </div>
 
-                <div class="function-item">
+                <div *ngIf="!isView" class="function-item">
                   <div
                     (click)="op1.toggle($event);itemIndex= indexItem;modelIndex=index;isLastItem=isLast;isFirstItem=isFirst"
                     class=" flex align-items-center justify-content-center absolute bg-gray-200 hover:bg-gray-300 cursor-pointer border-circle"
@@ -54,7 +54,7 @@
                 <div class="flex w-full h-auto">
                   {{item.value}}
                 </div>
-                <div class="function-item">
+                <div *ngIf="!isView" class="function-item">
                   <div
                     (click)="op1.toggle($event);itemIndex= indexItem;modelIndex=index;isLastItem=isLast;isFirstItem=isFirst"
                     class=" flex align-items-center justify-content-center absolute bg-gray-200 hover:bg-gray-300 cursor-pointer border-circle"
