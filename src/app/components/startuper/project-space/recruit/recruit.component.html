@@ -1,9 +1,9 @@
 <div class="flex flex-column w-full h-auto p-2 px-2" style="background-color: #F3F4F6;">
-  <div class="flex w-full pl-1 mt-2">
+  <div *ngIf="!isView" class="flex w-full pl-1 mt-2">
     <button pButton type="button" label="Thêm vị trí tuyển dụng mới" (click)="isShowAddRecruit=true" icon="pi pi-plus"
       class="p-button-sm font-normal"></button>
   </div>
-  <div *ngIf="listJobs.length>0" class="flex h-auto w-full flex-wrap mt-3">
+  <div *ngIf="listJobs.length>0" class="flex h-auto w-full flex-wrap" [ngClass]="{'mt-3': !isView}">
     <ng-container *ngFor="let job of listJobs">
       <div class="container-recruit p-1 h-auto w-6" style="background-color: #F3F4F6;">
         <div
@@ -33,7 +33,7 @@
               <span> {{job.lastModificationTime | date : 'hh:mm:ss, dd/MM/yyyy' : 'vi'}}</span>
             </div>
           </div>
-          <div class="function-recruit">
+          <div *ngIf="!isView" class="function-recruit">
             <div (click)="op.toggle($event); $event.stopPropagation();"
               class=" flex align-items-center justify-content-center absolute bg-gray-200 hover:bg-white cursor-pointer border-circle top-50"
               style="right: 8px; height: 24px; width: 24px; transform: translateY(-50%);">
@@ -61,7 +61,8 @@
       </p-overlayPanel>
     </ng-container>
   </div>
-  <div *ngIf="listJobs.length==0" class="flex bg-white border-1 border-round-md border-gray-200 m-1 h-auto align-items-center justify-content-center mt-3">
+  <div *ngIf="listJobs.length==0"
+    class="flex bg-white border-1 border-round-md border-gray-200 m-1 h-auto align-items-center justify-content-center" [ngClass]="{'mt-3': !isView}">
     <img class="w-25rem h-auto" src="../../../../../assets/img/nodata.jpg" alt="" style="object-fit: contain;">
   </div>
 </div>

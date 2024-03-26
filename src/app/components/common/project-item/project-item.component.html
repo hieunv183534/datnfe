@@ -85,5 +85,5 @@
   </div>
 </div>
 <ng-container *ngIf="handleDetail">
-  <app-project-detail [display]="handleDetail" (close)="handleDetail = false"></app-project-detail>
+  <app-project-detail [projectId]="this.project.id" [display]="handleDetail" (close)="handleDetail = false"></app-project-detail>
 </ng-container>

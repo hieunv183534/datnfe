@@ -20,6 +20,7 @@ export class RecruitComponent implements OnInit {
   isShowViewRecruit: boolean = false;
   recruit: RecruitDto = new RecruitDto();
   @Input() projectId: string = '';
+  @Input() isView: boolean = false;
   @ViewChild("addRecruit") addRecruit?: AddRecruitComponent;
   @ViewChild("updateRecruit") updateRecruit?: UpdateRecruitComponent;
   constructor(

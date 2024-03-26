@@ -1,6 +1,6 @@
 <div class="flex p-3" style="background-color: #F3F4F6;">
   <div class="flex flex-column w-full">
-    <p-fileUpload [files]="myFiles" [customUpload]="true" [multiple]="true" accept="image/*"
+    <p-fileUpload *ngIf="!isView" [files]="myFiles" [customUpload]="true" [multiple]="true" accept="image/*"
       (uploadHandler)="myUploader($event)">
 
     </p-fileUpload>
@@ -12,7 +12,7 @@
           </div>
         </ng-template>
       </p-carousel>
-      <div class="pr-3 pb-3">
+      <div  *ngIf="!isView" class="pr-3 pb-3">
         <p-orderList [dragdrop]="true" [value]="listPitchDeck" (onReorder)="onReorder()">
           <ng-template let-item pTemplate="item">
             <div class="flex justify-content-between">
