@@ -45,10 +45,14 @@ export class UserDetailComponent implements OnInit {
       this.startuperInfo = res.data.startuperInfo;
       this.friendStatus = res.data.friendStatus;
       this.listProject = res.data.projectAsStartuper;
-      if(this.startuperInfo.purpose == 3){
+      if (this.startuperInfo.purpose == 3) {
         this.headerName = 'Danh sách dự án'
+      } else if (this.startuperInfo.purpose == 2) {
+        this.headerName = 'Ý tưởng tôi quan tâm'
+      } else if (this.startuperInfo.purpose == 1) {
+        this.headerName = 'Ý tưởng khởi nghiệp của tôi'
       } else {
-        this.headerName = 'Tôi đang tìm kiếm'
+        this.headerName = 'Dự án tôi quan tâm'
       }
       this.listWork = JSON.parse(this.startuperInfo.workingExperience ?? "[]")
     }).catch((err: any) => {
@@ -95,7 +99,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   getFields(val: number[]) {
-    return FsiValues.getMultiName(val, FsiValues.fields);
+    return FsiValues.getMultiName(val, FsiValues.fields).split(", ");
   }
 
   getPersonalities(val: number[]) {

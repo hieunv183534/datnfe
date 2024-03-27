@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges  } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { RoleInProject } from 'src/app/model/enum';
@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
     private messageService: MessageService,
     private eventService: EventService,
     private router: Router,
-    private route:ActivatedRoute,
+    private route: ActivatedRoute,
     private adminService: AdminService
   ) { }
 
@@ -49,10 +49,14 @@ export class ProfileComponent implements OnInit {
       this.friendStatus = res.data.friendStatus;
       this.listProject = res.data.projectAsStartuper;
       this.listWork = JSON.parse(this.startuperInfo.workingExperience ?? "[]")
-      if(this.startuperInfo.purpose == 3){
+      if (this.startuperInfo.purpose == 3) {
         this.headerName = 'Danh sách dự án'
+      } else if (this.startuperInfo.purpose == 2) {
+        this.headerName = 'Ý tưởng tôi quan tâm'
+      } else if (this.startuperInfo.purpose == 1) {
+        this.headerName = 'Ý tưởng khởi nghiệp của tôi'
       } else {
-        this.headerName = 'Tôi đang tìm kiếm'
+        this.headerName = 'Dự án tôi quan tâm'
       }
     }).catch((err: any) => {
       this.messageService.add({
@@ -63,24 +67,28 @@ export class ProfileComponent implements OnInit {
       });
     });
 
-    if(this.userId == this.userInfo.nameid){
+    if (this.userId == this.userInfo.nameid) {
       this.isChangeStyle = false
     } else {
       this.isChangeStyle = true
     }
   }
 
-  closeModal(){
+  closeModal() {
     this.isShowUpdateInfo = false
     this.startuperService.getUserDetail(this.userId).then((res: any) => {
       this.startuperInfo = res.data.startuperInfo;
       this.friendStatus = res.data.friendStatus;
       this.listProject = res.data.projectAsStartuper;
       this.listWork = JSON.parse(this.startuperInfo.workingExperience ?? "[]")
-      if(this.startuperInfo.purpose == 3){
+      if (this.startuperInfo.purpose == 3) {
         this.headerName = 'Danh sách dự án'
+      } else if (this.startuperInfo.purpose == 2) {
+        this.headerName = 'Ý tưởng tôi quan tâm'
+      } else if (this.startuperInfo.purpose == 1) {
+        this.headerName = 'Ý tưởng khởi nghiệp của tôi'
       } else {
-        this.headerName = 'Tôi đang tìm kiếm'
+        this.headerName = 'Dự án tôi quan tâm'
       }
     }).catch((err: any) => {
       this.messageService.add({
@@ -105,7 +113,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getFields(val: number[]) {
-    return FsiValues.getMultiName(val, FsiValues.fields);
+    return FsiValues.getMultiName(val, FsiValues.fields).split(", ");
   }
 
   getPersonalities(val: number[]) {
@@ -116,19 +124,19 @@ export class ProfileComponent implements OnInit {
     return FsiValues.getMultiName(val, FsiValues.skills).split(", ");
   }
 
-  getSpecializies(val: number[]){
+  getSpecializies(val: number[]) {
     return FsiValues.getMultiName(val, FsiValues.specializies).split(", ")
   }
 
-  getTargetField(val: number[]){
+  getTargetField(val: number[]) {
     return FsiValues.getMultiName(val, FsiValues.fields).split(", ")
   }
 
-  getTargetSpecializies(val: number[]){
+  getTargetSpecializies(val: number[]) {
     return FsiValues.getMultiName(val, FsiValues.specializies).split(", ")
   }
 
-  getIdeaField(val: number[]){
+  getIdeaField(val: number[]) {
     return FsiValues.getMultiName(val, FsiValues.fields).split(", ")
   }
 
@@ -156,7 +164,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  editProfile(){
+  editProfile() {
     this.isShowUpdateInfo = true
   }
 }

@@ -118,7 +118,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
       areas: [[], []],
       availableTimes: [[], []],
       skills: [null, []],
-      purposes: [null, []],
+      purpose: [null, []],
       personalities: [[], []],
       yearOfExps: [[], []],
       mode: [UuidStartuperModeNew, []],
