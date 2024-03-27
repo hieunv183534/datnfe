@@ -2,40 +2,23 @@
 
 <router-outlet></router-outlet>
 
-<div
-  class="body-content"
-  style="padding-left: 15%; padding-right: 15%; padding-top: 12px"
->
+<div class="body-content" style="padding-left: 15%; padding-right: 15%; padding-top: 12px">
   <div class="page">
     <div class="profile relative mb-3">
       <div class="flex relative">
-        <div
-          class="flex"
-          style="
+        <div class="flex" style="
             background-image: url('../../../assets/img/qcao.png');
             width: 100%;
-          "
-        >
-          <div
-            class="bg-right-bottom bg-no-repeat w-10rem h-10rem border-round"
-          >
-            <img
-              class="logo absolute"
-              style="top: 60%; left: 24px"
-              [src]="
+          ">
+          <div class="bg-right-bottom bg-no-repeat w-10rem h-10rem border-round">
+            <img class="logo absolute" style="top: 60%; left: 24px" [src]="
                 startuperInfo.avatarUrl ??
                 'https://fsiconnected.cloud/images/default-avatar.jpg'
-              "
-              width="120px"
-            />
+              " width="120px" />
           </div>
         </div>
       </div>
-      <div
-        *ngIf="userId == userInfo.nameid"
-        class="flex mt-2"
-        style="justify-content: flex-end"
-      >
+      <div *ngIf="userId == userInfo.nameid" class="flex mt-2" style="justify-content: flex-end">
         <p-button (click)="editProfile()">Chỉnh sửa hồ sơ</p-button>
       </div>
     </div>
@@ -49,82 +32,47 @@
             {{ startuperInfo.describe }}
           </li>
           <li>
-            <svg
-              width="13"
-              height="13"
-              viewBox="0 0 13 13"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style="margin-right: 4px"
-            >
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"
+              style="margin-right: 4px">
               <path
                 d="M9.54465 8.40386C10.3314 7.33018 10.6837 5.99901 10.5312 4.67666C10.3788 3.35431 9.73267 2.1383 8.72224 1.27192C7.71181 0.405535 6.41157 -0.0473322 5.08162 0.00391997C3.75168 0.0551722 2.49013 0.606764 1.54936 1.54834C0.608586 2.48992 0.0579748 3.75204 0.00768142 5.08221C-0.0426119 6.41237 0.411122 7.71248 1.27811 8.72243C2.14509 9.73238 3.36139 10.3777 4.68366 10.5292C6.00594 10.6808 7.33667 10.3274 8.40963 9.53985H8.40882C8.43319 9.57236 8.45919 9.60324 8.48844 9.6333L11.6164 12.7617C11.7688 12.9142 11.9755 12.9999 12.191 13C12.4065 13.0001 12.6132 12.9145 12.7657 12.7622C12.9181 12.6098 13.0038 12.4031 13.0039 12.1875C13.004 11.972 12.9184 11.7652 12.7661 11.6128L9.63809 8.48431C9.60904 8.4549 9.5778 8.42774 9.54465 8.40305V8.40386ZM9.75427 5.28029C9.75427 5.86719 9.63869 6.44835 9.41412 6.99058C9.18955 7.53281 8.8604 8.02549 8.44545 8.4405C8.03051 8.8555 7.53789 9.1847 6.99574 9.4093C6.45359 9.6339 5.87251 9.7495 5.28569 9.7495C4.69886 9.7495 4.11779 9.6339 3.57564 9.4093C3.03348 9.1847 2.54087 8.8555 2.12592 8.4405C1.71098 8.02549 1.38182 7.53281 1.15726 6.99058C0.932689 6.44835 0.817105 5.86719 0.817105 5.28029C0.817105 4.09498 1.2879 2.95822 2.12592 2.12008C2.96394 1.28194 4.10055 0.811078 5.28569 0.811078C6.47083 0.811078 7.60743 1.28194 8.44545 2.12008C9.28347 2.95822 9.75427 4.09498 9.75427 5.28029Z"
-                fill="black"
-              />
+                fill="black" />
             </svg>
             {{ getPurpose(startuperInfo.purpose) }}
           </li>
           <li *ngIf="userInfo.job == '1'">
-            <svg
-              width="13"
-              height="11"
-              viewBox="0 0 13 11"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style="margin-right: 4px"
-            >
+            <svg width="13" height="11" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg"
+              style="margin-right: 4px">
               <path
                 d="M1.80784 6.24158V8.01318C1.80784 8.47342 2.05656 8.90213 2.4545 9.1228L5.56343 10.844C5.93651 11.052 6.38419 11.052 6.75726 10.844L9.8662 9.1228C10.2641 8.90213 10.5129 8.47342 10.5129 8.01318V6.24158L6.75726 8.32211C6.38419 8.53016 5.93651 8.53016 5.56343 8.32211L1.80784 6.24158ZM5.56343 0.151311L0.321774 3.05144C-0.107258 3.29102 -0.107258 3.92148 0.321774 4.16105L5.56343 7.06118C5.93651 7.26924 6.38419 7.26924 6.75726 7.06118L11.7564 4.29345V8.01949C11.7564 8.36624 12.0362 8.64995 12.3782 8.64995C12.7202 8.64995 13 8.36624 13 8.01949V3.97822C13 3.74495 12.8756 3.5369 12.6767 3.42341L6.75726 0.151311C6.38419 -0.050437 5.93651 -0.050437 5.56343 0.151311Z"
-                fill="black"
-              />
+                fill="black" />
             </svg>
             {{ startuperInfo.university }}
           </li>
           <li>
-            <svg
-              width="12"
-              height="13"
-              viewBox="0 0 12 13"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style="margin-right: 4px"
-            >
+            <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg"
+              style="margin-right: 4px">
               <path
                 d="M0.541748 11.7812C0.541748 12.4541 1.08765 13 1.7605 13H10.698C11.3708 13 11.9167 12.4541 11.9167 11.7812V4.875H0.541748V11.7812ZM8.66675 6.80469C8.66675 6.63711 8.80386 6.5 8.97144 6.5H9.98706C10.1546 6.5 10.2917 6.63711 10.2917 6.80469V7.82031C10.2917 7.98789 10.1546 8.125 9.98706 8.125H8.97144C8.80386 8.125 8.66675 7.98789 8.66675 7.82031V6.80469ZM8.66675 10.0547C8.66675 9.88711 8.80386 9.75 8.97144 9.75H9.98706C10.1546 9.75 10.2917 9.88711 10.2917 10.0547V11.0703C10.2917 11.2379 10.1546 11.375 9.98706 11.375H8.97144C8.80386 11.375 8.66675 11.2379 8.66675 11.0703V10.0547ZM5.41675 6.80469C5.41675 6.63711 5.55386 6.5 5.72144 6.5H6.73706C6.90464 6.5 7.04175 6.63711 7.04175 6.80469V7.82031C7.04175 7.98789 6.90464 8.125 6.73706 8.125H5.72144C5.55386 8.125 5.41675 7.98789 5.41675 7.82031V6.80469ZM5.41675 10.0547C5.41675 9.88711 5.55386 9.75 5.72144 9.75H6.73706C6.90464 9.75 7.04175 9.88711 7.04175 10.0547V11.0703C7.04175 11.2379 6.90464 11.375 6.73706 11.375H5.72144C5.55386 11.375 5.41675 11.2379 5.41675 11.0703V10.0547ZM2.16675 6.80469C2.16675 6.63711 2.30386 6.5 2.47144 6.5H3.48706C3.65464 6.5 3.79175 6.63711 3.79175 6.80469V7.82031C3.79175 7.98789 3.65464 8.125 3.48706 8.125H2.47144C2.30386 8.125 2.16675 7.98789 2.16675 7.82031V6.80469ZM2.16675 10.0547C2.16675 9.88711 2.30386 9.75 2.47144 9.75H3.48706C3.65464 9.75 3.79175 9.88711 3.79175 10.0547V11.0703C3.79175 11.2379 3.65464 11.375 3.48706 11.375H2.47144C2.30386 11.375 2.16675 11.2379 2.16675 11.0703V10.0547ZM10.698 1.625H9.47925V0.40625C9.47925 0.182812 9.29644 0 9.073 0H8.2605C8.03706 0 7.85425 0.182812 7.85425 0.40625V1.625H4.60425V0.40625C4.60425 0.182812 4.42144 0 4.198 0H3.3855C3.16206 0 2.97925 0.182812 2.97925 0.40625V1.625H1.7605C1.08765 1.625 0.541748 2.1709 0.541748 2.84375V4.0625H11.9167V2.84375C11.9167 2.1709 11.3708 1.625 10.698 1.625Z"
-                fill="black"
-              />
+                fill="black" />
             </svg>
             {{ getDate(startuperInfo.dateOfBirth) }}
           </li>
           <li>
-            <svg
-              width="13"
-              height="15"
-              viewBox="0 0 13 15"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style="margin-right: 4px"
-            >
+            <svg width="13" height="15" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg"
+              style="margin-right: 4px">
               <path
                 d="M6.5 0C2.90643 0 0 2.3475 0 5.25C0 9.1875 6.5 15 6.5 15C6.5 15 13 9.1875 13 5.25C13 2.3475 10.0936 0 6.5 0ZM6.5 7.125C5.21857 7.125 4.17857 6.285 4.17857 5.25C4.17857 4.215 5.21857 3.375 6.5 3.375C7.78143 3.375 8.82143 4.215 8.82143 5.25C8.82143 6.285 7.78143 7.125 6.5 7.125Z"
-                fill="black"
-              />
+                fill="black" />
             </svg>
             {{ getArea(startuperInfo.location) }}
           </li>
           <li>
-            <svg
-              width="13"
-              height="13"
-              viewBox="0 0 13 13"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style="margin-right: 4px"
-            >
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"
+              style="margin-right: 4px">
               <path
                 d="M10.3995 13C10.3995 7.29462 5.70538 2.6 0 2.6V0C7.13104 0 13 5.86896 13 13H10.3995ZM1.78262 9.43313C2.76521 9.43313 3.56633 10.2342 3.56633 11.2179C3.56633 12.2 2.76196 13 1.77829 13C0.79625 13 0 12.2016 0 11.2179C0 10.2342 0.798958 9.43367 1.78262 9.43313ZM8.61738 13H6.0905C6.0905 9.65846 3.34154 6.90896 0 6.90896V4.38208C4.72712 4.38208 8.61738 8.27342 8.61738 13Z"
-                fill="black"
-              />
+                fill="black" />
             </svg>
             Có 1000 người theo dõi
           </li>
@@ -135,17 +83,29 @@
           <ul>
             <li *ngIf="startuperInfo.purpose == 1">
               <p>
+                <b>Lĩnh vực của ý tưởng: </b>
+              </p>
+              <span>
+                <p-tag *ngFor="
+                    let _ideaField of getFields(
+                      startuperInfo.ideaField ?? []
+                    )
+                  " [value]="_ideaField"></p-tag>
+              </span>
+            </li>
+            <li *ngIf="startuperInfo.purpose == 1">
+              <p-divider align="center">
+                <b>Tôi cần tìm cộng sự có:</b>
+              </p-divider>
+              <p>
                 <b>Kỹ năng chuyên môn: </b>
               </p>
               <span>
-                <p-tag
-                  *ngFor="
+                <p-tag *ngFor="
                     let targetSpecialize of getSpecializies(
                       startuperInfo.targetSpecialize ?? []
                     )
-                  "
-                  [value]="targetSpecialize"
-                ></p-tag>
+                  " [value]="targetSpecialize"></p-tag>
               </span>
             </li>
             <li *ngIf="startuperInfo.purpose == 1">
@@ -153,14 +113,11 @@
                 <b>Điểm cộng kỹ năng mềm: </b>
               </p>
               <span>
-                <p-tag
-                  *ngFor="
+                <p-tag *ngFor="
                     let requestSkill of getSkills(
                       startuperInfo.requestSkill ?? []
                     )
-                  "
-                  [value]="requestSkill"
-                ></p-tag>
+                  " [value]="requestSkill"></p-tag>
               </span>
             </li>
             <li *ngIf="startuperInfo.purpose == 1">
@@ -168,14 +125,11 @@
                 <b>Điểm cộng tính cách: </b>
               </p>
               <span>
-                <p-tag
-                  *ngFor="
+                <p-tag *ngFor="
                     let requestPersonality of getPersonalities(
                       startuperInfo.requestPersonality ?? []
                     )
-                  "
-                  [value]="requestPersonality"
-                ></p-tag>
+                  " [value]="requestPersonality"></p-tag>
               </span>
             </li>
             <li *ngIf="startuperInfo.purpose == 2">
@@ -183,14 +137,11 @@
                 <b>Lĩnh vực của ý tưởng: </b>
               </p>
               <span>
-                <p-tag
-                  *ngFor="
+                <p-tag *ngFor="
                     let targetField of getTargetField(
                       startuperInfo.targetField ?? []
                     )
-                  "
-                  [value]="targetField"
-                ></p-tag>
+                  " [value]="targetField"></p-tag>
               </span>
             </li>
             <li *ngIf="startuperInfo.purpose == 4">
@@ -198,35 +149,22 @@
                 <b>Lĩnh vực của dự án: </b>
               </p>
               <span>
-                <p-tag
-                  *ngFor="
+                <p-tag *ngFor="
                     let targetField of getTargetField(
                       startuperInfo.targetField ?? []
                     )
-                  "
-                  [value]="targetField"
-                ></p-tag>
+                  " [value]="targetField"></p-tag>
               </span>
             </li>
             <div *ngIf="startuperInfo.purpose == 3">
-              <div
-                *ngFor="let item of listProject; let i = index"
-                class="flex justify-content-between flex-wrap history-search"
-              >
+              <div *ngFor="let item of listProject; let i = index"
+                class="flex justify-content-between flex-wrap history-search">
                 <div class="flex align-items-center justify-content-center m-2">
-                  <img
-                    class="image-history"
-                    [src]="
+                  <img class="image-history" [src]="
                       item.project.avatarUrl ??
                       'https://fsiconnected.cloud/images/default-avatar.jpg'
-                    "
-                    alt=""
-                    width="100px"
-                    style="border-radius: 50%"
-                  />
-                  <div
-                    class="flex align-items-center justify-content-center ml-2"
-                  >
+                    " alt="" width="100px" style="border-radius: 50%" />
+                  <div class="flex align-items-center justify-content-center ml-2">
                     <ul>
                       <li>
                         <b><span>Tên dự án: </span> </b>
@@ -250,14 +188,11 @@
                 <b>Kỹ năng chuyên môn: </b>
               </p>
               <span>
-                <p-tag
-                  *ngFor="
+                <p-tag *ngFor="
                     let specialize of getSpecializies(
                       startuperInfo.specialize ?? []
                     )
-                  "
-                  [value]="specialize"
-                ></p-tag>
+                  " [value]="specialize"></p-tag>
               </span>
             </li>
             <li>
@@ -265,11 +200,9 @@
                 <b>Kỹ năng mềm nổi bật: </b>
               </p>
               <span>
-                <ng-container
-                  *ngFor="
+                <ng-container *ngFor="
                     let personality of getSkills(startuperInfo.skill ?? [])
-                  "
-                >
+                  ">
                   <p-tag [value]="personality"></p-tag>
                 </ng-container>
               </span>
@@ -279,13 +212,11 @@
                 <b>Tính cách nổi bật: </b>
               </p>
               <span>
-                <ng-container
-                  *ngFor="
+                <ng-container *ngFor="
                     let personality of getPersonalities(
                       startuperInfo.personality ?? []
                     )
-                  "
-                >
+                  ">
                   <p-tag [value]="personality"></p-tag>
                 </ng-container>
               </span>
@@ -295,10 +226,7 @@
                 <b>Thời gian khả dụng: </b>
               </p>
               <span>
-                <p-tag
-                  :value="{{ getAvailableTime(startuperInfo.availableTime) }}"
-                  class="ml-1"
-                ></p-tag>
+                <p-tag :value="{{ getAvailableTime(startuperInfo.availableTime) }}" class="ml-1"></p-tag>
               </span>
             </li>
 
@@ -327,11 +255,8 @@
               <p *ngFor="let item of listWork; let i = index">
                 <span class="color-text">{{ item.position }}</span> tại
                 <span class="color-text">{{ item.name }}</span>
-                <span
-                  *ngIf="item.start || item.end"
-                  style="display: flex; margin-bottom: 3px"
-                  >{{ getDate(item.start) }} - {{ getDate(item.end) }}</span
-                >
+                <span *ngIf="item.start || item.end" style="display: flex; margin-bottom: 3px">{{ getDate(item.start) }}
+                  - {{ getDate(item.end) }}</span>
               </p>
             </li>
             <li>
@@ -339,16 +264,14 @@
                 <b>Hoạt động xã hội: </b>
                 <span *ngIf="startuperInfo.activity; else invalidName">{{
                   startuperInfo.activity
-                }}</span>
+                  }}</span>
               </p>
             </li>
             <li>
               <p>
                 <b>Chứng chỉ thành tích: </b>
-                <span
-                  *ngIf="startuperInfo.certificateAndAward; else invalidName"
-                  >{{ startuperInfo.certificateAndAward }}</span
-                >
+                <span *ngIf="startuperInfo.certificateAndAward; else invalidName">{{ startuperInfo.certificateAndAward
+                  }}</span>
                 <ng-template #invalidName> Không có </ng-template>
               </p>
             </li>
@@ -362,8 +285,5 @@
   </div>
 </div>
 <ng-container *ngIf="isShowUpdateInfo">
-  <app-update-user-info
-    [display]="isShowUpdateInfo"
-    (close)="closeModal()"
-  ></app-update-user-info>
+  <app-update-user-info [display]="isShowUpdateInfo" (close)="closeModal()"></app-update-user-info>
 </ng-container>

@@ -1,21 +1,9 @@
-<p-dialog
-  [resizable]="true"
-  header="Cập nhật thông tin cá nhân"
-  [(visible)]="display"
-  [modal]="true"
-  [style]="styleDialog"
-  [baseZIndex]="10000"
-  [draggable]="false"
-  (onHide)="close.emit()"
->
+<p-dialog [resizable]="true" header="Cập nhật thông tin cá nhân" [(visible)]="display" [modal]="true"
+  [style]="styleDialog" [baseZIndex]="10000" [draggable]="false" (onHide)="close.emit()">
   <div class="p-fluid grid">
     <p-card class="col-12 w-full">
       <ng-template pTemplate="content">
-        <p-steps
-          [model]="steps"
-          [readonly]="false"
-          [(activeIndex)]="activeIndex"
-        ></p-steps>
+        <p-steps [model]="steps" [readonly]="false" [(activeIndex)]="activeIndex"></p-steps>
         <br />
         <ng-container [ngSwitch]="activeIndex">
           <ng-container *ngSwitchCase="0">
@@ -25,16 +13,9 @@
             <input type="file" (change)="fileChangeEvent($event)" />
 
             <div class="image-cropper-wrapper">
-              <image-cropper
-                [imageChangedEvent]="imageChangedEvent"
-                [maintainAspectRatio]="true"
-                [aspectRatio]="1"
-                format="png"
-                (imageCropped)="imageCropped($event)"
-                (imageLoaded)="imageLoaded($event)"
-                (cropperReady)="cropperReady()"
-                (loadImageFailed)="loadImageFailed()"
-              ></image-cropper>
+              <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1"
+                format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)"
+                (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
             </div>
 
             <img class="preview-image" [src]="croppedImage" />
@@ -50,21 +31,14 @@
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-calendar
-                      appendTo="body"
-                      formControlName="dateOfBirth"
-                    ></p-calendar>
+                    <p-calendar appendTo="body" formControlName="dateOfBirth"></p-calendar>
                     <label>Ngày sinh: </label>
                   </span>
                 </div>
                 <div class="p-field col-3 md-3">
                   <label class="title">Giới tính</label>
-                  <p-selectButton
-                    [options]="genders"
-                    optionLabel="name"
-                    formControlName="gender"
-                    optionValue="value"
-                  ></p-selectButton>
+                  <p-selectButton [options]="genders" optionLabel="name" formControlName="gender"
+                    optionValue="value"></p-selectButton>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
@@ -74,100 +48,49 @@
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <input
-                      type="text"
-                      pInputText
-                      formControlName="phoneNumber"
-                    />
+                    <input type="text" pInputText formControlName="phoneNumber" />
                     <label>Số điện thoại: </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <input
-                      type="text"
-                      pInputText
-                      formControlName="identityCard"
-                    />
+                    <input type="text" pInputText formControlName="identityCard" />
                     <label>Căn cước công dân: </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-dropdown
-                      [autoDisplayFirst]="false"
-                      [options]="areas"
-                      optionValue="value"
-                      optionLabel="name"
-                      formControlName="location"
-                    ></p-dropdown>
+                    <p-dropdown [autoDisplayFirst]="false" [options]="areas" optionValue="value" optionLabel="name"
+                      formControlName="location"></p-dropdown>
                     <label>Khu vực: </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
-                  <label class="title"
-                    >Chức danh nghề nghiệp<span style="color: red"
-                      >*</span
-                    ></label
-                  >
-                  <p-dropdown
-                    [options]="jobs"
-                    optionValue="value"
-                    optionLabel="name"
-                    [style]="{ width: '100%' }"
-                    [autoDisplayFirst]="false"
-                    formControlName="job"
-                  ></p-dropdown>
+                  <label class="title">Chức danh nghề nghiệp<span style="color: red">*</span></label>
+                  <p-dropdown [options]="jobs" optionValue="value" optionLabel="name" [style]="{ width: '100%' }"
+                    [autoDisplayFirst]="false" formControlName="job"></p-dropdown>
                 </div>
                 <ng-container *ngIf="jobValue == 1">
                   <div class="p-field col-12 md-12">
-                    <label class="title"
-                      >Trường<span style="color: red">*</span></label
-                    >
-                    <p-dropdown
-                      [filter]="true"
-                      [options]="universities"
-                      [style]="{ width: '100%' }"
-                      [autoDisplayFirst]="false"
-                      formControlName="university"
-                      (onChange)="changeUniversity($event)"
-                      optionLabel="name"
-                      optionValue="value"
-                    ></p-dropdown>
+                    <label class="title">Trường<span style="color: red">*</span></label>
+                    <p-dropdown [filter]="true" [options]="universities" [style]="{ width: '100%' }"
+                      [autoDisplayFirst]="false" formControlName="university" (onChange)="changeUniversity($event)"
+                      optionLabel="name" optionValue="value"></p-dropdown>
                   </div>
                   <div class="p-field col-12 md-12">
-                    <label class="title"
-                      >Khoa<span style="color: red">*</span></label
-                    >
-                    <p-dropdown
-                      [filter]="true"
-                      [options]="universitySpecializeds ?? []"
-                      [style]="{ width: '100%' }"
-                      [autoDisplayFirst]="false"
-                      formControlName="universitySpecialized"
-                      optionLabel="name"
-                      optionValue="value"
-                    ></p-dropdown>
+                    <label class="title">Khoa<span style="color: red">*</span></label>
+                    <p-dropdown [filter]="true" [options]="universitySpecializeds ?? []" [style]="{ width: '100%' }"
+                      [autoDisplayFirst]="false" formControlName="universitySpecialized" optionLabel="name"
+                      optionValue="value"></p-dropdown>
                   </div>
                   <div class="p-field col-12 md-12">
-                    <label class="title"
-                      >Mã số SV<span style="color: red">*</span></label
-                    >
-                    <input
-                      type="text"
-                      class="p-inputtext"
-                      pInputText
-                      formControlName="studentId"
-                    />
+                    <label class="title">Mã số SV<span style="color: red">*</span></label>
+                    <input type="text" class="p-inputtext" pInputText formControlName="studentId" />
                   </div>
                 </ng-container>
                 <div class="p-field col-12 md-12" *ngIf="jobValue != 1">
                   <span class="p-float-label">
-                    <input
-                      type="text"
-                      pInputText
-                      formControlName="workingPlace"
-                    />
+                    <input type="text" pInputText formControlName="workingPlace" />
                     <label>Nơi làm việc: </label>
                   </span>
                 </div>
@@ -180,353 +103,82 @@
               <div class="p-fluid grid">
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <textarea
-                      [rows]="5"
-                      pInputTextarea
-                      formControlName="describe"
-                    ></textarea>
+                    <textarea [rows]="5" pInputTextarea formControlName="describe"></textarea>
                     <label>Mô tả thêm, slogan của bản thân: </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-dropdown
-                      [options]="purposes"
-                      optionValue="value"
-                      optionLabel="name"
-                      formControlName="purpose"
-                      [autoDisplayFirst]="false"
-                      emptyMessage="Chọn 1"
-                      (onChange)="handleChange()"
-                    ></p-dropdown>
-                    <label
-                      >Mục đích tham gia FSI CONNECTED?:
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="specializies" defaultLabel="Chọn chuyên môn của mình" optionLabel="name"
+                      formControlName="specialize">
+                    </p-multiSelect>
+                    <label>Hãy lựa chọn chuyên môn của mình:
                       <span style="color: red">*</span>
                     </label>
                   </span>
-                  <span
-                    class="text-error"
-                    *ngIf="formStartuperInfo.value.purpose == 0 && handleSubmit"
-                    >Mục đích tham gia FSI CONNECTED không được để trống</span
-                  >
-                </div>
-                <div
-                  class="p-field col-12 md-12"
-                  *ngIf="formStartuperInfo.value.purpose == 1"
-                >
-                  <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="fields"
-                      defaultLabel="Chọn chuyên môn của mình"
-                      optionLabel="name"
-                      formControlName="ideaField"
-                      (onChange)="handleChange()"
-                    >
-                    </p-multiSelect>
-                    <label
-                      >Lĩnh vực ý tưởng của bạn:
-                      <span style="color: red">*</span></label
-                    >
-                  </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
-                      formStartuperInfo.value.ideaField.length == 0 &&
-                      !this.formStartuperInfo.valid &&
-                      handleSubmit
-                    "
-                    >Lĩnh vực ý tưởng của bạn không được để trống</span
-                  >
-                </div>
-                <div
-                  class="p-field col-12 md-12"
-                  *ngIf="formStartuperInfo.value.purpose == 1"
-                >
-                  <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="specializies"
-                      defaultLabel="Chọn chuyên môn"
-                      optionLabel="name"
-                      formControlName="targetSpecialize"
-                    >
-                    </p-multiSelect>
-                    <label
-                      >Bạn muốn tìm người có chuyên môn như nào:
-                      <span style="color: red">*</span></label
-                    >
-                  </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
-                      formStartuperInfo.value.targetSpecialize.length == 0 &&
-                      !this.formStartuperInfo.valid &&
-                      handleSubmit
-                    "
-                    >Tìm người có chuyên môn như nào không được để trống</span
-                  >
-                </div>
-                <div
-                  class="p-field col-12 md-12"
-                  *ngIf="formStartuperInfo.value.purpose == 1"
-                >
-                  <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="personalities"
-                      defaultLabel="Chọn tính cách"
-                      optionLabel="name"
-                      formControlName="requestPersonality"
-                    >
-                    </p-multiSelect>
-                    <label
-                      >Bạn muốn tìm người có tính cách như nào:
-                      <span style="color: red">*</span></label
-                    >
-                  </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
-                      formStartuperInfo.value.requestPersonality.length == 0 &&
-                      !this.formStartuperInfo.valid &&
-                      handleSubmit
-                    "
-                    >Tìm người có tính cách như nào không được để trống</span
-                  >
-                </div>
-                <div
-                  class="p-field col-12 md-12"
-                  *ngIf="formStartuperInfo.value.purpose == 1"
-                >
-                  <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="skills"
-                      defaultLabel="Chọn kỹ năng mềm"
-                      optionLabel="name"
-                      formControlName="requestSkill"
-                    >
-                    </p-multiSelect>
-                    <label
-                      >Bạn muốn tìm người có kỹ năng mềm như nào:
-                      <span style="color: red">*</span></label
-                    >
-                  </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
-                      formStartuperInfo.value.requestSkill.length == 0 &&
-                      !this.formStartuperInfo.valid &&
-                      handleSubmit
-                    "
-                    >Tìm người có kỹ năng mềm như nào không được để trống</span
-                  >
-                </div>
-                <div
-                  class="p-field col-12 md-12"
-                  *ngIf="formStartuperInfo.value.purpose == 4"
-                >
-                  <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="fields"
-                      defaultLabel="Chọn lĩnh vực của dự án"
-                      optionLabel="name"
-                      formControlName="targetField"
-                    >
-                    </p-multiSelect>
-                    <label
-                      >Lĩnh vực của dự án muốn tham gia:
-                      <span style="color: red">*</span></label
-                    >
-                  </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
-                      formStartuperInfo.value.targetField.length == 0 &&
-                      !this.formStartuperInfo.valid &&
-                      handleSubmit
-                    "
-                    >Lĩnh vực của dự án muốn tham gia không được để trống</span
-                  >
-                </div>
-                <div
-                  class="p-field col-12 md-12"
-                  *ngIf="formStartuperInfo.value.purpose == 2"
-                >
-                  <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="fields"
-                      defaultLabel="Chọn lĩnh vực ý tưởng muốn tham gia"
-                      optionLabel="name"
-                      formControlName="targetField"
-                    >
-                    </p-multiSelect>
-                    <label
-                      >Lĩnh vực ý tưởng muốn tham gia:
-                      <span style="color: red">*</span></label
-                    >
-                  </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
-                      formStartuperInfo.value.targetField.length == 0 &&
-                      !this.formStartuperInfo.valid &&
-                      handleSubmit
-                    "
-                    >Lĩnh vực ý tưởng muốn tham gia không được để trống</span
-                  >
-                </div>
-                <div class="p-field col-12 md-12">
-                  <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="specializies"
-                      defaultLabel="Chọn chuyên môn của mình"
-                      optionLabel="name"
-                      formControlName="specialize"
-                    >
-                    </p-multiSelect>
-                    <label
-                      >Hãy lựa chọn chuyên môn của mình:
-                      <span style="color: red">*</span>
-                    </label>
-                  </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
+                  <span class="text-error" *ngIf="
                       formStartuperInfo.value.specialize.length == 0 &&
                       !this.formStartuperInfo.valid &&
                       handleSubmit
-                    "
-                    >Chuyên môn không được để trống</span
-                  >
+                    ">Chuyên môn không được để trống</span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-dropdown
-                      [options]="fields"
-                      optionValue="value"
-                      optionLabel="name"
-                      formControlName="field"
-                      [autoDisplayFirst]="false"
-                      emptyMessage="Chọn 1"
-                    ></p-dropdown>
-                    <label
-                      >Bạn đang hoạt động/Làm việc trong lĩnh vực nào?:
+                    <p-dropdown [options]="fields" optionValue="value" optionLabel="name" formControlName="field"
+                      [autoDisplayFirst]="false" emptyMessage="Chọn 1"></p-dropdown>
+                    <label>Bạn đang hoạt động/Làm việc trong lĩnh vực nào?:
                     </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-dropdown
-                      [options]="yearOfExps"
-                      [autoDisplayFirst]="false"
-                      optionValue="value"
-                      optionLabel="name"
-                      formControlName="yearOfExp"
-                      emptyMessage="Chọn 1"
-                    ></p-dropdown>
+                    <p-dropdown [options]="yearOfExps" [autoDisplayFirst]="false" optionValue="value" optionLabel="name"
+                      formControlName="yearOfExp" emptyMessage="Chọn 1"></p-dropdown>
                     <label>Số năm kinh nghiệm trong lĩnh vực: </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-dropdown
-                      [options]="availableTimes"
-                      [autoDisplayFirst]="false"
-                      optionValue="value"
-                      optionLabel="name"
-                      formControlName="availableTime"
-                      emptyMessage="Chọn 1"
-                    ></p-dropdown>
-                    <label
-                      >Bạn có thể dành tối thiểu bao nhiêu thời gian để làm việc
+                    <p-dropdown [options]="availableTimes" [autoDisplayFirst]="false" optionValue="value"
+                      optionLabel="name" formControlName="availableTime" emptyMessage="Chọn 1"></p-dropdown>
+                    <label>Bạn có thể dành tối thiểu bao nhiêu thời gian để làm việc
                       trong một dự án?: <span style="color: red">*</span>
                     </label>
                   </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
+                  <span class="text-error" *ngIf="
                       !formStartuperInfo.value.availableTime &&
                       !this.formStartuperInfo.valid &&
                       handleSubmit
-                    "
-                    >Thời gian không được để trống</span
-                  >
+                    ">Thời gian không được để trống</span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="personalities"
-                      defaultLabel="Chọn tối đa 3 tính cách"
-                      optionLabel="name"
-                      formControlName="personality"
-                    >
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="personalities" defaultLabel="Chọn tối đa 3 tính cách" optionLabel="name"
+                      formControlName="personality">
                     </p-multiSelect>
-                    <label
-                      >Hãy lựa chọn 3 từ mô tả đúng nhất về tính cách của bạn:
+                    <label>Hãy lựa chọn 3 từ mô tả đúng nhất về tính cách của bạn:
                     </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="skills"
-                      defaultLabel="Chọn tối đa 3 kỹ năng"
-                      optionLabel="name"
-                      formControlName="skill"
-                    >
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="skills" defaultLabel="Chọn tối đa 3 kỹ năng" optionLabel="name"
+                      formControlName="skill">
                     </p-multiSelect>
-                    <label
-                      >Hãy lựa chọn 3 kỹ năng mềm của bản thân mà bạn tâm đắc
+                    <label>Hãy lựa chọn 3 kỹ năng mềm của bản thân mà bạn tâm đắc
                       nhất:
                     </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
-                  <app-work-history-summary
-                    formControlName="workingExperience"
-                  ></app-work-history-summary>
+                  <app-work-history-summary formControlName="workingExperience"></app-work-history-summary>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <textarea
-                      [rows]="5"
-                      pInputTextarea
-                      formControlName="activity"
-                    ></textarea>
+                    <textarea [rows]="5" pInputTextarea formControlName="activity"></textarea>
                     <label>
                       Các hoạt động xã hội, từ thiện, tình nguyện khác... (bao
                       gồm: Tổ chức, vị trí, khoảng thời gian):
@@ -535,13 +187,113 @@
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <textarea
-                      [rows]="5"
-                      pInputTextarea
-                      formControlName="certificateAndAward"
-                    ></textarea>
+                    <textarea [rows]="5" pInputTextarea formControlName="certificateAndAward"></textarea>
                     <label>Chứng chỉ, thành tích: </label>
                   </span>
+                </div>
+                <p-divider class="col-12" align="left">
+                  <b>Bạn muốn tìm kiếm điều gì ở FSI</b>
+                </p-divider>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <p-dropdown [options]="purposes" optionValue="value" optionLabel="name" formControlName="purpose"
+                      [autoDisplayFirst]="false" emptyMessage="Chọn 1" (onChange)="handleChange()"></p-dropdown>
+                    <label>Mục đích tham gia FSI CONNECTED?:
+                      <span style="color: red">*</span>
+                    </label>
+                  </span>
+                  <span class="text-error" *ngIf="formStartuperInfo.value.purpose == 0 && handleSubmit">Mục đích tham
+                    gia FSI CONNECTED không được để trống</span>
+                </div>
+                <div class="p-field col-12 md-12" *ngIf="formStartuperInfo.value.purpose == 1">
+                  <span class="p-float-label">
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="fields" defaultLabel="Chọn chuyên môn của mình" optionLabel="name"
+                      formControlName="ideaField" (onChange)="handleChange()">
+                    </p-multiSelect>
+                    <label>Lĩnh vực ý tưởng của bạn:
+                      <span style="color: red">*</span></label>
+                  </span>
+                  <span class="text-error" *ngIf="
+                        formStartuperInfo.value.ideaField.length == 0 &&
+                        !this.formStartuperInfo.valid &&
+                        handleSubmit
+                      ">Lĩnh vực ý tưởng của bạn không được để trống</span>
+                </div>
+                <div class="p-field col-12 md-12" *ngIf="formStartuperInfo.value.purpose == 1">
+                  <span class="p-float-label">
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="specializies" defaultLabel="Chọn chuyên môn" optionLabel="name"
+                      formControlName="targetSpecialize">
+                    </p-multiSelect>
+                    <label>Bạn muốn tìm người có chuyên môn như nào:
+                      <span style="color: red">*</span></label>
+                  </span>
+                  <span class="text-error" *ngIf="
+                        formStartuperInfo.value.targetSpecialize.length == 0 &&
+                        !this.formStartuperInfo.valid &&
+                        handleSubmit
+                      ">Tìm người có chuyên môn như nào không được để trống</span>
+                </div>
+                <div class="p-field col-12 md-12" *ngIf="formStartuperInfo.value.purpose == 1">
+                  <span class="p-float-label">
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="personalities" defaultLabel="Chọn tính cách" optionLabel="name"
+                      formControlName="requestPersonality">
+                    </p-multiSelect>
+                    <label>Bạn muốn tìm người có tính cách như nào:
+                      <span style="color: red">*</span></label>
+                  </span>
+                  <span class="text-error" *ngIf="
+                        formStartuperInfo.value.requestPersonality.length == 0 &&
+                        !this.formStartuperInfo.valid &&
+                        handleSubmit
+                      ">Tìm người có tính cách như nào không được để trống</span>
+                </div>
+                <div class="p-field col-12 md-12" *ngIf="formStartuperInfo.value.purpose == 1">
+                  <span class="p-float-label">
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="skills" defaultLabel="Chọn kỹ năng mềm" optionLabel="name"
+                      formControlName="requestSkill">
+                    </p-multiSelect>
+                    <label>Bạn muốn tìm người có kỹ năng mềm như nào:
+                      <span style="color: red">*</span></label>
+                  </span>
+                  <span class="text-error" *ngIf="
+                        formStartuperInfo.value.requestSkill.length == 0 &&
+                        !this.formStartuperInfo.valid &&
+                        handleSubmit
+                      ">Tìm người có kỹ năng mềm như nào không được để trống</span>
+                </div>
+                <div class="p-field col-12 md-12" *ngIf="formStartuperInfo.value.purpose == 4">
+                  <span class="p-float-label">
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="fields" defaultLabel="Chọn lĩnh vực của dự án" optionLabel="name"
+                      formControlName="targetField">
+                    </p-multiSelect>
+                    <label>Lĩnh vực của dự án muốn tham gia:
+                      <span style="color: red">*</span></label>
+                  </span>
+                  <span class="text-error" *ngIf="
+                        formStartuperInfo.value.targetField.length == 0 &&
+                        !this.formStartuperInfo.valid &&
+                        handleSubmit
+                      ">Lĩnh vực của dự án muốn tham gia không được để trống</span>
+                </div>
+                <div class="p-field col-12 md-12" *ngIf="formStartuperInfo.value.purpose == 2">
+                  <span class="p-float-label">
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="fields" defaultLabel="Chọn lĩnh vực ý tưởng muốn tham gia" optionLabel="name"
+                      formControlName="targetField">
+                    </p-multiSelect>
+                    <label>Lĩnh vực ý tưởng muốn tham gia:
+                      <span style="color: red">*</span></label>
+                  </span>
+                  <span class="text-error" *ngIf="
+                        formStartuperInfo.value.targetField.length == 0 &&
+                        !this.formStartuperInfo.valid &&
+                        handleSubmit
+                      ">Lĩnh vực ý tưởng muốn tham gia không được để trống</span>
                 </div>
               </div>
             </form>
@@ -552,31 +304,19 @@
               <div class="p-fluid grid">
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <input
-                      type="password"
-                      pInputText
-                      formControlName="oldPassword"
-                    />
+                    <input type="password" pInputText formControlName="oldPassword" />
                     <label>Nhập mật khẩu: </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <input
-                      type="password"
-                      pInputText
-                      formControlName="newPassword"
-                    />
+                    <input type="password" pInputText formControlName="newPassword" />
                     <label>Nhập mật khẩu mới: </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <input
-                      type="password"
-                      pInputText
-                      formControlName="reNewPassword"
-                    />
+                    <input type="password" pInputText formControlName="reNewPassword" />
                     <label>Nhập lại mật khẩu mới: </label>
                   </span>
                 </div>
@@ -587,11 +327,7 @@
       </ng-template>
       <ng-template pTemplate="footer">
         <div class="flex justify-content-end">
-          <p-button
-            label="Cập nhật"
-            styleClass="p-button-success"
-            (onClick)="save()"
-          >
+          <p-button label="Cập nhật" styleClass="p-button-success" (onClick)="save()">
           </p-button>
         </div>
       </ng-template>

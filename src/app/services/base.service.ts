@@ -15,8 +15,8 @@ export class BaseService {
   constructor(private router: Router, private messageService: MessageService) {
     this.apiController = '';
     this.BaseAPIConfig = axios.create({
-      // baseURL: "http://localhost:7777/api/"
-      baseURL: "https://fsiconnectedapi.azurewebsites.net/api/"
+      baseURL: "http://localhost:7777/api/"
+      // baseURL: "https://fsiconnectedapi.azurewebsites.net/api/"
     });
 
     this.BaseAPIConfig.interceptors.request.use((config: any) => {
@@ -39,25 +39,5 @@ export class BaseService {
       return Promise.reject(error)
     })
   }
-
-  // add(body: any): any {
-  //   return this.BaseAPIConfig.post(`${this.apiController}`, body);
-  // }
-
-  // update(body: any) {
-  //   return this.BaseAPIConfig.put(`${this.apiController}`, body);
-  // }
-
-  // delete(id: string) {
-  //   return this.BaseAPIConfig.delete(`${this.apiController}/${id}`);
-  // }
-
-  // getById(id: string) {
-  //   return this.BaseAPIConfig.get(`${this.apiController}/${id}`);
-  // }
-
-  // getList() {
-  //   return this.BaseAPIConfig.get(`${this.apiController}`);
-  // }
 
 }
