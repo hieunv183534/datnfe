@@ -67,12 +67,12 @@
   </div>
 </div>
 <ng-container *ngIf="isShowAddRecruit">
-  <app-add-recruit [visible]="isShowAddRecruit" #addRecruit (fetchData)="getListRecruit();isShowAddRecruit=false"
+  <app-add-recruit [visible]="isShowAddRecruit" #addRecruit (fetchData)="getListRecruit();isShowAddRecruit=false" (close)="isShowAddRecruit=false"
   [projectId]="projectId"></app-add-recruit>
 </ng-container>
 
 <ng-container *ngIf="isShowUpdateRecruit">
-    <app-update-recruit [visible]="isShowUpdateRecruit" #updateRecruit (fetchData)="getListRecruit();isShowUpdateRecruit=false" [projectId]="projectId"
+    <app-update-recruit [visible]="isShowUpdateRecruit" #updateRecruit (fetchData)="getListRecruit();isShowUpdateRecruit=false" [projectId]="projectId" (close)="isShowUpdateRecruit=false"
       [recruit]="recruit"></app-update-recruit>
 </ng-container>
 

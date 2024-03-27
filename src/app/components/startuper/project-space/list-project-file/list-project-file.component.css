@@ -1,15 +1,12 @@
 .file-item{
   margin-top: 7px;
-  padding: 0px 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
   height: 55px;
 }
 
 .file-item button{
-  top: 3px;
   display: none;
-  cursor: pointer;
 }
 
 .file-item p,h1,h2,h3,h4,h5,h6{
@@ -19,12 +16,9 @@
   overflow: hidden;
 }
 
-.file-item:hover{
-  background-color: #ddd;
-}
 
 .file-item:hover button {
-  display: block;
+  display: flex;
 }
 
 .list-member{

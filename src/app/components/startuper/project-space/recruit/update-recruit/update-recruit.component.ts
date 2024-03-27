@@ -31,6 +31,7 @@ export class UpdateRecruitComponent implements OnInit {
   @Input() projectId: string = '';
   @Input() visible: boolean = true;
   @Output() fetchData = new EventEmitter();
+  @Output() close: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private fb: FormBuilder,

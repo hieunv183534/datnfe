@@ -137,6 +137,7 @@ import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import {InputMaskModule} from 'primeng/inputmask';
 import { PitchDeckComponent } from './components/startuper/project-space/pitch-deck/pitch-deck.component';
 import {OrderListModule} from 'primeng/orderlist';
+import { UploadDocumentComponent } from './components/startuper/project-space/list-project-file/upload-document/upload-document.component';
 @NgModule({
   declarations: [
     HomePageNewComponent,
@@ -202,7 +203,8 @@ import {OrderListModule} from 'primeng/orderlist';
     ModalConnectComponent,
     ModalDetailConnectComponent,
     HistorySearchItemComponent,
-    PitchDeckComponent
+    PitchDeckComponent,
+    UploadDocumentComponent
   ],
   imports: [
     CommonModule,

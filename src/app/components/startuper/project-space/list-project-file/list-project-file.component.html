@@ -6,15 +6,20 @@
   </span>
   <div class="w list-member .grid">
     <ng-container *ngFor="let file of files">
-      <span class="file-item flex flex-column relative" [pTooltip]="'File:'+ file.file.url + '\n'+
-                    'Kiểu: '+  file.file.contentType+ '\n'+
-                    'Size: '+  file.file.size+ '\n'+
-                    'Tiêu đề:' + file.title + '\n' +
-                    'Ghi chú:' + file.note">
-        <h4 class="text-overflow-ellipsis">{{file.title}}</h4>
-        <p class="text-overflow-ellipsis">{{file.file.url}}</p>
-        <button pButton pRipple type="button" icon="pi pi-download"
-          class="p-button-rounded p-button-text absolute right-0" (click)="downloadFile(file)"></button>
+      <span class="file-item flex flex-row relative px-2 hover:bg-gray-200" [pTooltip]="'File:'+ file.file.url + '\n'+
+      'Kiểu: '+  file.file.contentType+ '\n'+
+      'Size: '+  file.file.size+ '\n'+
+      'Tiêu đề: ' + file.title + '\n' +
+      'Ghi chú: ' + file.note">
+        <div class="flex align-items-center justify-content-center h-full w-2rem mr-2">
+          <img [src]="iconContentType(file.file.contentType)" alt="" class="w-full h-full">
+        </div>
+        <div class="flex flex-column">
+          <h4 class="text-overflow-ellipsis">{{file.title}}</h4>
+          <p class="text-overflow-ellipsis max-w-10rem">{{file.file.url}}</p>
+          <button pButton pRipple type="button" icon="pi pi-download"
+            class="p-button-rounded p-button-text absolute top-50 right-0" style="transform: translateY(-50%);" (click)="downloadFile(file)"></button>
+        </div>
       </span>
     </ng-container>
     <button *ngIf="isMyProject" pButton pRipple type="button" label="Tải lên tài liệu"
@@ -22,7 +27,13 @@
   </div>
 </div>
 
-<p-dialog [resizable]="true" header="Tải lên tài liệu mới" [(visible)]="isShowUpload" [modal]="true"
+<ng-container *ngIf="isShowUpload">
+  <app-upload-document [projectId]="projectId" [display]="isShowUpload" (fetchData)="getListFile()"
+    (close)="isShowUpload=false"></app-upload-document>
+</ng-container>
+
+
+<!-- <p-dialog [resizable]="true" header="Tải lên tài liệu mới" [(visible)]="isShowUpload" [modal]="true"
   [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false">
   <div class="grid p-fluid">
     <div class="w-full">
@@ -61,4 +72,4 @@
     <p-button label="Upload" styleClass="p-button-success" (onClick)="upload()">
     </p-button>
   </ng-template>
-</p-dialog>
+</p-dialog> -->
