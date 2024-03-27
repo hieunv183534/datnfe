@@ -15,12 +15,14 @@ import jwt_decode from 'jwt-decode';
   templateUrl: './project-space.component.html',
   styleUrls: ['./project-space.component.css'],
   encapsulation: ViewEncapsulation.None
-  
+
 })
 export class ProjectSpaceComponent implements OnInit {
   fields: any = FsiValues.fields;
   areas: any = FsiValues.areas;
 
+  isShowMember: boolean = false;
+  isShowDocuments: boolean = false;
   isShowAddMember: boolean = false;
   isShowUpdateProject: boolean = false;
 
@@ -66,42 +68,60 @@ export class ProjectSpaceComponent implements OnInit {
     return FsiValues.getMultiName(val, FsiValues.fields);
   }
 
+
   ngOnInit() {
     if (this.popupAdmin) {
       this.project.id = this.projectId;
       this.listFile?.getListFile();
-      this.projectService.getProjectById(this.projectId).then((res: any) => {
-        this.project = res.data;
-        this.setIsFounder();
-      }).catch((err: any) => {
-        this.messageService.add({
-          key: "toast",
-          severity: "error",
-          summary: "Lỗi",
-          detail: "Lấy thông tin dự án thất bại!",
-        });
-      });
+      this.getProjectInfo(this.projectId);
+
+      // this.projectService.getProjectById(this.projectId).then((res: any) => {
+      //   this.project = res.data;
+      //   this.setIsFounder();
+      // }).catch((err: any) => {
+      //   this.messageService.add({
+      //     key: "toast",
+      //     severity: "error",
+      //     summary: "Lỗi",
+      //     detail: "Lấy thông tin dự án thất bại!",
+      //   });
+      // });
     } else {
       this.route.params.subscribe(params => {
         let projectId = params["projectId"];
         this.project.id = projectId;
         this.listFile?.getListFile();
-        this.projectService.getProjectById(projectId).then((res: any) => {
-          this.project = res.data;
-          this.setIsFounder();
-        }).catch((err: any) => {
-          this.messageService.add({
-            key: "toast",
-            severity: "error",
-            summary: "Lỗi",
-            detail: "Lấy thông tin dự án thất bại!",
-          });
-        });
+        this.getProjectInfo(projectId);
+        // this.projectService.getProjectById(projectId).then((res: any) => {
+        //   this.project = res.data;
+        //   this.setIsFounder();
+        // }).catch((err: any) => {
+        //   this.messageService.add({
+        //     key: "toast",
+        //     severity: "error",
+        //     summary: "Lỗi",
+        //     detail: "Lấy thông tin dự án thất bại!",
+        //   });
+        // });
       });
     }
   }
 
-  setIsFounder(){
+  getProjectInfo(id: string) {
+    this.projectService.getProjectById(id).then((res: any) => {
+      this.project = res.data;
+      this.setIsFounder();
+    }).catch((err: any) => {
+      this.messageService.add({
+        key: "toast",
+        severity: "error",
+        summary: "Lỗi",
+        detail: "Lấy thông tin dự án thất bại!",
+      });
+    });
+  }
+
+  setIsFounder() {
     let myInfo = this.getDecodedAccessToken();
     this.isFounder = myInfo.nameid == this.project.founder.id;
   }
@@ -118,6 +138,7 @@ export class ProjectSpaceComponent implements OnInit {
   changeProjectInfo(newProjectInfo: any) {
     this.project = newProjectInfo;
     this.isShowUpdateProject = false;
+    this.getProjectInfo(this.project.id);
   }
 
   tabChange(event: any) {

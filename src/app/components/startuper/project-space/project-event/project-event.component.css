@@ -1,3 +1,11 @@
 .p-input-icon-left > .p-inputtext {
     padding-left: 2.5rem !important;
 }
+.p-tabview-nav {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.p-tabview-nav-content {
+    padding-left: 8px;
+    padding-right: 8px;
+}

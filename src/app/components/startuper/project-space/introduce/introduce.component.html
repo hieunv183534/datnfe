@@ -20,7 +20,7 @@
                   {{item.value}}
                 </div>
 
-                <div class="function-item">
+                <div *ngIf="!isView" class="function-item">
                   <div
                     (click)="op1.toggle($event);itemIndex= indexItem;modelIndex=index;isLastItem=isLast;isFirstItem=isFirst"
                     class=" flex align-items-center justify-content-center absolute bg-gray-200 hover:bg-gray-300 cursor-pointer border-circle"
@@ -30,7 +30,7 @@
                 </div>
               </div>
             </ng-container>
-            <div class="w-auto flex mt-2">
+            <div *ngIf="!isView" class="w-auto flex mt-2">
               <button *ngIf="isNewContent!==index" (click)="isNewContent=index" pButton type="button" icon="pi pi-plus"
                 class="p-button-text p-button-plain" label="Thêm nội dung"></button>
               <ng-container *ngIf="isNewContent===index">
@@ -54,7 +54,7 @@
                 <div class="flex w-full h-auto">
                   {{item.value}}
                 </div>
-                <div class="function-item">
+                <div *ngIf="!isView" class="function-item">
                   <div
                     (click)="op1.toggle($event);itemIndex= indexItem;modelIndex=index;isLastItem=isLast;isFirstItem=isFirst"
                     class=" flex align-items-center justify-content-center absolute bg-gray-200 hover:bg-gray-300 cursor-pointer border-circle"
@@ -64,7 +64,7 @@
                 </div>
               </div>
             </ng-container>
-            <div class="w-auto flex mt-2">
+            <div  *ngIf="!isView" class="w-auto flex mt-2">
               <button *ngIf="isNewContent!==index+10" (click)="isNewContent=index+10" pButton type="button"
                 icon="pi pi-plus" class="p-button-text p-button-plain" label="Thêm nội dung"></button>
               <ng-container *ngIf="isNewContent===index+10">

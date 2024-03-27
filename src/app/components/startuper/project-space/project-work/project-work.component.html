@@ -4,35 +4,40 @@
     <div class="w-full mb-3 project-work-header">
       <p-button label="Công việc mới" icon="pi pi-plus" (onClick)="isVisibleAddWork = true"></p-button>
     </div>
-    <div class="w-full flex align-items-start justify-content-between "
-      style="height: 700px; gap:20px ;padding: 0px 40px 0px 0px;" cdkDropListGroup>
-      <div class="col-4 work-column">
-        <div class="work-column-header">
-          <h4>NEW</h4>
-        </div>
-        <div class="work-list" cdkDropList [cdkDropListData]="newWorks" (cdkDropListDropped)="drop($event,0)">
-          <div *ngFor="let work of newWorks" class="work-item mt-2" cdkDrag>
-            <ng-container *ngTemplateOutlet="workItem; context:{ work: work}"></ng-container>
+    <div class="w-full flex align-items-start justify-content-between overflow-x-auto" cdkDropListGroup>
+      <div class="col-4 h-full pl-0 min-w-min">
+        <div class="work-column px-2">
+          <div class="work-column-header">
+            <h4>NEW</h4>
+          </div>
+          <div class="work-list" cdkDropList [cdkDropListData]="newWorks" (cdkDropListDropped)="drop($event,0)">
+            <div *ngFor="let work of newWorks" class="work-item mt-2 min-w-min" cdkDrag>
+              <ng-container *ngTemplateOutlet="workItem; context:{ work: work}"></ng-container>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-4 work-column flex flex-column relative">
-        <div class="work-column-header">
-          <h4>INPROGRESS</h4>
-        </div>
-        <div class="work-list" cdkDropList [cdkDropListData]="inprogressWorks" (cdkDropListDropped)="drop($event,1)">
-          <div *ngFor="let work of inprogressWorks" class="work-item mt-2" cdkDrag>
-            <ng-container *ngTemplateOutlet="workItem; context:{ work: work}"></ng-container>
+      <div class="col-4 h-full min-w-min">
+        <div class="work-column px-2 flex flex-column relative">
+          <div class="work-column-header">
+            <h4>INPROGRESS</h4>
+          </div>
+          <div class="work-list" cdkDropList [cdkDropListData]="inprogressWorks" (cdkDropListDropped)="drop($event,1)">
+            <div *ngFor="let work of inprogressWorks" class="work-item mt-2 min-w-min" cdkDrag>
+              <ng-container *ngTemplateOutlet="workItem; context:{ work: work}"></ng-container>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-4 work-column flex flex-column relative">
-        <div class="work-column-header">
-          <h4>DONE</h4>
-        </div>
-        <div class="work-list" cdkDropList [cdkDropListData]="doneWorks" (cdkDropListDropped)="drop($event,2)">
-          <div *ngFor="let work of doneWorks" class="work-item mt-2" cdkDrag>
-            <ng-container *ngTemplateOutlet="workItem; context:{ work: work}"></ng-container>
+      <div class="col-4 h-full min-w-min pr-0">
+        <div class="work-column px-2 flex flex-column relative">
+          <div class="work-column-header">
+            <h4>DONE</h4>
+          </div>
+          <div class="work-list" cdkDropList [cdkDropListData]="doneWorks" (cdkDropListDropped)="drop($event,2)">
+            <div *ngFor="let work of doneWorks" class="work-item mt-2 min-w-min" cdkDrag>
+              <ng-container *ngTemplateOutlet="workItem; context:{ work: work}"></ng-container>
+            </div>
           </div>
         </div>
       </div>

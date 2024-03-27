@@ -29,6 +29,7 @@ export class UpdateRecruitComponent implements OnInit {
   isValidIncome: boolean = false;
   @Input() recruit!: RecruitDto;
   @Input() projectId: string = '';
+  @Input() visible: boolean = true;
   @Output() fetchData = new EventEmitter();
 
   constructor(

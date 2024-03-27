@@ -20,19 +20,13 @@ export class RecruitComponent implements OnInit {
   isShowViewRecruit: boolean = false;
   recruit: RecruitDto = new RecruitDto();
   @Input() projectId: string = '';
-  @ViewChild("addRecruit") addRecruit?: AddRecruitComponent;
-  @ViewChild("updateRecruit") updateRecruit?: UpdateRecruitComponent;
+  @Input() isView: boolean = false;
   constructor(
     private projectService: ProjectService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService
   ) { }
-  handleAddRecruit() {
-    this.addRecruit?.submit();
-  }
-  handleEditRecruit() {
-    this.updateRecruit?.submit();
-  }
+
   ngOnInit() {
     this.getListRecruit();
   }

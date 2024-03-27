@@ -23,14 +23,16 @@ export class AddRecruitComponent implements OnInit {
   specializes: any = FsiValues.specializies;
   incomeModes: any = FsiValues.incomeModes;
   incomeRanges: any = FsiValues.incomeRanges;
-  @Input() projectId: string = '';
+  
+  @Input() visible: boolean = true;
+  @Input() projectId: string = "";
   @Output() fetchData = new EventEmitter();
   handleSubmit: boolean = false
   isLoading: boolean = false;
   isRequiredIncomeFrom: boolean = false;
   isRequiredIncomeTo: boolean = false;
   isRequiredIncomeRange: boolean = false;
-  isValidIncome: boolean = false;
+  isValidIncome: boolean = true;
   formRecruit: FormGroup = this.fb.group({});
 
   constructor(
