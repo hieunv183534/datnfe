@@ -52,7 +52,7 @@ export class RegisterStartuperInfoComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private messageService: MessageService,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.formStartuper = this.fb.group({
@@ -160,6 +160,10 @@ export class RegisterStartuperInfoComponent implements OnInit {
 
   back() {
     if (this.activeIndex > 0) this.activeIndex--;
+  }
+
+  submitAvt(){
+    
   }
 
   next() {
