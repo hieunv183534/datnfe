@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageCropperComponent, ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
@@ -12,11 +12,13 @@ import { FsiValues } from 'src/app/shared/util/util';
 @Component({
   selector: 'app-add-new-project',
   templateUrl: './add-new-project.component.html',
-  styleUrls: ['./add-new-project.component.css']
+  styleUrls: ['./add-new-project.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class AddNewProjectComponent implements OnInit {
 
-  @Input() display: boolean = false;
+  @Input() display: boolean = true;
   @Output() close: EventEmitter<any> = new EventEmitter();
   @Output() submit: EventEmitter<any> = new EventEmitter();
 

@@ -9,3 +9,6 @@
   border: 2px solid rgb(28, 247, 28);
   max-width: 100%;
 }
+.p-card .p-card-content {
+  padding: 0;
+}
