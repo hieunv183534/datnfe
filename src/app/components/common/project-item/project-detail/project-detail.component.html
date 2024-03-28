@@ -295,114 +295,16 @@
       <p-tabPanel header="Tài liệu">
         <p-accordion [multiple]="true" [activeIndex]="[0, 1, 2]">
           <p-accordionTab header="File">
-            <div class="grid info" style="border-radius: 17px; margin-top: 16px !important">
-              <div class="col-2 md-4">
-                <svg style="margin: 12px" width="39" height="39" viewBox="0 0 39 39" fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M20.3824 0H23.0318V3.62791C27.7726 3.65512 32.509 3.57784 37.2455 3.65512C38.2557 3.55063 39.0486 4.35349 38.9557 5.38744C39.0308 14.3212 38.938 23.2592 39 32.193C38.9557 33.109 39.0886 34.1248 38.5701 34.9364C37.9232 35.408 37.0856 35.3492 36.3328 35.3852C31.8972 35.363 27.4667 35.3721 23.0318 35.3721V39H20.2629C13.5199 37.7393 6.7585 36.5831 0.00204791 35.3721C-0.00255989 24.7924 0.00204791 14.2123 0.00204791 3.63698C6.79359 2.42163 13.5901 1.2382 20.3824 0Z"
-                    fill="#2A5699" />
-                  <path
-                    d="M23.032 4.9884H37.6529V34.0117H23.032V30.3838H34.5515V28.5698H23.032V26.3024H34.5515V24.4884H23.032V22.221H34.5515V20.407H23.032V18.1396H34.5515V16.3256H23.032V14.0582H34.5515V12.2442H23.032V9.97678H34.5515V8.16282H23.032V4.9884ZM9.15542 13.0014C9.99723 12.9517 10.839 12.9154 11.6808 12.87C12.2699 15.9313 12.8725 18.9874 13.5105 22.0348C14.0113 18.8876 14.5653 15.7495 15.1009 12.607C15.987 12.5754 16.8731 12.5254 17.755 12.471C16.7537 16.8651 15.8764 21.2958 14.7819 25.6628C14.0418 26.0575 12.9342 25.6446 12.0569 25.7081C11.4675 22.7064 10.7809 19.7221 10.2535 16.7065C9.73529 19.6361 9.06184 22.5384 8.46815 25.4502C7.61748 25.4048 6.76255 25.3504 5.90692 25.2913C5.1718 21.3006 4.30766 17.3371 3.62109 13.3373C4.37855 13.301 5.14061 13.2691 5.89841 13.2419C6.35458 16.1304 6.87314 19.0059 7.27189 21.8988C7.89749 18.9334 8.53514 15.9675 9.15542 13.0014Z"
-                    fill="white" />
-                </svg>
-              </div>
-              <div class="col-10 md-8">
-                <ul>
-                  <li><b>Thuyết trình giới thiệu sản phẩm</b></li>
-                  <li>788 KB</li>
-                </ul>
-              </div>
-            </div>
-            <div class="grid info" style="border-radius: 17px; margin-bottom: 16px !important">
-              <div class="col-2 md-4">
-                <svg style="margin: 12px" width="39" height="39" viewBox="0 0 39 39" fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M20.3824 0H23.0318V3.62791C27.7726 3.65512 32.509 3.57784 37.2455 3.65512C38.2557 3.55063 39.0486 4.35349 38.9557 5.38744C39.0308 14.3212 38.938 23.2592 39 32.193C38.9557 33.109 39.0886 34.1248 38.5701 34.9364C37.9232 35.408 37.0856 35.3492 36.3328 35.3852C31.8972 35.363 27.4667 35.3721 23.0318 35.3721V39H20.2629C13.5199 37.7393 6.7585 36.5831 0.00204791 35.3721C-0.00255989 24.7924 0.00204791 14.2123 0.00204791 3.63698C6.79359 2.42163 13.5901 1.2382 20.3824 0Z"
-                    fill="#107C42" />
-                </svg>
-              </div>
-              <div class="col-10 md-8">
-                <ul>
-                  <li><b>Thuyết trình giới thiệu sản phẩm</b></li>
-                  <li>788 KB</li>
-                </ul>
-              </div>
+            <div class="px-2 pb-2">
+              <app-list-project-file [projectId]="projectId"
+              [isMyProject]="project.extraProperties.relationWithProject == 0" [isView]="true"></app-list-project-file>
             </div>
           </p-accordionTab>
           <p-accordionTab header="Link">
-            <div class="grid info" style="border-radius: 17px; margin-top: 16px !important">
-              <div class="col-2 md-4">
-                <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg"
-                  style="margin: 12px">
-                  <rect x="0.5" y="0.5" width="38" height="38" rx="3.5" fill="white" stroke="#D8DFE8" />
-                </svg>
-              </div>
-              <div class="col-10 md-8">
-                <ul>
-                  <li><b>https://fsiconnected/#admin</b></li>
-                  <li style="color: #01a9ff">fsiconnected.tech</li>
-                </ul>
-              </div>
-            </div>
-            <div class="grid info" style="border-radius: 17px; margin-bottom: 16px !important">
-              <div class="col-2 md-4">
-                <svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg"
-                  style="margin: 12px">
-                  <rect x="0.5" y="0.5" width="38" height="38" rx="3.5" fill="white" stroke="#D8DFE8" />
-                </svg>
-              </div>
-              <div class="col-10 md-8">
-                <ul>
-                  <li><b>https://fsiconnected/#admin</b></li>
-                  <li style="color: #01a9ff">fsiconnected.tech</li>
-                </ul>
-              </div>
-            </div>
+
           </p-accordionTab>
           <p-accordionTab header="Ảnh/Video">
-            <div class="grid info" style="
-                  border-radius: 17px;
-                  margin-top: 8px !important;
-                  margin-bottom: 16px !important;
-                ">
-              <div class="col-2.4 md-4">
-                <img [src]="
-                      'https://fsiconnected.cloud/images/default-avatar.jpg'
-                    " alt="" style="
-                      margin: 12px 6px 6px 12px;
-                      height: 103px;
-                      width: 103px;
-                      border-radius: 17px;
-                    " />
-              </div>
-              <div class="col-2.4 md-4">
-                <img [src]="
-                      'https://fsiconnected.cloud/images/default-avatar.jpg'
-                    " alt="" class="image-video" />
-              </div>
-              <div class="col-2.4 md-4">
-                <img [src]="
-                      'https://fsiconnected.cloud/images/default-avatar.jpg'
-                    " alt="" class="image-video" />
-              </div>
-              <div class="col-2.4 md-4">
-                <img [src]="
-                      'https://fsiconnected.cloud/images/default-avatar.jpg'
-                    " alt="" class="image-video" />
-              </div>
-              <div class="col-2.4 md-4">
-                <img [src]="
-                      'https://fsiconnected.cloud/images/default-avatar.jpg'
-                    " alt="" class="image-video" />
-              </div>
-              <div class="col-2.4 md-4">
-                <img [src]="
-                      'https://fsiconnected.cloud/images/default-avatar.jpg'
-                    " alt="" class="image-video" />
-              </div>
-            </div>
+
           </p-accordionTab>
         </p-accordion>
       </p-tabPanel>
@@ -677,7 +579,7 @@
         </div>
       </p-tabPanel>
       <p-tabPanel header="Bài viết">
-        <app-project-event [type]="7" [projectId]="projectId" [isView]="true"></app-project-event>
+        
       </p-tabPanel>
     </p-tabView>
   </div>

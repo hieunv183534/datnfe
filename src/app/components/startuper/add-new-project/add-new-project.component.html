@@ -31,7 +31,6 @@
                       [rows]="5"
                       pInputTextarea
                       formControlName="description"
-                      [maxlength]="80"
                     ></textarea>
                     <label
                       >Mô tả chi tiết về dự án:
@@ -131,20 +130,14 @@
             <p-divider align="left"> <b>Tải lên ảnh đại diện</b> </p-divider>
             <input type="file" (change)="fileChangeEvent($event)" />
 
-            <div class="image-cropper-wrapper">
-              <image-cropper
-                [imageChangedEvent]="imageChangedEvent"
-                [maintainAspectRatio]="true"
-                [aspectRatio]="1"
-                format="png"
-                (imageCropped)="imageCropped($event)"
-                (imageLoaded)="imageLoaded($event)"
-                (cropperReady)="cropperReady()"
-                (loadImageFailed)="loadImageFailed()"
-              ></image-cropper>
+            <div *ngIf="imageChangedEvent !== '' " class="image-cropper-wrapper" class="h-20rem">
+              <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1"
+                [roundCropper]="true" format="png" (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded($event)" (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"></image-cropper>
             </div>
 
-            <img class="preview-image" [src]="croppedImage" />
+            <!-- <img class="preview-image" [src]="croppedImage" /> -->
           </ng-container>
           <ng-container *ngSwitchCase="2">
             <b>Khai báo hoàn tất!</b><br />

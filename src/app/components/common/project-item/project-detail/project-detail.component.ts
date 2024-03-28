@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ProjectStage } from 'src/app/model/enum';
 import { ProjectService } from 'src/app/services/project.service';
@@ -8,6 +8,8 @@ import { FsiValues } from 'src/app/shared/util/util';
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
   styleUrls: ['./project-detail.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class ProjectDetailComponent implements OnInit {
   @Input() display: boolean = false;
@@ -23,6 +25,7 @@ export class ProjectDetailComponent implements OnInit {
   showModal: boolean = true;
   showInfoJob: boolean = false;
   positionDialog: string = '';
+
   responsiveOptions: any[] = [
     {
       breakpoint: '1024px',
@@ -74,6 +77,7 @@ export class ProjectDetailComponent implements OnInit {
       });
     });
   }
+
 
   showDialogJob() {
     this.showModal = false

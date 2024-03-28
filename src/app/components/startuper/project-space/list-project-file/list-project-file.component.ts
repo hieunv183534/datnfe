@@ -12,18 +12,16 @@ import { ProjectService } from 'src/app/services/project.service';
 export class ListProjectFileComponent implements OnInit, OnChanges {
 
   @Input() projectId: string = "";
-
+  @Input() isView: boolean = false;
+  @Input() isMyProject: boolean = false;
   files: any[] = [];
-
   isShowUpload: boolean = false;
-
   uploadFiles: any[] = [];
   title: string = "";
   note: string = "";
   visibleForInvestor: boolean = false;
   visibleForAll: boolean = false;
 
-  @Input() isMyProject: boolean = false;
 
   constructor(
     private projectService: ProjectService,
@@ -31,6 +29,29 @@ export class ListProjectFileComponent implements OnInit, OnChanges {
     private eventService: EventService,
     @Inject(DOCUMENT) document: Document
   ) { }
+
+  iconContentType(type: string) {
+    switch (type) {
+      case 'application/msword':
+      case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+      case 'application/rtf':
+        return '../../../../../assets/icons/files/doc.svg'
+
+      case 'application/pdf':
+        return '../../../../../assets/icons/files/pdf.svg'
+
+      case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+      case 'application/vnd.ms-excel':
+      case 'text/csv':
+        return '../../../../../assets/icons/files/xls.svg'
+      case 'image/jpeg':
+        return '../../../../../assets/icons/files/jpg.svg'
+      case 'image/png':
+        return '../../../../../assets/icons/files/png.svg'
+      default:
+        return '../../../../../assets/icons/files/file2.svg'
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.getListFile();
@@ -100,21 +121,28 @@ export class ListProjectFileComponent implements OnInit, OnChanges {
   }
 
   downloadFile(projectFile: any) {
-    this.projectService.getFileBlob(projectFile.id).then((res: any) => {
-      const url = window.URL.createObjectURL(new Blob([res.data]));
-      const a = document.createElement("a");
-      a.href = url;
-      a.setAttribute("download", projectFile.file.url);
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    }).catch((err: any) => {
-      this.messageService.add({
-        key: "toast",
-        severity: "error",
-        summary: "Lỗi",
-        detail: "Lấy file thất bại!",
-      });
-    });
+    console.log();
+    const a = document.createElement("a");
+    a.href = projectFile.file.extraProperties.LinkDownLoad;
+    a.setAttribute("download", projectFile.file.url);
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    // this.projectService.getFileBlob(projectFile.id).then((res: any) => {
+    // const url = window.URL.createObjectURL(new Blob([projectFile.data.extraProperties.LinkDownLoad]));
+    // const a = document.createElement("a");
+    // a.href = url;
+    // a.setAttribute("download", projectFile.file.url);
+    // document.body.appendChild(a);
+    // a.click();
+    // a.remove();
+    // }).catch((err: any) => {
+    //   this.messageService.add({
+    //     key: "toast",
+    //     severity: "error",
+    //     summary: "Lỗi",
+    //     detail: "Lấy file thất bại!",
+    //   });
+    // });
   }
 }

@@ -1,0 +1,47 @@
+<!-- <p-dialog [resizable]="true" header="Tải lên tài liệu mới" [(visible)]="isShowUpload" [modal]="true" (onHide)="close.emit()"
+  [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" > -->
+
+
+  <!-- <p-dialog [resizable]="true" header="Đăng bài" [(visible)]="isShowUpload" [modal]="true" [style]="{width: '40vw'}"  (onHide)="close.emit()"
+  [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [baseZIndex]="10000" [draggable]="false"> -->
+
+  <p-dialog [resizable]="true" header="Tải lên tài liệu mới" [(visible)]="display" [modal]="true"
+  [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" (onHide)="close.emit()">
+  <div class="grid p-fluid m-0">
+    <div class="w-full mt-2">
+      <input (change)="onFileChange($event)" type="file" id="fileUpload">
+    </div>
+    <div class="p-field w-full">
+      <span class="p-float-label  mt-3">
+        <input type="text" pInputText [(ngModel)]="title" />
+        <label>Tiêu đề: <span style="color: red;">*</span>
+        </label>
+      </span>
+    </div>
+    <div class="p-field w-full">
+      <span class="p-float-label mt-3">
+        <textarea pInputTextarea [(ngModel)]="note"></textarea>
+        <label>Ghi chú/ mô tả:
+        </label>
+      </span>
+    </div>
+    <div class="p-field col-6">
+      <div class="p-field-checkbox" style="height: 34px; display: flex; align-items: center">
+        <p-checkbox  [(ngModel)]="visibleForInvestor" [binary]="true">
+        </p-checkbox>
+        <label style="margin-left: 4px; margin-top: 1px">Hiển thị cho nhà đầu tư</label>
+      </div>
+    </div>
+    <div class="p-field col-6">
+      <div class="p-field-checkbox" style="height: 34px; display: flex; align-items: center">
+        <p-checkbox  [(ngModel)]="visibleForAll" [binary]="true" (onChange)="clickVisibleForAll()">
+        </p-checkbox>
+        <label style="margin-left: 4px; margin-top: 1px">Hiển thị cho tất cả</label>
+      </div>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button label="Tải lên" styleClass="p-button-primary" (onClick)="upload()">
+    </p-button>
+  </ng-template>
+</p-dialog>

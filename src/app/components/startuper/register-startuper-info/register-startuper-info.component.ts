@@ -5,6 +5,7 @@ import {
   OnInit,
   Output,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -22,6 +23,8 @@ import { FsiValues } from 'src/app/shared/util/util';
   selector: 'app-register-startuper-info',
   templateUrl: './register-startuper-info.component.html',
   styleUrls: ['./register-startuper-info.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class RegisterStartuperInfoComponent implements OnInit {
   fields: any = FsiValues.fields;
@@ -254,7 +257,6 @@ export class RegisterStartuperInfoComponent implements OnInit {
 
   uploadImage() {
     let file = new File([this.blob], '1.png');
-    console.log(file);
     this.startuperService
       .uploadAvatar(file)
       .then((res: any) => {

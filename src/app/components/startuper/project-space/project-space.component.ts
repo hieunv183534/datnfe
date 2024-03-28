@@ -27,6 +27,8 @@ export class ProjectSpaceComponent implements OnInit {
   isShowUpdateProject: boolean = false;
 
   project: any = { extraProperties: {} };
+  isShowInfoBox: boolean = false;
+  isMobile: boolean = false;
 
   @Input() popupAdmin: boolean = false;
   @Input() projectId: string = "";

@@ -27,6 +27,8 @@ export class AddRecruitComponent implements OnInit {
   @Input() visible: boolean = true;
   @Input() projectId: string = "";
   @Output() fetchData = new EventEmitter();
+  @Output() close: EventEmitter<any> = new EventEmitter();
+
   handleSubmit: boolean = false
   isLoading: boolean = false;
   isRequiredIncomeFrom: boolean = false;

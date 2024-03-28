@@ -17,3 +17,6 @@
 .list-avt img:hover {
   transform: scale(1.05);
 }
+.p-card .p-card-content {
+  padding: 0;
+}

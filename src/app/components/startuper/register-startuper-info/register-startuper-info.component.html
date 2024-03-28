@@ -1,449 +1,227 @@
-<p-dialog
-  header="Đăng ký thông tin"
-  [(visible)]="display"
-  [modal]="true"
-  [style]="{ width: '50vw' }"
-  [baseZIndex]="10000"
-  [draggable]="false"
-  [resizable]="false"
-  (onHide)="hide()"
->
+<p-dialog header="Đăng ký thông tin" [(visible)]="display" [modal]="true" [style]="{ width: '50vw' }"
+  [baseZIndex]="10000" [draggable]="false" [resizable]="false" (onHide)="hide()">
   <div class="p-fluid grid">
     <p-card class="col-12 w-full">
       <ng-template pTemplate="content">
         <ng-container [ngSwitch]="activeIndex">
           <ng-container *ngSwitchCase="0">
-            <b
-              >Một tấm hình đẹp giúp tạo ấn tượng tốt với những người cộng sự
-              mới. Hãy tải lên một tấm hình ưng ý để làm ảnh hồ sơ của bạn</b
-            >
+            <b>Một tấm hình đẹp giúp tạo ấn tượng tốt với những người cộng sự
+              mới. Hãy tải lên một tấm hình ưng ý để làm ảnh hồ sơ của bạn</b>
             <p-divider align="left"> <b>Tải lên ảnh đại diện</b> </p-divider>
-            <input type="file" (change)="fileChangeEvent($event)" />
+            <input class="mb-2" type="file" (change)="fileChangeEvent($event)" />
 
-            <div class="image-cropper-wrapper">
-              <image-cropper
-                [imageChangedEvent]="imageChangedEvent"
-                [maintainAspectRatio]="true"
-                [aspectRatio]="1"
-                format="png"
-                (imageCropped)="imageCropped($event)"
-                (imageLoaded)="imageLoaded($event)"
-                (cropperReady)="cropperReady()"
-                (loadImageFailed)="loadImageFailed()"
-              ></image-cropper>
+            <div *ngIf="imageChangedEvent !== '' " class="image-cropper-wrapper mt-2" class="h-20rem">
+              <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1"
+                [roundCropper]="true" format="png" (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded($event)" (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"></image-cropper>
             </div>
-            <img class="preview-image" [src]="croppedImage" />
-            <span class="justify-content-center flex" style="color: #82c382"
-              >Hoặc lựa chọn một trong số những hình bên dưới</span
-            >
-            <div class="list-avt grid flex" style="margin-top: 10px">
-              <img
-                class="col-3 flex justify-content-center"
-                width="50px"
-                src="../../../../assets/img/avatar1.png"
-                alt=""
-              />
-              <img
-                class="col-3 flex justify-content-center"
-                width="50px"
-                src="../../../../assets/img/avatar2.png"
-                alt=""
-              />
-              <img
-                class="col-3 flex justify-content-center"
-                width="50px"
-                src="../../../../assets/img/avatar3.png"
-                alt=""
-              />
-              <img
-                class="col-3 flex justify-content-center"
-                width="50px"
-                src="../../../../assets/img/avatar4.png"
-                alt=""
-              />
-              <img
-                class="col-3 flex justify-content-center"
-                width="50px"
-                src="../../../../assets/img/avatar5.png"
-                alt=""
-              />
-              <img
-                class="col-3 flex justify-content-center"
-                width="50px"
-                src="../../../../assets/img/avatar6.png"
-                alt=""
-              />
-              <img
-                class="col-3 flex justify-content-center"
-                width="50px"
-                src="../../../../assets/img/avatar7.png"
-                alt=""
-              />
-              <img
-                class="col-3 flex justify-content-center"
-                width="50px"
-                src="../../../../assets/img/avatar8.png"
-                alt=""
-              />
+            <!-- <img *ngIf="croppedImage !== '' " class="preview-image" [src]="croppedImage" /> -->
+            <span class="justify-content-center flex" style="color: #82c382">Hoặc lựa chọn một trong số những hình bên
+              dưới</span>
+            <div class="grid flex" style="margin-top: 10px">
+              <img class="col-3 flex justify-content-center cursor-pointer" width="50px"
+                src="../../../../assets/img/avatar1.png" alt="" />
+              <img class="col-3 flex justify-content-center cursor-pointer" width="50px"
+                src="../../../../assets/img/avatar2.png" alt="" />
+              <img class="col-3 flex justify-content-center cursor-pointer" width="50px"
+                src="../../../../assets/img/avatar3.png" alt="" />
+              <img class="col-3 flex justify-content-center cursor-pointer" width="50px"
+                src="../../../../assets/img/avatar4.png" alt="" />
+              <img class="col-3 flex justify-content-center cursor-pointer" width="50px"
+                src="../../../../assets/img/avatar5.png" alt="" />
+              <img class="col-3 flex justify-content-center cursor-pointer" width="50px"
+                src="../../../../assets/img/avatar6.png" alt="" />
+              <img class="col-3 flex justify-content-center cursor-pointer" width="50px"
+                src="../../../../assets/img/avatar7.png" alt="" />
+              <img class="col-3 flex justify-content-center cursor-pointer" width="50px"
+                src="../../../../assets/img/avatar8.png" alt="" />
             </div>
-            <p-button
-            label="Xác nhận ảnh đại diện"
-            (onClick)="submitAvt()"
-          >
-          </p-button>
+            <p-button label="Xác nhận ảnh đại diện" (onClick)="submitAvt()">
+            </p-button>
           </ng-container>
           <ng-container *ngSwitchCase="1">
             <form [formGroup]="formStartuper">
               <div class="p-fluid grid">
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <textarea
-                      [rows]="5"
-                      pInputTextarea
-                      formControlName="describe"
-                    ></textarea>
+                    <textarea [rows]="5" pInputTextarea formControlName="describe"></textarea>
                     <label>Mô tả thêm, slogan của bản thân: </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-dropdown
-                      [options]="purposes"
-                      optionValue="value"
-                      optionLabel="name"
-                      formControlName="purpose"
-                      [autoDisplayFirst]="false"
-                      emptyMessage="Chọn 1"
-                      (onChange)="handleChange()"
-                    ></p-dropdown>
-                    <label
-                      >Mục đích tham gia FSI CONNECTED?:
+                    <p-dropdown [options]="purposes" optionValue="value" optionLabel="name" formControlName="purpose"
+                      [autoDisplayFirst]="false" emptyMessage="Chọn 1" (onChange)="handleChange()"></p-dropdown>
+                    <label>Mục đích tham gia FSI CONNECTED?:
                       <span style="color: red">*</span>
                     </label>
                   </span>
-                  <span
-                    class="text-error"
-                    *ngIf="formStartuper.value.purpose == 0 && handleSubmit"
-                    >Mục đích tham gia FSI CONNECTED không được để trống</span
-                  >
+                  <span class="text-error" *ngIf="formStartuper.value.purpose == 0 && handleSubmit">Mục đích tham gia
+                    FSI CONNECTED không được để trống</span>
                 </div>
-                <div
-                  class="p-field col-12 md-12"
-                  *ngIf="formStartuper.value.purpose == 1"
-                >
+                <div class="p-field col-12 md-12" *ngIf="formStartuper.value.purpose == 1">
                   <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="fields"
-                      defaultLabel="Chọn chuyên môn của mình"
-                      optionLabel="name"
-                      formControlName="ideaField"
-                      (onChange)="handleChange()"
-                    >
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="fields" defaultLabel="Chọn chuyên môn của mình" optionLabel="name"
+                      formControlName="ideaField" (onChange)="handleChange()">
                     </p-multiSelect>
-                    <label
-                      >Lĩnh vực ý tưởng của bạn:
-                      <span style="color: red">*</span></label
-                    >
+                    <label>Lĩnh vực ý tưởng của bạn:
+                      <span style="color: red">*</span></label>
                   </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
+                  <span class="text-error" *ngIf="
                       formStartuper.value.ideaField.length == 0 &&
                       !this.formStartuper.valid &&
                       handleSubmit
-                    "
-                    >Lĩnh vực ý tưởng của bạn không được để trống</span
-                  >
+                    ">Lĩnh vực ý tưởng của bạn không được để trống</span>
                 </div>
-                <div
-                  class="p-field col-12 md-12"
-                  *ngIf="formStartuper.value.purpose == 1"
-                >
+                <div class="p-field col-12 md-12" *ngIf="formStartuper.value.purpose == 1">
                   <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="specializies"
-                      defaultLabel="Chọn chuyên môn"
-                      optionLabel="name"
-                      formControlName="targetSpecialize"
-                    >
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="specializies" defaultLabel="Chọn chuyên môn" optionLabel="name"
+                      formControlName="targetSpecialize">
                     </p-multiSelect>
-                    <label
-                      >Bạn muốn tìm người có chuyên môn như nào:
-                      <span style="color: red">*</span></label
-                    >
+                    <label>Bạn muốn tìm người có chuyên môn như nào:
+                      <span style="color: red">*</span></label>
                   </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
+                  <span class="text-error" *ngIf="
                       formStartuper.value.targetSpecialize.length == 0 &&
                       !this.formStartuper.valid &&
                       handleSubmit
-                    "
-                    >Tìm người có chuyên môn như nào không được để trống</span
-                  >
+                    ">Tìm người có chuyên môn như nào không được để trống</span>
                 </div>
-                <div
-                  class="p-field col-12 md-12"
-                  *ngIf="formStartuper.value.purpose == 1"
-                >
+                <div class="p-field col-12 md-12" *ngIf="formStartuper.value.purpose == 1">
                   <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="personalities"
-                      defaultLabel="Chọn tính cách"
-                      optionLabel="name"
-                      formControlName="requestPersonality"
-                    >
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="personalities" defaultLabel="Chọn tính cách" optionLabel="name"
+                      formControlName="requestPersonality">
                     </p-multiSelect>
-                    <label
-                      >Bạn muốn tìm người có tính cách như nào:
-                      <span style="color: red">*</span></label
-                    >
+                    <label>Bạn muốn tìm người có tính cách như nào:
+                      <span style="color: red">*</span></label>
                   </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
+                  <span class="text-error" *ngIf="
                       formStartuper.value.requestPersonality.length == 0 &&
                       !this.formStartuper.valid &&
                       handleSubmit
-                    "
-                    >Tìm người có tính cách như nào không được để trống</span
-                  >
+                    ">Tìm người có tính cách như nào không được để trống</span>
                 </div>
-                <div
-                  class="p-field col-12 md-12"
-                  *ngIf="formStartuper.value.purpose == 1"
-                >
+                <div class="p-field col-12 md-12" *ngIf="formStartuper.value.purpose == 1">
                   <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="skills"
-                      defaultLabel="Chọn kỹ năng mềm"
-                      optionLabel="name"
-                      formControlName="requestSkill"
-                    >
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="skills" defaultLabel="Chọn kỹ năng mềm" optionLabel="name"
+                      formControlName="requestSkill">
                     </p-multiSelect>
-                    <label
-                      >Bạn muốn tìm người có kỹ năng mềm như nào:
-                      <span style="color: red">*</span></label
-                    >
+                    <label>Bạn muốn tìm người có kỹ năng mềm như nào:
+                      <span style="color: red">*</span></label>
                   </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
+                  <span class="text-error" *ngIf="
                       formStartuper.value.requestSkill.length == 0 &&
                       !this.formStartuper.valid &&
                       handleSubmit
-                    "
-                    >Tìm người có kỹ năng mềm như nào không được để trống</span
-                  >
+                    ">Tìm người có kỹ năng mềm như nào không được để trống</span>
                 </div>
-                <div
-                  class="p-field col-12 md-12"
-                  *ngIf="formStartuper.value.purpose == 4"
-                >
+                <div class="p-field col-12 md-12" *ngIf="formStartuper.value.purpose == 4">
                   <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="fields"
-                      defaultLabel="Chọn lĩnh vực của dự án"
-                      optionLabel="name"
-                      formControlName="targetField"
-                    >
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="fields" defaultLabel="Chọn lĩnh vực của dự án" optionLabel="name"
+                      formControlName="targetField">
                     </p-multiSelect>
-                    <label
-                      >Lĩnh vực của dự án muốn tham gia:
-                      <span style="color: red">*</span></label
-                    >
+                    <label>Lĩnh vực của dự án muốn tham gia:
+                      <span style="color: red">*</span></label>
                   </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
+                  <span class="text-error" *ngIf="
                       formStartuper.value.targetField.length == 0 &&
                       !this.formStartuper.valid &&
                       handleSubmit
-                    "
-                    >Lĩnh vực của dự án muốn tham gia không được để trống</span
-                  >
+                    ">Lĩnh vực của dự án muốn tham gia không được để trống</span>
                 </div>
-                <div
-                  class="p-field col-12 md-12"
-                  *ngIf="formStartuper.value.purpose == 2"
-                >
+                <div class="p-field col-12 md-12" *ngIf="formStartuper.value.purpose == 2">
                   <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="fields"
-                      defaultLabel="Chọn lĩnh vực ý tưởng muốn tham gia"
-                      optionLabel="name"
-                      formControlName="targetField"
-                    >
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="fields" defaultLabel="Chọn lĩnh vực ý tưởng muốn tham gia" optionLabel="name"
+                      formControlName="targetField">
                     </p-multiSelect>
-                    <label
-                      >Lĩnh vực ý tưởng muốn tham gia:
-                      <span style="color: red">*</span></label
-                    >
+                    <label>Lĩnh vực ý tưởng muốn tham gia:
+                      <span style="color: red">*</span></label>
                   </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
+                  <span class="text-error" *ngIf="
                       formStartuper.value.targetField.length == 0 &&
                       !this.formStartuper.valid &&
                       handleSubmit
-                    "
-                    >Lĩnh vực ý tưởng muốn tham gia không được để trống</span
-                  >
+                    ">Lĩnh vực ý tưởng muốn tham gia không được để trống</span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="specializies"
-                      defaultLabel="Chọn chuyên môn của mình"
-                      optionLabel="name"
-                      formControlName="specialize"
-                    >
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="specializies" defaultLabel="Chọn chuyên môn của mình" optionLabel="name"
+                      formControlName="specialize">
                     </p-multiSelect>
-                    <label
-                      >Hãy lựa chọn chuyên môn của mình:
+                    <label>Hãy lựa chọn chuyên môn của mình:
                       <span style="color: red">*</span>
                     </label>
                   </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
+                  <span class="text-error" *ngIf="
                       formStartuper.value.specialize.length == 0 &&
                       !this.formStartuper.valid &&
                       handleSubmit
-                    "
-                    >Chuyên môn không được để trống</span
-                  >
+                    ">Chuyên môn không được để trống</span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-dropdown
-                      [options]="fields"
-                      optionValue="value"
-                      optionLabel="name"
-                      formControlName="field"
-                      [autoDisplayFirst]="false"
-                      emptyMessage="Chọn 1"
-                    ></p-dropdown>
-                    <label
-                      >Bạn đang hoạt động/Làm việc trong lĩnh vực nào?:
+                    <p-dropdown [options]="fields" optionValue="value" optionLabel="name" formControlName="field"
+                      [autoDisplayFirst]="false" emptyMessage="Chọn 1"></p-dropdown>
+                    <label>Bạn đang hoạt động/Làm việc trong lĩnh vực nào?:
                     </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-dropdown
-                      [options]="yearOfExps"
-                      [autoDisplayFirst]="false"
-                      optionValue="value"
-                      optionLabel="name"
-                      formControlName="yearOfExp"
-                      emptyMessage="Chọn 1"
-                    ></p-dropdown>
+                    <p-dropdown [options]="yearOfExps" [autoDisplayFirst]="false" optionValue="value" optionLabel="name"
+                      formControlName="yearOfExp" emptyMessage="Chọn 1"></p-dropdown>
                     <label>Số năm kinh nghiệm trong lĩnh vực: </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-dropdown
-                      [options]="availableTimes"
-                      [autoDisplayFirst]="false"
-                      optionValue="value"
-                      optionLabel="name"
-                      formControlName="availableTime"
-                      emptyMessage="Chọn 1"
-                    ></p-dropdown>
-                    <label
-                      >Bạn có thể dành tối thiểu bao nhiêu thời gian để làm việc
+                    <p-dropdown [options]="availableTimes" [autoDisplayFirst]="false" optionValue="value"
+                      optionLabel="name" formControlName="availableTime" emptyMessage="Chọn 1"></p-dropdown>
+                    <label>Bạn có thể dành tối thiểu bao nhiêu thời gian để làm việc
                       trong một dự án?: <span style="color: red">*</span>
                     </label>
                   </span>
-                  <span
-                    class="text-error"
-                    *ngIf="
+                  <span class="text-error" *ngIf="
                       !formStartuper.value.availableTime &&
                       !this.formStartuper.valid &&
                       handleSubmit
-                    "
-                    >Thời gian không được để trống</span
-                  >
+                    ">Thời gian không được để trống</span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="personalities"
-                      defaultLabel="Chọn tối đa 3 tính cách"
-                      optionLabel="name"
-                      formControlName="personality"
-                    >
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="personalities" defaultLabel="Chọn tối đa 3 tính cách" optionLabel="name"
+                      formControlName="personality">
                     </p-multiSelect>
-                    <label
-                      >Hãy lựa chọn 3 từ mô tả đúng nhất về tính cách của bạn:
+                    <label>Hãy lựa chọn 3 từ mô tả đúng nhất về tính cách của bạn:
                     </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      [selectionLimit]="3"
-                      appendTo="body"
-                      [options]="skills"
-                      defaultLabel="Chọn tối đa 3 kỹ năng"
-                      optionLabel="name"
-                      formControlName="skill"
-                    >
+                    <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
+                      [options]="skills" defaultLabel="Chọn tối đa 3 kỹ năng" optionLabel="name"
+                      formControlName="skill">
                     </p-multiSelect>
-                    <label
-                      >Hãy lựa chọn 3 kỹ năng mềm của bản thân mà bạn tâm đắc
+                    <label>Hãy lựa chọn 3 kỹ năng mềm của bản thân mà bạn tâm đắc
                       nhất:
                     </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
-                  <app-work-history-summary
-                    formControlName="workingExperience"
-                  ></app-work-history-summary>
+                  <app-work-history-summary formControlName="workingExperience"></app-work-history-summary>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <textarea
-                      [rows]="5"
-                      pInputTextarea
-                      formControlName="activity"
-                    ></textarea>
+                    <textarea [rows]="5" pInputTextarea formControlName="activity"></textarea>
                     <label>
                       Các hoạt động xã hội, từ thiện, tình nguyện khác... (bao
                       gồm: Tổ chức, vị trí, khoảng thời gian):
@@ -452,11 +230,7 @@
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <textarea
-                      [rows]="5"
-                      pInputTextarea
-                      formControlName="certificateAndAward"
-                    ></textarea>
+                    <textarea [rows]="5" pInputTextarea formControlName="certificateAndAward"></textarea>
                     <label>Chứng chỉ, thành tích: </label>
                   </span>
                 </div>
@@ -487,19 +261,10 @@
       <ng-template pTemplate="footer">
         <div class="flex justify-content-between">
           <span *ngIf="activeIndex == 0" style="visibility: hidden"></span>
-          <p-button
-            *ngIf="activeIndex > 0"
-            label="Trước"
-            (onClick)="back()"
-            icon="pi pi-angle-left"
-          >
+          <p-button *ngIf="activeIndex > 0" label="Trước" (onClick)="back()" icon="pi pi-angle-left">
           </p-button>
-          <p-button
-            [label]="activeIndex == 2 ? 'Hoàn thành' : 'Tiếp'"
-            (onClick)="next()"
-            icon="pi pi-angle-right"
-            iconPos="right"
-          >
+          <p-button [label]="activeIndex == 2 ? 'Hoàn thành' : 'Tiếp'" (onClick)="next()" icon="pi pi-angle-right"
+            iconPos="right">
           </p-button>
         </div>
       </ng-template>
