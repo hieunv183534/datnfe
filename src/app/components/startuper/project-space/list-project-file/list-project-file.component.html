@@ -1,22 +1,20 @@
 <div class="flex flex-column">
-  <span class="flex align-items-center justify-content-center ml-3">
+  <span *ngIf="!isView" class="flex align-items-center justify-content-center ml-3">
     <i class="pi pi-file-o mr-2" style="font-size: 27px;"></i>
     <h3 style="margin: 2px;" class="flex align-items-center">Tài liệu <h4>({{files.length}})</h4>
     </h3>
   </span>
-  <div class="w list-member .grid">
+  <div class="w  .grid" [ngClass]="{'list-member':!isView}">
     <ng-container *ngFor="let file of files">
-      <span class="file-item flex flex-row relative px-2 hover:bg-gray-200" [pTooltip]="'File:'+ file.file.url + '\n'+
-      'Kiểu: '+  file.file.contentType+ '\n'+
-      'Size: '+  file.file.size+ '\n'+
-      'Tiêu đề: ' + file.title + '\n' +
+      <span class="file-item flex flex-row relative px-2 hover:bg-gray-200" [pTooltip]="
+      'Size: '+  file.file.size+' KB'+ '\n'+
       'Ghi chú: ' + file.note">
         <div class="flex align-items-center justify-content-center h-full w-2rem mr-2">
           <img [src]="iconContentType(file.file.contentType)" alt="" class="w-full h-full">
         </div>
-        <div class="flex flex-column">
+        <div class="flex flex-column w-full">
           <h4 class="text-overflow-ellipsis">{{file.title}}</h4>
-          <p class="text-overflow-ellipsis max-w-10rem">{{file.file.url}}</p>
+          <p class="text-overflow-ellipsis" [ngClass]="{'max-w-10rem':!isView}">{{file.file.url}}</p>
           <button pButton pRipple type="button" icon="pi pi-download"
             class="p-button-rounded p-button-text absolute top-50 right-0" style="transform: translateY(-50%);" (click)="downloadFile(file)"></button>
         </div>

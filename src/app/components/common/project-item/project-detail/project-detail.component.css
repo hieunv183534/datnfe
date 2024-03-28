@@ -165,3 +165,6 @@ h4 {
 
 @media (max-width: 1820px) {
 }
+.p-accordion .p-accordion-header .p-accordion-header-link {
+  padding: 0.5rem;
+}

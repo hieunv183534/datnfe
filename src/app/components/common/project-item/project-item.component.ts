@@ -58,6 +58,7 @@ export class ProjectItemComponent implements OnInit {
   }
 
   viewProject() {
+    debugger
     if (this.relationWithProject == 0) {
       this.showDetailProject();
     } else {
@@ -91,5 +92,8 @@ export class ProjectItemComponent implements OnInit {
 
   adminDelete1() {
     this.adminDelete.emit(this.project.id);
+  }
+  hover(){
+    this.isHovered = true;
   }
 }

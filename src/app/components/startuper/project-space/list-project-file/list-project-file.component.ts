@@ -12,18 +12,16 @@ import { ProjectService } from 'src/app/services/project.service';
 export class ListProjectFileComponent implements OnInit, OnChanges {
 
   @Input() projectId: string = "";
-
+  @Input() isView: boolean = false;
+  @Input() isMyProject: boolean = false;
   files: any[] = [];
-
   isShowUpload: boolean = false;
-
   uploadFiles: any[] = [];
   title: string = "";
   note: string = "";
   visibleForInvestor: boolean = false;
   visibleForAll: boolean = false;
 
-  @Input() isMyProject: boolean = false;
 
   constructor(
     private projectService: ProjectService,
