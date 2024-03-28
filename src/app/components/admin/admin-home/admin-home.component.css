@@ -1,5 +1,6 @@
 .content-body {
   width: 100%;
+  background-color: #F3F4F6;
   flex-grow: 1;
   padding: 20px;
   overflow-y: auto;

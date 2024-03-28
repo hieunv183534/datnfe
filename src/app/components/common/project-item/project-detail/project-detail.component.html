@@ -293,20 +293,8 @@
         <app-pitch-deck [isView]="true" [projectId]="projectId"></app-pitch-deck>
       </p-tabPanel>
       <p-tabPanel header="Tài liệu">
-        <p-accordion [multiple]="true" [activeIndex]="[0, 1, 2]">
-          <p-accordionTab header="File">
-            <div class="px-2 pb-2">
-              <app-list-project-file [projectId]="projectId"
-              [isMyProject]="project.extraProperties.relationWithProject == 0" [isView]="true"></app-list-project-file>
-            </div>
-          </p-accordionTab>
-          <p-accordionTab header="Link">
-
-          </p-accordionTab>
-          <p-accordionTab header="Ảnh/Video">
-
-          </p-accordionTab>
-        </p-accordion>
+        <app-list-project-file [projectId]="projectId" [isMyProject]="project.extraProperties.relationWithProject == 0"
+          [isView]="true"></app-list-project-file>
       </p-tabPanel>
       <p-tabPanel header="Hỏi đáp">
         <div class="arrange justify-content-end flex">
@@ -579,7 +567,7 @@
         </div>
       </p-tabPanel>
       <p-tabPanel header="Bài viết">
-        
+
       </p-tabPanel>
     </p-tabView>
   </div>

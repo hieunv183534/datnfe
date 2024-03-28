@@ -153,15 +153,10 @@ a {
 }
 
 .body-content {
-  background-color: #f3f4f6;
+  /* background-color: #f3f4f6; */
   padding-left: 82px;
   padding-right: 82px;
   padding-bottom: 82px;
-}
-
-.list-data {
-  width: calc(100% - 285px) !important;
-  padding: 15px !important;
 }
 
 label.title {

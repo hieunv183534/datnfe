@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectStage, RelationWithProject } from 'src/app/model/enum';
 import { FsiValues } from 'src/app/shared/util/util';
@@ -7,6 +7,8 @@ import { FsiValues } from 'src/app/shared/util/util';
   selector: 'app-project-item',
   templateUrl: './project-item.component.html',
   styleUrls: ['./project-item.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class ProjectItemComponent implements OnInit {
   @Input() project?: any;
@@ -58,7 +60,6 @@ export class ProjectItemComponent implements OnInit {
   }
 
   viewProject() {
-    debugger
     if (this.relationWithProject == 0) {
       this.showDetailProject();
     } else {
@@ -93,7 +94,5 @@ export class ProjectItemComponent implements OnInit {
   adminDelete1() {
     this.adminDelete.emit(this.project.id);
   }
-  hover(){
-    this.isHovered = true;
-  }
+
 }

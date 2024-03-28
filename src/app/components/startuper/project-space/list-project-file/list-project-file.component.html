@@ -14,7 +14,7 @@
         </div>
         <div class="flex flex-column w-full">
           <h4 class="text-overflow-ellipsis">{{file.title}}</h4>
-          <p class="text-overflow-ellipsis" [ngClass]="{'max-w-10rem':!isView}">{{file.file.url}}</p>
+          <p class="text-overflow-ellipsis m-0" [ngClass]="{'max-w-10rem':!isView}">{{file.file.url}}</p>
           <button pButton pRipple type="button" icon="pi pi-download"
             class="p-button-rounded p-button-text absolute top-50 right-0" style="transform: translateY(-50%);" (click)="downloadFile(file)"></button>
         </div>

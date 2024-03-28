@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { GetListProjectForAdminDto } from 'src/app/model/admin.class';
@@ -11,7 +11,9 @@ import { FsiValues } from 'src/app/shared/util/util';
 @Component({
   selector: 'app-list-project',
   templateUrl: './list-project.component.html',
-  styleUrls: ['./list-project.component.css']
+  styleUrls: ['./list-project.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class ListProjectComponent implements OnInit {
 
