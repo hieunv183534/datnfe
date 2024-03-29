@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -14,7 +14,9 @@ import { FsiValues } from 'src/app/shared/util/util';
 @Component({
   selector: 'app-list-startuper',
   templateUrl: './list-startuper.component.html',
-  styleUrls: ['./list-startuper.component.css']
+  styleUrls: ['./list-startuper.component.css'],
+
+
 })
 export class ListStartuperComponent implements OnInit {
 
@@ -24,7 +26,7 @@ export class ListStartuperComponent implements OnInit {
   personalities: any = FsiValues.personalities;
   skills: any = FsiValues.skills;
   yearOfExps: any = FsiValues.yearOfExps;
-
+  display: boolean = false;
   listStartuper: StartuperDto[] = [];
 
   formSearch: FormGroup = this.fb.group({});

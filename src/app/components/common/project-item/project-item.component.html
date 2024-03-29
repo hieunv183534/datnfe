@@ -1,4 +1,5 @@
-<div class="startupItem flex flex-column border-1 border-gray-200 shadow-3 bg-white relative p-3" (mouseenter)="isHovered=true;" (mouseleave)="isHovered = false">
+<div class="startupItem flex flex-column border-1 border-gray-200 shadow-3 bg-white relative p-3"
+  (mouseenter)="isHovered=true;" (mouseleave)="isHovered = false">
   <div class="flex flex-row w-full" style="border-bottom: 1px solid #b9b3b0;">
     <div class="w-5rem h-5rem mr-2">
       <img class="border-circle h-full w-full border-1 border-gray-200 w-5rem h-5rem" [src]="project.avatarUrl " alt="">
@@ -15,13 +16,7 @@
         {{ getStage(project.stage) }}
       </span>
       <span class="my-1">
-        <svg width="13" height="15" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg"
-          style="margin-right: 4px">
-          <path
-            d="M6.5 0C2.90643 0 0 2.3475 0 5.25C0 9.1875 6.5 15 6.5 15C6.5 15 13 9.1875 13 5.25C13 2.3475 10.0936 0 6.5 0ZM6.5 7.125C5.21857 7.125 4.17857 6.285 4.17857 5.25C4.17857 4.215 5.21857 3.375 6.5 3.375C7.78143 3.375 8.82143 4.215 8.82143 5.25C8.82143 6.285 7.78143 7.125 6.5 7.125Z"
-            fill="black" />
-        </svg>
-
+        <img src="../././../../../assets/icons/Positon.svg" alt="">
         {{ getArea(project.area) }}
       </span>
       <span class="my-1">
@@ -40,8 +35,7 @@
     <ng-container *ngIf="project.hirings.length !==0">
       <span class="my-2"><b>Chúng tôi đang tìm kiếm</b></span>
       <span>
-        <p-tag *ngFor="let specialize of getFields(project.hirings ?? [])"
-          [value]="specialize"></p-tag>
+        <p-tag *ngFor="let specialize of getFields(project.hirings ?? [])" [value]="specialize"></p-tag>
       </span>
     </ng-container>
   </div>

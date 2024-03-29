@@ -51,6 +51,7 @@ export class ListProjectComponent implements OnInit {
   listProject: ProjectDto[] = []
 
   isVisibleAddProject: boolean = false;
+  display: boolean = false;
 
   displayProjectDetail: boolean = false;
 

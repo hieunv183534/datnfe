@@ -1,16 +1,10 @@
 .founderItem {
   position: relative;
-  background-color: white;
-  box-shadow: 0px 0px 3px 3px #00000022;
   border-radius: 20px;
   height: 100%;
 }
 
-p {
-  margin-bottom: 4px !important;
-  margin-left: 12px !important;
-  margin-top: 12px !important;
-}
+
 
 .founderItem #avatar {
   height: 93px;
@@ -93,21 +87,7 @@ p {
   background: linear-gradient(90deg, #0386ff 0%, #01aaff 100%, #01aaff 100%);
 }
 
-.col-4 {
-  padding: 0 !important;
-}
 
-.col-8 {
-  padding: 0 !important;
-}
-
-.col-12 {
-  padding: 0px !important;
-}
-
-.grid {
-  margin: 0px !important;
-}
 
 @media (max-width: 576px) {
   .founderItem .info ul {
@@ -145,4 +125,7 @@ p {
     margin-left: 16px;
     margin-right: 12px;
   }
+}
+.p-tag {
+  margin: 4px !important;
 }

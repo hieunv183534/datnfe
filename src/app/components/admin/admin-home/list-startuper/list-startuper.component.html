@@ -1,53 +1,74 @@
-<form [formGroup]="formSearch">
-  <div class="body-content">
-    <div class="search">
-      <h1>Tìm kiếm</h1>
 
-      <span class="p-input-icon-left">
-        <i class="pi pi-search"></i>
-        <input type="text" pInputText placeholder="Tìm kiếm theo từ khóa" formControlName="filter"
-          (keyup.enter)="submitSearch()" />
-      </span>
-    </div>
-    <div class="grid">
-      <div class="filter-box col-2 grid fluid flex flex-column justify-content-start ">
-        <div class="p-field col-12 md-12 mt-1">
-          <span class="p-float-label">
-            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="areas" optionLabel="name"
-              formControlName="areas">
-            </p-multiSelect>
-            <label>Khu vực</label>
-          </span>
-        </div>
-        <div class="p-field col-12 md-12 mt-1">
-          <span class="p-float-label">
-            <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="fields" optionLabel="name"
-              formControlName="fields">
-            </p-multiSelect>
-            <label>Lĩnh vực</label>
-          </span>
-        </div>
-        <div class="col-12 flex justify-content-center mt-2">
-          <p-button icon="pi pi-search" (onClick)="submitSearch()"></p-button>
-          <p-button class="ml-4" icon="pi pi-times" (onClick)="clearSearch()"></p-button>
-        </div>
+<form [formGroup]="formSearch">
+
+  <div class="bg-white border-round-sm flex flex-row w-full p-4">
+    <div class=" flex-column hidden sm:flex w-2 mr-4 min-w-max">
+      <div class="mb-4">
+        <i class="pi pi-filter mr-2"></i>
+        <span class="font-semibold text-xl">Bộ lọc tìm kiếm</span>
       </div>
-      <div class="list-data col-10 grid flex align-items-center justify-content-center ">
+      <div class="p-field w-full max-w-20rem" style="margin-bottom: 12px;">
+        <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="areas" optionLabel="name"
+          formControlName="areas" defaultLabel="Khu vực">
+        </p-multiSelect>
+      </div>
+      <div class="p-field w-full max-w-20rem" style="margin-bottom: 12px;">
+        <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="fields" optionLabel="name"
+          formControlName="fields" defaultLabel="Lĩnh vực">
+        </p-multiSelect>
+      </div>
+      <div class="col-12 flex justify-content-center mt-2">
+        <p-button icon="pi pi-search" (onClick)="submitSearch()"></p-button>
+        <p-button class="ml-4" icon="pi pi-times" (onClick)="clearSearch()"></p-button>
+      </div>
+    </div>
+    <div class="flex flex-column w-full sm:w-10">
+      <span class="pl-2 font-semibold text-xl mb-4">Danh sách nhà khởi nghiệp</span>
+      <div class="flex flex-row justify-content-between align-items-center w-full px-2 mb-3">
+        <div class="pr-3 block sm:hidden">
+          <button pButton type="button" icon="pi pi-filter" class="p-button-raised p-button-rounded p-button-secondary"
+            (click)="display = true"></button>
+        </div>
+        <span class="p-input-icon-left w-full sm:w-full">
+          <i class="pi pi-search"></i>
+          <input type="text" pInputText placeholder="Tìm kiếm theo từ khóa" formControlName="filter"
+            (keyup.enter)="submitSearch()" style="width: 100%" />
+        </span>
+      </div>
+
+      <div class="flex align-items-start justify-content-start w-full">
         <ng-container *ngIf="listStartuper.length == 0">
           <img width="300px" src="../../../../assets/img/nodata.jpg" alt="" style="margin: auto;">
         </ng-container>
-
-        <ng-container *ngFor=" let startuper of listStartuper">
-          <div class="lg:col-6 md:col-6 sm:col-12">
-            <app-startuper-item [startuper]="startuper" [mode]="UuidStartuperModeAdmin"></app-startuper-item>
-          </div>
-        </ng-container>
+        <div *ngIf="listStartuper.length !== 0" class="flex flex-row flex-wrap w-full">
+          <ng-container *ngFor=" let startuper of listStartuper">
+            <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+              <app-startuper-item [startuper]="startuper" [mode]="UuidStartuperModeAdmin"></app-startuper-item>
+            </div>
+          </ng-container>
+        </div>
       </div>
-      <div class="col-12 flex justify-content-center">
+      <div class="w-full mt-2">
         <p-paginator [pageLinkSize]="pageSize" [rows]="pageSize" [totalRecords]="totalRecords"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} nkn" [showCurrentPageReport]="true"
           [rowsPerPageOptions]="pageSizeOptions" (onPageChange)="onPageChange($event)"></p-paginator>
       </div>
     </div>
   </div>
+  <p-sidebar [(visible)]="display">
+    <div class="p-field w-full max-w-20rem" style="margin-bottom: 12px;">
+      <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="areas" optionLabel="name"
+        formControlName="areas" defaultLabel="Khu vực">
+      </p-multiSelect>
+    </div>
+    <div class="p-field w-full max-w-20rem" style="margin-bottom: 12px;">
+      <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="fields" optionLabel="name"
+        formControlName="fields" defaultLabel="Lĩnh vực">
+      </p-multiSelect>
+    </div>
+    <div class="col-12 flex justify-content-center mt-2">
+      <p-button icon="pi pi-search" (onClick)="submitSearch(); display=false;"></p-button>
+      <p-button class="ml-4" icon="pi pi-times" (onClick)="clearSearch();display=false;"></p-button>
+    </div>
+  </p-sidebar>
 </form>

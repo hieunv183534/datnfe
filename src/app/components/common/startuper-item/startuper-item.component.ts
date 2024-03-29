@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { UuidStartuperModeAdmin, UuidStartuperModeFromMe, UuidStartuperModeNew, UuidStartuperModeOFMe, UuidStartuperModeToMe } from 'src/app/model/enum';
@@ -11,7 +11,9 @@ import * as moment from 'moment';
 @Component({
   selector: 'app-startuper-item',
   templateUrl: './startuper-item.component.html',
-  styleUrls: ['./startuper-item.component.css']
+  styleUrls: ['./startuper-item.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class StartuperItemComponent implements OnInit {
 

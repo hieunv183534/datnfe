@@ -1,0 +1,12 @@
+.p-input-icon-left > .p-inputtext {
+    padding-left: 2.5rem !important;
+}
+
+.p-button.p-button-icon-only.p-button-rounded {
+    border-radius: 50%;
+    height: 2rem;
+}
+.p-button.p-button-icon-only {
+    width: 2rem;
+    padding: 0.75rem 0;
+}
