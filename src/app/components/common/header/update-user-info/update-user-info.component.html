@@ -7,18 +7,27 @@
         <br />
         <ng-container [ngSwitch]="activeIndex">
           <ng-container *ngSwitchCase="0">
+            <img [src]="avatarUrl" class="old-avatar">
             <p-divider align="left">
               <b>Tải lên ảnh đại diện mới</b>
             </p-divider>
-            <input type="file" (change)="fileChangeEvent($event)" />
+            <input #inputAvt class="mb-2" type="file" (change)="fileChangeEvent($event)" />
 
-            <div class="image-cropper-wrapper">
+            <div *ngIf="imageChangedEvent !== '' " class="image-cropper-wrapper mt-2" class="h-20rem">
               <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1"
-                format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)"
-                (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+                [roundCropper]="true" format="png" (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded($event)" (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"></image-cropper>
             </div>
 
-            <img class="preview-image" [src]="croppedImage" />
+            <!-- <img class="preview-image" [src]="croppedImage" /> -->
+            <span class="justify-content-center flex" style="color: #82c382">Hoặc lựa chọn một trong số những hình bên
+              dưới</span>
+            <div class="list-avt grid flex" style="margin-top: 10px">
+              <img *ngFor="let avt of avatars;let i = index"
+                [ngClass]="{'col-3 flex justify-content-center cursor-pointer': true, 'choosed': i == avtIndex}"
+                width="50px" [src]="avt" alt="" (click)="chooseAvt(i)" />
+            </div>
           </ng-container>
           <ng-container *ngSwitchCase="1">
             <form [formGroup]="formBaseInfo">

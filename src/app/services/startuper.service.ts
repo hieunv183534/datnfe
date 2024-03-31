@@ -33,6 +33,10 @@ export class StartuperService extends BaseService {
     return this.BaseAPIConfig.post(`${this.apiController}/upload-avatar`, formData);
   }
 
+  chooseDefaultAvatar(url: string){
+    return this.BaseAPIConfig.post(`${this.apiController}/choose-default-avatar`, url);
+  }
+
   updateBaseInfo(input: UpdateBaseInfoDto) {
     return this.BaseAPIConfig.post(`${this.apiController}/update-base-info`, input);
   }

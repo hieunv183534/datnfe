@@ -60,6 +60,21 @@ export class UpdateUserInfoComponent implements OnInit {
   steps: MenuItem[] = [];
   handleSubmit: boolean = false;
 
+  avatars = [
+    "https://daustore.store/fsi/avatar1.png",
+    "https://daustore.store/fsi/avatar2.png",
+    "https://daustore.store/fsi/avatar3.png",
+    "https://daustore.store/fsi/avatar4.png",
+    "https://daustore.store/fsi/avatar5.png",
+    "https://daustore.store/fsi/avatar6.png",
+    "https://daustore.store/fsi/avatar7.png",
+    "https://daustore.store/fsi/avatar8.png"
+  ];
+
+  avtIndex: number = -1;
+
+  avatarUrl: string = "";
+
   constructor(
     private messageService: MessageService,
     private fb: FormBuilder,
@@ -68,14 +83,13 @@ export class UpdateUserInfoComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.innerWidth = window.innerWidth;
     if (this.innerWidth <= 767) {
       this.styleDialog = {};
     }
-    this.croppedImage = this.userInfo.avatarUrl;
     this.steps = [
       { label: 'Ảnh đại diện' },
       { label: 'Thông tin cơ bản' },
@@ -189,7 +203,7 @@ export class UpdateUserInfoComponent implements OnInit {
     this.startuperService
       .getMyInfo()
       .then((res: any) => {
-        console.log(res.data);
+        this.avatarUrl = res.data.avatarUrl;
 
         this.formBaseInfo.patchValue({
           email: res.data.extraProperties.email,
@@ -238,8 +252,6 @@ export class UpdateUserInfoComponent implements OnInit {
           specialize: res.data.specialize,
         });
 
-        // console.log(this.formStartuperInfo.value)
-
         if (this.formStartuperInfo.value.purpose != 1) {
           this.formStartuperInfo.controls['ideaField'].clearValidators();
           this.formStartuperInfo.controls['ideaField'].updateValueAndValidity();
@@ -277,6 +289,10 @@ export class UpdateUserInfoComponent implements OnInit {
       });
   }
 
+  submitAvt() {
+
+  }
+
   changeUniversity(e: any) {
     this.universitySpecializeds = FsiValues.universities
       .find((x) => x.universityName == e.value)
@@ -293,6 +309,23 @@ export class UpdateUserInfoComponent implements OnInit {
     if (this.activeIndex == 0) {
       if (this.blob) {
         this.uploadImage();
+      } else if (this.avtIndex != -1) {
+        this.startuperService.chooseDefaultAvatar(this.avatars[this.avtIndex]).then((res: any) => {
+          this.avatarUrl = res.data;
+          this.messageService.add({
+            key: 'toast',
+            severity: 'success',
+            summary: 'Thành công',
+            detail: 'Tải lên ảnh đại diện cá nhân thành công!',
+          });
+        }).catch((err: any) => {
+          this.messageService.add({
+            key: 'toast',
+            severity: 'error',
+            summary: 'Lỗi',
+            detail: 'Tải lên ảnh đại diện cá nhân thất bại!',
+          });
+        });
       }
     } else if (this.activeIndex == 1) {
       console.log(this.formBaseInfo.value);
@@ -397,6 +430,16 @@ export class UpdateUserInfoComponent implements OnInit {
     }
   }
 
+  @ViewChild('inputAvt') inputAvt: any;
+
+  chooseAvt(i: number) {
+    this.avtIndex = i;
+    this.croppedImage = '';
+    this.blob = '';
+    this.imageChangedEvent = '';
+    this.inputAvt.nativeElement.value = "";
+  }
+
   @ViewChild(ImageCropperComponent) imageCropper?: ImageCropperComponent;
   imageChangedEvent: any = '';
   croppedImage: any = '';
@@ -404,6 +447,7 @@ export class UpdateUserInfoComponent implements OnInit {
 
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
+    this.avtIndex = -1;
   }
 
   imageCropped(event: ImageCroppedEvent) {
@@ -428,6 +472,7 @@ export class UpdateUserInfoComponent implements OnInit {
     this.startuperService
       .uploadAvatar(file)
       .then((res: any) => {
+        this.avatarUrl = res.data;
         this.messageService.add({
           key: 'toast',
           severity: 'success',

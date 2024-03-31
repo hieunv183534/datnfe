@@ -80,7 +80,6 @@ import { StartuperItemComponent } from './components/common/startuper-item/start
 import { ProfileComponent } from './components/common/profile/profile.component';
 import { HistorySearchItemComponent } from './components/common/history-search-item/history-search-item.component';
 import { PopupConnectComponent } from './components/common/popup-connect/popup-connect.component';
-import { RegisterStartuperInfoComponent } from './components/startuper/register-startuper-info/register-startuper-info.component';
 import { AddNewProjectComponent } from './components/startuper/add-new-project/add-new-project.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ProjectItemComponent } from './components/common/project-item/project-item.component';
@@ -168,7 +167,6 @@ import { UploadDocumentComponent } from './components/startuper/project-space/li
     StartuperItemComponent,
     ProfileComponent,
     PopupConnectComponent,
-    RegisterStartuperInfoComponent,
     AddNewProjectComponent,
     ProjectItemComponent,
     ProjectDetailComponent,
