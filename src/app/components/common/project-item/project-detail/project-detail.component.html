@@ -110,7 +110,7 @@
     <div class="project-info flex flex-column h-auto align-items-center relative">
       <div class="cover-image bg-orange-300 h-20rem w-full relative" style="margin-bottom: 3.5rem;">
         <div class="h-6rem w-6rem absolute left-0 bottom-0 ml-3" style="transform: translateY(50%);">
-          <img class="border-circle h-full w-full border-1 border-gray-200"
+          <img class="border-circle bg-white h-full w-full border-1 border-gray-200"
             [src]="project.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'" alt="">
         </div>
         <img src="/assets/images/default_cover.jpg" alt="" />
@@ -573,8 +573,13 @@
   </div>
   <ng-template pTemplate="footer">
     <div style="padding-top: 1.5rem">
-      <p-button label="Kết nối" icon="pi pi-share-alt"></p-button>
-      <p-button label="Trò chuyện" icon="pi pi-comments" class="p-button-success"></p-button>
+      <p-button *ngIf="project.extraProperties.relationWithProject == 1 && project.isActive" label="Kết nối" icon="pi pi-share-alt"  (onClick)="requestToProject()" ></p-button>
+      <button pButton *ngIf="project.extraProperties.relationWithProject == 3 && project.isActive" label="Hủy yêu cầu" icon="pi pi-share-alt"  class="p-button-secondary" (click)="cancelRequestProject()" ></button>
+      <button pButton *ngIf="project.extraProperties.relationWithProject == 2 && project.isActive" label="Chấp nhận" icon="pi pi-check" (click)="acceptRequest()" ></button>
+      <button pButton *ngIf="project.extraProperties.relationWithProject == 4 && !project.isActive" label="Phê duyệt" icon="pi pi-check" (click)="approveProject()" ></button>
+      <button pButton *ngIf="project.extraProperties.relationWithProject == 4 && !project.isActive" label="Từ chối" icon="pi pi-times" class="p-button-danger" (click)="deleteProject()"></button>
+      <!-- <button *ngIf="project.extraProperties.relationWithProject == 4 && project.isActive" pButton type="button" label="Khóa"  icon="pi pi-lock-open" (click)="lockProject()" class="p-button-danger p-button-outlined"></button>
+      <button *ngIf="project.extraProperties.relationWithProject == 4 && !project.isActive" pButton type="button" label="Mở khóa"  icon="pi pi-lock" (click)="unlockProject()" class="p-button-success p-button-outlined"></button> -->
     </div>
   </ng-template>
 </p-dialog>

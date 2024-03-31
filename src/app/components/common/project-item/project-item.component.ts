@@ -41,6 +41,7 @@ export class ProjectItemComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.project);
+    
   }
 
   getArea(val: number) {

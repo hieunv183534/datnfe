@@ -2,7 +2,7 @@
   (mouseenter)="isHovered=true;" (mouseleave)="isHovered = false">
   <div class="flex flex-row w-full" style="border-bottom: 1px solid #b9b3b0;">
     <div class="w-5rem h-5rem mr-2">
-      <img class="border-circle h-full w-full border-1 border-gray-200 w-5rem h-5rem" [src]="project.avatarUrl " alt="">
+      <img class="border-circle bg-white h-full w-full border-1 border-gray-200 w-5rem h-5rem" [src]="project.avatarUrl  ?? './../../../../assets/img/logo.png'" alt="" style="object-fit: contain;">
     </div>
     <div class="w-auto flex flex-column">
       <span class="font-semibold text-sm mb-1">{{ project.projectName}}</span>
@@ -52,7 +52,7 @@
       <i class="pi pi-check" style="margin-right: 4px"></i> Chấp nhận
     </button>
     <button *ngIf="relationWithProject == 3" type="button" id="ketnoi" (click)="cancelRequest()">
-      <i class="pi pi-times" style="margin-right: 4px"></i> Hủy kết nối
+      <i class="pi pi-times" style="margin-right: 4px"></i> Hủy yêu cầu
     </button>
 
     <ng-container *ngIf="relationWithProject == 4">
@@ -66,6 +66,7 @@
   </div>
 </div>
 <ng-container *ngIf="handleDetail">
-  <app-project-detail [projectId]="this.project.id" [display]="handleDetail"
-    (close)="handleDetail = false"></app-project-detail>
+  <app-project-detail (adminDelete)="adminDelete1();handleDetail=false" (emitToRequest)="requestToProject()" (emitToCancel)="cancelRequest()" (emitToAccept)="acceptRequest()"
+    (adminAccept)="adminAccept1();handleDetail=false"
+    [projectId]="this.project.id" [display]="handleDetail" (close)="handleDetail = false"></app-project-detail>
 </ng-container>

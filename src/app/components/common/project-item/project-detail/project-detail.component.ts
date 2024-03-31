@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { ProjectStage } from 'src/app/model/enum';
+import { ProjectStage, RelationWithProject } from 'src/app/model/enum';
 import { ProjectService } from 'src/app/services/project.service';
 import { FsiValues } from 'src/app/shared/util/util';
 
@@ -14,6 +14,15 @@ import { FsiValues } from 'src/app/shared/util/util';
 export class ProjectDetailComponent implements OnInit {
   @Input() display: boolean = false;
   @Input() projectId: string = '';
+  
+  @Output() adminAccept: EventEmitter<any> = new EventEmitter();
+  @Output() adminLock: EventEmitter<any> = new EventEmitter();
+  @Output() adminUnlock: EventEmitter<any> = new EventEmitter();
+  @Output() adminDelete: EventEmitter<any> = new EventEmitter();
+  @Output() emitToRequest: EventEmitter<any> = new EventEmitter();
+  @Output() emitToCancel: EventEmitter<any> = new EventEmitter();
+  @Output() emitToAccept: EventEmitter<any> = new EventEmitter();
+
   styleDialog: any = { width: '50vw' };
   // widthDialog: string = '800px';
   widthDialogJob: string = '35vw';
@@ -66,6 +75,7 @@ export class ProjectDetailComponent implements OnInit {
     return FsiValues.getMultiName(val, FsiValues.fields);
   }
   ngOnInit() {
+
     this.projectService.getProjectById(this.projectId).then((res: any) => {
       this.project = res.data;
     }).catch((err: any) => {
@@ -89,5 +99,26 @@ export class ProjectDetailComponent implements OnInit {
     this.showModal = true
     this.showInfoJob = false
     this.positionDialog = ''
+  }
+  approveProject(){
+    this.adminAccept.emit();    
+  }
+  deleteProject(){
+    this.adminDelete.emit();    
+  }
+  lockProject(){
+    this.adminLock.emit();    
+  }
+  unlockProject(){
+    this.adminUnlock.emit();    
+  }
+  requestToProject(){
+    this.emitToRequest.emit();    
+  }
+  cancelRequestProject(){
+    this.emitToCancel.emit();    
+  }
+  acceptRequest(){
+    this.emitToAccept.emit();    
   }
 }
