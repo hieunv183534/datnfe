@@ -58,11 +58,6 @@ export class HistorySearchComponent implements OnInit {
       availableTimes: [[], []],
       relationWithProject: [RelationWithProject.NotMemberOfProject, []]
     });
-    this.startuperService.getCheckIsNewProfile().then((res: any) => {
-      this.isVisibleRegisterInfo = res.data;
-    }).catch((err: any) => {
-
-    });
   }
 
   searchTuKhoa(){

@@ -1,7 +1,7 @@
 <div class="work-history">
   <h4>Kinh nghiệm làm việc</h4>
   <p-button *ngIf="!disabled" label="Thêm nơi làm việc" icon="pi pi-plus" class="mb-2 mt-2" (onClick)="addItem()"></p-button>
-  <p-card style="width: 100%;" *ngFor="let item of value; let i = index" class="mt-2">
+  <p-card *ngFor="let item of value; let i = index" class="mt-2 w-full">
     <div class="work-history-item p-fluid grid">
       <div class="p-field col-12 md-12">
         <span class="p-float-label">

@@ -9,3 +9,27 @@
   border: 2px solid rgb(28, 247, 28);
   max-width: 100%;
 }
+
+.list-avt img {
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.list-avt img:hover {
+  transform: scale(1.05);
+}
+
+.choosed{
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.p-card .p-card-content {
+  padding: 0;
+}
+
+.old-avatar{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
