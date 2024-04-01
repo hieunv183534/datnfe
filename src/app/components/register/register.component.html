@@ -27,7 +27,7 @@
         </div>
         <div class="p-field register-form">
           <label class="title">Mật khẩu<span style="color: red">*</span></label>
-          <span class="p-float-label p-input-icon-right">
+          <span class="p-float-label p-input-icon-right w-full">
             <i style="color: #01a9ff" *ngIf="isShowPassword" (click)="showPassword()" class="pi pi-eye"></i>
             <i *ngIf="!isShowPassword" (click)="showPassword()" class="pi pi-eye-slash"></i>
             <input *ngIf="!isShowPassword" type="password" pInputText formControlName="password" id="inputtext-right" />
@@ -48,7 +48,7 @@
         </div>
         <div class="p-field register-form">
           <label class="title">Nhập lại mật khẩu<span style="color: red">*</span></label>
-          <span class="p-float-label p-input-icon-right">
+          <span class="p-float-label p-input-icon-right w-full">
             <i style="color: #01a9ff" *ngIf="isShowRePassword" (click)="showRePassword()" class="pi pi-eye"></i>
             <i *ngIf="!isShowRePassword" (click)="showRePassword()" class="pi pi-eye-slash"></i>
             <input *ngIf="!isShowRePassword" type="password" pInputText formControlName="rePassword"

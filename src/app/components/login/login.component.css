@@ -112,9 +112,9 @@
   margin-bottom: 0;
 }
 
-.p-field * {
+/* .p-field * {
   display: block;
-}
+} */
 
 .p-field{
   width: 100% !important;
