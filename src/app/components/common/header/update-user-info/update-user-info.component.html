@@ -7,7 +7,9 @@
         <br />
         <ng-container [ngSwitch]="activeIndex">
           <ng-container *ngSwitchCase="0">
-            <img [src]="avatarUrl" class="old-avatar">
+            <div class="h-full w-full  flex justify-content-center align-items-center">
+              <img [src]="avatarUrl ?? '../../../../../assets/img/blankavatar.jpg'" class="old-avatar">
+            </div>
             <p-divider align="left">
               <b>Tải lên ảnh đại diện mới</b>
             </p-divider>
@@ -44,8 +46,8 @@
                     <label>Ngày sinh: </label>
                   </span>
                 </div>
-                <div class="p-field col-3 md-3">
-                  <label class="title">Giới tính</label>
+                <div class="col-3">
+                  <label class="title mb-2">Giới tính</label>
                   <p-selectButton [options]="genders" optionLabel="name" formControlName="gender"
                     optionValue="value"></p-selectButton>
                 </div>
@@ -71,7 +73,7 @@
                   <span class="p-float-label">
                     <p-dropdown [autoDisplayFirst]="false" [options]="areas" optionValue="value" optionLabel="name"
                       formControlName="location"></p-dropdown>
-                    <label>Khu vực: </label>
+                    <label class="title">Khu vực: </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12">
@@ -134,7 +136,7 @@
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
-                    <p-dropdown [options]="fields" optionValue="value" optionLabel="name" formControlName="field"
+                    <p-dropdown [options]="fields" optionValue="value" optionLabel="name" formControlName="field" [filter]="true"
                       [autoDisplayFirst]="false" emptyMessage="Chọn 1"></p-dropdown>
                     <label>Bạn đang hoạt động/Làm việc trong lĩnh vực nào?:
                     </label>
