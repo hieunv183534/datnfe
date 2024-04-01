@@ -262,13 +262,13 @@
                   <span class="p-float-label">
                     <p-multiSelect optionLabel="name" optionValue="value" [selectionLimit]="3" appendTo="body"
                       [options]="fields" defaultLabel="Chọn chuyên môn của mình" optionLabel="name"
-                      formControlName="targetField">
+                      formControlName="ideaField">
                     </p-multiSelect>
                     <label>Lĩnh vực ý tưởng của bạn
                       <span style="color: red">*</span></label>
                   </span>
                   <span class="text-error" *ngIf="
-                        formStartuperInfo.value.targetField.length == 0 &&
+                        formStartuperInfo.value.ideaField.length == 0 &&
                         !this.formStartuperInfo.valid &&
                         handleSubmit
                       ">Không được để trống</span>

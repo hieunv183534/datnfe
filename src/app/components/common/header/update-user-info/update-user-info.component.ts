@@ -106,6 +106,7 @@ export class UpdateUserInfoComponent implements OnInit {
     this.formStartuperInfo = this.fb.group({
       describe: [null, []],
       purpose: [null, [Validators.required]],
+      ideaField:[null, []],
       targetField: [null, []],
       targetSpecialize: [null, []],
       requestPersonality: [null, []],
@@ -140,28 +141,34 @@ export class UpdateUserInfoComponent implements OnInit {
     this.formStartuperInfo.valueChanges.subscribe((values) => {
 
       if (values.purpose == 1) {
-        this.formStartuperInfo.get('targetField')?.setValidators([Validators.required]);
+        this.formStartuperInfo.get('ideaField')?.setValidators([Validators.required]);
         this.formStartuperInfo.get('targetSpecialize')?.setValidators([Validators.required]);
         this.formStartuperInfo.get('requestPersonality')?.setValidators([Validators.required]);
         this.formStartuperInfo.get('requestSkill')?.setValidators([Validators.required]);
+
+        this.formBaseInfo.get('targetField')?.clearValidators();
       }
       else if (values.purpose == 2) {
         this.formStartuperInfo.get('targetField')?.setValidators([Validators.required]);
         this.formBaseInfo.get('targetSpecialize')?.clearValidators();
         this.formBaseInfo.get('requestPersonality')?.clearValidators();
         this.formBaseInfo.get('requestSkill')?.clearValidators();
+        this.formBaseInfo.get('ideaField')?.clearValidators();
       }
       else if (values.purpose == 4) {
         this.formStartuperInfo.get('targetField')?.setValidators([Validators.required]);
+
         this.formBaseInfo.get('targetSpecialize')?.clearValidators();
         this.formBaseInfo.get('requestPersonality')?.clearValidators();
         this.formBaseInfo.get('requestSkill')?.clearValidators();
+        this.formBaseInfo.get('ideaField')?.clearValidators();
       }
       else {
         this.formBaseInfo.get('targetField')?.clearValidators();
         this.formBaseInfo.get('targetSpecialize')?.clearValidators();
         this.formBaseInfo.get('requestPersonality')?.clearValidators();
         this.formBaseInfo.get('requestSkill')?.clearValidators();
+        this.formBaseInfo.get('ideaField')?.clearValidators();
       }
 
     })
@@ -402,6 +409,7 @@ export class UpdateUserInfoComponent implements OnInit {
       console.log(this.formStartuperInfo.value);
       
       this.formBaseInfo.get('targetField')?.updateValueAndValidity();
+      this.formBaseInfo.get('ideaField')?.updateValueAndValidity();
       this.formBaseInfo.get('targetSpecialize')?.updateValueAndValidity();
       this.formBaseInfo.get('requestPersonality')?.updateValueAndValidity();
       this.formBaseInfo.get('requestSkill')?.updateValueAndValidity();
