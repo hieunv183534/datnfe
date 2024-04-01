@@ -37,6 +37,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  
+  goToChat(){
+    this.router.navigate(['/startuper/chat/0/0']);
+  }
+
   ngOnInit() {
     this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
