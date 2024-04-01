@@ -287,3 +287,11 @@
 <ng-container *ngIf="isShowUpdateInfo">
   <app-update-user-info [display]="isShowUpdateInfo" (close)="closeModal()"></app-update-user-info>
 </ng-container>
+<p-dialog [resizable]="true" header="Thông báo" [(visible)]="display" [modal]="true" [style]="{width: '40vw'}"
+  [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [baseZIndex]="10000" [draggable]="false">
+  Thông tin của bạn chưa đầy đủ, vui lòng cập nhật đầy đủ thông tin trước khi sử dụng các tính năng khác.
+  <ng-template pTemplate="footer">
+    <p-button label="Cập nhật" class="p-button-sm font-normal" (onClick)="display=false; isShowUpdateInfo=true">
+    </p-button>
+  </ng-template>
+</p-dialog>

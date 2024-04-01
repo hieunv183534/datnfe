@@ -5,6 +5,7 @@ import {
   OnInit,
   Output,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -23,6 +24,8 @@ import { FsiValues } from 'src/app/shared/util/util';
   selector: 'app-update-user-info',
   templateUrl: './update-user-info.component.html',
   styleUrls: ['./update-user-info.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class UpdateUserInfoComponent implements OnInit {
   @Input() display: boolean = false;
@@ -41,7 +44,6 @@ export class UpdateUserInfoComponent implements OnInit {
     { name: 'Nữ', value: false },
   ];
   purposes: any[] = FsiValues.purposes;
-  styleDialog: any = { width: '50vw' };
   innerWidth: any;
 
   universities: any[] = FsiValues.universities.map((x) => {
@@ -59,6 +61,7 @@ export class UpdateUserInfoComponent implements OnInit {
   activeIndex: number = 0;
   steps: MenuItem[] = [];
   handleSubmit: boolean = false;
+  isLoading: boolean = false;
 
   avatars = [
     "https://daustore.store/fsi/avatar1.png",
@@ -83,30 +86,18 @@ export class UpdateUserInfoComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
-
-  ngOnInit() {
-    this.innerWidth = window.innerWidth;
-    if (this.innerWidth <= 767) {
-      this.styleDialog = {};
-    }
-    this.steps = [
-      { label: 'Ảnh đại diện' },
-      { label: 'Thông tin cơ bản' },
-      { label: 'Thông tin chuyên biệt' },
-      { label: 'Mật khẩu' },
-    ];
+  ) {
 
     this.formBaseInfo = this.fb.group({
-      email: [null, []],
+      email: [null, [Validators.required]],
       phoneNumber: [null, []],
-      name: [null, []],
-      dateOfBirth: [null, []],
+      name: [null, [Validators.required]],
+      dateOfBirth: [null, [Validators.required]],
       identityCard: [null, []],
       location: [null, []],
       workingPlace: [null, []],
       gender: [null, []],
-      job: [null, []],
+      job: [null, [Validators.required]],
       university: [FsiValues.universities[0].universityName, []],
       universitySpecialized: [null, []],
       studentId: [null, []],
@@ -114,24 +105,79 @@ export class UpdateUserInfoComponent implements OnInit {
 
     this.formStartuperInfo = this.fb.group({
       describe: [null, []],
-      purpose: [null, 0],
-      ideaField: [null, [Validators.required]],
-      targetField: [null, [Validators.required]],
-      targetSpecialize: [null, [Validators.required]],
-      requestPersonality: [null, [Validators.required]],
-      requestSkill: [null, [Validators.required]],
-      field: [null, []],
+      purpose: [null, [Validators.required]],
+      targetField: [null, []],
+      targetSpecialize: [null, []],
+      requestPersonality: [null, []],
+      requestSkill: [null, []],
+      field: [null, [Validators.required]],
       speciality: [null, []],
-      personality: [null, []],
-      skill: [null, []],
+      personality: [null, [Validators.required]],
+      skill: [null, [Validators.required]],
       workingExperience: [null, []],
       activity: [null, []],
       certificateAndAward: [null, []],
       hasProject: [null, []],
-      yearOfExp: [null, []],
-      availableTime: [null, []],
+      yearOfExp: [null, [Validators.required]],
+      availableTime: [null, [Validators.required]],
       specialize: [null, [Validators.required]],
     });
+
+    this.formBaseInfo.valueChanges.subscribe((values) => {
+      // console.log('Form values changed:', changes.job);
+      if (values.job == 1) {
+        this.formBaseInfo.get('university')?.setValidators([Validators.required]);
+        this.formBaseInfo.get('universitySpecialized')?.setValidators([Validators.required]);
+        this.formBaseInfo.get('studentId')?.setValidators([Validators.required]);
+      }
+      else {
+        this.formBaseInfo.get('university')?.clearValidators();
+        this.formBaseInfo.get('universitySpecialized')?.clearValidators();
+        this.formBaseInfo.get('studentId')?.clearValidators();
+
+      }
+    });
+    this.formStartuperInfo.valueChanges.subscribe((values) => {
+
+      if (values.purpose == 1) {
+        this.formStartuperInfo.get('targetField')?.setValidators([Validators.required]);
+        this.formStartuperInfo.get('targetSpecialize')?.setValidators([Validators.required]);
+        this.formStartuperInfo.get('requestPersonality')?.setValidators([Validators.required]);
+        this.formStartuperInfo.get('requestSkill')?.setValidators([Validators.required]);
+      }
+      else if (values.purpose == 2) {
+        this.formStartuperInfo.get('targetField')?.setValidators([Validators.required]);
+        this.formBaseInfo.get('targetSpecialize')?.clearValidators();
+        this.formBaseInfo.get('requestPersonality')?.clearValidators();
+        this.formBaseInfo.get('requestSkill')?.clearValidators();
+      }
+      else if (values.purpose == 4) {
+        this.formStartuperInfo.get('targetField')?.setValidators([Validators.required]);
+        this.formBaseInfo.get('targetSpecialize')?.clearValidators();
+        this.formBaseInfo.get('requestPersonality')?.clearValidators();
+        this.formBaseInfo.get('requestSkill')?.clearValidators();
+      }
+      else {
+        this.formBaseInfo.get('targetField')?.clearValidators();
+        this.formBaseInfo.get('targetSpecialize')?.clearValidators();
+        this.formBaseInfo.get('requestPersonality')?.clearValidators();
+        this.formBaseInfo.get('requestSkill')?.clearValidators();
+      }
+
+    })
+  }
+
+  ngOnInit() {
+
+    this.steps = [
+      { label: 'Ảnh đại diện' },
+      { label: 'Thông tin cơ bản' },
+      { label: 'Thông tin chuyên biệt' },
+      { label: 'Mật khẩu' },
+    ];
+
+
+
 
     this.formChangePassword = this.fb.group({
       oldPassword: [null, [Validators.required]],
@@ -145,66 +191,64 @@ export class UpdateUserInfoComponent implements OnInit {
   get jobValue() {
     return this.formBaseInfo.value['job'];
   }
-
-  handleChange() {
-    if (this.formStartuperInfo.value.purpose != 1) {
-      this.formStartuperInfo.controls['ideaField'].clearValidators();
-      this.formStartuperInfo.controls['ideaField'].updateValueAndValidity();
-      this.formStartuperInfo.controls['targetSpecialize'].clearValidators();
-      this.formStartuperInfo.controls[
-        'targetSpecialize'
-      ].updateValueAndValidity();
-      this.formStartuperInfo.controls['requestPersonality'].clearValidators();
-      this.formStartuperInfo.controls[
-        'requestPersonality'
-      ].updateValueAndValidity();
-      this.formStartuperInfo.controls['requestSkill'].clearValidators();
-      this.formStartuperInfo.controls['requestSkill'].updateValueAndValidity();
-    } else if (
-      this.formStartuperInfo.value.purpose != 4 &&
-      this.formStartuperInfo.value.purpose != 2
-    ) {
-      this.formStartuperInfo.controls['targetField'].clearValidators();
-      this.formStartuperInfo.controls['targetField'].updateValueAndValidity();
-    }
-    if (this.formStartuperInfo.value.purpose == 1) {
-      this.formStartuperInfo.controls['ideaField'].setValidators([
-        Validators.required,
-      ]);
-      this.formStartuperInfo.controls['ideaField'].updateValueAndValidity();
-      this.formStartuperInfo.controls['targetSpecialize'].setValidators([
-        Validators.required,
-      ]);
-      this.formStartuperInfo.controls[
-        'targetSpecialize'
-      ].updateValueAndValidity();
-      this.formStartuperInfo.controls['requestPersonality'].setValidators([
-        Validators.required,
-      ]);
-      this.formStartuperInfo.controls[
-        'requestPersonality'
-      ].updateValueAndValidity();
-      this.formStartuperInfo.controls['requestSkill'].setValidators([
-        Validators.required,
-      ]);
-      this.formStartuperInfo.controls['requestSkill'].updateValueAndValidity();
-    } else if (
-      this.formStartuperInfo.value.purpose == 4 ||
-      this.formStartuperInfo.value.purpose == 2
-    ) {
-      this.formStartuperInfo.controls['targetField'].setValidators([
-        Validators.required,
-      ]);
-      this.formStartuperInfo.controls['targetField'].updateValueAndValidity();
-    }
-  }
+  // handleChange() {
+  //   if (this.formStartuperInfo.value.purpose != 1) {
+  //     this.formStartuperInfo.controls['ideaField'].clearValidators();
+  //     this.formStartuperInfo.controls['ideaField'].updateValueAndValidity();
+  //     this.formStartuperInfo.controls['targetSpecialize'].clearValidators();
+  //     this.formStartuperInfo.controls[
+  //       'targetSpecialize'
+  //     ].updateValueAndValidity();
+  //     this.formStartuperInfo.controls['requestPersonality'].clearValidators();
+  //     this.formStartuperInfo.controls[
+  //       'requestPersonality'
+  //     ].updateValueAndValidity();
+  //     this.formStartuperInfo.controls['requestSkill'].clearValidators();
+  //     this.formStartuperInfo.controls['requestSkill'].updateValueAndValidity();
+  //   } else if (
+  //     this.formStartuperInfo.value.purpose != 4 &&
+  //     this.formStartuperInfo.value.purpose != 2
+  //   ) {
+  //     this.formStartuperInfo.controls['targetField'].clearValidators();
+  //     this.formStartuperInfo.controls['targetField'].updateValueAndValidity();
+  //   }
+  //   if (this.formStartuperInfo.value.purpose == 1) {
+  //     this.formStartuperInfo.controls['ideaField'].setValidators([
+  //       Validators.required,
+  //     ]);
+  //     this.formStartuperInfo.controls['ideaField'].updateValueAndValidity();
+  //     this.formStartuperInfo.controls['targetSpecialize'].setValidators([
+  //       Validators.required,
+  //     ]);
+  //     this.formStartuperInfo.controls[
+  //       'targetSpecialize'
+  //     ].updateValueAndValidity();
+  //     this.formStartuperInfo.controls['requestPersonality'].setValidators([
+  //       Validators.required,
+  //     ]);
+  //     this.formStartuperInfo.controls[
+  //       'requestPersonality'
+  //     ].updateValueAndValidity();
+  //     this.formStartuperInfo.controls['requestSkill'].setValidators([
+  //       Validators.required,
+  //     ]);
+  //     this.formStartuperInfo.controls['requestSkill'].updateValueAndValidity();
+  //   } else if (
+  //     this.formStartuperInfo.value.purpose == 4 ||
+  //     this.formStartuperInfo.value.purpose == 2
+  //   ) {
+  //     this.formStartuperInfo.controls['targetField'].setValidators([
+  //       Validators.required,
+  //     ]);
+  //     this.formStartuperInfo.controls['targetField'].updateValueAndValidity();
+  //   }
+  // }
 
   getUserInfo() {
     this.startuperService
       .getMyInfo()
       .then((res: any) => {
         this.avatarUrl = res.data.avatarUrl;
-
         this.formBaseInfo.patchValue({
           email: res.data.extraProperties.email,
           phoneNumber: res.data.extraProperties.phoneNumber,
@@ -252,32 +296,32 @@ export class UpdateUserInfoComponent implements OnInit {
           specialize: res.data.specialize,
         });
 
-        if (this.formStartuperInfo.value.purpose != 1) {
-          this.formStartuperInfo.controls['ideaField'].clearValidators();
-          this.formStartuperInfo.controls['ideaField'].updateValueAndValidity();
-          this.formStartuperInfo.controls['targetSpecialize'].clearValidators();
-          this.formStartuperInfo.controls[
-            'targetSpecialize'
-          ].updateValueAndValidity();
-          this.formStartuperInfo.controls[
-            'requestPersonality'
-          ].clearValidators();
-          this.formStartuperInfo.controls[
-            'requestPersonality'
-          ].updateValueAndValidity();
-          this.formStartuperInfo.controls['requestSkill'].clearValidators();
-          this.formStartuperInfo.controls[
-            'requestSkill'
-          ].updateValueAndValidity();
-        } else if (
-          this.formStartuperInfo.value.purpose != 4 &&
-          this.formStartuperInfo.value.purpose != 2
-        ) {
-          this.formStartuperInfo.controls['targetField'].clearValidators();
-          this.formStartuperInfo.controls[
-            'targetField'
-          ].updateValueAndValidity();
-        }
+        // if (this.formStartuperInfo.value.purpose != 1) {
+        //   this.formStartuperInfo.controls['ideaField'].clearValidators();
+        //   this.formStartuperInfo.controls['ideaField'].updateValueAndValidity();
+        //   this.formStartuperInfo.controls['targetSpecialize'].clearValidators();
+        //   this.formStartuperInfo.controls[
+        //     'targetSpecialize'
+        //   ].updateValueAndValidity();
+        //   this.formStartuperInfo.controls[
+        //     'requestPersonality'
+        //   ].clearValidators();
+        //   this.formStartuperInfo.controls[
+        //     'requestPersonality'
+        //   ].updateValueAndValidity();
+        //   this.formStartuperInfo.controls['requestSkill'].clearValidators();
+        //   this.formStartuperInfo.controls[
+        //     'requestSkill'
+        //   ].updateValueAndValidity();
+        // } else if (
+        //   this.formStartuperInfo.value.purpose != 4 &&
+        //   this.formStartuperInfo.value.purpose != 2
+        // ) {
+        //   this.formStartuperInfo.controls['targetField'].clearValidators();
+        //   this.formStartuperInfo.controls[
+        //     'targetField'
+        //   ].updateValueAndValidity();
+        // }
       })
       .catch((err: any) => {
         this.messageService.add({
@@ -325,34 +369,46 @@ export class UpdateUserInfoComponent implements OnInit {
             summary: 'Lỗi',
             detail: 'Tải lên ảnh đại diện cá nhân thất bại!',
           });
-        });
+        }).finally(() => this.isLoading = false);
       }
     } else if (this.activeIndex == 1) {
-      console.log(this.formBaseInfo.value);
-      this.startuperService
-        .updateBaseInfo(this.formBaseInfo.value)
-        .then((res: any) => {
-          this.messageService.add({
-            key: 'toast',
-            severity: 'success',
-            summary: 'Thành công',
-            detail: 'Cập nhật thông tin thành công!',
-          });
-        })
-        .catch((err: any) => {
-          this.messageService.add({
-            key: 'toast',
-            severity: 'error',
-            summary: 'Lỗi',
-            detail: 'Cập nhật thất bại!',
-          });
-        });
+      this.formBaseInfo.get('university')?.updateValueAndValidity();
+      this.formBaseInfo.get('universitySpecialized')?.updateValueAndValidity();
+      this.formBaseInfo.get('studentId')?.updateValueAndValidity();
+      if (this.formBaseInfo.valid) {
+        this.isLoading = true;
+        this.startuperService
+          .updateBaseInfo(this.formBaseInfo.value)
+          .then((res: any) => {
+            this.messageService.add({
+              key: 'toast',
+              severity: 'success',
+              summary: 'Thành công',
+              detail: 'Cập nhật thông tin thành công!',
+            });
+          })
+          .catch((err: any) => {
+            this.messageService.add({
+              key: 'toast',
+              severity: 'error',
+              summary: 'Lỗi',
+              detail: 'Cập nhật thất bại!',
+            });
+          }).finally(() => this.isLoading = false);
+      }
     } else if (this.activeIndex == 2) {
-      console.log('validate', this.formStartuperInfo.valid);
-      if (
-        this.formStartuperInfo.valid &&
-        this.formStartuperInfo.value.purpose != 0
-      ) {
+      debugger
+      console.log(this.formStartuperInfo.valid);
+      console.log(this.formStartuperInfo.value);
+      
+      this.formBaseInfo.get('targetField')?.updateValueAndValidity();
+      this.formBaseInfo.get('targetSpecialize')?.updateValueAndValidity();
+      this.formBaseInfo.get('requestPersonality')?.updateValueAndValidity();
+      this.formBaseInfo.get('requestSkill')?.updateValueAndValidity();
+      if (this.formStartuperInfo.valid) {
+        debugger
+        
+        this.isLoading = true;
         this.startuperService
           .insertStartuperAsync(this.formStartuperInfo.value)
           .then((res: any) => {
@@ -370,7 +426,7 @@ export class UpdateUserInfoComponent implements OnInit {
               summary: 'Lỗi',
               detail: 'Cập nhật thất bại!',
             });
-          });
+          }).finally(() => this.isLoading = false);
       }
     } else if (this.activeIndex == 3) {
       if (this.formChangePassword.valid) {
@@ -378,6 +434,7 @@ export class UpdateUserInfoComponent implements OnInit {
           this.formChangePassword.value.newPassword ==
           this.formChangePassword.value.reNewPassword
         ) {
+          this.isLoading = true;
           this.authService
             .changePassword(
               this.formChangePassword.value.oldPassword,
@@ -410,7 +467,7 @@ export class UpdateUserInfoComponent implements OnInit {
                 summary: 'Lỗi',
                 detail: 'Thay đổi mật khẩu thất bại, vui lòng thử lại sau!',
               });
-            });
+            }).finally(() => this.isLoading = false);
         } else {
           this.messageService.add({
             key: 'toast',

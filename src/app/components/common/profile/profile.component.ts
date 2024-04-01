@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
   listWork: any[] = [];
   friendStatus: number = 0;
   isShowUpdateInfo: boolean = false;
+  display: boolean = false;
   userInfo: any = {};
   isChangeStyle: boolean = false;
   headerName: string = '';
@@ -42,6 +43,15 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    this.startuperService.getCheckIsNewProfile().then((res: any) => {
+      let currentUserId = this.getDecodedAccessToken().nameid;
+      if (res.data) {
+        this.display= true;
+      }
+    }).catch((err: any) => {
+
+    });
+
     this.userInfo = this.getDecodedAccessToken();
     this.userId = this.route.snapshot.paramMap.get('id')
     await this.startuperService.getUserDetail(this.userId).then((res: any) => {

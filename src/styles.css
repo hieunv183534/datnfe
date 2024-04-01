@@ -208,10 +208,10 @@ app-startuper-for-startuper .p-cascadeselect.p-component {
   margin-top: 15px !important;
 }
 
-.p-disabled,
+/* .p-disabled,
 .p-component:disabled {
   opacity: 1 !important;
-}
+} */
 
 .emoji-mart-anchors {
   display: none !important;
@@ -320,6 +320,10 @@ app-work-history-summary .p-card-content {
 @media (max-width: 576px) {
   .search .p-inputtext {
     width: 300px !important;
+  }
+  .body-content{
+    background-color: #f3f4f6;
+    padding: 0 !important;
   }
 }
 
