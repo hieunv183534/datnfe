@@ -1,13 +1,5 @@
-<p-dialog
-  [resizable]="true"
-  header="Tạo mới dự án"
-  [(visible)]="display"
-  [modal]="true"
-  [style]="{ width: '50vw' }"
-  [baseZIndex]="10000"
-  [draggable]="false"
-  (onHide)="hide()"
->
+<p-dialog [resizable]="true" header="Tạo mới dự án" [(visible)]="display" [modal]="true" [style]="{ width: '50vw' }"
+  [baseZIndex]="10000" [draggable]="false" (onHide)="hide()">
   <div class="p-fluid grid">
     <p-card class="col-12 w-full">
       <ng-template pTemplate="content">
@@ -17,54 +9,32 @@
               <div class="p-fluid grid">
                 <div class="p-field col-12 md-12 mb-2">
                   <span class="p-float-label">
-                    <input
-                      type="text"
-                      pInputText
-                      formControlName="projectName"
-                    />
+                    <input type="text" pInputText formControlName="projectName" />
                     <label>Tên dự án: <span style="color: red">*</span> </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12 mb-2">
                   <span class="p-float-label">
-                    <textarea
-                      [rows]="5"
-                      pInputTextarea
-                      formControlName="description"
-                    ></textarea>
-                    <label
-                      >Mô tả chi tiết về dự án:
+                    <textarea [rows]="5" pInputTextarea formControlName="description"></textarea>
+                    <label>Mô tả chi tiết về dự án:
                       <span style="color: red">*</span>
                     </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12 mb-2">
                   <span class="p-float-label">
-                    <p-multiSelect
-                      optionLabel="name"
-                      optionValue="value"
-                      appendTo="body"
-                      [options]="fields"
-                      optionLabel="name"
-                      formControlName="fields"
-                    >
+                    <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="fields"
+                      optionLabel="name" formControlName="fields">
                     </p-multiSelect>
-                    <label
-                      >Lĩnh vực của dự án: <span style="color: red">*</span>
+                    <label>Lĩnh vực của dự án: <span style="color: red">*</span>
                     </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12 mb-2">
                   <span class="p-float-label">
-                    <p-dropdown
-                      [autoDisplayFirst]="false"
-                      [options]="projectStages"
-                      optionValue="value"
-                      optionLabel="name"
-                      formControlName="stage"
-                    ></p-dropdown>
-                    <label
-                      >Giai đoạn hiện tại của dự án:
+                    <p-dropdown [autoDisplayFirst]="false" [options]="projectStages" optionValue="value"
+                      optionLabel="name" formControlName="stage"></p-dropdown>
+                    <label>Giai đoạn hiện tại của dự án:
                       <span style="color: red">*</span>
                     </label>
                   </span>
@@ -89,26 +59,30 @@
                 </p-panel>
                 <div class="p-field col-12 md-12 mb-2">
                   <span class="p-float-label">
-                    <p-calendar
-                      appendTo="body"
-                      formControlName="foundedTime"
-                    ></p-calendar>
-                    <label
-                      >Thời gian thành lập: <span style="color: red">*</span>
+                    <p-calendar appendTo="body" formControlName="foundedTime"></p-calendar>
+                    <label>Thời gian thành lập: <span style="color: red">*</span>
                     </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12 mb-2">
                   <span class="p-float-label">
-                    <p-dropdown
-                      [autoDisplayFirst]="false"
-                      [options]="areas"
-                      optionValue="value"
-                      optionLabel="name"
-                      formControlName="area"
-                      [filter]="true"
-                    ></p-dropdown>
+                    <p-dropdown [autoDisplayFirst]="false" [options]="areas" optionValue="value" optionLabel="name"
+                      formControlName="area" [filter]="true"></p-dropdown>
                     <label>Khu vực: <span style="color: red">*</span> </label>
+                  </span>
+                </div>
+                <div class="p-field col-12 md-12 mb-2">
+                  <span class="p-float-label">
+                    <p-dropdown [autoDisplayFirst]="false" [options]="activePurposes" optionValue="value" optionLabel="name"
+                      formControlName="isProfit"></p-dropdown>
+                    <label>Mục đích hoạt động: <span style="color: red">*</span> </label>
+                  </span>
+                </div>
+                <div class="p-field col-12 md-12 mb-2">
+                  <span class="p-float-label">
+                    <p-dropdown [autoDisplayFirst]="false" [options]="scales" optionValue="value" optionLabel="name"
+                      formControlName="scale"></p-dropdown>
+                    <label>Quy mô nhân sự: <span style="color: red">*</span> </label>
                   </span>
                 </div>
                 <div class="p-field col-12 md-12 mb-2">
@@ -155,19 +129,10 @@
       <ng-template pTemplate="footer">
         <div class="flex justify-content-between">
           <span *ngIf="activeIndex == 0" style="visibility: hidden"></span>
-          <p-button
-            *ngIf="activeIndex > 0"
-            label="Trước"
-            (onClick)="back()"
-            icon="pi pi-angle-left"
-          >
+          <p-button *ngIf="activeIndex > 0" label="Trước" (onClick)="back()" icon="pi pi-angle-left">
           </p-button>
-          <p-button
-            [label]="activeIndex == 2 ? 'Hoàn thành' : 'Tiếp'"
-            (onClick)="next()"
-            icon="pi pi-angle-right"
-            iconPos="right"
-          >
+          <p-button [label]="activeIndex == 2 ? 'Hoàn thành' : 'Tiếp'" (onClick)="next()" icon="pi pi-angle-right"
+            iconPos="right">
           </p-button>
         </div>
       </ng-template>

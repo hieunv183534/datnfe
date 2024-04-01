@@ -28,6 +28,7 @@ export class AddNewProjectComponent implements OnInit {
   project: any = "";
   fields: any = FsiValues.fields;
   areas: any = FsiValues.areas;
+  scales: any = FsiValues.scales;
   availableTimes: any = FsiValues.availableTimes;
   projectStages: any[] = [
     { name: "Xác lập", value: ProjectStage.XacLap },
@@ -39,6 +40,8 @@ export class AddNewProjectComponent implements OnInit {
     { name: "Tăng trưởng 3", value: ProjectStage.TangTruong3 },
     { name: "Tăng trưởng 4", value: ProjectStage.TangTruong4 }
   ];
+
+  activePurposes: any[] = [{ name: "Lợi nhuận", value: true }, { name: "Phi lợi nhuận", value: false }];
 
 
   displayAddEvent: boolean = false;
@@ -69,6 +72,8 @@ export class AddNewProjectComponent implements OnInit {
       stage: [null, []],
       foundedTime: [null, []],
       area: [null, []],
+      isProfit: [true,[]],
+      scale: [null,[]],
       website: [null, []],
       fb: [null, []]
     });
@@ -92,6 +97,8 @@ export class AddNewProjectComponent implements OnInit {
         input.foundedTime = this.formProject.value.foundedTime;
         input.projectName = this.formProject.value.projectName;
         input.stage = this.formProject.value.stage;
+        input.isProfit = this.formProject.value.isProfit;
+        input.scale = this.formProject.value.scale;
         input.website = this.formProject.value.website;
         this.projectService.insertProjectAsync(input).then((res: any) => {
           this.project = res.data;
