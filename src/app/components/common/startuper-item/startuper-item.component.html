@@ -70,45 +70,52 @@
     </div>
   </div>
 
-  <div *ngIf="isHovered" class="hoverDiv">
-    <button *ngIf="mode == UuidStartuperModeFromMe" type="button" id="ketnoi" (click)="openChatOnClick()">
-      <i class="pi pi-comments" style="margin-right: 4px"></i> Trò chuyện
-    </button>
-    <button *ngIf="mode == UuidStartuperModeToMe" type="button" id="ketnoi" (click)="acceptRequestOnClick()">
-      <i class="pi pi-check"></i> Chấp nhận
-    </button>
-    <button type="button" id="xemthem" (click)="showUserDetail()">
-      <i class="pi pi-eye" style="margin-right: 4px"></i> Xem thêm
-    </button>
-    <button *ngIf="mode == UuidStartuperModeNew" type="button" id="ketnoi" (click)="requestFriendOnClick()">
-      <i class="pi pi-share-alt" style="margin-right: 4px"></i> Kết nối
-    </button>
-    <button *ngIf="
+  <div *ngIf="isHovered">
+    <div *ngIf="!isNewProfile" class="hoverDiv">
+      <button *ngIf="mode == UuidStartuperModeFromMe" type="button" id="ketnoi" (click)="openChatOnClick()">
+        <i class="pi pi-comments" style="margin-right: 4px"></i> Trò chuyện
+      </button>
+      <button *ngIf="mode == UuidStartuperModeToMe" type="button" id="ketnoi" (click)="acceptRequestOnClick()">
+        <i class="pi pi-check"></i> Chấp nhận
+      </button>
+      <button type="button" id="xemthem" (click)="showUserDetail()">
+        <i class="pi pi-eye" style="margin-right: 4px"></i> Xem thêm
+      </button>
+      <button *ngIf="mode == UuidStartuperModeNew" type="button" id="ketnoi" (click)="requestFriendOnClick()">
+        <i class="pi pi-share-alt" style="margin-right: 4px"></i> Kết nối
+      </button>
+      <button *ngIf="
         mode != UuidStartuperModeNew &&
         mode != UuidStartuperModeOFMe &&
         mode != UuidStartuperModeFromMe &&
         mode != UuidStartuperModeToMe &&
         mode != UuidStartuperModeAdmin
       " type="button" id="ketnoi" (click)="requestFromProjectOnClick()">
-      <i class="pi pi-send" style="margin-right: 4px"></i> Mời tham gia
-    </button>
-    <button *ngIf="mode == UuidStartuperModeOFMe" type="button" id="ketnoi" (click)="openChatOnClick()">
-      <i class="pi pi-comments" style="margin-right: 4px"></i> Trò chuyện
-    </button>
-    <button *ngIf="mode == UuidStartuperModeFromMe || mode == UuidStartuperModeToMe" type="button" id="xemthem"
-      (click)="openRequest()">
-      <i class="pi pi-envelope" style="margin-right: 4px"></i>Xem lời mời
-    </button>
-    <button *ngIf="mode == UuidStartuperModeToMe" type="button" id="xemthem">
-      <i class="pi pi-times" style="margin-right: 4px"></i> Từ chối
-    </button>
-    <button *ngIf="mode == UuidStartuperModeFromMe" type="button" id="xemthem" (click)="cancelRequestOnClick()">
-      <i class="pi pi-times" style="margin-right: 4px"></i> Thu hồi lời mời
-    </button>
+        <i class="pi pi-send" style="margin-right: 4px"></i> Mời tham gia
+      </button>
+      <button *ngIf="mode == UuidStartuperModeOFMe" type="button" id="ketnoi" (click)="openChatOnClick()">
+        <i class="pi pi-comments" style="margin-right: 4px"></i> Trò chuyện
+      </button>
+      <button *ngIf="mode == UuidStartuperModeFromMe || mode == UuidStartuperModeToMe" type="button" id="xemthem"
+        (click)="openRequest()">
+        <i class="pi pi-envelope" style="margin-right: 4px"></i>Xem lời mời
+      </button>
+      <button *ngIf="mode == UuidStartuperModeToMe" type="button" id="xemthem">
+        <i class="pi pi-times" style="margin-right: 4px"></i> Từ chối
+      </button>
+      <button *ngIf="mode == UuidStartuperModeFromMe" type="button" id="xemthem" (click)="cancelRequestOnClick()">
+        <i class="pi pi-times" style="margin-right: 4px"></i> Thu hồi lời mời
+      </button>
 
-    <button *ngIf="mode == UuidStartuperModeAdmin" type="button" id="ketnoi" (click)="deleteOnClick()">
-      <i class="pi pi-times" style="margin-right: 4px"></i> Xóa tài khoản
-    </button>
+      <button *ngIf="mode == UuidStartuperModeAdmin" type="button" id="ketnoi" (click)="deleteOnClick()">
+        <i class="pi pi-times" style="margin-right: 4px"></i> Xóa tài khoản
+      </button>
+    </div>
+    <div *ngIf="isNewProfile" class="hoverDiv">
+      <button type="button" id="ketnoi" (click)="updateProfile()">
+        Cập nhật thông tin
+      </button>
+    </div>
   </div>
 </div>
 <ng-container *ngIf="handleConnect">

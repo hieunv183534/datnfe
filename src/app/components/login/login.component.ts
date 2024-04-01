@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { FsiRole } from 'src/app/model/enum';
 import { AuthService } from 'src/app/services/auth.service';
+import { StartuperService } from 'src/app/services/startuper.service';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
   formLogin: FormGroup = this.fb.group({});
 
   constructor(
+    private startuperService: StartuperService,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
@@ -55,7 +57,13 @@ export class LoginComponent implements OnInit {
     if (this.formLogin.valid) {
       this.isLoading = true;
       this.authService.login(this.formLogin.value.username, this.formLogin.value.password, this.formLogin.value.role)
-        .then((res: any) => {
+        .then(async (res: any) => {
+          await this.startuperService.getCheckIsNewProfile().then((res: any) => {
+            localStorage.setItem("IS_NEW_PROFILE", res.data);
+          }).catch((err: any) => {
+            localStorage.setItem("IS_NEW_PROFILE", 'false');
+
+          });
           this.messageService.add({
             key: "toast",
             severity: "success",

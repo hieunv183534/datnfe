@@ -52,7 +52,8 @@
       <i class="pi pi-comments text-xl sm:text-2xl text-900 hover:text-primary"></i>
     </a>
     <a class="px-2 sm:px-3 cursor-pointer">
-      <i class="pi pi-bell text-xl sm:text-2xl text-900 hover:text-primary" (click)="onBellClick($event)"></i>
+      <i *ngIf="isNewProfile" class="pi pi-bell text-xl sm:text-2xl text-900 hover:text-primary" pBadge  value="1" (click)="onBellClick($event)"></i>
+      <i *ngIf="!isNewProfile" class="pi pi-bell text-xl sm:text-2xl text-900 hover:text-primary" (click)="onBellClick($event)"></i>
     </a>
     <a routerLink="#" class="pl-2 sm:pl-3">
       <p-avatar shape="circle" [image]="
@@ -89,4 +90,4 @@
     </div>
   </ng-template>
 </p-sidebar>
-<app-notification></app-notification>
+<app-notification [isNewProfile]="isNewProfile"></app-notification>

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } fro
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectStage, RelationWithProject } from 'src/app/model/enum';
 import { FsiValues } from 'src/app/shared/util/util';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-project-item',
@@ -23,7 +24,7 @@ export class ProjectItemComponent implements OnInit {
 
   isHovered: boolean = false;
   handleDetail: boolean = false;
-
+  isNewProfile: boolean = false;
   fields: any = FsiValues.fields;
   areas: any = FsiValues.areas;
 
@@ -40,8 +41,7 @@ export class ProjectItemComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
-    console.log(this.project);
-    
+    this.isNewProfile = JSON.parse(localStorage.getItem("IS_NEW_PROFILE")??'');
   }
 
   getArea(val: number) {
@@ -95,5 +95,15 @@ export class ProjectItemComponent implements OnInit {
   adminDelete1() {
     this.adminDelete.emit(this.project.id);
   }
-
+  updateProfile() {
+    let currentUserId = this.getDecodedAccessToken().nameid;
+    this.router.navigate(['/profile/' + currentUserId]);
+  }
+  getDecodedAccessToken(): any {
+    try {
+      return jwt_decode(localStorage.getItem("TOKEN") ?? "");
+    } catch (Error) {
+      return null;
+    }
+  }
 }

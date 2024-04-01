@@ -1,12 +1,12 @@
 <p-overlayPanel [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'200ms'" #op [dismissable]="true"
   [showCloseIcon]="false">
-  <div class="flex w-22rem overflow-y-scroll h-40rem flex-column pl-2">
+  <div class="flex w-22rem overflow-y-scroll h-auto max-h-40rem flex-column pl-2 py-2">
     <h3 class="my-0 p-2">Thông báo</h3>
     <p-tabView>
-      <p-tabPanel header="Tất cả">
+      <!-- <p-tabPanel header="Tất cả">
         <ng-container *ngFor="let item of items">
           <div
-            class="container-notification relative flex align-items-center justify-content-start cursor-pointer h-auto text-sm border-round p-2">
+            class="container-notification relative flex align-items-center justify-content-start cursor-pointer h-auto text-sm border-round p-2 h-auto">
             <div class="container-function">
               <div
                 class="absolute icon-absolute flex align-items-center justify-content-center cursor-pointer border-circle w-2rem h-2rem shadow-5 bg-white top-50 right-0 mr-4">
@@ -28,9 +28,20 @@
             </div>
           </div>
         </ng-container>
-      </p-tabPanel>
-      <p-tabPanel header="Chưa đọc">
-        Content 2
+      </p-tabPanel> -->
+      <p-tabPanel [header]="'Hệ thống(1)'">
+        <div *ngIf="isNewProfile"
+        class="container-notification relative flex align-items-center justify-content-start h-auto text-sm border-round p-2 h-auto">
+        <p-avatar size="large" shape="circle" [image]="'../../../assets/img/logo.png'" class="mr-3"></p-avatar>
+        <div class="flex flex-column">
+          <span>
+            Thông tin của bạn chưa đầy đủ, vui lòng cập nhật đầy đủ thông tin để sử dụng tất cả các chức năng.
+          </span>
+          <span class="font-semibold text-primary  cursor-pointer hover:text-blue-700" (click)="updateProfile()">
+            Cập nhật
+          </span>
+        </div>
+      </div>
       </p-tabPanel>
     </p-tabView>
 

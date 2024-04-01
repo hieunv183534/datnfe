@@ -1,6 +1,9 @@
 import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { OverlayPanel } from 'primeng/overlaypanel';
+import jwt_decode from 'jwt-decode';
+
 @Component({
   selector: 'app-notification',
   templateUrl: './notification.component.html',
@@ -10,21 +13,25 @@ import { OverlayPanel } from 'primeng/overlaypanel';
 export class NotificationComponent implements OnInit {
   items: any[] = [];
   @Input() display: boolean = false;
+  @Input() isNewProfile: boolean = false;
   @ViewChild('op') op!: OverlayPanel;
-  constructor() { }
+  constructor(
+    private router: Router,
+
+  ) { }
 
   ngOnInit(): void {
     this.items = [
-      // {
-      //   label: 'Vũ Việt gần đây đã đăng một tin.',
-      //   icon: 'pi pi-user',
-      //   avatar: 'https://kms.ctin.vn/csp.kms/shared/api/user/avatar/d42e7516-2924-4628-bb4e-a3d8e4e20cbbaced5fc1-2642-4a85-afdf-8e4de49d2e3e.jpg',
-      //   unRead: true,
-      //   time: "1 giờ trước",
-      //   command: () => {
-      //     // do something
+      //   {
+      //     label: 'Vũ Việt gần đây đã đăng một tin.',
+      //     icon: 'pi pi-user',
+      //     avatar: '../',
+      //     unRead: true,
+      //     time: "1 giờ trước",
+      //     command: () => {
+      //       // do something
+      //     },
       //   },
-      // },
       // {
       //   label: 'Nguyễn Quang Hiếu đã đăng 2 liên kết.',
       //   avatar: 'https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-1/356431598_1719331301848920_5923863853146486687_n.jpg?stp=c0.13.200.200a_dst-jpg_p200x200&_nc_cat=106&ccb=1-7&_nc_sid=5740b7&_nc_ohc=R_kBOkU35-4AX9gFf9V&_nc_ht=scontent.fhan14-2.fna&oh=00_AfB5fBN5zI0tgkWISRo4K_xb-BhGh9zYASu_eGipX7mp3g&oe=65985BC2',
@@ -173,6 +180,17 @@ export class NotificationComponent implements OnInit {
   }
   toggle(event: any) {
     this.op.toggle(event);
+  }
+  updateProfile() {
+    let currentUserId = this.getDecodedAccessToken().nameid;
+    this.router.navigate(['/profile/' + currentUserId]);
+  }
+  getDecodedAccessToken(): any {
+    try {
+      return jwt_decode(localStorage.getItem("TOKEN") ?? "");
+    } catch (Error) {
+      return null;
+    }
   }
 
 }

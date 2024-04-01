@@ -21,15 +21,14 @@ export class StartuperSpaceComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.startuperService.getCheckIsNewProfile().then((res: any) => {
-      let currentUserId = this.getDecodedAccessToken().nameid;
-      if (res.data) {
-        // hiện dialog thông báo
-        this.router.navigate(['../profile/' + currentUserId], { relativeTo: this.route });
-      }
-    }).catch((err: any) => {
-
-    });
+    // this.startuperService.getCheckIsNewProfile().then((res: any) => {
+    //   let currentUserId = this.getDecodedAccessToken().nameid;
+    //   if (res.data) {
+    //     // hiện dialog thông báo
+    //     this.router.navigate(['../profile/' + currentUserId], { relativeTo: this.route });
+    //   }
+    // }).catch((err: any) => {
+    // });
   }
 
   getDecodedAccessToken(): any {

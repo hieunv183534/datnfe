@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Input() menuData: { href: string, title: string }[] = [];
 
   isShowUpdateInfo: boolean = false;
+  isNewProfile: boolean = false;
   isShowSidebar: boolean = false;
   constructor(
     private route: ActivatedRoute,
@@ -43,6 +44,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.isNewProfile = JSON.parse(localStorage.getItem("IS_NEW_PROFILE")??'');
     this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
         this.thisRouteUrl = this.router.url;

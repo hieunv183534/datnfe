@@ -1,12 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { UuidStartuperModeAdmin, UuidStartuperModeFromMe, UuidStartuperModeNew, UuidStartuperModeOFMe, UuidStartuperModeToMe } from 'src/app/model/enum';
 import { StartuperDto } from 'src/app/model/startuper.class';
 import { AdminService } from 'src/app/services/admin.service';
 import { EventService } from 'src/app/services/event.service';
 import { FsiValues, Util } from 'src/app/shared/util/util';
-import * as moment from 'moment';
+import jwt_decode from 'jwt-decode';
+
 
 @Component({
   selector: 'app-startuper-item',
@@ -33,6 +34,7 @@ export class StartuperItemComponent implements OnInit {
 
   handleConnect: boolean = false;
   handleOpenRequest: boolean = false;
+  isNewProfile: boolean = false;
 
   @Output() requestFriend: EventEmitter<any> = new EventEmitter();
   @Output() acceptFriend: EventEmitter<any> = new EventEmitter();
@@ -45,10 +47,17 @@ export class StartuperItemComponent implements OnInit {
     private messageService: MessageService,
     private eventService: EventService,
     private router: Router,
-    private adminService: AdminService
-  ) { }
+    private adminService: AdminService,
+    private route: ActivatedRoute,
+
+  ) { 
+   
+    
+    
+  }
 
   ngOnInit() {
+    this.isNewProfile = JSON.parse(localStorage.getItem("IS_NEW_PROFILE")??'');
   }
 
   closeModal(){
@@ -147,7 +156,17 @@ export class StartuperItemComponent implements OnInit {
   showUserDetail() {
     this.eventService.showUserDetail(this.startuper.id ?? "FSI");
   }
-
+  updateProfile() {
+    let currentUserId = this.getDecodedAccessToken().nameid;
+    this.router.navigate(['/profile/' + currentUserId]);
+  }
+  getDecodedAccessToken(): any {
+    try {
+      return jwt_decode(localStorage.getItem("TOKEN") ?? "");
+    } catch (Error) {
+      return null;
+    }
+  }
   deleteOnClick() {
     this.adminService.deleteStartuper(this.startuper.id??"").then((res: any) => {
       this.messageService.add({
