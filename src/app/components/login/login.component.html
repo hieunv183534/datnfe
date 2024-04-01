@@ -31,11 +31,10 @@
         </div>
         <div class="help">Quên mật khẩu ?</div>
       </div>
-
-      <div class="buttonDiv">
-        <button class="send" (click)="submit()" pRipple>Đăng nhập</button>
+      <div class="buttonDiv mb-2">
+        <button class="send" (click)="submit()" [disabled]="isLoading" pRipple>Đăng nhập</button>
       </div>
-      <p class="text-green-600 text-xs sm:text-sm">
+      <p class="text-green-600 text-xs sm:text-sm my-2">
         Hoặc tiếp tục đăng ký với
       </p>
       <div id="iconDiv">
@@ -50,10 +49,10 @@
         <a class="text-primary cursor-pointer" (click)="routeToRegister()">Đăng ký miễn phí ngay</a>
       </p>
       <div>
-        <p  class="text-xs sm:text-sm my-1 sm:my-2">
+        <p class="text-xs sm:text-sm my-1 sm:my-2">
           Trang này được Google reCAPTCHA bảo vệ để đảm bảo bạn
         </p>
-        <p  class="text-xs sm:text-sm my-1 sm:my-2">
+        <p class="text-xs sm:text-sm my-1 sm:my-2">
           không phải là robot.
           <span class="text-primary cursor-pointer  my-1 sm:my-2">Tìm hiểu thêm.</span>
         </p>

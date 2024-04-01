@@ -451,9 +451,6 @@
 app-chat .p-inputtext{
  padding-left: 2.5rem !important;
 }
-.p-inputtext:active{
-border: none;
-}
 .reply-message{
   display: inline-block;
   width: auto;

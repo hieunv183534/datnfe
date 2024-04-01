@@ -182,23 +182,21 @@
           </ul>
         </p-tabPanel>
         <p-tabPanel header="Giới thiệu bản thân">
-          <ul style="padding: 0px !important">
-            <li>
-              <p>
+          <ul class="ml-1" style="padding: 0px !important">
+            <li class="flex flex-column">
+              <span class="ml-1">
                 <b>Kỹ năng chuyên môn: </b>
-              </p>
+              </span>
               <span>
                 <p-tag *ngFor="
                     let specialize of getSpecializies(
-                      startuperInfo.specialize ?? []
-                    )
-                  " [value]="specialize"></p-tag>
+                      startuperInfo.specialize ?? [])" [value]="specialize"></p-tag>
               </span>
             </li>
-            <li>
-              <p>
+            <li class="flex flex-column">
+              <span class="ml-1">
                 <b>Kỹ năng mềm nổi bật: </b>
-              </p>
+              </span>
               <span>
                 <ng-container *ngFor="
                     let personality of getSkills(startuperInfo.skill ?? [])
@@ -207,10 +205,10 @@
                 </ng-container>
               </span>
             </li>
-            <li>
-              <p>
+            <li class="flex flex-column">
+              <span class="ml-1">
                 <b>Tính cách nổi bật: </b>
-              </p>
+              </span>
               <span>
                 <ng-container *ngFor="
                     let personality of getPersonalities(
@@ -221,37 +219,37 @@
                 </ng-container>
               </span>
             </li>
-            <li>
-              <p>
+            <li class="flex flex-column">
+              <span class="ml-1">
                 <b>Thời gian khả dụng: </b>
-              </p>
+              </span>
               <span>
-                <p-tag :value="{{ getAvailableTime(startuperInfo.availableTime) }}" class="ml-1"></p-tag>
+                <p-tag :value="{{ getAvailableTime(startuperInfo.availableTime) }}" ></p-tag>
               </span>
             </li>
 
-            <li *ngIf="startuperInfo.job == 1">
-              <p>
+            <li *ngIf="startuperInfo.job == 1" class="flex flex-column">
+              <span class="ml-1">
                 <b>Học vấn: </b>
-              </p>
+              </span>
             </li>
-            <li *ngIf="startuperInfo.job == 1">
-              <p>
+            <li *ngIf="startuperInfo.job == 1" class="flex flex-column">
+              <span class="ml-1">
                 <i class="pi pi-building mr-1"></i>
                 <b> Trường học: </b> {{ startuperInfo.university }}
-              </p>
+              </span>
             </li>
-            <li *ngIf="startuperInfo.job == 1">
-              <p>
+            <li *ngIf="startuperInfo.job == 1" class="flex flex-column">
+              <span class="ml-1">
                 <i class="pi pi-briefcase mr-1"></i>
                 <b> Ngành học: </b> {{ startuperInfo.universitySpecialized }}
-              </p>
+              </span>
             </li>
             <li>
-              <p>
+              <span class="ml-1">
                 <b>Kinh nghiệm làm việc: </b>
                 <span *ngIf="listWork.length == 0">Không có</span>
-              </p>
+              </span>
               <p *ngFor="let item of listWork; let i = index">
                 <span class="color-text">{{ item.position }}</span> tại
                 <span class="color-text">{{ item.name }}</span>
@@ -260,20 +258,20 @@
               </p>
             </li>
             <li>
-              <p>
+              <span class="ml-1">
                 <b>Hoạt động xã hội: </b>
                 <span *ngIf="startuperInfo.activity; else invalidName">{{
                   startuperInfo.activity
                   }}</span>
-              </p>
+              </span>
             </li>
             <li>
-              <p>
+              <span class="ml-1">
                 <b>Chứng chỉ thành tích: </b>
                 <span *ngIf="startuperInfo.certificateAndAward; else invalidName">{{ startuperInfo.certificateAndAward
                   }}</span>
                 <ng-template #invalidName> Không có </ng-template>
-              </p>
+              </span>
             </li>
           </ul>
         </p-tabPanel>
@@ -287,3 +285,11 @@
 <ng-container *ngIf="isShowUpdateInfo">
   <app-update-user-info [display]="isShowUpdateInfo" (close)="closeModal()"></app-update-user-info>
 </ng-container>
+<p-dialog [resizable]="true" header="Thông báo" [(visible)]="display" [modal]="true" [style]="{width: '40vw'}"
+  [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [baseZIndex]="10000" [draggable]="false">
+  Thông tin của bạn chưa đầy đủ, vui lòng cập nhật đầy đủ thông tin trước khi sử dụng các tính năng khác.
+  <ng-template pTemplate="footer">
+    <p-button label="Cập nhật" class="p-button-sm font-normal" (onClick)="display=false; isShowUpdateInfo=true">
+    </p-button>
+  </ng-template>
+</p-dialog>
