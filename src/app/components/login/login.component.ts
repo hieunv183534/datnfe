@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -8,10 +8,13 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class LoginComponent implements OnInit {
   isShowPassword: boolean = false
+  isLoading: boolean = false
   savePassword: boolean = false
   @Output() closeModalLogin: EventEmitter<any> = new EventEmitter();
   @Output() register: EventEmitter<any> = new EventEmitter();
@@ -39,17 +42,18 @@ export class LoginComponent implements OnInit {
     this.closeModalLogin.emit();
   }
 
-  showPassword(){
+  showPassword() {
     this.isShowPassword = !this.isShowPassword
   }
 
-  routeToRegister(){
+  routeToRegister() {
     this.register.emit()
     this.closeModalLogin.emit()
   }
 
   submit() {
     if (this.formLogin.valid) {
+      this.isLoading = true;
       this.authService.login(this.formLogin.value.username, this.formLogin.value.password, this.formLogin.value.role)
         .then((res: any) => {
           this.messageService.add({
@@ -71,7 +75,7 @@ export class LoginComponent implements OnInit {
             summary: "Lỗi",
             detail: "Đăng nhập thất bại!",
           });
-        });
+        }).finally(() => this.isLoading = false);
     }
   }
 }
