@@ -65,7 +65,7 @@
           </p-multiSelect>
         </div>
         <div class="field-checkbox">
-          <p-checkbox (click)="chooseStudent()" [binary]="true" inputId="locSinhVien"></p-checkbox>
+          <p-checkbox (click)="chooseStudent()" [binary]="true" inputId="locSinhVien" formControlName="isStudent"></p-checkbox>
           <label for="locSinhVien">Bộ lọc sinh viên</label>
         </div>
         <ng-container *ngIf="checkStudent">
