@@ -2,8 +2,8 @@
   (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
   <div class="flex flex-row w-full" style="border-bottom: 1px solid #b9b3b0;">
     <div class="w-5rem h-5rem mr-2">
-      <img class="border-circle bg-white h-full w-full border-1 border-gray-200 w-5rem h-5rem" [src]="startuper.avatarUrl "
-        alt="">
+      <img class="border-circle bg-white h-full w-full border-1 border-gray-200 w-5rem h-5rem"
+        [src]="startuper.avatarUrl " alt="">
     </div>
     <div class="w-auto flex flex-column">
       <span class="font-semibold text-sm mb-1">{{ startuper.name}}</span>
@@ -28,12 +28,6 @@
     </div>
   </div>
   <div class="flex flex-column mt-2">
-    <div class="flex flex-column" *ngIf="startuper.ideaField?.length !== 0">
-      <span class="my-2"><b>Ý tưởng của tôi thuộc lĩnh vực</b></span>
-      <span>
-        <p-tag *ngFor="let ideaField of getIdeaField(startuper.ideaField ?? [])" [value]="ideaField"></p-tag>
-      </span>
-    </div>
     <div class="flex flex-column">
       <span class="mb-1"><b>Kỹ năng chuyên môn của tôi</b></span>
       <span>
@@ -42,7 +36,13 @@
               " [value]="specialize"></p-tag>
       </span>
     </div>
-    <div class="flex flex-column" *ngIf="startuper.targetSpecialize?.length !== 0">
+    <div class="flex flex-column" *ngIf="startuper.ideaField?.length !== 0 && startuper.purpose == 1">
+      <span class="my-2"><b>Ý tưởng của tôi thuộc lĩnh vực</b></span>
+      <span>
+        <p-tag *ngFor="let ideaField of getIdeaField(startuper.ideaField ?? [])" [value]="ideaField"></p-tag>
+      </span>
+    </div>
+    <div class="flex flex-column" *ngIf="startuper.targetSpecialize?.length !== 0 && startuper.purpose == 1">
       <span class="mb-1"><b>Tôi muốn tìm người có chuyên môn</b></span>
       <span>
         <p-tag *ngFor="
@@ -52,7 +52,8 @@
               " [value]="targetSpecialize"></p-tag>
       </span>
     </div>
-    <div class="flex flex-column" *ngIf="startuper.targetField?.length !== 0 ">
+    <div class="flex flex-column"
+      *ngIf="startuper.targetField?.length !== 0 &&  (startuper.purpose == 2 ||startuper.purpose == 4)">
       <span class="mb-1"><b>Lĩnh vực tôi quan tâm</b></span>
       <span>
         <p-tag *ngFor="
