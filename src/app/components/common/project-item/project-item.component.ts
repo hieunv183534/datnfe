@@ -41,7 +41,7 @@ export class ProjectItemComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
-    this.isNewProfile = JSON.parse(localStorage.getItem("IS_NEW_PROFILE")??'');
+    this.isNewProfile = JSON.parse(localStorage.getItem("IS_NEW_PROFILE")??'false');
   }
 
   getArea(val: number) {

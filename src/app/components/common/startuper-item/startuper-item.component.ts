@@ -57,7 +57,7 @@ export class StartuperItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isNewProfile = JSON.parse(localStorage.getItem("IS_NEW_PROFILE")??'');
+    this.isNewProfile = JSON.parse(localStorage.getItem("IS_NEW_PROFILE")??'false');
   }
 
   closeModal(){

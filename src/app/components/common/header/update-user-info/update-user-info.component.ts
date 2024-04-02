@@ -404,18 +404,12 @@ export class UpdateUserInfoComponent implements OnInit {
           }).finally(() => this.isLoading = false);
       }
     } else if (this.activeIndex == 2) {
-      debugger
-      console.log(this.formStartuperInfo.valid);
-      console.log(this.formStartuperInfo.value);
-      
       this.formBaseInfo.get('targetField')?.updateValueAndValidity();
       this.formBaseInfo.get('ideaField')?.updateValueAndValidity();
       this.formBaseInfo.get('targetSpecialize')?.updateValueAndValidity();
       this.formBaseInfo.get('requestPersonality')?.updateValueAndValidity();
       this.formBaseInfo.get('requestSkill')?.updateValueAndValidity();
       if (this.formStartuperInfo.valid) {
-        debugger
-        
         this.isLoading = true;
         this.startuperService
           .insertStartuperAsync(this.formStartuperInfo.value)
