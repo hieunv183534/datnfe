@@ -12,10 +12,14 @@
 
         {{ getPurpose(startuper.purpose) }}
       </span>
-      <span class="my-1">
+      <span *ngIf="startuper.job==1" class="my-1">
         <img src="../././../../../assets/icons/University.svg" alt="">
 
         {{ startuper.university }}
+      </span>
+      <span *ngIf="startuper.job!==1" class="my-1">
+        <i class="pi pi-building"></i>
+        {{ startuper.workingPlace }}
       </span>
       <span class="my-1">
         <img src="../././../../../assets/icons/Calendar.svg" alt="">

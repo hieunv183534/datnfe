@@ -148,7 +148,7 @@
         <app-introduce [projectIdProp]="projectId" [isView]="true"></app-introduce>
       </p-tabPanel>
       <p-tabPanel header="Thành viên">
-        <p-accordion [multiple]="true" [activeIndex]="[0, 1, 2]">
+        <!-- <p-accordion [multiple]="true" [activeIndex]="[0, 1, 2]">
           <p-accordionTab header="Đội ngũ sáng lập (5)">
             <div class="grid info" style="
                   border-radius: 17px;
@@ -287,7 +287,8 @@
               </div>
             </div>
           </p-accordionTab>
-        </p-accordion>
+        </p-accordion> -->
+        <app-list-member [projectId]="projectId"></app-list-member>
       </p-tabPanel>
       <p-tabPanel header="Pitch deck">
         <app-pitch-deck [isView]="true" [projectId]="projectId"></app-pitch-deck>
@@ -573,11 +574,16 @@
   </div>
   <ng-template pTemplate="footer">
     <div style="padding-top: 1.5rem">
-      <p-button *ngIf="project.extraProperties.relationWithProject == 1 && project.isActive" label="Kết nối" icon="pi pi-share-alt"  (onClick)="requestToProject()" ></p-button>
-      <button pButton *ngIf="project.extraProperties.relationWithProject == 3 && project.isActive" label="Hủy yêu cầu" icon="pi pi-share-alt"  class="p-button-secondary" (click)="cancelRequestProject()" ></button>
-      <button pButton *ngIf="project.extraProperties.relationWithProject == 2 && project.isActive" label="Chấp nhận" icon="pi pi-check" (click)="acceptRequest()" ></button>
-      <button pButton *ngIf="project.extraProperties.relationWithProject == 4 && !project.isActive" label="Phê duyệt" icon="pi pi-check" (click)="approveProject()" ></button>
-      <button pButton *ngIf="project.extraProperties.relationWithProject == 4 && !project.isActive" label="Từ chối" icon="pi pi-times" class="p-button-danger" (click)="deleteProject()"></button>
+      <p-button *ngIf="project.extraProperties.relationWithProject == 1 && project.isActive" label="Kết nối"
+        icon="pi pi-share-alt" (onClick)="requestToProject()"></p-button>
+      <button pButton *ngIf="project.extraProperties.relationWithProject == 3 && project.isActive" label="Hủy yêu cầu"
+        icon="pi pi-share-alt" class="p-button-secondary" (click)="cancelRequestProject()"></button>
+      <button pButton *ngIf="project.extraProperties.relationWithProject == 2 && project.isActive" label="Chấp nhận"
+        icon="pi pi-check" (click)="acceptRequest()"></button>
+      <button pButton *ngIf="project.extraProperties.relationWithProject == 4 && !project.isActive" label="Phê duyệt"
+        icon="pi pi-check" (click)="approveProject()"></button>
+      <button pButton *ngIf="project.extraProperties.relationWithProject == 4 && !project.isActive" label="Từ chối"
+        icon="pi pi-times" class="p-button-danger" (click)="deleteProject()"></button>
       <!-- <button *ngIf="project.extraProperties.relationWithProject == 4 && project.isActive" pButton type="button" label="Khóa"  icon="pi pi-lock-open" (click)="lockProject()" class="p-button-danger p-button-outlined"></button>
       <button *ngIf="project.extraProperties.relationWithProject == 4 && !project.isActive" pButton type="button" label="Mở khóa"  icon="pi pi-lock" (click)="unlockProject()" class="p-button-success p-button-outlined"></button> -->
     </div>

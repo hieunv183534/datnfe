@@ -33,6 +33,16 @@
             <input *ngIf="!isShowPassword" type="password" pInputText formControlName="password" id="inputtext-right" />
             <input formControlName="password" *ngIf="isShowPassword" type="text" id="inputtext-right" pInputText
               (input)="handleChange()" />
+            <!-- <p-password formControlName="password" class="w-full" [toggleMask]="true">
+                <ng-template pTemplate="footer">
+                  <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                    <li>Ít nhất một chữ thường</li>
+                    <li>Ít nhất một chữ hoa</li>
+                    <li>Ít nhất một số</li>
+                    <li>Tối thiểu 8 ký tự</li>
+                  </ul>
+                </ng-template>
+              </p-password> -->
           </span>
           <span class="text-error" *ngIf="
               !formRegister.value.password &&
@@ -139,7 +149,7 @@
               <label class="title">Ngành học<span style="color: red">*</span></label>
               <p-dropdown [filter]="true" [options]="universitySpecializeds ?? []" [style]="{ width: '100%' }"
                 [autoDisplayFirst]="false" formControlName="universitySpecialized" optionLabel="name"
-                optionValue="value"></p-dropdown>
+                [disabled]="!formRegister.value.baseInfomation.university" optionValue="value"></p-dropdown>
               <span class="text-error" *ngIf="
                   !formRegister.value.baseInfomation.universitySpecialized &&
                   !formRegister.valid &&

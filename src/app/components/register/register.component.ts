@@ -57,9 +57,7 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private messageService: MessageService
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.formRegister = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
       phoneNumber: [null, [Validators.required]],
@@ -74,12 +72,29 @@ export class RegisterComponent implements OnInit {
         location: [null, [Validators.required]],
         workingPlace: [null, []],
         gender: [true, []],
-        job: [1, [Validators.required]],
-        university: [FsiValues.universities[0].universityName, []],
+        job: [null, [Validators.required]],
+        university: [null, []],
         universitySpecialized: [null, []],
         studentId: [null, []],
       }),
     });
+    this.formRegister.valueChanges.subscribe((values) => {
+
+      if (values.baseInfomation.job == 1) {
+        this.formRegister.get('university')?.setValidators([Validators.required]);
+        this.formRegister.get('universitySpecialized')?.setValidators([Validators.required]);
+        this.formRegister.get('studentId')?.setValidators([Validators.required]);
+      }
+      else {
+        this.formRegister.get('university')?.clearValidators();
+        this.formRegister.get('universitySpecialized')?.clearValidators();
+        this.formRegister.get('studentId')?.clearValidators();
+      }
+    });
+  }
+
+  ngOnInit() {
+
   }
 
   get f() {
@@ -136,38 +151,44 @@ export class RegisterComponent implements OnInit {
     // console.log(this.acceptDieuKhoan)
     // console.log('form', this.formRegister.value)
     this.handleSubmit = true;
+    this.formRegister.get('university')?.updateValueAndValidity();
+    this.formRegister.get('universitySpecialized')?.updateValueAndValidity();
+    this.formRegister.get('studentId')?.updateValueAndValidity();
+
     if (this.formRegister.valid) {
-      if (
-        this.formRegister.value.password != this.formRegister.value.rePassword
-      ) {
-        this.comparePassword = true;
-      } else {
-        let value = this.formRegister.value;
-        value.baseInfomation.phone = value.phoneNumber;
-        value.baseInfomation.name =
-          value.baseInfomation.surname + ' ' + value.baseInfomation.name;
-        this.authService
-          .register(this.formRegister.value)
-          .then((res: any) => {
-            console.log(res);
-            this.closeRegister();
-            this.messageService.add({
-              key: 'toast',
-              severity: 'success',
-              summary: 'Thành công',
-              detail: 'Đăng ký thành công! Hãy đăng nhập để sử dụng dịch vụ!',
-            });
-          })
-          .catch((err: any) => {
-            console.log(err.response);
-            this.messageService.add({
-              key: 'toast',
-              severity: 'error',
-              summary: 'Lỗi',
-              detail: 'Đăng ký thất bại!',
-            });
-          });
-      }
+      debugger
+      console.log(this.formRegister.value);
+      //   if (
+      //     this.formRegister.value.password != this.formRegister.value.rePassword
+      //   ) {
+      //     this.comparePassword = true;
+      //   } else {
+      //     let value = this.formRegister.value;
+      //     value.baseInfomation.phone = value.phoneNumber;
+      //     value.baseInfomation.name =
+      //       value.baseInfomation.surname + ' ' + value.baseInfomation.name;
+      //     this.authService
+      //       .register(this.formRegister.value)
+      //       .then((res: any) => {
+      //         console.log(res);
+      //         this.closeRegister();
+      //         this.messageService.add({
+      //           key: 'toast',
+      //           severity: 'success',
+      //           summary: 'Thành công',
+      //           detail: 'Đăng ký thành công! Hãy đăng nhập để sử dụng dịch vụ!',
+      //         });
+      //       })
+      //       .catch((err: any) => {
+      //         console.log(err.response);
+      //         this.messageService.add({
+      //           key: 'toast',
+      //           severity: 'error',
+      //           summary: 'Lỗi',
+      //           detail: 'Đăng ký thất bại!',
+      //         });
+      //       });
+      //   }
     }
   }
 }

@@ -51,8 +51,8 @@ export class ProjectForStartuperComponent implements OnInit {
   ]
 
   page: number = 1;
-  pageSize: number = 10;
-  pageSizeOptions: any[] = [10, 20, 50, 100, 200];
+  pageSize: number = 12;
+  pageSizeOptions: any[] = [12, 24, 36, 48, 72];
   totalRecords: number = 0;
   startItem = 0;
   endItem = 0;

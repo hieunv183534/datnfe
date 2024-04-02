@@ -1,0 +1,41 @@
+<div class="p-2 flex flex-column">
+  <span class="my-2"><b>Đội ngũ sáng lập({{members.length}})</b></span>
+  <ng-container *ngFor="let user of members; let isFirst = first">
+    <div class="flex border-400 border-1 border-round-md align-items-center justify-content-between mb-1 p-2">
+      <div class="flex align-items-center justify-content-start">
+        <div class=" w-3rem h-3rem">
+          <img [src]="user.user.avatarUrl ?? 'https://fsiconnected.cloud/images/default-avatar.jpg'"
+            class="w-3rem h-3rem border-circle" [ngClass]="{'owner-outline':isFirst}">
+        </div>
+        <div class="flex flex-column">
+
+          <span class="ml-2  hover:text-primary cursor-pointer"
+            (click)="userSelectId=user.user.id;viewDetail()"><b>{{user.user.name}}</b></span>
+          <span *ngIf="isFirst" class="ml-2">Vai trò: Founder</span>
+          <span *ngIf="!isFirst" class="ml-2">Vai trò: Co-Founder</span>
+          <span class="ml-2">Ngày tham gia: {{getDate(user.joinTime)}}</span>
+        </div>
+        <!-- <img *ngIf="isFirst" src="../../../../../assets/icons/Owner.svg" class="h-1rem w-1rem ml-1"> -->
+      </div>
+      <button pButton pRipple type="button" icon="pi pi-caret-down"
+        class="p-button-rounded p-button-sm p-button-secondary p-button-text"
+        (click)="op.toggle($event); userSelectId=user.user.id"></button>
+    </div>
+  </ng-container>
+</div>
+<p-overlayPanel [showTransitionOptions]="'200ms'" [hideTransitionOptions]="'200ms'" #op [dismissable]="true">
+  <ng-template pTemplate>
+    <div class="flex flex-column p-2">
+      <div (click)="op.hide();viewDetail()"
+        class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1 hover:text-primary">
+        <i class="pi pi-id-card mr-2 text-xs"></i>
+        <p class="text-xs my-0">Xem chi tiết</p>
+      </div>
+      <div (click)="op.hide();navigateChat()"
+        class="container-notification flex align-items-center h-2rem justify-content-start cursor-pointer border-round px-2 py-1 hover:text-primary">
+        <i class="pi pi-comments mr-2 text-xs"></i>
+        <p class="text-xs my-0">Trò chuyện</p>
+      </div>
+    </div>
+  </ng-template>
+</p-overlayPanel>

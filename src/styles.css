@@ -356,3 +356,9 @@ p {
 .outline-primary{
   outline: 2px solid #00a3ff ;
 }
+.p-password {
+  width: 100%;
+}
+.p-password input{
+  width: 100% !important;
+}

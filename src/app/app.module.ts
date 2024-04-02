@@ -137,6 +137,9 @@ import {InputMaskModule} from 'primeng/inputmask';
 import { PitchDeckComponent } from './components/startuper/project-space/pitch-deck/pitch-deck.component';
 import {OrderListModule} from 'primeng/orderlist';
 import { UploadDocumentComponent } from './components/startuper/project-space/list-project-file/upload-document/upload-document.component';
+import { ListMemberComponent } from './components/common/project-item/project-detail/list-member/list-member.component';
+import {PasswordModule} from 'primeng/password';
+
 @NgModule({
   declarations: [
     HomePageNewComponent,
@@ -203,9 +206,10 @@ import { UploadDocumentComponent } from './components/startuper/project-space/li
     HistorySearchItemComponent,
     PitchDeckComponent,
     UploadDocumentComponent,
-    
+    ListMemberComponent
   ],
   imports: [
+    PasswordModule,
     CommonModule,
     AutoFocusModule,
     PanelMenuModule,

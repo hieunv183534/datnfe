@@ -32,8 +32,8 @@ export class ListStartuperComponent implements OnInit {
   formSearch: FormGroup = this.fb.group({});
 
   page: number = 1;
-  pageSize: number = 10;
-  pageSizeOptions: any[] = [10, 20, 50, 100, 200];
+  pageSize: number = 12;
+  pageSizeOptions: any[] = [12, 24, 36, 48, 72];
   totalRecords: number = 0;
   startItem = 0;
   endItem = 0;
@@ -91,6 +91,7 @@ export class ListStartuperComponent implements OnInit {
   onPageChange(value: any) {
     this.page = value.page + 1;
     this.pageSize = value.rows;
+    this.getListStartuper(false);
   }
 
   submitSearch() {
@@ -102,7 +103,7 @@ export class ListStartuperComponent implements OnInit {
     this.formSearch.controls["fields"].patchValue([]);
     this.formSearch.controls["areas"].patchValue([]);
     this.page = 1;
-    this.pageSize = 10;
+    this.pageSize = 12;
     this.getListStartuper(true);
   }
 
