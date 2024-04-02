@@ -58,11 +58,10 @@ export class LoginComponent implements OnInit {
       this.isLoading = true;
       this.authService.login(this.formLogin.value.username, this.formLogin.value.password, this.formLogin.value.role)
         .then(async (res: any) => {
-          await this.startuperService.getCheckIsNewProfile().then((res: any) => {
+          this.startuperService.getCheckIsNewProfile().then((res: any) => {
             localStorage.setItem("IS_NEW_PROFILE", res.data);
           }).catch((err: any) => {
             localStorage.setItem("IS_NEW_PROFILE", 'false');
-
           });
           this.messageService.add({
             key: "toast",

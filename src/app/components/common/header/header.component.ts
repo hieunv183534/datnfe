@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.isNewProfile = JSON.parse(localStorage.getItem("IS_NEW_PROFILE")??'');
+    this.isNewProfile = JSON.parse(localStorage.getItem("IS_NEW_PROFILE")??'false');
     this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
         this.thisRouteUrl = this.router.url;

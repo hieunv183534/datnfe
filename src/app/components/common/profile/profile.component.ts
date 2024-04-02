@@ -85,7 +85,13 @@ export class ProfileComponent implements OnInit {
   }
 
   closeModal() {
-    this.isShowUpdateInfo = false
+    this.isShowUpdateInfo = false;
+    this.startuperService.getCheckIsNewProfile().then((res: any) => {
+      localStorage.setItem("IS_NEW_PROFILE", res.data);
+    }).catch((err: any) => {
+      localStorage.setItem("IS_NEW_PROFILE", 'false');
+    });
+
     this.startuperService.getUserDetail(this.userId).then((res: any) => {
       this.startuperInfo = res.data.startuperInfo;
       this.friendStatus = res.data.friendStatus;
