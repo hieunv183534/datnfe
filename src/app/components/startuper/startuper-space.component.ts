@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-startuper-space',
@@ -12,11 +14,22 @@ export class StartuperSpaceComponent implements OnInit {
   // isVisibleRegisterInfo: boolean = false;
 
   constructor(
-
+    private router: Router
   ) { }
 
   ngOnInit() {
-
+    if (localStorage.getItem("IS_NEW_PROFILE") == 'true' && localStorage.getItem("REMIND_INFO") == 'true') {
+      let currentUserId = this.getDecodedAccessToken().nameid;
+      localStorage.setItem("REMIND_INFO", 'false');
+      this.router.navigate(['./profile/' + currentUserId]);
+    }
   }
 
+  getDecodedAccessToken(): any {
+    try {
+      return jwt_decode(localStorage.getItem("TOKEN") ?? "");
+    } catch (Error) {
+      return null;
+    }
+  }
 }

@@ -60,9 +60,21 @@ export class LoginComponent implements OnInit {
         .then(async (res: any) => {
           this.startuperService.getCheckIsNewProfile().then((res: any) => {
             localStorage.setItem("IS_NEW_PROFILE", res.data);
+            if (this.formLogin.value.role == FsiRole.Startuper) {
+              this.router.navigate(['../startuper'], { relativeTo: this.route });
+            } else {
+              this.router.navigate(['../investor'], { relativeTo: this.route });
+            }
           }).catch((err: any) => {
             localStorage.setItem("IS_NEW_PROFILE", 'false');
+            if (this.formLogin.value.role == FsiRole.Startuper) {
+              this.router.navigate(['../startuper'], { relativeTo: this.route });
+            } else {
+              this.router.navigate(['../investor'], { relativeTo: this.route });
+            }
           });
+
+          localStorage.setItem("REMIND_INFO",'true');
           this.messageService.add({
             key: "toast",
             severity: "success",
@@ -70,11 +82,6 @@ export class LoginComponent implements OnInit {
             detail: "Đăng nhập thành công, chuyển tới khu vực cá nhân!",
           });
           localStorage.setItem("TOKEN", res.data);
-          if (this.formLogin.value.role == FsiRole.Startuper) {
-            this.router.navigate(['../startuper'], { relativeTo: this.route });
-          } else {
-            this.router.navigate(['../investor'], { relativeTo: this.route });
-          }
         }).catch((err: any) => {
           this.messageService.add({
             key: "toast",
