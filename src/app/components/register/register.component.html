@@ -136,7 +136,7 @@
           <ng-container *ngIf="jobValue == 1">
             <div class="p-field register-form">
               <label class="title">Trường<span style="color: red">*</span></label>
-              <p-dropdown [filter]="true" [options]="universities" [style]="{ width: '100%' }"
+              <p-dropdown [filter]="true" [options]="universities" [style]="{ width: '100%' }"  appendTo="body"
                 [autoDisplayFirst]="false" formControlName="university" (onChange)="changeUniversity($event)"
                 optionLabel="name" optionValue="value"></p-dropdown>
               <span class="text-error" *ngIf="
@@ -147,7 +147,7 @@
             </div>
             <div class="p-field register-form">
               <label class="title">Ngành học<span style="color: red">*</span></label>
-              <p-dropdown [filter]="true" [options]="universitySpecializeds ?? []" [style]="{ width: '100%' }"
+              <p-dropdown [filter]="true" [options]="universitySpecializeds ?? []" [style]="{ width: '100%' }"  appendTo="body"
                 [autoDisplayFirst]="false" formControlName="universitySpecialized" optionLabel="name"
                 [disabled]="!formRegister.value.baseInfomation.university" optionValue="value"></p-dropdown>
               <span class="text-error" *ngIf="

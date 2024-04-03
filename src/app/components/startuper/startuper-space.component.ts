@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
 
 @Component({
@@ -14,10 +14,17 @@ export class StartuperSpaceComponent implements OnInit {
   // isVisibleRegisterInfo: boolean = false;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+    const token = localStorage.getItem('TOKEN');
+    if (!token)
+      this.router.navigate(['../homepage'], { relativeTo: this.route });
+
+  }
 
   ngOnInit() {
+
     if (localStorage.getItem("IS_NEW_PROFILE") == 'true' && localStorage.getItem("REMIND_INFO") == 'true') {
       let currentUserId = this.getDecodedAccessToken().nameid;
       localStorage.setItem("REMIND_INFO", 'false');

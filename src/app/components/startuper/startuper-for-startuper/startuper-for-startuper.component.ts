@@ -288,7 +288,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
     this.getListStartuper(true);
   }
 
-  clearSearch() {
+  async clearSearch() {
     this.formSearch.controls['filter'].patchValue(null);
     this.formSearch.controls['specializies'].patchValue([]);
     this.formSearch.controls['areas'].patchValue([]);

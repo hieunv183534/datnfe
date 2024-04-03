@@ -141,10 +141,22 @@
 	background-position-y: 12px;
   } */
 
-@media (max-width: 576px) {
-
-} 
-
-@media (min-width: 576px) and (max-width: 767px) {
+  app-home-header .custom-menu > .p-menu .p-submenu-header{
+	padding: 0 !important;
+  }
   
-} 
+  app-home-header .custom-menu > .p-menu .p-menuitem-link {
+	text-transform: uppercase;
+  }
+  app-home-header .custom-menu > .p-menu .p-menuitem-link .p-menuitem-text {
+	color: #212121 !important;
+	font-family: 'NotosansRegular' !important;
+  }
+  @media (max-width: 991px) {
+  app-home-header .custom-menu > .p-menu .p-menuitem-link .p-menuitem-text {
+	font-size: 12px!important;
+  }
+  }
+  app-home-header .custom-menu > .p-menu .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
+	color: #3B82F6 !important;
+  }

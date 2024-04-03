@@ -58,11 +58,8 @@
     </a>
   </div>
   <div class="hidden sm:flex text-dark flex-row">
-    <a to="#" class="cursor-pointer min-w-max">
-      <div
-        class="navLink underline1 py-4 sm:px-2 md:px-3 lg:px-4 text-xs lg:text-sm hover:text-primary"
-        id="connect"
-      >
+    <a class="cursor-pointer min-w-max">
+      <div (click)="menuHeader.toggle($event)"  class="navLink underline1 pt-4 pb-2 mb-2 sm:mx-2 md:mx-3 lg:mx-4 text-xs lg:text-sm hover:text-primary">
         KẾT NỐI
       </div>
     </a>
@@ -185,3 +182,5 @@
     (close)="isVisibleRegister = false"
   ></app-register>
 </ng-container>
+<p-menu class="custom-menu" [showTransitionOptions]="'100ms'" [hideTransitionOptions]="'100ms'" #menuHeader [popup]="true" [model]="itemsHeader">
+</p-menu>
