@@ -106,7 +106,7 @@ export class UpdateUserInfoComponent implements OnInit {
     this.formStartuperInfo = this.fb.group({
       describe: [null, []],
       purpose: [null, [Validators.required]],
-      ideaField:[null, []],
+      ideaField: [null, []],
       targetField: [null, []],
       targetSpecialize: [null, []],
       requestPersonality: [null, []],
@@ -361,6 +361,7 @@ export class UpdateUserInfoComponent implements OnInit {
       if (this.blob) {
         this.uploadImage();
       } else if (this.avtIndex != -1) {
+        this.isLoading = true;
         this.startuperService.chooseDefaultAvatar(this.avatars[this.avtIndex]).then((res: any) => {
           this.avatarUrl = res.data;
           this.messageService.add({
@@ -528,6 +529,7 @@ export class UpdateUserInfoComponent implements OnInit {
 
   uploadImage() {
     let file = new File([this.blob], '1.png');
+    this.isLoading = true
     this.startuperService
       .uploadAvatar(file)
       .then((res: any) => {
@@ -546,6 +548,7 @@ export class UpdateUserInfoComponent implements OnInit {
           summary: 'Lỗi',
           detail: 'Tải lên ảnh đại diện cá nhân thất bại!',
         });
-      });
+      })
+      .finally(() => this.isLoading = false);
   }
 }
