@@ -235,7 +235,7 @@ app-work-history-summary .p-card-body {
 app-work-history-summary .p-card-content {
   padding: 0px !important;
 }
-/* .p-sidebar .p-sidebar-header {
+.p-sidebar .p-sidebar-header {
   padding: 0.5rem !important;
 }
 .p-sidebar .p-sidebar-content {
@@ -248,7 +248,7 @@ app-work-history-summary .p-card-content {
   background-size: 60%;
   background-position-x: 12px;
   background-position-y: 12px;
-} */
+}
 
 /* custom style input */
 .p-component {
@@ -269,7 +269,7 @@ app-work-history-summary .p-card-content {
 }
 .p-multiselect,
 .p-cascadeselect {
-  height: 39px !important;
+  height: 37px !important;
 }
 .p-button {
   padding: 0.5rem 1rem !important;
@@ -361,4 +361,7 @@ p {
 }
 .p-password input{
   width: 100% !important;
+}
+.p-inputtext{
+  font-size: 14px !important;
 }

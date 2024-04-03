@@ -3,31 +3,50 @@
   <div class="flex flex-row w-full" style="border-bottom: 1px solid #b9b3b0;">
     <div class="w-5rem h-5rem mr-2">
       <img class="border-circle bg-white h-full w-full border-1 border-gray-200 w-5rem h-5rem"
-        [src]="startuper.avatarUrl " alt="">
+        [src]="startuper.avatarUrl ?? '../../../../assets//img//blankavatar.jpg' " alt="">
     </div>
     <div class="w-auto flex flex-column">
       <span class="font-semibold text-sm mb-1">{{ startuper.name}}</span>
-      <span class="my-1">
-        <img src="../././../../../assets/icons/Crosshairs.svg" alt="">
+      <span class="flex flex-row align-items-start my-1">
+        <div class="flex  w-1rem mr-1 mt-1">
+          <img src="../././../../../assets/icons/Crosshairs.svg" alt="">
+        </div>
+        <span>
+          {{ getPurpose(startuper.purpose) }}
+        </span>
+      </span>
+      <span *ngIf="startuper.job==1" class="flex flex-row align-items-start my-1">
+        <div class="flex  w-1rem mr-1 mt-1">
+          <img src="../././../../../assets/icons/University.svg" alt="">
+        </div>
+        <span>
+          {{ startuper.university }}
+        </span>
+      </span>
+      <span *ngIf="startuper.job!==1" class="flex flex-row align-items-start my-1">
+        <div class="flex  w-1rem mr-1 mt-1">
+          <i class="fa-solid fa-building"></i>
+        </div>
+        <span>
+          {{ startuper.workingPlace }}
+        </span>
+      </span>
+      <span class="flex flex-row align-items-start my-1">
+        <div class="flex  w-1rem mr-1 mt-1">
 
-        {{ getPurpose(startuper.purpose) }}
+          <img src="../././../../../assets/icons/Calendar.svg" alt="">
+        </div>
+        <span>
+          {{ getAge(startuper.dateOfBirth) }} tuổi
+        </span>
       </span>
-      <span *ngIf="startuper.job==1" class="my-1">
-        <img src="../././../../../assets/icons/University.svg" alt="">
-
-        {{ startuper.university }}
-      </span>
-      <span *ngIf="startuper.job!==1" class="my-1">
-        <i class="pi pi-building"></i>
-        {{ startuper.workingPlace }}
-      </span>
-      <span class="my-1">
-        <img src="../././../../../assets/icons/Calendar.svg" alt="">
-        {{ getDate(startuper.dateOfBirth) }}
-      </span>
-      <span class="my-1">
-        <img src="../././../../../assets/icons/Positon.svg" alt="">
-        {{ getArea(startuper.location) }}
+      <span class="flex flex-row align-items-start my-1">
+        <div class="flex  w-1rem mr-1 mt-1">
+          <img src="../././../../../assets/icons/Positon.svg" alt="">
+        </div>
+        <span>
+          {{ getArea(startuper.location) }}
+        </span>
       </span>
     </div>
   </div>

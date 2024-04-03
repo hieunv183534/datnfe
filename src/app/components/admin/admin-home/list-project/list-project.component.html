@@ -47,7 +47,7 @@
         <ng-container *ngIf="listProject.length == 0">
           <img width="300px" src="../../../../assets/img/nodata.jpg" alt="" style="margin: auto;">
         </ng-container>
-        <div  *ngIf="listProject.length !== 0" class="flex flex-row flex-wrap w-full">
+        <div *ngIf="listProject.length !== 0" class="flex flex-row flex-wrap w-full">
           <ng-container *ngFor=" let project of listProject">
             <div class="col-12 md:col-6 lg:col-4 xl:col-3">
               <app-project-item [project]="project" [relationWithProject]="RelationWithProject.Admin"
@@ -66,28 +66,31 @@
   </div>
 
   <p-sidebar [(visible)]="display">
-    <div class="p-field w-full" style="margin-bottom: 12px;">
-      <p-dropdown [options]="isActiveSelects" optionValue="value" optionLabel="name" [style]="{ width: '100%' }"
-        formControlName="isActive" defaultLabel="Loại dự án" (onChange)="submitSearch()"></p-dropdown>
-    </div>
-    <div class="p-field w-full" style="margin-bottom: 12px;">
-      <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="areas" optionLabel="name"
-        formControlName="areas" defaultLabel="Khu vực">
-      </p-multiSelect>
-    </div>
-    <div class="p-field w-full" style="margin-bottom: 12px;">
-      <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="fields" optionLabel="name"
-        formControlName="fields" defaultLabel="Lĩnh vực của dự án">
-      </p-multiSelect>
-    </div>
-    <div class="p-field w-full" style="margin-bottom: 12px;">
-      <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="projectStages" optionLabel="name"
-        formControlName="stages" defaultLabel="Giai đoạn của dự án">
-      </p-multiSelect>
-    </div>
-    <div class="col-12 flex justify-content-center mt-2">
-      <p-button icon="pi pi-search" (onClick)="submitSearch();display=false"></p-button>
-      <p-button class="ml-4" icon="pi pi-times" (onClick)="clearSearch();display=false"></p-button>
+    <div class="flex flex-column p-4">
+
+      <div class="p-field w-full" style="margin-bottom: 12px;">
+        <p-dropdown [options]="isActiveSelects" optionValue="value" optionLabel="name" [style]="{ width: '100%' }"
+          formControlName="isActive" defaultLabel="Loại dự án" (onChange)="submitSearch()"></p-dropdown>
+      </div>
+      <div class="p-field w-full" style="margin-bottom: 12px;">
+        <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="areas" optionLabel="name"
+          formControlName="areas" defaultLabel="Khu vực">
+        </p-multiSelect>
+      </div>
+      <div class="p-field w-full" style="margin-bottom: 12px;">
+        <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="fields" optionLabel="name"
+          formControlName="fields" defaultLabel="Lĩnh vực của dự án">
+        </p-multiSelect>
+      </div>
+      <div class="p-field w-full" style="margin-bottom: 12px;">
+        <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="projectStages"
+          optionLabel="name" formControlName="stages" defaultLabel="Giai đoạn của dự án">
+        </p-multiSelect>
+      </div>
+      <div class="col-12 flex justify-content-center mt-2">
+        <p-button icon="pi pi-search" (onClick)="submitSearch();display=false"></p-button>
+        <p-button class="ml-4" icon="pi pi-times" (onClick)="clearSearch();display=false"></p-button>
+      </div>
     </div>
   </p-sidebar>
 </form>

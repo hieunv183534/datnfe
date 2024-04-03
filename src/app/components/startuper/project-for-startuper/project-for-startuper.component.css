@@ -6,37 +6,6 @@ app-project-for-startuper h2 {
   margin: 0px !important;
 }
 
-app-project-for-startuper .col-12 {
-  padding: 0px !important;
-}
-
-app-project-for-startuper .md\:col-10 {
-  padding: 0px !important;
-}
-
-app-project-for-startuper .col-10 {
-  padding: 0px !important;
-}
-
-app-project-for-startuper .md\:col-2 {
-  padding: 0px !important;
-}
-
-app-project-for-startuper .left {
-  padding-left: 16px !important;
-}
-
-app-project-for-startuper .marginTop {
-  margin-bottom: 12px !important;
-}
-
-app-project-for-startuper .boLoc {
-  margin-bottom: 20px !important;
-}
-
-app-project-for-startuper .grid {
-  margin: 0px 0px 8px 0px !important;
-}
 
 app-project-for-startuper .p-dataview .p-dataview-content {
   background: unset !important;
@@ -132,4 +101,12 @@ app-project-for-startuper .p-panel .p-panel-content {
   .md\:col-4 {
     width: 25%;
   }
+}
+.p-button.p-button-icon-only.p-button-rounded {
+  border-radius: 50%;
+  height: 2rem;
+}
+.p-button.p-button-icon-only {
+  width: 2rem;
+  padding: 0.75rem 0;
 }

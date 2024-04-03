@@ -1,11 +1,11 @@
-app-startuper-for-startuper .p-inputtext {
+.p-input-icon-left > .p-inputtext {
   padding-left: 2.5rem !important;
 }
 
 app-startuper-for-startuper h2 {
   margin: 0px !important;
 }
-
+/* 
 app-startuper-for-startuper .col-12 {
   padding: 0px !important;
 }
@@ -24,7 +24,7 @@ app-startuper-for-startuper .col-4 {
 
 app-startuper-for-startuper .md\:col-2 {
   padding: 0px !important;
-}
+} */
 
 app-startuper-for-startuper .marginTop {
   margin-bottom: 12px !important;
@@ -34,9 +34,9 @@ app-startuper-for-startuper .boLoc {
   margin-bottom: 20px !important;
 }
 
-app-startuper-for-startuper .grid {
+/* app-startuper-for-startuper .grid {
   margin: 0px 0px 8px 0px !important;
-}
+} */
 
 app-startuper-for-startuper .p-dataview .p-dataview-content {
   background: unset !important;
@@ -95,8 +95,16 @@ app-startuper-for-startuper .p-paginator .p-paginator-pages .p-paginator-page {
 @media (min-width: 576px) and (max-width: 767px) {
 }
 
-@media (min-width: 1820px) {
+/* @media (min-width: 1820px) {
   .md\:col-4 {
     width: 25%;
   }
+} */
+.p-button.p-button-icon-only.p-button-rounded {
+  border-radius: 50%;
+  height: 2rem;
+}
+.p-button.p-button-icon-only {
+  width: 2rem;
+  padding: 0.75rem 0;
 }
