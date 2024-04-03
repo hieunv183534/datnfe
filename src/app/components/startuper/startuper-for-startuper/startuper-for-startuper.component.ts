@@ -35,6 +35,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
   yearOfExps: any = FsiValues.yearOfExps;
   purposes: any = FsiValues.purposes;
 
+  display: boolean = false;
   disabledSearch: boolean = false;
   checkStudent: boolean = false;
 
@@ -292,13 +293,14 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
     this.formSearch.controls['specializies'].patchValue([]);
     this.formSearch.controls['areas'].patchValue([]);
     this.formSearch.controls['availableTimes'].patchValue([]);
+    this.formSearch.controls['purposes'].patchValue([]);
     this.formSearch.controls['skills'].patchValue([]);
     this.formSearch.controls['yearOfExps'].patchValue([]);
     this.formSearch.controls['mode'].patchValue(UuidStartuperModeNew);
     this.formSearch.controls['university'].patchValue(null);
     this.formSearch.controls['universitySpecialized'].patchValue(null);
     this.page = 1;
-    this.pageSize = 10;
+    this.pageSize = 12;
     this.getListStartuper(true);
   }
 

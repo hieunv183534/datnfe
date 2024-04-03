@@ -125,7 +125,7 @@
 	border-bottom: 2px white solid;
 }
 
-.p-sidebar .p-sidebar-header {
+/* .p-sidebar .p-sidebar-header {
 	padding: 0.5rem;
   
   }
@@ -139,7 +139,7 @@
 	background-size: 60%;
 	background-position-x: 12px;
 	background-position-y: 12px;
-  }
+  } */
 
 @media (max-width: 576px) {
 

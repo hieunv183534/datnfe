@@ -26,7 +26,7 @@ export class ProjectForStartuperComponent implements OnInit {
   workingForms: any[] = [{ name: "Offline", value: WorkingForm.Offline }, { name: "Remote", value: WorkingForm.Remote }, { name: "Hybrid", value: WorkingForm.Hybrid }];
 
   formSearch: FormGroup = this.fb.group({});
-
+  display: boolean = false;
   sorting: string = 'suitable';
   styleBtnSuitable: any = {};
   styleBtnAvailableTime: any = 'p-button-secondary';
@@ -128,18 +128,15 @@ export class ProjectForStartuperComponent implements OnInit {
   }
 
   clearSearch() {
-    this.formSearch.controls["filter"].patchValue(null);
-    this.formSearch.controls["fields"].patchValue([]);
-    this.formSearch.controls["areas"].patchValue([]);
-    this.formSearch.controls["stages"].patchValue([]);
-    this.formSearch.controls["scale"].patchValue([]);
-    this.formSearch.controls["activePurpose"].patchValue([]);
-    this.formSearch.controls["specialize"].patchValue([]);
-    this.formSearch.controls["skill"].patchValue([]);
-    this.formSearch.controls["experience"].patchValue([]);
-    this.formSearch.controls["availableTimes"].patchValue([]);
+    this.formSearch.controls["filter"]?.patchValue(null);
+    this.formSearch.controls["fields"]?.patchValue([]);
+    this.formSearch.controls["areas"]?.patchValue([]);
+    this.formSearch.controls["stages"]?.patchValue([]);
+    this.formSearch.controls["scale"]?.patchValue([]);
+    this.formSearch.controls["isProfit"]?.patchValue(true);
+    this.formSearch.controls["relationWithProject"]?.patchValue(RelationWithProject.NotMemberOfProject);
     this.page = 1;
-    this.pageSize = 10;
+    this.pageSize = 12;
     this.getListProject(true);
   }
 

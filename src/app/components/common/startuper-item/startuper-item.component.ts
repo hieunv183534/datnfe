@@ -7,6 +7,7 @@ import { AdminService } from 'src/app/services/admin.service';
 import { EventService } from 'src/app/services/event.service';
 import { FsiValues, Util } from 'src/app/shared/util/util';
 import jwt_decode from 'jwt-decode';
+import * as moment from 'moment';
 
 
 @Component({
