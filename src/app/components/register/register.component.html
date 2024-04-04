@@ -88,9 +88,9 @@
           </div>
           <div class="p-field register-form">
             <label class="title">Tên<span style="color: red">*</span></label>
-            <input type="text" class="p-inputtext" pInputText formControlName="name" />
+            <input type="text" class="p-inputtext" pInputText formControlName="firstname" />
             <span class="text-error" *ngIf="
-                !formRegister.value.baseInfomation.name &&
+                !formRegister.value.baseInfomation.firstname &&
                 !formRegister.valid &&
                 handleSubmit
               ">Tên không được để trống</span>
