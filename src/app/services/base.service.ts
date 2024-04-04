@@ -16,7 +16,7 @@ export class BaseService {
     this.apiController = '';
     this.BaseAPIConfig = axios.create({
       // baseURL: "http://localhost:7777/api/"
-      baseURL: "https://fsiconnectedapi.azurewebsites.net/api/"
+      baseURL: "https://fsiconnected.azurewebsites.net/api/"
     });
 
     this.BaseAPIConfig.interceptors.request.use((config: any) => {
