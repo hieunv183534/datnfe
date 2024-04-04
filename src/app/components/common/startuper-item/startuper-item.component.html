@@ -23,7 +23,7 @@
           {{ startuper.university }}
         </span>
       </span>
-      <span *ngIf="startuper.job!==1" class="flex flex-row align-items-start my-1">
+      <span *ngIf="startuper.job!==1 && startuper.workingPlace" class="flex flex-row align-items-start my-1">
         <div class="flex  w-1rem mr-1 mt-1">
           <i class="fa-solid fa-building"></i>
         </div>
@@ -33,7 +33,6 @@
       </span>
       <span class="flex flex-row align-items-start my-1">
         <div class="flex  w-1rem mr-1 mt-1">
-
           <img src="../././../../../assets/icons/Calendar.svg" alt="">
         </div>
         <span>
