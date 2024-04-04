@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
       roleRegister: [FsiRole.Startuper, [Validators.required]],
       baseInfomation: this.fb.group({
         surname: [null, [Validators.required]],
-        name: [null, [Validators.required]],
+        firstname: [null, [Validators.required]],
         dateOfBirth: [null, [Validators.required]],
         identityCard: [null, []],
         location: [null, [Validators.required]],
@@ -165,9 +165,9 @@ export class RegisterComponent implements OnInit {
           let value = this.formRegister.value;
           value.baseInfomation.phone = value.phoneNumber;
           value.baseInfomation.name =
-            value.baseInfomation.surname + ' ' + value.baseInfomation.name;
+            value.baseInfomation.surname + ' ' + value.baseInfomation.firstname;
           this.authService
-            .register(this.formRegister.value)
+            .register(value)
             .then((res: any) => {
               console.log(res);
               this.closeRegister();
