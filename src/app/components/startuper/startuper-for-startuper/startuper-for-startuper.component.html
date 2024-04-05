@@ -1,19 +1,19 @@
-<form [formGroup]="formSearch">
-  <div class="body-content border-round-sm flex flex-row w-full p-4 px-4 md:px-6">
-    <div class="flex-column hidden sm:flex w-2 mr-4" style="min-width: 200px;">
-      <div class="mb-3">
-        <i class="pi pi-filter mr-2"></i>
-        <span class="font-semibold text-xl">Bộ lọc tìm kiếm</span>
-      </div>
-      <div class="p-field col-12 md-12 pb-0">
-        <p class="mb-1">Chế độ tìm kiếm</p>
-        <span class="p-float-label">
-          <p-cascadeSelect [options]="mySelects" optionLabel="cname" optionGroupLabel="name" optionValue="code"
-            [optionGroupChildren]="['selects']" appendTo="body" formControlName="mode"
-            (ngModelChange)="submitSearch()"></p-cascadeSelect>
-          <label></label>
-        </span>
-      </div>
+<div class="body-content border-round-sm flex flex-row w-full p-4 px-4 md:px-6">
+  <div class="flex-column hidden sm:flex w-2 mr-4" style="min-width: 200px;">
+    <div class="mb-3">
+      <i class="pi pi-filter mr-2"></i>
+      <span class="font-semibold text-xl">Bộ lọc tìm kiếm</span>
+    </div>
+    <div class="p-field col-12 md-12 pb-0">
+      <p class="mb-1">Chế độ tìm kiếm</p>
+      <span class="p-float-label">
+        <p-cascadeSelect [options]="mySelects" optionLabel="cname" optionGroupLabel="name" optionValue="code"
+          [optionGroupChildren]="['selects']" appendTo="body" [(ngModel)]="mode"
+          (ngModelChange)="submitSearch()"></p-cascadeSelect>
+        <label></label>
+      </span>
+    </div>
+    <ng-container [formGroup]="formSearch">
       <div class="p-field col-12 md-12 pb-0">
         <p class="mb-1">Mục đích tham gia</p>
         <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="purposes" optionLabel="name"
@@ -80,81 +80,84 @@
         <div class="flex flex-row flex-wrap">
           <div style="width: 50%; padding-right: 6px" (click)="submitSearch()">
             <div style="
-                  background-color: #3b82f6;
-                  color: #ffffff;
-                  padding: 12px;
-                  border-radius: 4px;
-                  cursor: pointer;
-                " class="btnSearch">
+                    background-color: #3b82f6;
+                    color: #ffffff;
+                    padding: 12px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                  " class="btnSearch">
               <span class="flex justify-content-center">Áp dụng</span>
             </div>
           </div>
           <div style="width: 50%; padding-left: 6px" (click)="clearSearch()">
             <div style="
-                  background-color: #d8dfe8;
-                  padding: 12px;
-                  border-radius: 4px;
-                  cursor: pointer;" class="btnClear">
+                    background-color: #d8dfe8;
+                    padding: 12px;
+                    border-radius: 4px;
+                    cursor: pointer;" class="btnClear">
               <span class="flex justify-content-center">Cài lại</span>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="flex flex-column w-full sm:w-10">
-      <div class="flex flex-row flex-wrap mb-2">
-        <div class="flex align-items-center justify-content-between col-12 md:col-6 lg:col-8 pt-0">
-          <div class="pr-3 block sm:hidden">
-            <button pButton type="button" icon="pi pi-filter" (click)="display=true"
-              class="p-button-raised p-button-rounded p-button-secondary"></button>
-          </div>
-          <span class="p-input-icon-left w-full">
-            <i class="pi pi-search"></i>
-            <input type="text" pInputText placeholder="Tìm kiếm theo từ khóa" class="input-icon" formControlName="filter"
-              (keyup.enter)="submitSearch()" style="width: 100%" />
-          </span>
-        </div>
-        <div class="col-12 md:col-6 lg:col-4 pt-0">
-          <div class=" w-full md-12">
-            <p-dropdown [options]="listSort" [style]="{ width: '100%' }" [autoDisplayFirst]="false"
-              (onChange)="changeSort($event)" optionLabel="label" optionValue="name"
-              placeholder="Sắp xếp theo"></p-dropdown>
-          </div>
-        </div>
-      </div>
-      <p-dataView [value]="listStartuper" *ngIf="listStartuper.length > 0">
-        <ng-template let-startuper pTemplate="listItem">
-          <div class="col-12 md:col-6 lg:col-4 xl:col-3 p-2">
-            <app-startuper-item [startuper]="startuper" [userInfo]="userInfo" [mode]="formSearch.value.mode"
-              (acceptFriend)="acceptFriend($event)" (requestFriend)="requestFriend($event)"
-              (requestFromProject)="requestFromProject($event)"
-              (cancelRequestFriend)="cancelRequestFriend($event)"></app-startuper-item>
-          </div>
-        </ng-template>
-      </p-dataView>
-      <ng-container *ngIf="listStartuper.length == 0">
-        <img width="300px" src="../../../../assets/img/nodata.jpg" alt=""
-          style="margin: auto; justify-content: center; display: flex" />
-      </ng-container>
-      <div class="flex justify-content-center">
-        <p-paginator styleClass="mt-2" [pageLinkSize]="pageSize" [rows]="pageSize" [totalRecords]="totalRecords"
-          currentPageReportTemplate="Hiển thị từ {first} đến {last} trên {totalRecords} nhà khởi nghiệp"
-          [showCurrentPageReport]="true" [rowsPerPageOptions]="pageSizeOptions"
-          (onPageChange)="onPageChange($event)"></p-paginator>
-      </div>
-    </div>
+    </ng-container>
+
   </div>
-  <p-sidebar [(visible)]="display">
-    <div class="flex flex-column p-3">
-      <div class="p-field col-12 md-12 pb-0">
-        <p class="mb-1">Chế độ tìm kiếm</p>
-        <span class="p-float-label">
-          <p-cascadeSelect [options]="mySelects" optionLabel="cname" optionGroupLabel="name" optionValue="code"
-            [optionGroupChildren]="['selects']" appendTo="body" formControlName="mode"
-            (ngModelChange)="submitSearch();display=false"></p-cascadeSelect>
-          <label></label>
+  <div class="flex flex-column w-full sm:w-10">
+    <div class="flex flex-row flex-wrap mb-2">
+      <div class="flex align-items-center justify-content-between col-12 md:col-6 lg:col-8 pt-0">
+        <div class="pr-3 block sm:hidden">
+          <button pButton type="button" icon="pi pi-filter" (click)="display=true"
+            class="p-button-raised p-button-rounded p-button-secondary"></button>
+        </div>
+        <span class="p-input-icon-left w-full">
+          <i class="pi pi-search"></i>
+          <input type="text" pInputText placeholder="Tìm kiếm theo từ khóa" class="input-icon" [(ngModel)]="filter"
+            (keyup.enter)="submitSearch()" style="width: 100%" />
         </span>
       </div>
+      <div class="col-12 md:col-6 lg:col-4 pt-0">
+        <div class=" w-full md-12">
+          <p-dropdown [options]="listSort" [style]="{ width: '100%' }" [autoDisplayFirst]="false"
+            (onChange)="changeSort($event)" optionLabel="label" optionValue="name"
+            placeholder="Sắp xếp theo"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <p-dataView [value]="listStartuper" *ngIf="listStartuper.length > 0">
+      <ng-template let-startuper pTemplate="listItem">
+        <div class="col-12 md:col-6 lg:col-4 xl:col-3 p-2">
+          <app-startuper-item [startuper]="startuper" [userInfo]="userInfo" [mode]="formSearch.value.mode"
+            (acceptFriend)="acceptFriend($event)" (requestFriend)="requestFriend($event)"
+            (requestFromProject)="requestFromProject($event)"
+            (cancelRequestFriend)="cancelRequestFriend($event)"></app-startuper-item>
+        </div>
+      </ng-template>
+    </p-dataView>
+    <ng-container *ngIf="listStartuper.length == 0">
+      <img width="300px" src="../../../../assets/img/nodata.jpg" alt=""
+        style="margin: auto; justify-content: center; display: flex" />
+    </ng-container>
+    <div class="flex justify-content-center">
+      <p-paginator styleClass="mt-2" [pageLinkSize]="pageSize" [rows]="pageSize" [totalRecords]="totalRecords"
+        currentPageReportTemplate="Hiển thị từ {first} đến {last} trên {totalRecords} nhà khởi nghiệp"
+        [showCurrentPageReport]="true" [rowsPerPageOptions]="pageSizeOptions"
+        (onPageChange)="onPageChange($event)"></p-paginator>
+    </div>
+  </div>
+</div>
+<p-sidebar [(visible)]="display">
+  <div class="flex flex-column p-3">
+    <div class="p-field col-12 md-12 pb-0">
+      <p class="mb-1">Chế độ tìm kiếm</p>
+      <span class="p-float-label">
+        <p-cascadeSelect [options]="mySelects" optionLabel="cname" optionGroupLabel="name" optionValue="code"
+          [optionGroupChildren]="['selects']" appendTo="body" [(ngModel)]="mode"
+          (ngModelChange)="submitSearch();display=false"></p-cascadeSelect>
+        <label></label>
+      </span>
+    </div>
+    <ng-container [formGroup]="formSearch">
       <div class="p-field col-12 md-12 pb-0">
         <p class="mb-1">Mục đích tham gia</p>
         <p-multiSelect optionLabel="name" optionValue="value" appendTo="body" [options]="purposes" optionLabel="name"
@@ -241,6 +244,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </p-sidebar>
-</form>
+    </ng-container>
+  </div>
+</p-sidebar>
