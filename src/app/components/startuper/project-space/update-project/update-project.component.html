@@ -1,5 +1,5 @@
-<p-dialog [resizable]="true" header="Cập nhật thông tin dự án" [(visible)]="display" [modal]="true"
-  [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" (onHide)="close.emit()">
+ <p-dialog [resizable]="true" header="Cập nhật thông tin dự án" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}"  (onHide)="close.emit()"
+  [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [baseZIndex]="10000" [draggable]="false">
   <div class="p-fluid grid">
     <p-card class="col-12">
       <ng-template pTemplate="content">
@@ -13,7 +13,7 @@
             </div>
             <div class="mt-3 mb-2">
               <p-divider align="left">
-                <span >Tải lên ảnh đại diện mới</span>
+                <span>Tải lên ảnh đại diện mới</span>
               </p-divider>
             </div>
             <input type="file" (change)="fileChangeEvent($event)" />
@@ -107,6 +107,28 @@
                   <span class="text-error" *ngIf="
                   !formProject.value.area &&
                   !this.formProject.valid 
+                ">Không được để trống</span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <p-dropdown [autoDisplayFirst]="false" [options]="activePurposes" optionValue="value"
+                      optionLabel="name" formControlName="isProfit"></p-dropdown>
+                    <label>Mục đích hoạt động: <span style="color: red">*</span> </label>
+                  </span>
+                  <span class="text-error" *ngIf="
+                  !formProject.value.isProfit &&
+                  !this.formProject.valid 
+                ">Không được để trống</span>
+                </div>
+                <div class="p-field col-12 md-12">
+                  <span class="p-float-label">
+                    <p-dropdown [autoDisplayFirst]="false" [options]="scales" optionValue="value" optionLabel="name"
+                      formControlName="scale"></p-dropdown>
+                    <label>Quy mô nhân sự: <span style="color: red">*</span> </label>
+                  </span>
+                  <span class="text-error" *ngIf="
+                  !formProject.value.scale &&
+                  !this.formProject.valid
                 ">Không được để trống</span>
                 </div>
                 <div class="p-field col-12 md-12">

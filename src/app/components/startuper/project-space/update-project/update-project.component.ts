@@ -5,7 +5,6 @@ import { ImageCropperComponent, ImageCroppedEvent, LoadedImage } from 'ngx-image
 import { MenuItem, MessageService } from 'primeng/api';
 import { ProjectStage, ProjectEventType } from 'src/app/model/enum';
 import { ProjectService } from 'src/app/services/project.service';
-import { StartuperService } from 'src/app/services/startuper.service';
 import { FsiValues } from 'src/app/shared/util/util';
 
 @Component({
@@ -26,6 +25,7 @@ export class UpdateProjectComponent implements OnInit {
   isLoading: boolean = false;
   fields: any = FsiValues.fields;
   areas: any = FsiValues.areas;
+  scales: any = FsiValues.scales;
   availableTimes: any = FsiValues.availableTimes;
   projectStages: any[] = [
     { name: "Xác lập", value: ProjectStage.XacLap },
@@ -38,6 +38,7 @@ export class UpdateProjectComponent implements OnInit {
     { name: "Tăng trưởng 4", value: ProjectStage.TangTruong4 }
   ];
 
+  activePurposes: any[] = [{ name: "Lợi nhuận", value: true }, { name: "Phi lợi nhuận", value: false }];
 
   constructor(
     private messageService: MessageService,
@@ -61,6 +62,8 @@ export class UpdateProjectComponent implements OnInit {
       stage: [this.project.stage, [Validators.required]],
       foundedTime: [new Date(this.project.foundedTime), [Validators.required]],
       area: [this.project.area, [Validators.required]],
+      isProfit: [this.project.isProfit, [Validators.required]],
+      scale: [this.project.scale, [Validators.required]],
       website: [this.project.website, []],
       fb: [this.project.fb, []]
     });

@@ -23,6 +23,8 @@ export class AddNewProjectComponent implements OnInit {
   @Output() submit: EventEmitter<any> = new EventEmitter();
 
   activeIndex: number = 0;
+  handleSubmit: boolean = false;
+  isLoading: boolean = false;
   formProject: FormGroup = this.fb.group({});
   formEvent: FormGroup = this.fb.group({});
   project: any = "";
@@ -72,8 +74,8 @@ export class AddNewProjectComponent implements OnInit {
       stage: [null, [Validators.required]],
       foundedTime: [null, [Validators.required]],
       area: [null, [Validators.required]],
-      isProfit: [true, []],
-      scale: [null, []],
+      isProfit: [true, [Validators.required]],
+      scale: [null, [Validators.required]],
       website: [null, []],
       fb: [null, []]
     });
@@ -88,19 +90,22 @@ export class AddNewProjectComponent implements OnInit {
 
   next() {
     if (this.activeIndex == 0) {
+      this.handleSubmit = true;
       if (this.formProject.valid) {
-        let input = new CreateUpdateProjectDto();
-        input.area = this.formProject.value.area;
-        input.description = this.formProject.value.description;
-        input.fb = this.formProject.value.fb;
-        input.fields = this.formProject.value.fields;
-        input.foundedTime = this.formProject.value.foundedTime;
-        input.projectName = this.formProject.value.projectName;
-        input.stage = this.formProject.value.stage;
-        input.isProfit = this.formProject.value.isProfit;
-        input.scale = this.formProject.value.scale;
-        input.website = this.formProject.value.website;
-        this.projectService.insertProjectAsync(input).then((res: any) => {
+        this.isLoading = true;
+        // let input = new CreateUpdateProjectDto();
+        // input.area = this.formProject.value.area;
+        // input.description = this.formProject.value.description;
+        // input.fb = this.formProject.value.fb;
+        // input.fields = this.formProject.value.fields;
+        // input.foundedTime = this.formProject.value.foundedTime;
+        // input.projectName = this.formProject.value.projectName;
+        // input.stage = this.formProject.value.stage;
+        // input.isProfit = this.formProject.value.isProfit;
+        // input.scale = this.formProject.value.scale;
+        // input.website = this.formProject.value.website;
+        this.projectService.insertProjectAsync(this.formProject.value).then((res: any) => {
+          this.handleSubmit = false;
           this.project = res.data;
           this.messageService.add({
             key: "toast",
@@ -116,8 +121,9 @@ export class AddNewProjectComponent implements OnInit {
             summary: "Lỗi",
             detail: "Thêm thông tin thất bại!",
           });
-        });
+        }).finally(() => this.isLoading = false);
       } else {
+        this.formProject.markAsTouched();
         this.messageService.add({
           key: "toast",
           severity: "error",
@@ -126,6 +132,7 @@ export class AddNewProjectComponent implements OnInit {
         });
       }
     } else if (this.activeIndex == 1) {
+      this.handleSubmit = true;
       if (this.blob) {
         this.uploadImage();
       } else {
@@ -194,8 +201,10 @@ export class AddNewProjectComponent implements OnInit {
   }
 
   uploadImage() {
+    this.isLoading = true;
     let file = new File([this.blob], '1.png');
     this.projectService.uploadAvatar(file, this.project.id).then((res: any) => {
+      this.handleSubmit = false;
       this.messageService.add({
         key: "toast",
         severity: "success",
@@ -210,7 +219,7 @@ export class AddNewProjectComponent implements OnInit {
         summary: "Lỗi",
         detail: "Tải lên ảnh đại diện dự án thất bại!",
       });
-    });
+    }).finally(() => this.isLoading = false);;
   }
 
 }

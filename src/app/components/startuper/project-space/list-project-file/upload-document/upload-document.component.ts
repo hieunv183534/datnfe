@@ -21,6 +21,7 @@ export class UploadDocumentComponent implements OnInit {
   note: string = "";
   visibleForInvestor: boolean = false;
   visibleForAll: boolean = false;
+  isLoading: boolean = false;
   constructor(
     private projectService: ProjectService,
     private messageService: MessageService,
@@ -44,6 +45,7 @@ export class UploadDocumentComponent implements OnInit {
         detail: "Chưa đầy đủ dữ liểu để upload!",
       });
     } else {
+      this.isLoading = true;
       this.projectService.uploadFile(this.uploadFiles[0], this.projectId, this.title, this.note, this.visibleForInvestor, this.visibleForAll).then((res: any) => {
         this.messageService.add({
           key: "toast",
@@ -63,7 +65,7 @@ export class UploadDocumentComponent implements OnInit {
           summary: "Lỗi",
           detail: "Upload thất bại!",
         });
-      });
+      }).finally(() => this.isLoading = false);
     }
   }
 
