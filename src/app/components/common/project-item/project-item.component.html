@@ -7,7 +7,7 @@
     </div>
     <div class="w-auto flex flex-column">
       <span class="font-semibold text-sm mb-1">{{ project.projectName}}</span>
-      <span class="my-1">
+      <!-- <span class="my-1">
         <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"
           style="margin-right: 4px">
           <path fill-rule="evenodd" clip-rule="evenodd"
@@ -21,8 +21,39 @@
         {{ getArea(project.area) }}
       </span>
       <span class="my-1">
-        <i class="fa-solid fa-users"></i>
         {{ project.extraProperties.memberCount }}
+      </span> -->
+
+      <span class="flex flex-row align-items-start my-1">
+        <div class="flex  w-1rem mr-1 mt-1">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"
+            style="margin-right: 4px">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M6.5 13C10.0899 13 13 10.0899 13 6.5C13 2.91005 10.0899 0 6.5 0C2.91005 0 0 2.91005 0 6.5C0 10.0899 2.91005 13 6.5 13ZM7.15 3.25C7.15 3.07761 7.08152 2.91228 6.95962 2.79038C6.83772 2.66848 6.67239 2.6 6.5 2.6C6.32761 2.6 6.16228 2.66848 6.04038 2.79038C5.91848 2.91228 5.85 3.07761 5.85 3.25V6.2309C5.85007 6.57565 5.98709 6.90626 6.2309 7.15L7.99045 8.90955C8.11304 9.02795 8.27723 9.09347 8.44766 9.09199C8.61809 9.09051 8.78112 9.02215 8.90163 8.90163C9.02215 8.78112 9.09051 8.61809 9.09199 8.44766C9.09347 8.27723 9.02795 8.11304 8.90955 7.99045L7.15 6.2309V3.25Z"
+              fill="black" />
+          </svg>
+        </div>
+        <span>
+          {{ getStage(project.stage) }}
+        </span>
+      </span>
+
+      <span class="flex flex-row align-items-start my-1">
+        <div class="flex  w-1rem mr-1 mt-1">
+          <img src="../././../../../assets/icons/Positon.svg" alt="">
+        </div>
+        <span>
+          {{ getArea(project.area) }}
+        </span>
+      </span>
+
+      <span class="flex flex-row align-items-start my-1">
+        <div class="flex  w-1rem mr-1 mt-1">
+          <i class="fa-solid fa-users text-xs"></i>
+        </div>
+        <span>
+          {{ project.extraProperties.memberCount }}
+        </span>
       </span>
     </div>
   </div>
