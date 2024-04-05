@@ -65,6 +65,8 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
   listStartuper: StartuperDto[] = [];
 
   formSearch: FormGroup = this.fb.group({});
+  mode: string = UuidStartuperModeNew;
+  filter: string = "";
 
   page: number = 1;
   pageSize: number = 12;
@@ -92,7 +94,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
     private projectService: ProjectService,
     private eventService: EventService,
     private router: Router
-  ) {}
+  ) { }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
@@ -102,18 +104,16 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.eventService.currentReloadStartuper.subscribe((reload) => {
-      if (reload != 'FSI') {
-        this.getListStartuper();
-      }
-    });
-
+    // this.eventService.currentReloadStartuper.subscribe((reload) => {
+    //   if (reload != 'FSI') {
+    //     this.getListStartuper();
+    //   }
+    // });
     this.userInfo = this.getDecodedAccessToken();
 
     console.log('user info', this.userInfo);
 
     this.formSearch = this.fb.group({
-      filter: [null, []],
       specializies: [[], []],
       areas: [[], []],
       availableTimes: [[], []],
@@ -121,7 +121,6 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
       purposes: [null, []],
       personalities: [[], []],
       yearOfExps: [[], []],
-      mode: [UuidStartuperModeNew, []],
       isStudent: [false, []],
       university: [null, []],
       universitySpecialized: [null, []],
@@ -168,11 +167,8 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
           };
         });
         var obs = this.route.params.subscribe((params) => {
-          let mode = params['mode'];
-          this.formSearch.controls['mode'].patchValue(mode);
-          setTimeout(() => {
-            this.getListStartuper(true);
-          }, 1000);
+          this.mode = params['mode'];
+          this.getListStartuper(true);
         });
         this.subscription.add(obs);
       })
@@ -243,7 +239,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
     input.sorting = this.sorting;
     input.purposes = this.formSearch.value.purposes ?? [];
     this.startuperService
-      .getListStartuper(input)
+      .getListStartuper({ ...input, mode: this.mode, filter: this.filter })
       .then((res: any) => {
         this.totalRecords = res.data.totalCount;
         this.listStartuper = res.data.items;
@@ -259,8 +255,7 @@ export class StartuperForStartuperComponent implements OnInit, OnDestroy {
       });
   }
 
-  changeSort(e: any){
-    // console.log(e.value)
+  changeSort(e: any) {
     this.sorting = e.value
     this.getListStartuper(true);
   }
