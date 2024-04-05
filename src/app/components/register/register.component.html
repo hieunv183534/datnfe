@@ -136,7 +136,7 @@
           <ng-container *ngIf="jobValue == 1">
             <div class="p-field register-form">
               <label class="title">Trường<span style="color: red">*</span></label>
-              <p-dropdown [filter]="true" [options]="universities" [style]="{ width: '100%' }"  appendTo="body"
+              <p-dropdown [filter]="true" [options]="universities" [style]="{ width: '100%' }" appendTo="body"
                 [autoDisplayFirst]="false" formControlName="university" (onChange)="changeUniversity($event)"
                 optionLabel="name" optionValue="value"></p-dropdown>
               <span class="text-error" *ngIf="
@@ -147,8 +147,8 @@
             </div>
             <div class="p-field register-form">
               <label class="title">Ngành học<span style="color: red">*</span></label>
-              <p-dropdown [filter]="true" [options]="universitySpecializeds ?? []" [style]="{ width: '100%' }"  appendTo="body"
-                [autoDisplayFirst]="false" formControlName="universitySpecialized" optionLabel="name"
+              <p-dropdown [filter]="true" [options]="universitySpecializeds ?? []" [style]="{ width: '100%' }"
+                appendTo="body" [autoDisplayFirst]="false" formControlName="universitySpecialized" optionLabel="name"
                 [disabled]="!formRegister.value.baseInfomation.university" optionValue="value"></p-dropdown>
               <span class="text-error" *ngIf="
                   !formRegister.value.baseInfomation.universitySpecialized &&
@@ -182,9 +182,12 @@
               </span>
             </label>
           </div>
-          <button [disabled]="!acceptDieuKhoan" class="send" (click)="submit()" pRipple>
+          <button [disabled]="!acceptDieuKhoan" class="send" *ngIf="!isLoading" (click)="submit()" pRipple>
             Đồng ý và tiếp tục
           </button>
+          <button class="send flex justify-content-center align-items-center opacity-70" *ngIf="isLoading"
+            [disabled]="true"><i class="pi pi-spin pi-spinner mr-2" style="font-size: 1rem"></i>Đồng ý và tiếp
+            tục</button>
         </div>
         <p class="text-green-600 text-xs sm:text-sm my-2">
           Hoặc tiếp tục đăng ký với

@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
             }
           });
 
-          localStorage.setItem("REMIND_INFO",'true');
+          localStorage.setItem("REMIND_INFO", 'true');
           this.messageService.add({
             key: "toast",
             severity: "success",
@@ -83,13 +83,14 @@ export class LoginComponent implements OnInit {
           });
           localStorage.setItem("TOKEN", res.data);
         }).catch((err: any) => {
+          this.isLoading = false;
           this.messageService.add({
             key: "toast",
             severity: "error",
             summary: "Lỗi",
             detail: "Đăng nhập thất bại!",
           });
-        }).finally(() => this.isLoading = false);
+        });
     }
   }
 }

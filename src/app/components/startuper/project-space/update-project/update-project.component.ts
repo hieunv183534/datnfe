@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageCropperComponent, ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { MenuItem, MessageService } from 'primeng/api';
@@ -23,7 +23,7 @@ export class UpdateProjectComponent implements OnInit {
   steps: MenuItem[] = [];
   formProject: FormGroup = this.fb.group({});
   activeIndex: number = 0;
-
+  isLoading: boolean = false;
   fields: any = FsiValues.fields;
   areas: any = FsiValues.areas;
   availableTimes: any = FsiValues.availableTimes;
@@ -50,17 +50,17 @@ export class UpdateProjectComponent implements OnInit {
     this.croppedImage = this.project.avatarUrl;
 
     this.steps = [
-      { label: 'Avatar' },
+      { label: 'Ảnh đại diện' },
       { label: 'Thông tin' }
     ];
 
     this.formProject = this.fb.group({
-      projectName: [this.project.projectName, []],
-      description: [this.project.description, []],
-      fields: [this.project.fields, []],
-      stage: [this.project.stage, []],
-      foundedTime: [new Date(this.project.foundedTime), []],
-      area: [this.project.area, []],
+      projectName: [this.project.projectName, [Validators.required]],
+      description: [this.project.description, [Validators.required]],
+      fields: [this.project.fields, [Validators.required]],
+      stage: [this.project.stage, [Validators.required]],
+      foundedTime: [new Date(this.project.foundedTime), [Validators.required]],
+      area: [this.project.area, [Validators.required]],
       website: [this.project.website, []],
       fb: [this.project.fb, []]
     });
@@ -72,23 +72,26 @@ export class UpdateProjectComponent implements OnInit {
         this.uploadImage();
       }
     } else if (this.activeIndex == 1) {
-      let newProjectInfo = { ...this.project, ...this.formProject.value };
-      this.projectService.updateProjectAsync(newProjectInfo).then((res: any) => {
-        this.messageService.add({
-          key: "toast",
-          severity: "success",
-          summary: "Thành công",
-          detail: "Cập nhật thông tin dự án thành công!"
-        });
-        this.changeProjectInfo.emit(newProjectInfo);
-      }).catch((err: any) => {
-        this.messageService.add({
-          key: "toast",
-          severity: "error",
-          summary: "Lỗi",
-          detail: "Cập nhật thông tin dự án thất bại!"
-        });
-      });
+      if (this.formProject.valid) {
+        this.isLoading = true;
+        let newProjectInfo = { ...this.project, ...this.formProject.value };
+        this.projectService.updateProjectAsync(newProjectInfo).then((res: any) => {
+          this.messageService.add({
+            key: "toast",
+            severity: "success",
+            summary: "Thành công",
+            detail: "Cập nhật thông tin dự án thành công!"
+          });
+          this.changeProjectInfo.emit(newProjectInfo);
+        }).catch((err: any) => {
+          this.messageService.add({
+            key: "toast",
+            severity: "error",
+            summary: "Lỗi",
+            detail: "Cập nhật thông tin dự án thất bại!"
+          });
+        }).finally(() => this.isLoading = false);
+      }
     } else {
 
     }
@@ -120,6 +123,7 @@ export class UpdateProjectComponent implements OnInit {
   }
 
   uploadImage() {
+    this.isLoading = true;
     let file = new File([this.blob], '1.png');
     this.projectService.uploadAvatar(file, this.project.id).then((res: any) => {
       this.messageService.add({
@@ -136,7 +140,7 @@ export class UpdateProjectComponent implements OnInit {
         summary: "Lỗi",
         detail: "Tải lên ảnh đại diện dự án thất bại!",
       });
-    });
+    }).finally(() => this.isLoading = false);
   }
 
 }

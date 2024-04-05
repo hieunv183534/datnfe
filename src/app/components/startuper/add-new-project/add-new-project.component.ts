@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageCropperComponent, ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { MessageService } from 'primeng/api';
@@ -66,14 +66,14 @@ export class AddNewProjectComponent implements OnInit {
 
   ngOnInit() {
     this.formProject = this.fb.group({
-      projectName: [null, []],
-      description: [null, []],
-      fields: [null, []],
-      stage: [null, []],
-      foundedTime: [null, []],
-      area: [null, []],
-      isProfit: [true,[]],
-      scale: [null,[]],
+      projectName: [null, [Validators.required]],
+      description: [null, [Validators.required]],
+      fields: [null, [Validators.required]],
+      stage: [null, [Validators.required]],
+      foundedTime: [null, [Validators.required]],
+      area: [null, [Validators.required]],
+      isProfit: [true, []],
+      scale: [null, []],
       website: [null, []],
       fb: [null, []]
     });
@@ -136,7 +136,7 @@ export class AddNewProjectComponent implements OnInit {
           detail: "Bạn chưa hoàn thành cập nhật ảnh đại diện dự án!",
         });
       }
-    }else if(this.activeIndex == 2){
+    } else if (this.activeIndex == 2) {
       this.close.emit();
     }
   }

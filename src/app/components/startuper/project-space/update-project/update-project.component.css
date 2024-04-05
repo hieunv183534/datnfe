@@ -9,3 +9,8 @@
   border: 2px solid rgb(28, 247, 28);
   max-width: 100%;
 }
+.old-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}

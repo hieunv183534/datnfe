@@ -114,7 +114,10 @@
   background: linear-gradient(90deg, #0386FF 0.09%, #01AAFF 100.05%);
   color: white;
 }
-
+.register .content .buttonDiv .send:hover {
+  background: linear-gradient(90deg, #0386FF 0.09%, #01AAFF 100.05%);
+  opacity: 0.9;
+}
 /* .p-field * {
   display: block;
 } */

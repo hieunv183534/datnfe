@@ -7,15 +7,22 @@
         <br>
         <ng-container [ngSwitch]="activeIndex">
           <ng-container *ngSwitchCase="0">
-            <input type="file" (change)="fileChangeEvent($event)" />
 
+            <div class="h-full w-full  flex justify-content-center align-items-center">
+              <img [src]="project.avatarUrl ?? '../../../../../assets/img/blankavatar.jpg'" class="old-avatar">
+            </div>
+            <div class="mt-3 mb-2">
+              <p-divider align="left">
+                <span >Tải lên ảnh đại diện mới</span>
+              </p-divider>
+            </div>
+            <input type="file" (change)="fileChangeEvent($event)" />
             <div *ngIf="imageChangedEvent !== '' " class="image-cropper-wrapper" class="h-20rem">
               <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1"
                 [roundCropper]="true" format="png" (imageCropped)="imageCropped($event)"
                 (imageLoaded)="imageLoaded($event)" (cropperReady)="cropperReady()"
                 (loadImageFailed)="loadImageFailed()"></image-cropper>
             </div>
-
             <!-- <img class="preview-image" [src]="croppedImage" /> -->
           </ng-container>
           <ng-container *ngSwitchCase="1">
@@ -27,6 +34,10 @@
                     <label>Tên dự án: <span style="color: red;">*</span>
                     </label>
                   </span>
+                  <span class="text-error" *ngIf="
+                      !formProject.value.projectName &&
+                      !this.formProject.valid 
+                    ">Không được để trống</span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
@@ -34,6 +45,10 @@
                     <label>Mô tả chi tiết về dự án: <span style="color: red;">*</span>
                     </label>
                   </span>
+                  <span class="text-error" *ngIf="
+                  !formProject.value.description &&
+                  !this.formProject.valid 
+                ">Không được để trống</span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
@@ -43,6 +58,10 @@
                     <label>Lĩnh vực của dự án: <span style="color: red;">*</span>
                     </label>
                   </span>
+                  <span class="text-error" *ngIf="
+                  !formProject.value.fields &&
+                  !this.formProject.valid 
+                ">Không được để trống</span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
@@ -51,6 +70,10 @@
                     <label>Giai đoạn hiện tại của dự án: <span style="color: red;">*</span>
                     </label>
                   </span>
+                  <span class="text-error" *ngIf="
+                  !formProject.value.stage &&
+                  !this.formProject.valid 
+                ">Không được để trống</span>
                 </div>
                 <p-panel class="col-12 md-12" header="Chi tiết các giai đoạn">
                   <b>Xác lập</b> - Ý tưởng mới được hình thành <br>
@@ -69,6 +92,10 @@
                     <label>Thời gian thành lập: <span style="color: red;">*</span>
                     </label>
                   </span>
+                  <span class="text-error" *ngIf="
+                  !formProject.value.foundedTime &&
+                  !this.formProject.valid 
+                ">Không được để trống</span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
@@ -77,6 +104,10 @@
                     <label>Khu vực: <span style="color: red;">*</span>
                     </label>
                   </span>
+                  <span class="text-error" *ngIf="
+                  !formProject.value.area &&
+                  !this.formProject.valid 
+                ">Không được để trống</span>
                 </div>
                 <div class="p-field col-12 md-12">
                   <span class="p-float-label">
@@ -100,7 +131,7 @@
       </ng-template>
       <ng-template pTemplate="footer">
         <div class="flex justify-content-end">
-          <p-button label="Cập nhật" styleClass="p-button-primary" (onClick)="save()">
+          <p-button label="Cập nhật" styleClass="p-button-primary" (onClick)="save()" [loading]="isLoading">
           </p-button>
         </div>
       </ng-template>

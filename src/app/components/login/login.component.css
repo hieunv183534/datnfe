@@ -80,14 +80,13 @@
   color: #0386FF;
 }
 
-.login .content .buttonDiv button {
+.login .content .buttonDiv button{
   width: 100%;
   height: 39px;
   font-size: 14px;
   font-weight: 600;
   background-color: white;
   border-radius: 5px;
-  cursor: pointer;
 }
 
 .login .content #iconDiv img {
@@ -101,7 +100,10 @@
   background: linear-gradient(90deg, #0386FF 0.09%, #01AAFF 100.05%);
   color: white;
 }
-
+.login .content .buttonDiv .send:hover {
+  background: linear-gradient(90deg, #0385ff 0.09%, #01AAFF 100.05%);
+  opacity: 0.9;
+}
 
 .sizes .p-inputtext {
   display: block;

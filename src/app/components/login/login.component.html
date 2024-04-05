@@ -32,7 +32,9 @@
         <div class="help">Quên mật khẩu ?</div>
       </div>
       <div class="buttonDiv mb-2">
-        <button class="send" (click)="submit()" [disabled]="isLoading" pRipple>Đăng nhập</button>
+        <button class="send cursor-pointer hover:opacity-70" (click)="submit()" *ngIf="!isLoading" [disabled]="isLoading" pRipple>Đăng nhập</button>
+        <button class="send flex justify-content-center align-items-center opacity-70" *ngIf="isLoading" [disabled]="isLoading"><i class="pi pi-spin pi-spinner mr-2"
+            style="font-size: 1rem"></i>Đang đăng nhập</button>
       </div>
       <p class="text-green-600 text-xs sm:text-sm my-2">
         Hoặc tiếp tục đăng ký với
