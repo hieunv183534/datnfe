@@ -60,19 +60,19 @@ export class RegisterComponent implements OnInit {
   ) {
     this.formRegister = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
-      phoneNumber: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      rePassword: [null, [Validators.required]],
-      roleRegister: [FsiRole.Startuper, [Validators.required]],
+      phoneNumber: [null],
+      password: [null],
+      rePassword: [null],
+      roleRegister: [FsiRole.Startuper],
       baseInfomation: this.fb.group({
-        surname: [null, [Validators.required]],
-        name: [null, [Validators.required]],
-        dateOfBirth: [null, [Validators.required]],
+        surname: [null],
+        name: [null],
+        dateOfBirth: [null],
         identityCard: [null, []],
-        location: [null, [Validators.required]],
+        location: [null],
         workingPlace: [null, []],
         gender: [true, []],
-        job: [null, [Validators.required]],
+        job: [null],
         university: [null, []],
         universitySpecialized: [null, []],
         studentId: [null, []],
@@ -148,8 +148,6 @@ export class RegisterComponent implements OnInit {
   }
 
   submit() {
-    // console.log(this.acceptDieuKhoan)
-    // console.log('form', this.formRegister.value)
     this.handleSubmit = true;
     this.formRegister.get('university')?.updateValueAndValidity();
     this.formRegister.get('universitySpecialized')?.updateValueAndValidity();
@@ -157,37 +155,38 @@ export class RegisterComponent implements OnInit {
 
     if (this.formRegister.valid) {
       console.log(this.formRegister.value);
-        if (
-          this.formRegister.value.password != this.formRegister.value.rePassword
-        ) {
-          this.comparePassword = true;
-        } else {
-          let value = this.formRegister.value;
-          value.baseInfomation.phone = value.phoneNumber;
-          value.baseInfomation.name =
-            value.baseInfomation.surname + ' ' + value.baseInfomation.name;
-          this.authService
-            .register(this.formRegister.value)
-            .then((res: any) => {
-              console.log(res);
-              this.closeRegister();
-              this.messageService.add({
-                key: 'toast',
-                severity: 'success',
-                summary: 'Thành công',
-                detail: 'Đăng ký thành công! Hãy đăng nhập để sử dụng dịch vụ!',
-              });
-            })
-            .catch((err: any) => {
-              console.log(err.response);
-              this.messageService.add({
-                key: 'toast',
-                severity: 'error',
-                summary: 'Lỗi',
-                detail: 'Đăng ký thất bại!',
-              });
-            });
-        }
+      if (
+        this.formRegister.value.password != this.formRegister.value.rePassword
+      ) {
+        this.comparePassword = true;
+      } else {
+        let value = this.formRegister.value;
+        debugger
+        value.baseInfomation.phone = value.phoneNumber;
+        value.baseInfomation.name = value.baseInfomation.surname + ' ' + value.baseInfomation.name;
+        debugger
+        // this.authService
+        //   .register(this.formRegister.value)
+        //   .then((res: any) => {
+        //     console.log(res);
+        //     this.closeRegister();
+        //     this.messageService.add({
+        //       key: 'toast',
+        //       severity: 'success',
+        //       summary: 'Thành công',
+        //       detail: 'Đăng ký thành công! Hãy đăng nhập để sử dụng dịch vụ!',
+        //     });
+        //   })
+        //   .catch((err: any) => {
+        //     console.log(err.response);
+        //     this.messageService.add({
+        //       key: 'toast',
+        //       severity: 'error',
+        //       summary: 'Lỗi',
+        //       detail: 'Đăng ký thất bại!',
+        //     });
+        //   });
+      }
     }
   }
 }
