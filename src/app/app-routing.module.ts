@@ -48,7 +48,7 @@ const routes: Routes = [
   {
     path: 'startuper', component: StartuperSpaceComponent,
     children: [
-      { path: '', redirectTo: 'project', pathMatch: 'full' },
+      { path: '', redirectTo: 'startuper/f6b77754-97c0-405f-86a5-f3f4959e2f3a', pathMatch: 'full' },
       {
         path: 'project', component: ProjectForStartuperComponent
       },
