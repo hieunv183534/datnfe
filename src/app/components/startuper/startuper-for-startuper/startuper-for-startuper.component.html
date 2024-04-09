@@ -128,7 +128,7 @@
       <p-dataView [value]="listStartuper" *ngIf="listStartuper.length > 0">
         <ng-template let-startuper pTemplate="listItem">
           <div class="col-12 md:col-4" style="padding: 0px 16px 16px 0 !important">
-            <app-startuper-item [startuper]="startuper" [userInfo]="userInfo" [mode]="formSearch.value.mode"
+            <app-startuper-item [startuper]="startuper" [userInfo]="userInfo" [mode]="mode"
               (acceptFriend)="acceptFriend($event)" (requestFriend)="requestFriend($event)"
               (requestFromProject)="requestFromProject($event)"
               (cancelRequestFriend)="cancelRequestFriend($event)"></app-startuper-item>
